@@ -33,6 +33,7 @@
 #include "address.h"
 
 typedef struct _channel_ref_info_t {
+    /* 基础数据成员 */
     int                      balance;         /* 是否被负载均衡标志 */
     channel_t*               channel;         /* 内部管道 */
     dlist_node_t*            loop_node;       /* 管道链表节点 */
@@ -49,11 +50,26 @@ typedef struct _channel_ref_info_t {
     time_t                   connect_timeout; /* connect()超时（秒） */
     int                      flag;            /* 选取器所使用自定义标志位 */
     void*                    data;            /* 选取器所使用自定义数据 */
+    /* 扩展数据成员 */
 } channel_ref_info_t;
 
 struct _channel_ref_t {
     channel_ref_info_t* ref_info; /* 管道信息 */
 };
+
+int channel_ref_tie(channel_ref_t* channel_ref, channel_ref_t* partner) {
+    /* TODO 添加订阅关系 */
+    channel_ref;
+    partner;
+    return 0;
+}
+
+int channel_ref_untie(channel_ref_t* channel_ref, channel_ref_t* partner) {
+    /* TODO 解除订阅关系 */
+    channel_ref;
+    partner;
+    return 0;
+}
 
 channel_ref_t* channel_ref_create(loop_t* loop, channel_t* channel) {
     channel_ref_t* channel_ref = create(channel_ref_t);

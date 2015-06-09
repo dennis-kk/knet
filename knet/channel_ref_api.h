@@ -67,6 +67,25 @@ extern int channel_ref_connect(channel_ref_t* channel_ref, const char* ip, int p
 extern int channel_ref_accept(channel_ref_t* channel_ref, const char* ip, int port, int backlog);
 
 /*
+ * 组合两个管道，当input读到的数据自动写入output, output读到的数据会自动写入input
+ * 适合网关自动分发数据包，将网关上的客户端管道与对应服务器管道组合
+ * @param channel_ref channel_ref_t实例
+ * @param partner channel_ref_t实例
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int channel_ref_tie(channel_ref_t* channel_ref, channel_ref_t* partner);
+
+/*
+ * 解除管道组合
+ * @param channel_ref channel_ref_t实例
+ * @param partner channel_ref_t实例
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int channel_ref_untie(channel_ref_t* channel_ref, channel_ref_t* partner);
+
+/*
  * 检测管道是否是通过负载均衡关联到当前的loop_t
  * @param channel_ref channel_ref_t实例
  * @retval 0 不是
