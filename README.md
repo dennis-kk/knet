@@ -7,8 +7,7 @@ support IOCP, select, epoll.
 # build - windows
 check directory win-proj
 
-# build - linux
-cd ./knet   
+# build - linux 
 cmake CMakeLists.txt   
 make   
 
