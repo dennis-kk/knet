@@ -16,6 +16,7 @@ add_library(knet
 	ringbuffer.c
 	stream.c
 	address.c
+	version.c
 )
 
 target_link_libraries(knet -lpthread)

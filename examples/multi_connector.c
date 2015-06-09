@@ -4,6 +4,10 @@
 
 #include "knet.h"
 
+/*
+ 单个loop_t实例, 多个连接器，一个监听者
+ */
+
 #define MAX_CONNECTOR 200  /* 连接器启动数量 */
 int connector_count = MAX_CONNECTOR; /* 当前连接器数量 */
 

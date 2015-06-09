@@ -4,6 +4,10 @@
 
 #include "knet.h"
 
+/*
+ 单个loop_t实例, 单个连接器，单个监听者
+ */
+
 /* 客户端 - 连接器回调 */
 void connector_cb(channel_ref_t* channel, channel_cb_event_e e) {
     char* hello = "hello world";
