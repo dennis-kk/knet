@@ -30,8 +30,8 @@
 #include <time.h>
 #include <stdio.h>
 
-#if WIN32
-    #define _WIN32_WINNT 0X0500
+#if defined(WIN32)
+    #define _WIN32_WINNT 0X0500 /* TryEnterCriticalSection */
     #if defined(FD_SETSIZE)
         #undef FD_SETSIZE
         #define FD_SETSIZE 1024
@@ -70,7 +70,7 @@
     #define thread_id_t pthread_t
     #define socket_t int
     #define atomic_counter_t volatile int
-#endif /* (WIN32 || WIN64) */
+#endif /* defined(WIN32) */
 
 #ifndef INT_MAX
 /* from stdint.h */
@@ -161,7 +161,9 @@ typedef enum _channel_cb_event_e {
 typedef void (*thread_func_t)(thread_runner_t*);
 typedef void (*channel_ref_cb_t)(channel_ref_t* channel, channel_cb_event_e e);
 
-#if defined(WIN32) || defined(WIN64)
+/* 根据需要， 开启不同选取器 */
+
+#if defined(WIN32)
 #define LOOP_IOCP 1    /* IOCP */
 #define LOOP_SELECT 0  /* select */
 #else

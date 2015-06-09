@@ -8,8 +8,8 @@ support IOCP, select, epoll.
 check directory win-proj
 
 # build - linux
-cd ./knet
-cmake CMakeLists.txt
-make
+cd ./knet   
+cmake CMakeLists.txt   
+make   
 
 have fun!

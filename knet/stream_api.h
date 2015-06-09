@@ -32,13 +32,13 @@
  * @param stream stream_t实例
  * @return 可读字节数
  */
-int stream_available(stream_t* stream);
+extern int stream_available(stream_t* stream);
 
 /*
  * 清空数据流
  * @param stream stream_t实例
  */
-void stream_eat(stream_t* stream);
+extern void stream_eat(stream_t* stream);
 
 /*
  * 从数据流内读取数据并清除数据
@@ -47,7 +47,7 @@ void stream_eat(stream_t* stream);
  * @param size 缓冲区大小
  * @return 读到的字节数
  */
-int stream_pop(stream_t* stream, char* buffer, int size);
+extern int stream_pop(stream_t* stream, char* buffer, int size);
 
 /*
  * 向数据流内写数据
@@ -56,7 +56,7 @@ int stream_pop(stream_t* stream, char* buffer, int size);
  * @param size 缓冲区大小
  * @return 写入的字节数
  */
-int stream_push(stream_t* stream, char* buffer, int size);
+extern int stream_push(stream_t* stream, char* buffer, int size);
 
 /*
  * 从数据流内拷贝数据，但不清除数据流内数据
@@ -65,6 +65,6 @@ int stream_push(stream_t* stream, char* buffer, int size);
  * @param size 缓冲区大小
  * @return 拷贝的字节数
  */
-int stream_copy(stream_t* stream, char* buffer, int size);
+extern int stream_copy(stream_t* stream, char* buffer, int size);
 
 #endif /* STREAM_API_H */

@@ -25,10 +25,18 @@
 #ifndef KNET_H
 #define KNET_H
 
+#ifdef __cplusplus
+    extern "C" {
+#endif /* __cplusplus */
+
 #include "loop_api.h"
 #include "stream_api.h"
 #include "channel_ref_api.h"
 #include "address_api.h"
 #include "loop_balancer_api.h"
+
+#ifdef __cplusplus
+}
+#endif /* __cplusplus */
 
 #endif /* KNET_H */

@@ -33,13 +33,13 @@
  * @param channel_ref channel_ref_t实例
  * @return channel_ref_t实例
  */
-channel_ref_t* channel_ref_share(channel_ref_t* channel_ref);
+extern channel_ref_t* channel_ref_share(channel_ref_t* channel_ref);
 
 /*
  * 减少管道引用计数，并销毁channel_ref_t实例
  * @param channel_ref channel_ref_t实例
  */
-void channel_ref_leave(channel_ref_t* channel_ref);
+extern void channel_ref_leave(channel_ref_t* channel_ref);
 
 /*
  * 主动连接
@@ -51,7 +51,7 @@ void channel_ref_leave(channel_ref_t* channel_ref);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int channel_ref_connect(channel_ref_t* channel_ref, const char* ip, int port, int timeout);
+extern int channel_ref_connect(channel_ref_t* channel_ref, const char* ip, int port, int timeout);
 
 /*
  * 将管道转换为监听管道
@@ -64,7 +64,7 @@ int channel_ref_connect(channel_ref_t* channel_ref, const char* ip, int port, in
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int channel_ref_accept(channel_ref_t* channel_ref, const char* ip, int port, int backlog);
+extern int channel_ref_accept(channel_ref_t* channel_ref, const char* ip, int port, int backlog);
 
 /*
  * 检测管道是否是通过负载均衡关联到当前的loop_t
@@ -72,7 +72,7 @@ int channel_ref_accept(channel_ref_t* channel_ref, const char* ip, int port, int
  * @retval 0 不是
  * @retval 非0 是
  */
-int channel_ref_check_balance(channel_ref_t* channel_ref);
+extern int channel_ref_check_balance(channel_ref_t* channel_ref);
 
 /*
  * 检测管道当前状态
@@ -81,34 +81,34 @@ int channel_ref_check_balance(channel_ref_t* channel_ref);
  * @retval 1 是
  * @retval 0 不是
  */
-int channel_ref_check_state(channel_ref_t* channel_ref, channel_state_e state);
+extern int channel_ref_check_state(channel_ref_t* channel_ref, channel_state_e state);
 
 /*
  * 关闭管道
  * @param channel_ref channel_ref_t实例
  */
-void channel_ref_close(channel_ref_t* channel_ref);
+extern void channel_ref_close(channel_ref_t* channel_ref);
 
 /*
  * 取得管道套接字
  * @param channel_ref channel_ref_t实例
  * @return 套接字
  */
-socket_t channel_ref_get_socket_fd(channel_ref_t* channel_ref);
+extern socket_t channel_ref_get_socket_fd(channel_ref_t* channel_ref);
 
 /*
  * 取得管道数据流
  * @param channel_ref channel_ref_t实例
  * @return stream_t实例
  */
-stream_t* channel_ref_get_stream(channel_ref_t* channel_ref);
+extern stream_t* channel_ref_get_stream(channel_ref_t* channel_ref);
 
 /*
  * 取得管道所关联的事件循环
  * @param channel_ref channel_ref_t实例
  * @return loop_t实例
  */
-loop_t* channel_ref_get_loop(channel_ref_t* channel_ref);
+extern loop_t* channel_ref_get_loop(channel_ref_t* channel_ref);
 
 /*
  * 设置管道事件回调
@@ -116,7 +116,7 @@ loop_t* channel_ref_get_loop(channel_ref_t* channel_ref);
  * @param channel_ref channel_ref_t实例
  * @paramn cb 回调函数
  */
-void channel_ref_set_cb(channel_ref_t* channel_ref, channel_ref_cb_t cb);
+extern void channel_ref_set_cb(channel_ref_t* channel_ref, channel_ref_cb_t cb);
 
 /*
  * 设置管道空闲超时
@@ -124,20 +124,20 @@ void channel_ref_set_cb(channel_ref_t* channel_ref, channel_ref_cb_t cb);
  * @param channel_ref channel_ref_t实例
  * @param timeout 超时（秒）
  */
-void channel_ref_set_timeout(channel_ref_t* channel_ref, int timeout);
+extern void channel_ref_set_timeout(channel_ref_t* channel_ref, int timeout);
 
 /*
  * 取得对端地址
  * @param channel_ref channel_ref_t实例
  * @return address_t实例
  */
-address_t* channel_ref_get_peer_address(channel_ref_t* channel_ref);
+extern address_t* channel_ref_get_peer_address(channel_ref_t* channel_ref);
 
 /*
  * 取得本地地址
  * @param channel_ref channel_ref_t实例
  * @return address_t实例
  */
-address_t* channel_ref_get_local_address(channel_ref_t* channel_ref);
+extern address_t* channel_ref_get_local_address(channel_ref_t* channel_ref);
 
 #endif /* CHANNEL_REF_API_H */

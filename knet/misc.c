@@ -29,7 +29,7 @@
 
 socket_t socket_create() {
     socket_t socket_fd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-#if WIN32
+#if defined(WIN32)
     if (socket_fd == INVALID_SOCKET) {
         return 0;
     }
@@ -37,12 +37,12 @@ socket_t socket_create() {
     if (socket_fd < 0) {
         return 0;
     }
-#endif /* (WIN32 || WIN64) */
+#endif /* defined(WIN32) */
     return socket_fd;
 }
 
 int socket_connect(socket_t socket_fd, const char* ip, int port) {
-#if defined(WIN32) || defined(WIN64)
+#if defined(WIN32)
     DWORD last_error = 0;
 #endif /* defined(WIN32) || defined(WIN64) */
     int error = 0;
@@ -50,7 +50,7 @@ int socket_connect(socket_t socket_fd, const char* ip, int port) {
     memset(&sa, 0, sizeof(sa));
     sa.sin_family = AF_INET;
     sa.sin_port   = htons((unsigned short)port);
-#if defined(WIN32) || defined(WIN64)
+#if defined(WIN32)
     sa.sin_addr.S_un.S_addr = INADDR_ANY;
     if (ip) {
         sa.sin_addr.S_un.S_addr = inet_addr(ip);
@@ -62,7 +62,7 @@ int socket_connect(socket_t socket_fd, const char* ip, int port) {
     }
 #endif /* defined(WIN32) || defined(WIN64) */
     error = connect(socket_fd, (struct sockaddr*)&sa, sizeof(struct sockaddr));
-#if defined(WIN32) || defined(WIN64)
+#if defined(WIN32)
     if (error < 0) {
         last_error = GetLastError();
         if ((WSAEWOULDBLOCK != last_error) && (WSAEISCONN != last_error)) {
@@ -85,7 +85,7 @@ int socket_bind_and_listen(socket_t socket_fd, const char* ip, int port, int bac
     memset(&sa, 0, sizeof(sa));
     sa.sin_family = AF_INET;
     sa.sin_port   = htons((unsigned short)port);
-#if defined(WIN32) || defined(WIN64)
+#if defined(WIN32)
     sa.sin_addr.S_un.S_addr = INADDR_ANY;
     if (ip) {
         sa.sin_addr.S_un.S_addr = inet_addr(ip);
@@ -129,7 +129,7 @@ int socket_set_reuse_addr_on(socket_t socket_fd) {
 }
 
 int socket_set_non_blocking_on(socket_t socket_fd) {
-#if WIN32
+#if defined(WIN32)
     u_long nonblocking = 1;
     if (socket_fd == INVALID_SOCKET) {
         assert(0);
@@ -147,16 +147,16 @@ int socket_set_non_blocking_on(socket_t socket_fd) {
     }
     flags = fcntl(socket_fd, F_GETFL, 0);
     fcntl(socket_fd, F_SETFL, flags | O_NONBLOCK);
-#endif /* (WIN32 || WIN64) */
+#endif /* defined(WIN32) */
     return 0;
 }
 
 int socket_close(socket_t socket_fd) {
-#if WIN32
+#if defined(WIN32)
     return closesocket(socket_fd);
 #else
     return close(socket_fd);
-#endif /* (WIN32 || WIN64) */
+#endif /* defined(WIN32) */
 }
 
 int socket_set_nagle_off(socket_t socket_fd) {
@@ -203,14 +203,14 @@ int socket_check_send_ready(socket_t socket_fd) {
 
 int socket_send(socket_t socket_fd, const char* data, uint32_t size) {
     int send_bytes = 0;
-#if defined(WIN32) || defined(WIN64)
+#if defined(WIN32)
     DWORD error = 0;
     send_bytes = send(socket_fd, data, (int)size, 0);
 #else
     send_bytes = send(socket_fd, data, (int)size, MSG_NOSIGNAL);
 #endif /* defined(WIN32) */
     if (send_bytes < 0) {
-    #if defined(WIN32) || defined(WIN64)
+    #if defined(WIN32)
         error = GetLastError();
         if ((error == 0) || (error == WSAEINTR) || (error == WSAEINPROGRESS) || (error == WSAEWOULDBLOCK)) {
             return 0;
@@ -232,14 +232,14 @@ int socket_send(socket_t socket_fd, const char* data, uint32_t size) {
 
 int socket_recv(socket_t socket_fd, char* data, uint32_t size) {
     int recv_bytes = 0;
-#if defined(WIN32) || defined(WIN64)
+#if defined(WIN32)
     DWORD error = 0;
     recv_bytes = recv(socket_fd, data, (int)size, 0);
 #else
     recv_bytes = recv(socket_fd, data, (int)size, MSG_NOSIGNAL);
 #endif /* defined(WIN32) */
     if (recv_bytes < 0) {
-    #if defined(WIN32) || defined(WIN64)
+    #if defined(WIN32)
         error = GetLastError();
         if ((error == 0) || (error == WSAEINTR) || (error == WSAEINPROGRESS) || (error == WSAEWOULDBLOCK)) {
             return 0;
@@ -259,7 +259,7 @@ int socket_recv(socket_t socket_fd, char* data, uint32_t size) {
     return recv_bytes;
 }
 
-#if defined(WIN32) || defined(WIN64)
+#if defined(WIN32)
 u_short _get_random_port(int begin, int gap) {
     srand((int)time(0));
     return (u_short)(begin + abs(rand() % gap));
@@ -267,7 +267,7 @@ u_short _get_random_port(int begin, int gap) {
 #endif /* defined(WIN32) || defined(WIN64) */
 
 int socket_pair(socket_t pair[2]) {
-#if defined(WIN32) || defined(WIN64)
+#if defined(WIN32)
     int      error       = 1;
     long     flag        = 1;
     int      port_begin  = 20000;
@@ -358,7 +358,7 @@ error_return:
 }
 
 int socket_getpeername(channel_ref_t* channel_ref, address_t* address) {
-#if defined(WIN32) || defined(WIN64)
+#if defined(WIN32)
     char* ip;
 #else
     char ip[32] = {0};
@@ -370,7 +370,7 @@ int socket_getpeername(channel_ref_t* channel_ref, address_t* address) {
     if (retval < 0) {
         return error_getpeername;
     }
-#if defined(WIN32) || defined(WIN64)
+#if defined(WIN32)
     ip = inet_ntoa(addr.sin_addr);
 #else
     inet_ntop(AF_INET, &addr.sin_addr.s_addr, ip, sizeof(ip));
@@ -381,7 +381,7 @@ int socket_getpeername(channel_ref_t* channel_ref, address_t* address) {
 }
 
 int socket_getsockname(channel_ref_t* channel_ref,address_t* address) {
-#if defined(WIN32) || defined(WIN64)
+#if defined(WIN32)
     char* ip;
 #else
     char ip[32] = {0};
@@ -393,7 +393,7 @@ int socket_getsockname(channel_ref_t* channel_ref,address_t* address) {
     if (retval < 0) {
         return error_getpeername;
     }
-#if defined(WIN32) || defined(WIN64)
+#if defined(WIN32)
     ip = inet_ntoa(addr.sin_addr);
 #else
     inet_ntop(AF_INET, &addr.sin_addr.s_addr, ip, sizeof(ip));
@@ -404,19 +404,19 @@ int socket_getsockname(channel_ref_t* channel_ref,address_t* address) {
 }
 
 atomic_counter_t atomic_counter_inc(atomic_counter_t* counter) {
-#if WIN32
+#if defined(WIN32)
     return InterlockedIncrement(counter);
 #else
     return __sync_add_and_fetch(counter, 1);
-#endif /* (WIN32 || WIN64) */
+#endif /* defined(WIN32) */
 }
 
 atomic_counter_t atomic_counter_dec(atomic_counter_t* counter) {
-#if WIN32
+#if defined(WIN32)
     return InterlockedDecrement(counter);
 #else
     return __sync_sub_and_fetch(counter, 1);
-#endif /* (WIN32 || WIN64) */
+#endif /* defined(WIN32) */
 }
 
 int atomic_counter_zero(atomic_counter_t* counter) {
@@ -424,7 +424,7 @@ int atomic_counter_zero(atomic_counter_t* counter) {
 }
 
 struct _lock_t {
-    #if defined(WIN32) || defined(WIN64)
+    #if defined(WIN32)
         CRITICAL_SECTION lock;
     #else
         pthread_mutex_t lock;
@@ -432,7 +432,7 @@ struct _lock_t {
 };
 
 void _lock_init(lock_t* lock) {
-    #if defined(WIN32) || defined(WIN64)
+    #if defined(WIN32)
         InitializeCriticalSection(&lock->lock);
     #else
         pthread_mutex_init(&lock->lock, 0);
@@ -446,7 +446,7 @@ lock_t* lock_create() {
 }
 
 void lock_destroy(lock_t* lock) {
-    #if defined(WIN32) || defined(WIN64)
+    #if defined(WIN32)
         DeleteCriticalSection(&lock->lock);
     #else
         pthread_mutex_destroy(&lock->lock);
@@ -455,7 +455,7 @@ void lock_destroy(lock_t* lock) {
 }
 
 void lock_lock(lock_t* lock) {
-    #if defined(WIN32) || defined(WIN64)
+    #if defined(WIN32)
         EnterCriticalSection(&lock->lock);
     #else
         pthread_mutex_lock(&lock->lock);
@@ -463,7 +463,7 @@ void lock_lock(lock_t* lock) {
 }
 
 int lock_trylock(lock_t* lock) {
-    #if defined(WIN32) || defined(WIN64)
+    #if defined(WIN32)
         return TryEnterCriticalSection(&lock->lock);
     #else
         return !pthread_mutex_trylock(&lock->lock);
@@ -471,7 +471,7 @@ int lock_trylock(lock_t* lock) {
 }
 
 void lock_unlock(lock_t* lock) {
-    #if defined(WIN32) || defined(WIN64)
+    #if defined(WIN32)
         LeaveCriticalSection(&lock->lock);
     #else
         pthread_mutex_unlock(&lock->lock);
@@ -515,7 +515,7 @@ void _thread_loop_func(void* params) {
     }
 }
 
-#if defined(WIN32) || defined(WIN64)
+#if defined(WIN32)
 void thread_loop_func_win(void* params) {
     _thread_loop_func(params);
 }
@@ -526,7 +526,7 @@ void* thread_loop_func_pthread(void* params) {
 }
 #endif /* defined(WIN32) || defined(WIN64) */
 
-#if defined(WIN32) || defined(WIN64)
+#if defined(WIN32)
 void thread_func_win(void* params) {
     _thread_func(params);
 }
@@ -538,7 +538,7 @@ void* thread_func_pthread(void* params) {
 #endif /* defined(WIN32) || defined(WIN64) */
 
 int thread_runner_start(thread_runner_t* runner, int stack_size) {
-#if defined(WIN32) || defined(WIN64)
+#if defined(WIN32)
     uintptr_t retval = 0;
 #else
     int retval = 0;
@@ -549,7 +549,7 @@ int thread_runner_start(thread_runner_t* runner, int stack_size) {
         return error_thread_start_fail;
     }
     runner->running = 1;
-#if defined(WIN32) || defined(WIN64)
+#if defined(WIN32)
     retval = _beginthread(thread_func_win, stack_size, runner);
     if (retval < 0) {
         return error_thread_start_fail;
@@ -571,7 +571,7 @@ int thread_runner_start(thread_runner_t* runner, int stack_size) {
 }
 
 int thread_runner_start_loop(thread_runner_t* runner, loop_t* loop, int stack_size) {
-#if defined(WIN32) || defined(WIN64)
+#if defined(WIN32)
     uintptr_t retval = 0;
 #else
     int retval = 0;
@@ -581,7 +581,7 @@ int thread_runner_start_loop(thread_runner_t* runner, loop_t* loop, int stack_si
     assert(loop);
     runner->params = loop;
     runner->running = 1;
-#if defined(WIN32) || defined(WIN64)
+#if defined(WIN32)
     retval = _beginthread(thread_loop_func_win, stack_size, runner);
     if (retval < 0) {
         return error_thread_start_fail;
@@ -608,13 +608,13 @@ void thread_runner_stop(thread_runner_t* runner) {
 }
 
 void thread_runner_join(thread_runner_t* runner) {
-#if defined(WIN32) || defined(WIN64)
+#if defined(WIN32)
     DWORD error = 0;
 #else
     void* retval = 0;
 #endif /* defined(WIN32) || defined(WIN64) */
     assert(runner);
-#if defined(WIN32) || defined(WIN64)
+#if defined(WIN32)
     error = WaitForSingleObject((HANDLE)runner->thread_id, INFINITE);
     if ((error != WAIT_OBJECT_0) && (error != WAIT_ABANDONED)) {
         assert(0);
@@ -635,23 +635,23 @@ void* thread_runner_get_params(thread_runner_t* runner) {
 }
 
 thread_id_t thread_get_self_id() {
-#if WIN32
+#if defined(WIN32)
     return GetCurrentThreadId();
 #else
     return pthread_self();
-#endif /* (WIN32 || WIN64) */
+#endif /* defined(WIN32) */
 }
 
 void thread_sleep_ms(int ms) {
-#if WIN32
+#if defined(WIN32)
     Sleep(ms);
 #else
     usleep(ms * 1000);
-#endif /* (WIN32 || WIN64) */
+#endif /* defined(WIN32) */
 }
 
 uint32_t time_get_milliseconds() {
-#if defined(WIN32) || defined(WIN64)
+#if defined(WIN32)
     return GetTickCount();
 #else
     struct timeval tv;
@@ -664,7 +664,7 @@ uint32_t time_get_milliseconds() {
 }
 
 uint64_t time_get_microseconds() {
-#if defined(WIN32) || defined(WIN64)
+#if defined(WIN32)
     LARGE_INTEGER freq;
     LARGE_INTEGER fc;
     if (!QueryPerformanceFrequency(&freq)) {

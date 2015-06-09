@@ -30,13 +30,13 @@
  * @param address address_t实例
  * @return IP字符串
  */
-const char* address_get_ip(address_t* address);
+extern const char* address_get_ip(address_t* address);
 
 /*
  * 取得port
  * @param address address_t实例
  * @return 端口
  */
-int address_get_port(address_t* address);
+extern int address_get_port(address_t* address);
 
 #endif /* ADDRESS_API_H */
