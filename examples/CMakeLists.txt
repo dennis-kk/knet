@@ -8,5 +8,7 @@ add_executable(examples
 	basic.c
 	multi_connector.c
 	connector_timeout.c
+	multi_loop.c
+	telnet_echo.c
 )
 target_link_libraries(examples libknet.a -lpthread)
