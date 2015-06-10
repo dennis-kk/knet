@@ -11,4 +11,9 @@ check directory win-proj
 cmake CMakeLists.txt   
 make   
 
+# run example
+open examples/example_config.h   
+set the macro value as your wish and rebuild   
+type in the shell: ./examples/examples
+
 have fun!
