@@ -677,7 +677,7 @@ uint64_t time_get_microseconds() {
     if (!QueryPerformanceCounter(&fc)) {
         assert(0);
     }
-    return fc.QuadPart / (freq.QuadPart / 1000 / 1000 / 1000);
+    return fc.QuadPart / (freq.QuadPart / 1000 / 1000);
 #else
     struct timeval tv;
     uint64_t ms;

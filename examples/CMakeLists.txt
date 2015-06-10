@@ -10,5 +10,6 @@ add_executable(examples
 	connector_timeout.c
 	multi_loop.c
 	telnet_echo.c
+	broadcast.c
 )
 target_link_libraries(examples libknet.a -lpthread)
