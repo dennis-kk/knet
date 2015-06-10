@@ -28,7 +28,11 @@
 #include "address.h"
 
 socket_t socket_create() {
+#if LOOP_IOCP
+    socket_t socket_fd = WSASocket(AF_INET, SOCK_STREAM, IPPROTO_TCP, 0, 0, WSA_FLAG_OVERLAPPED);
+#else
     socket_t socket_fd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+#endif /* LOOP_IOCP */
 #if defined(WIN32)
     if (socket_fd == INVALID_SOCKET) {
         return 0;
@@ -682,4 +686,15 @@ uint64_t time_get_microseconds() {
     ms += tv.tv_usec;
     return ms;
 #endif /* defined(WIN32) || defined(WIN64) */
+}
+
+uint64_t gen_domain_uuid() {
+    uint32_t uuid[2] = {0};
+    /* 取低32位 */
+    uint32_t low = (uint32_t)time_get_microseconds();
+    srand(low);
+    uuid[0] = low;
+    uuid[1] = rand();
+    /* 最终结果只是从概率上有很低的重复率 */
+    return *(uint64_t*)uuid;
 }

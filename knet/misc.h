@@ -77,5 +77,6 @@ void thread_sleep_ms(int ms);
 
 uint32_t time_get_milliseconds();
 uint64_t time_get_microseconds();
+uint64_t gen_domain_uuid();
 
 #endif /* MISC_H */

@@ -24,12 +24,17 @@ void connector_cb(channel_ref_t* channel, channel_cb_event_e e) {
         stream_pop(stream, buffer, sizeof(buffer));
         /* 关闭 */
         channel_ref_close(channel);
+    } else if (e & channel_cb_event_connect_timeout) {
+        /* 关闭 */
+        channel_ref_close(channel);
+        printf("connector close: timeout\n");
     }
 }
 
 /* 服务端 - 客户端回调 */
 void client_cb(channel_ref_t* channel, channel_cb_event_e e) {
     char buffer[32] = {0};
+    address_t* peer_address = 0;
     stream_t* stream = channel_ref_get_stream(channel);
     if (e & channel_cb_event_recv) { /* 有数据可以读 */
         /* 读取 */
@@ -37,6 +42,9 @@ void client_cb(channel_ref_t* channel, channel_cb_event_e e) {
         /* 不论是否读取完整， 写入12字节 */
         stream_push(stream, buffer, 12);
     } else if (e & channel_cb_event_close) {
+        peer_address = channel_ref_get_peer_address(channel);
+        printf("peer close: %s, %d, %d\n", address_get_ip(peer_address),
+            address_get_port(peer_address), connector_count);
         /* 对端关闭 */
         connector_count--;
         if (connector_count == 0) { /* 全部关闭 */
@@ -71,7 +79,7 @@ int main() {
         connector = loop_create_channel(loop, 8, 1024);
         /* 设置回调 */
         channel_ref_set_cb(connector, connector_cb);
-        channel_ref_connect(connector, "127.0.0.1", 80, 5);
+        channel_ref_connect(connector, "127.0.0.1", 80, 2);
     }
     /* 启动 */
     loop_run(loop);

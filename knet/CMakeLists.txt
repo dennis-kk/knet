@@ -17,6 +17,7 @@ add_library(knet
 	stream.c
 	address.c
 	version.c
+	broadcast.c
 )
 
 target_link_libraries(knet -lpthread)

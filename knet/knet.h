@@ -34,6 +34,7 @@
 #include "channel_ref_api.h"
 #include "address_api.h"
 #include "loop_balancer_api.h"
+#include "broadcast_api.h"
 #include "version.h"
 
 #ifdef __cplusplus

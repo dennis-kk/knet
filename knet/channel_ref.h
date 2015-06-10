@@ -258,4 +258,40 @@ ringbuffer_t* channel_ref_get_ringbuffer(channel_ref_t* channel_ref);
  */
 channel_ref_cb_t channel_ref_get_cb(channel_ref_t* channel_ref);
 
+/*
+ * 设置域链表节点
+ * @param channel_ref channel_ref_t实例
+ * @param node 域链表节点
+ */
+void channel_ref_set_domain_node(channel_ref_t* channel_ref, dlist_node_t* node);
+
+/*
+ * 取得域链表节点
+ * @param channel_ref channel_ref_t实例
+ * @return dlist_node_t实例
+ */
+dlist_node_t* channel_ref_get_domain_node(channel_ref_t* channel_ref);
+
+/*
+ * 检查管道引用是否通过调用channel_ref_share()建立
+ * @param channel_ref channel_ref_t实例
+ * @retval 0 不是
+ * @retval 非零 是
+ */
+int channel_ref_check_share(channel_ref_t* channel_ref);
+
+/*
+ * 设置域ID
+ * @param channel_ref channel_ref_t实例
+ * @param domain_id 域ID
+ */
+void channel_ref_set_domain_id(channel_ref_t* channel_ref, uint64_t domain_id);
+
+/*
+ * 取得域ID
+ * @param channel_ref channel_ref_t实例
+ * @return 域ID
+ */
+uint64_t channel_ref_get_domain_id(channel_ref_t* channel_ref);
+
 #endif /* CHANNEL_REF_H */

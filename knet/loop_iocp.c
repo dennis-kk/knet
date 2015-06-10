@@ -155,14 +155,14 @@ int _select(loop_t* loop, time_t ts) {
     channel_ref_t* channel_ref = 0;
     loop_iocp_t*   impl        = get_impl(loop);
     error = GetQueuedCompletionStatus(impl->iocp, &bytes, (PULONG_PTR)&per_sock, (LPOVERLAPPED*)&per_io, 1);
-    if (error == FALSE) {
-        last_error = GetLastError();
-        if ((last_error == WAIT_TIMEOUT) || (last_error == ERROR_NETNAME_DELETED) || (last_error == ERROR_OPERATION_ABORTED)) {
+    last_error = GetLastError();
+    if (FALSE == error) {
+        if ((last_error == WAIT_TIMEOUT) ||
+            (last_error == ERROR_NETNAME_DELETED) ||
+            (last_error == ERROR_OPERATION_ABORTED) ||
+            (last_error == WSAENOTCONN)) {
             return error_ok;
-        } else {
-            assert(0);
         }
-        return error_loop_fail;
     }
     channel_ref = per_sock->channel_ref;    
     assert(channel_ref);
@@ -242,7 +242,7 @@ void on_iocp_recv(channel_ref_t* channel_ref) {
         if (result == FALSE) {
             error = GetLastError();
             if (error != ERROR_IO_PENDING) {
-                assert(0);
+                channel_ref_close(channel_ref);
             }
             return;
         }
@@ -253,7 +253,7 @@ void on_iocp_recv(channel_ref_t* channel_ref) {
         if (result != 0) {
             error = GetLastError();
             if ((error != ERROR_IO_PENDING) && (error != WSAENOTCONN)) {
-                assert(0);
+                channel_ref_close(channel_ref);
             }
             return;
         }
@@ -283,7 +283,7 @@ void on_iocp_send(channel_ref_t* channel_ref) {
     if (result != 0) {
         error = GetLastError();
         if ((error != ERROR_IO_PENDING) && (error != WSAENOTCONN)) {
-            assert(0);
+            channel_ref_close(channel_ref);
         }
         return;
     }

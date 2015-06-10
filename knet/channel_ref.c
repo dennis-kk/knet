@@ -54,26 +54,16 @@ typedef struct _channel_ref_info_t {
 } channel_ref_info_t;
 
 struct _channel_ref_t {
-    channel_ref_info_t* ref_info; /* 管道信息 */
+    int                 share;     /* 是否通过channel_ref_share()创建 */
+    uint64_t            domain_id; /* 域ID */
+    dlist_node_t*       list_node; /* 域链表节点 */
+    channel_ref_info_t* ref_info;  /* 管道信息 */
 };
-
-int channel_ref_tie(channel_ref_t* channel_ref, channel_ref_t* partner) {
-    /* TODO 添加订阅关系 */
-    channel_ref;
-    partner;
-    return 0;
-}
-
-int channel_ref_untie(channel_ref_t* channel_ref, channel_ref_t* partner) {
-    /* TODO 解除订阅关系 */
-    channel_ref;
-    partner;
-    return 0;
-}
 
 channel_ref_t* channel_ref_create(loop_t* loop, channel_t* channel) {
     channel_ref_t* channel_ref = create(channel_ref_t);
     assert(channel_ref);
+    memset(channel_ref, 0, sizeof(channel_ref_t));
     channel_ref->ref_info = create(channel_ref_info_t);
     assert(channel_ref->ref_info);
     memset(channel_ref->ref_info, 0, sizeof(channel_ref_info_t));
@@ -112,9 +102,7 @@ int channel_ref_destroy(channel_ref_t* channel_ref) {
 }
 
 int channel_ref_connect(channel_ref_t* channel_ref, const char* ip, int port, int timeout) {
-    loop_t* loop = 0;
     assert(channel_ref);
-    loop = channel_ref_choose_loop(channel_ref);
     if (channel_ref_check_state(channel_ref, channel_state_connect)) {
         /* 已经处于连接状态 */
         return error_ok;
@@ -153,6 +141,7 @@ channel_ref_t* channel_ref_share(channel_ref_t* channel_ref) {
     atomic_counter_inc(&channel_ref->ref_info->ref_count);
     /* 共享管道信息指针 */
     channel_ref_shared->ref_info = channel_ref->ref_info;
+    channel_ref->share = 1;
     return channel_ref_shared;
 }
 
@@ -172,10 +161,11 @@ void channel_ref_update_close_in_loop(loop_t* loop, channel_ref_t* channel_ref) 
     }
     channel_ref_set_state(channel_ref, channel_state_close);
     channel_ref_clear_event(channel_ref, channel_event_recv | channel_event_send);
-    channel_close(channel_ref->ref_info->channel);
+    /* 先调用回调，保证在内部还可以获得地址信息 */
     if (channel_ref->ref_info->cb) {
         channel_ref->ref_info->cb(channel_ref, channel_cb_event_close);
     }
+    channel_close(channel_ref->ref_info->channel);
     loop_close_channel_ref(channel_ref->ref_info->loop, channel_ref);
 }
 
@@ -229,6 +219,8 @@ int channel_ref_write(channel_ref_t* channel_ref, const char* data, int size) {
         switch (error) {
         case error_send_patial:
             channel_ref_set_event(channel_ref, channel_event_send);
+            /* 对于调用者不是错误 */
+            error = error_ok;
             break;
         case error_send_fail:
             channel_ref_close(channel_ref);
@@ -550,4 +542,28 @@ address_t* channel_ref_get_local_address(channel_ref_t* channel_ref) {
     channel_ref->ref_info->local_address = address_create();
     socket_getsockname(channel_ref, channel_ref->ref_info->local_address);
     return channel_ref->ref_info->local_address;
+}
+
+void channel_ref_set_domain_node(channel_ref_t* channel_ref, dlist_node_t* node) {
+    assert(channel_ref);
+    channel_ref->list_node = node;
+}
+
+dlist_node_t* channel_ref_get_domain_node(channel_ref_t* channel_ref) {
+    assert(channel_ref);
+    return channel_ref->list_node;
+}
+
+int channel_ref_check_share(channel_ref_t* channel_ref) {
+    assert(channel_ref);
+    return channel_ref->share;
+}
+
+void channel_ref_set_domain_id(channel_ref_t* channel_ref, uint64_t domain_id) {
+    assert(channel_ref);
+    channel_ref->domain_id = domain_id;
+}
+
+uint64_t channel_ref_get_domain_id(channel_ref_t* channel_ref) {
+    return channel_ref->domain_id;
 }

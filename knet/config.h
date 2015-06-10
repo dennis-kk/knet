@@ -50,6 +50,7 @@
     #define socket_len_t int
     #define thread_id_t uintptr_t
     #define atomic_counter_t volatile LONG
+    #define uint16_t unsigned short
     #define uint32_t unsigned int
     #define uint64_t unsigned long long
 #else
@@ -112,6 +113,7 @@ typedef struct _dlist_t dlist_t;
 typedef struct _dlist_node_t dlist_node_t;
 typedef struct _ringbuffer_t ringbuffer_t;
 typedef struct _buffer_t buffer_t;
+typedef struct _broadcast_t broadcast_t;
 
 typedef enum _channel_event_e {
     channel_event_recv = 1,
@@ -146,6 +148,7 @@ typedef enum _error_e {
     error_impl_add_channel_ref_fail,
     error_getpeername,
     error_getsockname,
+    error_not_correct_domain,
 } error_e;
 
 typedef enum _channel_cb_event_e {

@@ -16,7 +16,7 @@ void client_cb(channel_ref_t* channel, channel_cb_event_e e) {
         /* ∂¡»° */
         bytes = stream_pop(stream, buffer, sizeof(buffer));
         if (*buffer == 'q') {
-            printf("bye...\n", buffer);
+            printf("bye...\n");
             loop_exit(loop);
             return;
         }

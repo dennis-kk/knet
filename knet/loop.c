@@ -320,8 +320,7 @@ void loop_close_channel_ref(loop_t* loop, channel_ref_t* channel_ref) {
 }
 
 void loop_set_balancer(loop_t* loop, loop_balancer_t* balancer) {
-    assert(loop);
-    assert(balancer);
+    assert(loop); /* balancer¿ÉÒÔÎª0 */
     loop->balancer = balancer;
 }
 
