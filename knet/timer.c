@@ -27,13 +27,13 @@ struct _timer_loop_t {
     time_t    tick_intval;  /* 槽位刻度间隔（毫秒） */
 };
 
-timer_loop_t* timer_loop_create() {
+timer_loop_t* timer_loop_create(time_t freq, int slot) {
     int i = 0;
     timer_loop_t* timer_loop = create(timer_loop_t);
     assert(timer_loop);
     memset(timer_loop, 0, sizeof(timer_loop_t));
-    timer_loop->max_slot     = 1000; /* 1000毫秒， 1秒 */
-    timer_loop->tick_intval  = 1;    /* 间隔1毫秒 */
+    timer_loop->max_slot     = slot;
+    timer_loop->tick_intval  = freq;
     timer_loop->timer_wheels = (dlist_t**)create_type(dlist_t, sizeof(dlist_t*) * timer_loop->max_slot);
     assert(timer_loop->timer_wheels);
     for (; i < timer_loop->max_slot; i++) {
@@ -45,9 +45,9 @@ timer_loop_t* timer_loop_create() {
 
 void timer_loop_destroy(timer_loop_t* timer_loop) {
     int i = 0;
-    timer_t* timer = 0;
-    dlist_node_t* node = 0;
-    dlist_node_t* temp = 0;
+    timer_t*      timer = 0;
+    dlist_node_t* node  = 0;
+    dlist_node_t* temp  = 0;
     assert(timer_loop);
     /* 销毁所有槽内链表 */
     for (; i < timer_loop->max_slot; i++) {
@@ -62,7 +62,7 @@ void timer_loop_destroy(timer_loop_t* timer_loop) {
 }
 
 void timer_loop_add_timer(timer_loop_t* timer_loop, timer_t* timer, time_t ms) {
-    int slot = (int)(timer_loop->slot + ms) % timer_loop->max_slot;
+    int slot = (int)(timer_loop->slot + ms / timer_loop->tick_intval) % timer_loop->max_slot;
     dlist_node_t* node = dlist_add_tail_node(timer_loop->timer_wheels[slot], timer);
     timer_set_current_list(timer, timer_loop->timer_wheels[slot]);
     timer_set_current_list_node(timer, node);

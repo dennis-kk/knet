@@ -9,9 +9,11 @@
 
 /*
  * 创建定时器循环
+ * @param freq 最小分辨率（毫秒）
+ * @param slot 时间轮槽位数量
  * @return timer_loop_t实例
  */
-timer_loop_t* timer_loop_create();
+timer_loop_t* timer_loop_create(time_t freq, int slot);
 
 /*
  * 销毁定时器循环
