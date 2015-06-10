@@ -174,8 +174,4 @@ typedef void (*channel_ref_cb_t)(channel_ref_t* channel, channel_cb_event_e e);
 #define LOOP_SELECT 0  /* select */
 #endif /* defined(WIN32) || defined(WIN64) */
 
-#define TEST 1               /* 是否开启测试 */
-#define TEST_ONE_LOOP 0      /* 单线程，单loop_t测试 */
-#define TEST_MULTI_THREAD 1  /* 多线程，多loop_t测试 */
-
 #endif /* CONFIG_H */
