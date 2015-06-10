@@ -34,6 +34,7 @@ timer_loop_t* timer_loop_create(time_t freq, int slot) {
     memset(timer_loop, 0, sizeof(timer_loop_t));
     timer_loop->max_slot     = slot;
     timer_loop->tick_intval  = freq;
+	timer_loop->last_tick    = time_get_milliseconds();
     timer_loop->timer_wheels = (dlist_t**)create_type(dlist_t, sizeof(dlist_t*) * timer_loop->max_slot);
     assert(timer_loop->timer_wheels);
     for (; i < timer_loop->max_slot; i++) {
@@ -61,37 +62,44 @@ void timer_loop_destroy(timer_loop_t* timer_loop) {
     destroy(timer_loop);
 }
 
+int timer_loop_next_slot(timer_loop_t* timer_loop, time_t ms) {
+	return (int)(timer_loop->slot + ms / timer_loop->tick_intval) % timer_loop->max_slot;
+}
+
 void timer_loop_add_timer(timer_loop_t* timer_loop, timer_t* timer, time_t ms) {
-    int slot = (int)(timer_loop->slot + ms / timer_loop->tick_intval) % timer_loop->max_slot;
+    int slot = timer_loop_next_slot(timer_loop, ms);
     dlist_node_t* node = dlist_add_tail_node(timer_loop->timer_wheels[slot], timer);
     timer_set_current_list(timer, timer_loop->timer_wheels[slot]);
     timer_set_current_list_node(timer, node);
 }
+
+void timer_loop_add_timer_node(timer_loop_t* timer_loop, dlist_node_t* node, time_t ms) {
+    int slot = timer_loop_next_slot(timer_loop, ms);
+	dlist_add_tail(timer_loop->timer_wheels[slot], node);
+}
+
+dlist_node_t* timer_loop_remove_timer(timer_t* timer) {
+	dlist_t* current_list = timer_get_current_list(timer);
+	dlist_node_t* list_node = timer_get_current_list_node(timer);
+	dlist_remove(current_list, list_node);
+	return list_node;
+} 
 
 int timer_loop_run_once(timer_loop_t* timer_loop) {
     dlist_node_t* node   = 0;
     dlist_node_t* temp   = 0;
     dlist_t*      timers = 0;
     timer_t*      timer  = 0;
-    int           i      = 0;
     time_t        ms     = time_get_milliseconds(); /* 当前时间戳（毫秒） */
-    int           slots  = 0;                       /* 需要走的槽位数 */
     int           count  = 0;
-    assert(timer_loop);
-    if (!timer_loop->last_tick) {
-        timer_loop->last_tick = ms;
-    } else {
-        slots = (int)((ms - timer_loop->last_tick) / timer_loop->tick_intval);        
-    }
-    for (; i < slots; i++) {
-        timer_loop->slot = (timer_loop->slot + 1) % timer_loop->max_slot;
-        timers = timer_loop->timer_wheels[timer_loop->slot];
-        dlist_for_each_safe(timers, node, temp) {
-            timer = (timer_t*)dlist_node_get_data(node);
-            /* 处理定时器 */
-            if (timer_check_timeout(timer, ms)) {
-                count++;
-            }
+    assert(timer_loop);  
+    timer_loop->slot = (timer_loop->slot + 1) % timer_loop->max_slot;
+    timers = timer_loop->timer_wheels[timer_loop->slot];
+    dlist_for_each_safe(timers, node, temp) {
+        timer = (timer_t*)dlist_node_get_data(node);
+        /* 处理定时器 */
+        if (timer_check_timeout(timer, ms)) {
+            count++;
         }
     }
     return count;
@@ -107,6 +115,16 @@ void timer_set_current_list_node(timer_t* timer, dlist_node_t* node) {
     assert(timer);
     assert(node);
     timer->list_node = node;
+}
+
+dlist_t* timer_get_current_list(timer_t* timer) {
+	assert(timer);
+	return timer->current_list;
+}
+
+dlist_node_t* timer_get_current_list_node(timer_t* timer) {
+	assert(timer);
+	return timer->list_node;
 }
 
 timer_t* timer_create(timer_loop_t* timer_loop) {
@@ -139,6 +157,7 @@ int timer_check_dead(timer_t* timer) {
 }
 
 int timer_check_timeout(timer_t* timer, time_t ms) {
+	dlist_node_t* node = 0;
     assert(timer);
     if (timer->ms > ms) {
         return 0;
@@ -148,12 +167,17 @@ int timer_check_timeout(timer_t* timer, time_t ms) {
         timer_destroy(timer);
     } else if (timer->type == timer_type_period) {
         timer->ms = ms + timer->intval;
+		node = timer_loop_remove_timer(timer);
+		timer_loop_add_timer_node(timer->timer_loop, node, timer->intval);
     } else if (timer->type == timer_type_times) {
         timer->ms = ms + timer->intval;
         timer->current_times++;
         if (timer->times <= timer->current_times) {
             timer_destroy(timer);
-        }
+        } else {
+			node = timer_loop_remove_timer(timer);
+			timer_loop_add_timer_node(timer->timer_loop, node, timer->intval);
+		}
     }
     return 1;
 }

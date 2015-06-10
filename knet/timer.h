@@ -38,6 +38,9 @@ int timer_check_timeout(timer_t* timer, time_t ms);
  */
 void timer_set_current_list(timer_t* timer, dlist_t* list);
 
+dlist_t* timer_get_current_list(timer_t* timer);
+dlist_node_t* timer_get_current_list_node(timer_t* timer);
+
 /*
  * 设置定时器所在的当前链表的链表节点
  * @param timer timer_t实例

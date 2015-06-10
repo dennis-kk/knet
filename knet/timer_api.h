@@ -13,27 +13,27 @@
  * @param slot 时间轮槽位数量
  * @return timer_loop_t实例
  */
-timer_loop_t* timer_loop_create(time_t freq, int slot);
+extern timer_loop_t* timer_loop_create(time_t freq, int slot);
 
 /*
  * 销毁定时器循环
  * @return timer_loop_t实例
  */
-void timer_loop_destroy(timer_loop_t* timer_loop);
+extern void timer_loop_destroy(timer_loop_t* timer_loop);
 
 /*
  * 检查定时器超时，如果超时调用定时器回调
  * @return timer_loop_t实例
  * @return 定时器超时的数量
  */
-int timer_loop_run_once(timer_loop_t* timer_loop);
+extern int timer_loop_run_once(timer_loop_t* timer_loop);
 
 /*
  * 创建一个定时器
  * @param timer_loop_t实例
  * @return timer_t实例
  */
-timer_t* timer_create(timer_loop_t* timer_loop);
+extern timer_t* timer_create(timer_loop_t* timer_loop);
 
 /*
  * 停止并销毁定时器
@@ -41,7 +41,7 @@ timer_t* timer_create(timer_loop_t* timer_loop);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int timer_stop(timer_t* timer);
+extern int timer_stop(timer_t* timer);
 
 /*
  * 启动一个无限次数的定时器
@@ -52,7 +52,7 @@ int timer_stop(timer_t* timer);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int timer_start(timer_t* timer, timer_cb_t cb, void* data, time_t ms);
+extern int timer_start(timer_t* timer, timer_cb_t cb, void* data, time_t ms);
 
 /*
  * 启动一个只超时一次的定时器，超时后将自动销毁
@@ -63,7 +63,7 @@ int timer_start(timer_t* timer, timer_cb_t cb, void* data, time_t ms);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int timer_start_once(timer_t* timer, timer_cb_t cb, void* data, time_t ms);
+extern int timer_start_once(timer_t* timer, timer_cb_t cb, void* data, time_t ms);
 
 /*
  * 启动一个有限次数的定时器，达到times次数后将自动销毁
@@ -75,7 +75,7 @@ int timer_start_once(timer_t* timer, timer_cb_t cb, void* data, time_t ms);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int timer_start_times(timer_t* timer, timer_cb_t cb, void* data, time_t ms, int times);
+extern int timer_start_times(timer_t* timer, timer_cb_t cb, void* data, time_t ms, int times);
 
 /*
  * 检查定时器是否在回调函数返回即将被销毁
@@ -83,6 +83,6 @@ int timer_start_times(timer_t* timer, timer_cb_t cb, void* data, time_t ms, int 
  * @retval 0 不是
  * @retval 非零 是
  */
-int timer_check_dead(timer_t* timer);
+extern int timer_check_dead(timer_t* timer);
 
 #endif /* TIMER_API_H */
