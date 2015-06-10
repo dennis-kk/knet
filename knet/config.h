@@ -114,6 +114,8 @@ typedef struct _dlist_node_t dlist_node_t;
 typedef struct _ringbuffer_t ringbuffer_t;
 typedef struct _buffer_t buffer_t;
 typedef struct _broadcast_t broadcast_t;
+typedef struct _timer_loop_t timer_loop_t;
+typedef struct _timer_t timer_t;
 
 typedef enum _channel_event_e {
     channel_event_recv = 1,
@@ -126,6 +128,12 @@ typedef enum _channel_state_e {
     channel_state_close = 4,   /* 管道已关闭 */
     channel_state_active = 8,  /* 管道已激活，可以收发数据 */
 } channel_state_e;
+
+typedef enum timer_type_e {
+    timer_type_once   = 1, /* 运行一次 */
+    timer_type_period = 2, /* 无限 */
+    timer_type_times  = 3, /* 多次运行 */
+} timer_type_e;
 
 typedef enum _error_e {
     error_ok = 0,
@@ -163,6 +171,7 @@ typedef enum _channel_cb_event_e {
 
 typedef void (*thread_func_t)(thread_runner_t*);
 typedef void (*channel_ref_cb_t)(channel_ref_t* channel, channel_cb_event_e e);
+typedef void (*timer_cb_t)(timer_t* timer, void* data);
 
 /* 根据需要， 开启不同选取器 */
 
