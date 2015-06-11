@@ -5,10 +5,6 @@
 #include "timer_api.h"
 
 /*
- * WARNING 未经测试，需要等测试完成
- */
-
-/*
  * 销毁定时器
  * @param timer timer_t实例
  */

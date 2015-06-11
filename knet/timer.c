@@ -4,10 +4,6 @@
 #include "list.h"
 #include "misc.h"
 
-/*
- * WARNING 未经测试，需要等测试完成
- */
-
 struct _timer_t {
     dlist_t*      current_list;  /* 所属链表 */
     dlist_node_t* list_node;     /* 链表节点 */
