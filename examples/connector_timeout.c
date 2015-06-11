@@ -4,10 +4,6 @@
 
 #include "knet.h"
 
-/*
- 监听者
- */
-
 /* 客户端 - 连接器回调 */
 void connector_cb(channel_ref_t* channel, channel_cb_event_e e) {
     if (e & channel_cb_event_connect_timeout) { /* 连接成功 */

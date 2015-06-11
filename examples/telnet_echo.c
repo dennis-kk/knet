@@ -4,6 +4,10 @@
 
 #include "knet.h"
 
+/*
+ telnet回显
+ */
+
 loop_t* loop = 0;
 
 /* 服务端 - 客户端回调 */

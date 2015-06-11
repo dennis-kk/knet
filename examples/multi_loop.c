@@ -5,6 +5,10 @@
 #include "knet.h"
 #include "misc.h"
 
+/*
+ 4线程+主线程
+ */
+
 #define MAX_CLIENT 200
 #define MAX_ECHO_COUNT MAX_CLIENT * 100
 #define MAX_LOOP 4

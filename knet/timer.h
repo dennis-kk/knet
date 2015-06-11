@@ -9,14 +9,6 @@
  */
 
 /*
- * 添加定时器到循环
- * @param timer_loop timer_loop_t实例
- * @param timer timer_t实例
- * @param ms 定时器超时间隔
- */
-void timer_loop_add_timer(timer_loop_t* timer_loop, timer_t* timer, time_t ms);
-
-/*
  * 销毁定时器
  * @param timer timer_t实例
  */
@@ -38,8 +30,12 @@ int timer_check_timeout(timer_t* timer, time_t ms);
  */
 void timer_set_current_list(timer_t* timer, dlist_t* list);
 
+/*
+ * 取得当前所属链表
+ * @param timer timer_t实例
+ * @return dlist_t实例
+ */
 dlist_t* timer_get_current_list(timer_t* timer);
-dlist_node_t* timer_get_current_list_node(timer_t* timer);
 
 /*
  * 设置定时器所在的当前链表的链表节点
@@ -47,5 +43,19 @@ dlist_node_t* timer_get_current_list_node(timer_t* timer);
  * @param node 链表节点
  */
 void timer_set_current_list_node(timer_t* timer, dlist_node_t* node);
+
+/*
+ * 取得当前链表节点
+ * @param timer timer_t实例
+ * @return dlist_node_t实例
+ */
+dlist_node_t* timer_get_current_list_node(timer_t* timer);
+
+/*
+ * 取得滴答间隔
+ * @param timer_loop timer_loop_t实例
+ * @return 滴答间隔
+ */
+time_t timer_loop_get_tick_intval(timer_loop_t* timer_loop);
 
 #endif /* TIMER_H */

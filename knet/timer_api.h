@@ -29,6 +29,18 @@ extern void timer_loop_destroy(timer_loop_t* timer_loop);
 extern int timer_loop_run_once(timer_loop_t* timer_loop);
 
 /*
+ * 循环检查定时器超时，调用timer_loop_exit()退出
+ * @return timer_loop_t实例
+ */
+extern void timer_loop_run(timer_loop_t* timer_loop);
+
+/*
+ * 退出timer_loop_run()
+ * @return timer_loop_t实例
+ */
+extern void timer_loop_exit(timer_loop_t* timer_loop);
+
+/*
  * 创建一个定时器
  * @param timer_loop_t实例
  * @return timer_t实例
@@ -42,6 +54,13 @@ extern timer_t* timer_create(timer_loop_t* timer_loop);
  * @retval 其他 失败
  */
 extern int timer_stop(timer_t* timer);
+
+/*
+ * 取得timer_loop_t实例
+ * @param timer timer_t实例
+ * @return timer_loop_t实例
+ */
+extern timer_loop_t* timer_get_loop(timer_t* timer);
 
 /*
  * 启动一个无限次数的定时器
