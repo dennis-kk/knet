@@ -689,12 +689,13 @@ uint64_t time_get_microseconds() {
 }
 
 uint64_t gen_domain_uuid() {
-    uint32_t uuid[2] = {0};
+    uint64_t uuid = 0;
     /* 取低32位 */
     uint32_t low = (uint32_t)time_get_microseconds();
     srand(low);
-    uuid[0] = low;
-    uuid[1] = rand();
+    uuid = rand(); /* 高32位 */
+    uuid <<= 32;
+    uuid += low;   /* 低32位 */
     /* 最终结果只是从概率上有很低的重复率 */
-    return *(uint64_t*)uuid;
+    return uuid;
 }
