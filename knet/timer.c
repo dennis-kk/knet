@@ -38,7 +38,7 @@ timer_loop_t* timer_loop_create(time_t freq, int slot) {
     memset(timer_loop, 0, sizeof(timer_loop_t));
     timer_loop->max_slot     = slot;
     timer_loop->tick_intval  = freq;
-	timer_loop->last_tick    = time_get_milliseconds();
+    timer_loop->last_tick    = time_get_milliseconds();
     timer_loop->slot         = 1;
     timer_loop->timer_wheels = (dlist_t**)create_type(dlist_t, sizeof(dlist_t*) * timer_loop->max_slot);
     assert(timer_loop->timer_wheels);
@@ -81,7 +81,7 @@ void timer_loop_exit(timer_loop_t* timer_loop) {
 
 int _timer_loop_select_slot(timer_loop_t* timer_loop, time_t ms) {
     /* 计算按当前槽位的位置，后面哪个槽位会触发定时器 */
-	return (int)(timer_loop->slot + ms / timer_loop->tick_intval) % timer_loop->max_slot;
+    return (int)(timer_loop->slot + ms / timer_loop->tick_intval) % timer_loop->max_slot;
 }
 
 void _timer_loop_add_timer(timer_loop_t* timer_loop, timer_t* timer) {
@@ -93,14 +93,14 @@ void _timer_loop_add_timer(timer_loop_t* timer_loop, timer_t* timer) {
 
 void _timer_loop_add_timer_node(timer_loop_t* timer_loop, dlist_node_t* node, time_t ms) {
     int slot = _timer_loop_select_slot(timer_loop, ms);
-	dlist_add_tail(timer_loop->timer_wheels[slot], node);
+    dlist_add_tail(timer_loop->timer_wheels[slot], node);
 }
 
 dlist_node_t* _timer_loop_remove_timer(timer_t* timer) {
-	dlist_t* current_list = timer_get_current_list(timer);
-	dlist_node_t* list_node = timer_get_current_list_node(timer);
-	dlist_remove(current_list, list_node);
-	return list_node;
+    dlist_t* current_list = timer_get_current_list(timer);
+    dlist_node_t* list_node = timer_get_current_list_node(timer);
+    dlist_remove(current_list, list_node);
+    return list_node;
 } 
 
 int timer_loop_run_once(timer_loop_t* timer_loop) {
@@ -143,13 +143,13 @@ void timer_set_current_list_node(timer_t* timer, dlist_node_t* node) {
 }
 
 dlist_t* timer_get_current_list(timer_t* timer) {
-	assert(timer);
-	return timer->current_list;
+    assert(timer);
+    return timer->current_list;
 }
 
 dlist_node_t* timer_get_current_list_node(timer_t* timer) {
-	assert(timer);
-	return timer->list_node;
+    assert(timer);
+    return timer->list_node;
 }
 
 timer_t* timer_create(timer_loop_t* timer_loop) {
@@ -186,7 +186,7 @@ time_t timer_loop_get_tick_intval(timer_loop_t* timer_loop) {
 }
 
 int timer_check_timeout(timer_t* timer, time_t ms) {
-	dlist_node_t* node        = 0;
+    dlist_node_t* node        = 0;
     time_t        tick_intval = 0;
     timer_loop_t* timer_loop  = 0;
     assert(timer);
@@ -209,17 +209,17 @@ int timer_check_timeout(timer_t* timer, time_t ms) {
         timer_destroy(timer);
     } else if (timer->type == timer_type_period) {
         timer->ms = ms + timer->intval;
-		node = _timer_loop_remove_timer(timer);
-		_timer_loop_add_timer_node(timer->timer_loop, node, timer->intval);
+        node = _timer_loop_remove_timer(timer);
+        _timer_loop_add_timer_node(timer->timer_loop, node, timer->intval);
     } else if (timer->type == timer_type_times) {
         timer->ms = ms + timer->intval;
         timer->current_times++;
         if (timer->times <= timer->current_times) {
             timer_destroy(timer);
         } else {
-			node = _timer_loop_remove_timer(timer);
-			_timer_loop_add_timer_node(timer->timer_loop, node, timer->intval);
-		}
+            node = _timer_loop_remove_timer(timer);
+            _timer_loop_add_timer_node(timer->timer_loop, node, timer->intval);
+        }
     }
     return 1;
 }
