@@ -115,7 +115,7 @@ typedef struct _ringbuffer_t ringbuffer_t;
 typedef struct _buffer_t buffer_t;
 typedef struct _broadcast_t broadcast_t;
 typedef struct _ktimer_loop_t ktimer_loop_t;
-typedef struct _kktimer_t kktimer_t;
+typedef struct _ktimer_t ktimer_t;
 
 typedef enum _channel_event_e {
     channel_event_recv = 1,
@@ -157,6 +157,7 @@ typedef enum _error_e {
     error_getpeername,
     error_getsockname,
     error_not_correct_domain,
+    error_multiple_start,
 } error_e;
 
 typedef enum _channel_cb_event_e {
@@ -171,7 +172,7 @@ typedef enum _channel_cb_event_e {
 
 typedef void (*thread_func_t)(thread_runner_t*);
 typedef void (*channel_ref_cb_t)(channel_ref_t* channel, channel_cb_event_e e);
-typedef void (*ktimer_cb_t)(kktimer_t* timer, void* data);
+typedef void (*ktimer_cb_t)(ktimer_t* timer, void* data);
 
 /* 根据需要， 开启不同选取器 */
 

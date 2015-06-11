@@ -1,20 +1,19 @@
-#include <math.h>
-
 #include "timer.h"
 #include "list.h"
 #include "misc.h"
 
-struct _kktimer_t {
-    dlist_t*      current_list;  /* 所属链表 */
-    dlist_node_t* list_node;     /* 链表节点 */
+struct _ktimer_t {
+    dlist_t*       current_list;  /* 所属链表 */
+    dlist_node_t*  list_node;     /* 链表节点 */
     ktimer_loop_t* ktimer_loop;    /* 定时器循环 */
     ktimer_type_e  type;          /* 定时器类型 */
     ktimer_cb_t    cb;            /* 定时器回调 */
-    void*         data;          /* 自定义数据 */
-    time_t        ms;            /* 下次触发时间 */
-    time_t        intval;        /* 定时器间隔 */
-    int           times;         /* 触发最大次数 */
-    int           current_times; /* 当前触发次数 */
+    void*          data;          /* 自定义数据 */
+    time_t         ms;            /* 下次触发时间 */
+    time_t         intval;        /* 定时器间隔 */
+    int            times;         /* 触发最大次数 */
+    int            current_times; /* 当前触发次数 */
+    int            stop;          /* 终止标志 */
 };
 
 struct _ktimer_loop_t {
@@ -27,14 +26,17 @@ struct _ktimer_loop_t {
 };
 
 int _ktimer_loop_select_slot(ktimer_loop_t* ktimer_loop, time_t ms);
-void _ktimer_loop_add_timer(ktimer_loop_t* ktimer_loop, kktimer_t* timer);
+void _ktimer_loop_add_timer(ktimer_loop_t* ktimer_loop, ktimer_t* timer);
 void _ktimer_loop_add_ktimer_node(ktimer_loop_t* ktimer_loop, dlist_node_t* node, time_t ms);
-dlist_node_t* _ktimer_loop_remove_timer(kktimer_t* timer);
+dlist_node_t* _ktimer_loop_remove_timer(ktimer_t* timer);
+int _ktimer_check_stop(ktimer_t* timer);
 
 ktimer_loop_t* ktimer_loop_create(time_t freq, int slot) {
     int i = 0;
     ktimer_loop_t* ktimer_loop = create(ktimer_loop_t);
     assert(ktimer_loop);
+    assert(freq);
+    assert(slot);
     memset(ktimer_loop, 0, sizeof(ktimer_loop_t));
     ktimer_loop->max_slot     = slot;
     ktimer_loop->tick_intval  = freq;
@@ -51,14 +53,14 @@ ktimer_loop_t* ktimer_loop_create(time_t freq, int slot) {
 
 void ktimer_loop_destroy(ktimer_loop_t* ktimer_loop) {
     int i = 0;
-    kktimer_t*      timer = 0;
+    ktimer_t*      timer = 0;
     dlist_node_t* node  = 0;
     dlist_node_t* temp  = 0;
     assert(ktimer_loop);
     /* 销毁所有槽内链表 */
     for (; i < ktimer_loop->max_slot; i++) {
         dlist_for_each_safe(ktimer_loop->ktimer_wheels[i], node, temp) {
-            timer = (kktimer_t*)dlist_node_get_data(node);
+            timer = (ktimer_t*)dlist_node_get_data(node);
             ktimer_destroy(timer);
         }
         dlist_destroy(ktimer_loop->ktimer_wheels[i]);
@@ -68,6 +70,7 @@ void ktimer_loop_destroy(ktimer_loop_t* ktimer_loop) {
 }
 
 void ktimer_loop_run(ktimer_loop_t* ktimer_loop) {
+    assert(ktimer_loop);
     ktimer_loop->running = 1;
     while (ktimer_loop->running) {
         thread_sleep_ms((int)ktimer_loop->tick_intval);
@@ -76,6 +79,7 @@ void ktimer_loop_run(ktimer_loop_t* ktimer_loop) {
 }
 
 void ktimer_loop_exit(ktimer_loop_t* ktimer_loop) {
+    assert(ktimer_loop);
     ktimer_loop->running = 0;
 }
 
@@ -84,7 +88,7 @@ int _ktimer_loop_select_slot(ktimer_loop_t* ktimer_loop, time_t ms) {
     return (int)(ktimer_loop->slot + ms / ktimer_loop->tick_intval) % ktimer_loop->max_slot;
 }
 
-void _ktimer_loop_add_timer(ktimer_loop_t* ktimer_loop, kktimer_t* timer) {
+void _ktimer_loop_add_timer(ktimer_loop_t* ktimer_loop, ktimer_t* timer) {
     /* 新timer都加入到下次运行的槽位，如果未过期会被调整到后续槽位 */
     dlist_node_t* node = dlist_add_tail_node(ktimer_loop->ktimer_wheels[ktimer_loop->slot], timer);
     ktimer_set_current_list(timer, ktimer_loop->ktimer_wheels[ktimer_loop->slot]);
@@ -93,13 +97,16 @@ void _ktimer_loop_add_timer(ktimer_loop_t* ktimer_loop, kktimer_t* timer) {
 
 void _ktimer_loop_add_ktimer_node(ktimer_loop_t* ktimer_loop, dlist_node_t* node, time_t ms) {
     int slot = _ktimer_loop_select_slot(ktimer_loop, ms);
+    ktimer_t* timer = (ktimer_t*)dlist_node_get_data(node);
     dlist_add_tail(ktimer_loop->ktimer_wheels[slot], node);
+    ktimer_set_current_list(timer, ktimer_loop->ktimer_wheels[slot]);
 }
 
-dlist_node_t* _ktimer_loop_remove_timer(kktimer_t* timer) {
+dlist_node_t* _ktimer_loop_remove_timer(ktimer_t* timer) {
     dlist_t* current_list = ktimer_get_current_list(timer);
     dlist_node_t* list_node = ktimer_get_current_list_node(timer);
     dlist_remove(current_list, list_node);
+    ktimer_set_current_list(timer, 0);
     return list_node;
 } 
 
@@ -107,17 +114,17 @@ int ktimer_loop_run_once(ktimer_loop_t* ktimer_loop) {
     dlist_node_t* node   = 0;
     dlist_node_t* temp   = 0;
     dlist_t*      timers = 0;
-    kktimer_t*      timer  = 0;
+    ktimer_t*      timer  = 0;
     time_t        ms     = time_get_milliseconds(); /* 当前时间戳（毫秒） */
     int           count  = 0;
     assert(ktimer_loop);
     timers = ktimer_loop->ktimer_wheels[ktimer_loop->slot];
     dlist_for_each_safe(timers, node, temp) {
-        timer = (kktimer_t*)dlist_node_get_data(node);
+        timer = (ktimer_t*)dlist_node_get_data(node);
         /* 处理定时器 */
         if (ktimer_check_timeout(timer, ms)) {
             count++;
-        }
+        }        
     }
     /* 下一个槽位 */
     ktimer_loop->slot = (ktimer_loop->slot + 1) % ktimer_loop->max_slot;
@@ -126,43 +133,46 @@ int ktimer_loop_run_once(ktimer_loop_t* ktimer_loop) {
     return count;
 }
 
-ktimer_loop_t* ktimer_get_loop(kktimer_t* timer) {
+int _ktimer_check_stop(ktimer_t* timer) {
+    return timer->stop;
+}
+
+ktimer_loop_t* ktimer_get_loop(ktimer_t* timer) {
     return timer->ktimer_loop;
 }
 
-void ktimer_set_current_list(kktimer_t* timer, dlist_t* list) {
-    assert(timer);
-    assert(list);
+void ktimer_set_current_list(ktimer_t* timer, dlist_t* list) {
+    assert(timer); /* list可以为零 */
     timer->current_list = list;
 }
 
-void ktimer_set_current_list_node(kktimer_t* timer, dlist_node_t* node) {
+void ktimer_set_current_list_node(ktimer_t* timer, dlist_node_t* node) {
     assert(timer);
     assert(node);
     timer->list_node = node;
 }
 
-dlist_t* ktimer_get_current_list(kktimer_t* timer) {
+dlist_t* ktimer_get_current_list(ktimer_t* timer) {
     assert(timer);
     return timer->current_list;
 }
 
-dlist_node_t* ktimer_get_current_list_node(kktimer_t* timer) {
+dlist_node_t* ktimer_get_current_list_node(ktimer_t* timer) {
     assert(timer);
     return timer->list_node;
 }
 
-kktimer_t* ktimer_create(ktimer_loop_t* ktimer_loop) {
-    kktimer_t* timer = 0;
+ktimer_t* ktimer_create(ktimer_loop_t* ktimer_loop) {
+    ktimer_t* timer = 0;
     assert(ktimer_loop);
-    timer = create(kktimer_t);
+    timer = create(ktimer_t);
     assert(timer);
-    memset(timer, 0, sizeof(kktimer_t));
+    memset(timer, 0, sizeof(ktimer_t));
     timer->ktimer_loop = ktimer_loop;
     return timer;
 }
 
-void ktimer_destroy(kktimer_t* timer) {
+void ktimer_destroy(ktimer_t* timer) {
     assert(timer);
     assert(timer->current_list);
     assert(timer->list_node);
@@ -170,7 +180,7 @@ void ktimer_destroy(kktimer_t* timer) {
     free(timer);
 }
 
-int ktimer_check_dead(kktimer_t* timer) {
+int ktimer_check_dead(ktimer_t* timer) {
     if (timer->type == ktimer_type_once) {
         return 1;
     } else if (timer->type == ktimer_type_times) {
@@ -185,7 +195,7 @@ time_t ktimer_loop_get_tick_intval(ktimer_loop_t* ktimer_loop) {
     return ktimer_loop->tick_intval;
 }
 
-int ktimer_check_timeout(kktimer_t* timer, time_t ms) {
+int ktimer_check_timeout(ktimer_t* timer, time_t ms) {
     dlist_node_t* node        = 0;
     time_t        tick_intval = 0;
     ktimer_loop_t* ktimer_loop  = 0;
@@ -204,7 +214,17 @@ int ktimer_check_timeout(kktimer_t* timer, time_t ms) {
             /* 距离下次超时时间小于一个tick间隔, 如果下一轮触发已经多超时了一个tick间隔 */
         }
     }
+    if (timer->type == ktimer_type_times) {
+        /* 先改变次数 */
+        timer->ms = ms + timer->intval;
+        timer->current_times++;
+    }
     timer->cb(timer, timer->data);
+    if (_ktimer_check_stop(timer)) {
+        /* 回调内调用ktimer_stop() */
+        ktimer_destroy(timer);
+        return 1;
+    }
     if (timer->type == ktimer_type_once) {
         ktimer_destroy(timer);
     } else if (timer->type == ktimer_type_period) {
@@ -212,8 +232,6 @@ int ktimer_check_timeout(kktimer_t* timer, time_t ms) {
         node = _ktimer_loop_remove_timer(timer);
         _ktimer_loop_add_ktimer_node(timer->ktimer_loop, node, timer->intval);
     } else if (timer->type == ktimer_type_times) {
-        timer->ms = ms + timer->intval;
-        timer->current_times++;
         if (timer->times <= timer->current_times) {
             ktimer_destroy(timer);
         } else {
@@ -224,16 +242,19 @@ int ktimer_check_timeout(kktimer_t* timer, time_t ms) {
     return 1;
 }
 
-int ktimer_stop(kktimer_t* timer) {
+int ktimer_stop(ktimer_t* timer) {
     assert(timer);
-    ktimer_destroy(timer);
+    timer->stop = 1;
     return error_ok;
 }
 
-int ktimer_start(kktimer_t* timer, ktimer_cb_t cb, void* data, time_t ms) {
+int ktimer_start(ktimer_t* timer, ktimer_cb_t cb, void* data, time_t ms) {
     assert(timer);
     assert(cb);
     assert(ms);
+    if (timer->current_list) {
+        return error_multiple_start;
+    }
     timer->cb     = cb;
     timer->data   = data;
     timer->type   = ktimer_type_period;
@@ -243,10 +264,13 @@ int ktimer_start(kktimer_t* timer, ktimer_cb_t cb, void* data, time_t ms) {
     return error_ok;
 }
 
-int ktimer_start_once(kktimer_t* timer, ktimer_cb_t cb, void* data, time_t ms) {
+int ktimer_start_once(ktimer_t* timer, ktimer_cb_t cb, void* data, time_t ms) {
     assert(timer);
     assert(cb);
     assert(ms);
+    if (timer->current_list) {
+        return error_multiple_start;
+    }
     timer->cb     = cb;
     timer->data   = data;
     timer->type   = ktimer_type_once;
@@ -256,10 +280,13 @@ int ktimer_start_once(kktimer_t* timer, ktimer_cb_t cb, void* data, time_t ms) {
     return error_ok;
 }
 
-int ktimer_start_times(kktimer_t* timer, ktimer_cb_t cb, void* data, time_t ms, int times) {
+int ktimer_start_times(ktimer_t* timer, ktimer_cb_t cb, void* data, time_t ms, int times) {
     assert(timer);
     assert(cb);
     assert(ms);
+    if (timer->current_list) {
+        return error_multiple_start;
+    }
     timer->cb     = cb;
     timer->data   = data;
     timer->type   = ktimer_type_times;
