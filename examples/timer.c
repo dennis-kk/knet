@@ -5,30 +5,29 @@
 #include "knet.h"
 #include "misc.h"
 
-void timer_once_cb(timer_t* timer, void* data) {
+void ktimer_once_cb(kktimer_t* timer, void* data) {
     printf("timer timeout\n");
 }
 
 #define MAX_TIMES 5
 int times = 0;
-void timer_cb(timer_t* timer, void* data) {
-    timer_loop_t* loop = timer_get_loop(timer);
+void ktimer_cb(kktimer_t* timer, void* data) {
+    ktimer_loop_t* loop = ktimer_get_loop(timer);
     printf("timer timeout\n");
     times++;
     if (times >= MAX_TIMES) {
-        timer_stop(timer);
-        timer_loop_exit(loop);
+        ktimer_stop(timer);
+        ktimer_loop_exit(loop);
     }
 }
 
 int main() {
-    int i = 0;
-    timer_loop_t* loop = timer_loop_create(1000, 128);
-    timer_t* timer_once = timer_create(loop);
-    timer_t* timer_period = timer_create(loop);
-    timer_start_once(timer_once, timer_once_cb, 0, 1000);
-    timer_start(timer_period, timer_cb, 0, 1000);
-    timer_loop_run(loop);
+    ktimer_loop_t* loop = ktimer_loop_create(1000, 128);
+    kktimer_t* ktimer_once = ktimer_create(loop);
+    kktimer_t* ktimer_period = ktimer_create(loop);
+    ktimer_start_once(ktimer_once, ktimer_once_cb, 0, 1000);
+    ktimer_start(ktimer_period, ktimer_cb, 0, 1000);
+    ktimer_loop_run(loop);
     return 0;
 }
 
