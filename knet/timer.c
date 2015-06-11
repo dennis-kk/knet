@@ -121,10 +121,15 @@ int ktimer_loop_run_once(ktimer_loop_t* ktimer_loop) {
     timers = ktimer_loop->ktimer_wheels[ktimer_loop->slot];
     dlist_for_each_safe(timers, node, temp) {
         timer = (ktimer_t*)dlist_node_get_data(node);
-        /* 处理定时器 */
-        if (ktimer_check_timeout(timer, ms)) {
-            count++;
-        }        
+        if (!_ktimer_check_stop(timer)) {
+            /* 处理定时器 */
+            if (ktimer_check_timeout(timer, ms)) {
+                count++;
+            }
+        } else {
+            /* 销毁 */
+            ktimer_destroy(timer);
+        }
     }
     /* 下一个槽位 */
     ktimer_loop->slot = (ktimer_loop->slot + 1) % ktimer_loop->max_slot;
