@@ -17,12 +17,13 @@ atomic_counter_t client_count = 0;
 
 void client_cb(channel_ref_t* channel, channel_cb_event_e e) {
     address_t* peer_address = 0;
-    char buffer[100] = {0};
+    char buffer[10] = {0};
     stream_t* stream = 0;
     int bytes = 0;
     if (e & channel_cb_event_recv) {
         stream = channel_ref_get_stream(channel);
-        bytes = stream_pop(stream, buffer, sizeof(buffer));
+        bytes = stream_available(stream);
+        stream_pop(stream, buffer, sizeof(buffer));
         stream_push(stream, buffer, bytes);
         recv_count++;
         if (recv_count > MAX_ECHO_COUNT) {

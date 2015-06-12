@@ -21,13 +21,12 @@ void client_cb(channel_ref_t* channel, channel_cb_event_e e) {
 }
 
 void connector_cb(channel_ref_t* channel, channel_cb_event_e e) {    
-    int bytes = 0;
     char buffer[16] = {0};
     stream_t* stream = channel_ref_get_stream(channel);
     if (e & channel_cb_event_recv) { /* 有数据可以读 */
         memset(buffer, 0, sizeof(buffer));
         /* 读取 */
-        bytes = stream_pop(stream, buffer, sizeof(buffer));
+        stream_pop(stream, buffer, sizeof(buffer));
         printf("recv: %s\n", buffer);
         channel_ref_close(channel);
     }
