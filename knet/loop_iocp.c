@@ -162,6 +162,8 @@ int _select(loop_t* loop, time_t ts) {
             return error_ok;
         }
     }
+    assert(per_sock);
+    assert(per_io);
     channel_ref = per_sock->channel_ref;  
     assert(channel_ref);
     if ((per_io->type & io_type_recv) || (per_io->type & io_type_accept)) {
@@ -275,6 +277,13 @@ void on_iocp_send(channel_ref_t* channel_ref) {
         per_io->type = io_type_connect;
     } else {
         per_io->type = io_type_send;
+    }
+    /* 连接状态的管道，检查是否已经完成 */
+    if (channel_ref_check_state(channel_ref, channel_state_connect)) {
+        if (!socket_check_send_ready(channel_ref_get_socket_fd(channel_ref))) {
+            /* 未完成连接不投递send请求 */
+            return;
+        }
     }
     /* 投递一个0长度send请求 */
     result = WSASend(fd, &sbuf, 1, &bytes, flags, &per_io->ov, 0);

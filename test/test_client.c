@@ -78,7 +78,7 @@ int main(int argc, char* argv[]) {
     connector = loop_create_channel(loop, 8, 121);
     channel_ref_set_cb(connector, connector_cb);
     channel_ref_set_timeout(connector, 1);
-    if (error_ok != channel_ref_connect(connector, ip, port, 120)) {
+    if (error_ok != channel_ref_connect(connector, ip, port, 5)) {
         return 0;
     }
 
