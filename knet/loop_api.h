@@ -83,4 +83,18 @@ extern int loop_run(loop_t* loop);
  */
 extern void loop_exit(loop_t* loop);
 
+/*
+ * 获取活跃管道数量
+ * @param loop loop_t实例
+ * @return 活跃管道数量
+ */
+extern int loop_get_active_channel_count(loop_t* loop);
+
+/*
+ * 获取已关闭管道数量
+ * @param loop loop_t实例
+ * @return 关闭管道数量
+ */
+extern int loop_get_close_channel_count(loop_t* loop);
+
 #endif /* LOOP_API_H */

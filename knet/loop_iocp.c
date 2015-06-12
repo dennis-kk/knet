@@ -42,6 +42,7 @@ typedef enum _io_type_e {
     io_type_connect = 2,
     io_type_recv    = 4,
     io_type_send    = 8,
+    io_type_close   = 16,
 } io_type_e;
 
 typedef struct _per_io_t {  
@@ -157,14 +158,11 @@ int _select(loop_t* loop, time_t ts) {
     error = GetQueuedCompletionStatus(impl->iocp, &bytes, (PULONG_PTR)&per_sock, (LPOVERLAPPED*)&per_io, 1);
     last_error = GetLastError();
     if (FALSE == error) {
-        if ((last_error == WAIT_TIMEOUT) ||
-            (last_error == ERROR_NETNAME_DELETED) ||
-            (last_error == ERROR_OPERATION_ABORTED) ||
-            (last_error == WSAENOTCONN)) {
+        if ((last_error == WAIT_TIMEOUT) || (last_error == ERROR_OPERATION_ABORTED)) {
             return error_ok;
         }
     }
-    channel_ref = per_sock->channel_ref;    
+    channel_ref = per_sock->channel_ref;  
     assert(channel_ref);
     if ((per_io->type & io_type_recv) || (per_io->type & io_type_accept)) {
         channel_ref_update(channel_ref, channel_event_recv, ts);
@@ -300,21 +298,29 @@ int impl_event_add(channel_ref_t* channel_ref, channel_event_e e) {
     /* 投递事件 */
     if (channel_event_recv & e) {
         on_iocp_recv(channel_ref);
-    } else if (e & channel_event_send) {
+    } 
+    if (e & channel_event_send) {
         on_iocp_send(channel_ref);
     }
     return error_ok;
 }
 
 int impl_event_remove(channel_ref_t* channel_ref, channel_event_e e) {
-    int flag = 0;
+    int         flag     = 0;
+    per_sock_t* per_sock = 0;
     e;
     assert(channel_ref);
     flag = channel_ref_get_flag(channel_ref);
     if (flag & io_type_recv) {
         flag &= ~io_type_recv;
-    } else if (flag & io_type_send) {
+    } 
+    if (flag & io_type_send) {
         flag &= ~io_type_send;
+    }
+    /* 同时取消读写即关闭 */
+    if ((e & channel_event_recv) && (e & channel_event_send)) {
+        per_sock = get_data(channel_ref);
+        channel_ref_decref(channel_ref);
     }
     channel_ref_set_flag(channel_ref, flag);
     return error_ok;
@@ -332,6 +338,8 @@ int impl_add_channel_ref(loop_t* loop, channel_ref_t* channel_ref) {
     iocp      = 0;
     per_sock  = socket_data_create();
     assert(per_sock);
+    /* 增加引用计数 */
+    channel_ref_incref(channel_ref);
     per_sock->channel_ref  = channel_ref;
     /* 与IOCP关联 */
     iocp = CreateIoCompletionPort((HANDLE)socket_fd, impl->iocp, (ULONG_PTR)per_sock, 0);
@@ -344,15 +352,13 @@ int impl_add_channel_ref(loop_t* loop, channel_ref_t* channel_ref) {
 }
 
 int impl_remove_channel_ref(loop_t* loop, channel_ref_t* channel_ref) {
-    /* 外部关闭套接字后，IOCP解除关联，channel_ret_t销毁和loop_t退出的时候调用此函数 */
-    per_sock_t* per_sock = 0;
-    loop;
-    assert(channel_ref);
+    per_sock_t* per_sock  = 0;
     assert(loop);
-    per_sock = get_data(channel_ref);
+    assert(channel_ref);
+    per_sock = channel_ref_get_data(channel_ref);
     assert(per_sock);
+    /* 销毁相关资源 */
     socket_data_destroy(per_sock);
-    channel_ref_set_data(channel_ref, 0);
     return error_ok;
 }
 

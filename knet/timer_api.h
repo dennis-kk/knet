@@ -100,4 +100,11 @@ extern int ktimer_start_times(ktimer_t* timer, ktimer_cb_t cb, void* data, time_
  */
 extern int ktimer_check_dead(ktimer_t* timer);
 
+/*
+ * 取得滴答间隔
+ * @param ktimer_loop ktimer_loop_t实例
+ * @return 滴答间隔
+ */
+extern time_t ktimer_loop_get_tick_intval(ktimer_loop_t* ktimer_loop);
+
 #endif /* TIMER_API_H */

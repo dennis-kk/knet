@@ -3,7 +3,6 @@
 #if COMPILE_MULTI_LOOP
 
 #include "knet.h"
-#include "misc.h"
 
 /*
  4线程+主线程

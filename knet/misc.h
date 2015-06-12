@@ -26,6 +26,7 @@
 #define MISC_H
 
 #include "config.h"
+#include "thread_api.h"
 
 socket_t socket_create();
 int socket_connect(socket_t socket_fd, const char* ip, int port);
@@ -47,10 +48,6 @@ int socket_getpeername(channel_ref_t* channel_ref, address_t* address);
 int socket_getsockname(channel_ref_t* channel_ref, address_t* address);
 int socket_check_send_ready(socket_t socket_fd);
 
-atomic_counter_t atomic_counter_inc(atomic_counter_t* counter);
-atomic_counter_t atomic_counter_dec(atomic_counter_t* counter);
-int atomic_counter_zero(atomic_counter_t* counter);
-
 lock_t* lock_create();
 void lock_destroy(lock_t* lock);
 void lock_lock(lock_t* lock);
@@ -63,17 +60,6 @@ struct _thread_runner_t {
     volatile int running;
     thread_id_t thread_id;
 };
-
-thread_runner_t* thread_runner_create(thread_func_t func, void* params);
-void thread_runner_destroy(thread_runner_t* runner);
-int thread_runner_start(thread_runner_t* runner, int stack_size);
-void thread_runner_stop(thread_runner_t* runner);
-int thread_runner_start_loop(thread_runner_t* runner, loop_t* loop, int stack_size);
-void thread_runner_join(thread_runner_t* runner);
-int thread_runner_check_start(thread_runner_t* runner);
-void* thread_runner_get_params(thread_runner_t* runner);
-thread_id_t thread_get_self_id();
-void thread_sleep_ms(int ms);
 
 uint32_t time_get_milliseconds();
 uint64_t time_get_microseconds();

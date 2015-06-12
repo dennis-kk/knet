@@ -36,6 +36,7 @@
 #include "loop_balancer_api.h"
 #include "broadcast_api.h"
 #include "timer_api.h"
+#include "thread_api.h"
 #include "version.h"
 
 #ifdef __cplusplus

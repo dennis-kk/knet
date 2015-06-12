@@ -136,12 +136,13 @@ channel_ref_t* channel_ref_share(channel_ref_t* channel_ref) {
     channel_ref_t* channel_ref_shared = 0;
     assert(channel_ref);
     channel_ref_shared = create(channel_ref_t);
+    memset(channel_ref_shared, 0, sizeof(channel_ref_t));
     assert(channel_ref_shared);
     /* 增加管道引用计数 */
     atomic_counter_inc(&channel_ref->ref_info->ref_count);
     /* 共享管道信息指针 */
     channel_ref_shared->ref_info = channel_ref->ref_info;
-    channel_ref->share = 1;
+    channel_ref_shared->share = 1;
     return channel_ref_shared;
 }
 
@@ -207,6 +208,9 @@ int channel_ref_write(channel_ref_t* channel_ref, const char* data, int size) {
     assert(channel_ref);
     assert(data);
     assert(size);
+    if (!channel_ref_check_state(channel_ref, channel_state_active)) {
+        return error_not_connected;
+    }
     loop = channel_ref->ref_info->loop;
     if (loop_get_thread_id(loop) != thread_get_self_id()) {
         /* 转到loop所在线程发送 */
@@ -483,7 +487,7 @@ int channel_ref_check_balance(channel_ref_t* channel_ref) {
 
 void channel_ref_set_timeout(channel_ref_t* channel_ref, int timeout) {
     assert(channel_ref);
-    assert(0 >= timeout);
+    assert(timeout);
     channel_ref->ref_info->timeout = (time_t)timeout;
 }
 
@@ -502,7 +506,11 @@ int channel_ref_check_timeout(channel_ref_t* channel_ref, time_t ts) {
     if (!channel_ref->ref_info->timeout) {
         return 0;
     }
-    return ((ts - channel_ref->ref_info->last_recv_ts) > channel_ref->ref_info->timeout);
+    if ((ts - channel_ref->ref_info->last_recv_ts) > channel_ref->ref_info->timeout) {
+        channel_ref->ref_info->last_recv_ts = ts;
+        return 1;
+    }
+    return 0;
 }
 
 void channel_ref_set_cb(channel_ref_t* channel_ref, channel_ref_cb_t cb) {
@@ -565,5 +573,16 @@ void channel_ref_set_domain_id(channel_ref_t* channel_ref, uint64_t domain_id) {
 }
 
 uint64_t channel_ref_get_domain_id(channel_ref_t* channel_ref) {
+    assert(channel_ref);
     return channel_ref->domain_id;
+}
+
+void channel_ref_incref(channel_ref_t* channel_ref) {
+    assert(channel_ref);
+    atomic_counter_inc(&channel_ref->ref_info->ref_count);
+}
+
+void channel_ref_decref(channel_ref_t* channel_ref) {
+    assert(channel_ref);
+    atomic_counter_dec(&channel_ref->ref_info->ref_count);
 }

@@ -54,7 +54,10 @@ int stream_pop(stream_t* stream, char* buffer, int size) {
     assert(stream);
     assert(buffer);
     assert(size);
-    return ringbuffer_read(channel_ref_get_ringbuffer(stream->channel_ref), buffer, size);
+    if (0 < ringbuffer_read(channel_ref_get_ringbuffer(stream->channel_ref), buffer, size)) {
+        return error_ok;
+    }
+    return error_recv_fail;
 }
 
 void stream_eat(stream_t* stream) {

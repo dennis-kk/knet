@@ -365,3 +365,11 @@ void loop_check_close(loop_t* loop) {
 int loop_check_running(loop_t* loop) {
     return loop->running;
 }
+
+int loop_get_active_channel_count(loop_t* loop) {
+    return dlist_get_count(loop->active_channel_list);
+}
+
+int loop_get_close_channel_count(loop_t* loop) {
+    return dlist_get_count(loop->close_channel_list);
+}

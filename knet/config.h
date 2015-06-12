@@ -158,6 +158,7 @@ typedef enum _error_e {
     error_getsockname,
     error_not_correct_domain,
     error_multiple_start,
+    error_not_connected,
 } error_e;
 
 typedef enum _channel_cb_event_e {

@@ -26,6 +26,7 @@
 #include "loop.h"
 #include "channel_ref.h"
 #include "address.h"
+#include "timer.h"
 
 socket_t socket_create() {
 #if LOOP_IOCP
@@ -157,6 +158,9 @@ int socket_set_non_blocking_on(socket_t socket_fd) {
 
 int socket_close(socket_t socket_fd) {
 #if defined(WIN32)
+    #if LOOP_IOCP
+    CancelIo((HANDLE)socket_fd);
+    #endif /* LOOP_IOCP */
     return closesocket(socket_fd);
 #else
     return close(socket_fd);
@@ -494,8 +498,9 @@ thread_runner_t* thread_runner_create(thread_func_t func, void* params) {
 void thread_runner_destroy(thread_runner_t* runner) {
     assert(runner);
     if (runner->running) {
-        return;
+        thread_runner_stop(runner);
     }
+    thread_runner_join(runner);
     destroy(runner);
 }
 
@@ -519,6 +524,16 @@ void _thread_loop_func(void* params) {
     }
 }
 
+void _thread_timer_loop_func(void* params) {
+    thread_runner_t* runner = (thread_runner_t*)params;
+    ktimer_loop_t* loop = (ktimer_loop_t*)runner->params;
+    int tick = (int)ktimer_loop_get_tick_intval(loop);
+    while (thread_runner_check_start(runner)) {
+        thread_sleep_ms(tick);
+        ktimer_loop_run_once(loop);
+    }
+}
+
 #if defined(WIN32)
 void thread_loop_func_win(void* params) {
     _thread_loop_func(params);
@@ -526,6 +541,17 @@ void thread_loop_func_win(void* params) {
 #else
 void* thread_loop_func_pthread(void* params) {
     _thread_loop_func(params);
+    return 0;
+}
+#endif /* defined(WIN32) || defined(WIN64) */
+
+#if defined(WIN32)
+void thread_timer_loop_func_win(void* params) {
+    _thread_timer_loop_func(params);
+}
+#else
+void* thread_timer_loop_func_pthread(void* params) {
+    _thread_timer_loop_func(params);
     return 0;
 }
 #endif /* defined(WIN32) || defined(WIN64) */
@@ -598,6 +624,38 @@ int thread_runner_start_loop(thread_runner_t* runner, loop_t* loop, int stack_si
         retval = pthread_create(&runner->thread_id, &attr, thread_loop_func_pthread, runner);
     } else {
         retval = pthread_create(&runner->thread_id, 0, thread_loop_func_pthread, runner);
+    }
+    if (retval) {
+        return error_thread_start_fail;
+    }
+#endif /* defined(WIN32) || defined(WIN64) */
+    return error_ok;
+}
+
+int thread_runner_start_timer_loop(thread_runner_t* runner, ktimer_loop_t* timer_loop, int stack_size) {
+#if defined(WIN32)
+    uintptr_t retval = 0;
+#else
+    int retval = 0;
+    pthread_attr_t attr;
+#endif /* defined(WIN32) || defined(WIN64) */
+    assert(runner);
+    assert(timer_loop);
+    runner->params = timer_loop;
+    runner->running = 1;
+#if defined(WIN32)
+    retval = _beginthread(thread_timer_loop_func_win, stack_size, runner);
+    if (retval < 0) {
+        return error_thread_start_fail;
+    }
+    runner->thread_id = retval;
+#else
+    if (stack_size) {
+        pthread_attr_init(&attr);
+        pthread_attr_setstacksize(&attr, stack_size);
+        retval = pthread_create(&runner->thread_id, &attr, thread_timer_loop_func_pthread, runner);
+    } else {
+        retval = pthread_create(&runner->thread_id, 0, thread_timer_loop_func_pthread, runner);
     }
     if (retval) {
         return error_thread_start_fail;

@@ -69,6 +69,7 @@ int impl_run_once(loop_t* loop) {
     int count = 0;
     int i = 0;
     channel_ref_t* channel_ref = 0;
+    struct epoll_event event;
     time_t ts = time(0);
     struct epoll_event* events = 0;
     loop_epoll_t* impl = (loop_epoll_t*)loop_get_impl(loop);
@@ -79,13 +80,18 @@ int impl_run_once(loop_t* loop) {
     events = impl->events;
     for (; i < count; i++) {
         channel_ref = (channel_ref_t*)events[i].data.ptr;
-        if (events[i].events & EPOLLIN) {
+        if ((events[i].events & EPOLLERR) || (events[i].events & EPOLLHUP)) {
+           /* ManPage: In kernel versions before 2.6.9, the EPOLL_CTL_DEL operation required a non-NULL pointer
+              in event, even though this argument is ignored. Since Linux 2.6.9, event can be specified
+              as NULL when using EPOLL_CTL_DEL. Applications that need to be portable to kernels before
+              2.6.9 should specify a non-NULL pointer in event.
+            */
+            epoll_ctl(impl->epoll_fd, EPOLL_CTL_DEL, channel_ref_get_socket_fd(channel_ref), &event);
+        } else if (events[i].events & EPOLLIN) {
             channel_ref_update(channel_ref, channel_event_recv, ts);
         } else if (events[i].events & EPOLLOUT) {
             channel_ref_update(channel_ref, channel_event_send, ts);
         } else {
-            /* 错误 */
-            channel_ref_close(channel_ref);
         }
     }
     loop_check_timeout(loop, ts);
@@ -105,7 +111,8 @@ int impl_event_add(channel_ref_t* channel_ref, channel_event_e e) {
             event.events |= EPOLLOUT;
         }
         event.events |= EPOLLIN;
-    } else if (e & channel_event_send) {
+    }
+    if (e & channel_event_send) {
         if (old_event & channel_event_recv) { /* 已经注册读事件 */
             event.events |= EPOLLIN;
         }
@@ -131,7 +138,8 @@ int impl_event_remove(channel_ref_t* channel_ref, channel_event_e e) {
         if (old_event & channel_event_send) { /* 已经注册写事件 */
             event.events |= EPOLLOUT;
         }
-    } else if (e & channel_event_send) {
+    } 
+    if (e & channel_event_send) {
         if (old_event & channel_event_recv) { /* 已经注册读事件 */
             event.events |= EPOLLIN;
         }
@@ -150,16 +158,8 @@ int impl_add_channel_ref(loop_t* loop, channel_ref_t* channel_ref) {
 }
 
 int impl_remove_channel_ref(loop_t* loop, channel_ref_t* channel_ref) {
-    struct epoll_event event;
-    loop_epoll_t* impl = (loop_epoll_t*)loop_get_impl(loop);
     /* 清除添加标记 */
     channel_ref_set_flag(channel_ref, 0);
-   /* ManPage: In kernel versions before 2.6.9, the EPOLL_CTL_DEL operation required a non-NULL pointer
-      in event, even though this argument is ignored. Since Linux 2.6.9, event can be specified
-      as NULL when using EPOLL_CTL_DEL. Applications that need to be portable to kernels before
-      2.6.9 should specify a non-NULL pointer in event.
-    */
-    epoll_ctl(impl->epoll_fd, EPOLL_CTL_DEL, channel_ref_get_socket_fd(channel_ref), &event);
     return error_ok;
 }
 

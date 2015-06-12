@@ -16,7 +16,7 @@ void ktimer_times_cb(ktimer_t* timer, void* data) {
     }
 }
 
-#define MAX_TIMES 5 /* 运行5次 */
+#define MAX_TIMES 10 /* 超时次数 */
 
 void ktimer_cb(ktimer_t* timer, void* data) {
     printf("peroid timer timeout\n");

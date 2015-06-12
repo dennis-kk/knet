@@ -294,4 +294,16 @@ void channel_ref_set_domain_id(channel_ref_t* channel_ref, uint64_t domain_id);
  */
 uint64_t channel_ref_get_domain_id(channel_ref_t* channel_ref);
 
+/*
+ * 递增当前管道引用计数
+ * @param channel_ref channel_ref_t实例
+ */
+void channel_ref_incref(channel_ref_t* channel_ref);
+
+/*
+ * 递减当前管道引用计数
+ * @param channel_ref channel_ref_t实例
+ */
+void channel_ref_decref(channel_ref_t* channel_ref);
+
 #endif /* CHANNEL_REF_H */
