@@ -129,11 +129,16 @@ typedef enum _channel_state_e {
     channel_state_active = 8,  /* 管道已激活，可以收发数据 */
 } channel_state_e;
 
-typedef enum ktimer_type_e {
+typedef enum _ktimer_type_e {
     ktimer_type_once   = 1, /* 运行一次 */
     ktimer_type_period = 2, /* 无限 */
     ktimer_type_times  = 3, /* 多次运行 */
 } ktimer_type_e;
+
+typedef enum _loop_balance_option_e {
+	loop_balancer_in  = 1, /* 开启其他loop_t的管道在当前loop_t负载 */
+	loop_balancer_out = 2, /* 开启当前loop_t的管道到其他loop_t内负载 */
+} loop_balance_option_e;
 
 typedef enum _error_e {
     error_ok = 0,
