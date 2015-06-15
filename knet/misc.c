@@ -197,6 +197,7 @@ int socket_set_send_buffer_size(socket_t socket_fd, int size) {
 }
 
 int socket_check_send_ready(socket_t socket_fd) {
+#if defined(WIN32)
     struct timeval tv = {0, 0};
     int error = 0;
     fd_set send_fds;
@@ -208,6 +209,9 @@ int socket_check_send_ready(socket_t socket_fd) {
         return 0;
     }
     return FD_ISSET(socket_fd, &send_fds);
+#else
+    return (0 == socket_send(socket_fd, 0, 0));
+#endif /* defined(WIN32) */    
 }
 
 int socket_send(socket_t socket_fd, const char* data, uint32_t size) {
