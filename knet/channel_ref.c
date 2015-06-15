@@ -450,9 +450,12 @@ loop_t* channel_ref_choose_loop(channel_ref_t* channel_ref) {
     if (!balancer) {
         return 0;
     }
-    loop = loop_balancer_choose(balancer);
-    if (loop == channel_ref->ref_info->loop) {
-        return 0;
+    /* 检查是否开启了loop_balancer_out配置 */
+    if (loop_check_balance_options(channel_ref->ref_info->loop, loop_balancer_out)) {
+        loop = loop_balancer_choose(balancer);
+        if (loop == channel_ref->ref_info->loop) {
+            return 0;
+        }
     }
     return loop;
 }

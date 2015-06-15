@@ -125,15 +125,23 @@ loop_t* loop_balancer_choose(loop_balancer_t* balancer) {
     /* 选取当前活跃管道数最少的loop_t */
     dlist_for_each_safe(balancer->loop_info_list, node, temp) {
         loop_info = (loop_info_t*)dlist_node_get_data(node);
-        channel_list = loop_get_active_list(loop_info->loop);
-        count = dlist_get_count(channel_list);
-        if (count < channel_count) {
-            found = loop_info;
-            channel_count = count;
+        /* 是否开启loop_balancer_in配置 */
+        if (loop_check_balance_options(loop_info->loop, loop_balancer_in)) {
+            channel_list = loop_get_active_list(loop_info->loop);
+            count = dlist_get_count(channel_list);
+            if (count < channel_count) {
+                found = loop_info;
+                channel_count = count;
+            }
         }
     }
-    /* 记录被选取次数，保留 */
-    found->choose++;
+    if (found) {
+        /* 记录被选取次数，保留 */
+        found->choose++;
+    }
     lock_unlock(balancer->lock);
-    return found->loop;
+    if (found) {
+        return found->loop;
+    }
+    return 0;
 }

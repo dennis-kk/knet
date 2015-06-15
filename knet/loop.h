@@ -157,6 +157,29 @@ void loop_check_close(loop_t* loop);
  */
 int loop_check_running(loop_t* loop);
 
+/*
+ * 设置负载均衡配置
+ * @param loop loop_t实例
+ * @param options 选项（loop_balancer_in， loop_balancer_out）
+ */
+void loop_set_balance_options(loop_t* loop, loop_balance_option_e options);
+
+/*
+ * 取得负载均衡配置
+ * @param loop loop_t实例
+ * @return 负载均衡配置
+ */
+loop_balance_option_e loop_get_balance_options(loop_t* loop);
+
+/*
+ * 检查负载均衡配置是否开启
+ * @param loop loop_t实例
+ * @return 负载均衡配置
+ * @retval 0 未开启
+ * @retval 非零 开启
+ */
+int loop_check_balance_options(loop_t* loop, loop_balance_option_e options);
+
 /* 
  * 选取器需要实现的函数 - 建立并初始化
  * @param loop loop_t实例

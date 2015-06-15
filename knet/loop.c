@@ -32,16 +32,17 @@
 #include "stream.h"
 
 struct _loop_t {
-    dlist_t*         active_channel_list; /* 活跃管道链表 */
-    dlist_t*         close_channel_list;  /* 已关闭管道链表 */
-    dlist_t*         event_list;          /* 事件链表 */
-    lock_t*          lock;                /* 锁-事件链表*/
-    channel_ref_t*   notify_channel;      /* 事件通知写管道 */
-    channel_ref_t*   read_channel;        /* 事件通知读管道 */
-    loop_balancer_t* balancer;            /* 负载均衡器 */
-    void*            impl;                /* 事件选取器实现 */
-    volatile int     running;             /* 事件循环运行标志 */
-    thread_id_t      thread_id;           /* 事件选取器当前运行线程ID */
+    dlist_t*              active_channel_list; /* 活跃管道链表 */
+    dlist_t*              close_channel_list;  /* 已关闭管道链表 */
+    dlist_t*              event_list;          /* 事件链表 */
+    lock_t*               lock;                /* 锁-事件链表*/
+    channel_ref_t*        notify_channel;      /* 事件通知写管道 */
+    channel_ref_t*        read_channel;        /* 事件通知读管道 */
+    loop_balancer_t*      balancer;            /* 负载均衡器 */
+    void*                 impl;                /* 事件选取器实现 */
+    volatile int          running;             /* 事件循环运行标志 */
+    thread_id_t           thread_id;           /* 事件选取器当前运行线程ID */
+    loop_balance_option_e balance_options;     /* 负载均衡配置 */
 };
 
 typedef enum _loop_event_e {
@@ -104,6 +105,7 @@ loop_t* loop_create() {
     loop->close_channel_list = dlist_create();
     loop->event_list = dlist_create();
     loop->lock = lock_create();
+    loop->balance_options = loop_balancer_in | loop_balancer_out;
     loop->notify_channel = loop_create_channel_exist_socket_fd(loop, pair[0], 0, 0);
     assert(loop->notify_channel);
     loop->read_channel = loop_create_channel_exist_socket_fd(loop, pair[1], 0, 1024 * 64);
@@ -378,4 +380,16 @@ int loop_get_active_channel_count(loop_t* loop) {
 
 int loop_get_close_channel_count(loop_t* loop) {
     return dlist_get_count(loop->close_channel_list);
+}
+
+void loop_set_balance_options(loop_t* loop, loop_balance_option_e options) {
+    loop->balance_options |= options;
+}
+
+loop_balance_option_e loop_get_balance_options(loop_t* loop) {
+    return loop->balance_options;
+}
+
+int loop_check_balance_options(loop_t* loop, loop_balance_option_e options) {
+    return (loop->balance_options & options);
 }
