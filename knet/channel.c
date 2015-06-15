@@ -112,9 +112,7 @@ int channel_send(channel_t* channel, const char* data, int size) {
     assert(size);
     if (dlist_empty(channel->send_buffer_list)) {
         /* ³¢ÊÔÖ±½Ó·¢ËÍ */
-        if (socket_check_send_ready(channel->socket_fd)) {
-            bytes = socket_send(channel->socket_fd, data, size);
-        }
+        bytes = socket_send(channel->socket_fd, data, size);
     }
     if (bytes < 0) {
         return error_send_fail;

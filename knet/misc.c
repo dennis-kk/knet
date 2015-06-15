@@ -197,16 +197,17 @@ int socket_set_send_buffer_size(socket_t socket_fd, int size) {
 }
 
 int socket_check_send_ready(socket_t socket_fd) {
-    fd_set send_fds[1];
     struct timeval tv = {0, 0};
     int error = 0;
-    FD_ZERO(send_fds);
-    FD_SET(socket_fd, send_fds);
-    error = select((int)(socket_fd + 1), 0, send_fds, 0, &tv);
+    fd_set send_fds;
+    memset(&send_fds, 0, sizeof(fd_set));
+    FD_ZERO(&send_fds);
+    FD_SET(socket_fd, &send_fds);
+    error = select(socket_fd + 1, 0, &send_fds, 0, &tv);
     if (0 > error) {
         return 0;
     }
-    return FD_ISSET(socket_fd, send_fds);
+    return FD_ISSET(socket_fd, &send_fds);
 }
 
 int socket_send(socket_t socket_fd, const char* data, uint32_t size) {

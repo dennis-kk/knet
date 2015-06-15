@@ -34,12 +34,12 @@ typedef struct _loop_epoll_t {
     struct epoll_event* events;   /* epoll事件数组 */
 } loop_epoll_t;
 
-#define MAXEVENTS 256
+#define MAXEVENTS 8192
 
 int impl_create(loop_t* loop) {
     loop_epoll_t* impl = create(loop_epoll_t);
     loop_set_impl(loop, impl);
-    impl->epoll_fd = epoll_create1(0);
+    impl->epoll_fd = epoll_create(MAXEVENTS);
     if (impl->epoll_fd < 0) {
         destroy(impl);
         return 1;
