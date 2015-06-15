@@ -183,11 +183,11 @@ typedef void (*ktimer_cb_t)(ktimer_t* timer, void* data);
 /* 根据需要， 开启不同选取器 */
 
 #if defined(WIN32)
-#define LOOP_IOCP 1    /* IOCP */
-#define LOOP_SELECT 0  /* select */
+    #define LOOP_IOCP 1    /* IOCP */
+    #define LOOP_SELECT 0  /* select */
 #else
-#define LOOP_EPOLL 1   /* epoll */
-#define LOOP_SELECT 0  /* select */
-#endif /* defined(WIN32) || defined(WIN64) */
+    #define LOOP_EPOLL 1   /* epoll */
+    #define LOOP_SELECT 0  /* select */
+#endif /* defined(WIN32) */
 
 #endif /* CONFIG_H */
