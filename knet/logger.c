@@ -2,13 +2,13 @@
 #include "logger.h"
 #include "misc.h"
 
-logger_t* global_logger = 0;
+logger_t* global_logger = 0; /* 全局日志指针 */
 
 struct _logger_t {
-    FILE*          fd;
-    logger_level_e level;
-    logger_mode_e  mode;
-    lock_t*        lock;
+    FILE*          fd;    /* 文件 */
+    logger_level_e level; /* 日志等级 */
+    logger_mode_e  mode;  /* 日志模式 */
+    lock_t*        lock;  /* 锁 */
 };
 
 logger_t* logger_create(const char* path, logger_level_e level, logger_mode_e mode) {

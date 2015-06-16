@@ -145,6 +145,6 @@ extern address_t* channel_ref_get_local_address(channel_ref_t* channel_ref);
  * @param channel_tÊµÀı
  * @return ¹ÜµÀUUID
  */
-uint64_t channel_ref_get_uuid(channel_ref_t* channel_ref);
+extern uint64_t channel_ref_get_uuid(channel_ref_t* channel_ref);
 
 #endif /* CHANNEL_REF_API_H */
