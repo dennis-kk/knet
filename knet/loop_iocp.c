@@ -365,7 +365,7 @@ int impl_remove_channel_ref(loop_t* loop, channel_ref_t* channel_ref) {
     per_sock_t* per_sock  = 0;
     assert(loop);
     assert(channel_ref);
-    per_sock = channel_ref_get_data(channel_ref);
+    per_sock = get_data(channel_ref);
     assert(per_sock);
     /* 销毁相关资源 */
     socket_data_destroy(per_sock);

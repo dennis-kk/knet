@@ -231,7 +231,6 @@ int channel_ref_write(channel_ref_t* channel_ref, const char* data, int size) {
             error = error_ok;
             break;
         case error_send_fail:
-            log_error("send fail[error:%d]", error_send_fail);
             channel_ref_close(channel_ref);
             break;
         default:

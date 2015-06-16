@@ -86,17 +86,15 @@ int socket_connect(socket_t socket_fd, const char* ip, int port) {
     if (error < 0) {
         last_error = GetLastError();
         if ((WSAEWOULDBLOCK != last_error) && (WSAEISCONN != last_error)) {
-            return error_connect_fail;
-        } else {
             log_error("connect() failed, system error: %d", sys_get_errno());
+            return error_connect_fail;
         }
     }
 #else
     if (error < 0) {
         if ((errno != EINPROGRESS) && (errno != EINTR) && (errno != EISCONN)) {
-            return error_connect_fail;
-        } else {
             log_error("connect() failed, system error: %d", sys_get_errno());
+            return error_connect_fail;
         }
     }
 #endif /* defined(WIN32) || defined(WIN64) */
