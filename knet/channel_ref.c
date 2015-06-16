@@ -177,11 +177,11 @@ void channel_ref_close(channel_ref_t* channel_ref) {
     loop = channel_ref->ref_info->loop;
     if (loop_get_thread_id(loop) != thread_get_self_id()) {
         /* 通知管道所属线程 */
-        log_debug("close channel cross thread, notify thread[id:%d]", loop_get_thread_id(loop));
+        log_info("close channel cross thread, notify thread[id:%d]", loop_get_thread_id(loop));
         loop_notify_close(loop, channel_ref);
     } else {
         /* 本线程内关闭 */
-        log_debug("close channel in loop thread[id: %d]", loop_get_thread_id(loop));
+        log_info("close channel in loop thread[id: %d]", loop_get_thread_id(loop));
         channel_ref_update_close_in_loop(loop, channel_ref);
     }
 }
@@ -217,7 +217,7 @@ int channel_ref_write(channel_ref_t* channel_ref, const char* data, int size) {
     loop = channel_ref->ref_info->loop;
     if (loop_get_thread_id(loop) != thread_get_self_id()) {
         /* 转到loop所在线程发送 */
-        log_debug("send cross thread, notify thread[id:%d]", loop_get_thread_id(loop));
+        log_info("send cross thread, notify thread[id:%d]", loop_get_thread_id(loop));
         send_buffer = buffer_create(size);
         buffer_put(send_buffer, data, size);
         loop_notify_send(loop, channel_ref, send_buffer);

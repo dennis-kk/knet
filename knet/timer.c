@@ -30,7 +30,7 @@
 struct _ktimer_t {
     dlist_t*       current_list;  /* 所属链表 */
     dlist_node_t*  list_node;     /* 链表节点 */
-    ktimer_loop_t* ktimer_loop;    /* 定时器循环 */
+    ktimer_loop_t* ktimer_loop;   /* 定时器循环 */
     ktimer_type_e  type;          /* 定时器类型 */
     ktimer_cb_t    cb;            /* 定时器回调 */
     void*          data;          /* 自定义数据 */
@@ -43,11 +43,11 @@ struct _ktimer_t {
 
 struct _ktimer_loop_t {
     dlist_t** ktimer_wheels; /* 时间轮链表数组 */
-    int       running;      /* 运行标志 */
-    int       max_slot;     /* 时间轮数组长度 */
-    int       slot;         /* 当前槽位 */
-    time_t    last_tick;    /* 上一次调用循环的时间（毫秒） */
-    time_t    tick_intval;  /* 槽位刻度间隔（毫秒） */
+    int       running;       /* 运行标志 */
+    int       max_slot;      /* 时间轮数组长度 */
+    int       slot;          /* 当前槽位 */
+    time_t    last_tick;     /* 上一次调用循环的时间（毫秒） */
+    time_t    tick_intval;   /* 槽位刻度间隔（毫秒） */
 };
 
 int _ktimer_loop_select_slot(ktimer_loop_t* ktimer_loop, time_t ms);
@@ -139,7 +139,7 @@ int ktimer_loop_run_once(ktimer_loop_t* ktimer_loop) {
     dlist_node_t* node   = 0;
     dlist_node_t* temp   = 0;
     dlist_t*      timers = 0;
-    ktimer_t*      timer  = 0;
+    ktimer_t*      timer = 0;
     time_t        ms     = time_get_milliseconds(); /* 当前时间戳（毫秒） */
     int           count  = 0;
     assert(ktimer_loop);
@@ -226,9 +226,9 @@ time_t ktimer_loop_get_tick_intval(ktimer_loop_t* ktimer_loop) {
 }
 
 int ktimer_check_timeout(ktimer_t* timer, time_t ms) {
-    dlist_node_t* node        = 0;
-    time_t        tick_intval = 0;
-    ktimer_loop_t* ktimer_loop  = 0;
+    dlist_node_t* node         = 0;
+    time_t        tick_intval  = 0;
+    ktimer_loop_t* ktimer_loop = 0;
     assert(timer);
     ktimer_loop = timer->ktimer_loop;
     assert(ktimer_loop);

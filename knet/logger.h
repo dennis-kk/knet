@@ -49,13 +49,6 @@ extern logger_t* global_logger;
                 GLOBAL_LOGGER_INITIALIZE(); \
                 logger_write(global_logger, logger_level_information, format, ##__VA_ARGS__); \
             } while(0);
-        #if defined(DEBUG) || defined(_DEBUG)
-            #define log_debug(format, ...) \
-                do { \
-                    GLOBAL_LOGGER_INITIALIZE(); \
-                    logger_write(global_logger, logger_level_debug, format, ##__VA_ARGS__); \
-                } while(0);
-        #endif /* defined(DEBUG) || defined(_DEBUG) */
         #define log_warn(format, ...) \
             do { \
                 GLOBAL_LOGGER_INITIALIZE(); \
@@ -82,13 +75,6 @@ extern logger_t* global_logger;
                 GLOBAL_LOGGER_INITIALIZE(); \
                 logger_write(global_logger, logger_level_information, format, ##args); \
             } while(0);
-        #if defined(DEBUG) || defined(_DEBUG)
-            #define log_debug(format, args...) \
-                do { \
-                    GLOBAL_LOGGER_INITIALIZE(); \
-                    logger_write(global_logger, logger_level_debug, format, ##args); \
-                } while(0);
-        #endif /* defined(DEBUG) || defined(_DEBUG) */
         #define log_warn(format, args...) \
             do { \
                 GLOBAL_LOGGER_INITIALIZE(); \
@@ -105,18 +91,16 @@ extern logger_t* global_logger;
                 logger_write(global_logger, logger_level_fatal, format, ##args); \
             } while(0);
     #endif /* defined(WIN32) */
-#else
+#else /* LOGGER_ON==0 */
     #if defined(WIN32)
         #define log_verb(format, ...)
         #define log_info(format, ...)
-        #define log_debug(format, ...)
         #define log_warn(format, ...)
         #define log_error(format, ...)
         #define log_fatal(format, ...)
     #else
         #define log_verb(format, args...)
         #define log_info(format, args...)
-        #define log_debug(format, args...)
         #define log_warn(format, args...)
         #define log_error(format, args...)
         #define log_fatal(format, args...)

@@ -29,6 +29,18 @@
 #include "timer.h"
 #include "logger.h"
 
+struct _thread_runner_t {
+    thread_func_t func;
+    void* params;
+    volatile int running;
+    thread_id_t thread_id;
+#if defined(WIN32)
+    DWORD tls_key;
+#else
+    pthread_key_t tls_key;
+#endif /* defined(WIN32) */
+};
+
 socket_t socket_create() {
 #if LOOP_IOCP
     socket_t socket_fd = WSASocket(AF_INET, SOCK_STREAM, IPPROTO_TCP, 0, 0, WSA_FLAG_OVERLAPPED);
@@ -37,10 +49,12 @@ socket_t socket_create() {
 #endif /* LOOP_IOCP */
 #if defined(WIN32)
     if (socket_fd == INVALID_SOCKET) {
+        log_error("socket() failed, system error: %d", sys_get_errno());
         return 0;
     }
 #else
     if (socket_fd < 0) {
+        log_error("socket() failed, system error: %d", sys_get_errno());
         return 0;
     }
 #endif /* defined(WIN32) */
@@ -73,12 +87,16 @@ int socket_connect(socket_t socket_fd, const char* ip, int port) {
         last_error = GetLastError();
         if ((WSAEWOULDBLOCK != last_error) && (WSAEISCONN != last_error)) {
             return error_connect_fail;
+        } else {
+            log_error("connect() failed, system error: %d", sys_get_errno());
         }
     }
 #else
     if (error < 0) {
         if ((errno != EINPROGRESS) && (errno != EINTR) && (errno != EISCONN)) {
             return error_connect_fail;
+        } else {
+            log_error("connect() failed, system error: %d", sys_get_errno());
         }
     }
 #endif /* defined(WIN32) || defined(WIN64) */
@@ -106,11 +124,13 @@ int socket_bind_and_listen(socket_t socket_fd, const char* ip, int port, int bac
     socket_set_linger_off(socket_fd);
     error = bind(socket_fd, (struct sockaddr*)&sa, sizeof(struct sockaddr));
     if (error < 0) {
+        log_error("bind() failed, system error: %d", sys_get_errno());
         return error_bind_fail;
     }
     /* 监听 */
     error = listen(socket_fd, backlog);
     if (error < 0) {
+        log_error("listen() failed, system error: %d", sys_get_errno());
         return error_listen_fail;
     }
     return error_ok;
@@ -124,6 +144,7 @@ socket_t socket_accept(socket_t socket_fd) {
     /* 接受客户端 */
     client_fd = accept(socket_fd, (struct sockaddr*)&sa, &addr_len);
     if (client_fd < 0) {
+        log_error("accept() failed, system error: %d", sys_get_errno());
         return 0;
     }
     return client_fd;
@@ -229,16 +250,19 @@ int socket_send(socket_t socket_fd, const char* data, uint32_t size) {
         if ((error == 0) || (error == WSAEINTR) || (error == WSAEINPROGRESS) || (error == WSAEWOULDBLOCK)) {
             return 0;
         } else {
+            log_error("send() failed, system error: %d", sys_get_errno());
             send_bytes = -1;
         }
     #else
         if ((errno == 0) || (errno == EAGAIN ) || (errno == EWOULDBLOCK) || (errno == EINTR)) {
             return 0;
         } else {
+            log_error("send() failed, system error: %d", sys_get_errno());
             send_bytes = -1;
         }
     #endif /* defined(WIN32) || defined(WIN64) */
-    } else if (send_bytes == 0) {
+    } else if (!send_bytes && size) {
+        log_error("send() failed, system error: %d", sys_get_errno());
         return -1;
     }
     return send_bytes;
@@ -258,16 +282,19 @@ int socket_recv(socket_t socket_fd, char* data, uint32_t size) {
         if ((error == 0) || (error == WSAEINTR) || (error == WSAEINPROGRESS) || (error == WSAEWOULDBLOCK)) {
             return 0;
         } else {
+            log_error("recv() failed, system error: %d", sys_get_errno());
             recv_bytes = -1;
         }
     #else
         if ((errno == 0) || (errno == EAGAIN ) || (errno == EWOULDBLOCK) || (errno == EINTR)) {
             return 0;
         } else {
+            log_error("recv() failed, system error: %d", sys_get_errno());
             recv_bytes = -1;
         }
     #endif /* defined(WIN32) || defined(WIN64) */
     } else if (recv_bytes == 0) {
+        log_error("recv() failed, system error: %d", sys_get_errno());
         recv_bytes = -1;
     }
     return recv_bytes;
@@ -296,6 +323,7 @@ int socket_pair(socket_t pair[2]) {
     memset(&connect_addr, 0, sizeof(connect_addr));
     accept_sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
     if (accept_sock == INVALID_SOCKET) {
+        log_error("socket() failed, system error: %d", sys_get_errno());
         goto error_return;
     }    
     memset(&accept_addr, 0, sizeof(accept_addr));
@@ -306,6 +334,7 @@ int socket_pair(socket_t pair[2]) {
     error = bind(accept_sock, (struct sockaddr*)&accept_addr,sizeof(accept_addr));
     while (error) {
         if (WSAEADDRINUSE != GetLastError()) {
+            log_error("bind() failed, system error: %d", sys_get_errno());
             goto error_return;
         }
         /* 随机分配一个端口 */
@@ -320,16 +349,19 @@ int socket_pair(socket_t pair[2]) {
     /* 监听 */
     error = listen(accept_sock, 1);
     if (error) {
+        log_error("listen() failed, system error: %d", sys_get_errno());
         goto error_return;
     }
     /* 获取地址 */
     error = getsockname(accept_sock, (struct sockaddr*)&connect_addr, &addr_len);
     if (error) {
+        log_error("getsockname() failed, system error: %d", sys_get_errno());
         goto error_return;
     }
     /* 建立客户端套接字 */
     pair[0] = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
     if (pair[0] == INVALID_SOCKET) {
+        log_error("socket() failed, system error: %d", sys_get_errno());
         goto error_return;
     }
     /* 设置非阻塞 */
@@ -340,12 +372,14 @@ int socket_pair(socket_t pair[2]) {
     if(error < 0) {
         error = WSAGetLastError();
         if ((error != WSAEWOULDBLOCK) && (error != WSAEINPROGRESS)) {
+            log_error("connect() failed, system error: %d", sys_get_errno());
             goto error_return;
         }
     }
     /* 接受连接 */
     pair[1] = accept(accept_sock, (struct sockaddr*)&accept_addr, &addr_len);
     if(pair[1] == INVALID_SOCKET) {
+        log_error("accept() failed, system error: %d", sys_get_errno());
         goto error_return;
     }
     socket_close(accept_sock);
@@ -365,6 +399,7 @@ error_return:
 #else
     int error = socketpair(AF_UNIX, SOCK_STREAM, 0, pair);
     if (error) {
+        log_error("socketpair() failed, system error: %d", sys_get_errno());
         return 1;
     }
     return (socket_set_non_blocking_on(pair[0]) && socket_set_non_blocking_on(pair[1]));
@@ -382,6 +417,7 @@ int socket_getpeername(channel_ref_t* channel_ref, address_t* address) {
     socket_len_t len = sizeof(struct sockaddr);
     int retval = getpeername(channel_ref_get_socket_fd(channel_ref), (struct sockaddr*)&addr, &len);
     if (retval < 0) {
+        log_error("getpeername() failed, system error: %d", sys_get_errno());
         return error_getpeername;
     }
 #if defined(WIN32)
@@ -405,6 +441,7 @@ int socket_getsockname(channel_ref_t* channel_ref,address_t* address) {
     socket_len_t len = sizeof(struct sockaddr);
     int retval = getsockname(channel_ref_get_socket_fd(channel_ref), (struct sockaddr*)&addr, &len);
     if (retval < 0) {
+        log_error("getsockname() failed, system error: %d", sys_get_errno());
         return error_getpeername;
     }
 #if defined(WIN32)
@@ -455,11 +492,13 @@ void _lock_init(lock_t* lock) {
 
 lock_t* lock_create() {
     lock_t* lock = create(lock_t);
+    assert(lock);
     _lock_init(lock);
     return lock;
 }
 
 void lock_destroy(lock_t* lock) {
+    assert(lock);
     #if defined(WIN32)
         DeleteCriticalSection(&lock->lock);
     #else
@@ -469,6 +508,7 @@ void lock_destroy(lock_t* lock) {
 }
 
 void lock_lock(lock_t* lock) {
+    assert(lock);
     #if defined(WIN32)
         EnterCriticalSection(&lock->lock);
     #else
@@ -477,6 +517,7 @@ void lock_lock(lock_t* lock) {
 }
 
 int lock_trylock(lock_t* lock) {
+    assert(lock);
     #if defined(WIN32)
         return TryEnterCriticalSection(&lock->lock);
     #else
@@ -485,6 +526,7 @@ int lock_trylock(lock_t* lock) {
 }
 
 void lock_unlock(lock_t* lock) {
+    assert(lock);
     #if defined(WIN32)
         LeaveCriticalSection(&lock->lock);
     #else
@@ -595,6 +637,7 @@ int thread_runner_start(thread_runner_t* runner, int stack_size) {
 #if defined(WIN32)
     retval = _beginthread(thread_func_win, stack_size, runner);
     if (retval < 0) {
+        log_error("_beginthread() failed, system error: %d", sys_get_errno());
         return error_thread_start_fail;
     }
     runner->thread_id = retval;
@@ -607,6 +650,7 @@ int thread_runner_start(thread_runner_t* runner, int stack_size) {
         retval = pthread_create(&runner->thread_id, 0, thread_func_pthread, runner);
     }
     if (retval) {
+        log_error("pthread_create() failed, system error: %d", sys_get_errno());
         return error_thread_start_fail;
     }
 #endif /* defined(WIN32) || defined(WIN64) */
@@ -627,6 +671,7 @@ int thread_runner_start_loop(thread_runner_t* runner, loop_t* loop, int stack_si
 #if defined(WIN32)
     retval = _beginthread(thread_loop_func_win, stack_size, runner);
     if (retval < 0) {
+        log_error("_beginthread() failed, system error: %d", sys_get_errno());
         return error_thread_start_fail;
     }
     runner->thread_id = retval;
@@ -639,6 +684,7 @@ int thread_runner_start_loop(thread_runner_t* runner, loop_t* loop, int stack_si
         retval = pthread_create(&runner->thread_id, 0, thread_loop_func_pthread, runner);
     }
     if (retval) {
+        log_error("pthread_create() failed, system error: %d", sys_get_errno());
         return error_thread_start_fail;
     }
 #endif /* defined(WIN32) || defined(WIN64) */
@@ -659,6 +705,7 @@ int thread_runner_start_timer_loop(thread_runner_t* runner, ktimer_loop_t* timer
 #if defined(WIN32)
     retval = _beginthread(thread_timer_loop_func_win, stack_size, runner);
     if (retval < 0) {
+        log_error("_beginthread() failed, system error: %d", sys_get_errno());
         return error_thread_start_fail;
     }
     runner->thread_id = retval;
@@ -671,6 +718,7 @@ int thread_runner_start_timer_loop(thread_runner_t* runner, ktimer_loop_t* timer
         retval = pthread_create(&runner->thread_id, 0, thread_timer_loop_func_pthread, runner);
     }
     if (retval) {
+        log_error("pthread_create() failed, system error: %d", sys_get_errno());
         return error_thread_start_fail;
     }
 #endif /* defined(WIN32) || defined(WIN64) */
@@ -692,6 +740,7 @@ void thread_runner_join(thread_runner_t* runner) {
 #if defined(WIN32)
     error = WaitForSingleObject((HANDLE)runner->thread_id, INFINITE);
     if ((error != WAIT_OBJECT_0) && (error != WAIT_ABANDONED)) {
+        log_error("WaitForSingleObject() failed, system error: %d", sys_get_errno());
         assert(0);
     }
 #else
@@ -731,20 +780,24 @@ int thread_set_tls_data(thread_runner_t* runner, void* data) {
 #if defined(WIN32)
         runner->tls_key = TlsAlloc();
         if (runner->tls_key == TLS_OUT_OF_INDEXES) {
+            log_error("TlsAlloc() failed, system error: %d", sys_get_errno());
             return error_set_tls_fail;
         }
 #else
         if (pthread_key_create(&runner->tls_key, 0)) {
+            log_error("pthread_key_create() failed, system error: %d", sys_get_errno());
             return error_set_tls_fail;
         }
 #endif /* defined(WIN32) */
     }
 #if defined(WIN32)
     if (FALSE == TlsSetValue(runner->tls_key, data)) {
+        log_error("TlsSetValue() failed, system error: %d", sys_get_errno());
         return error_set_tls_fail;
     }
 #else
     if (pthread_setspecific(runner->tls_key, data)) {
+        log_error("pthread_setspecific() failed, system error: %d", sys_get_errno());
         return error_set_tls_fail;
     }
 #endif /* defined(WIN32) */
@@ -754,6 +807,7 @@ int thread_set_tls_data(thread_runner_t* runner, void* data) {
 void* thread_get_tls_data(thread_runner_t* runner) {
     assert(runner);
     if (!runner->tls_key) {
+        log_error("tls never initialize");
         return 0;
     }
 #if defined(WIN32)
@@ -843,27 +897,39 @@ uint64_t time_get_microseconds() {
 #endif /* defined(WIN32) || defined(WIN64) */
 }
 
-uint64_t gen_domain_uuid() {
+uint64_t create_fake_uuid() {
+    static atomic_counter_t fack_uuid_low  = 0;
+    static atomic_counter_t fack_uuid_high = 1;
     uint64_t uuid = 0;
-    /* 取低32位 */
-    uint32_t low = (uint32_t)time_get_microseconds();
-    srand(low);
-    uuid = rand(); /* 高32位 */
+    if (!fack_uuid_low) {
+        fack_uuid_low = (uint32_t)time_get_microseconds();
+    }
+    atomic_counter_inc(&fack_uuid_high);
+    uuid = fack_uuid_high; /* 高32位 */
     uuid <<= 32;
-    uuid += low;   /* 低32位 */
-    /* 最终结果只是从概率上有很低的重复率 */
+    uuid += fack_uuid_low; /* 低32位 */
     return uuid;
 }
 
 char* path_getcwd(char* buffer, int size) {
 #if defined(WIN32)
     if (!GetCurrentDirectoryA(size, buffer)) {
+        log_error("GetCurrentDirectoryA() failed, system error: %d", sys_get_errno());
         return 0;
     }
 #else
     if (!getcwd(buffer, size)) {
+        log_error("getcwd() failed, system error: %d", sys_get_errno());
         return 0;
     }
 #endif /* defined(WIN32) */
     return buffer;
+}
+
+sys_error_t sys_get_errno() {
+#if defined(WIN32)
+    return GetLastError();
+#else
+    return errno;
+#endif /* defined(WIN32) */
 }

@@ -157,7 +157,7 @@ void loop_add_event(loop_t* loop, loop_event_t* loop_event) {
     assert(loop);
     assert(loop_event);
     lock_lock(loop->lock);
-    log_debug("invoke loop_add_event(), event[type:%d]", loop_event->event);
+    log_info("invoke loop_add_event(), event[type:%d]", loop_event->event);
     /* 事件添加到链表尾部 */
     dlist_add_tail_node(loop->event_list, loop_event);
     lock_unlock(loop->lock);

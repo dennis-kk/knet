@@ -51,6 +51,7 @@
     #define socket_t SOCKET
     #define socket_len_t int
     #define thread_id_t uintptr_t
+    #define sys_error_t DWORD
     #define atomic_counter_t volatile LONG
     #define uint16_t unsigned short
     #define uint32_t unsigned int
@@ -75,6 +76,7 @@
     #define socket_len_t socklen_t
     #define thread_id_t pthread_t
     #define socket_t int
+    #define sys_error_t int
     #define atomic_counter_t volatile int
 #endif /* defined(WIN32) */
 
@@ -179,8 +181,7 @@ typedef enum _channel_cb_event_e {
 /* 日志等级 */
 typedef enum _logger_level_e {
     logger_level_verbose = 1, /* verbose - 尽量输出 */
-    logger_level_infomation,  /* information - 提示信息 */
-    logger_level_debug,       /* debug - 调试日志 */
+    logger_level_information, /* information - 提示信息 */
     logger_level_warning,     /* warning - 警告 */ 
     logger_level_error,       /* error - 错误 */
     logger_level_fatal,       /* fatal - 致命错误 */

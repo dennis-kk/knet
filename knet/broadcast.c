@@ -40,7 +40,7 @@ broadcast_t* broadcast_create() {
     broadcast->channels = dlist_create();
     assert(broadcast->channels);
     /* 生成一个域ID */
-    broadcast->domain_id = gen_domain_uuid();
+    broadcast->domain_id = uuid_create();
     broadcast->lock      = lock_create();
     return broadcast;
 }

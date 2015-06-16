@@ -35,6 +35,7 @@ struct _channel_t {
     uint32_t      max_send_list_len; /* 发送链表最大长度 */
     ringbuffer_t* recv_ringbuffer;   /* 读环形缓冲区 */
     socket_t      socket_fd;         /* 套接字 */
+    uint64_t      uuid;              /* 管道UUID */
 };
 
 channel_t* channel_create(uint32_t max_send_list_len, uint32_t recv_ring_len) {
