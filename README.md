@@ -5,6 +5,7 @@
 **knet** is not a event loop like **libevent**, **knet** focus on transport only.
 
 ### loop ###
+##
 
 `loop_t` is the wrapper of different implemented model, it's easy to use `loop_t` to build a loop.    
 
@@ -52,6 +53,7 @@ The whole story:
 For more detail, see `examples/`
 
 #### config.h ####
+##
 
 	#if defined(WIN32)
 		#define LOOP_IOCP 1    /* IOCP */
@@ -61,9 +63,16 @@ For more detail, see `examples/`
 		#define LOOP_SELECT 0  /* select */
 	#endif /* defined(WIN32) */
 
-At the end of header file `knet/config.h`, change the macro value to tell compiler choose specific implement, IOCP on Windows, epoll on Linux by default, more implement will be appended in the future release.   
+In header file `knet/config.h`, change the macro value to tell compiler choose specific implement, IOCP on Windows, epoll on Linux by default, more implement will be appended in the future release.   
+
+	#define LOGGER_ON 0 /* the switch of internal logger */
+	#define LOGGER_MODE (logger_mode_file | logger_mode_console | logger_mode_flush | logger_mode_override) /* the mode of logger */
+	#define LOGGER_LEVEL logger_level_verbose /* the level of logger */
+
+`LOGGER_ON` is the switch of **knet** internal logger, the macro `LOGGER_MODE` and `LOGGER_LEVEL` can change the mode and the level of logger. Internal logger may help developer find the problom ASAP, `LOGGER_ON` should be set to 0 in release version.
 
 ### balancer ###
+##
 
 `loop_t` runs at the thread which calling `loop_run` or `loop_run_once`, each `loop_t` knows nothing
 about others. `loop_balancer_t` coordinates all attached `loop_t`(`loop_balance_attach`) and try to balance load for them.   
@@ -73,6 +82,7 @@ about others. `loop_balancer_t` coordinates all attached `loop_t`(`loop_balance_
 For more detail, see `examples/`
 
 ### build ###
+##
 
 1. Windows   
 	see `knet/win-proj/knet-vs2010.sln`
@@ -93,15 +103,14 @@ see `knet/bin`.
 2. Linux   
 	`test_client`   
 	`test_server`   
-
-- The command line of client   
+3. The command line of client
  	1. `-ip`   
  		server listening IP
  	2. `-port`   
  		server listening port
     3. `-n`   
     	connector count   
-- the command line of server   
+4. the command line of server   
 	1. `-ip`   
  		server listening IP
  	2. `-port`   

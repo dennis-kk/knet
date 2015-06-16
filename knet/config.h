@@ -211,7 +211,7 @@ typedef void (*ktimer_cb_t)(ktimer_t* timer, void* data);
     #define LOOP_SELECT 0  /* select */
 #endif /* defined(WIN32) */
 
-#define LOGGER_ON 0 /* 是否开启日志 */
+#define LOGGER_ON 1 /* 是否开启日志 */
 #define LOGGER_MODE (logger_mode_file | logger_mode_console | logger_mode_flush | logger_mode_override) /* 日志模式 */
 #define LOGGER_LEVEL logger_level_verbose /* 日志等级 */
 
