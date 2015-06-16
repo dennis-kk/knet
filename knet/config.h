@@ -29,6 +29,8 @@
 #include <string.h>
 #include <time.h>
 #include <stdio.h>
+#include <limits.h>
+#include <assert.h>
 
 #if defined(WIN32)
     #define _WIN32_WINNT 0X0500 /* TryEnterCriticalSection */
@@ -53,14 +55,17 @@
     #define uint16_t unsigned short
     #define uint32_t unsigned int
     #define uint64_t unsigned long long
+    #ifndef PATH_MAX
+        #define PATH_MAX MAX_PATH
+    #endif /* PATH_MAX */
 #else
     #include <stdint.h>
     #include <errno.h>
     #include <netdb.h>
     #include <sys/types.h>
+    #include <sys/time.h>
     #include <netinet/in.h>
     #include <sys/socket.h>
-    #include <sys/time.h>
     #include <arpa/inet.h>
     #include <fcntl.h>
     #include <unistd.h>
@@ -83,20 +88,6 @@
 #define create_type(type, size) (type*)malloc(size)
 #define destroy(ptr)            free(ptr)
 
-#ifndef assert
-    #if defined(DEBUG) || defined(_DEBUG)
-        #define assert(expr) \
-            do { \
-                if (!expr) { \
-                    fprintf(stderr, "assert failure @(%s:%d)\n", __FILE__, __LINE__); \
-                    abort(); \
-                } \
-            } while (0);
-    #else
-        #define assert(expr)
-    #endif /* defined(DEBUG) || defined(_DEBUG) */
-#endif /* assert */
-
 #ifndef min
 #define min(a, b) ((a) < (b) ? (a) : (b))
 #endif
@@ -116,12 +107,15 @@ typedef struct _buffer_t buffer_t;
 typedef struct _broadcast_t broadcast_t;
 typedef struct _ktimer_loop_t ktimer_loop_t;
 typedef struct _ktimer_t ktimer_t;
+typedef struct _logger_t logger_t;
 
+/* 管道可投递事件 */
 typedef enum _channel_event_e {
     channel_event_recv = 1,
     channel_event_send = 2,
 } channel_event_e;
 
+/* 管道状态 */
 typedef enum _channel_state_e {
     channel_state_connect = 1, /* 主动发起连接，连接未完成 */
     channel_state_accept = 2,  /* 监听 */
@@ -129,17 +123,20 @@ typedef enum _channel_state_e {
     channel_state_active = 8,  /* 管道已激活，可以收发数据 */
 } channel_state_e;
 
+/* 定时器类型 */
 typedef enum _ktimer_type_e {
     ktimer_type_once   = 1, /* 运行一次 */
     ktimer_type_period = 2, /* 无限 */
     ktimer_type_times  = 3, /* 多次运行 */
 } ktimer_type_e;
 
+/* 负载均衡配置 */
 typedef enum _loop_balance_option_e {
 	loop_balancer_in  = 1, /* 开启其他loop_t的管道在当前loop_t负载 */
 	loop_balancer_out = 2, /* 开启当前loop_t的管道到其他loop_t内负载 */
 } loop_balance_option_e;
 
+/* 错误码 */
 typedef enum _error_e {
     error_ok = 0,
     error_fail,
@@ -164,8 +161,11 @@ typedef enum _error_e {
     error_not_correct_domain,
     error_multiple_start,
     error_not_connected,
+    error_logger_write,
+    error_set_tls_fail,
 } error_e;
 
+/* 管道回调事件 */
 typedef enum _channel_cb_event_e {
     channel_cb_event_connect = 1,          /* 连接完成 */
     channel_cb_event_accept = 2,           /* 管道监听到了新连接请求 */ 
@@ -176,12 +176,32 @@ typedef enum _channel_cb_event_e {
     channel_cb_event_connect_timeout = 64, /* 主动发起连接，但连接超时 */
 } channel_cb_event_e;
 
+/* 日志等级 */
+typedef enum _logger_level_e {
+    logger_level_verbose = 1, /* verbose - 尽量输出 */
+    logger_level_infomation,  /* information - 提示信息 */
+    logger_level_debug,       /* debug - 调试日志 */
+    logger_level_warning,     /* warning - 警告 */ 
+    logger_level_error,       /* error - 错误 */
+    logger_level_fatal,       /* fatal - 致命错误 */
+} logger_level_e;
+
+/* 日志模式 */
+typedef enum _logger_mode_e {
+    logger_mode_file = 1,     /* 生成日志文件 */
+    logger_mode_console = 2,  /* 打印到stderr */
+    logger_mode_flush = 4,    /* 每次写日志同时清空缓存 */
+    logger_mode_override = 8, /* 覆盖已存在的日志文件 */
+} logger_mode_e;
+
+/* 线程函数 */
 typedef void (*thread_func_t)(thread_runner_t*);
+/* 管道事件回调函数 */
 typedef void (*channel_ref_cb_t)(channel_ref_t* channel, channel_cb_event_e e);
+/* 定时器回调函数 */
 typedef void (*ktimer_cb_t)(ktimer_t* timer, void* data);
 
 /* 根据需要， 开启不同选取器 */
-
 #if defined(WIN32)
     #define LOOP_IOCP 1    /* IOCP */
     #define LOOP_SELECT 0  /* select */
@@ -189,5 +209,9 @@ typedef void (*ktimer_cb_t)(ktimer_t* timer, void* data);
     #define LOOP_EPOLL 1   /* epoll */
     #define LOOP_SELECT 0  /* select */
 #endif /* defined(WIN32) */
+
+#define LOGGER_ON 0 /* 是否开启日志 */
+#define LOGGER_MODE (logger_mode_file | logger_mode_console | logger_mode_flush | logger_mode_override) /* 日志模式 */
+#define LOGGER_LEVEL logger_level_verbose /* 日志等级 */
 
 #endif /* CONFIG_H */

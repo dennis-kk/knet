@@ -26,6 +26,7 @@
 #include "list.h"
 #include "misc.h"
 #include "loop.h"
+#include "logger.h"
 
 typedef struct _loop_info_t {
     loop_t*  loop;    /* loop_tÊµÀý */

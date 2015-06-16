@@ -30,6 +30,7 @@
 #include "misc.h"
 #include "loop_balancer.h"
 #include "stream.h"
+#include "logger.h"
 
 struct _loop_t {
     dlist_t*              active_channel_list; /* 活跃管道链表 */
@@ -94,11 +95,13 @@ loop_t* loop_create() {
     /* 建立选取器实现 */
     if (impl_create(loop)) {
         destroy(loop);
+        log_fatal("loop_create() failed, reason: impl_create()");
         return 0;
     }
     /* 建立读写描述符 */
     if (socket_pair(pair)) {
         destroy(loop);
+        log_fatal("loop_create() failed, reason: socket_pair()");
         return 0;
     }
     loop->active_channel_list = dlist_create();
@@ -154,6 +157,7 @@ void loop_add_event(loop_t* loop, loop_event_t* loop_event) {
     assert(loop);
     assert(loop_event);
     lock_lock(loop->lock);
+    log_debug("invoke loop_add_event(), event[type:%d]", loop_event->event);
     /* 事件添加到链表尾部 */
     dlist_add_tail_node(loop->event_list, loop_event);
     lock_unlock(loop->lock);

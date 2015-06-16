@@ -19,6 +19,7 @@ add_library(knet
 	version.c
 	broadcast.c
 	timer.c
+	logger.c
 )
 
 target_link_libraries(knet -lpthread)

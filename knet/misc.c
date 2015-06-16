@@ -27,6 +27,7 @@
 #include "channel_ref.h"
 #include "address.h"
 #include "timer.h"
+#include "logger.h"
 
 socket_t socket_create() {
 #if LOOP_IOCP
@@ -506,6 +507,13 @@ void thread_runner_destroy(thread_runner_t* runner) {
         thread_runner_stop(runner);
     }
     thread_runner_join(runner);
+    if (runner->tls_key) {
+#if defined(WIN32)
+        TlsFree(runner->tls_key);
+#else
+        pthread_key_delete(runner->tls_key);
+#endif /* defined(WIN32) */
+    }
     destroy(runner);
 }
 
@@ -717,6 +725,44 @@ void thread_sleep_ms(int ms) {
 #endif /* defined(WIN32) */
 }
 
+int thread_set_tls_data(thread_runner_t* runner, void* data) {
+    assert(runner);
+    if (!runner->tls_key) {
+#if defined(WIN32)
+        runner->tls_key = TlsAlloc();
+        if (runner->tls_key == TLS_OUT_OF_INDEXES) {
+            return error_set_tls_fail;
+        }
+#else
+        if (pthread_key_create(&runner->tls_key, 0)) {
+            return error_set_tls_fail;
+        }
+#endif /* defined(WIN32) */
+    }
+#if defined(WIN32)
+    if (FALSE == TlsSetValue(runner->tls_key, data)) {
+        return error_set_tls_fail;
+    }
+#else
+    if (pthread_setspecific(runner->tls_key, data)) {
+        return error_set_tls_fail;
+    }
+#endif /* defined(WIN32) */
+    return error_ok;
+}
+
+void* thread_get_tls_data(thread_runner_t* runner) {
+    assert(runner);
+    if (!runner->tls_key) {
+        return 0;
+    }
+#if defined(WIN32)
+    return TlsGetValue(runner->tls_key);
+#else
+    return pthread_getspecific(runner->tls_key);
+#endif /* defined(WIN32) */
+}
+
 uint32_t time_get_milliseconds() {
 #if defined(WIN32)
     return GetTickCount();
@@ -727,7 +773,53 @@ uint32_t time_get_milliseconds() {
     ms = tv.tv_sec * 1000;
     ms += tv.tv_usec / 1000;
     return ms;
-#endif /* defined(WIN32) || defined(WIN64) */
+#endif /* defined(WIN32) */
+}
+
+int time_gettimeofday(struct timeval *tp, void *tzp) {
+#if defined(WIN32)
+    time_t clock;
+    struct tm tm;
+    SYSTEMTIME st;
+    tzp;
+    GetLocalTime(&st);
+    tm.tm_year  = st.wYear - 1900;
+    tm.tm_mon   = st.wMonth - 1;
+    tm.tm_mday  = st.wDay;
+    tm.tm_hour  = st.wHour;
+    tm.tm_min   = st.wMinute;
+    tm.tm_sec   = st.wSecond;
+    tm.tm_isdst = -1;
+    clock = mktime(&tm);
+    tp->tv_sec = (long)clock;
+    tp->tv_usec = st.wMilliseconds * 1000;
+    return 0;
+#else
+    return gettimeofday(tp, tzp);
+#endif /* defined(WIN32) */
+}
+
+char* time_get_string(char* buffer, int size) {
+    struct timeval tp;
+    struct tm      t;
+    time_t timestamp = time(0);
+    assert(buffer);
+    assert(size);
+    time_gettimeofday(&tp, 0);
+    memset(buffer, 0, size);
+#if defined(WIN32)
+    localtime_s(&t, &timestamp);
+    _snprintf(buffer, size, "%4d-%02d-%02d %02d:%02d:%02d:%03d",
+        t.tm_year + 1900, t.tm_mon + 1, t.tm_mday,
+            t.tm_hour, t.tm_min, t.tm_sec, (int)(tp.tv_usec / 1000));
+#else
+    localtime_r(&timestamp, &t);
+    snprintf(buffer, size, "%4d-%02d-%02d %02d:%02d:%02d:%03d",
+        t.tm_year + 1900, t.tm_mon + 1, t.tm_mday,
+            t.tm_hour, t.tm_min, t.tm_sec, (int)(tp.tv_usec / 1000));
+#endif /* defined(WIN32) */
+    buffer[size - 1] = 0;
+    return buffer;
 }
 
 uint64_t time_get_microseconds() {
@@ -761,4 +853,17 @@ uint64_t gen_domain_uuid() {
     uuid += low;   /* 低32位 */
     /* 最终结果只是从概率上有很低的重复率 */
     return uuid;
+}
+
+char* path_getcwd(char* buffer, int size) {
+#if defined(WIN32)
+    if (!GetCurrentDirectoryA(size, buffer)) {
+        return 0;
+    }
+#else
+    if (!getcwd(buffer, size)) {
+        return 0;
+    }
+#endif /* defined(WIN32) */
+    return buffer;
 }

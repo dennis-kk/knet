@@ -28,6 +28,7 @@
 #include "list.h"
 #include "channel_ref.h"
 #include "channel.h"
+#include "logger.h"
 
 typedef struct _loop_epoll_t {
     int                 epoll_fd; /* epollÃèÊö·û */

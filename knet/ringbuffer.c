@@ -24,6 +24,7 @@
 
 #include <stdlib.h>
 #include "ringbuffer.h"
+#include "logger.h"
 
 struct _ringbuffer_t {
     char*    ptr;       /* »º³åÇøÖ¸Õë */

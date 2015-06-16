@@ -26,6 +26,7 @@
 #include "list.h"
 #include "channel_ref.h"
 #include "misc.h"
+#include "logger.h"
 
 struct _broadcast_t {
     uint64_t domain_id;

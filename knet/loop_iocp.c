@@ -28,6 +28,7 @@
 #include "list.h"
 #include "channel_ref.h"
 #include "misc.h"
+#include "logger.h"
 
 #if defined(_MSC_VER )
     #pragma comment(lib,"Ws2_32.lib")

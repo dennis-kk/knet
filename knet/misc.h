@@ -59,10 +59,25 @@ struct _thread_runner_t {
     void* params;
     volatile int running;
     thread_id_t thread_id;
+#if defined(WIN32)
+    DWORD tls_key;
+#else
+    pthread_key_t tls_key;
+#endif /* defined(WIN32) */
 };
 
 uint32_t time_get_milliseconds();
 uint64_t time_get_microseconds();
+int time_gettimeofday(struct timeval *tp, void *tzp);
+
+/*
+ * 取得当前可阅读时间字符串
+ * @param buffer 输出缓冲区
+ * @param size 缓冲区大小
+ * @return 格式为YEAR-MONTH-DAY HOUR:MINUTE:SECOND:MILLIONSECOND
+ */
+char* time_get_string(char* buffer, int size);
 uint64_t gen_domain_uuid();
+char* path_getcwd(char* buffer, int size);
 
 #endif /* MISC_H */

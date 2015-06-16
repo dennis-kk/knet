@@ -27,6 +27,7 @@
 #include "loop.h"
 #include "list.h"
 #include "channel_ref.h"
+#include "logger.h"
 
 typedef struct _loop_select_t {
     fd_set read_fds[FD_SETSIZE]; /* select¶ÁÃèÊö·ûÊı×é */

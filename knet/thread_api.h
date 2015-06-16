@@ -111,6 +111,23 @@ extern thread_id_t thread_get_self_id();
 extern void thread_sleep_ms(int ms);
 
 /*
+ * 设置线程本地存储
+ * @param runner thread_runner_t实例
+ * @param data 自定义数据指针
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int thread_set_tls_data(thread_runner_t* runner, void* data);
+
+/*
+ * 取得线程本地存储
+ * @param runner thread_runner_t实例
+ * @retval 0 获取失败或不存在
+ * @retval 有效指针
+ */
+void* thread_get_tls_data(thread_runner_t* runner);
+
+/*
  * 原子操作 - 递增
  * @param counter atomic_counter_t实例
  * @return 递增后的值
