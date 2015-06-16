@@ -47,6 +47,7 @@ channel_t* channel_create(uint32_t max_send_list_len, uint32_t recv_ring_len) {
 channel_t* channel_create_exist_socket_fd(socket_t socket_fd, uint32_t max_send_list_len, uint32_t recv_ring_len) {
     channel_t* channel = create(channel_t);
     assert(channel);
+    channel->uuid = uuid_create();
     channel->send_buffer_list = dlist_create();
     assert(channel->send_buffer_list);
     channel->recv_ringbuffer = ringbuffer_create(recv_ring_len);
@@ -209,4 +210,8 @@ ringbuffer_t* channel_get_ringbuffer(channel_t* channel) {
 uint32_t channel_get_max_send_list_len(channel_t* channel) {
     assert(channel);
     return channel->max_send_list_len;
+}
+
+uint64_t channel_get_uuid(channel_t* channel) {
+    return channel->uuid;
 }

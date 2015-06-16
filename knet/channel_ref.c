@@ -593,3 +593,8 @@ void channel_ref_decref(channel_ref_t* channel_ref) {
     assert(channel_ref);
     atomic_counter_dec(&channel_ref->ref_info->ref_count);
 }
+
+uint64_t channel_ref_get_uuid(channel_ref_t* channel_ref) {
+    assert(channel_ref);
+    return channel_get_uuid(channel_ref->ref_info->channel);
+}

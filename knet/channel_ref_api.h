@@ -140,4 +140,11 @@ extern address_t* channel_ref_get_peer_address(channel_ref_t* channel_ref);
  */
 extern address_t* channel_ref_get_local_address(channel_ref_t* channel_ref);
 
+/*
+ * 获取管道UUID
+ * @param channel_t实例
+ * @return 管道UUID
+ */
+uint64_t channel_ref_get_uuid(channel_ref_t* channel_ref);
+
 #endif /* CHANNEL_REF_API_H */
