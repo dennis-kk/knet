@@ -67,8 +67,8 @@ int logger_write(logger_t* logger, logger_level_e level, const char* format, ...
     time_get_string(buffer, sizeof(buffer));
     if (logger->mode & logger_mode_file) {
         /* 写入日志文件 */
-        fprintf(logger->fd, "[%s][%s]", logger_level_name[level], buffer);
         lock_lock(logger->lock);
+        fprintf(logger->fd, "[%s][%s]", logger_level_name[level], buffer);
         bytes = vfprintf(logger->fd, format, arg_ptr);
         if (bytes <= 0) {
             lock_unlock(logger->lock);
