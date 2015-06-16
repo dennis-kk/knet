@@ -895,7 +895,7 @@ uint64_t time_get_microseconds() {
 #endif /* defined(WIN32) || defined(WIN64) */
 }
 
-uint64_t create_fake_uuid() {
+uint64_t uuid_create() {
     static atomic_counter_t fack_uuid_low  = 0;
     static atomic_counter_t fack_uuid_high = 1;
     uint64_t uuid = 0;
