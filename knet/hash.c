@@ -32,7 +32,7 @@ struct _hash_t {
     hash_dtor_t   dtor;         /* 自定义值销毁函数 */
     uint32_t      it_index;     /* 遍历器 - 当前遍历的桶索引 */
     dlist_node_t* it_node_safe; /* 遍历器 - 当前桶内节点 */
-    dlist_node_t* it_node_next; /* 遍历器 - 当前桶内内节点的下一个节点 */
+    dlist_node_t* it_node_next; /* 遍历器 - 当前桶内节点的下一个节点 */
 };
 
 struct _hash_value_t {
@@ -96,7 +96,7 @@ int hash_value_equal(hash_value_t* hash_value, uint32_t key);
 int hash_value_equal_string_key(hash_value_t* hash_value, const char* key);
 
 /*
- * 求的字符串整数键值
+ * 计算字符串整数键值
  * @param key 字符串
  * @return 整数键值
  */
