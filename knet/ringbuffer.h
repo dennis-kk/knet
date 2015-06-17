@@ -68,8 +68,19 @@ uint32_t ringbuffer_available(ringbuffer_t* rb);
 /*
  * 清除所有可读字节
  * @param rb ringbuffer_t实例
+ * @retval error_ok 成功
+ * @retval 其他 失败
  */
-void ringbuffer_eat(ringbuffer_t* rb);
+int ringbuffer_eat_all(ringbuffer_t* rb);
+
+/*
+ * 清除指定长度的可读字节
+ * @param rb ringbuffer_t实例
+ * @param size 需要清除的长度
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int ringbuffer_eat(ringbuffer_t* rb, uint32_t size);
 
 /*
  * 取得非绕回连续地址的最大可读字节数

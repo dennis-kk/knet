@@ -106,7 +106,7 @@ int hash_delete_string_key(hash_t* hash, const char* key);
  * @param hash hash_t实例
  * @param key 键
  * @retval 0 未找到
- * @retval 有效指针 值
+ * @retval 有效指针
  */
 void* hash_get(hash_t* hash, uint32_t key);
 
@@ -115,7 +115,7 @@ void* hash_get(hash_t* hash, uint32_t key);
  * @param hash hash_t实例
  * @param key 字符串键
  * @retval 0 未找到
- * @retval 有效指针 值
+ * @retval 有效指针
  */
 void* hash_get_string_key(hash_t* hash, const char* key);
 
@@ -125,5 +125,25 @@ void* hash_get_string_key(hash_t* hash, const char* key);
  * @return 元素数量
  */
 uint32_t hash_get_size(hash_t* hash);
+
+/*
+ * 重置遍历器，取第一个元素
+ * @param hash hash_t实例
+ * @retval 0 没有元素
+ * @retval hash_value_t实例
+ */
+hash_value_t* hash_get_first(hash_t* hash);
+
+/*
+ * 哈希表遍历器的下一个元素
+ * @param hash hash_t实例
+ * @retval 0 没有元素
+ * @retval hash_value_t实例
+ */
+hash_value_t* hash_next(hash_t* hash);
+
+/* 遍历哈希表，可以在遍历过程中删除或销毁当前元素 */
+#define hash_for_each_safe(hash, value) \
+    for (value = hash_get_first(hash); (value); value = hash_get_next(hash))
 
 #endif /* HASH_H */

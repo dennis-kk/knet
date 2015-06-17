@@ -61,9 +61,17 @@ int stream_pop(stream_t* stream, char* buffer, int size) {
     return error_recv_fail;
 }
 
-void stream_eat(stream_t* stream) {
+int stream_eat_all(stream_t* stream) {
     assert(stream);
-    ringbuffer_eat(channel_ref_get_ringbuffer(stream->channel_ref));
+    return ringbuffer_eat_all(channel_ref_get_ringbuffer(stream->channel_ref));
+}
+
+int stream_eat(stream_t* stream, int size) {
+    assert(stream);
+    if (!size) {
+        return error_ok;
+    }
+    return ringbuffer_eat(channel_ref_get_ringbuffer(stream->channel_ref), size);
 }
 
 int stream_push(stream_t* stream, char* buffer, int size) {

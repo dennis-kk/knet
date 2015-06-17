@@ -186,7 +186,7 @@ void loop_notify_close(loop_t* loop, channel_ref_t* channel_ref) {
 void loop_queue_cb(channel_ref_t* channel, channel_cb_event_e e) {
     if (e & channel_cb_event_recv) {
         /* 清空所有读到的数据 */
-        stream_eat(channel_ref_get_stream(channel));
+        stream_eat_all(channel_ref_get_stream(channel));
         loop_event_process(channel_ref_get_loop(channel));
     } else if (e & channel_cb_event_close) {
         if (loop_check_running(channel_ref_get_loop(channel))) {

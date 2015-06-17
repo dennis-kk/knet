@@ -37,8 +37,19 @@ extern int stream_available(stream_t* stream);
 /*
  * 清空数据流
  * @param stream stream_t实例
+ * @retval error_ok 成功
+ * @retval 其他 失败
  */
-extern void stream_eat(stream_t* stream);
+extern int stream_eat_all(stream_t* stream);
+
+/*
+ * 删除指定长度数据
+ * @param stream stream_t实例
+ * @param size 需要删除的长度
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int stream_eat(stream_t* stream, int size);
 
 /*
  * 从数据流内读取数据并清除数据

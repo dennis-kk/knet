@@ -50,12 +50,29 @@ ringbuffer_t* ringbuffer_create(uint32_t size) {
     return rb;
 }
 
-void ringbuffer_eat(ringbuffer_t* rb) {
+int ringbuffer_eat_all(ringbuffer_t* rb) {
     assert(rb);
+    if (rb->lock_size || rb->lock_type) {
+        return error_recvbuffer_locked;
+    }
     rb->lock_size = 0;
     rb->read_pos  = 0;
     rb->write_pos = 0;
     rb->count     = 0;
+    return error_ok;
+}
+
+int ringbuffer_eat(ringbuffer_t* rb, uint32_t size) {
+    assert(rb);
+    if (rb->lock_size || rb->lock_type) {
+        return error_recvbuffer_locked;
+    }
+    if (size > rb->count) {
+        return error_recvbuffer_not_enough;
+    }
+    rb->count -= size;
+    rb->read_pos = (rb->read_pos + size) % rb->max_size;
+    return error_ok;
 }
 
 uint32_t ringbuffer_read(ringbuffer_t* rb, char* buffer, uint32_t size) {

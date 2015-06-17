@@ -26,17 +26,20 @@
 #include "list.h"
 
 struct _hash_t {
-    uint32_t    size;    /* 桶数量 */
-    uint32_t    count;   /* 当前表内元素个数 */
-    dlist_t**   buckets; /* 桶数组 */
-    hash_dtor_t dtor;    /* 自定义值销毁函数 */
+    uint32_t      size;         /* 桶数量 */
+    uint32_t      count;        /* 当前表内元素个数 */
+    dlist_t**     buckets;      /* 桶数组 */
+    hash_dtor_t   dtor;         /* 自定义值销毁函数 */
+    uint32_t      it_index;     /* 遍历器 - 当前遍历的桶索引 */
+    dlist_node_t* it_node_safe; /* 遍历器 - 当前桶内节点 */
+    dlist_node_t* it_node_next; /* 遍历器 - 当前桶内内节点的下一个节点 */
 };
 
-typedef struct _hash_value_t {
+struct _hash_value_t {
     uint32_t key;        /* 数字键 */
     char*    string_key; /* 字符串键 */
     void*    value;      /* 值 */
-} hash_value_t;
+};
 
 /*
  * 创建值
@@ -52,6 +55,27 @@ hash_value_t* hash_value_create(uint32_t key, const char* string_key, void* valu
  * @param hash_value hash_value_t实例
  */
 void hash_value_destroy(hash_value_t* hash_value);
+
+/*
+ * 取得自定义值
+ * @param hash_value hash_value_t实例
+ * @return 自定义值
+ */
+void* hash_value_get_value(hash_value_t* hash_value);
+
+/*
+ * 取得数字键
+ * @param hash_value hash_value_t实例
+ * @return 数字键
+ */
+uint32_t hash_value_get_key(hash_value_t* hash_value);
+
+/*
+ * 取得字符串键
+ * @param hash_value hash_value_t实例
+ * @return 字符串键
+ */
+const char* hash_value_get_string_key(hash_value_t* hash_value);
 
 /*
  * 测试数字键是否相等
@@ -100,6 +124,16 @@ void hash_value_destroy(hash_value_t* hash_value) {
     destroy(hash_value);
 }
 
+uint32_t hash_value_get_key(hash_value_t* hash_value) {
+    assert(hash_value);
+    return hash_value->key;
+}
+
+const char* hash_value_get_string_key(hash_value_t* hash_value) {
+    assert(hash_value);
+    return hash_value->string_key;
+}
+
 int hash_value_equal(hash_value_t* hash_value, uint32_t key) {
     assert(hash_value);
     return (key == hash_value->key);
@@ -122,7 +156,7 @@ hash_t* hash_create(uint32_t size, hash_dtor_t dtor) {
     assert(hash);
     memset(hash, 0, sizeof(hash_t));
     if (!size) {
-        size = 128; /* 默认bucket数量 */
+        size = 16; /* 默认bucket数量 */
     }
     hash->dtor = dtor;
     hash->size = size;
@@ -202,10 +236,13 @@ void* hash_remove(hash_t* hash, uint32_t key) {
     hash_key = key % hash->size;
     /* 遍历链表查找 */
     dlist_for_each_safe(hash->buckets[hash_key], node, temp) {
+        if (node == hash->it_node_next) { /* 删除正在遍历节点的后续节点 */
+            hash->it_node_next = dlist_next(hash->buckets[hash_key], hash->it_node_next);
+        }
         hash_value = (hash_value_t*)dlist_node_get_data(node);
         if (hash_value_equal(hash_value, key)) {
             hash->count--;
-            value = hash_value->value;
+            value = hash_value_get_value(hash_value);
             /* 销毁节点 */
             dlist_delete(hash->buckets[hash_key], node);
             /* 销毁值 */
@@ -226,10 +263,13 @@ void* hash_remove_string_key(hash_t* hash, const char* key) {
     hash_key = _hash_string(key);
     /* 遍历链表查找 */
     dlist_for_each_safe(hash->buckets[hash_key], node, temp) {
+        if (node == hash->it_node_next) { /* 删除正在遍历节点的后续节点 */
+            hash->it_node_next = dlist_next(hash->buckets[hash_key], hash->it_node_next);
+        }
         hash_value = (hash_value_t*)dlist_node_get_data(node);
         if (hash_value_equal_string_key(hash_value, key)) {
             hash->count--;
-            value = hash_value->value;
+            value = hash_value_get_value(hash_value);
             /* 销毁节点 */
             dlist_delete(hash->buckets[hash_key], node);
             /* 销毁值 */
@@ -274,7 +314,7 @@ void* hash_get(hash_t* hash, uint32_t key) {
     dlist_for_each(hash->buckets[hash_key], node) {
         hash_value = (hash_value_t*)dlist_node_get_data(node);
         if (hash_value_equal(hash_value, key)) {
-            return hash_value->value;
+            return hash_value_get_value(hash_value);
         }
     }
     return 0; /* 没找到 */
@@ -290,7 +330,7 @@ void* hash_get_string_key(hash_t* hash, const char* key) {
     dlist_for_each(hash->buckets[hash_key], node) {
         hash_value = (hash_value_t*)dlist_node_get_data(node);
         if (hash_value_equal_string_key(hash_value, key)) {
-            return hash_value->value;
+            return hash_value_get_value(hash_value);
         }
     }
     return 0; /* 没找到 */
@@ -308,4 +348,74 @@ uint32_t _hash_string(const char* key) {
         hash_key = *key + hash_key * 31;
     }
     return hash_key;
+}
+
+hash_value_t* hash_get_first(hash_t* hash) {
+    uint32_t i = 0;
+    dlist_t* list = 0;
+    hash_value_t* hash_value = 0;
+    assert(hash);
+    hash->it_index     = 0;
+    hash->it_node_safe = 0;
+    hash->it_node_next = 0;
+    if (!hash->count) { /* 没有元素 */
+        return 0;
+    }
+    /* 找到第一个有元素的桶 */
+    for (; i < hash->size; i++) {
+        list = hash->buckets[i];
+        assert(list);
+        if (!dlist_empty(list)) {
+            hash->it_index = i;
+            break;
+        }
+    }
+    assert(list);
+    hash->it_node_safe = dlist_get_front(list);
+    assert(hash->it_node_safe);
+    /* 预先取下一个元素，不论是否有元素 */
+    hash->it_node_next = dlist_next(list, hash->it_node_safe);
+    hash_value = (hash_value_t*)dlist_node_get_data(hash->it_node_safe);
+    assert(hash_value);
+    return hash_value;
+}
+
+hash_value_t* hash_next(hash_t* hash) {
+    uint32_t i = 0;
+    dlist_t* list = 0;
+    hash_value_t* hash_value = 0;
+    assert(hash);
+    if (!hash->it_node_safe) { /* 未调用hash_get_first() */
+        assert(0);
+        return 0;
+    }
+    if (hash->it_node_next) { /* 当前桶还有下一个元素 */
+        hash->it_node_safe = hash->it_node_next; /* 交换 */
+    } else { /* 到下一个有元素的桶 */
+        if (hash->it_index >= hash->size) {
+            return 0;
+        }
+        /* 未到达尾部 */
+        hash->it_index++;
+        /* 遍历后续桶 */
+        for (i = hash->it_index; i < hash->size; i++) {
+            list = hash->buckets[i];
+            assert(list);
+            if (!dlist_empty(list)) {
+                hash->it_index = i;
+                break;
+            }
+        }
+        if (!list) { /* 后续桶都为空 */
+            return 0;
+        }
+        /* 取当前元素 */
+        hash->it_node_safe = dlist_get_front(list);
+        assert(hash->it_node_safe);
+    }
+    /* 预先取下一个元素，不论是否有元素 */
+    hash->it_node_next = dlist_next(list, hash->it_node_safe);
+    hash_value = (hash_value_t*)dlist_node_get_data(hash->it_node_safe);
+    assert(hash_value);
+    return hash_value;
 }

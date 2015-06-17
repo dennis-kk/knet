@@ -118,13 +118,15 @@ typedef struct _broadcast_t broadcast_t;
 typedef struct _ktimer_loop_t ktimer_loop_t;
 typedef struct _ktimer_t ktimer_t;
 typedef struct _logger_t logger_t;
-typedef struct _fast_rpc_t fast_rpc_t;
-typedef enum   _fast_rpc_type_e fast_rpc_type_e;
-typedef struct _fast_rpc_number_t fast_rpc_number_t;
-typedef struct _fast_rpc_string_t fast_rpc_string_t;
-typedef struct _fast_rpc_vector_t fast_rpc_vector_t;
-typedef struct _fast_rpc_object_t fast_rpc_object_t;
+typedef struct _frpc_t frpc_t;
+typedef enum   _frpc_type_e frpc_type_e;
+typedef struct _frpc_number_t frpc_number_t;
+typedef struct _frpc_string_t frpc_string_t;
+typedef struct _frpc_vector_t frpc_vector_t;
+typedef struct _frpc_object_t frpc_object_t;
+typedef struct _frpc_attribute_t frpc_attribute_t;
 typedef struct _hash_t hash_t;
+typedef struct _hash_value_t hash_value_t;
 
 /* 管道可投递事件 */
 typedef enum _channel_event_e {
@@ -180,6 +182,10 @@ typedef enum _error_e {
     error_not_connected,
     error_logger_write,
     error_set_tls_fail,
+    error_frpc_dup_id,
+    error_frpc_unknown_id,
+    error_recvbuffer_not_enough,
+    error_recvbuffer_locked,
 } error_e;
 
 /* 管道回调事件 */
@@ -216,7 +222,7 @@ typedef void (*thread_func_t)(thread_runner_t*);
 typedef void (*channel_ref_cb_t)(channel_ref_t*, channel_cb_event_e);
 /* 定时器回调函数 */
 typedef void (*ktimer_cb_t)(ktimer_t*, void*);
-typedef int (*fast_rpc_cb_t)(fast_rpc_object_t*, uint32_t);
+typedef int (*frpc_cb_t)(frpc_attribute_t*);
 typedef void (*hash_dtor_t)(void*);
 
 /* 根据需要， 开启不同选取器 */
