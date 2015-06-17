@@ -40,6 +40,7 @@
     <ClCompile Include="..\knet\buffer.c" />
     <ClCompile Include="..\knet\channel.c" />
     <ClCompile Include="..\knet\channel_ref.c" />
+    <ClCompile Include="..\knet\hash.c" />
     <ClCompile Include="..\knet\list.c" />
     <ClCompile Include="..\knet\logger.c" />
     <ClCompile Include="..\knet\loop.c" />
@@ -60,6 +61,7 @@
     <ClInclude Include="..\knet\channel_ref.h" />
     <ClInclude Include="..\knet\channel_ref_api.h" />
     <ClInclude Include="..\knet\config.h" />
+    <ClInclude Include="..\knet\hash.h" />
     <ClInclude Include="..\knet\knet.h" />
     <ClInclude Include="..\knet\list.h" />
     <ClInclude Include="..\knet\logger.h" />
@@ -187,7 +189,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\knet\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <DisableSpecificWarnings>4127;4996;4706</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4127;4996;4706;4201;</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -219,7 +221,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\knet\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <DisableSpecificWarnings>4127;4996;4706</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4127;4996;4706;4201</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -253,7 +255,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\knet\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <DisableSpecificWarnings>4127;4996;4706</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4127;4996;4706;4201</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -273,7 +275,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\knet\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <DisableSpecificWarnings>4127;4996;4706</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4127;4996;4706;4201</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

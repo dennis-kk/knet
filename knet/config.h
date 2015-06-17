@@ -48,14 +48,19 @@
     #if defined(_MSC_VER )
         #pragma comment(lib,"wsock32.lib")
     #endif /* defined(_MSC_VER) */
-    #define socket_t SOCKET
-    #define socket_len_t int
-    #define thread_id_t uintptr_t
-    #define sys_error_t DWORD
-    #define atomic_counter_t volatile LONG
-    #define uint16_t unsigned short
-    #define uint32_t unsigned int
-    #define uint64_t unsigned long long
+    typedef SOCKET socket_t;
+    typedef int socket_len_t;
+    typedef uintptr_t thread_id_t;
+    typedef DWORD sys_error_t;
+    typedef volatile LONG atomic_counter_t;
+    typedef signed char int8_t;
+    typedef unsigned char uint8_t;
+    typedef unsigned short uint16_t;
+    typedef signed short int16_t;
+    typedef unsigned int uint32_t;
+    typedef signed int int32_t;
+    typedef unsigned long long uint64_t ;
+    typedef signed long long int64_t;
     #ifndef PATH_MAX
         #define PATH_MAX MAX_PATH
     #endif /* PATH_MAX */
@@ -79,6 +84,9 @@
     #define sys_error_t int
     #define atomic_counter_t volatile int
 #endif /* defined(WIN32) */
+
+#define float32_t float
+#define float64_t double
 
 #ifndef INT_MAX
 /* from stdint.h */
@@ -110,6 +118,13 @@ typedef struct _broadcast_t broadcast_t;
 typedef struct _ktimer_loop_t ktimer_loop_t;
 typedef struct _ktimer_t ktimer_t;
 typedef struct _logger_t logger_t;
+typedef struct _fast_rpc_t fast_rpc_t;
+typedef enum   _fast_rpc_type_e fast_rpc_type_e;
+typedef struct _fast_rpc_number_t fast_rpc_number_t;
+typedef struct _fast_rpc_string_t fast_rpc_string_t;
+typedef struct _fast_rpc_vector_t fast_rpc_vector_t;
+typedef struct _fast_rpc_object_t fast_rpc_object_t;
+typedef struct _hash_t hash_t;
 
 /* 管道可投递事件 */
 typedef enum _channel_event_e {
@@ -198,9 +213,11 @@ typedef enum _logger_mode_e {
 /* 线程函数 */
 typedef void (*thread_func_t)(thread_runner_t*);
 /* 管道事件回调函数 */
-typedef void (*channel_ref_cb_t)(channel_ref_t* channel, channel_cb_event_e e);
+typedef void (*channel_ref_cb_t)(channel_ref_t*, channel_cb_event_e);
 /* 定时器回调函数 */
-typedef void (*ktimer_cb_t)(ktimer_t* timer, void* data);
+typedef void (*ktimer_cb_t)(ktimer_t*, void*);
+typedef int (*fast_rpc_cb_t)(fast_rpc_object_t*, uint32_t);
+typedef void (*hash_dtor_t)(void*);
 
 /* 根据需要， 开启不同选取器 */
 #if defined(WIN32)

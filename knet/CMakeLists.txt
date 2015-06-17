@@ -20,6 +20,7 @@ add_library(knet
 	broadcast.c
 	timer.c
 	logger.c
+	hash.c
 )
 
 target_link_libraries(knet -lpthread)

@@ -100,7 +100,7 @@ void ringbuffer_read_commit(ringbuffer_t* rb, uint32_t size);
 uint32_t ringbuffer_write_lock_size(ringbuffer_t* rb);
 
 /*
- * 取得可写起止指针
+ * 取得可写起始指针
  * @param rb ringbuffer_t实例
  * @return 可写起止指针
  */
