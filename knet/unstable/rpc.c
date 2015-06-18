@@ -210,11 +210,13 @@ int krpc_proc(krpc_t* frpc, channel_ref_t* channel_ref) {
     }
     error = cb(attribute);
     if (error != rpc_ok) {
+		/* 使用系统错误代替RPC错误 */
+		error = error_rpc_cb_fail;
         if (error == rpc_error) {
-            /* 发生错误，但不关闭 */
-            error = error_rpc_cb_fail;
+			/* 发生错误，但不关闭 */            
             goto success_return;
         } else if (error == rpc_error_close) {
+			/* 发生错误，且关闭 */
             goto error_return;
         }
     }
@@ -504,7 +506,21 @@ const char* krpc_string_get(krpc_object_t* o) {
     return o->string.str;
 }
 
-uint32_t krpc_string_get_size(krpc_object_t* o) {
+void krpc_string_set_size(krpc_object_t* o, uint16_t size) {
+	if (o->string.str) {
+        if (o->string.size < size) {
+            destroy(o->string.str);
+            o->string.str = create_type(char, size);
+			assert(o->string.str);
+        }
+    } else {
+        o->string.str = create_type(char, size);
+		assert(o->string.str);
+    }
+	o->string.size = size;
+}
+
+uint16_t krpc_string_get_size(krpc_object_t* o) {
     assert(o);
     return o->string.size;
 }
@@ -732,30 +748,53 @@ int krpc_object_unmarshal(channel_ref_t* channel_ref, krpc_object_t** o) {
         if (header.length < bytes) {
             return 0;
         }
+		/* 清除已读过的数据 */
+		stream_eat(stream, sizeof(krpc_object_header_t) - 1);
     }
     if (header.type & krpc_type_number) {
-        return krpc_number_unmarshal(channel_ref, o);
+		return krpc_number_unmarshal(channel_ref, o, header.type, header.length - sizeof(krpc_object_header_t) - 1);
     } else if (header.type & krpc_type_string) {
-        return krpc_string_unmarshal(channel_ref, o);
+        return krpc_string_unmarshal(channel_ref, o, header.length - sizeof(krpc_object_header_t) - 1);
     } else if (header.type & krpc_type_vector) {
-        return krpc_vector_unmarshal(channel_ref, o);
+        return krpc_vector_unmarshal(channel_ref, o, header.length - sizeof(krpc_object_header_t) - 1);
     }
     return 0;
 }
 
-int krpc_number_unmarshal(channel_ref_t* channel_ref, krpc_object_t** o) {
+int krpc_number_unmarshal(channel_ref_t* channel_ref, krpc_object_t** o, uint8_t type, uint16_t size) {
+	stream_t*      stream        = 0;
+	krpc_object_t* number_object = 0;
     assert(channel_ref);
     assert(o);
-    return 0;
+	stream = channel_ref_get_stream(channel_ref);
+	number_object       = krpc_create_object();
+	number_object->type = type;
+	if (error_ok != stream_pop(stream, (char*)&number_object->number, size)) {
+		krpc_destroy_object(number_object);
+		return error_rpc_unmarshal_fail;
+	}
+	*o = number_object;
+    return error_ok;
 }
 
-int krpc_string_unmarshal(channel_ref_t* channel_ref, krpc_object_t** o) {
+int krpc_string_unmarshal(channel_ref_t* channel_ref, krpc_object_t** o, uint16_t size) {
+    stream_t*      stream        = 0;
+	krpc_object_t* string_object = 0;
     assert(channel_ref);
     assert(o);
-    return 0;
+	stream = channel_ref_get_stream(channel_ref);
+	string_object       = krpc_create_object();
+	string_object->type = krpc_type_string;
+	krpc_string_set_size(string_object, size);
+	if (error_ok != stream_pop(stream, string_object->string.str, size)) {
+		krpc_destroy_object(string_object);
+		return error_rpc_unmarshal_fail;
+	}
+	*o = string_object;
+    return error_ok;
 }
 
-int krpc_vector_unmarshal(channel_ref_t* channel_ref, krpc_object_t** o) {
+int krpc_vector_unmarshal(channel_ref_t* channel_ref, krpc_object_t** o, uint16_t size) {
     assert(channel_ref);
     assert(o);
     return 0;

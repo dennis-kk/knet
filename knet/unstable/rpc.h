@@ -51,15 +51,17 @@ void krpc_number_set_ui64(krpc_object_t* o, int32_t ui64);
 uint64_t krpc_number_get_ui64(krpc_object_t* o);
 uint16_t krpc_number_get_marshal_size(krpc_object_t* o);
 uint16_t krpc_number_marshal(krpc_object_t* o, char* buffer, uint16_t size);
-int krpc_number_unmarshal(channel_ref_t* channel_ref, krpc_object_t** o);
+int krpc_number_unmarshal(channel_ref_t* channel_ref, krpc_object_t** o, uint8_t type, uint16_t size);
 
 void krpc_string_set(krpc_object_t* o, const char* s);
 void krpc_string_set_s(krpc_object_t* o, const char* s, uint32_t size);
 const char* krpc_string_get(krpc_object_t* o);
-uint32_t krpc_string_get_size(krpc_object_t* o);
+
+void krpc_string_set_size(krpc_object_t* o, uint16_t size);
+uint16_t krpc_string_get_size(krpc_object_t* o);
 uint16_t krpc_string_get_marshal_size(krpc_object_t* o);
 uint16_t krpc_string_marshal(krpc_object_t* o, char* buffer, uint16_t size);
-int krpc_string_unmarshal(channel_ref_t* channel_ref, krpc_object_t** o);
+int krpc_string_unmarshal(channel_ref_t* channel_ref, krpc_object_t** o, uint16_t size);
 
 int krpc_vector_push_back(krpc_object_t* v, krpc_object_t* o);
 uint32_t krpc_vector_get_size(krpc_object_t* v);
@@ -67,6 +69,6 @@ krpc_object_t* krpc_vector_get(krpc_object_t* v, int index);
 int krpc_vector_set(krpc_object_t* v, krpc_object_t* o, int index);
 uint16_t krpc_vector_get_marshal_size(krpc_object_t* o);
 uint16_t krpc_vector_marshal(krpc_object_t* o, char* buffer, uint16_t size);
-int krpc_vector_unmarshal(channel_ref_t* channel_ref, krpc_object_t** o);
+int krpc_vector_unmarshal(channel_ref_t* channel_ref, krpc_object_t** o, uint16_t size);
 
 #endif /* RPC_H */

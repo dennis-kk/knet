@@ -93,10 +93,12 @@
 #define INT_MAX  2147483647 /* maximum (signed) int value */
 #endif /* INT_MAX */
 
-#define create(type)            (type*)malloc(sizeof(type))
-#define create_raw(size)        (char*)malloc(size)
-#define create_type(type, size) (type*)malloc(size)
-#define destroy(ptr)            free(ptr)
+#define create(type)                  (type*)malloc(sizeof(type))
+#define create_raw(size)              (char*)malloc(size)
+#define create_type(type, size)       (type*)malloc(size)
+#define rcreate_raw(ptr, size)        (char*)realloc(ptr, size)
+#define rcreate_type(type, ptr, size) (type*)realloc(ptr, size)
+#define destroy(ptr)                  free(ptr)
 
 #ifndef min
 #define min(a, b) ((a) < (b) ? (a) : (b))
@@ -118,13 +120,13 @@ typedef struct _broadcast_t broadcast_t;
 typedef struct _ktimer_loop_t ktimer_loop_t;
 typedef struct _ktimer_t ktimer_t;
 typedef struct _logger_t logger_t;
-typedef struct _frpc_t frpc_t;
-typedef enum   _frpc_type_e frpc_type_e;
-typedef struct _frpc_number_t frpc_number_t;
-typedef struct _frpc_string_t frpc_string_t;
-typedef struct _frpc_vector_t frpc_vector_t;
-typedef struct _frpc_object_t frpc_object_t;
-typedef struct _frpc_attribute_t frpc_attribute_t;
+typedef struct _krpc_t krpc_t;
+typedef enum   _krpc_type_e krpc_type_e;
+typedef struct _krpc_number_t krpc_number_t;
+typedef struct _krpc_string_t krpc_string_t;
+typedef struct _krpc_vector_t krpc_vector_t;
+typedef struct _krpc_object_t krpc_object_t;
+typedef struct _krpc_attribute_t krpc_attribute_t;
 typedef struct _hash_t hash_t;
 typedef struct _hash_value_t hash_value_t;
 
@@ -182,8 +184,12 @@ typedef enum _error_e {
     error_not_connected,
     error_logger_write,
     error_set_tls_fail,
-    error_frpc_dup_id,
-    error_frpc_unknown_id,
+    error_rpc_dup_id,
+    error_rpc_unknown_id,
+	error_rpc_cb_fail,
+	error_rpc_next,
+	error_rpc_vector_out_of_bound,
+	error_rpc_unmarshal_fail,
     error_recvbuffer_not_enough,
     error_recvbuffer_locked,
 } error_e;
@@ -216,13 +222,22 @@ typedef enum _logger_mode_e {
     logger_mode_override = 8, /* 覆盖已存在的日志文件 */
 } logger_mode_e;
 
+/* RPC错误码 */
+typedef enum _rpc_error_e {
+	rpc_ok = 0,      /* 成功 */
+	rpc_error,       /* 错误，但不关闭 */
+	rpc_error_close, /* 错误且关闭 */
+} rpc_error_e;
+
 /* 线程函数 */
 typedef void (*thread_func_t)(thread_runner_t*);
 /* 管道事件回调函数 */
 typedef void (*channel_ref_cb_t)(channel_ref_t*, channel_cb_event_e);
 /* 定时器回调函数 */
 typedef void (*ktimer_cb_t)(ktimer_t*, void*);
-typedef int (*frpc_cb_t)(frpc_attribute_t*);
+/* RPC回调函数 */
+typedef int (*krpc_cb_t)(krpc_attribute_t*);
+/* 哈希表元素销毁函数 */
 typedef void (*hash_dtor_t)(void*);
 
 /* 根据需要， 开启不同选取器 */
