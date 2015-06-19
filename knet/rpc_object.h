@@ -73,4 +73,10 @@ uint16_t krpc_number_get_marshal_size(krpc_object_t* o);
  */
 int krpc_string_set_size(krpc_object_t* o, uint16_t size);
 
+/*
+ * 扩展数组
+ * @param o krpc_object_t实例
+ */
+void krpc_vector_enlarge(krpc_object_t* o);
+
 #endif /* RPC_OBJECT_H */

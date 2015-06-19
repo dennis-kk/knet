@@ -115,7 +115,10 @@ int krpc_proc(krpc_t* rpc, stream_t* stream) {
     if (error_ok != stream_copy(stream, &header, sizeof(header))) {
         return error_rpc_unmarshal_fail;
     }
-    if (header.length <= available) {
+    if (header.length > available) {
+        /* ×Ö½ÚÊý²»¹» */
+        return error_rpc_not_enough_bytes;
+    } else {
         if (error_ok != stream_eat(stream, sizeof(header))) {
             return error_rpc_unmarshal_fail;
         }

@@ -7,21 +7,27 @@
 krpc_t* rpc = 0;
 
 int rpc_cb(krpc_object_t* o) {
-    printf("call rpc_cb: %s\n", krpc_string_get(o));
+    printf("call rpc_cb, param count %d\n", krpc_vector_get_size(o));
     return rpc_ok;
 }
 
 /* 客户端 - 连接器回调 */
 void connector_cb(channel_ref_t* channel, channel_cb_event_e e) {
+    int i = 0;
     krpc_object_t* o = 0;
+    krpc_object_t* v = 0;
     char* hello = "hello world";
     stream_t* stream = channel_ref_get_stream(channel);
     if (e & channel_cb_event_connect) { /* 连接成功 */
         /* 写入 */
-        o = krpc_object_create();
-        krpc_string_set_s(o, hello, 12);
-        krpc_call(rpc, stream, 1, o);
-        krpc_object_destroy(o);
+        v = krpc_object_create();
+        for (i = 0; i < 10; i++) {
+            o = krpc_object_create();
+            krpc_string_set_s(o, hello, 12);
+            krpc_vector_push_back(v, o);
+        }        
+        krpc_call(rpc, stream, 1, v);
+        krpc_object_destroy(v);
     }
 }
 
@@ -32,9 +38,10 @@ void client_cb(channel_ref_t* channel, channel_cb_event_e e) {
     address_t* peer_addr = channel_ref_get_peer_address(channel);
     stream_t* stream = channel_ref_get_stream(channel);
     if (e & channel_cb_event_recv) { /* 有数据可以读 */
-        krpc_proc(rpc, stream);
-        /* 退出循环 */
-        loop_exit(channel_ref_get_loop(channel));
+        if (error_ok == krpc_proc(rpc, stream)) {
+            /* 退出循环 */
+            loop_exit(channel_ref_get_loop(channel));
+        }
     }
 }
 

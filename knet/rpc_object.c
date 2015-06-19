@@ -184,13 +184,12 @@ int krpc_object_marshal(krpc_object_t* o, stream_t* stream, uint16_t* bytes) {
     assert(stream);
     memset(&header, 0, sizeof(krpc_object_header_t));
     header.type   = o->type;
-    header.length = sizeof(krpc_object_header_t);
+    header.length += krpc_object_get_marshal_size(o);
+    if (error_ok != stream_push(stream, &header, sizeof(krpc_object_header_t))) {
+        return error_rpc_marshal_fail;
+    }
     if (o->type & krpc_type_string) {
         /* 字符串 */
-        header.length += o->string.size;
-        if (error_ok != stream_push(stream, &header, sizeof(krpc_object_header_t))) {
-            return error_rpc_marshal_fail;
-        }
         if (error_ok != stream_push(stream, o->string.str, o->string.size)) {
             return error_rpc_marshal_fail;
         }
@@ -201,14 +200,9 @@ int krpc_object_marshal(krpc_object_t* o, stream_t* stream, uint16_t* bytes) {
             if (error_ok != krpc_object_marshal(o->vector.objects[i], stream, &size)) {
                 return error_rpc_marshal_fail;
             }
-            header.length += size;
         }
     } else if (o->type & krpc_type_number) {
         /* 数字 */
-        size = krpc_number_get_marshal_size(o);
-        if (size == 0) {
-            return error_rpc_marshal_fail;
-        }
         if (error_ok != stream_push(stream, &o->number, size)) {
             return error_rpc_marshal_fail;
         }
@@ -239,7 +233,7 @@ int krpc_object_unmarshal(stream_t* stream, krpc_object_t** o, uint16_t* bytes) 
     if (error_ok != stream_copy(stream, &header, sizeof(header))) {
         return error_rpc_unmarshal_fail;
     }
-    if (header.length < (uint16_t)available) {
+    if (header.length > (uint16_t)available) {
         /* 字节数不够 */
         return error_rpc_not_enough_bytes;
     }
@@ -492,32 +486,40 @@ uint16_t krpc_string_get_size(krpc_object_t* o) {
     return o->string.size;
 }
 
+void krpc_vector_enlarge(krpc_object_t* o) {
+    static const uint16_t DEFAULT_SIZE = 8;
+    if (!o->vector.objects) { /* 第一次建立 */
+        o->vector.max_size = DEFAULT_SIZE;
+        o->vector.objects = (krpc_object_t**)create_type(krpc_object_t,
+            sizeof(krpc_object_t*) * o->vector.max_size);
+        assert(o->vector.objects);
+        memset(o->vector.objects, 0, sizeof(krpc_object_t*) * o->vector.max_size);
+    }
+    if (o->vector.size >= o->vector.max_size) { /* 扩容 */
+        o->vector.max_size += DEFAULT_SIZE;
+        o->vector.objects = (krpc_object_t**)rcreate_type(krpc_object_t,
+            o->vector.objects, sizeof(krpc_object_t*) * o->vector.max_size);
+        assert(o->vector.objects);
+        memset(o->vector.objects + (o->vector.max_size - DEFAULT_SIZE), 0, sizeof(krpc_object_t*) * DEFAULT_SIZE);
+    }
+}
+
 int krpc_vector_push_back(krpc_object_t* v, krpc_object_t* o) {
     assert(v);
     assert(o);
     if (!krpc_object_check_type(v, krpc_type_vector)) {
         assert(0);
     }
-    if (!v->vector.objects) {
-        v->vector.max_size = 8;
-        v->vector.objects = (krpc_object_t**)create_type(krpc_object_t,
-            sizeof(krpc_object_t*) * v->vector.max_size);
-        assert(v->vector.objects);
-    }
-    if (v->vector.size >= v->vector.max_size) {
-        v->vector.max_size += 8;
-        v->vector.objects = (krpc_object_t**)rcreate_type(krpc_object_t,
-            v->vector.objects, sizeof(krpc_object_t*) * v->vector.max_size);
-    }
+    krpc_vector_enlarge(v);
     v->vector.objects[v->vector.size] = o;
     v->vector.size++;
-    o->type = krpc_type_vector;
+    v->type = krpc_type_vector;
     return error_ok;
 }
 
 uint32_t krpc_vector_get_size(krpc_object_t* v) {
     assert(v);
-    if (!(v->type & krpc_type_string)) {
+    if (!(v->type & krpc_type_vector)) {
         assert(0);
     }
     return v->vector.size;
@@ -525,7 +527,7 @@ uint32_t krpc_vector_get_size(krpc_object_t* v) {
 
 krpc_object_t* krpc_vector_get(krpc_object_t* v, int index) {
     assert(v);
-    if (!(v->type & krpc_type_string)) {
+    if (!(v->type & krpc_type_vector)) {
         assert(0);
     }
     if (index >= v->vector.size) {
@@ -547,6 +549,6 @@ int krpc_vector_set(krpc_object_t* v, krpc_object_t* o, int index) {
         krpc_object_destroy(v->vector.objects[index]);
     }
     v->vector.objects[index] = o;
-    o->type = krpc_type_vector;
+    v->type = krpc_type_vector;
     return error_ok;
 }
