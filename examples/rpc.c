@@ -25,8 +25,12 @@ void connector_cb(channel_ref_t* channel, channel_cb_event_e e) {
             o = krpc_object_create();
             krpc_string_set_s(o, hello, 12);
             krpc_vector_push_back(v, o);
-        }        
+        }
+        o = krpc_object_create();
+        krpc_number_set_i64(o, 9238948959);
+        krpc_vector_push_back(v, o);
         krpc_call(rpc, stream, 1, v);
+        /* 数组内对象也会被销毁 */
         krpc_object_destroy(v);
     }
 }

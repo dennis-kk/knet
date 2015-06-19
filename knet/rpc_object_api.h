@@ -101,7 +101,7 @@ extern int32_t krpc_number_get_i32(krpc_object_t* o);
  * @param o krpc_object_t实例
  * @param i64 有符号64位
  */
-extern void krpc_number_set_i64(krpc_object_t* o, int32_t i64);
+extern void krpc_number_set_i64(krpc_object_t* o, int64_t i64);
 
 /*
  * 获取有符号64位

@@ -203,10 +203,9 @@ int krpc_object_marshal(krpc_object_t* o, stream_t* stream, uint16_t* bytes) {
         }
     } else if (o->type & krpc_type_number) {
         /* Êý×Ö */
-        if (error_ok != stream_push(stream, &o->number, size)) {
+        if (error_ok != stream_push(stream, &o->number, krpc_number_get_marshal_size(o))) {
             return error_rpc_marshal_fail;
         }
-        header.length += size;
     } else {
         return error_rpc_marshal_fail;
     }
@@ -338,7 +337,7 @@ int32_t krpc_number_get_i32(krpc_object_t* o) {
     return o->number.i32;
 }
 
-void krpc_number_set_i64(krpc_object_t* o, int32_t i64) {
+void krpc_number_set_i64(krpc_object_t* o, int64_t i64) {
     assert(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
         assert(0);
