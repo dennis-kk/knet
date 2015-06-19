@@ -57,27 +57,6 @@ hash_value_t* hash_value_create(uint32_t key, const char* string_key, void* valu
 void hash_value_destroy(hash_value_t* hash_value);
 
 /*
- * 取得自定义值
- * @param hash_value hash_value_t实例
- * @return 自定义值
- */
-void* hash_value_get_value(hash_value_t* hash_value);
-
-/*
- * 取得数字键
- * @param hash_value hash_value_t实例
- * @return 数字键
- */
-uint32_t hash_value_get_key(hash_value_t* hash_value);
-
-/*
- * 取得字符串键
- * @param hash_value hash_value_t实例
- * @return 字符串键
- */
-const char* hash_value_get_string_key(hash_value_t* hash_value);
-
-/*
  * 测试数字键是否相等
  * @param hash_value hash_value_t实例
  * @param key 整数键

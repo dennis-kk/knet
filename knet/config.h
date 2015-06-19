@@ -126,7 +126,6 @@ typedef struct _krpc_number_t krpc_number_t;
 typedef struct _krpc_string_t krpc_string_t;
 typedef struct _krpc_vector_t krpc_vector_t;
 typedef struct _krpc_object_t krpc_object_t;
-typedef struct _krpc_attribute_t krpc_attribute_t;
 typedef struct _hash_t hash_t;
 typedef struct _hash_value_t hash_value_t;
 
@@ -186,12 +185,21 @@ typedef enum _error_e {
     error_set_tls_fail,
     error_rpc_dup_id,
     error_rpc_unknown_id,
+    error_rpc_unknown_type,
 	error_rpc_cb_fail,
+    error_rpc_cb_fail_close,
+    error_rpc_cb_close,
 	error_rpc_next,
+    error_rpc_not_enough_bytes,
 	error_rpc_vector_out_of_bound,
+    error_rpc_marshal_fail,
 	error_rpc_unmarshal_fail,
     error_recvbuffer_not_enough,
     error_recvbuffer_locked,
+    error_stream_enable,
+    error_stream_disable,
+    error_stream_flush,
+    error_stream_buffer_overflow,
 } error_e;
 
 /* 管道回调事件 */
@@ -225,7 +233,8 @@ typedef enum _logger_mode_e {
 /* RPC错误码 */
 typedef enum _rpc_error_e {
 	rpc_ok = 0,      /* 成功 */
-	rpc_error,       /* 错误，但不关闭 */
+    rpc_close,       /* 忽略错误，关闭 */
+    rpc_error,       /* 错误，但不关闭 */
 	rpc_error_close, /* 错误且关闭 */
 } rpc_error_e;
 
@@ -236,7 +245,7 @@ typedef void (*channel_ref_cb_t)(channel_ref_t*, channel_cb_event_e);
 /* 定时器回调函数 */
 typedef void (*ktimer_cb_t)(ktimer_t*, void*);
 /* RPC回调函数 */
-typedef int (*krpc_cb_t)(krpc_attribute_t*);
+typedef int (*krpc_cb_t)(krpc_object_t*);
 /* 哈希表元素销毁函数 */
 typedef void (*hash_dtor_t)(void*);
 

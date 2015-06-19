@@ -58,6 +58,22 @@ uint32_t buffer_put(buffer_t* sb, const char* temp, uint32_t size);
 uint32_t buffer_get_length(buffer_t* sb);
 
 /*
+ * 取得缓冲区内最大长度
+ * @param sb buffer_t实例
+ * @return 最大长度
+ */
+uint32_t buffer_get_max_size(buffer_t* sb);
+
+/*
+ * 测试缓冲区内内是否有足够空间
+ * @param sb buffer_t实例
+ * @param size 需求长度
+ * @retval 0 没有足够空间
+ * @retval 非零 有足够空间
+ */
+int buffer_enough(buffer_t* sb, uint32_t size);
+
+/*
  * 取得缓冲区数据起始地址
  * @param sb buffer_t实例
  * @return 数据长度
@@ -70,5 +86,11 @@ char* buffer_get_ptr(buffer_t* sb);
  * @param gap 调整的长度
  */
 void buffer_adjust(buffer_t* sb, uint32_t gap);
+
+/*
+ * 清空缓冲区
+ * @param sb buffer_t实例
+ */
+void buffer_clear(buffer_t* sb);
 
 #endif /* BUFFER_H */

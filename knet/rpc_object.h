@@ -22,63 +22,46 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef STREAM_API_H
-#define STREAM_API_H
+#ifndef RPC_OBJECT_H
+#define RPC_OBJECT_H
+
+/* TODO 未测试 */
 
 #include "config.h"
+#include "rpc_object_api.h"
 
 /*
- * 取得数据流内可读字节数
- * @param stream stream_t实例
- * @return 可读字节数
+ * 取得序列化后的长度
+ * @param o krpc_object_t实例
+ * @return 取得序列化后的长度
  */
-extern int stream_available(stream_t* stream);
+uint16_t krpc_object_get_marshal_size(krpc_object_t* o);
 
 /*
- * 清空数据流
+ * 序列化到数据流
+ * @param o krpc_object_t实例
  * @param stream stream_t实例
+ * @param bytes 写入流的数据字节数
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int stream_eat_all(stream_t* stream);
+int krpc_object_marshal(krpc_object_t* o, stream_t* stream, uint16_t* bytes);
 
 /*
- * 删除指定长度数据
+ * 从数据流反序列化对象
  * @param stream stream_t实例
- * @param size 需要删除的长度
+ * @param o 存储得到的对象指针
+ * @param length 读取的流数据字节数
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int stream_eat(stream_t* stream, int size);
+int krpc_object_unmarshal(stream_t* stream, krpc_object_t** o, uint16_t* length);
 
 /*
- * 从数据流内读取数据并清除数据
- * @param stream stream_t实例
- * @param buffer 缓冲区
- * @param size 缓冲区大小
- * @retval error_ok 成功
- * @retval 其他 失败
+ * 获取数字对象序列化长度
+ * @param o krpc_object_t实例
+ * @return 数字对象序列化长度
  */
-extern int stream_pop(stream_t* stream, void* buffer, int size);
+uint16_t krpc_number_get_marshal_size(krpc_object_t* o);
 
-/*
- * 向数据流内写数据
- * @param stream stream_t实例
- * @param buffer 缓冲区
- * @param size 缓冲区大小
- * @retval error_ok 成功
- * @retval 其他 失败
- */
-extern int stream_push(stream_t* stream, void* buffer, int size);
-
-/*
- * 从数据流内拷贝数据，但不清除数据流内数据
- * @param stream stream_t实例
- * @param buffer 缓冲区
- * @param size 缓冲区大小
- * @retval error_ok 成功
- * @retval 其他 失败
- */
-extern int stream_copy(stream_t* stream, void* buffer, int size);
-
-#endif /* STREAM_API_H */
+#endif /* RPC_OBJECT_H */

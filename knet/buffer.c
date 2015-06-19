@@ -64,6 +64,16 @@ uint32_t buffer_get_length(buffer_t* sb) {
     return sb->pos;
 }
 
+uint32_t buffer_get_max_size(buffer_t* sb) {
+    assert(sb);
+    return sb->len;
+}
+
+int buffer_enough(buffer_t* sb, uint32_t size) {
+    assert(sb);
+    return (sb->pos + size > sb->len);
+}
+
 char* buffer_get_ptr(buffer_t* sb) {
     assert(sb);
     return sb->ptr;
@@ -72,4 +82,10 @@ char* buffer_get_ptr(buffer_t* sb) {
 void buffer_adjust(buffer_t* sb, uint32_t gap) {
     assert(sb); /* gap¿ÉÒÔÎª0 */
     sb->ptr += gap;
+}
+
+void buffer_clear(buffer_t* sb) {
+    assert(sb);
+    sb->ptr = sb->ptr - sb->pos;
+    sb->pos = 0;
 }

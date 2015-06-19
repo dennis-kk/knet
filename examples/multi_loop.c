@@ -41,7 +41,7 @@ void client_cb(channel_ref_t* channel, channel_cb_event_e e) {
 int total_connected = 0;
 
 void connector_cb(channel_ref_t* channel, channel_cb_event_e e) {
-    char buffer[10] = {0};
+    char buffer[1024] = {0};
     stream_t* stream = 0;
     int bytes = 0;
     if (e & channel_cb_event_connect) {
@@ -49,7 +49,8 @@ void connector_cb(channel_ref_t* channel, channel_cb_event_e e) {
         printf("connect finished: %d, %d\n", channel_ref_get_socket_fd(channel), total_connected);
     } else if (e & channel_cb_event_recv) {
         stream = channel_ref_get_stream(channel);
-        bytes = stream_pop(stream, buffer, sizeof(buffer));
+        bytes = stream_available(stream);
+        bytes = stream_pop(stream, buffer, bytes);
         stream_push(stream, buffer, bytes);
     } else if (e & channel_cb_event_close) {
         atomic_counter_dec(&client_count);

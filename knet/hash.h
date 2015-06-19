@@ -32,6 +32,27 @@
  */
 
 /*
+ * 取得自定义值
+ * @param hash_value hash_value_t实例
+ * @return 自定义值
+ */
+void* hash_value_get_value(hash_value_t* hash_value);
+
+/*
+ * 取得数字键
+ * @param hash_value hash_value_t实例
+ * @return 数字键
+ */
+uint32_t hash_value_get_key(hash_value_t* hash_value);
+
+/*
+ * 取得字符串键
+ * @param hash_value hash_value_t实例
+ * @return 字符串键
+ */
+const char* hash_value_get_string_key(hash_value_t* hash_value);
+
+/*
  * 建立哈希表
  * @param size 哈希表桶数量, 0将使用默认桶数量
  * @param dtor 用户自定义值销毁函数
@@ -144,6 +165,6 @@ hash_value_t* hash_next(hash_t* hash);
 
 /* 遍历哈希表，可以在遍历过程中删除或销毁当前元素 */
 #define hash_for_each_safe(hash, value) \
-    for (value = hash_get_first(hash); (value); value = hash_get_next(hash))
+    for (value = hash_get_first(hash); (value); value = hash_next(hash))
 
 #endif /* HASH_H */

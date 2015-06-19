@@ -21,6 +21,8 @@ add_library(knet
 	timer.c
 	logger.c
 	hash.c
+	rpc.c
+	rpc_object.c
 )
 
 target_link_libraries(knet -lpthread)

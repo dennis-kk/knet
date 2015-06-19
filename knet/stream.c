@@ -27,6 +27,8 @@
 #include "channel_ref.h"
 #include "ringbuffer.h"
 #include "logger.h"
+#include "buffer.h"
+#include "misc.h"
 
 struct _stream_t {
     channel_ref_t* channel_ref;
@@ -36,6 +38,7 @@ stream_t* stream_create(channel_ref_t* channel_ref) {
     stream_t* stream = 0;
     assert(channel_ref);
     stream = create(stream_t);
+    memset(stream, 0, sizeof(stream_t));
     assert(stream);
     stream->channel_ref = channel_ref;
     return stream;
@@ -51,11 +54,11 @@ int stream_available(stream_t* stream) {
     return ringbuffer_available(channel_ref_get_ringbuffer(stream->channel_ref));
 }
 
-int stream_pop(stream_t* stream, char* buffer, int size) {
+int stream_pop(stream_t* stream, void* buffer, int size) {
     assert(stream);
     assert(buffer);
     assert(size);
-    if (0 < ringbuffer_read(channel_ref_get_ringbuffer(stream->channel_ref), buffer, size)) {
+    if (0 < ringbuffer_read(channel_ref_get_ringbuffer(stream->channel_ref), (char*)buffer, size)) {
         return error_ok;
     }
     return error_recv_fail;
@@ -74,16 +77,19 @@ int stream_eat(stream_t* stream, int size) {
     return ringbuffer_eat(channel_ref_get_ringbuffer(stream->channel_ref), size);
 }
 
-int stream_push(stream_t* stream, char* buffer, int size) {
+int stream_push(stream_t* stream, void* buffer, int size) {
     assert(stream);
     assert(buffer);
     assert(size);
-    return channel_ref_write(stream->channel_ref, buffer, size);
+    return channel_ref_write(stream->channel_ref, (char*)buffer, size);
 }
 
-int stream_copy(stream_t* stream, char* buffer, int size) {
+int stream_copy(stream_t* stream, void* buffer, int size) {
     assert(stream);
     assert(buffer);
     assert(size);
-    return ringbuffer_copy(channel_ref_get_ringbuffer(stream->channel_ref), buffer, size);
+    if (0 > ringbuffer_copy(channel_ref_get_ringbuffer(stream->channel_ref), (char*)buffer, size)) {
+        return error_ok;
+    }
+    return error_recv_fail;
 }

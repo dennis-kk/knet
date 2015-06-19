@@ -22,63 +22,76 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef STREAM_API_H
-#define STREAM_API_H
+#ifndef RPC_API_H
+#define RPC_API_H
+
+/* TODO 待测试 */
+
+/*
+ * RPC框架提供了一套底层RPC序列化及反序列化的基础，开发者不应该直接调用这些API，应使用代码生成工具
+ * 提供的代码框架来进行RPC操作，生成的代码框架屏蔽了所有烦人的细节，使用起来也会比直接调用这些API更
+ * 方便.
+ */
 
 #include "config.h"
 
 /*
- * 取得数据流内可读字节数
- * @param stream stream_t实例
- * @return 可读字节数
+ * 建立RPC
+ * @return krpc_t实例
  */
-extern int stream_available(stream_t* stream);
+extern krpc_t* krpc_create();
 
 /*
- * 清空数据流
- * @param stream stream_t实例
+ * 销毁RPC
+ * @param rpc krpc_t实例
+ */
+extern void krpc_destroy(krpc_t* rpc);
+
+/*
+ * 注册RPC调用回调函数
+ * @param rpc krpc_t实例
+ * @param rpcid 回调ID
+ * @param cb 回调函数指针
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int stream_eat_all(stream_t* stream);
+extern int krpc_add_cb(krpc_t* rpc, uint16_t rpcid, krpc_cb_t cb);
 
 /*
- * 删除指定长度数据
- * @param stream stream_t实例
- * @param size 需要删除的长度
+ * 删除注册过的RPC调用回调函数
+ * @param rpc krpc_t实例
+ * @param rpcid 回调ID
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int stream_eat(stream_t* stream, int size);
+extern int krpc_del_cb(krpc_t* rpc, uint16_t rpcid);
 
 /*
- * 从数据流内读取数据并清除数据
- * @param stream stream_t实例
- * @param buffer 缓冲区
- * @param size 缓冲区大小
+ * 取得注册过的RPC调用回调函数
+ * @param rpc krpc_t实例
+ * @param rpcid 回调ID
+ * @return 回调函数指针
+ */
+extern krpc_cb_t krpc_get_cb(krpc_t* rpc, uint16_t rpcid);
+
+/*
+ * 从数据流反序列化RPC调用，并调用回调函数
+ * @param rpc krpc_t实例
+ * @param stream 数据流
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int stream_pop(stream_t* stream, void* buffer, int size);
+extern int krpc_proc(krpc_t* rpc, stream_t* stream);
 
 /*
- * 向数据流内写数据
- * @param stream stream_t实例
- * @param buffer 缓冲区
- * @param size 缓冲区大小
+ * 调用对端RPC
+ * @param rpc krpc_t实例
+ * @param stream 数据流
+ * @param rpcid 回调ID
+ * @param o 参数
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int stream_push(stream_t* stream, void* buffer, int size);
+extern int krpc_call(krpc_t* rpc, stream_t* stream, uint16_t rpcid, krpc_object_t* o);
 
-/*
- * 从数据流内拷贝数据，但不清除数据流内数据
- * @param stream stream_t实例
- * @param buffer 缓冲区
- * @param size 缓冲区大小
- * @retval error_ok 成功
- * @retval 其他 失败
- */
-extern int stream_copy(stream_t* stream, void* buffer, int size);
-
-#endif /* STREAM_API_H */
+#endif /* RPC_API_H */

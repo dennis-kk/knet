@@ -37,6 +37,8 @@
 #include "broadcast_api.h"
 #include "timer_api.h"
 #include "thread_api.h"
+#include "rpc_api.h"
+#include "rpc_object_api.h"
 #include "version.h"
 
 #ifdef __cplusplus
