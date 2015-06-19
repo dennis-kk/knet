@@ -183,6 +183,7 @@ int krpc_object_marshal(krpc_object_t* o, stream_t* stream, uint16_t* bytes) {
     krpc_object_header_t header;
     assert(o);
     assert(stream);
+    assert(bytes);
     memset(&header, 0, sizeof(krpc_object_header_t));
     header.type   = o->type;
     header.length = sizeof(krpc_object_header_t);
@@ -231,6 +232,7 @@ int krpc_object_unmarshal(stream_t* stream, krpc_object_t** o, uint16_t* bytes) 
     krpc_object_header_t header;  /* 对象协议头 */
     assert(stream);
     assert(o);
+    assert(bytes);
     available = stream_available(stream);
     if (available < sizeof(krpc_object_header_t)) {
         /* 字节数不够 */
@@ -288,6 +290,7 @@ error_return:
 }
 
 void krpc_number_set_i8(krpc_object_t* o, int8_t i8) {
+    assert(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
         assert(0);
     }
@@ -296,6 +299,7 @@ void krpc_number_set_i8(krpc_object_t* o, int8_t i8) {
 }
 
 int8_t krpc_number_get_i8(krpc_object_t* o) {
+    assert(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
         assert(0);
     }
@@ -303,6 +307,7 @@ int8_t krpc_number_get_i8(krpc_object_t* o) {
 }
 
 void krpc_number_set_i16(krpc_object_t* o, int16_t i16) {
+    assert(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
         assert(0);
     }
@@ -311,6 +316,7 @@ void krpc_number_set_i16(krpc_object_t* o, int16_t i16) {
 }
 
 int16_t krpc_number_get_i16(krpc_object_t* o) {
+    assert(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
         assert(0);
     }
@@ -318,6 +324,7 @@ int16_t krpc_number_get_i16(krpc_object_t* o) {
 }
 
 void krpc_number_set_i32(krpc_object_t* o, int32_t i32) {
+    assert(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
         assert(0);
     }
@@ -326,6 +333,7 @@ void krpc_number_set_i32(krpc_object_t* o, int32_t i32) {
 }
 
 int32_t krpc_number_get_i32(krpc_object_t* o) {
+    assert(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
         assert(0);
     }
@@ -333,6 +341,7 @@ int32_t krpc_number_get_i32(krpc_object_t* o) {
 }
 
 void krpc_number_set_i64(krpc_object_t* o, int32_t i64) {
+    assert(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
         assert(0);
     }
@@ -341,6 +350,7 @@ void krpc_number_set_i64(krpc_object_t* o, int32_t i64) {
 }
 
 int64_t krpc_number_get_i64(krpc_object_t* o) {
+    assert(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
         assert(0);
     }
@@ -348,6 +358,7 @@ int64_t krpc_number_get_i64(krpc_object_t* o) {
 }
 
 void krpc_number_set_ui8(krpc_object_t* o, uint8_t ui8) {
+    assert(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
         assert(0);
     }
@@ -356,6 +367,7 @@ void krpc_number_set_ui8(krpc_object_t* o, uint8_t ui8) {
 }
 
 uint8_t krpc_number_get_ui8(krpc_object_t* o) {
+    assert(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
         assert(0);
     }
@@ -363,6 +375,7 @@ uint8_t krpc_number_get_ui8(krpc_object_t* o) {
 }
 
 void krpc_number_set_ui16(krpc_object_t* o, uint16_t ui16) {
+    assert(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
         assert(0);
     }
@@ -371,6 +384,7 @@ void krpc_number_set_ui16(krpc_object_t* o, uint16_t ui16) {
 }
 
 uint16_t krpc_number_get_ui16(krpc_object_t* o) {
+    assert(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
         assert(0);
     }
@@ -378,6 +392,7 @@ uint16_t krpc_number_get_ui16(krpc_object_t* o) {
 }
 
 void krpc_number_set_ui32(krpc_object_t* o, uint32_t ui32) {
+    assert(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
         assert(0);
     }
@@ -386,6 +401,7 @@ void krpc_number_set_ui32(krpc_object_t* o, uint32_t ui32) {
 }
 
 uint32_t krpc_number_get_ui32(krpc_object_t* o) {
+    assert(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
         assert(0);
     }
@@ -393,6 +409,7 @@ uint32_t krpc_number_get_ui32(krpc_object_t* o) {
 }
 
 void krpc_number_set_ui64(krpc_object_t* o, int32_t ui64) {
+    assert(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
         assert(0);
     }
@@ -401,6 +418,7 @@ void krpc_number_set_ui64(krpc_object_t* o, int32_t ui64) {
 }
 
 uint64_t krpc_number_get_ui64(krpc_object_t* o) {
+    assert(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
         assert(0);
     }
