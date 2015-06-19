@@ -228,7 +228,7 @@ int krpc_object_unmarshal(stream_t* stream, krpc_object_t** o, uint16_t* bytes) 
     int            available = 0; /* 可读字节数 */
     uint16_t       consume   = 0; /* 单次unmarshal消耗字节数 */
     krpc_object_t* vo        = 0; /* 数组内对象指针 */
-    krpc_object_header_t header; /* 对象协议头 */
+    krpc_object_header_t header;  /* 对象协议头 */
     assert(stream);
     assert(o);
     available = stream_available(stream);

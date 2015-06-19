@@ -152,8 +152,8 @@ typedef enum _ktimer_type_e {
 
 /* 负载均衡配置 */
 typedef enum _loop_balance_option_e {
-	loop_balancer_in  = 1, /* 开启其他loop_t的管道在当前loop_t负载 */
-	loop_balancer_out = 2, /* 开启当前loop_t的管道到其他loop_t内负载 */
+    loop_balancer_in  = 1, /* 开启其他loop_t的管道在当前loop_t负载 */
+    loop_balancer_out = 2, /* 开启当前loop_t的管道到其他loop_t内负载 */
 } loop_balance_option_e;
 
 /* 错误码 */
@@ -186,14 +186,14 @@ typedef enum _error_e {
     error_rpc_dup_id,
     error_rpc_unknown_id,
     error_rpc_unknown_type,
-	error_rpc_cb_fail,
+    error_rpc_cb_fail,
     error_rpc_cb_fail_close,
     error_rpc_cb_close,
-	error_rpc_next,
+    error_rpc_next,
     error_rpc_not_enough_bytes,
-	error_rpc_vector_out_of_bound,
+    error_rpc_vector_out_of_bound,
     error_rpc_marshal_fail,
-	error_rpc_unmarshal_fail,
+    error_rpc_unmarshal_fail,
     error_recvbuffer_not_enough,
     error_recvbuffer_locked,
     error_stream_enable,
@@ -232,10 +232,10 @@ typedef enum _logger_mode_e {
 
 /* RPC错误码 */
 typedef enum _rpc_error_e {
-	rpc_ok = 0,      /* 成功 */
+    rpc_ok = 0,      /* 成功 */
     rpc_close,       /* 忽略错误，关闭 */
     rpc_error,       /* 错误，但不关闭 */
-	rpc_error_close, /* 错误且关闭 */
+    rpc_error_close, /* 错误且关闭 */
 } rpc_error_e;
 
 /* 线程函数 */
