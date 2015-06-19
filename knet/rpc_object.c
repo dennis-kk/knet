@@ -35,8 +35,9 @@
 #endif /* defined(_MSC_VER) */
 
 typedef struct krpc_object_header_t {
-    uint8_t  type;   /* 类型 */
-    uint16_t length; /* 长度，包含本结构体 */
+    uint8_t  type;         /* 类型 */
+    uint16_t length;       /* 长度，包含本结构体 */
+    uint8_t  padding__[1]; /* 1个字节填充，总长度为4字节 */
 } krpc_object_header_t;
 
 #if defined(_MSC_VER )
