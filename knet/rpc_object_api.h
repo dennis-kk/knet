@@ -37,7 +37,7 @@
  * 建立RPC对象
  * @return krpc_object_t实例
  */
-extern krpc_object_t* krpc_create_object();
+extern krpc_object_t* krpc_object_create();
 
 /*
  * 销毁RPC对象

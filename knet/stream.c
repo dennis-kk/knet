@@ -89,7 +89,7 @@ int stream_copy(stream_t* stream, void* buffer, int size) {
     assert(buffer);
     assert(size);
     if (0 > ringbuffer_copy(channel_ref_get_ringbuffer(stream->channel_ref), (char*)buffer, size)) {
-        return error_ok;
+        return error_recv_fail;
     }
-    return error_recv_fail;
+    return error_ok;
 }

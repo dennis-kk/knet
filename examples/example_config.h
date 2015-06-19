@@ -8,5 +8,6 @@
 #define COMPILE_TELNET_ECHO       0
 #define COMPILE_BROADCAST         0
 #define COMPILE_TIMER             0
+#define COMPILE_RPC               0
 
 #endif /* EXAMPLE_CONFIG_H */

@@ -64,4 +64,13 @@ int krpc_object_unmarshal(stream_t* stream, krpc_object_t** o, uint16_t* length)
  */
 uint16_t krpc_number_get_marshal_size(krpc_object_t* o);
 
+/*
+ * 设置字符串长度
+ * @param o krpc_object_t实例
+ * @param size 长度
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int krpc_string_set_size(krpc_object_t* o, uint16_t size);
+
 #endif /* RPC_OBJECT_H */

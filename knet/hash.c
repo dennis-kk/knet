@@ -103,6 +103,11 @@ void hash_value_destroy(hash_value_t* hash_value) {
     destroy(hash_value);
 }
 
+void* hash_value_get_value(hash_value_t* hash_value) {
+    assert(hash_value);
+    return hash_value->value;
+}
+
 uint32_t hash_value_get_key(hash_value_t* hash_value) {
     assert(hash_value);
     return hash_value->key;

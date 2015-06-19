@@ -108,7 +108,7 @@ int krpc_proc(krpc_t* rpc, stream_t* stream) {
     assert(stream);
     memset(&header, 0, sizeof(krpc_header_t));
     available = stream_available(stream);
-    if (available > sizeof(krpc_header_t)) {
+    if (available < sizeof(krpc_header_t)) {
         /* ×Ö½ÚÊý²»¹» */
         return error_rpc_not_enough_bytes;
     }

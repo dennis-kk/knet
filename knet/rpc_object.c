@@ -35,9 +35,8 @@
 #endif /* defined(_MSC_VER) */
 
 typedef struct krpc_object_header_t {
-    uint8_t  type;         /* 类型 */
-    uint16_t length;       /* 长度，包含本结构体 */
-    uint8_t  padding__[1]; /* 1个字节填充，总长度为4字节 */
+    uint16_t  type;   /* 类型 */
+    uint16_t  length; /* 长度，包含本结构体 */
 } krpc_object_header_t;
 
 #if defined(_MSC_VER )
@@ -89,7 +88,7 @@ struct _krpc_vector_t {
 };
 
 struct _krpc_object_t {
-    krpc_type_e type;
+    uint16_t type;
     union {
         krpc_number_t number; /* 数字 */
         krpc_string_t string; /* 字符串 */
@@ -97,7 +96,7 @@ struct _krpc_object_t {
     };
 };
 
-krpc_object_t* krpc_create_object() {
+krpc_object_t* krpc_object_create() {
     krpc_object_t* o = create(krpc_object_t);
     assert(o);
     memset(o, 0, sizeof(krpc_object_t));
@@ -183,7 +182,6 @@ int krpc_object_marshal(krpc_object_t* o, stream_t* stream, uint16_t* bytes) {
     krpc_object_header_t header;
     assert(o);
     assert(stream);
-    assert(bytes);
     memset(&header, 0, sizeof(krpc_object_header_t));
     header.type   = o->type;
     header.length = sizeof(krpc_object_header_t);
@@ -245,8 +243,11 @@ int krpc_object_unmarshal(stream_t* stream, krpc_object_t** o, uint16_t* bytes) 
         /* 字节数不够 */
         return error_rpc_not_enough_bytes;
     }
+    if (error_ok != stream_eat(stream, sizeof(krpc_object_header_t))) {
+        return error_rpc_unmarshal_fail;
+    }
     /* 建立一个对象 */
-    *o = krpc_create_object();
+    *o = krpc_object_create();
     assert(*o);
     if (header.type & krpc_type_number) {
         /* 数字 */
@@ -255,6 +256,9 @@ int krpc_object_unmarshal(stream_t* stream, krpc_object_t** o, uint16_t* bytes) 
         }
     } else if (header.type & krpc_type_string) {
         /* 字符串 */
+        if (error_ok != krpc_string_set_size(*o, header.length - sizeof(krpc_object_header_t))) {
+            goto error_return;
+        }
         if (error_ok != stream_pop(stream, (*o)->string.str, header.length - sizeof(krpc_object_header_t))) {
             goto error_return;
         }
@@ -433,14 +437,13 @@ void krpc_string_set(krpc_object_t* o, const char* s) {
         assert(0);
     }
     size = (uint16_t)strlen(s) + 1;
-    if (o->string.str) {
-        destroy(o->string.str);
+    if (!o->string.str) {
+        o->string.str = create_type(char, size);
     }
-    o->string.str = create_type(char, size);
     assert(o->string.str);
     o->string.size = size;
     memcpy(o->string.str, s, size);
-    o->string.str[size] = 0;
+    o->string.str[size - 1] = 0;
     o->type = krpc_type_string;
 }
 
@@ -450,15 +453,27 @@ void krpc_string_set_s(krpc_object_t* o, const char* s, uint16_t size) {
     if (!krpc_object_check_type(o, krpc_type_string)) {
         assert(0);
     }
-    if (o->string.str) {
-        destroy(o->string.str);
+    if (!o->string.str) {
+        o->string.str = create_type(char, size);
     }
-    o->string.str = create_type(char, size);
     assert(o->string.str);
     o->string.size = size;
     memcpy(o->string.str, s, size);
-    o->string.str[size] = 0;
+    o->string.str[size - 1] = 0;
     o->type = krpc_type_string;
+}
+
+int krpc_string_set_size(krpc_object_t* o, uint16_t size) {
+    assert(o);
+    assert(size);
+    if (!krpc_object_check_type(o, krpc_type_string)) {
+        assert(0);
+    }
+    assert(!o->string.str);
+    o->string.str  = create_type(char, size);
+    o->string.size = size;
+    o->type = krpc_type_string;
+    return error_ok;
 }
 
 const char* krpc_string_get(krpc_object_t* o) {
