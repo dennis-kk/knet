@@ -75,7 +75,7 @@ extern int krpc_del_cb(krpc_t* rpc, uint16_t rpcid);
 extern krpc_cb_t krpc_get_cb(krpc_t* rpc, uint16_t rpcid);
 
 /*
- * 从数据流反序列化RPC调用，并调用回调函数
+ * 处理RPC调用，从数据流反序列化RPC调用，并调用回调函数
  * @param rpc krpc_t实例
  * @param stream 数据流
  * @retval error_ok 成功
@@ -84,7 +84,7 @@ extern krpc_cb_t krpc_get_cb(krpc_t* rpc, uint16_t rpcid);
 extern int krpc_proc(krpc_t* rpc, stream_t* stream);
 
 /*
- * 调用对端RPC
+ * 发起RPC调用
  * @param rpc krpc_t实例
  * @param stream 数据流
  * @param rpcid 回调ID
