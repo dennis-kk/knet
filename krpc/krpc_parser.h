@@ -36,8 +36,7 @@ public:
     ~krpc_attribute_t();
     void push_field(krpc_field_t* field);
     const std::string& get_name();
-    iterator begin();
-    iterator end();
+    FieldList& get_field_list();
 
 private:
     FieldList _fields;
@@ -52,13 +51,16 @@ public:
     bool check_array();
     bool check_type(int type);
     void set_field_name(const std::string& field_name);
+    void set_field_type(const std::string& field_type);
     const std::string& get_field_name();
+    const std::string& get_field_type();
 
 private:
     int convert(int type);
 
 private:
     std::string _field_name;
+    std::string _field_type;
     int _type;
 };
 
@@ -80,7 +82,7 @@ public:
     typedef std::map<std::string, krpc_rpc_call_t*>  RpcCallMap;
 
 public:
-    krpc_parser_t(krpc_parser_t* parent, const char* path);
+    krpc_parser_t(krpc_parser_t* parent, const char* dir, const char* file_name);
     ~krpc_parser_t();
     void parse() throw(std::exception);
     ObjectMap& get_attributes();
@@ -96,9 +98,10 @@ private:
     krpc_field_t* parse_field(krpc_token_t* token);
 
 private:
-    ObjectMap   _attributes;
+    ObjectMap      _objects;
     RpcCallMap     _rpc_calls;
-    std::string    _path;
+    std::string    _file_name;
+    std::string    _dir;
     krpc_lexer_t*  _lexer;
     krpc_parser_t* _parent;
     krpc_parser_t* _current_parser;

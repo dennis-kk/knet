@@ -13,8 +13,11 @@ public:
     krpc_gen_t(int argc, char** argv);
     ~krpc_gen_t();
     void lang_gen_code();
-    const OptionMap& getOptions() const;
+    OptionMap& get_options();
     krpc_parser_t* get_parser() const;
+
+private:
+    bool krpc_gen_t::get_option(int pos, int argc, char** argv, const char* detail, const char* brief);
 
 private:
     OptionMap      _options;

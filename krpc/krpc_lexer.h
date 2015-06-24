@@ -3,6 +3,7 @@
 
 #include <exception>
 #include <string>
+#include <list>
 
 class krpc_token_t;
 class krpc_lexer_t;
@@ -75,9 +76,11 @@ private:
     bool check_keyword6(const char* s, char c1, char c2, char c3, char c4, char c5, char c6);
 
 private:
-    int   _row;
-    int   _col;
-    char* _stream;
+    typedef std::list<krpc_token_t*> TokenList;
+    TokenList _tokens;
+    int       _row;
+    int       _col;
+    char*     _stream;
 };
 
 #endif // KRPC_LEXER_H

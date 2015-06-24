@@ -37,12 +37,19 @@ krpc_lexer_t::krpc_lexer_t(const char* stream)
 }
 
 krpc_lexer_t::~krpc_lexer_t() {
+    TokenList::iterator guard = _tokens.begin();
+    for (; guard != _tokens.end(); guard++) {
+        delete *guard;
+    }
 }
 
 krpc_token_t* krpc_lexer_t::next_token() {
     krpc_token_t* token = 0;
     if (current()) {
-        token = get_token();  
+        token = get_token();
+    }
+    if (token) {
+        _tokens.push_back(token);
     }
     return token;
 }
@@ -115,6 +122,12 @@ krpc_token_t* krpc_lexer_t::get_token() {
         } else if (check_keyword3(token, 'f', '6', '4')) {
             type = krpc_token_f64;
             add_col(3);
+        }
+        break;
+    case 's':
+        if (check_keyword6(token, 's', 't', 'r', 'i', 'n', 'g')) {
+            type = krpc_token_string;
+            add_col(6);
         }
         break;
     case '{':
