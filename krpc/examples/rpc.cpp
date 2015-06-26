@@ -2,7 +2,7 @@
 #include <sstream>
 #include "rpc_sample.h"
 
-int my_rpc_func(my_object_t& my_obj, const std::string& test_str) {
+int my_rpc_func(my_object_t& my_obj, std::vector<my_object_t>& obj_array, const std::string& test_str, std::vector<float>& array_f32) {
     std::stringstream ss;
     my_obj.print(ss);
     std::cout << ss.str();
@@ -27,7 +27,9 @@ void connector_cb(channel_ref_t* channel, channel_cb_event_e e) {
         my_message_t my_msg;
         my_msg.str = "hello world";
         my_obj.message.push_back(my_msg);
-        rpc_sample_t::instance()->my_rpc_func(stream, my_obj, "hello world");
+        std::vector<float> float_array;
+        std::vector<my_object_t> obj_array;
+        rpc_sample_t::instance()->my_rpc_func(stream, my_obj, obj_array, "hello world", float_array);
     }
 }
 

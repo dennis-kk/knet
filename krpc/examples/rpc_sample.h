@@ -33,6 +33,7 @@ struct my_object_t {
     float n_f32;
     double n_f64;
     std::vector<my_message_t> message;
+    std::vector<int32_t> test_array;
     my_object_t();
     my_object_t(const my_object_t& rht);
     const my_object_t& operator=(const my_object_t& rht);
@@ -43,9 +44,9 @@ krpc_object_t* marshal(my_message_t& o);
 bool unmarshal(krpc_object_t* v, my_message_t& o);
 krpc_object_t* marshal(my_object_t& o);
 bool unmarshal(krpc_object_t* v, my_object_t& o);
-krpc_object_t* my_rpc_func_proxy(my_object_t& my_obj, const std::string& test_str);
+krpc_object_t* my_rpc_func_proxy(my_object_t& my_obj, std::vector<my_object_t>& obj_array, const std::string& test_str, std::vector<float>& array_f32);
 int my_rpc_func_stub(krpc_object_t* o);
-int my_rpc_func(my_object_t& my_obj, const std::string& test_str);
+int my_rpc_func(my_object_t& my_obj, std::vector<my_object_t>& obj_array, const std::string& test_str, std::vector<float>& array_f32);
 
 class rpc_sample_t {
 public:
@@ -53,7 +54,7 @@ public:
     static rpc_sample_t* instance();
     static void finalize();
     int rpc_proc(stream_t* stream);
-    int my_rpc_func(stream_t* stream, my_object_t& my_obj, const std::string& test_str);
+    int my_rpc_func(stream_t* stream, my_object_t& my_obj, std::vector<my_object_t>& obj_array, const std::string& test_str, std::vector<float>& array_f32);
 private:
     rpc_sample_t();
     rpc_sample_t(const rpc_sample_t&);

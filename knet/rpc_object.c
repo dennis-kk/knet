@@ -569,3 +569,17 @@ int krpc_vector_set(krpc_object_t* v, krpc_object_t* o, int index) {
     v->type = krpc_type_vector;
     return error_ok;
 }
+
+void krpc_vector_clear(krpc_object_t* v) {
+    uint16_t i = 0;
+    assert(v);
+    if (!krpc_object_check_type(v, krpc_type_vector)) {
+        assert(0);
+    }
+    for (; i < v->vector.size; i++) {
+        krpc_object_destroy(v->vector.objects[i]);
+        v->vector.objects[i] = 0;
+    }
+    v->type = krpc_type_vector;
+    v->vector.size = 0;
+}

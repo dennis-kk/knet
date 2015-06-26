@@ -238,7 +238,7 @@ void krpc_gen_cpp_t::lang_gen_rpc_call_impl_proxy(krpc_attribute_t* attribute, s
         source << "    " << "krpc_object_t* v = krpc_object_create();" << std::endl;
     }
     for (; field != attribute->get_field_list().end(); field++) {
-        lang_gen_field_marshal_impl(*field, source);
+        lang_gen_field_marshal_impl(*field, source, true);
     }
 }
 
@@ -270,7 +270,7 @@ void krpc_gen_cpp_t::lang_gen_field_unmarshal_impl(krpc_field_t* field, std::str
 void krpc_gen_cpp_t::lang_gen_field_unmarshal_impl_array(krpc_field_t* field, std::stringstream& source, int index) {
     source << "    " << "std::vector<" << lang_field_find_type_name(field) << "> p" << index  << ";" << std::endl;
     source << "    " << "do {" << std::endl;
-    source << "        " << "rpc_object_t* v = krpc_vector_get(o, " << index << ");" << std::endl;
+    source << "        " << "krpc_object_t* v = krpc_vector_get(o, " << index << ");" << std::endl;
     source << "        " << "for (uint32_t i = 0; i < krpc_vector_get_size(v); i++) {" << std::endl;
     lang_gen_field_unmarshal_impl_not_array_inline(field, source, index);
     source << "        " << "}" << std::endl;
@@ -372,7 +372,7 @@ void krpc_gen_cpp_t::lang_gen_attribute_marshal_method_impl(krpc_attribute_t* at
     source << "    " << "krpc_object_t* v = krpc_object_create();" << std::endl;
     for (int i = 0; field != attribute->get_field_list().end(); field++, i++) {
         if ((*field)->check_array()) {
-            lang_gen_field_marshal_impl_array(*field, source);
+            lang_gen_field_marshal_impl_array(*field, source, false);
         } else {
             std::string holder = "o.";
             holder += (*field)->get_field_name();
@@ -463,11 +463,20 @@ void krpc_gen_cpp_t::lang_gen_attribute_unmarshal_field_not_array(krpc_field_t* 
     }
 }
 
-void krpc_gen_cpp_t::lang_gen_field_marshal_impl_array(krpc_field_t* field, std::stringstream& source, const std::string& whites) {
-    source << whites << "    " << "do {" << std::endl;   
-    source << whites << "        std::vector<" << field->get_field_type()  << ">::iterator guard = o." << field->get_field_name() << ".begin();" << std::endl;
+void krpc_gen_cpp_t::lang_gen_field_marshal_impl_array(krpc_field_t* field, std::stringstream& source, bool param, const std::string& whites) {
+    source << whites << "    " << "do {" << std::endl;
+    if (!param) {
+        source << whites << "        std::vector<" << lang_field_find_type_name(field)  << ">::iterator guard = o." << field->get_field_name() << ".begin();" << std::endl;
+    } else {
+        source << whites << "        std::vector<" << lang_field_find_type_name(field)  << ">::iterator guard = " << field->get_field_name() << ".begin();" << std::endl;
+    }
     source << whites << "        krpc_object_t* v1 = krpc_object_create();" << std::endl;
-    source << whites << "        " << "for(; guard != o." << field->get_field_name() << ".end(); guard++) {" << std::endl;
+    source << whites << "        krpc_vector_clear(v1);" << std::endl;
+    if (!param) {
+        source << whites << "        " << "for(; guard != o." << field->get_field_name() << ".end(); guard++) {" << std::endl;
+    } else {
+        source << whites << "        " << "for(; guard != " << field->get_field_name() << ".end(); guard++) {" << std::endl;
+    }
     lang_gen_field_marshal_impl_not_array(field, source, "*guard", "v1", whites + "        ");
     source << whites << "        " << "}" << std::endl;
     source << whites << "        " << "krpc_vector_push_back(v, v1);" << std::endl;
@@ -533,9 +542,9 @@ void krpc_gen_cpp_t::lang_gen_field_marshal_impl_not_array(krpc_field_t* field, 
     }
 }
 
-void krpc_gen_cpp_t::lang_gen_field_marshal_impl(krpc_field_t* field, std::stringstream& source) {
+void krpc_gen_cpp_t::lang_gen_field_marshal_impl(krpc_field_t* field, std::stringstream& source, bool param) {
     if (field->check_array()) {
-        lang_gen_field_marshal_impl_array(field, source);
+        lang_gen_field_marshal_impl_array(field, source, param);
     } else {
         lang_gen_field_marshal_impl_not_array(field, source);
     }
@@ -586,10 +595,13 @@ void krpc_gen_cpp_t::lang_gen_attribute_method_impl(krpc_attribute_t* attribute,
     for (; field != attribute->get_field_list().end(); field++) {
         if ((*field)->check_array()) {
             if ((*field)->check_type(krpc_field_type_attribute)) {
+                source << "    ss << white << \"" << (*field)->get_field_name() << "[\" << std::endl;" << std::endl;
                 source << "    for (size_t i = 0; i < " << (*field)->get_field_name() << ".size(); i++) {" << std::endl;
                 source << "        " << (*field)->get_field_name() << "[i].print(ss, white + \"  \");" << std::endl;
                 source << "    }" << std::endl;
+                source << "    ss << white << \"]\" << std::endl;" << std::endl; 
             } else {
+                source << "    ss << white << \"" << (*field)->get_field_name() << "[\" << std::endl;" << std::endl;
                 source << "    for (size_t i = 0; i < " << (*field)->get_field_name() << ".size(); i++) {" << std::endl;
                 if (!(*field)->check_type(krpc_field_type_string) && !(*field)->check_type(krpc_field_type_f32) && !(*field)->check_type(krpc_field_type_f64)) {
                     source << "        ss << white << \"  " << (*field)->get_field_name() << "=\" << (uint64_t)" << (*field)->get_field_name() << "[i] << std::endl;" << std::endl;
@@ -597,10 +609,11 @@ void krpc_gen_cpp_t::lang_gen_attribute_method_impl(krpc_attribute_t* attribute,
                     source << "        ss << white << \"  " << (*field)->get_field_name() << "=\" << " << (*field)->get_field_name() << "[i] << std::endl;" << std::endl;
                 }
                 source << "    }" << std::endl;
+                source << "    ss << white << \"]\" << std::endl;" << std::endl; 
             }
         } else {
-           if ((*field)->check_type(krpc_field_type_attribute)) {
-                source << "    " << (*field)->get_field_name() << ".print(ss, white + \"  \");" << std::endl;
+            if ((*field)->check_type(krpc_field_type_attribute)) {
+               source << "    " << (*field)->get_field_name() << ".print(ss, white);" << std::endl;
             } else {
                 if (!(*field)->check_type(krpc_field_type_string) && !(*field)->check_type(krpc_field_type_f32) && !(*field)->check_type(krpc_field_type_f64)) {
                     source << "    ss << white << \"" << (*field)->get_field_name() << "=\" << (uint64_t)" << (*field)->get_field_name() << " << std::endl;" << std::endl;

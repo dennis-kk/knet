@@ -25,6 +25,7 @@
 #include <cassert>
 #include <cstdarg>
 #include <cctype>
+#include <cstring>
 #include "krpc_lexer.h"
 #include "krpc_exception.h"
 
@@ -84,6 +85,7 @@ krpc_token_t* krpc_lexer_t::get_token() {
     int  i         = 0;
     int  type      = 0;
     char c         = 0;
+    memset(token, 0, sizeof(token));
     if (!verify()) {
         return 0;
     }
@@ -187,7 +189,7 @@ krpc_token_t* krpc_lexer_t::get_token() {
         type = krpc_token_comma;
         break;
     case '[':
-        if (has_next() && check_keyword2(_stream, '[', ']')) {
+        if (has_next() && (_stream[1] == ']')) {
             // สýื้
             forward(2);
             add_col(2);
@@ -289,23 +291,23 @@ bool krpc_lexer_t::check_terminator(char c) {
 }
 
 bool krpc_lexer_t::check_keyword2(const char* s, char c1, char c2) {
-    return (s[0] == c1) && (s[1] == c2);
+    return (s[0] == c1) && (s[1] == c2) && (!s[2]);
 }
 
 bool krpc_lexer_t::check_keyword3(const char* s, char c1, char c2, char c3) {
-    return (s[0] == c1) && (s[1] == c2) && (s[2] == c3);
+    return (s[0] == c1) && (s[1] == c2) && (s[2] == c3) && (!s[3]);
 }
 
 bool krpc_lexer_t::check_keyword4(const char* s, char c1, char c2, char c3, char c4) {
-    return (s[0] == c1) && (s[1] == c2) && (s[2] == c3) && (s[3] == c4);
+    return (s[0] == c1) && (s[1] == c2) && (s[2] == c3) && (s[3] == c4) && (!s[4]);
 }
 
 bool krpc_lexer_t::check_keyword5(const char* s, char c1, char c2, char c3, char c4, char c5) {
-    return (s[0] == c1) && (s[1] == c2) && (s[2] == c3) && (s[3] == c4) && (s[4] == c5);
+    return (s[0] == c1) && (s[1] == c2) && (s[2] == c3) && (s[3] == c4) && (s[4] == c5) && (!s[5]);
 }
 
 bool krpc_lexer_t::check_keyword6(const char* s, char c1, char c2, char c3, char c4, char c5, char c6) {
-    return (s[0] == c1) && (s[1] == c2) && (s[2] == c3) && (s[3] == c4) && (s[4] == c5) && (s[5] == c6);
+    return (s[0] == c1) && (s[1] == c2) && (s[2] == c3) && (s[3] == c4) && (s[4] == c5) && (s[5] == c6) && (!s[6]);
 }
 
 bool krpc_lexer_t::verify() {

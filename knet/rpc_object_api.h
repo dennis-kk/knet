@@ -225,7 +225,7 @@ extern uint16_t krpc_string_get_size(krpc_object_t* o);
 
 /*
  * 添加到数组尾，数组默认长度为8，每次递增8
- * @param o krpc_object_t实例
+ * @param v krpc_object_t实例
  * @param o 新增的数组元素
  * @retval error_ok 成功
  * @retval 其他 失败
@@ -234,14 +234,14 @@ extern int krpc_vector_push_back(krpc_object_t* v, krpc_object_t* o);
 
 /*
  * 取得数组元素个数
- * @param o krpc_object_t实例
+ * @param v krpc_object_t实例
  * @return 数组元素个数
  */
 extern uint32_t krpc_vector_get_size(krpc_object_t* v);
 
 /*
  * 按索引取得数组元素
- * @param o krpc_object_t实例
+ * @param v krpc_object_t实例
  * @param index 下标索引
  * @return 数组元素
  */
@@ -249,12 +249,18 @@ extern krpc_object_t* krpc_vector_get(krpc_object_t* v, int index);
 
 /*
  * 按索引设置数组元素，若已存在元素则销毁旧元素
- * @param o krpc_object_t实例
+ * @param v krpc_object_t实例
  * @param o 新元素
  * @param index 下标索引
  * @retval error_ok 成功
  * @retval 其他 失败
  */
 extern int krpc_vector_set(krpc_object_t* v, krpc_object_t* o, int index);
+
+/*
+ * 清空数组
+ * @param v krpc_object_t实例
+ */
+extern void krpc_vector_clear(krpc_object_t* v);
 
 #endif /* RPC_OBJECT_API_H */

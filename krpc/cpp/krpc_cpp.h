@@ -167,7 +167,7 @@ private:
     /*
      * 字段 - marshal定义
      */
-    void lang_gen_field_marshal_impl(krpc_field_t* field, std::stringstream& source);
+    void lang_gen_field_marshal_impl(krpc_field_t* field, std::stringstream& source, bool param = false);
 
     /*
      * 字段 - 非数组 - marshal定义
@@ -178,7 +178,7 @@ private:
     /*
      * 字段 - 数组 - marshal定义
      */
-    void lang_gen_field_marshal_impl_array(krpc_field_t* field, std::stringstream& source, const std::string& whites = "");
+    void lang_gen_field_marshal_impl_array(krpc_field_t* field, std::stringstream& source, bool param, const std::string& whites = "");
 
     /*
      * 字段 - unmarshal定义
