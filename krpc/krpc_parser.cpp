@@ -77,7 +77,7 @@ krpc_attribute_t::krpc_attribute_t(const std::string& name)
 
 krpc_attribute_t::~krpc_attribute_t() {
     // 清理
-    FieldList::iterator guard = _fields.begin();
+    field_list_t::iterator guard = _fields.begin();
     for (; guard != _fields.end(); guard++) {
         delete *guard;
     }
@@ -85,7 +85,7 @@ krpc_attribute_t::~krpc_attribute_t() {
 
 void krpc_attribute_t::push_field(krpc_field_t* field) {
     // 检查重复
-    FieldList::iterator guard = _fields.begin();
+    field_list_t::iterator guard = _fields.begin();
     for (; guard != _fields.end(); guard++) {
         if (field->get_field_name() == (*guard)->get_field_name()) {
             raise_exception("field redefined '" << field->get_field_name() << "'");
@@ -98,7 +98,7 @@ const std::string& krpc_attribute_t::get_name() {
     return _name;
 }
 
-krpc_attribute_t::FieldList& krpc_attribute_t::get_field_list() {
+krpc_attribute_t::field_list_t& krpc_attribute_t::get_field_list() {
     return _fields;
 }
 
@@ -128,11 +128,11 @@ krpc_parser_t::krpc_parser_t(krpc_parser_t* parent, const char* dir, const char*
 }
 
 krpc_parser_t::~krpc_parser_t() {
-    ObjectMap::iterator object = _objects.begin();
+    object_map_t::iterator object = _objects.begin();
     for (; object != _objects.end(); object++) {
         delete object->second;
     }
-    RpcCallMap::iterator rpc_call = _rpc_calls.begin();
+    rpc_call_map_t::iterator rpc_call = _rpc_calls.begin();
     for (; rpc_call != _rpc_calls.end(); rpc_call++) {
         delete rpc_call->second;
     }
@@ -165,10 +165,7 @@ krpc_field_t* krpc_parser_t::parse_field(krpc_token_t* token) {
 
 krpc_attribute_t* krpc_parser_t::parse_attribute(krpc_token_t* token) {
     //
-    // attribute `name` {
-    //     `field`
-    //     ...
-    // }
+    // attribute `name` { `field`* }
     //
     krpc_attribute_t* attribute = new krpc_attribute_t(token->get_literal());
     check_raise_exception(token = next_token(), "attribute need a '{'");
@@ -183,7 +180,7 @@ krpc_attribute_t* krpc_parser_t::parse_attribute(krpc_token_t* token) {
 
 krpc_rpc_call_t* krpc_parser_t::parse_rpc_call(krpc_token_t* token) {
     //
-    // rpc `name` ( `field` , ... )
+    // rpc `name` ( `field`* )
     //
     check_raise_exception(token, "attribute need a RPC name");
     check_raise_exception(krpc_token_text == token->get_type(), "attribute need a RPC name");
@@ -216,7 +213,7 @@ void krpc_parser_t::parse_import(krpc_token_t* token) {
 
 void krpc_parser_t::parse_trunk(krpc_token_t* token) {
     //
-    // `object-declare` | `rpc-call` | `single-line-comment` | `import-file`
+    // `chunk` = (`object-declare` | `rpc-call` | `single-line-comment` | `import-file`)*
     //
     if (krpc_token_object == token->get_type()) { // 对象
         krpc_attribute_t* attribute = parse_attribute(next_token());
@@ -267,7 +264,7 @@ void krpc_parser_t::parse() throw(std::exception) {
     }
 }
 
-krpc_parser_t::ObjectMap& krpc_parser_t::get_attributes() {
+krpc_parser_t::object_map_t& krpc_parser_t::get_attributes() {
     // 如果有上层parser，全部导入上层
     if (_parent) {
         return _parent->get_attributes();
@@ -275,7 +272,7 @@ krpc_parser_t::ObjectMap& krpc_parser_t::get_attributes() {
     return _objects;
 }
 
-krpc_parser_t::RpcCallMap& krpc_parser_t::get_rpc_calls() {
+krpc_parser_t::rpc_call_map_t& krpc_parser_t::get_rpc_calls() {
     // 如果有上层parser，全部导入上层
     if (_parent) {
         return _parent->get_rpc_calls();

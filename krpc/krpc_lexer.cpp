@@ -37,7 +37,7 @@ krpc_lexer_t::krpc_lexer_t(const char* stream)
 }
 
 krpc_lexer_t::~krpc_lexer_t() {
-    TokenList::iterator guard = _tokens.begin();
+    token_list_t::iterator guard = _tokens.begin();
     for (; guard != _tokens.end(); guard++) {
         delete *guard;
     }
@@ -201,7 +201,7 @@ void krpc_lexer_t::add_col(int cols) {
     _col += cols;
 }
 
-void krpc_lexer_t::add_row() {
+void krpc_lexer_t::inc_row() {
     _row++;
 }
 
@@ -239,7 +239,7 @@ void krpc_lexer_t::eat_whites() {
                 break;
             case '\n':
                 _col = 1;
-                add_row();
+                inc_row();
                 break;
             default:
                 return;
@@ -294,7 +294,7 @@ void krpc_lexer_t::eat_comment() {
         for (; verify(); forward(1), add_col(1)) {
             if (current() == '\n') {
                 _col = 1;
-                add_row();
+                inc_row();
                 forward(1);
                 return;
             }

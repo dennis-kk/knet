@@ -41,7 +41,7 @@ krpc_gen_t::~krpc_gen_t() {
     }
 }
 
-OptionMap& krpc_gen_t::get_options() {
+krpc_gen_t::option_map_t& krpc_gen_t::get_options() {
     return _options;
 }
 
@@ -50,7 +50,7 @@ krpc_parser_t* krpc_gen_t::get_parser() const {
 }
 
 void krpc_gen_t::lang_gen_code() {
-    if (_options["lang"] == "cpp") {
+    if (_options["lang"] == "cpp") { // c++Éú³É
         krpc_gen_cpp_t gen_cpp(this);
         gen_cpp.lang_gen_code();
     } else {

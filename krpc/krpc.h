@@ -6,24 +6,61 @@
 
 class krpc_parser_t;
 
-typedef std::map<std::string, std::string> OptionMap;
-
+/*
+ * rpc框架代码生成类
+ */
 class krpc_gen_t {
 public:
+    typedef std::map<std::string, std::string> option_map_t;
+
+public:
+    /*
+     * 构造函数
+     * @param argc 命令行个数
+     * @param argv 命令行
+     */
     krpc_gen_t(int argc, char** argv);
+
+    /*
+     * 析构函数
+     */
     ~krpc_gen_t();
+
+    /*
+     * 生成代码
+     */
     void lang_gen_code();
-    OptionMap& get_options();
+
+    /*
+     * 获取参数表
+     * @return 获取参数表
+     */
+    option_map_t& get_options();
+
+    /*
+     * 获取语法解析器
+     * @return krpc_parser_t实例
+     */
     krpc_parser_t* get_parser() const;
 
 private:
+    /*
+     * 获取命令行参数
+     * @param pos 命令行数组位置
+     * @param argc 命令行个数
+     * @param argv 命令行
+     * @param detail 完整参数
+     * @param brief 简写
+     * @retval true 找到参数
+     * @retval false 未找到参数
+     */
     bool krpc_gen_t::get_option(int pos, int argc, char** argv, const char* detail, const char* brief);
 
 private:
-    OptionMap      _options;
-    int            _argc;
-    char**         _argv;
-    krpc_parser_t* _parser;
+    option_map_t   _options; // 参数表
+    int            _argc;    // 命令行个数
+    char**         _argv;    // 命令行
+    krpc_parser_t* _parser;  // 语法解析器
 };
 
 #endif // KRPC_H
