@@ -45,22 +45,6 @@ typedef struct krpc_object_header_t {
     #pragma pack()
 #endif /* defined(_MSC_VER) */
 
-enum _krpc_type_e {
-    krpc_type_i8     = 1,    /* 有符号8位 */
-    krpc_type_ui8    = 2,    /* 无符号8位 */
-    krpc_type_i16    = 4,    /* 有符号16位 */
-    krpc_type_ui16   = 8,    /* 无符号16位 */
-    krpc_type_i32    = 16,   /* 有符号32位 */
-    krpc_type_ui32   = 32,   /* 无符号32位 */
-    krpc_type_i64    = 64,   /* 有符号64位 */
-    krpc_type_ui64   = 128,  /* 无符号64位 */
-    krpc_type_f32    = 256,  /* 32位浮点 */
-    krpc_type_f64    = 512,  /* 64位浮点 */
-    krpc_type_number = 1024, /* 数字 */
-    krpc_type_string = 2048, /* 字符串 */
-    krpc_type_vector = 4096, /* 数组 */
-};
-
 struct _krpc_number_t {
     union {
         int8_t    i8;   /* 有符号8位 */
@@ -405,7 +389,7 @@ uint32_t krpc_number_get_ui32(krpc_object_t* o) {
     return o->number.ui32;
 }
 
-void krpc_number_set_ui64(krpc_object_t* o, int32_t ui64) {
+void krpc_number_set_ui64(krpc_object_t* o, int64_t ui64) {
     assert(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
         assert(0);
@@ -420,6 +404,40 @@ uint64_t krpc_number_get_ui64(krpc_object_t* o) {
         assert(0);
     }
     return o->number.ui64;
+}
+
+void krpc_number_set_f32(krpc_object_t* o, float32_t f32) {
+    assert(o);
+    if (!krpc_object_check_type(o, krpc_type_number)) {
+        assert(0);
+    }
+    o->type = krpc_type_number | krpc_type_f32;
+    o->number.f32 = f32;
+}
+
+float32_t krpc_number_get_f32(krpc_object_t* o) {
+    assert(o);
+    if (!krpc_object_check_type(o, krpc_type_number)) {
+        assert(0);
+    }
+    return o->number.f32;
+}
+
+void krpc_number_set_f64(krpc_object_t* o, float64_t f64) {
+    assert(o);
+    if (!krpc_object_check_type(o, krpc_type_number)) {
+        assert(0);
+    }
+    o->type = krpc_type_number | krpc_type_f64;
+    o->number.f64 = f64;
+}
+
+float64_t krpc_number_get_f64(krpc_object_t* o) {
+    assert(o);
+    if (!krpc_object_check_type(o, krpc_type_number)) {
+        assert(0);
+    }
+    return o->number.f64;
 }
 
 void krpc_string_set(krpc_object_t* o, const char* s) {

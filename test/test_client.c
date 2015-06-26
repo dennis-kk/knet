@@ -9,7 +9,7 @@ int      port       = 0;
 ktimer_loop_t* timer_loop = 0;
 
 void timer_cb(ktimer_t* timer, void* data) {
-    timer; data;
+    assert(timer);
     printf("Active channel: %d, Recv: %d, Send: %d\n", active_channel, recv_bytes, send_bytes);
 }
 

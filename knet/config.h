@@ -76,7 +76,6 @@
     #include <fcntl.h>
     #include <unistd.h>
     #include <pthread.h>
-    #include <linux/tcp.h>
     #include <sys/epoll.h>
     #define socket_len_t socklen_t
     #define thread_id_t pthread_t
@@ -121,7 +120,6 @@ typedef struct _ktimer_loop_t ktimer_loop_t;
 typedef struct _ktimer_t ktimer_t;
 typedef struct _logger_t logger_t;
 typedef struct _krpc_t krpc_t;
-typedef enum   _krpc_type_e krpc_type_e;
 typedef struct _krpc_number_t krpc_number_t;
 typedef struct _krpc_string_t krpc_string_t;
 typedef struct _krpc_vector_t krpc_vector_t;
@@ -237,6 +235,23 @@ typedef enum _rpc_error_e {
     rpc_error,       /* 错误，但不关闭 */
     rpc_error_close, /* 错误且关闭 */
 } rpc_error_e;
+
+/* RPC类型 */
+typedef enum _krpc_type_e {
+    krpc_type_i8     = 1,    /* 有符号8位 */
+    krpc_type_ui8    = 2,    /* 无符号8位 */
+    krpc_type_i16    = 4,    /* 有符号16位 */
+    krpc_type_ui16   = 8,    /* 无符号16位 */
+    krpc_type_i32    = 16,   /* 有符号32位 */
+    krpc_type_ui32   = 32,   /* 无符号32位 */
+    krpc_type_i64    = 64,   /* 有符号64位 */
+    krpc_type_ui64   = 128,  /* 无符号64位 */
+    krpc_type_f32    = 256,  /* 32位浮点 */
+    krpc_type_f64    = 512,  /* 64位浮点 */
+    krpc_type_number = 1024, /* 数字 */
+    krpc_type_string = 2048, /* 字符串 */
+    krpc_type_vector = 4096, /* 数组 */
+} krpc_type_e;
 
 /* 线程函数 */
 typedef void (*thread_func_t)(thread_runner_t*);

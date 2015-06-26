@@ -1,3 +1,27 @@
+/*
+ * Copyright (c) 2014-2015, dennis wang
+ * All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are met:
+ *     * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright
+ *       notice, this list of conditions and the following disclaimer in the
+ *       documentation and/or other materials provided with the distribution.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL dennis wang BE LIABLE FOR ANY
+ * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
 #include <cassert>
 #include <cstdarg>
 #include <cctype>
@@ -43,7 +67,7 @@ krpc_lexer_t::~krpc_lexer_t() {
     }
 }
 
-krpc_token_t* krpc_lexer_t::next_token() {
+krpc_token_t* krpc_lexer_t::next_token() throw(std::exception) {
     krpc_token_t* token = 0;
     if (current()) {
         token = get_token();
@@ -55,7 +79,8 @@ krpc_token_t* krpc_lexer_t::next_token() {
 }
 
 krpc_token_t* krpc_lexer_t::get_token() {
-    char token[64] = {0};
+    static const int MAX_TOKEN_SIZE = 64;
+    char token[MAX_TOKEN_SIZE] = {0};
     int  i         = 0;
     int  type      = 0;
     char c         = 0;
@@ -66,7 +91,7 @@ krpc_token_t* krpc_lexer_t::get_token() {
     for (c = current(); (c) && (!check_terminator(c)); c = forward(1), i++) {
         token[i] = c;
     }
-    if (i >= sizeof(token)) {
+    if (i >= MAX_TOKEN_SIZE) {
         raise_exception("reach max name length");
     }
     if (!token[0] && check_terminator(c)) {

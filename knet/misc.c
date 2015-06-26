@@ -22,6 +22,10 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#if !defined(WIN32)
+    #include <linux/tcp.h> /* TCP_NODELAY */
+#endif /* !defined(WIN32) */
+
 #include "misc.h"
 #include "loop.h"
 #include "channel_ref.h"

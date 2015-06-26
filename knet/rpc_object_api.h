@@ -157,7 +157,7 @@ extern uint32_t krpc_number_get_ui32(krpc_object_t* o);
  * @param o krpc_object_t实例
  * @param ui64 无符号64位
  */
-extern void krpc_number_set_ui64(krpc_object_t* o, int32_t ui64);
+extern void krpc_number_set_ui64(krpc_object_t* o, int64_t ui64);
 
 /*
  * 获取无符号64位
@@ -165,6 +165,34 @@ extern void krpc_number_set_ui64(krpc_object_t* o, int32_t ui64);
  * @return 无符号64位
  */
 extern uint64_t krpc_number_get_ui64(krpc_object_t* o);
+
+/*
+ * 设置数字
+ * @param o krpc_object_t实例
+ * @param f32 浮点数32位
+ */
+extern void krpc_number_set_f32(krpc_object_t* o, float32_t f32);
+
+/*
+ * 获取浮点数32位
+ * @param o krpc_object_t实例
+ * @return 浮点数32位
+ */
+extern float32_t krpc_number_get_f32(krpc_object_t* o);
+
+/*
+ * 设置数字
+ * @param o krpc_object_t实例
+ * @param f64 浮点数64位
+ */
+extern void krpc_number_set_f64(krpc_object_t* o, float64_t f64);
+
+/*
+ * 获取浮点数64位
+ * @param o krpc_object_t实例
+ * @return 浮点数64位
+ */
+extern float64_t krpc_number_get_f64(krpc_object_t* o);
 
 /*
  * 设置字符串
