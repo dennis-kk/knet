@@ -1,4 +1,4 @@
-# knet 1.3.x #
+# knet 1.4.x #
 ##
 
 **knet** is cross-platform multi-threading light-weight TCP transport library, for now, knet support **IOCP**, **select**, **epoll** model on **Windows** and **CentOS**. it will testing under more Linux and Unix OS version, more model will be implemented like: kqueue(kevent) etc.   
@@ -50,7 +50,7 @@ The whole story:
 		return 0;
 	}
 
-For more detail, see `examples/`
+For more detail, see `examples/basic.c`
 
 #### config.h ####
 ##
@@ -79,7 +79,14 @@ about others. `loop_balancer_t` coordinates all attached `loop_t`(`loop_balance_
 
 `loop_balancer_t` conceal the details and sophisticated for developer, the process of balancing is thread-safety  and highly efficent. **knet** offers a simple thread API to run internally `loop_run`, the interact among loops are also transparent for developers.
 
-For more detail, see `examples/`
+For more detail, see `examples/multi_loop.c`
+
+### rpc ###
+##
+
+**knet** offers a low level **RPC** object framework for developer. `krpc_t` is the base for the next version(1.5.x), developers may develop handwriting code by `krpc_t`, but its not a good way to maintain code for future development.
+
+For more detail, see `examples/rpc.c`
 
 ### build ###
 ##
