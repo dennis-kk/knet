@@ -92,26 +92,26 @@ krpc_object_t* my_rpc_func_proxy(my_object_t& my_obj, std::vector<my_object_t>& 
     krpc_vector_push_back(v, marshal(my_obj));
     do {
         std::vector<my_object_t>::iterator guard = obj_array.begin();
-        krpc_object_t* v1 = krpc_object_create();
-        krpc_vector_clear(v1);
+        krpc_object_t* v_ = krpc_object_create();
+        krpc_vector_clear(v_);
         for(; guard != obj_array.end(); guard++) {
-            krpc_vector_push_back(v1, marshal(*guard));
+            krpc_vector_push_back(v_, marshal(*guard));
         }
-        krpc_vector_push_back(v, v1);
+        krpc_vector_push_back(v, v_);
     } while(0);
     krpc_object_t* test_str_string = krpc_object_create();
     krpc_string_set(test_str_string, test_str.c_str());
     krpc_vector_push_back(v, test_str_string);
     do {
         std::vector<float>::iterator guard = array_f32.begin();
-        krpc_object_t* v1 = krpc_object_create();
-        krpc_vector_clear(v1);
+        krpc_object_t* v_ = krpc_object_create();
+        krpc_vector_clear(v_);
         for(; guard != array_f32.end(); guard++) {
             krpc_object_t* array_f32_f32 = krpc_object_create();
             krpc_number_set_f32(array_f32_f32, *guard);
-            krpc_vector_push_back(v1, array_f32_f32);
+            krpc_vector_push_back(v_, array_f32_f32);
         }
-        krpc_vector_push_back(v, v1);
+        krpc_vector_push_back(v, v_);
     } while(0);
     return v;
 }
@@ -123,9 +123,9 @@ int my_rpc_func_stub(krpc_object_t* o) {
     do {
         krpc_object_t* v = krpc_vector_get(o, 1);
         for (uint32_t i = 0; i < krpc_vector_get_size(v); i++) {
-            my_object_t __o;
-            unmarshal(krpc_vector_get(v, i), __o);
-            p1.push_back(__o);
+            my_object_t o_;
+            unmarshal(krpc_vector_get(v, i), o_);
+            p1.push_back(o_);
         }
     } while(0);
     std::string p2;
@@ -182,23 +182,23 @@ krpc_object_t* marshal(my_object_t& o) {
     krpc_vector_push_back(v, n_f64_f64);
     do {
         std::vector<my_message_t>::iterator guard = o.message.begin();
-        krpc_object_t* v1 = krpc_object_create();
-        krpc_vector_clear(v1);
+        krpc_object_t* v_ = krpc_object_create();
+        krpc_vector_clear(v_);
         for(; guard != o.message.end(); guard++) {
-            krpc_vector_push_back(v1, marshal(*guard));
+            krpc_vector_push_back(v_, marshal(*guard));
         }
-        krpc_vector_push_back(v, v1);
+        krpc_vector_push_back(v, v_);
     } while(0);
     do {
         std::vector<int32_t>::iterator guard = o.test_array.begin();
-        krpc_object_t* v1 = krpc_object_create();
-        krpc_vector_clear(v1);
+        krpc_object_t* v_ = krpc_object_create();
+        krpc_vector_clear(v_);
         for(; guard != o.test_array.end(); guard++) {
             krpc_object_t* test_array_i32 = krpc_object_create();
             krpc_number_set_i32(test_array_i32, *guard);
-            krpc_vector_push_back(v1, test_array_i32);
+            krpc_vector_push_back(v_, test_array_i32);
         }
-        krpc_vector_push_back(v, v1);
+        krpc_vector_push_back(v, v_);
     } while(0);
     return v;
 }
@@ -220,19 +220,19 @@ bool unmarshal(krpc_object_t* v, my_object_t& o) {
     o.n_f32 = krpc_number_get_f32(krpc_vector_get(v, 8));
     o.n_f64 = krpc_number_get_f64(krpc_vector_get(v, 9));
     do {
-        krpc_object_t* v1 = 0;
-        v1 = krpc_vector_get(v, 10);
-        for (uint32_t i = 0; i < krpc_vector_get_size(v1); i++) {
-            my_message_t o1;
-            unmarshal(krpc_vector_get(v1, i), o1);
-            o.message.push_back(o1);
+        krpc_object_t* v_ = 0;
+        v_ = krpc_vector_get(v, 10);
+        for (uint32_t i = 0; i < krpc_vector_get_size(v_); i++) {
+            my_message_t o_;
+            unmarshal(krpc_vector_get(v_, i), o_);
+            o.message.push_back(o_);
         }
     } while(0);
     do {
-        krpc_object_t* v1 = 0;
-        v1 = krpc_vector_get(v, 11);
-        for (uint32_t i = 0; i < krpc_vector_get_size(v1); i++) {
-            o.test_array.push_back(krpc_number_get_i32(krpc_vector_get(v1, i)));
+        krpc_object_t* v_ = 0;
+        v_ = krpc_vector_get(v, 11);
+        for (uint32_t i = 0; i < krpc_vector_get_size(v_); i++) {
+            o.test_array.push_back(krpc_number_get_i32(krpc_vector_get(v_, i)));
         }
     } while(0);
     return true;

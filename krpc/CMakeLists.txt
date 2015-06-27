@@ -14,6 +14,7 @@ add_executable(krpc
 	krpc.cpp
 	krpc_lexer.cpp
 	krpc_parser.cpp
+	krpc_ostream.cpp
 	cpp/krpc_cpp.cpp
 )
 

@@ -38,14 +38,17 @@ krpc_gen_cpp_t::~krpc_gen_cpp_t() {
 
 void krpc_gen_cpp_t::lang_gen_code() {
     krpc_gen_t::option_map_t& options = _rpc_gen->get_options();
-    std::stringstream header;
-    std::stringstream source;
-
-    header << "//" << std::endl << "// Generated code, DO NOT modify" << std::endl << "//" << std::endl << std::endl;
-    source << "//" << std::endl << "// Generated code, DO NOT modify" << std::endl << "//" << std::endl << std::endl;
-
-    header << "#ifndef _krpc_" << options["name"] << "_h_" << std::endl;
-    header << "#define _krpc_" << options["name"] << "_h_" << std::endl << std::endl;
+    krpc_ostream_t header(options["dir"] + options["name"] + ".h");
+    krpc_ostream_t source(options["dir"] + options["name"] + ".cpp");
+    header.write("//\n"
+                 "// Generated code, DO NOT modify\n"
+                 "//\n\n");
+    source.write("//\n"
+                 "// Generated code, DO NOT modify\n"
+                 "//\n\n");
+    header.replace("#ifndef _krpc_@file_name@_h_\n"
+                   "#define _krpc_@file_name@_h_\n\n",
+                   options["name"]);
     lang_gen_includes(header); // 头文件
     lang_gen_attributes_pre_decls(header); // 预先声明
     lang_gen_attributes(header, source); // 属性对象
@@ -54,49 +57,30 @@ void krpc_gen_cpp_t::lang_gen_code() {
     lang_gen_attribute_marshal_method_impls(source); // marshal方法
     lang_gen_attribute_unmarshal_method_impls(source); // unmarshal方法
     lang_gen_framework(header, source); // 入口框架
-    header << "#endif // _krpc_" << options["name"] << "_h_" << std::endl;
-    // 写入.h
-    std::ofstream ofs_header;
-    std::string header_file_name = options["dir"];
-    header_file_name += options["name"];
-    header_file_name += ".h";
-    ofs_header.open(header_file_name.c_str());
-    if (!ofs_header) {
-        raise_exception("open file '" << header_file_name << "' failed");
-    }
-    ofs_header << header.str();
-    // 写入.cpp
-    std::ofstream ofs_source;
-    std::string source_file_name = options["dir"];
-    source_file_name += options["name"];
-    source_file_name += ".cpp";
-    ofs_source.open(source_file_name.c_str());
-    if (!ofs_source) {
-        raise_exception("open file '" << source_file_name << "' failed");
-    }
-    ofs_source << source.str();
+    header.replace("#endif // _krpc_@file_name@_h_\n", options["name"]);
 }
 
-void krpc_gen_cpp_t::lang_gen_includes(std::stringstream& header) {
-    header << "#include <cstdint>" << std::endl
-           << "#include <string>" << std::endl 
-           << "#include <vector>" << std::endl
-           << "#include \"knet.h\"" << std::endl << std::endl;
+void krpc_gen_cpp_t::lang_gen_includes(krpc_ostream_t& header) {
+    header.write("#include <cstdint>\n"
+                 "#include <string>\n" 
+                 "#include <vector>\n"
+                 "#include \"knet.h\"\n\n");
 }
 
-void krpc_gen_cpp_t::lang_gen_framework(std::stringstream& header, std::stringstream& source) {
+void krpc_gen_cpp_t::lang_gen_framework(krpc_ostream_t& header, krpc_ostream_t& source) {
     lang_gen_framework_decls(header);
     lang_gen_framework_impls(source);
 }
 
-void krpc_gen_cpp_t::lang_gen_framework_decls(std::stringstream& header) {
+void krpc_gen_cpp_t::lang_gen_framework_decls(krpc_ostream_t& header) {
     krpc_gen_t::option_map_t& options = _rpc_gen->get_options();
-    header << "class " << options["name"] << "_t {" << std::endl;
-    header << "public:" << std::endl;
-    header << "    ~" <<  options["name"] << "_t();" << std::endl;
-    header << "    static " << options["name"] << "_t* instance();" << std::endl;
-    header << "    static void finalize();" << std::endl;
-    header << "    int" << " rpc_proc(stream_t* stream);" << std::endl;
+    header.replace("class @name@_t {\n"
+                   "public:\n"
+                   "    ~@name@_t();\n"
+                   "    static @name@_t* instance();\n"
+                   "    static void finalize();\n"
+                   "    int rpc_proc(stream_t* stream); \n",
+                   options["name"]);
     // RPC包装方法
     krpc_parser_t* parser = _rpc_gen->get_parser();
     krpc_parser_t::rpc_call_map_t::iterator rpc_call = parser->get_rpc_calls().begin();
@@ -110,47 +94,49 @@ void krpc_gen_cpp_t::lang_gen_framework_decls(std::stringstream& header) {
                 header << ", ";
             }
         }
-        header << ");" << std::endl;
+        header.write(");\n");
     }
     // 私有成员
-    header << "private:" << std::endl;
-    header << "    " << options["name"] << "_t();" << std::endl;
-    header << "    " << options["name"] << "_t(const " << options["name"] << "_t&);" << std::endl;
-    header << "    static " << options["name"] << "_t* _instance;" << std::endl;
-    header << "    krpc_t* _rpc;" << std::endl;
-    header << "};" << std::endl << std::endl;
+    header.replace("private:\n"
+                   "    @name@_t();\n"
+                   "    @name@_t(const @name@_t&);\n"
+                   "    static @name@_t* _instance;\n"
+                   "    krpc_t* _rpc;\n"
+                   "};\n\n",
+                   options["name"]);
 }
 
-void krpc_gen_cpp_t::lang_gen_framework_impls(std::stringstream& source) {
+void krpc_gen_cpp_t::lang_gen_framework_impls(krpc_ostream_t& source) {
     krpc_gen_t::option_map_t& options = _rpc_gen->get_options();
-    source << options["name"] << "_t* " << options["name"] << "_t::_instance = 0;" << std::endl << std::endl;
-    // 构造函数
-    source << options["name"] << "_t::" << options["name"] << "_t() {" << std::endl;
-    source << "    _rpc = krpc_create();" << std::endl;
+    source.replace("@name@_t* @name@_t::_instance = 0;\n\n"
+                   "@name@_t::@name@_t() {\n"
+                   "    _rpc = krpc_create();\n",
+                   options["name"]);
     krpc_parser_t* parser = _rpc_gen->get_parser();
     krpc_parser_t::rpc_call_map_t::iterator rpc_call = parser->get_rpc_calls().begin();
     // 注册stub
     for (; rpc_call != parser->get_rpc_calls().end(); rpc_call++, _rpc_id++) {
-        source << "    " << "krpc_add_cb(_rpc, " << _rpc_id << ", " << rpc_call->first << "_stub);" << std::endl;
+        source << "    " << "krpc_add_cb(_rpc, " << _rpc_id << ", " << rpc_call->first << "_stub);\n";
     }
-    source << "}" << std::endl << std::endl;
-    // 析构函数
-    source << options["name"] << "_t::~" << options["name"] << "_t() {" << std::endl;
-    source << "    krpc_destroy(_rpc);" << std::endl;
-    source << "}" << std::endl << std::endl;
-    // 单件指针
-    source << options["name"] << "_t* "<< options["name"] << "_t::instance() {" << std::endl;
-    source << "    if (!_instance) {" << std::endl <<  "        _instance = new " << options["name"] << "_t();" << std::endl << "    }" << std::endl;
-    source << "    return _instance;" << std::endl;
-    source << "}" << std::endl << std::endl;
-    // 销毁单件
-    source << "void " << options["name"] << "_t::" << "finalize() {" << std::endl;
-    source << "    if (_instance) {" << std::endl <<  "        delete _instance;" << std::endl << "    }" << std::endl;
-    source << "}" << std::endl << std::endl;
-    // 处理函数
-    source << "int " << options["name"] << "_t::" << "rpc_proc(stream_t* stream) {" << std::endl;
-    source << "    return krpc_proc(_rpc, stream);" << std::endl;
-    source << "}" << std::endl << std::endl;
+    source.replace("}\n\n"
+                 "@name@_t::~@name@_t() {\n"
+                 "    krpc_destroy(_rpc);\n"
+                 "}\n\n"
+                 "@name@_t* @name@_t::instance() {\n"
+                 "    if (!_instance) {\n"
+                 "        _instance = new @name@_t();\n"
+                 "    }\n"
+                 "    return _instance;\n"
+                 "}\n\n"
+                 "void @name@_t::finalize() {\n"
+                 "    if (_instance) {\n"
+                 "        delete _instance;\n"
+                 "    }\n"
+                 "}\n\n"
+                 "int @name@_t::rpc_proc(stream_t* stream) {\n"
+                 "    return krpc_proc(_rpc, stream);\n"
+                 "}\n\n",
+                 options["name"]);
     // RPC包装方法
     rpc_call = parser->get_rpc_calls().begin();
     for (int rpcid = 1; rpc_call != parser->get_rpc_calls().end(); rpc_call++, rpcid++) {
@@ -163,8 +149,8 @@ void krpc_gen_cpp_t::lang_gen_framework_impls(std::stringstream& source) {
                 source << ", ";
             }
         }
-        source << ") {" << std::endl;
-        source << "    return krpc_call(_rpc, stream, " << rpcid << ", " << rpc_call->first << "_proxy(";
+        source << ") {\n"
+               << "    return krpc_call(_rpc, stream, " << rpcid << ", " << rpc_call->first << "_proxy(";
         field = rpc_call->second->get_attribute()->get_field_list().begin();
         size = rpc_call->second->get_attribute()->get_field_list().size();
         for (size_t pos = 0; field != rpc_call->second->get_attribute()->get_field_list().end(); field++, pos++) {
@@ -173,12 +159,12 @@ void krpc_gen_cpp_t::lang_gen_framework_impls(std::stringstream& source) {
                 source << ", ";
             }
         }
-        source << "));" << std::endl;
-        source << "}" << std::endl << std::endl;
+        source << "));\n"
+               << "}\n\n";
     }
 }
 
-void krpc_gen_cpp_t::lang_gen_rpc_call_decls(std::stringstream& header) {
+void krpc_gen_cpp_t::lang_gen_rpc_call_decls(krpc_ostream_t& header) {
     krpc_parser_t* parser = _rpc_gen->get_parser();
     krpc_parser_t::rpc_call_map_t::iterator rpc_call = parser->get_rpc_calls().begin();
     for (; rpc_call != parser->get_rpc_calls().end(); rpc_call++) {
@@ -191,9 +177,9 @@ void krpc_gen_cpp_t::lang_gen_rpc_call_decls(std::stringstream& header) {
                 header << ", ";
             }
         }
-        header << ");" << std::endl;
-        header << "int " << rpc_call->first << "_stub(krpc_object_t* o);" << std::endl;
-        header << "int " << rpc_call->first << "(";
+        header << ");\n"
+               << "int " << rpc_call->first << "_stub(krpc_object_t* o);\n"
+               << "int " << rpc_call->first << "(";
         field = rpc_call->second->get_attribute()->get_field_list().begin();
         size = rpc_call->second->get_attribute()->get_field_list().size();
         for (size_t pos = 0; field != rpc_call->second->get_attribute()->get_field_list().end(); field++, pos++) {
@@ -202,12 +188,12 @@ void krpc_gen_cpp_t::lang_gen_rpc_call_decls(std::stringstream& header) {
                 header << ", ";
             }
         }
-        header << ");" << std::endl;
+        header << ");\n";
     }
-    header << std::endl;
+    header << "\n";
 }
 
-void krpc_gen_cpp_t::lang_gen_rpc_call_impls(std::stringstream& source) {
+void krpc_gen_cpp_t::lang_gen_rpc_call_impls(krpc_ostream_t& source) {
     krpc_parser_t* parser = _rpc_gen->get_parser();
     krpc_parser_t::rpc_call_map_t::iterator rpc_call = parser->get_rpc_calls().begin();
     for (; rpc_call != parser->get_rpc_calls().end(); rpc_call++) {
@@ -220,29 +206,29 @@ void krpc_gen_cpp_t::lang_gen_rpc_call_impls(std::stringstream& source) {
                 source << ", ";
             }
         }
-        source << ") {" << std::endl;
+        source << ") {\n";
         lang_gen_rpc_call_impl_proxy(rpc_call->second->get_attribute(), source);
-        source << "    return v;" << std::endl;
-        source << "}" << std::endl << std::endl;
+        source << "    return v;\n"
+               << "}\n\n";
 
-        source << "int " << rpc_call->first << "_stub(krpc_object_t* o) {" << std::endl;
+        source << "int " << rpc_call->first << "_stub(krpc_object_t* o) {\n";
         lang_gen_rpc_call_impl_stub(rpc_call->second->get_attribute(), source, rpc_call->first);
-        source << "}" << std::endl << std::endl;
+        source << "}\n\n";
     }
 }
 
-void krpc_gen_cpp_t::lang_gen_rpc_call_impl_proxy(krpc_attribute_t* attribute, std::stringstream& source) {
+void krpc_gen_cpp_t::lang_gen_rpc_call_impl_proxy(krpc_attribute_t* attribute, krpc_ostream_t& source) {
     krpc_attribute_t::field_list_t::iterator field = attribute->get_field_list().begin();
     size_t size = attribute->get_field_list().size();
     if (size > 0) {
-        source << "    " << "krpc_object_t* v = krpc_object_create();" << std::endl;
+        source << "    krpc_object_t* v = krpc_object_create();\n";
     }
     for (; field != attribute->get_field_list().end(); field++) {
         lang_gen_field_marshal_impl(*field, source, true);
     }
 }
 
-void krpc_gen_cpp_t::lang_gen_rpc_call_impl_stub(krpc_attribute_t* attribute, std::stringstream& source, const std::string& rpc_name) {
+void krpc_gen_cpp_t::lang_gen_rpc_call_impl_stub(krpc_attribute_t* attribute, krpc_ostream_t& source, const std::string& rpc_name) {
     krpc_attribute_t::field_list_t::iterator field = attribute->get_field_list().begin();
     int param = 0;
     for (; field != attribute->get_field_list().end(); field++, param++) {
@@ -256,10 +242,10 @@ void krpc_gen_cpp_t::lang_gen_rpc_call_impl_stub(krpc_attribute_t* attribute, st
             source << "p" << i;
         }
     }
-    source << ");" << std::endl;
+    source << ");\n";
 }
 
-void krpc_gen_cpp_t::lang_gen_field_unmarshal_impl(krpc_field_t* field, std::stringstream& source, int index) {
+void krpc_gen_cpp_t::lang_gen_field_unmarshal_impl(krpc_field_t* field, krpc_ostream_t& source, int index) {
     if (field->check_array()) {
         lang_gen_field_unmarshal_impl_array(field, source, index);
     } else {
@@ -267,77 +253,85 @@ void krpc_gen_cpp_t::lang_gen_field_unmarshal_impl(krpc_field_t* field, std::str
     }
 }
 
-void krpc_gen_cpp_t::lang_gen_field_unmarshal_impl_array(krpc_field_t* field, std::stringstream& source, int index) {
-    source << "    " << "std::vector<" << lang_field_find_type_name(field) << "> p" << index  << ";" << std::endl;
-    source << "    " << "do {" << std::endl;
-    source << "        " << "krpc_object_t* v = krpc_vector_get(o, " << index << ");" << std::endl;
-    source << "        " << "for (uint32_t i = 0; i < krpc_vector_get_size(v); i++) {" << std::endl;
+void krpc_gen_cpp_t::lang_gen_field_unmarshal_impl_array(krpc_field_t* field, krpc_ostream_t& source, int index) {
+    source << "    " << "std::vector<" << lang_field_find_type_name(field) << "> p" << index  << ";\n";
+    source << "    " << "do {\n";
+    source << "        " << "krpc_object_t* v = krpc_vector_get(o, " << index << ");\n";
+    source << "        " << "for (uint32_t i = 0; i < krpc_vector_get_size(v); i++) {\n";
     lang_gen_field_unmarshal_impl_not_array_inline(field, source, index);
-    source << "        " << "}" << std::endl;
-    source << "    " << "} while(0);" << std::endl;
+    source << "        " << "}\n";
+    source << "    " << "} while(0);\n";
 }
 
-void krpc_gen_cpp_t::lang_gen_field_unmarshal_impl_not_array_inline(krpc_field_t* field, std::stringstream& source, int index) {
+void krpc_gen_cpp_t::lang_gen_field_unmarshal_impl_not_array_inline_get(krpc_ostream_t& source, int index, const std::string& method_name) {
+    source << "p" << index << ".push_back(" << method_name << "(krpc_vector_get(v, i)));\n";
+}
+
+void krpc_gen_cpp_t::lang_gen_field_unmarshal_impl_not_array_inline(krpc_field_t* field, krpc_ostream_t& source, int index) {
     source << "            ";
     if (field->check_type(krpc_field_type_attribute)) {
-        source << lang_field_find_type_name(field) << " __o;" << std::endl;
-        source << "            " << "unmarshal(krpc_vector_get(v, i), __o);" << std::endl;
-        source << "            " << "p" << index << ".push_back(__o);" << std::endl;
+        source << lang_field_find_type_name(field) << " o_;\n";
+        source << "            " << "unmarshal(krpc_vector_get(v, i), o_);\n";
+        source << "            " << "p" << index << ".push_back(o_);\n";
     } else if (field->check_type(krpc_field_type_i8)) {
-        source << "p" << index << ".push_back(krpc_number_get_i8(krpc_vector_get(v, i)));" << std::endl;
+        lang_gen_field_unmarshal_impl_not_array_inline_get(source, index, "krpc_number_get_i8");
     } else if (field->check_type(krpc_field_type_i16)) {
-        source << "p" << index << ".push_back(krpc_number_get_i16(krpc_vector_get(v, i)));" << std::endl;
+        lang_gen_field_unmarshal_impl_not_array_inline_get(source, index, "krpc_number_get_i16");
     } else if (field->check_type(krpc_field_type_i32)) {
-        source << "p" << index << ".push_back(krpc_number_get_i32(krpc_vector_get(v, i)));" << std::endl;
+        lang_gen_field_unmarshal_impl_not_array_inline_get(source, index, "krpc_number_get_i32");
     } else if (field->check_type(krpc_field_type_i64)) {
-        source << "p" << index << ".push_back(krpc_number_get_i64(krpc_vector_get(v, i)));" << std::endl;
+        lang_gen_field_unmarshal_impl_not_array_inline_get(source, index, "krpc_number_get_i64");
     } else if (field->check_type(krpc_field_type_ui8)) {
-        source << "p" << index << ".push_back(krpc_number_get_ui8(krpc_vector_get(v, i)));" << std::endl;
+        lang_gen_field_unmarshal_impl_not_array_inline_get(source, index, "krpc_number_get_ui8");
     } else if (field->check_type(krpc_field_type_ui16)) {
-        source << "p" << index << ".push_back(krpc_number_get_ui16(krpc_vector_get(v, i)));" << std::endl;
+        lang_gen_field_unmarshal_impl_not_array_inline_get(source, index, "krpc_number_get_ui16");
     } else if (field->check_type(krpc_field_type_ui32)) {
-        source << "p" << index << ".push_back(krpc_number_get_ui32(krpc_vector_get(v, i)));" << std::endl;
+        lang_gen_field_unmarshal_impl_not_array_inline_get(source, index, "krpc_number_get_ui32");
     } else if (field->check_type(krpc_field_type_ui64)) {
-        source << "p" << index << ".push_back(krpc_number_get_ui64(krpc_vector_get(v, i)));" << std::endl;
+        lang_gen_field_unmarshal_impl_not_array_inline_get(source, index, "krpc_number_get_ui64");
     } else if (field->check_type(krpc_field_type_f32)) {
-        source << "p" << index << ".push_back(krpc_number_get_f32(krpc_vector_get(v, i)));" << std::endl;
+        lang_gen_field_unmarshal_impl_not_array_inline_get(source, index, "krpc_number_get_f32");
     } else if (field->check_type(krpc_field_type_f64)) {
-        source << "p" << index << ".push_back(krpc_number_get_f64(krpc_vector_get(v, i)));" << std::endl;
+        lang_gen_field_unmarshal_impl_not_array_inline_get(source, index, "krpc_number_get_f64");
     } else if (field->check_type(krpc_field_type_string)) {
-        source << "p" << index << ".push_back(krpc_string_get(krpc_vector_get(v, i)));" << std::endl;
+        lang_gen_field_unmarshal_impl_not_array_inline_get(source, index, "krpc_string_get");
     }
 }
 
-void krpc_gen_cpp_t::lang_gen_field_unmarshal_impl_not_array(krpc_field_t* field, std::stringstream& source, int index) {
-    source << "    " << lang_field_find_type_name(field) << " p" << index  << ";" << std::endl;
+void krpc_gen_cpp_t::lang_gen_field_unmarshal_impl_not_array_get(krpc_ostream_t& source, int index, const std::string& method_name) {
+    source << "    p" << index << " = " << method_name << "(krpc_vector_get(o, " << index << "));\n";
+}
+
+void krpc_gen_cpp_t::lang_gen_field_unmarshal_impl_not_array(krpc_field_t* field, krpc_ostream_t& source, int index) {
+    source << "    " << lang_field_find_type_name(field) << " p" << index  << ";\n";
     if (field->check_type(krpc_field_type_attribute)) {
-        source << "    " << "unmarshal(krpc_vector_get(o, " << index << "), p" << index << ");" << std::endl;
+        source << "    " << "unmarshal(krpc_vector_get(o, " << index << "), p" << index << ");\n";
     } else if (field->check_type(krpc_field_type_i8)) {
-        source << "    p" << index << " = " << "krpc_number_get_i8(krpc_vector_get(o, " << index << "));" << std::endl;
+        lang_gen_field_unmarshal_impl_not_array_get(source, index, "krpc_number_get_i8");
     } else if (field->check_type(krpc_field_type_i16)) {
-        source << "    p" << index << " = " << "krpc_number_get_i16(krpc_vector_get(o, " << index << "));" << std::endl;
+        lang_gen_field_unmarshal_impl_not_array_get(source, index, "krpc_number_get_i16");
     } else if (field->check_type(krpc_field_type_i32)) {
-        source << "    p" << index << " = " << "krpc_number_get_i32(krpc_vector_get(o, " << index << "));" << std::endl;
+        lang_gen_field_unmarshal_impl_not_array_get(source, index, "krpc_number_get_i32");
     } else if (field->check_type(krpc_field_type_i64)) {
-        source << "    p" << index << " = " << "krpc_number_get_i64(krpc_vector_get(o, " << index << "));" << std::endl;
+        lang_gen_field_unmarshal_impl_not_array_get(source, index, "krpc_number_get_i64");
     } else if (field->check_type(krpc_field_type_ui8)) {
-        source << "    p" << index << " = " << "krpc_number_get_ui8(krpc_vector_get(o, " << index << "));" << std::endl;
+        lang_gen_field_unmarshal_impl_not_array_get(source, index, "krpc_number_get_ui8");
     } else if (field->check_type(krpc_field_type_ui16)) {
-        source << "    p" << index << " = " << "krpc_number_get_ui16(krpc_vector_get(o, " << index << "));" << std::endl;
+        lang_gen_field_unmarshal_impl_not_array_get(source, index, "krpc_number_get_ui16");
     } else if (field->check_type(krpc_field_type_ui32)) {
-        source << "    p" << index << " = " << "krpc_number_get_ui32(krpc_vector_get(o, " << index << "));" << std::endl;
+        lang_gen_field_unmarshal_impl_not_array_get(source, index, "krpc_number_get_ui32");
     } else if (field->check_type(krpc_field_type_ui64)) {
-        source << "    p" << index << " = " << "krpc_number_get_ui64(krpc_vector_get(o, " << index << "));" << std::endl;
+        lang_gen_field_unmarshal_impl_not_array_get(source, index, "krpc_number_get_ui64");
     } else if (field->check_type(krpc_field_type_f32)) {
-        source << "    p" << index << " = " << "krpc_number_get_f32(krpc_vector_get(o, " << index << "));" << std::endl;
+        lang_gen_field_unmarshal_impl_not_array_get(source, index, "krpc_number_get_f32");
     } else if (field->check_type(krpc_field_type_f64)) {
-        source << "    p" << index << " = " << "krpc_number_get_f64(krpc_vector_get(o, " << index << "));" << std::endl;
+        lang_gen_field_unmarshal_impl_not_array_get(source, index, "krpc_number_get_f64");
     } else if (field->check_type(krpc_field_type_string)) {
-        source << "    p" << index << " = " << "krpc_string_get(krpc_vector_get(o, " << index << "));" << std::endl;
+        lang_gen_field_unmarshal_impl_not_array_get(source, index, "krpc_string_get");
     }
 }
 
-void krpc_gen_cpp_t::lang_gen_attribute_marshal_method_decls(std::stringstream& header) {
+void krpc_gen_cpp_t::lang_gen_attribute_marshal_method_decls(krpc_ostream_t& header) {
     krpc_parser_t* parser = _rpc_gen->get_parser();
     krpc_parser_t::object_map_t::iterator object = parser->get_attributes().begin();
     for (; object != parser->get_attributes().end(); object++) {
@@ -345,7 +339,7 @@ void krpc_gen_cpp_t::lang_gen_attribute_marshal_method_decls(std::stringstream& 
     }
 }
 
-void krpc_gen_cpp_t::lang_gen_attribute_marshal_method_impls(std::stringstream& source) {
+void krpc_gen_cpp_t::lang_gen_attribute_marshal_method_impls(krpc_ostream_t& source) {
     krpc_parser_t* parser = _rpc_gen->get_parser();
     krpc_parser_t::object_map_t::iterator object = parser->get_attributes().begin();
     for (; object != parser->get_attributes().end(); object++) {
@@ -353,7 +347,7 @@ void krpc_gen_cpp_t::lang_gen_attribute_marshal_method_impls(std::stringstream& 
     }
 }
 
-void krpc_gen_cpp_t::lang_gen_attribute_unmarshal_method_impls(std::stringstream& source) {
+void krpc_gen_cpp_t::lang_gen_attribute_unmarshal_method_impls(krpc_ostream_t& source) {
     krpc_parser_t* parser = _rpc_gen->get_parser();
     krpc_parser_t::object_map_t::iterator object = parser->get_attributes().begin();
     for (; object != parser->get_attributes().end(); object++) {
@@ -361,15 +355,15 @@ void krpc_gen_cpp_t::lang_gen_attribute_unmarshal_method_impls(std::stringstream
     }
 }
 
-void krpc_gen_cpp_t::lang_gen_attribute_marshal_method_decl(krpc_attribute_t* attribute, std::stringstream& header) {
-    header << "krpc_object_t* marshal(" << attribute->get_name() << "& o);" << std::endl;
-    header << "bool unmarshal(krpc_object_t* v, " << attribute->get_name() << "& o);" << std::endl;
+void krpc_gen_cpp_t::lang_gen_attribute_marshal_method_decl(krpc_attribute_t* attribute, krpc_ostream_t& header) {
+    header << "krpc_object_t* marshal(" << attribute->get_name() << "& o);\n";
+    header << "bool unmarshal(krpc_object_t* v, " << attribute->get_name() << "& o);\n";
 }
 
-void krpc_gen_cpp_t::lang_gen_attribute_marshal_method_impl(krpc_attribute_t* attribute, std::stringstream& source) {
-    source << "krpc_object_t* marshal(" << attribute->get_name() << "& o) {" << std::endl;
+void krpc_gen_cpp_t::lang_gen_attribute_marshal_method_impl(krpc_attribute_t* attribute, krpc_ostream_t& source) {
+    source << "krpc_object_t* marshal(" << attribute->get_name() << "& o) {\n";
     krpc_attribute_t::field_list_t::iterator field = attribute->get_field_list().begin();
-    source << "    " << "krpc_object_t* v = krpc_object_create();" << std::endl;
+    source << "    " << "krpc_object_t* v = krpc_object_create();\n";
     for (int i = 0; field != attribute->get_field_list().end(); field++, i++) {
         if ((*field)->check_array()) {
             lang_gen_field_marshal_impl_array(*field, source, false);
@@ -379,12 +373,12 @@ void krpc_gen_cpp_t::lang_gen_attribute_marshal_method_impl(krpc_attribute_t* at
             lang_gen_field_marshal_impl_not_array(*field, source, holder, "v");
         }
     }
-    source << "    return v;" << std::endl;
-    source << "}" << std::endl << std::endl;
+    source << "    return v;\n"
+           << "}\n\n";
 }
 
-void krpc_gen_cpp_t::lang_gen_attribute_unmarshal_method_impl(krpc_attribute_t* attribute, std::stringstream& source) {
-    source << "bool unmarshal(krpc_object_t* v, " << attribute->get_name() << "& o) {" << std::endl;
+void krpc_gen_cpp_t::lang_gen_attribute_unmarshal_method_impl(krpc_attribute_t* attribute, krpc_ostream_t& source) {
+    source << "bool unmarshal(krpc_object_t* v, " << attribute->get_name() << "& o) {\n";
     krpc_attribute_t::field_list_t::iterator field = attribute->get_field_list().begin();
     for (int i = 0; field != attribute->get_field_list().end(); field++, i++) {
         std::string name = "o.";
@@ -395,95 +389,111 @@ void krpc_gen_cpp_t::lang_gen_attribute_unmarshal_method_impl(krpc_attribute_t* 
             lang_gen_attribute_unmarshal_field_not_array(*field, source, name, i);
         }
     }
-    source << "    return true;" << std::endl;
-    source << "}" << std::endl << std::endl;
+    source << "    return true;\n"
+           << "}\n\n";
 }
 
-void krpc_gen_cpp_t::lang_gen_attribute_unmarshal_field_array(krpc_field_t* field, std::stringstream& source, const std::string& name, int index) {
-    source << "    do {" << std::endl;
-    source << "        " << "krpc_object_t* v1 = 0;" << std::endl;
-    source << "        " << "v1 = krpc_vector_get(v, " << index << ");" << std::endl;
-    source << "        for (uint32_t i = 0; i < krpc_vector_get_size(v1); i++) {" << std::endl;
+void krpc_gen_cpp_t::lang_gen_attribute_unmarshal_field_array_element(krpc_ostream_t& source, const std::string& name, const std::string& method_name) {
+    source << "            " << name << ".push_back(" << method_name << "(krpc_vector_get(v_, i)));\n";
+}
+
+void krpc_gen_cpp_t::lang_gen_attribute_unmarshal_field_array(krpc_field_t* field, krpc_ostream_t& source, const std::string& name, int index) {
+    source << "    do {\n"
+           << "        krpc_object_t* v_ = 0;\n"
+           << "        v_ = krpc_vector_get(v, " << index << ");\n"
+           << "        for (uint32_t i = 0; i < krpc_vector_get_size(v_); i++) {\n";
     if (field->check_type(krpc_field_type_attribute)) {
-        source << "            " << field->get_field_type() << " o1;" << std::endl;
-        source << "            " << "unmarshal(krpc_vector_get(v1, i), o1);" << std::endl;
-        source << "            " << name << ".push_back(o1);" << std::endl;
+        source.write("            @file_type@ o_;\n"
+                     "            unmarshal(krpc_vector_get(v_, i), o_);\n"
+                     "            @name@.push_back(o_);\n",
+                     field->get_field_type().c_str(), name.c_str());
     } else if (field->check_type(krpc_field_type_i8)) {
-        source << "            " << name << ".push_back(krpc_number_get_i8(krpc_vector_get(v1, i)));" << std::endl;
+        lang_gen_attribute_unmarshal_field_array_element(source, name, "krpc_number_get_i8");
     } else if (field->check_type(krpc_field_type_i16)) {
-        source << "            " << name << ".push_back(krpc_number_get_i16(krpc_vector_get(v1, i)));" << std::endl;
+        lang_gen_attribute_unmarshal_field_array_element(source, name, "krpc_number_get_i16");
     } else if (field->check_type(krpc_field_type_i32)) {
-        source << "            " << name << ".push_back(krpc_number_get_i32(krpc_vector_get(v1, i)));" << std::endl;
+        lang_gen_attribute_unmarshal_field_array_element(source, name, "krpc_number_get_i32");
     } else if (field->check_type(krpc_field_type_i64)) {
-        source << "            " << name << ".push_back(krpc_number_get_i64(krpc_vector_get(v1, i)));" << std::endl;
+        lang_gen_attribute_unmarshal_field_array_element(source, name, "krpc_number_get_i64");
     } else if (field->check_type(krpc_field_type_ui8)) {
-        source << "            " << name << ".push_back(krpc_number_get_ui8(krpc_vector_get(v1, i)));" << std::endl;
+        lang_gen_attribute_unmarshal_field_array_element(source, name, "krpc_number_get_ui8");
     } else if (field->check_type(krpc_field_type_ui16)) {
-        source << "            " << name << ".push_back(krpc_number_get_ui16(krpc_vector_get(v1, i)));" << std::endl;
+        lang_gen_attribute_unmarshal_field_array_element(source, name, "krpc_number_get_ui16");
     } else if (field->check_type(krpc_field_type_ui32)) {
-        source << "            " << name << ".push_back(krpc_number_get_ui32(krpc_vector_get(v1, i)));" << std::endl;
+        lang_gen_attribute_unmarshal_field_array_element(source, name, "krpc_number_get_ui32");
     } else if (field->check_type(krpc_field_type_ui64)) {
-        source << "            " << name << ".push_back(krpc_number_get_ui64(krpc_vector_get(v1, i)));" << std::endl;
+        lang_gen_attribute_unmarshal_field_array_element(source, name, "krpc_number_get_ui64");
     } else if (field->check_type(krpc_field_type_f32)) {
-        source << "            " << name << ".push_back(krpc_number_get_f32(krpc_vector_get(v1, i)));" << std::endl;
+        lang_gen_attribute_unmarshal_field_array_element(source, name, "krpc_number_get_f32");
     } else if (field->check_type(krpc_field_type_f64)) {
-        source << "            " << name << ".push_back(krpc_number_get_f64(krpc_vector_get(v1, i)));" << std::endl;
+        lang_gen_attribute_unmarshal_field_array_element(source, name, "krpc_number_get_f64");
     } else if (field->check_type(krpc_field_type_string)) {
-        source << "            " << name << ".push_back(krpc_string_get(krpc_vector_get(v1, i)));" << std::endl;
+        lang_gen_attribute_unmarshal_field_array_element(source, name, "krpc_string_get");
     }
-    source << "        }" << std::endl;
-    source << "    } while(0);" << std::endl;
+    source << "        }\n";
+    source << "    } while(0);\n";
 }
 
-void krpc_gen_cpp_t::lang_gen_attribute_unmarshal_field_not_array(krpc_field_t* field, std::stringstream& source, const std::string& name, int index) {
+void krpc_gen_cpp_t::lang_gen_attribute_unmarshal_field_not_array_get(krpc_ostream_t& source, const std::string& name, const std::string& method_name, int index) {
+    source << "    " << name << " = " << method_name << "(krpc_vector_get(v, " << index << "));\n";
+}
+
+void krpc_gen_cpp_t::lang_gen_attribute_unmarshal_field_not_array(krpc_field_t* field, krpc_ostream_t& source, const std::string& name, int index) {
     if (field->check_type(krpc_field_type_attribute)) {
-        source << "    " << "unmarshal(krpv_vector_get(v, " << index << "), " << name << ");" << std::endl;
+        source << "    " << "unmarshal(krpv_vector_get(v, " << index << "), " << name << ");\n";
     } else if (field->check_type(krpc_field_type_i8)) {
-        source << "    " << name << " = krpc_number_get_i8(krpc_vector_get(v, " << index << "));" << std::endl;
+        lang_gen_attribute_unmarshal_field_not_array_get(source, name, "krpc_number_get_i8", index);
     } else if (field->check_type(krpc_field_type_i16)) {
-        source << "    " << name << " = krpc_number_get_i16(krpc_vector_get(v, " << index << "));" << std::endl;
+        lang_gen_attribute_unmarshal_field_not_array_get(source, name, "krpc_number_get_i16", index);
     } else if (field->check_type(krpc_field_type_i32)) {
-        source << "    " << name << " = krpc_number_get_i32(krpc_vector_get(v, " << index << "));" << std::endl;
+        lang_gen_attribute_unmarshal_field_not_array_get(source, name, "krpc_number_get_i32", index);
     } else if (field->check_type(krpc_field_type_i64)) {
-        source << "    " << name << " = krpc_number_get_i64(krpc_vector_get(v, " << index << "));" << std::endl;
+        lang_gen_attribute_unmarshal_field_not_array_get(source, name, "krpc_number_get_i64", index);
     } else if (field->check_type(krpc_field_type_ui8)) {
-        source << "    " << name << " = krpc_number_get_ui8(krpc_vector_get(v, " << index << "));" << std::endl;
+        lang_gen_attribute_unmarshal_field_not_array_get(source, name, "krpc_number_get_ui8", index);
     } else if (field->check_type(krpc_field_type_ui16)) {
-        source << "    " << name << " = krpc_number_get_ui16(krpc_vector_get(v, " << index << "));" << std::endl;
+        lang_gen_attribute_unmarshal_field_not_array_get(source, name, "krpc_number_get_ui16", index);
     } else if (field->check_type(krpc_field_type_ui32)) {
-        source << "    " << name << " = krpc_number_get_ui32(krpc_vector_get(v, " << index << "));" << std::endl;
+        lang_gen_attribute_unmarshal_field_not_array_get(source, name, "krpc_number_get_ui32", index);
     } else if (field->check_type(krpc_field_type_ui64)) {
-        source << "    " << name << " = krpc_number_get_ui64(krpc_vector_get(v, " << index << "));" << std::endl;
+        lang_gen_attribute_unmarshal_field_not_array_get(source, name, "krpc_number_get_ui64", index);
     } else if (field->check_type(krpc_field_type_f32)) {
-        source << "    " << name << " = krpc_number_get_f32(krpc_vector_get(v, " << index << "));" << std::endl;
+        lang_gen_attribute_unmarshal_field_not_array_get(source, name, "krpc_number_get_f32", index);
     } else if (field->check_type(krpc_field_type_f64)) {
-        source << "    " << name << " = krpc_number_get_f64(krpc_vector_get(v, " << index << "));" << std::endl;
+        lang_gen_attribute_unmarshal_field_not_array_get(source, name, "krpc_number_get_f64", index);
     } else if (field->check_type(krpc_field_type_string)) {
-        source << "    " << name << " = krpc_string_get(krpc_vector_get(v, " << index << "));" << std::endl;
+        lang_gen_attribute_unmarshal_field_not_array_get(source, name, "krpc_string_get", index);
     }
 }
 
-void krpc_gen_cpp_t::lang_gen_field_marshal_impl_array(krpc_field_t* field, std::stringstream& source, bool param, const std::string& whites) {
-    source << whites << "    " << "do {" << std::endl;
+void krpc_gen_cpp_t::lang_gen_field_marshal_impl_array(krpc_field_t* field, krpc_ostream_t& source, bool param, const std::string& whites) {
+    source << whites << "    do {\n";
     if (!param) {
-        source << whites << "        std::vector<" << lang_field_find_type_name(field)  << ">::iterator guard = o." << field->get_field_name() << ".begin();" << std::endl;
+        source << whites << "        std::vector<" << lang_field_find_type_name(field)  << ">::iterator guard = o." << field->get_field_name() << ".begin();\n";
     } else {
-        source << whites << "        std::vector<" << lang_field_find_type_name(field)  << ">::iterator guard = " << field->get_field_name() << ".begin();" << std::endl;
+        source << whites << "        std::vector<" << lang_field_find_type_name(field)  << ">::iterator guard = " << field->get_field_name() << ".begin();\n";
     }
-    source << whites << "        krpc_object_t* v1 = krpc_object_create();" << std::endl;
-    source << whites << "        krpc_vector_clear(v1);" << std::endl;
+    source << whites << "        krpc_object_t* v_ = krpc_object_create();\n"
+           << whites << "        krpc_vector_clear(v_);\n";
     if (!param) {
-        source << whites << "        " << "for(; guard != o." << field->get_field_name() << ".end(); guard++) {" << std::endl;
+        source << whites << "        " << "for(; guard != o." << field->get_field_name() << ".end(); guard++) {\n";
     } else {
-        source << whites << "        " << "for(; guard != " << field->get_field_name() << ".end(); guard++) {" << std::endl;
+        source << whites << "        " << "for(; guard != " << field->get_field_name() << ".end(); guard++) {\n";
     }
-    lang_gen_field_marshal_impl_not_array(field, source, "*guard", "v1", whites + "        ");
-    source << whites << "        " << "}" << std::endl;
-    source << whites << "        " << "krpc_vector_push_back(v, v1);" << std::endl;
-    source << whites << "    " << "} while(0);" << std::endl;
+    lang_gen_field_marshal_impl_not_array(field, source, "*guard", "v_", whites + "        ");
+    source << whites << "        }\n"
+           << whites << "        krpc_vector_push_back(v, v_);\n"
+           << whites << "    } while(0);\n";
 }
 
-void krpc_gen_cpp_t::lang_gen_field_marshal_impl_not_array(krpc_field_t* field, std::stringstream& source, const std::string& holder_name,
+void krpc_gen_cpp_t::lang_gen_field_marshal_impl_not_array_set(krpc_field_t* field, krpc_ostream_t& source, const std::string& holder, const std::string& v,
+    const std::string& method_name, const std::string& suffix, const std::string& whites) {
+    source << whites << "    " << "krpc_object_t* " << field->get_field_name() << "_" << suffix << " = krpc_object_create();\n"
+           << whites << "    " << method_name << "(" << field->get_field_name() << "_" << suffix << ", " << holder << ");\n"
+           << whites << "    " << "krpc_vector_push_back(" << v << ", " << field->get_field_name() << "_" << suffix << ");\n";
+}
+
+void krpc_gen_cpp_t::lang_gen_field_marshal_impl_not_array(krpc_field_t* field, krpc_ostream_t& source, const std::string& holder_name,
     const std::string& vector_name, const std::string& whites) {
     std::string holder = field->get_field_name();
     std::string v = "v";
@@ -494,55 +504,35 @@ void krpc_gen_cpp_t::lang_gen_field_marshal_impl_not_array(krpc_field_t* field, 
         v = vector_name;
     }
     if (field->check_type(krpc_field_type_attribute)) {
-        source << whites << "    " << "krpc_vector_push_back(" << v << ", marshal(" << holder << "));" << std::endl;
+        source << whites << "    " << "krpc_vector_push_back(" << v << ", marshal(" << holder << "));\n";
     } else if (field->check_type(krpc_field_type_i8)) {
-        source << whites << "    " << "krpc_object_t* " << field->get_field_name() << "_i8 = krpc_object_create();" << std::endl;
-        source << whites << "    " << "krpc_number_set_i8(" << field->get_field_name() << "_i8, " << holder << ");" << std::endl;
-        source << whites << "    " << "krpc_vector_push_back(" << v << ", " << field->get_field_name() << "_i8);" << std::endl;
+        lang_gen_field_marshal_impl_not_array_set(field, source, holder, v, "krpc_number_set_i8", "i8", whites);
     } else if (field->check_type(krpc_field_type_i16)) {
-        source << whites << "    " << "krpc_object_t* " << field->get_field_name() << "_i16 = krpc_object_create();" << std::endl;
-        source << whites << "    " << "krpc_number_set_i16(" << field->get_field_name() << "_i16, " << holder << ");" << std::endl;
-        source << whites << "    " << "krpc_vector_push_back(" << v << ", " << field->get_field_name() << "_i16);" << std::endl;
+        lang_gen_field_marshal_impl_not_array_set(field, source, holder, v, "krpc_number_set_i16", "i16", whites);
     } else if (field->check_type(krpc_field_type_i32)) {
-        source << whites << "    " << "krpc_object_t* " << field->get_field_name() << "_i32 = krpc_object_create();" << std::endl;
-        source << whites << "    " << "krpc_number_set_i32(" << field->get_field_name() << "_i32, " << holder << ");" << std::endl;
-        source << whites << "    " << "krpc_vector_push_back(" << v << ", " << field->get_field_name() << "_i32);" << std::endl;
+        lang_gen_field_marshal_impl_not_array_set(field, source, holder, v, "krpc_number_set_i32", "i32", whites);
     } else if (field->check_type(krpc_field_type_i64)) {
-        source << whites << "    " << "krpc_object_t* " << field->get_field_name() << "_i64 = krpc_object_create();" << std::endl;
-        source << whites << "    " << "krpc_number_set_i64(" << field->get_field_name() << "_i64, " << holder << ");" << std::endl;
-        source << whites << "    " << "krpc_vector_push_back(" << v << ", " << field->get_field_name() << "_i64);" << std::endl;
+        lang_gen_field_marshal_impl_not_array_set(field, source, holder, v, "krpc_number_set_i64", "i64", whites);
     } else if (field->check_type(krpc_field_type_ui8)) {
-        source << whites << "    " << "krpc_object_t* " << field->get_field_name() << "_ui8 = krpc_object_create();" << std::endl;
-        source << whites << "    " << "krpc_number_set_ui8(" << field->get_field_name() << "_ui8, " << holder << ");" << std::endl;
-        source << whites << "    " << "krpc_vector_push_back(" << v << ", " << field->get_field_name() << "_ui8);" << std::endl;
+        lang_gen_field_marshal_impl_not_array_set(field, source, holder, v, "krpc_number_set_ui8", "ui8", whites);
     } else if (field->check_type(krpc_field_type_ui16)) {
-        source << whites << "    " << "krpc_object_t* " << field->get_field_name() << "_ui16 = krpc_object_create();" << std::endl;
-        source << whites << "    " << "krpc_number_set_ui16(" << field->get_field_name() << "_ui16, " << holder << ");" << std::endl;
-        source << whites << "    " << "krpc_vector_push_back(" << v << ", " << field->get_field_name() << "_ui16);" << std::endl;
+        lang_gen_field_marshal_impl_not_array_set(field, source, holder, v, "krpc_number_set_ui16", "ui16", whites);
     } else if (field->check_type(krpc_field_type_ui32)) {
-        source << whites << "    " << "krpc_object_t* " << field->get_field_name() << "_ui32 = krpc_object_create();" << std::endl;
-        source << whites << "    " << "krpc_number_set_ui32(" << field->get_field_name() << "_ui32, " << holder << ");" << std::endl;
-        source << whites << "    " << "krpc_vector_push_back(" << v << ", " << field->get_field_name() << "_ui32);" << std::endl;
+        lang_gen_field_marshal_impl_not_array_set(field, source, holder, v, "krpc_number_set_ui32", "ui32", whites);
     } else if (field->check_type(krpc_field_type_ui64)) {
-        source << whites << "    " << "krpc_object_t* " << field->get_field_name() << "_ui64 = krpc_object_create();" << std::endl;
-        source << whites << "    " << "krpc_number_set_ui64(" << field->get_field_name() << "_ui64, " << holder << ");" << std::endl;
-        source << whites << "    " << "krpc_vector_push_back(" << v << ", " << field->get_field_name() << "_ui64);" << std::endl;
+        lang_gen_field_marshal_impl_not_array_set(field, source, holder, v, "krpc_number_set_ui64", "ui64", whites);
     } else if (field->check_type(krpc_field_type_f32)) {
-        source << whites << "    " << "krpc_object_t* " << field->get_field_name() << "_f32 = krpc_object_create();" << std::endl;
-        source << whites << "    " << "krpc_number_set_f32(" << field->get_field_name() << "_f32, " << holder << ");" << std::endl;
-        source << whites << "    " << "krpc_vector_push_back(" << v << ", " << field->get_field_name() << "_f32);" << std::endl;
+        lang_gen_field_marshal_impl_not_array_set(field, source, holder, v, "krpc_number_set_f32", "f32", whites);
     } else if (field->check_type(krpc_field_type_f64)) {
-        source << whites << "    " << "krpc_object_t* " << field->get_field_name() << "_f64 = krpc_object_create();" << std::endl;
-        source << whites << "    " << "krpc_number_set_f64(" << field->get_field_name() << "_f64, " << holder << ");" << std::endl;
-        source << whites << "    " << "krpc_vector_push_back(" << v << ", " << field->get_field_name() << "_f64);" << std::endl;
+        lang_gen_field_marshal_impl_not_array_set(field, source, holder, v, "krpc_number_set_f64", "f64", whites);
     } else if (field->check_type(krpc_field_type_string)) {
-        source << whites << "    " << "krpc_object_t* " << field->get_field_name() << "_string = krpc_object_create();" << std::endl;
-        source << whites << "    " << "krpc_string_set(" << field->get_field_name() << "_string, " << holder << ".c_str());" << std::endl;
-        source << whites << "    " << "krpc_vector_push_back(" << v << ", " << field->get_field_name() << "_string);" << std::endl;
+        source << whites << "    krpc_object_t* " << field->get_field_name() << "_string = krpc_object_create();\n"
+               << whites << "    krpc_string_set(" << field->get_field_name() << "_string, " << holder << ".c_str());\n"
+               << whites << "    krpc_vector_push_back(" << v << ", " << field->get_field_name() << "_string);\n";
     }
 }
 
-void krpc_gen_cpp_t::lang_gen_field_marshal_impl(krpc_field_t* field, std::stringstream& source, bool param) {
+void krpc_gen_cpp_t::lang_gen_field_marshal_impl(krpc_field_t* field, krpc_ostream_t& source, bool param) {
     if (field->check_array()) {
         lang_gen_field_marshal_impl_array(field, source, param);
     } else {
@@ -550,114 +540,114 @@ void krpc_gen_cpp_t::lang_gen_field_marshal_impl(krpc_field_t* field, std::strin
     }
 }
 
-void krpc_gen_cpp_t::lang_gen_attributes_pre_decls(std::stringstream& header) {
+void krpc_gen_cpp_t::lang_gen_attributes_pre_decls(krpc_ostream_t& header) {
     krpc_parser_t* parser = _rpc_gen->get_parser();
     krpc_parser_t::object_map_t::iterator object = parser->get_attributes().begin();
     for (; object != parser->get_attributes().end(); object++) {
-        header << "struct " << object->first << ";" << std::endl;
+        header << "struct " << object->first << ";\n";
     }
-    header << std::endl;
+    header << "\n";
 }
 
-void krpc_gen_cpp_t::lang_gen_attribute_method_impl(krpc_attribute_t* attribute, std::stringstream& source) {
-    // ctor
-    source << attribute->get_name() << "::" << attribute->get_name() << "() {}" << std::endl << std::endl;
-    // copy-ctor
-    source << attribute->get_name() << "::" << attribute->get_name() << "(const " << attribute->get_name() << "& rht) {" << std::endl;
+void krpc_gen_cpp_t::lang_gen_attribute_method_impl(krpc_attribute_t* attribute, krpc_ostream_t& source) {
+    source.replace("@name@::@name@() {}\n\n"
+                   "@name@::@name@(const @name@& rht) {\n",
+                   attribute->get_name());
     krpc_attribute_t::field_list_t::iterator field = attribute->get_field_list().begin();
     for (; field != attribute->get_field_list().end(); field++) {
         if ((*field)->check_array()) {
-            source << "    " << "push_back_all(" << (*field)->get_field_name() << ", " << "rht." << (*field)->get_field_name() <<
-                ".begin(), rht." << (*field)->get_field_name() << ".end());" << std::endl;
+            source.replace("    push_back_all(@name@, rht.@name@.begin(), rht.@name@.end());\n", (*field)->get_field_name());
         } else {
-            source << "    " << (*field)->get_field_name() << " = " << "rht." << (*field)->get_field_name() << ";" << std::endl;
+            source.replace("    @name@ = rht.@name@;\n", (*field)->get_field_name());
         }
     }
-    source << "}" << std::endl << std::endl;
+    source << "}\n\n";
     // operator=()
-    source << "const " << attribute->get_name() << "& " << attribute->get_name() << "::" << "operator=(const " << attribute->get_name() << "& rht) {" << std::endl;
+    source.replace("const @name@& @name@::operator=(const @name@& rht) {\n", attribute->get_name());
     field = attribute->get_field_list().begin();
     for (; field != attribute->get_field_list().end(); field++) {
         if ((*field)->check_array()) {
-            source << "    " << "push_back_all(" << (*field)->get_field_name() << ", " << "rht." << (*field)->get_field_name() <<
-                ".begin(), rht." << (*field)->get_field_name() << ".end());" << std::endl;
+            source.replace("    push_back_all(@name@, rht.@name@.begin(), rht.@name@.end());\n", (*field)->get_field_name());
         } else {
-            source << "    " << (*field)->get_field_name() << " = " << "rht." << (*field)->get_field_name() << ";" << std::endl;
+            source.replace("    @name@ = rht.@name@;\n", (*field)->get_field_name());
         }
     }
-    source << "    " << "return *this;" << std::endl;
-    source << "}" << std::endl << std::endl;
+    source << "    return *this;\n"
+           << "}\n\n";
     // print()
-    source << "void " << attribute->get_name() << "::print(std::stringstream& ss, std::string white) {" << std::endl;
-    source << "    ss << white << \"" << attribute->get_name() << ":\" << std::endl;" << std::endl;
-    source << "    white += \"  \";" << std::endl;
+    source.replace("void @name@::print(std::stringstream& ss, std::string white) {\n"
+                   "    ss << white << \"@name@:\" << std::endl;\n"
+                   "    white += \"  \";\n", attribute->get_name());
     field = attribute->get_field_list().begin();
     for (; field != attribute->get_field_list().end(); field++) {
         if ((*field)->check_array()) {
             if ((*field)->check_type(krpc_field_type_attribute)) {
-                source << "    ss << white << \"" << (*field)->get_field_name() << "[\" << std::endl;" << std::endl;
-                source << "    for (size_t i = 0; i < " << (*field)->get_field_name() << ".size(); i++) {" << std::endl;
-                source << "        " << (*field)->get_field_name() << "[i].print(ss, white + \"  \");" << std::endl;
-                source << "    }" << std::endl;
-                source << "    ss << white << \"]\" << std::endl;" << std::endl; 
+                source.replace("    ss << white << \"@name@[\" << std::endl;\n"
+                               "    for (size_t i = 0; i < @name@.size(); i++) {\n"
+                               "        @name@[i].print(ss, white + \"  \");\n"
+                               "    }\n"
+                               "    ss << white << \"]\" << std::endl;\n",
+                               (*field)->get_field_name());
             } else {
-                source << "    ss << white << \"" << (*field)->get_field_name() << "[\" << std::endl;" << std::endl;
-                source << "    for (size_t i = 0; i < " << (*field)->get_field_name() << ".size(); i++) {" << std::endl;
+                source.replace("    ss << white << \"@name@[\" << std::endl;\n"
+                               "    for (size_t i = 0; i < @name@.size(); i++) {\n", (*field)->get_field_name());
                 if (!(*field)->check_type(krpc_field_type_string) && !(*field)->check_type(krpc_field_type_f32) && !(*field)->check_type(krpc_field_type_f64)) {
-                    source << "        ss << white << \"  " << (*field)->get_field_name() << "=\" << (uint64_t)" << (*field)->get_field_name() << "[i] << std::endl;" << std::endl;
+                    source.replace("        ss << white << \"  @name@=\" << (uint64_t)@name@[i] << std::endl;\n", (*field)->get_field_name());
                 } else {
-                    source << "        ss << white << \"  " << (*field)->get_field_name() << "=\" << " << (*field)->get_field_name() << "[i] << std::endl;" << std::endl;
+                    source.replace("        ss << white << \"  @name@=\"@name@[i] << std::endl;\n", (*field)->get_field_name());
                 }
-                source << "    }" << std::endl;
-                source << "    ss << white << \"]\" << std::endl;" << std::endl; 
+                source << "    }\n"
+                       << "    ss << white << \"]\" << std::endl;\n"; 
             }
         } else {
             if ((*field)->check_type(krpc_field_type_attribute)) {
-               source << "    " << (*field)->get_field_name() << ".print(ss, white);" << std::endl;
+               source << "    " << (*field)->get_field_name() << ".print(ss, white);\n";
             } else {
                 if (!(*field)->check_type(krpc_field_type_string) && !(*field)->check_type(krpc_field_type_f32) && !(*field)->check_type(krpc_field_type_f64)) {
-                    source << "    ss << white << \"" << (*field)->get_field_name() << "=\" << (uint64_t)" << (*field)->get_field_name() << " << std::endl;" << std::endl;
+                    source << "    ss << white << \"" << (*field)->get_field_name() << "=\" << (uint64_t)" << (*field)->get_field_name() << " << std::endl;\n";
                 } else {
-                    source << "    ss << white << \"" << (*field)->get_field_name() << "=\" << " << (*field)->get_field_name() << " << std::endl;" << std::endl;
+                    source << "    ss << white << \"" << (*field)->get_field_name() << "=\" << " << (*field)->get_field_name() << " << std::endl;\n";
                 }
             }
         }
     }
-    source << "}" << std::endl << std::endl;
+    source << "}\n\n";
 }
 
-void krpc_gen_cpp_t::lang_gen_attribute_method_decl(krpc_attribute_t* attribute, std::stringstream& header) {
-    header << "    " << attribute->get_name() << "();" << std::endl;
-    header << "    " << attribute->get_name() << "(const " << attribute->get_name() << "& rht);" << std::endl;
-    header << "    " << "const " << attribute->get_name() << "& operator=(const " << attribute->get_name() << "& rht);" << std::endl;
-    header << "    void print(std::stringstream& ss, std::string white = \"\");" << std::endl;
+void krpc_gen_cpp_t::lang_gen_attribute_method_decl(krpc_attribute_t* attribute, krpc_ostream_t& header) {
+    header.replace("    @name@();\n"
+                   "    @name@(const @name@& rht);\n"
+                   "    const @name@& operator=(const @name@& rht);\n"
+                   "    void print(std::stringstream& ss, std::string white = \"\");\n",
+                   attribute->get_name());
 }
 
-void krpc_gen_cpp_t::lang_gen_attributes(std::stringstream& header, std::stringstream& source) {
-    source << "#include <sstream>" << std::endl;
-    source << "#include \"" << _rpc_gen->get_options()["name"] << ".h\"" << std::endl << std::endl;
-    source << "template<typename T>" << std::endl
-           << "void push_back_all(std::vector<T>& v, typename std::vector<T>::const_iterator begin, typename std::vector<T>::const_iterator end) {" << std::endl
-           << "    for (; begin != end; begin++) {" << std::endl
-           << "        v.push_back(*begin);" << std::endl
-           << "    }" << std::endl
-           << "}" << std::endl << std::endl;
+void krpc_gen_cpp_t::lang_gen_attributes(krpc_ostream_t& header, krpc_ostream_t& source) {
+    source.replace("#include <sstream>\n"
+                   "#include \"@name@.h\"\n\n"
+                   "template<typename T>\n"
+                   "void push_back_all(std::vector<T>& v, typename std::vector<T>::const_iterator begin, typename std::vector<T>::const_iterator end) {\n"
+                   "    for (; begin != end; begin++) {\n"
+                   "        v.push_back(*begin);\n"
+                   "    }\n"
+                   "}\n\n",
+                   _rpc_gen->get_options()["name"]);
     krpc_parser_t* parser = _rpc_gen->get_parser();
     krpc_parser_t::object_map_t::iterator object = parser->get_attributes().begin();
     for (; object != parser->get_attributes().end(); object++) {
-        header << "struct " << object->first << " {" << std::endl;
+        header << "struct " << object->first << " {\n";
         krpc_attribute_t::field_list_t::iterator field = object->second->get_field_list().begin();
         for (; field != object->second->get_field_list().end(); field++) {
             lang_gen_attribute_field_decl(header, *field);
         }
         lang_gen_attribute_method_decl(object->second, header);
         lang_gen_attribute_method_impl(object->second, source);
-        header << "};" << std::endl << std::endl;
+        header << "};\n\n";
     }
     lang_gen_attribute_marshal_method_decls(header);
 }
 
-void krpc_gen_cpp_t::lang_gen_attribute_field_decl(std::stringstream& header, krpc_field_t* field) {
+void krpc_gen_cpp_t::lang_gen_attribute_field_decl(krpc_ostream_t& header, krpc_field_t* field) {
     header << "    ";
     if (field->check_array()) {
         // 生成数组类型
@@ -666,10 +656,10 @@ void krpc_gen_cpp_t::lang_gen_attribute_field_decl(std::stringstream& header, kr
         // 普通变量
         header << lang_field_find_type_name(field);
     }
-    header << " " << field->get_field_name() << ";" << std::endl;
+    header << " " << field->get_field_name() << ";\n";
 }
 
-void krpc_gen_cpp_t::lang_gen_rpc_call_param_decl(std::stringstream& header, krpc_field_t* field) {
+void krpc_gen_cpp_t::lang_gen_rpc_call_param_decl(krpc_ostream_t& header, krpc_field_t* field) {
     if (field->check_array()) {
         // 生成数组类型引用
         header << "std::vector<" << lang_field_find_type_name(field) << ">&";
