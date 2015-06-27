@@ -6,7 +6,8 @@
 #include "rpc_sample.h"
 
 template<typename T>
-void push_back_all(std::vector<T>& v, typename std::vector<T>::const_iterator begin, typename std::vector<T>::const_iterator end) {
+void push_back_all(std::vector<T>& v, typename std::vector<T>::const_iterator begin,
+    typename std::vector<T>::const_iterator end) {
     for (; begin != end; begin++) {
         v.push_back(*begin);
     }

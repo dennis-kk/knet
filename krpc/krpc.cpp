@@ -39,11 +39,13 @@ krpc_gen_t::krpc_gen_t(int argc, char** argv) {
         } 
     }
     // 开始解析协议文件
-    _parser = new krpc_parser_t(0, _options["dir"].c_str(), _options["file"].c_str());
+    _parser = new krpc_parser_t(0, _options["dir"].c_str(),
+        _options["file"].c_str());
     _parser->parse();
 }
 
-bool krpc_gen_t::get_option(int pos, int argc, char** argv, const char* detail, const char* brief) {
+bool krpc_gen_t::get_option(int pos, int argc, char** argv, const char* detail,
+    const char* brief) {
     std::string detail_option = "-";
     std::string brief_option = "-";
     detail_option += detail;
@@ -79,7 +81,8 @@ void krpc_gen_t::lang_gen_code() {
         krpc_gen_cpp_t gen_cpp(this);
         gen_cpp.lang_gen_code();
     } else {
-        std::cout << "the language '" << _options["lang"] << "'" << " is not supported" << std::endl;
+        std::cout << "the language '" << _options["lang"] << "'"
+            << " is not supported" << std::endl;
     }
 }
 

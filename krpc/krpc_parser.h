@@ -218,7 +218,8 @@ public:
      * @param dir 文件所在目录
      * @param file_name 文件名
      */
-    krpc_parser_t(krpc_parser_t* parent, const char* dir, const char* file_name);\
+    krpc_parser_t(krpc_parser_t* parent, const char* dir,
+        const char* file_name);
 
     /*
      * 析构

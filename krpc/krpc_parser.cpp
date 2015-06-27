@@ -143,7 +143,8 @@ krpc_attribute_t* krpc_rpc_call_t::get_attribute() {
     return _attribute;
 }
 
-krpc_parser_t::krpc_parser_t(krpc_parser_t* parent, const char* dir, const char* file_name)
+krpc_parser_t::krpc_parser_t(krpc_parser_t* parent, const char* dir,
+    const char* file_name)
 : _file_name(file_name),
   _dir(dir),
   _lexer(0),
@@ -177,12 +178,14 @@ krpc_field_t* krpc_parser_t::parse_field(krpc_token_t* token) {
     krpc_token_t* first = token;
     krpc_field_t* field = new krpc_field_t(first->get_type());
     field->set_field_type(first->get_literal());
-    check_raise_exception(token = next_token(), "need a field type or array declaration");
+    check_raise_exception(token = next_token(),
+        "need a field type or array declaration");
     if (krpc_token_array == token->get_type()) {
         field->set_type(krpc_field_type_array);
         check_raise_exception(token = next_token(), "need a field name");
     }
-    check_raise_exception(krpc_token_text == token->get_type(), "need a field name but got a '" << token->get_literal() << "'");
+    check_raise_exception(krpc_token_text == token->get_type(),
+        "need a field name but got a '" << token->get_literal() << "'");
     field->set_field_name(token->get_literal());
     return field;
 }
@@ -193,12 +196,16 @@ krpc_attribute_t* krpc_parser_t::parse_attribute(krpc_token_t* token) {
     //
     krpc_attribute_t* attribute = new krpc_attribute_t(token->get_literal());
     check_raise_exception(token = next_token(), "attribute need a '{'");
-    check_raise_exception(krpc_token_left_brace == token->get_type(), "need a '{'");
-    for (token = next_token(); token && (krpc_token_right_brace != token->get_type()); token = next_token()) {
+    check_raise_exception(krpc_token_left_brace == token->get_type(),
+        "need a '{'");
+    for (token = next_token();
+        token && (krpc_token_right_brace != token->get_type());
+        token = next_token()) {
         krpc_field_t* field = parse_field(token);
         attribute->push_field(field);
     }
-    check_raise_exception(krpc_token_right_brace == token->get_type(), "need a '}'");
+    check_raise_exception(krpc_token_right_brace == token->get_type(),
+        "need a '}'");
     return attribute;
 }
 
@@ -207,15 +214,20 @@ krpc_rpc_call_t* krpc_parser_t::parse_rpc_call(krpc_token_t* token) {
     // rpc `name` ( `field`* )
     //
     check_raise_exception(token, "attribute need a RPC name");
-    check_raise_exception(krpc_token_text == token->get_type(), "attribute need a RPC name");
+    check_raise_exception(krpc_token_text == token->get_type(),
+        "attribute need a RPC name");
     krpc_rpc_call_t* rpc_call = new krpc_rpc_call_t(token->get_literal());
     check_raise_exception(token = next_token(), "need a '('");
-    check_raise_exception(krpc_token_left_round == token->get_type(), "need a '('");
+    check_raise_exception(krpc_token_left_round == token->get_type(),
+        "need a '('");
     for (token = next_token(); token; token = next_token()) {
         krpc_field_t* field = parse_field(token);
         rpc_call->get_attribute()->push_field(field);
-        check_raise_exception(token = next_token(), "attribute need a ',' or ')'");
-        check_raise_exception((krpc_token_comma == token->get_type()) || (krpc_token_right_round == token->get_type()), "attribute need a ',' or ')'");
+        check_raise_exception(token = next_token(),
+            "attribute need a ',' or ')'");
+        check_raise_exception((krpc_token_comma == token->get_type()) ||
+                              (krpc_token_right_round == token->get_type()),
+                              "attribute need a ',' or ')'");
         if (krpc_token_right_round == token->get_type()) {
             break;
         }
@@ -228,7 +240,8 @@ void krpc_parser_t::parse_import(krpc_token_t* token) {
     // import `file`
     //
     check_raise_exception(token, "need a file name");
-    krpc_parser_t* parser = new krpc_parser_t(this, _dir.c_str(), token->get_literal().c_str());
+    krpc_parser_t* parser = new krpc_parser_t(this, _dir.c_str(),
+        token->get_literal().c_str());
     _current_parser = parser;
     parser->parse();
     _current_parser = this;
@@ -242,17 +255,22 @@ void krpc_parser_t::parse_trunk(krpc_token_t* token) {
     if (krpc_token_object == token->get_type()) { // 对象
         krpc_attribute_t* attribute = parse_attribute(next_token());
         // 检查重复
-        if (get_attributes().find(attribute->get_name()) != get_attributes().end()) {
-            raise_exception("object redefined '" << attribute->get_name() << "'");
+        std::string name = attribute->get_name();
+        if (get_attributes().find(name) != get_attributes().end()) {
+            raise_exception("object redefined '"
+                << attribute->get_name() << "'");
         }
-        get_attributes().insert(std::make_pair(attribute->get_name(), attribute));
+        get_attributes().insert(
+            std::make_pair(name, attribute));
     } else if (krpc_token_rpc == token->get_type()) { // RPC方法
         krpc_rpc_call_t* rpc_call = parse_rpc_call(next_token());
         // 检查重复
-        if (get_rpc_calls().find(rpc_call->get_name()) != get_rpc_calls().end()) {
-            raise_exception("rpc method redefined '" << rpc_call->get_name() << "'");
+        std::string name = rpc_call->get_name();
+        if (get_rpc_calls().find(name) != get_rpc_calls().end()) {
+            raise_exception("rpc method redefined '"
+                << rpc_call->get_name() << "'");
         }
-        get_rpc_calls().insert(std::make_pair(rpc_call->get_name(), rpc_call));
+        get_rpc_calls().insert(std::make_pair(name, rpc_call));
     } else if (krpc_token_import == token->get_type()) { // 文件
         // 导入其他文件
         parse_import(next_token());
@@ -284,7 +302,8 @@ void krpc_parser_t::parse() throw(std::exception) {
         }
     } catch (std::exception& e) {
         // 错误输出, 文件(行，列): 原因
-        std::cout << _current_parser->_file_name << "(" << _lexer->get_row() << "," << _lexer->get_col() << "): " << e.what() << std::endl;
+        std::cout << _current_parser->_file_name << "(" << _lexer->get_row()
+            << "," << _lexer->get_col() << "): " << e.what() << std::endl;
     }
 }
 

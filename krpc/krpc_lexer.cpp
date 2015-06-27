@@ -29,7 +29,8 @@
 #include "krpc_lexer.h"
 #include "krpc_exception.h"
 
-krpc_token_t::krpc_token_t(const std::string& literal, int row, int col, int type)
+krpc_token_t::krpc_token_t(const std::string& literal, int row, int col,
+    int type)
 : _literal(literal),
   _row(row),
   _col(col),

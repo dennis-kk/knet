@@ -78,7 +78,8 @@ private:
      * @retval true 找到参数
      * @retval false 未找到参数
      */
-    bool get_option(int pos, int argc, char** argv, const char* detail, const char* brief);
+    bool get_option(int pos, int argc, char** argv, const char* detail,
+        const char* brief);
 
 private:
     option_map_t   _options; // 参数表

@@ -87,17 +87,20 @@ private:
     /*
      * 属性对象相关代码生成 - 声明
      */
-    void lang_gen_attribute_method_decl(krpc_attribute_t* attribute, krpc_ostream_t& header);
+    void lang_gen_attribute_method_decl(krpc_attribute_t* attribute,
+        krpc_ostream_t& header);
 
     /*
      * 属性对象相关代码生成 - 定义
      */
-    void lang_gen_attribute_method_impl(krpc_attribute_t* attribute, krpc_ostream_t& source);
+    void lang_gen_attribute_method_impl(krpc_attribute_t* attribute,
+        krpc_ostream_t& source);
 
     /*
      * 属性字段 - 声明
      */
-    void lang_gen_attribute_field_decl(krpc_ostream_t& header, krpc_field_t* field);
+    void lang_gen_attribute_field_decl(krpc_ostream_t& header,
+        krpc_field_t* field);
 
     /*
      * RPC函数 - 声明
@@ -112,17 +115,20 @@ private:
     /*
      * RPC参数 - 声明
      */
-    void lang_gen_rpc_call_param_decl(krpc_ostream_t& header, krpc_field_t* field);
+    void lang_gen_rpc_call_param_decl(krpc_ostream_t& header,
+        krpc_field_t* field);
 
     /*
      * RPC函数 - proxy定义
      */
-    void lang_gen_rpc_call_impl_proxy(krpc_attribute_t* attribute, krpc_ostream_t& source);
+    void lang_gen_rpc_call_impl_proxy(krpc_attribute_t* attribute,
+        krpc_ostream_t& source);
 
     /*
      * RPC函数 - stub定义
      */
-    void lang_gen_rpc_call_impl_stub(krpc_attribute_t* attribute, krpc_ostream_t& source, const std::string& rpc_name);
+    void lang_gen_rpc_call_impl_stub(krpc_attribute_t* attribute,
+        krpc_ostream_t& source, const std::string& rpc_name);
 
     /*
      * 所有属性对象 - marshal/unmarshal声明
@@ -132,7 +138,8 @@ private:
     /*
      * 属性对象 - marshal声明
      */
-    void lang_gen_attribute_marshal_method_decl(krpc_attribute_t* attribute, krpc_ostream_t& header);
+    void lang_gen_attribute_marshal_method_decl(krpc_attribute_t* attribute,
+        krpc_ostream_t& header);
 
     /*
      * 所有属性对象 - marshal定义
@@ -140,9 +147,16 @@ private:
     void lang_gen_attribute_marshal_method_impls(krpc_ostream_t& source);
 
     /*
+     * 属性屏幕输出
+     */
+    void lang_gen_attribute_method_print_impl(krpc_attribute_t* attribute,
+        krpc_ostream_t& source);
+
+    /*
      * 属性对象 - marshal定义
      */
-    void lang_gen_attribute_marshal_method_impl(krpc_attribute_t* attribute, krpc_ostream_t& source);
+    void lang_gen_attribute_marshal_method_impl(krpc_attribute_t* attribute,
+        krpc_ostream_t& source);
 
     /*
      * 所有属性对象 - unmarshal定义
@@ -152,79 +166,99 @@ private:
     /*
      * 属性对象 - unmarshal定义
      */
-    void lang_gen_attribute_unmarshal_method_impl(krpc_attribute_t* attribute, krpc_ostream_t& source);
+    void lang_gen_attribute_unmarshal_method_impl(krpc_attribute_t* attribute,
+        krpc_ostream_t& source);
 
     /*
      * 属性对象 - 非数组 - unmarshal定义
      */
-    void lang_gen_attribute_unmarshal_field_not_array(krpc_field_t* field, krpc_ostream_t& source, const std::string& name, int index);
+    void lang_gen_attribute_unmarshal_field_not_array(krpc_field_t* field,
+        krpc_ostream_t& source, const std::string& name, int index);
 
     /*
      * 属性对象 - 非数组获取 - unmarshal定义
      */
-    void lang_gen_attribute_unmarshal_field_not_array_get(krpc_ostream_t& source, const std::string& name, const std::string& method_name, int index);
+    void lang_gen_attribute_unmarshal_field_not_array_get(
+        krpc_ostream_t& source, const std::string& name,
+            const std::string& method_name, int index);
 
     /*
      * 属性对象 - 数组 - unmarshal定义
      */
-    void lang_gen_attribute_unmarshal_field_array(krpc_field_t* field, krpc_ostream_t& source, const std::string& name, int index);
+    void lang_gen_attribute_unmarshal_field_array(krpc_field_t* field,
+        krpc_ostream_t& source, const std::string& name, int index);
 
     /*
      * 属性对象 — 数组元素 - unmarshal
      */
-    void lang_gen_attribute_unmarshal_field_array_element(krpc_ostream_t& source, const std::string& name, const std::string& type_name);
+    void lang_gen_attribute_unmarshal_field_array_element(
+        krpc_ostream_t& source, const std::string& name,
+            const std::string& type_name);
 
     /*
      * 字段 - marshal定义
      */
-    void lang_gen_field_marshal_impl(krpc_field_t* field, krpc_ostream_t& source, bool param = false);
+    void lang_gen_field_marshal_impl(krpc_field_t* field,
+        krpc_ostream_t& source, bool param = false);
 
     /*
      * 字段 - 非数组 - marshal定义
      */
-    void lang_gen_field_marshal_impl_not_array(krpc_field_t* field, krpc_ostream_t& source, const std::string& holder_name = "",
-        const std::string& vector_name = "", const std::string& whites = "");
+    void lang_gen_field_marshal_impl_not_array(krpc_field_t* field,
+        krpc_ostream_t& source, const std::string& holder_name = "",
+            const std::string& vector_name = "",
+                const std::string& whites = "");
 
     /*
      * 字段 - 设置 - marshal定义
      */
-    void lang_gen_field_marshal_impl_not_array_set(krpc_field_t* field, krpc_ostream_t& source, const std::string& holder, const std::string& v,
-        const std::string& method_name, const std::string& suffix, const std::string& whites);
+    void lang_gen_field_marshal_impl_not_array_set(krpc_field_t* field,
+        krpc_ostream_t& source, const std::string& holder,
+            const std::string& v, const std::string& method_name,
+                const std::string& suffix, const std::string& whites);
 
     /*
      * 字段 - 数组 - marshal定义
      */
-    void lang_gen_field_marshal_impl_array(krpc_field_t* field, krpc_ostream_t& source, bool param, const std::string& whites = "");
+    void lang_gen_field_marshal_impl_array(krpc_field_t* field,
+        krpc_ostream_t& source, bool param, const std::string& whites = "");
 
     /*
      * 字段 - unmarshal定义
      */
-    void lang_gen_field_unmarshal_impl(krpc_field_t* field, krpc_ostream_t& source, int index);
+    void lang_gen_field_unmarshal_impl(krpc_field_t* field,
+        krpc_ostream_t& source, int index);
 
     /*
      * 字段 - 非数组 - marshal定义
      */
-    void lang_gen_field_unmarshal_impl_not_array(krpc_field_t* field, krpc_ostream_t& source, int index);
+    void lang_gen_field_unmarshal_impl_not_array(krpc_field_t* field,
+        krpc_ostream_t& source, int index);
 
     /*
      * 字段 - 非数组, 作为函数参数内调用 - unmarshal定义
      */
-    void lang_gen_field_unmarshal_impl_not_array_inline(krpc_field_t* field, krpc_ostream_t& source, int index);
+    void lang_gen_field_unmarshal_impl_not_array_inline(krpc_field_t* field,
+        krpc_ostream_t& source, int index);
 
     /*
      * 字段 - 非数组获取, 作为函数参数内调用 - unmarshal定义
      */
-    void lang_gen_field_unmarshal_impl_not_array_inline_get(krpc_ostream_t& source, int index, const std::string& method_name);
+    void lang_gen_field_unmarshal_impl_not_array_inline_get(
+        krpc_ostream_t& source, int index,
+            const std::string& method_name);
 
     /*
      * 字段 - 非数组获取 - unmarshal定义
      */
-    void lang_gen_field_unmarshal_impl_not_array_get(krpc_ostream_t& source, int index, const std::string& method_name);
+    void lang_gen_field_unmarshal_impl_not_array_get(krpc_ostream_t& source,
+        int index, const std::string& method_name);
 
     /*
      * 字段 - 数组 - unmarshal定义
      */
-    void lang_gen_field_unmarshal_impl_array(krpc_field_t* field, krpc_ostream_t& source, int index);
+    void lang_gen_field_unmarshal_impl_array(krpc_field_t* field,
+        krpc_ostream_t& source, int index);
 
     /*
      * 取得属性字段类型名
