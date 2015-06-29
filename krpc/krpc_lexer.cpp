@@ -339,7 +339,7 @@ bool krpc_lexer_t::verify() {
 
 void krpc_lexer_t::eat_comment() {
     check_raise_exception(verify(), "uncomplete comment");
-    if (current() == '/') {
+    if ((current() == '/') && has_next() && (forward(1) == '/')) {
         // 单行注释
         for (; verify(); forward(1), add_col(1)) {
             if (current() == '\n') {
@@ -349,7 +349,21 @@ void krpc_lexer_t::eat_comment() {
                 return;
             }
         }
-    } else {
+    } else if (current() == '*') {
+		// 多行注释
+		for (; verify(); forward(1), add_col(1)) {
+			if (current() == '*') {
+				add_col(1);
+				if (has_next() && (forward(1) == '/')) {
+					forward(1); // 下一个字符
+					return;
+				}
+			} else if (current() == '\n') {
+                _col = 1;
+                inc_row();
+			}
+		}
+	} else {
         raise_exception("invalid comment");
     }
     eat_whites();
