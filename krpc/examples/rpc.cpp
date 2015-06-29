@@ -76,6 +76,8 @@ void client_cb(channel_ref_t* channel, channel_cb_event_e e) {
                     loop_exit(channel_ref_get_loop(channel));
                     break;
                 }
+            } else {
+                break;
             }
         }
     }
