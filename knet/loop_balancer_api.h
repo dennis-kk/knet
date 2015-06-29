@@ -27,30 +27,30 @@
 
 #include "config.h"
 
-/*
+/**
  * 创建负载均衡器
  * @return loop_balancer_t实例
  */
 extern loop_balancer_t* loop_balancer_create();
 
-/*
+/**
  * 销毁负载均衡器
- * @param loop_balancer_t实例
+ * @param balancer loop_balancer_t实例
  */
 extern void loop_balancer_destroy(loop_balancer_t* balancer);
 
-/*
+/**
  * 添加事件循环到负载均衡器
- * @param loop_balancer_t实例
+ * @param balancer loop_balancer_t实例
  * @param loop loop_t实例
  * @retval error_ok 成功
  * @retval 其他 失败
  */
 extern int loop_balancer_attach(loop_balancer_t* balancer, loop_t* loop);
 
-/*
+/**
  * 从负载均衡器内删除事件循环
- * @param loop_balancer_t实例
+ * @param balancer loop_balancer_t实例
  * @param loop loop_t实例
  * @retval error_ok 成功
  * @retval 其他 失败

@@ -28,7 +28,7 @@
 #include "config.h"
 #include "loop_balancer_api.h"
 
-/*
+/**
  * 负载均衡 - 选取一个loop_t实例
  * @param balancer loop_balancer_t实例
  * @return loop_t实例

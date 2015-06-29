@@ -96,25 +96,25 @@ void krpc_gen_cpp_t::lang_gen_framework(krpc_ostream_t& header,
 void krpc_gen_cpp_t::lang_gen_framework_decls(krpc_ostream_t& header) {
     krpc_gen_t::option_map_t& options = _rpc_gen->get_options();
     header.replace(
-        "/*\n"
+        "/**\n"
         " * RPC单件类\n"
         " */\n"
         "class @name@_t {\n"
         "public:\n"
-        "\t/*\n"
+        "\t/**\n"
         "\t * 析构\n"
         "\t */\n"
         "\t~@name@_t();\n\n"
-        "\t/*\n"
+        "\t/**\n"
         "\t * 取得单件指针\n"
         "\t * \\return @name@_t指针\n"
         "\t */\n"
         "\tstatic @name@_t* instance();\n\n"
-        "\t/*\n"
+        "\t/**\n"
         "\t * 销毁单件\n"
         "\t */\n"
         "\tstatic void finalize();\n\n"
-        "\t/*\n"
+        "\t/**\n"
         "\t * 从stream_t读取RPC调用请求\n"
         "\t * \\param stream stream_t实例\n"
         "\t * \\retval error_ok 成功处理一次RPC调用\n"
@@ -134,7 +134,7 @@ void krpc_gen_cpp_t::lang_gen_framework_decls(krpc_ostream_t& header) {
         parser->get_rpc_calls().begin();
     for (; rpc_call != parser->get_rpc_calls().end(); rpc_call++) {
         header.write(
-            "\t/*\n"
+            "\t/**\n"
             "\t * @rpc@ @method_comment@\n",
             rpc_call->second->get_name().c_str(),
             rpc_call->second->get_comment().empty() ?
@@ -142,6 +142,7 @@ void krpc_gen_cpp_t::lang_gen_framework_decls(krpc_ostream_t& header) {
         krpc_attribute_t* attribute = rpc_call->second->get_attribute();
         krpc_attribute_t::field_list_t::iterator field =
             attribute->get_field_list().begin();
+        header << "\t * \\param stream stream_t实例\n";
         for (; field != attribute->get_field_list().end(); field++) {
             if ((*field)->get_comment().empty()) {
                 header.write("\t * \\param @field@ @comment@\n",
@@ -173,11 +174,11 @@ void krpc_gen_cpp_t::lang_gen_framework_decls(krpc_ostream_t& header) {
     // 私有成员
     header.replace(
         "private:\n"
-        "\t/*\n"
+        "\t/**\n"
         "\t * 构造函数\n"
         "\t */\n"
         "\t@name@_t();\n\n"
-        "\t/*\n"
+        "\t/**\n"
         "\t * 拷贝构造\n"
         "\t */\n"
         "\t@name@_t(const @name@_t&);\n\n"
@@ -266,7 +267,7 @@ void krpc_gen_cpp_t::lang_gen_rpc_call_decls(krpc_ostream_t& header) {
         parser->get_rpc_calls().begin();
     for (; rpc_call != parser->get_rpc_calls().end(); rpc_call++) {
         header.write(
-            "/*\n"
+            "/**\n"
             " * @method_name@代理\n"
             " */\n",
             rpc_call->first.c_str());
@@ -284,13 +285,13 @@ void krpc_gen_cpp_t::lang_gen_rpc_call_decls(krpc_ostream_t& header) {
         }
         header << ");\n\n";
         header.write(
-            "/*\n"
+            "/**\n"
             " * @method_name@桩\n"
             " */\n",
             rpc_call->first.c_str());
         header << "int " << rpc_call->first << "_stub(krpc_object_t* o);\n\n";
         header.write(
-            "/*\n"
+            "/**\n"
             " * @method_name@声明，需实现此方法\n"
             " */\n",
             rpc_call->first.c_str());
@@ -523,7 +524,7 @@ void krpc_gen_cpp_t::lang_gen_attribute_marshal_method_decl(
     krpc_attribute_t* attribute,
     krpc_ostream_t& header) {
     header.write(
-        "/*\n"
+        "/**\n"
         " * @attribute_name@序列化\n"
         " */\n",
         attribute->get_name().c_str());
@@ -531,7 +532,7 @@ void krpc_gen_cpp_t::lang_gen_attribute_marshal_method_decl(
            << attribute->get_name()
            << "& o);\n\n";
      header.write(
-        "/*\n"
+        "/**\n"
         " * @attribute_name@反序列化\n"
         " */\n",
         attribute->get_name().c_str());
@@ -902,21 +903,21 @@ void krpc_gen_cpp_t::lang_gen_attribute_method_impl(krpc_attribute_t* attribute,
 void krpc_gen_cpp_t::lang_gen_attribute_method_decl(krpc_attribute_t* attribute,
     krpc_ostream_t& header) {
     header.replace(
-        "\t/*\n"
+        "\t/**\n"
         "\t * 构造函数\n"
         "\t */\n"
         "\t@name@();\n\n"
-        "\t/*\n"
+        "\t/**\n"
         "\t * 拷贝构造\n"
         "\t * \\param rht @name@引用\n"
         "\t */\n"
         "\t@name@(const @name@& rht);\n\n"
-        "\t/*\n"
+        "\t/**\n"
         "\t * 赋值\n"
         "\t * \\param rht @name@引用\n"
         "\t */\n"
         "\tconst @name@& operator=(const @name@& rht);\n\n"
-        "\t/*\n"
+        "\t/**\n"
         "\t * 打印对象\n"
         "\t * \\param ss std::stringstream引用， 对象信息将输出到ss\n"
         "\t * \\param white 缩进空格\n"
@@ -942,7 +943,7 @@ void krpc_gen_cpp_t::lang_gen_attributes(krpc_ostream_t& header,
     for (; object != parser->get_attributes().end(); object++) {
         if (!object->second->get_comment().empty()) {
             header.write(
-                "/*\n"
+                "/**\n"
                 " * @comment@\n"
                 " */\n", object->second->get_comment().c_str());
         }

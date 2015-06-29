@@ -15,31 +15,31 @@ namespace rpc_sample {
 struct my_object_other_t;
 struct my_object_t;
 
-/*
+/**
  * 自定义对象
  */
 struct my_object_other_t {
 	std::vector<my_object_t> objects; ///< 对象数组
 	std::vector<int32_t> i32_array; ///< i32数组
 	std::vector<std::string> str_array; ///< 字符串数组
-	/*
+	/**
 	 * 构造函数
 	 */
 	my_object_other_t();
 
-	/*
+	/**
 	 * 拷贝构造
 	 * \param rht my_object_other_t引用
 	 */
 	my_object_other_t(const my_object_other_t& rht);
 
-	/*
+	/**
 	 * 赋值
 	 * \param rht my_object_other_t引用
 	 */
 	const my_object_other_t& operator=(const my_object_other_t& rht);
 
-	/*
+	/**
 	 * 打印对象
 	 * \param ss std::stringstream引用， 对象信息将输出到ss
 	 * \param white 缩进空格
@@ -47,7 +47,7 @@ struct my_object_other_t {
 	void print(std::stringstream& ss, std::string white = "");
 };
 
-/*
+/**
  * 对象事例
  */
 struct my_object_t {
@@ -62,24 +62,24 @@ struct my_object_t {
 	float nf32; ///< 32位浮点数
 	double nf64; ///< 64位浮点数
 	std::string str; ///< 字符串
-	/*
+	/**
 	 * 构造函数
 	 */
 	my_object_t();
 
-	/*
+	/**
 	 * 拷贝构造
 	 * \param rht my_object_t引用
 	 */
 	my_object_t(const my_object_t& rht);
 
-	/*
+	/**
 	 * 赋值
 	 * \param rht my_object_t引用
 	 */
 	const my_object_t& operator=(const my_object_t& rht);
 
-	/*
+	/**
 	 * 打印对象
 	 * \param ss std::stringstream引用， 对象信息将输出到ss
 	 * \param white 缩进空格
@@ -87,94 +87,94 @@ struct my_object_t {
 	void print(std::stringstream& ss, std::string white = "");
 };
 
-/*
+/**
  * my_object_other_t序列化
  */
 krpc_object_t* marshal(my_object_other_t& o);
 
-/*
+/**
  * my_object_other_t反序列化
  */
 bool unmarshal(krpc_object_t* v, my_object_other_t& o);
 
-/*
+/**
  * my_object_t序列化
  */
 krpc_object_t* marshal(my_object_t& o);
 
-/*
+/**
  * my_object_t反序列化
  */
 bool unmarshal(krpc_object_t* v, my_object_t& o);
 
-/*
+/**
  * my_rpc_func1代理
  */
 krpc_object_t* my_rpc_func1_proxy(my_object_t& my_obj);
 
-/*
+/**
  * my_rpc_func1桩
  */
 int my_rpc_func1_stub(krpc_object_t* o);
 
-/*
+/**
  * my_rpc_func1声明，需实现此方法
  */
 int my_rpc_func1(my_object_t& my_obj);
 
-/*
+/**
  * my_rpc_func2代理
  */
 krpc_object_t* my_rpc_func2_proxy(std::vector<my_object_t>& my_objs, int8_t my_i8);
 
-/*
+/**
  * my_rpc_func2桩
  */
 int my_rpc_func2_stub(krpc_object_t* o);
 
-/*
+/**
  * my_rpc_func2声明，需实现此方法
  */
 int my_rpc_func2(std::vector<my_object_t>& my_objs, int8_t my_i8);
 
-/*
+/**
  * my_rpc_func3代理
  */
 krpc_object_t* my_rpc_func3_proxy(const std::string& my_str, int8_t my_i8);
 
-/*
+/**
  * my_rpc_func3桩
  */
 int my_rpc_func3_stub(krpc_object_t* o);
 
-/*
+/**
  * my_rpc_func3声明，需实现此方法
  */
 int my_rpc_func3(const std::string& my_str, int8_t my_i8);
 
 
-/*
+/**
  * RPC单件类
  */
 class rpc_sample_t {
 public:
-	/*
+	/**
 	 * 析构
 	 */
 	~rpc_sample_t();
 
-	/*
+	/**
 	 * 取得单件指针
 	 * \return rpc_sample_t指针
 	 */
 	static rpc_sample_t* instance();
 
-	/*
+	/**
 	 * 销毁单件
 	 */
 	static void finalize();
 
-	/*
+	/**
 	 * 从stream_t读取RPC调用请求
 	 * \param stream stream_t实例
 	 * \retval error_ok 成功处理一次RPC调用
@@ -188,16 +188,18 @@ public:
 	 */
 	int rpc_proc(stream_t* stream); 
 
-	/*
+	/**
 	 * my_rpc_func1 RPC调用示例
+	 * \param stream stream_t实例
 	 * \param my_obj 参数1
 	 * \retval error_ok 成功
 	 * \retval error_rpc_marshal_fail 序列化RPC调用时失败
 	 */
 	int my_rpc_func1(stream_t* stream, my_object_t& my_obj);
 
-	/*
+	/**
 	 * my_rpc_func2 RPC调用示例
+	 * \param stream stream_t实例
 	 * \param my_objs 参数1
 	 * \param my_i8 参数2
 	 * \retval error_ok 成功
@@ -205,8 +207,9 @@ public:
 	 */
 	int my_rpc_func2(stream_t* stream, std::vector<my_object_t>& my_objs, int8_t my_i8);
 
-	/*
+	/**
 	 * my_rpc_func3 RPC调用示例
+	 * \param stream stream_t实例
 	 * \param my_str 参数1
 	 * \param my_i8 参数2
 	 * \retval error_ok 成功
@@ -215,12 +218,12 @@ public:
 	int my_rpc_func3(stream_t* stream, const std::string& my_str, int8_t my_i8);
 
 private:
-	/*
+	/**
 	 * 构造函数
 	 */
 	rpc_sample_t();
 
-	/*
+	/**
 	 * 拷贝构造
 	 */
 	rpc_sample_t(const rpc_sample_t&);

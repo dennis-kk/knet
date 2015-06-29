@@ -25,14 +25,14 @@
 #ifndef ADDRESS_API_H
 #define ADDRESS_API_H
 
-/*
+/**
  * 取得IP
  * @param address address_t实例
  * @return IP字符串
  */
 extern const char* address_get_ip(address_t* address);
 
-/*
+/**
  * 取得port
  * @param address address_t实例
  * @return 端口

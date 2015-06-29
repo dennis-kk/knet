@@ -41,7 +41,7 @@ struct _hash_value_t {
     void*    value;      /* 值 */
 };
 
-/*
+/**
  * 创建值
  * @param key 数字键
  * @param string_key 字符串键
@@ -50,13 +50,13 @@ struct _hash_value_t {
  */
 hash_value_t* hash_value_create(uint32_t key, const char* string_key, void* value);
 
-/*
+/**
  * 销毁值
  * @param hash_value hash_value_t实例
  */
 void hash_value_destroy(hash_value_t* hash_value);
 
-/*
+/**
  * 测试数字键是否相等
  * @param hash_value hash_value_t实例
  * @param key 整数键
@@ -65,7 +65,7 @@ void hash_value_destroy(hash_value_t* hash_value);
  */
 int hash_value_equal(hash_value_t* hash_value, uint32_t key);
 
-/*
+/**
  * 测试字符串键是否相等
  * @param hash_value hash_value_t实例
  * @param key 字符串键
@@ -74,7 +74,7 @@ int hash_value_equal(hash_value_t* hash_value, uint32_t key);
  */
 int hash_value_equal_string_key(hash_value_t* hash_value, const char* key);
 
-/*
+/**
  * 计算字符串整数键值
  * @param key 字符串
  * @return 整数键值

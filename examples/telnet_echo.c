@@ -4,7 +4,7 @@
 
 #include "knet.h"
 
-/*
+/**
  telnet»ØÏÔ
  */
 

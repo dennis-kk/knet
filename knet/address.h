@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2014-2015, dennis wang
  * All rights reserved.
  * 
@@ -28,19 +28,19 @@
 #include "config.h"
 #include "address_api.h"
 
-/*
+/**
  * 创建一个address_t实例
  * @return address_t实例
  */
 address_t* address_create();
 
-/*
+/**
  * 销毁一个address_t实例
  * @param address address_t实例
  */
 void address_destroy(address_t* address);
 
-/*
+/**
  * 设置IP和端口
  * @param address address_t实例
  * @param ip IP

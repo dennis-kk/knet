@@ -28,84 +28,84 @@
 #include "config.h"
 #include "loop_api.h"
 
-/*
+/**
  * 添加channel_ref_t实例到活跃链表
  * @param loop loop_t实例
  * @param channel_ref channel_ref_t实例
  */
 void loop_add_channel_ref(loop_t* loop, channel_ref_t* channel_ref);
 
-/*
+/**
  * 从到活跃链表删除channel_ref_t实例
  * @param loop loop_t实例
  * @param channel_ref channel_ref_t实例
  */
 void loop_remove_channel_ref(loop_t* loop, channel_ref_t* channel_ref);
 
-/*
+/**
  * 从到活跃链表删除channel_ref_t实例，并放入关闭链表
  * @param loop loop_t实例
  * @param channel_ref channel_ref_t实例
  */
 void loop_close_channel_ref(loop_t* loop, channel_ref_t* channel_ref);
 
-/*
+/**
  * 取得活跃链表
  * @param loop loop_t实例
  * @return dlist_t实例
  */
 dlist_t* loop_get_active_list(loop_t* loop);
 
-/*
+/**
  * 取得关闭链表
  * @param loop loop_t实例
  * @return dlist_t实例
  */
 dlist_t* loop_get_close_list(loop_t* loop);
 
-/*
+/**
  * 设置选取器实现
  * @param loop loop_t实例
  * @param impl 选取器实现
  */
 void loop_set_impl(loop_t* loop, void* impl);
 
-/*
+/**
  * 取得选取器实现
  * @param loop loop_t实例
  * @return 选取器实现
  */
 void* loop_get_impl(loop_t* loop);
 
-/*
+/**
  * 取得选取器当前线程ID
  * @param loop loop_t实例
  * @return 线程ID
  */
 thread_id_t loop_get_thread_id(loop_t* loop);
 
-/*
+/**
  * 设置负载均衡器(loop_balancer_t实例）
  * @param loop loop_t实例
  * @param balancer loop_balancer_t实例
  */
 void loop_set_balancer(loop_t* loop, loop_balancer_t* balancer);
 
-/*
+/**
  * 取得负载均衡器(loop_balancer_t实例）
  * @param loop loop_t实例
  * @return loop_balancer_t实例
  */
 loop_balancer_t* loop_get_balancer(loop_t* loop);
 
-/*
+/**
  * 发送事件通知 - 监听到新连接
  * @param loop loop_t实例
  * @param channel_ref channel_ref_t实例
  */
 void loop_notify_accept(loop_t* loop, channel_ref_t* channel_ref);
 
-/*
+/**
  * 发送事件通知 - 跨线程发送
  * @param loop loop_t实例
  * @param channel_ref channel_ref_t实例
@@ -113,68 +113,69 @@ void loop_notify_accept(loop_t* loop, channel_ref_t* channel_ref);
  */
 void loop_notify_send(loop_t* loop, channel_ref_t* channel_ref, buffer_t* send_buffer);
 
-/*
+/**
  * 发送事件通知 - 关闭管道
  * @param loop loop_t实例
  * @param channel_ref channel_ref_t实例
  */
 void loop_notify_close(loop_t* loop, channel_ref_t* channel_ref);
 
-/*
+/**
  * 通知管道回调函数
- * @param loop loop_t实例
+ * @param channel channel_ref_t实例
  * @param e 管道事件
  */
 void loop_queue_cb(channel_ref_t* channel, channel_cb_event_e e);
 
-/*
+/**
  * 触发读事件回调loop_queue_cb
  * @param loop loop_t实例
  */
 void loop_notify(loop_t* loop);
 
-/*
+/**
  * 处理事件
  * @param loop loop_t实例
  */
 void loop_event_process(loop_t* loop);
 
-/*
+/**
  * 检查活跃管道空闲超时
  * @param loop loop_t实例
+ * @param ts 当前时间戳（秒）
  */
 void loop_check_timeout(loop_t* loop, time_t ts);
 
-/*
+/**
  * 检查关闭管道是否可以销毁
  * @param loop loop_t实例
  */
 void loop_check_close(loop_t* loop);
 
-/*
+/**
  * 检查是否正在运行
  * @param loop loop_t实例
  */
 int loop_check_running(loop_t* loop);
 
-/*
+/**
  * 设置负载均衡配置
  * @param loop loop_t实例
  * @param options 选项（loop_balancer_in， loop_balancer_out）
  */
 void loop_set_balance_options(loop_t* loop, loop_balance_option_e options);
 
-/*
+/**
  * 取得负载均衡配置
  * @param loop loop_t实例
  * @return 负载均衡配置
  */
 loop_balance_option_e loop_get_balance_options(loop_t* loop);
 
-/*
+/**
  * 检查负载均衡配置是否开启
  * @param loop loop_t实例
- * @return 负载均衡配置
+ * @param options 负载均衡配置
  * @retval 0 未开启
  * @retval 非零 开启
  */

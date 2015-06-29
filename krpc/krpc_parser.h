@@ -33,7 +33,7 @@
 
 class krpc_field_t;
 
-/*
+/**
  * 字段类型
  */
 enum {
@@ -53,7 +53,7 @@ enum {
     krpc_field_type_rpc       = 8192,
 };
 
-/*
+/**
  * 属性
  */
 class krpc_attribute_t {
@@ -62,42 +62,42 @@ public:
     typedef field_list_t::iterator   iterator;
 
 public:
-    /*
+    /**
      * 构造
      * @param name 属性名
      */
     krpc_attribute_t(const std::string& name);
 
-    /*
+    /**
      * 析构
      */
     ~krpc_attribute_t();
     
-    /*
+    /**
      * 增加属性字段
      * @param field krpc_field_t实例
      */
     void push_field(krpc_field_t* field);
 
-    /*
+    /**
      * 获取属性名
      * @return 属性名
      */
     const std::string& get_name();
 
-    /*
+    /**
      * 获取字段列表
      * @return 字段列表
      */
     field_list_t& get_field_list();
 
-    /*
+    /**
      * 设置注释
      * @param comment 注释
      */
     void set_comment(const std::string& comment);
 
-    /*
+    /**
      * 取得注释
      * @return 注释
      */
@@ -109,36 +109,36 @@ private:
     std::string  _comment; // 注释
 };
 
-/*
+/**
  * 字段
  */
 class krpc_field_t {
 public:
-    /*
+    /**
      * 构造
      * @param type 字段类型
      */
     krpc_field_t(int type);
 
-    /*
+    /**
      * 析构
      */
     ~krpc_field_t();
 
-    /*
+    /**
      * 设置字段类型
      * @param type 字段类型
      */
     void set_type(int type);
 
-    /*
+    /**
      * 检查字段是否是数组
      * @retval true 是数组
      * @retval false 不是数组
      */
     bool check_array();
 
-    /*
+    /**
      * 检查字段类型
      * @param type 字段类型
      * @retval true 是
@@ -146,44 +146,44 @@ public:
      */
     bool check_type(int type);
 
-    /*
+    /**
      * 设置字段名
      * @param field_name 字段名
      */
     void set_field_name(const std::string& field_name);
 
-    /*
+    /**
      * 设置字段类型名
      * @param field_type 字段类型名
      */
     void set_field_type(const std::string& field_type);
 
-    /*
+    /**
      * 取得字段名
      * @return 字段名
      */
     const std::string& get_field_name();
 
-    /*
+    /**
      * 取得字段类型名
      * @return 字段类型名
      */
     const std::string& get_field_type();
 
-    /*
+    /**
      * 设置注释
      * @param comment 注释
      */
     void set_comment(const std::string& comment);
 
-    /*
+    /**
      * 取得注释
      * @return 注释
      */
     const std::string& get_comment();
 
 private:
-    /*
+    /**
      * 转换token类型到字段类型
      * @return 字段类型
      */
@@ -196,41 +196,41 @@ private:
     int         _type;       // 字段类型
 };
 
-/*
+/**
  * RPC调用
  */
 class krpc_rpc_call_t {
 public:
-    /*
+    /**
      * 构造
      * @param rpc_name 函数名称
      */
     krpc_rpc_call_t(const std::string& rpc_name);
 
-    /*
+    /**
      * 析构
      */
     ~krpc_rpc_call_t();
 
-    /*
+    /**
      * 取得函数名
      * @return 函数名
      */
     const std::string& get_name();
 
-    /*
+    /**
      * 取得参数表
      * @return krpc_attribute_t实例
      */
     krpc_attribute_t* get_attribute();
 
-    /*
+    /**
      * 设置注释
      * @param comment 注释
      */
     void set_comment(const std::string& comment);
 
-    /*
+    /**
      * 取得注释
      * @return 注释
      */
@@ -242,7 +242,7 @@ private:
     std::string       _comment;    // 注释
 };
 
-/*
+/**
  * 语法解析器
  */
 class krpc_parser_t {
@@ -251,7 +251,7 @@ public:
     typedef std::map<std::string, krpc_rpc_call_t*>  rpc_call_map_t;
 
 public:
-    /*
+    /**
      * 构造
      * @param parent 父解析器
      * @param dir 文件所在目录
@@ -260,42 +260,42 @@ public:
     krpc_parser_t(krpc_parser_t* parent, const char* dir,
         const char* file_name);
 
-    /*
+    /**
      * 析构
      */
     ~krpc_parser_t();
 
-    /*
+    /**
      * 解析
      */
     void parse() throw(std::exception);
 
-    /*
+    /**
      * 获取属性列表
      * @return 属性列表
      */
     object_map_t& get_attributes();
 
-    /*
+    /**
      * 获取RPC函数列表
      * @return RPC函数列表
      */
     rpc_call_map_t& get_rpc_calls();
 
 private:
-    /*
+    /**
      * 取得下一个token
      * @return krpc_token_t实例
      */
     krpc_token_t* next_token();
 
-    /*
+    /**
      * 解析chunk
      * @param token 当前token
      */
     void parse_trunk(krpc_token_t* token);
 
-    /*
+    /**
      * 取得嵌入注释
      * @param token 当前token
      * @param comment 注释
@@ -303,27 +303,27 @@ private:
      */
     krpc_token_t* parse_inline_comment(krpc_token_t* token, std::string& comment);
 
-    /*
+    /**
      * 解析属性
      * @param token 当前token
      * @return krpc_attribute_t实例
      */
     krpc_attribute_t* parse_attribute(krpc_token_t* token);
 
-    /*
+    /**
      * 解析RPC调用
      * @param token 当前token
      * @return krpc_rpc_call_t实例
      */
     krpc_rpc_call_t* parse_rpc_call(krpc_token_t* token);
 
-    /*
+    /**
      * 解析导入文件
      * @param token 当前token
      */
     void parse_import(krpc_token_t* token);
 
-    /*
+    /**
      * 解析字段
      * @param token 当前token
      * @return krpc_field_t实例

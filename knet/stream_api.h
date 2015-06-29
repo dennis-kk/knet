@@ -27,14 +27,14 @@
 
 #include "config.h"
 
-/*
+/**
  * 取得数据流内可读字节数
  * @param stream stream_t实例
  * @return 可读字节数
  */
 extern int stream_available(stream_t* stream);
 
-/*
+/**
  * 清空数据流
  * @param stream stream_t实例
  * @retval error_ok 成功
@@ -42,7 +42,7 @@ extern int stream_available(stream_t* stream);
  */
 extern int stream_eat_all(stream_t* stream);
 
-/*
+/**
  * 删除指定长度数据
  * @param stream stream_t实例
  * @param size 需要删除的长度
@@ -51,7 +51,7 @@ extern int stream_eat_all(stream_t* stream);
  */
 extern int stream_eat(stream_t* stream, int size);
 
-/*
+/**
  * 从数据流内读取数据并清除数据
  * @param stream stream_t实例
  * @param buffer 缓冲区
@@ -61,7 +61,7 @@ extern int stream_eat(stream_t* stream, int size);
  */
 extern int stream_pop(stream_t* stream, void* buffer, int size);
 
-/*
+/**
  * 向数据流内写数据
  * @param stream stream_t实例
  * @param buffer 缓冲区
@@ -71,7 +71,7 @@ extern int stream_pop(stream_t* stream, void* buffer, int size);
  */
 extern int stream_push(stream_t* stream, void* buffer, int size);
 
-/*
+/**
  * 从数据流内拷贝数据，但不清除数据流内数据
  * @param stream stream_t实例
  * @param buffer 缓冲区

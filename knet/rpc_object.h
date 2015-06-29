@@ -30,14 +30,14 @@
 #include "config.h"
 #include "rpc_object_api.h"
 
-/*
+/**
  * 取得序列化后的长度
  * @param o krpc_object_t实例
  * @return 取得序列化后的长度
  */
 uint16_t krpc_object_get_marshal_size(krpc_object_t* o);
 
-/*
+/**
  * 序列化到数据流
  * @param o krpc_object_t实例
  * @param stream stream_t实例
@@ -47,7 +47,7 @@ uint16_t krpc_object_get_marshal_size(krpc_object_t* o);
  */
 int krpc_object_marshal(krpc_object_t* o, stream_t* stream, uint16_t* bytes);
 
-/*
+/**
  * 从数据流反序列化对象
  * @param stream stream_t实例
  * @param o 存储得到的对象指针
@@ -57,14 +57,14 @@ int krpc_object_marshal(krpc_object_t* o, stream_t* stream, uint16_t* bytes);
  */
 int krpc_object_unmarshal(stream_t* stream, krpc_object_t** o, uint16_t* length);
 
-/*
+/**
  * 获取数字对象序列化长度
  * @param o krpc_object_t实例
  * @return 数字对象序列化长度
  */
 uint16_t krpc_number_get_marshal_size(krpc_object_t* o);
 
-/*
+/**
  * 设置字符串长度
  * @param o krpc_object_t实例
  * @param size 长度
@@ -73,7 +73,7 @@ uint16_t krpc_number_get_marshal_size(krpc_object_t* o);
  */
 int krpc_string_set_size(krpc_object_t* o, uint16_t size);
 
-/*
+/**
  * 扩展数组
  * @param o krpc_object_t实例
  */

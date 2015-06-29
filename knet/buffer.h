@@ -27,20 +27,20 @@
 
 #include "config.h"
 
-/*
+/**
  * 创建一个固定长度的缓冲区
  * @param size 缓冲区长度（字节）
  * @return buffer_t实例
  */
 buffer_t* buffer_create(uint32_t size);
 
-/*
+/**
  * 销毁缓冲区
  * @param sb buffer_t实例
  */
 void buffer_destroy(buffer_t* sb);
 
-/*
+/**
  * 写入
  * @param sb buffer_t实例
  * @param temp 字节数组指针
@@ -50,21 +50,21 @@ void buffer_destroy(buffer_t* sb);
  */
 uint32_t buffer_put(buffer_t* sb, const char* temp, uint32_t size);
 
-/*
+/**
  * 取得缓冲区内数据长度
  * @param sb buffer_t实例
  * @return 数据长度
  */
 uint32_t buffer_get_length(buffer_t* sb);
 
-/*
+/**
  * 取得缓冲区内最大长度
  * @param sb buffer_t实例
  * @return 最大长度
  */
 uint32_t buffer_get_max_size(buffer_t* sb);
 
-/*
+/**
  * 测试缓冲区内内是否有足够空间
  * @param sb buffer_t实例
  * @param size 需求长度
@@ -73,21 +73,21 @@ uint32_t buffer_get_max_size(buffer_t* sb);
  */
 int buffer_enough(buffer_t* sb, uint32_t size);
 
-/*
+/**
  * 取得缓冲区数据起始地址
  * @param sb buffer_t实例
  * @return 数据长度
  */
 char* buffer_get_ptr(buffer_t* sb);
 
-/*
+/**
  * 调整数据起始地址
  * @param sb buffer_t实例
  * @param gap 调整的长度
  */
 void buffer_adjust(buffer_t* sb, uint32_t gap);
 
-/*
+/**
  * 清空缓冲区
  * @param sb buffer_t实例
  */

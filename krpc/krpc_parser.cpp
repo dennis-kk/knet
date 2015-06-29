@@ -330,7 +330,7 @@ krpc_token_t* krpc_parser_t::parse_inline_comment(krpc_token_t* token, std::stri
 
 void krpc_parser_t::parse_trunk(krpc_token_t* token) {
     //
-    // `chunk` = (`object-declare` | `rpc-call` | `single-line-comment` | `import-file`)*
+    // `chunk` = (`object-declare` | `rpc-call` | `single-line-comment` | `import-file`)**
     //
     if (krpc_token_object == token->get_type()) { // ¶ÔÏó
         krpc_attribute_t* attribute = parse_attribute(next_token());

@@ -27,7 +27,7 @@
 
 /* TODO 待测试 */
 
-/*
+/**
  * RPC框架提供了一套底层RPC序列化及反序列化的基础，开发者不应该直接调用这些API，应使用代码生成工具
  * 提供的代码框架来进行RPC操作，生成的代码框架屏蔽了所有烦人的细节，使用起来也会比直接调用这些API更
  * 方便.
@@ -35,19 +35,19 @@
 
 #include "config.h"
 
-/*
+/**
  * 建立RPC
  * @return krpc_t实例
  */
 extern krpc_t* krpc_create();
 
-/*
+/**
  * 销毁RPC
  * @param rpc krpc_t实例
  */
 extern void krpc_destroy(krpc_t* rpc);
 
-/*
+/**
  * 注册RPC调用回调函数
  * @param rpc krpc_t实例
  * @param rpcid 回调ID
@@ -57,7 +57,7 @@ extern void krpc_destroy(krpc_t* rpc);
  */
 extern int krpc_add_cb(krpc_t* rpc, uint16_t rpcid, krpc_cb_t cb);
 
-/*
+/**
  * 删除注册过的RPC调用回调函数
  * @param rpc krpc_t实例
  * @param rpcid 回调ID
@@ -66,7 +66,7 @@ extern int krpc_add_cb(krpc_t* rpc, uint16_t rpcid, krpc_cb_t cb);
  */
 extern int krpc_del_cb(krpc_t* rpc, uint16_t rpcid);
 
-/*
+/**
  * 取得注册过的RPC调用回调函数
  * @param rpc krpc_t实例
  * @param rpcid 回调ID
@@ -74,7 +74,7 @@ extern int krpc_del_cb(krpc_t* rpc, uint16_t rpcid);
  */
 extern krpc_cb_t krpc_get_cb(krpc_t* rpc, uint16_t rpcid);
 
-/*
+/**
  * 处理RPC调用，从数据流反序列化RPC调用，并调用回调函数
  * @param rpc krpc_t实例
  * @param stream 数据流
@@ -83,7 +83,7 @@ extern krpc_cb_t krpc_get_cb(krpc_t* rpc, uint16_t rpcid);
  */
 extern int krpc_proc(krpc_t* rpc, stream_t* stream);
 
-/*
+/**
  * 发起RPC调用
  * @param rpc krpc_t实例
  * @param stream 数据流

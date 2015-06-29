@@ -27,7 +27,7 @@
 
 #include "config.h"
 
-/*
+/**
  * 建立日志
  * @param path 日志文件路径, 如果为0将使用当前目录
  * @param level 日志等级
@@ -36,13 +36,13 @@
  */
 logger_t* logger_create(const char* path, logger_level_e level, logger_mode_e mode);
 
-/*
+/**
  * 销毁日志
  * @param logger logger_t实例
  */
 void logger_destroy(logger_t* logger);
 
-/*
+/**
  * 写日志
  * @param logger logger_t实例
  * @param level 日志等级

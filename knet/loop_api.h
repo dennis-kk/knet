@@ -27,20 +27,20 @@
 
 #include "config.h"
 
-/*
+/**
  * 创建一个事件循环
  * @return loop_t实例
  */
 extern loop_t* loop_create();
 
-/*
+/**
  * 销毁事件循环
  * 事件循环内的所有管道也会被销毁
  * @param loop loop_t实例
  */
 extern void loop_destroy(loop_t* loop);
 
-/*
+/**
  * 创建管道
  * @param loop loop_t实例
  * @param max_send_list_len 发送缓冲区链最大长度
@@ -49,7 +49,7 @@ extern void loop_destroy(loop_t* loop);
  */
 extern channel_ref_t* loop_create_channel(loop_t* loop, uint32_t max_send_list_len, uint32_t recv_ring_len);
 
-/*
+/**
  * 使用已存在的套接字创建管道
  * @param loop loop_t实例
  * @param socket_fd 套接字
@@ -59,7 +59,7 @@ extern channel_ref_t* loop_create_channel(loop_t* loop, uint32_t max_send_list_l
  */
 extern channel_ref_t* loop_create_channel_exist_socket_fd(loop_t* loop, socket_t socket_fd, uint32_t max_send_list_len, uint32_t recv_ring_len);
 
-/*
+/**
  * 运行一次事件循环
  * loop_t不是线程安全的，不能在多个线程内同时对同一个loop_t实例调用loop_run_once
  * @param loop loop_t实例
@@ -68,7 +68,7 @@ extern channel_ref_t* loop_create_channel_exist_socket_fd(loop_t* loop, socket_t
  */
 extern int loop_run_once(loop_t* loop);
 
-/*
+/**
  * 运行事件循环直到调用loop_exit()
  * loop_t不是线程安全的，不能在多个线程内同时对同一个loop_t实例调用loop_run
  * @param loop loop_t实例
@@ -77,20 +77,20 @@ extern int loop_run_once(loop_t* loop);
  */
 extern int loop_run(loop_t* loop);
 
-/*
+/**
  * 退出函数loop_run()
  * @param loop loop_t实例
  */
 extern void loop_exit(loop_t* loop);
 
-/*
+/**
  * 获取活跃管道数量
  * @param loop loop_t实例
  * @return 活跃管道数量
  */
 extern int loop_get_active_channel_count(loop_t* loop);
 
-/*
+/**
  * 获取已关闭管道数量
  * @param loop loop_t实例
  * @return 关闭管道数量

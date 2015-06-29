@@ -28,13 +28,13 @@
 #include "config.h"
 #include "thread_api.h"
 
-/*
+/**
  * 建立一个套接字
  * @return 套接字
  */
 socket_t socket_create();
 
-/*
+/**
  * 发起异步connect
  * @param socket_fd 套接字
  * @param ip IP
@@ -44,7 +44,7 @@ socket_t socket_create();
  */
 int socket_connect(socket_t socket_fd, const char* ip, int port);
 
-/*
+/**
  * bind & listen
  * @param socket_fd 套接字
  * @param ip IP
@@ -55,7 +55,7 @@ int socket_connect(socket_t socket_fd, const char* ip, int port);
  */
 int socket_bind_and_listen(socket_t socket_fd, const char* ip, int port, int backlog);
 
-/*
+/**
  * accept
  * @param socket_fd 套接字
  * @retval 0 失败
@@ -63,7 +63,7 @@ int socket_bind_and_listen(socket_t socket_fd, const char* ip, int port, int bac
  */
 socket_t socket_accept(socket_t socket_fd);
 
-/*
+/**
  * 关闭套接字（强制关闭）
  * @param socket_fd 套接字
  * @retval 0 成功
@@ -82,79 +82,79 @@ int socket_set_send_buffer_size(socket_t socket_fd, int size);
 int socket_send(socket_t socket_fd, const char* data, uint32_t size);
 int socket_recv(socket_t socket_fd, char* data, uint32_t size);
 
-/*
+/**
  * socketpair
  * @sa socketpair
  */
 int socket_pair(socket_t pair[2]);
 
-/*
+/**
  * getpeername
  * @sa getpeername
  */
 int socket_getpeername(channel_ref_t* channel_ref, address_t* address);
 
-/*
+/**
  * getsockname
  * @sa getsockname
  */
 int socket_getsockname(channel_ref_t* channel_ref, address_t* address);
 
-/*
+/**
  * 检查套接字是否可写
  * @retval 0 不可写
  * @retval 1 可写
  */
 int socket_check_send_ready(socket_t socket_fd);
 
-/*
+/**
  * 建立互斥锁实例
  * @return lock_t实例
  */
 lock_t* lock_create();
 
-/*
+/**
  * 销毁互斥锁
  * @param lock lock_t实例
  */
 void lock_destroy(lock_t* lock);
 
-/*
+/**
  * 锁
  * @param lock lock_t实例
  */
 void lock_lock(lock_t* lock);
 
-/*
+/**
  * 测试锁
  * @param lock lock_t实例
  * @sa pthread_mutex_trylock
  */
 int lock_trylock(lock_t* lock);
 
-/*
+/**
  * 解锁
  * @param lock lock_t实例
  */
 void lock_unlock(lock_t* lock);
 
-/*
+/**
  * 获取当前毫秒
  */
 uint32_t time_get_milliseconds();
 
-/*
+/**
  * 获取当前微秒
  */
 uint64_t time_get_microseconds();
 
-/*
+/**
  * gettimeofday
  * @sa gettimeofday
  */
 int time_gettimeofday(struct timeval *tp, void *tzp);
 
-/*
+/**
  * 取得当前可阅读时间字符串
  * @param buffer 输出缓冲区
  * @param size 缓冲区大小
@@ -162,13 +162,13 @@ int time_gettimeofday(struct timeval *tp, void *tzp);
  */
 char* time_get_string(char* buffer, int size);
 
-/*
+/**
  * 产生一个伪UUID，只保证本进程内不重复
  * @return 伪UUID
  */
 uint64_t uuid_create();
 
-/*
+/**
  * 取得当前工作目录
  * @param buffer 路径缓冲区指针
  * @param size 缓冲区大小
@@ -177,7 +177,7 @@ uint64_t uuid_create();
  */
 char* path_getcwd(char* buffer, int size);
 
-/*
+/**
  * 获取最新的系统错误码
  * @return 系统错误码
  */
