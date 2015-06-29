@@ -230,6 +230,10 @@ private:
 	krpc_t* _rpc; // RPC µœ÷¿‡
 };
 
+inline static rpc_sample_t* rpc_sample_ptr() {
+	return rpc_sample_t::instance();
+}
+
 }
 
 #endif // _krpc_rpc_sample_h_

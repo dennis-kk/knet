@@ -55,12 +55,12 @@ void connector_cb(channel_ref_t* channel, channel_cb_event_e e) {
         my_obj.nf32 = 9.0f;
         my_obj.nf64 = 10.0f;
         my_obj.str = "hello world!";
-        rpc_sample_t::instance()->my_rpc_func1(stream, my_obj);
+        rpc_sample_ptr()->my_rpc_func1(stream, my_obj);
         std::vector<my_object_t> objs;
         objs.push_back(my_obj);
         objs.push_back(my_obj);
-        rpc_sample_t::instance()->my_rpc_func2(stream, objs, 16);
-        rpc_sample_t::instance()->my_rpc_func3(stream, "hello world!", 16);
+        rpc_sample_ptr()->my_rpc_func2(stream, objs, 16);
+        rpc_sample_ptr()->my_rpc_func3(stream, "hello world!", 16);
     }
 }
 
@@ -70,7 +70,7 @@ void client_cb(channel_ref_t* channel, channel_cb_event_e e) {
     stream_t* stream = channel_ref_get_stream(channel);
     if (e & channel_cb_event_recv) { /* 有数据可以读 */
         for (;;) {
-            int error = rpc_sample_t::instance()->rpc_proc(stream);
+            int error = rpc_sample_ptr()->rpc_proc(stream);
             if (error == error_ok) {
                 if (++i >= 3) {
                     loop_exit(channel_ref_get_loop(channel));

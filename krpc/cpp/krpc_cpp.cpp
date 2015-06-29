@@ -23,6 +23,7 @@
  */
 
 #include <fstream>
+#include <algorithm>
 #include "krpc_cpp.h"
 #include "krpc.h"
 #include "krpc_parser.h"
@@ -63,6 +64,11 @@ void krpc_gen_cpp_t::lang_gen_code() {
     lang_gen_attribute_marshal_method_impls(source);   // marshal方法
     lang_gen_attribute_unmarshal_method_impls(source); // unmarshal方法
     lang_gen_framework(header, source);                // 入口框架
+    header.replace(
+        "inline static @file_name@_t* @file_name@_ptr() {\n"
+        "\treturn @file_name@_t::instance();\n"
+        "}\n\n",
+        options["name"]);
     header << "}\n\n";
     source << "}\n\n";
     header.replace("#endif // _krpc_@file_name@_h_\n", options["name"]);
