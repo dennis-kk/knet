@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.9.1"/>
+<title>knet: E:/knet-git/knet/knet/loop_select.c 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">knet
+   &#160;<span id="projectnumber">1.4.1</span>
+   </div>
+   <div id="projectbrief">cross platform, light-weight, multithreading net library</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.9.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="pages.html"><span>相关页面</span></a></li>
+      <li><a href="namespaces.html"><span>命名空间</span></a></li>
+      <li><a href="annotated.html"><span>结构体</span></a></li>
+      <li class="current"><a href="files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>文件列表</span></a></li>
+      <li><a href="globals.html"><span>全局定义</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_885cc87fac2d91e269af0a5a959fa5f6.html">E:</a></li><li class="navelem"><a class="el" href="dir_4e74998c9a9305a116abc25fcf9a1edb.html">knet-git</a></li><li class="navelem"><a class="el" href="dir_a1c045b39f32066568ae964b52db514f.html">knet</a></li><li class="navelem"><a class="el" href="dir_f76d03789f0b12416cfffea59e2ed47d.html">knet</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">loop_select.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="loop__select_8c.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2014-2015, dennis wang</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * All rights reserved.</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * </span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Redistribution and use in source and binary forms, with or without</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * modification, are permitted provided that the following conditions are met:</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> *     * Redistributions of source code must retain the above copyright</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *       notice, this list of conditions and the following disclaimer.</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> *     * Redistributions in binary form must reproduce the above copyright</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> *       notice, this list of conditions and the following disclaimer in the</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> *       documentation and/or other materials provided with the distribution.</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> * </span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> * DISCLAIMED. IN NO EVENT SHALL dennis wang BE LIABLE FOR ANY</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment"> * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"> * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifdef LOOP_SELECT</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="loop_8h.html">loop.h</a>&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="list_8h.html">list.h</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="channel__ref_8h.html">channel_ref.h</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="logger_8h.html">logger.h</a>&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>_loop_select_t {</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    fd_set read_fds[FD_SETSIZE]; <span class="comment">/* select读描述符数组 */</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    fd_set send_fds[FD_SETSIZE]; <span class="comment">/* select写描述符数组 */</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;} loop_select_t;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keywordtype">int</span> <a class="code" href="loop_8h.html#a182ab27e7200de7cea5aa0a4aa71a519">impl_create</a>(<a class="code" href="struct__loop__t.html">loop_t</a>* loop) {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#if defined(WIN32) || defined(WIN64)</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    WSADATA wsa;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* defined(WIN32) || defined(WIN64) */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    loop_select_t* impl = <a class="code" href="config_8h.html#ab079e894d07566f511f1a5046a1eefe5">create</a>(loop_select_t);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="loop_8c.html#aa9654f1b872059f74665506fd67c9bc5">loop_set_impl</a>(loop, impl);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#if defined(WIN32) || defined(WIN64)</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    WSAStartup(MAKEWORD(2, 2), &amp;wsa);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* defined(WIN32) || defined(WIN64) */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="config_8h.html#ad8bc998d415be9115a064a8307df0ed5a722f316dc97e835ba613f7a505992dfd">error_ok</a>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;}</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keywordtype">void</span> <a class="code" href="loop_8h.html#ae6a6b7adc5e89d55352e0d54aa603915">impl_destroy</a>(<a class="code" href="struct__loop__t.html">loop_t</a>* loop) {</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="config_8h.html#a7bb0b359ffebe8a540dded73bd47417a">destroy</a>(<a class="code" href="loop_8c.html#a0f78295541723911955dd41b71ceece1">loop_get_impl</a>(loop));</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#if defined(WIN32) || defined(WIN64)</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    WSACleanup();</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* defined(WIN32) || defined(WIN64) */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keywordtype">int</span> _select(<a class="code" href="struct__loop__t.html">loop_t</a>* loop) {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> max_fd = 0;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> fd = 0;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">int</span> error = 0;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* node = 0;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* temp = 0;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="struct__channel__ref__t.html">channel_ref_t</a>* channel_ref = 0;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">struct </span>timeval tv = {0, 100}; <span class="comment">/* 空转时最多等待1ms */</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    loop_select_t* impl = (loop_select_t*)<a class="code" href="loop_8c.html#a0f78295541723911955dd41b71ceece1">loop_get_impl</a>(loop);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    FD_ZERO(impl-&gt;read_fds);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    FD_ZERO(impl-&gt;send_fds);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="list_8h.html#a06e8f967efba4722dce2899baaa5c155">dlist_for_each_safe</a>(<a class="code" href="loop_8c.html#a7c1a2360919bfff72d665f2651a8d080">loop_get_active_list</a>(loop), node, temp) {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        channel_ref = (<a class="code" href="struct__channel__ref__t.html">channel_ref_t</a>*)<a class="code" href="list_8c.html#a8a84722d067652fd9347f0a59732ec80">dlist_node_get_data</a>(node);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        fd = <a class="code" href="channel__ref_8c.html#af0c977ef05b7e767a8ef166a8037ec8b">channel_ref_get_socket_fd</a>(channel_ref);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="channel__ref_8c.html#ae003fde214ddbf4feec22ddb89b8257c">channel_ref_check_balance</a>(channel_ref)) {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        }</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="channel__ref_8c.html#a7134a0dab5db76d26dac56924267e5ac">channel_ref_check_event</a>(channel_ref, <a class="code" href="config_8h.html#a1460362ccf3a6ba930a1a3ac2f73f3eaa79eafb3852b5c4b325b91dab91e2695d">channel_event_recv</a>)) {</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            FD_SET(fd, impl-&gt;read_fds);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            max_fd = max(max_fd, fd);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="channel__ref_8c.html#a7134a0dab5db76d26dac56924267e5ac">channel_ref_check_event</a>(channel_ref, <a class="code" href="config_8h.html#a1460362ccf3a6ba930a1a3ac2f73f3eaa32b3163b91ab5ee84fdf2838f360894f">channel_event_send</a>)) {</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            FD_SET(fd, impl-&gt;send_fds);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;            max_fd = max(max_fd, fd);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        }</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    }</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    error = select(max_fd + 1, impl-&gt;read_fds, impl-&gt;send_fds, 0, &amp;tv);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordflow">if</span> (0 &gt; error) {</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="config_8h.html#ad8bc998d415be9115a064a8307df0ed5a32ce41a842de240c70407e5d7d17815d">error_loop_fail</a>;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    }</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="config_8h.html#ad8bc998d415be9115a064a8307df0ed5a722f316dc97e835ba613f7a505992dfd">error_ok</a>;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;}</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keywordtype">int</span> <a class="code" href="loop_8h.html#af6be25e4d8b08e68ad1730611fc7f15c">impl_run_once</a>(<a class="code" href="struct__loop__t.html">loop_t</a>* loop) {</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* node = 0;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* temp = 0;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <a class="code" href="struct__channel__ref__t.html">channel_ref_t</a>* channel_ref = 0;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <a class="code" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> fd = 0;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    time_t ts = time(0);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    loop_select_t* impl = (loop_select_t*)<a class="code" href="loop_8c.html#a0f78295541723911955dd41b71ceece1">loop_get_impl</a>(loop);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordtype">int</span> error = _select(loop);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordflow">if</span> (error != <a class="code" href="config_8h.html#ad8bc998d415be9115a064a8307df0ed5a722f316dc97e835ba613f7a505992dfd">error_ok</a>) {</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="keywordflow">return</span> error;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    }</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <a class="code" href="list_8h.html#a06e8f967efba4722dce2899baaa5c155">dlist_for_each_safe</a>(<a class="code" href="loop_8c.html#a7c1a2360919bfff72d665f2651a8d080">loop_get_active_list</a>(loop), node, temp) {</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        channel_ref = (<a class="code" href="struct__channel__ref__t.html">channel_ref_t</a>*)<a class="code" href="list_8c.html#a8a84722d067652fd9347f0a59732ec80">dlist_node_get_data</a>(node);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        fd = <a class="code" href="channel__ref_8c.html#af0c977ef05b7e767a8ef166a8037ec8b">channel_ref_get_socket_fd</a>(channel_ref);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <span class="keywordflow">if</span> (FD_ISSET(fd, impl-&gt;read_fds)) {</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;            <a class="code" href="channel__ref_8c.html#aac9295d2423894326c8b62e0ee851f89">channel_ref_update</a>(channel_ref, <a class="code" href="config_8h.html#a1460362ccf3a6ba930a1a3ac2f73f3eaa79eafb3852b5c4b325b91dab91e2695d">channel_event_recv</a>, ts);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        }</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keywordflow">if</span> (FD_ISSET(fd, impl-&gt;send_fds)) {</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;            <a class="code" href="channel__ref_8c.html#aac9295d2423894326c8b62e0ee851f89">channel_ref_update</a>(channel_ref, <a class="code" href="config_8h.html#a1460362ccf3a6ba930a1a3ac2f73f3eaa32b3163b91ab5ee84fdf2838f360894f">channel_event_send</a>, ts);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        }</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    }</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <a class="code" href="loop_8c.html#a7a6972b39402a670659621e9fa7204ce">loop_check_timeout</a>(loop, ts);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <a class="code" href="loop_8c.html#a5f61cefa251961e82fbf82b1c7dc0b6b">loop_check_close</a>(loop);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="config_8h.html#ad8bc998d415be9115a064a8307df0ed5a722f316dc97e835ba613f7a505992dfd">error_ok</a>;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;}</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<a class="code" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> <a class="code" href="loop_8h.html#a866d92a429bf2e1262bbd248036960c1">impl_channel_accept</a>(<a class="code" href="struct__channel__ref__t.html">channel_ref_t</a>* channel_ref) {</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    channel_ref;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;}</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="keywordtype">int</span> <a class="code" href="loop_8h.html#ae6d969c43313283fd7490201d637e29f">impl_event_add</a>(<a class="code" href="struct__channel__ref__t.html">channel_ref_t</a>* channel_ref, <a class="code" href="config_8h.html#a5ad43ab162fdf9ad53cde10ed3d87d99">channel_event_e</a> e) {</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    channel_ref;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    e;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="config_8h.html#ad8bc998d415be9115a064a8307df0ed5a722f316dc97e835ba613f7a505992dfd">error_ok</a>;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;}</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="keywordtype">int</span> <a class="code" href="loop_8h.html#a687cfc12a5dba8228bb411d4cf81df26">impl_event_remove</a>(<a class="code" href="struct__channel__ref__t.html">channel_ref_t</a>* channel_ref, <a class="code" href="config_8h.html#a5ad43ab162fdf9ad53cde10ed3d87d99">channel_event_e</a> e) {</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    channel_ref;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    e;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="config_8h.html#ad8bc998d415be9115a064a8307df0ed5a722f316dc97e835ba613f7a505992dfd">error_ok</a>;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;}</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="keywordtype">int</span> <a class="code" href="loop_8h.html#a27621a2037d9d1ad2f04e1b45bb63c6c">impl_add_channel_ref</a>(<a class="code" href="struct__loop__t.html">loop_t</a>* loop, <a class="code" href="struct__channel__ref__t.html">channel_ref_t</a>* channel_ref) {</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    loop;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    channel_ref;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="config_8h.html#ad8bc998d415be9115a064a8307df0ed5a722f316dc97e835ba613f7a505992dfd">error_ok</a>;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;}</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="keywordtype">int</span> <a class="code" href="loop_8h.html#af253b520c9f5107bf3b4384c6e54e1ea">impl_remove_channel_ref</a>(<a class="code" href="struct__loop__t.html">loop_t</a>* loop, <a class="code" href="struct__channel__ref__t.html">channel_ref_t</a>* channel_ref) {</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    loop;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    channel_ref;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="config_8h.html#ad8bc998d415be9115a064a8307df0ed5a722f316dc97e835ba613f7a505992dfd">error_ok</a>;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;}</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="loop_8h_html_ae6a6b7adc5e89d55352e0d54aa603915"><div class="ttname"><a href="loop_8h.html#ae6a6b7adc5e89d55352e0d54aa603915">impl_destroy</a></div><div class="ttdeci">void impl_destroy(loop_t *loop)</div></div>
+<div class="ttc" id="list_8c_html_a8a84722d067652fd9347f0a59732ec80"><div class="ttname"><a href="list_8c.html#a8a84722d067652fd9347f0a59732ec80">dlist_node_get_data</a></div><div class="ttdeci">void * dlist_node_get_data(dlist_node_t *node)</div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00078">list.c:78</a></div></div>
+<div class="ttc" id="config_8h_html_a1460362ccf3a6ba930a1a3ac2f73f3eaa32b3163b91ab5ee84fdf2838f360894f"><div class="ttname"><a href="config_8h.html#a1460362ccf3a6ba930a1a3ac2f73f3eaa32b3163b91ab5ee84fdf2838f360894f">channel_event_send</a></div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00133">config.h:133</a></div></div>
+<div class="ttc" id="config_8h_html_a1460362ccf3a6ba930a1a3ac2f73f3eaa79eafb3852b5c4b325b91dab91e2695d"><div class="ttname"><a href="config_8h.html#a1460362ccf3a6ba930a1a3ac2f73f3eaa79eafb3852b5c4b325b91dab91e2695d">channel_event_recv</a></div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00132">config.h:132</a></div></div>
+<div class="ttc" id="loop_8c_html_a7c1a2360919bfff72d665f2651a8d080"><div class="ttname"><a href="loop_8c.html#a7c1a2360919bfff72d665f2651a8d080">loop_get_active_list</a></div><div class="ttdeci">dlist_t * loop_get_active_list(loop_t *loop)</div><div class="ttdef"><b>Definition:</b> <a href="loop_8c_source.html#l00273">loop.c:273</a></div></div>
+<div class="ttc" id="loop_8h_html_a27621a2037d9d1ad2f04e1b45bb63c6c"><div class="ttname"><a href="loop_8h.html#a27621a2037d9d1ad2f04e1b45bb63c6c">impl_add_channel_ref</a></div><div class="ttdeci">int impl_add_channel_ref(loop_t *loop, channel_ref_t *channel_ref)</div></div>
+<div class="ttc" id="loop_8c_html_a5f61cefa251961e82fbf82b1c7dc0b6b"><div class="ttname"><a href="loop_8c.html#a5f61cefa251961e82fbf82b1c7dc0b6b">loop_check_close</a></div><div class="ttdeci">void loop_check_close(loop_t *loop)</div><div class="ttdef"><b>Definition:</b> <a href="loop_8c_source.html#l00365">loop.c:365</a></div></div>
+<div class="ttc" id="struct__dlist__node__t_html"><div class="ttname"><a href="struct__dlist__node__t.html">_dlist_node_t</a></div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00031">list.c:31</a></div></div>
+<div class="ttc" id="loop_8c_html_a7a6972b39402a670659621e9fa7204ce"><div class="ttname"><a href="loop_8c.html#a7a6972b39402a670659621e9fa7204ce">loop_check_timeout</a></div><div class="ttdeci">void loop_check_timeout(loop_t *loop, time_t ts)</div><div class="ttdef"><b>Definition:</b> <a href="loop_8c_source.html#l00338">loop.c:338</a></div></div>
+<div class="ttc" id="loop_8h_html"><div class="ttname"><a href="loop_8h.html">loop.h</a></div></div>
+<div class="ttc" id="config_8h_html_a0d9e0afbf02fb6ed6c5b1415dce51b05"><div class="ttname"><a href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a></div><div class="ttdeci">#define socket_t</div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00082">config.h:82</a></div></div>
+<div class="ttc" id="config_8h_html_ab079e894d07566f511f1a5046a1eefe5"><div class="ttname"><a href="config_8h.html#ab079e894d07566f511f1a5046a1eefe5">create</a></div><div class="ttdeci">#define create(type)</div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00095">config.h:95</a></div></div>
+<div class="ttc" id="loop_8h_html_a866d92a429bf2e1262bbd248036960c1"><div class="ttname"><a href="loop_8h.html#a866d92a429bf2e1262bbd248036960c1">impl_channel_accept</a></div><div class="ttdeci">socket_t impl_channel_accept(channel_ref_t *channel_ref)</div></div>
+<div class="ttc" id="struct__loop__t_html"><div class="ttname"><a href="struct__loop__t.html">_loop_t</a></div><div class="ttdef"><b>Definition:</b> <a href="loop_8c_source.html#l00035">loop.c:35</a></div></div>
+<div class="ttc" id="channel__ref_8c_html_af0c977ef05b7e767a8ef166a8037ec8b"><div class="ttname"><a href="channel__ref_8c.html#af0c977ef05b7e767a8ef166a8037ec8b">channel_ref_get_socket_fd</a></div><div class="ttdeci">socket_t channel_ref_get_socket_fd(channel_ref_t *channel_ref)</div><div class="ttdef"><b>Definition:</b> <a href="channel__ref_8c_source.html#l00244">channel_ref.c:244</a></div></div>
+<div class="ttc" id="loop_8c_html_a0f78295541723911955dd41b71ceece1"><div class="ttname"><a href="loop_8c.html#a0f78295541723911955dd41b71ceece1">loop_get_impl</a></div><div class="ttdeci">void * loop_get_impl(loop_t *loop)</div><div class="ttdef"><b>Definition:</b> <a href="loop_8c_source.html#l00313">loop.c:313</a></div></div>
+<div class="ttc" id="list_8h_html"><div class="ttname"><a href="list_8h.html">list.h</a></div></div>
+<div class="ttc" id="channel__ref_8c_html_aac9295d2423894326c8b62e0ee851f89"><div class="ttname"><a href="channel__ref_8c.html#aac9295d2423894326c8b62e0ee851f89">channel_ref_update</a></div><div class="ttdeci">void channel_ref_update(channel_ref_t *channel_ref, channel_event_e e, time_t ts)</div><div class="ttdef"><b>Definition:</b> <a href="channel__ref_8c_source.html#l00413">channel_ref.c:413</a></div></div>
+<div class="ttc" id="struct__channel__ref__t_html"><div class="ttname"><a href="struct__channel__ref__t.html">_channel_ref_t</a></div><div class="ttdef"><b>Definition:</b> <a href="channel__ref_8c_source.html#l00057">channel_ref.c:57</a></div></div>
+<div class="ttc" id="channel__ref_8h_html"><div class="ttname"><a href="channel__ref_8h.html">channel_ref.h</a></div></div>
+<div class="ttc" id="loop_8h_html_ae6d969c43313283fd7490201d637e29f"><div class="ttname"><a href="loop_8h.html#ae6d969c43313283fd7490201d637e29f">impl_event_add</a></div><div class="ttdeci">int impl_event_add(channel_ref_t *channel_ref, channel_event_e e)</div></div>
+<div class="ttc" id="channel__ref_8c_html_a7134a0dab5db76d26dac56924267e5ac"><div class="ttname"><a href="channel__ref_8c.html#a7134a0dab5db76d26dac56924267e5ac">channel_ref_check_event</a></div><div class="ttdeci">int channel_ref_check_event(channel_ref_t *channel_ref, channel_event_e event)</div><div class="ttdef"><b>Definition:</b> <a href="channel__ref_8c_source.html#l00296">channel_ref.c:296</a></div></div>
+<div class="ttc" id="loop_8h_html_a182ab27e7200de7cea5aa0a4aa71a519"><div class="ttname"><a href="loop_8h.html#a182ab27e7200de7cea5aa0a4aa71a519">impl_create</a></div><div class="ttdeci">int impl_create(loop_t *loop)</div></div>
+<div class="ttc" id="loop_8h_html_a687cfc12a5dba8228bb411d4cf81df26"><div class="ttname"><a href="loop_8h.html#a687cfc12a5dba8228bb411d4cf81df26">impl_event_remove</a></div><div class="ttdeci">int impl_event_remove(channel_ref_t *channel_ref, channel_event_e e)</div></div>
+<div class="ttc" id="channel__ref_8c_html_ae003fde214ddbf4feec22ddb89b8257c"><div class="ttname"><a href="channel__ref_8c.html#ae003fde214ddbf4feec22ddb89b8257c">channel_ref_check_balance</a></div><div class="ttdeci">int channel_ref_check_balance(channel_ref_t *channel_ref)</div><div class="ttdef"><b>Definition:</b> <a href="channel__ref_8c_source.html#l00492">channel_ref.c:492</a></div></div>
+<div class="ttc" id="loop_8h_html_af6be25e4d8b08e68ad1730611fc7f15c"><div class="ttname"><a href="loop_8h.html#af6be25e4d8b08e68ad1730611fc7f15c">impl_run_once</a></div><div class="ttdeci">int impl_run_once(loop_t *loop)</div></div>
+<div class="ttc" id="logger_8h_html"><div class="ttname"><a href="logger_8h.html">logger.h</a></div></div>
+<div class="ttc" id="config_8h_html_ad8bc998d415be9115a064a8307df0ed5a722f316dc97e835ba613f7a505992dfd"><div class="ttname"><a href="config_8h.html#ad8bc998d415be9115a064a8307df0ed5a722f316dc97e835ba613f7a505992dfd">error_ok</a></div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00159">config.h:159</a></div></div>
+<div class="ttc" id="loop_8h_html_af253b520c9f5107bf3b4384c6e54e1ea"><div class="ttname"><a href="loop_8h.html#af253b520c9f5107bf3b4384c6e54e1ea">impl_remove_channel_ref</a></div><div class="ttdeci">int impl_remove_channel_ref(loop_t *loop, channel_ref_t *channel_ref)</div></div>
+<div class="ttc" id="config_8h_html_ad8bc998d415be9115a064a8307df0ed5a32ce41a842de240c70407e5d7d17815d"><div class="ttname"><a href="config_8h.html#ad8bc998d415be9115a064a8307df0ed5a32ce41a842de240c70407e5d7d17815d">error_loop_fail</a></div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00170">config.h:170</a></div></div>
+<div class="ttc" id="list_8h_html_a06e8f967efba4722dce2899baaa5c155"><div class="ttname"><a href="list_8h.html#a06e8f967efba4722dce2899baaa5c155">dlist_for_each_safe</a></div><div class="ttdeci">#define dlist_for_each_safe(list, node, temp)</div><div class="ttdef"><b>Definition:</b> <a href="list_8h_source.html#l00173">list.h:173</a></div></div>
+<div class="ttc" id="config_8h_html_a5ad43ab162fdf9ad53cde10ed3d87d99"><div class="ttname"><a href="config_8h.html#a5ad43ab162fdf9ad53cde10ed3d87d99">channel_event_e</a></div><div class="ttdeci">enum _channel_event_e channel_event_e</div></div>
+<div class="ttc" id="config_8h_html_a7bb0b359ffebe8a540dded73bd47417a"><div class="ttname"><a href="config_8h.html#a7bb0b359ffebe8a540dded73bd47417a">destroy</a></div><div class="ttdeci">#define destroy(ptr)</div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00100">config.h:100</a></div></div>
+<div class="ttc" id="loop_8c_html_aa9654f1b872059f74665506fd67c9bc5"><div class="ttname"><a href="loop_8c.html#aa9654f1b872059f74665506fd67c9bc5">loop_set_impl</a></div><div class="ttdeci">void loop_set_impl(loop_t *loop, void *impl)</div><div class="ttdef"><b>Definition:</b> <a href="loop_8c_source.html#l00307">loop.c:307</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+生成于 2015年 六月 29日 星期一 16:51:00 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.9.1
+</small></address>
+</body>
+</html>

@@ -1,0 +1,241 @@
+\hypertarget{knet_2rpc_8c}{}\section{E\+:/knet-\/git/knet/knet/rpc.c 文件参考}
+\label{knet_2rpc_8c}\index{E\+:/knet-\/git/knet/knet/rpc.\+c@{E\+:/knet-\/git/knet/knet/rpc.\+c}}
+{\ttfamily \#include \char`\"{}rpc\+\_\+api.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}hash.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}channel\+\_\+ref.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}stream.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}rpc\+\_\+object.\+h\char`\"{}}\\*
+\subsection*{结构体}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct__krpc__t}{\+\_\+krpc\+\_\+t}
+\item 
+struct \hyperlink{structkrpc__header__t}{krpc\+\_\+header\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{类型定义}
+\begin{DoxyCompactItemize}
+\item 
+typedef enum \hyperlink{knet_2rpc_8c_a4045ccaf4758dcf838a88a58c73e462b}{\+\_\+krpc\+\_\+call\+\_\+type\+\_\+e} \hyperlink{knet_2rpc_8c_aa7109e23eab2e74945868adf0b60132b}{krpc\+\_\+call\+\_\+type\+\_\+e}
+\item 
+typedef struct \hyperlink{structkrpc__header__t}{krpc\+\_\+header\+\_\+t} \hyperlink{knet_2rpc_8c_aaadecef3a6bd120b41aee1916b5854d0}{krpc\+\_\+header\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{枚举}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{knet_2rpc_8c_a4045ccaf4758dcf838a88a58c73e462b}{\+\_\+krpc\+\_\+call\+\_\+type\+\_\+e} \{ \hyperlink{knet_2rpc_8c_a4045ccaf4758dcf838a88a58c73e462ba831d2f31c2f7281a9b54c6816df54c61}{krpc\+\_\+call\+\_\+type\+\_\+result} = 1, 
+\hyperlink{knet_2rpc_8c_a4045ccaf4758dcf838a88a58c73e462baff220c476768b4bf6b308fa257e12c4b}{krpc\+\_\+call\+\_\+type\+\_\+call} = 2
+ \}
+\end{DoxyCompactItemize}
+\subsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{knet_2rpc_8c_aa12a9874d2b0308994c3fa651cdbbd61}{krpc\+\_\+add\+\_\+cb} (\hyperlink{config_8h_a1e414ac6f6de24462ccf81e10f63428d}{krpc\+\_\+t} $\ast$rpc, uint16\+\_\+t rpcid, \hyperlink{config_8h_a06bb708c1b97445d3a5d0c1b32ad2ab6}{krpc\+\_\+cb\+\_\+t} cb)
+\item 
+int \hyperlink{knet_2rpc_8c_a51bbf2caf4916c0c08d8c8d8d86e562e}{krpc\+\_\+call} (\hyperlink{config_8h_a1e414ac6f6de24462ccf81e10f63428d}{krpc\+\_\+t} $\ast$rpc, \hyperlink{config_8h_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$stream, uint16\+\_\+t rpcid, \hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
+\item 
+\hyperlink{config_8h_a1e414ac6f6de24462ccf81e10f63428d}{krpc\+\_\+t} $\ast$ \hyperlink{knet_2rpc_8c_a5d55f838d222f44965d99eac9a0381c1}{krpc\+\_\+create} ()
+\item 
+int \hyperlink{knet_2rpc_8c_a76529ccab5c6f0ada79cac791e299ef9}{krpc\+\_\+del\+\_\+cb} (\hyperlink{config_8h_a1e414ac6f6de24462ccf81e10f63428d}{krpc\+\_\+t} $\ast$rpc, uint16\+\_\+t rpcid)
+\item 
+void \hyperlink{knet_2rpc_8c_ab07c8ccf1abc99b85f455a2f4280ac76}{krpc\+\_\+destroy} (\hyperlink{config_8h_a1e414ac6f6de24462ccf81e10f63428d}{krpc\+\_\+t} $\ast$rpc)
+\item 
+\hyperlink{config_8h_a06bb708c1b97445d3a5d0c1b32ad2ab6}{krpc\+\_\+cb\+\_\+t} \hyperlink{knet_2rpc_8c_a7841a0b4c828efcb607a51bbdd9c9ab1}{krpc\+\_\+get\+\_\+cb} (\hyperlink{config_8h_a1e414ac6f6de24462ccf81e10f63428d}{krpc\+\_\+t} $\ast$rpc, uint16\+\_\+t rpcid)
+\item 
+int \hyperlink{knet_2rpc_8c_a9c94cce18fdcbb5e184af7f2ea20cceb}{krpc\+\_\+proc} (\hyperlink{config_8h_a1e414ac6f6de24462ccf81e10f63428d}{krpc\+\_\+t} $\ast$rpc, \hyperlink{config_8h_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$stream)
+\end{DoxyCompactItemize}
+
+
+\subsection{类型定义说明}
+\hypertarget{knet_2rpc_8c_aa7109e23eab2e74945868adf0b60132b}{}\index{knet/rpc.\+c@{knet/rpc.\+c}!krpc\+\_\+call\+\_\+type\+\_\+e@{krpc\+\_\+call\+\_\+type\+\_\+e}}
+\index{krpc\+\_\+call\+\_\+type\+\_\+e@{krpc\+\_\+call\+\_\+type\+\_\+e}!knet/rpc.\+c@{knet/rpc.\+c}}
+\subsubsection[{krpc\+\_\+call\+\_\+type\+\_\+e}]{\setlength{\rightskip}{0pt plus 5cm}typedef enum {\bf \+\_\+krpc\+\_\+call\+\_\+type\+\_\+e}  {\bf krpc\+\_\+call\+\_\+type\+\_\+e}}\label{knet_2rpc_8c_aa7109e23eab2e74945868adf0b60132b}
+\hypertarget{knet_2rpc_8c_aaadecef3a6bd120b41aee1916b5854d0}{}\index{knet/rpc.\+c@{knet/rpc.\+c}!krpc\+\_\+header\+\_\+t@{krpc\+\_\+header\+\_\+t}}
+\index{krpc\+\_\+header\+\_\+t@{krpc\+\_\+header\+\_\+t}!knet/rpc.\+c@{knet/rpc.\+c}}
+\subsubsection[{krpc\+\_\+header\+\_\+t}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf krpc\+\_\+header\+\_\+t}  {\bf krpc\+\_\+header\+\_\+t}}\label{knet_2rpc_8c_aaadecef3a6bd120b41aee1916b5854d0}
+
+
+\subsection{枚举类型说明}
+\hypertarget{knet_2rpc_8c_a4045ccaf4758dcf838a88a58c73e462b}{}\index{knet/rpc.\+c@{knet/rpc.\+c}!\+\_\+krpc\+\_\+call\+\_\+type\+\_\+e@{\+\_\+krpc\+\_\+call\+\_\+type\+\_\+e}}
+\index{\+\_\+krpc\+\_\+call\+\_\+type\+\_\+e@{\+\_\+krpc\+\_\+call\+\_\+type\+\_\+e}!knet/rpc.\+c@{knet/rpc.\+c}}
+\subsubsection[{\+\_\+krpc\+\_\+call\+\_\+type\+\_\+e}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf \+\_\+krpc\+\_\+call\+\_\+type\+\_\+e}}\label{knet_2rpc_8c_a4045ccaf4758dcf838a88a58c73e462b}
+\begin{Desc}
+\item[枚举值]\par
+\begin{description}
+\index{krpc\+\_\+call\+\_\+type\+\_\+result@{krpc\+\_\+call\+\_\+type\+\_\+result}!knet/rpc.\+c@{knet/rpc.\+c}}\index{knet/rpc.\+c@{knet/rpc.\+c}!krpc\+\_\+call\+\_\+type\+\_\+result@{krpc\+\_\+call\+\_\+type\+\_\+result}}\item[{\em 
+\hypertarget{knet_2rpc_8c_a4045ccaf4758dcf838a88a58c73e462ba831d2f31c2f7281a9b54c6816df54c61}{}krpc\+\_\+call\+\_\+type\+\_\+result\label{knet_2rpc_8c_a4045ccaf4758dcf838a88a58c73e462ba831d2f31c2f7281a9b54c6816df54c61}
+}]\index{krpc\+\_\+call\+\_\+type\+\_\+call@{krpc\+\_\+call\+\_\+type\+\_\+call}!knet/rpc.\+c@{knet/rpc.\+c}}\index{knet/rpc.\+c@{knet/rpc.\+c}!krpc\+\_\+call\+\_\+type\+\_\+call@{krpc\+\_\+call\+\_\+type\+\_\+call}}\item[{\em 
+\hypertarget{knet_2rpc_8c_a4045ccaf4758dcf838a88a58c73e462baff220c476768b4bf6b308fa257e12c4b}{}krpc\+\_\+call\+\_\+type\+\_\+call\label{knet_2rpc_8c_a4045ccaf4758dcf838a88a58c73e462baff220c476768b4bf6b308fa257e12c4b}
+}]\end{description}
+\end{Desc}
+
+
+在文件 rpc.\+c 第 53 行定义.
+
+
+
+\subsection{函数说明}
+\hypertarget{knet_2rpc_8c_aa12a9874d2b0308994c3fa651cdbbd61}{}\index{knet/rpc.\+c@{knet/rpc.\+c}!krpc\+\_\+add\+\_\+cb@{krpc\+\_\+add\+\_\+cb}}
+\index{krpc\+\_\+add\+\_\+cb@{krpc\+\_\+add\+\_\+cb}!knet/rpc.\+c@{knet/rpc.\+c}}
+\subsubsection[{krpc\+\_\+add\+\_\+cb}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+add\+\_\+cb (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+t} $\ast$}]{rpc, }
+\item[{uint16\+\_\+t}]{rpcid, }
+\item[{{\bf krpc\+\_\+cb\+\_\+t}}]{cb}
+\end{DoxyParamCaption}
+)}\label{knet_2rpc_8c_aa12a9874d2b0308994c3fa651cdbbd61}
+注册\+R\+P\+C调用回调函数 
+\begin{DoxyParams}{参数}
+{\em rpc} & krpc\+\_\+t实例 \\
+\hline
+{\em rpcid} & 回调\+I\+D \\
+\hline
+{\em cb} & 回调函数指针 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+
+
+在文件 rpc.\+c 第 77 行定义.
+
+\hypertarget{knet_2rpc_8c_a51bbf2caf4916c0c08d8c8d8d86e562e}{}\index{knet/rpc.\+c@{knet/rpc.\+c}!krpc\+\_\+call@{krpc\+\_\+call}}
+\index{krpc\+\_\+call@{krpc\+\_\+call}!knet/rpc.\+c@{knet/rpc.\+c}}
+\subsubsection[{krpc\+\_\+call}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+call (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+t} $\ast$}]{rpc, }
+\item[{{\bf stream\+\_\+t} $\ast$}]{stream, }
+\item[{uint16\+\_\+t}]{rpcid, }
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
+\end{DoxyParamCaption}
+)}\label{knet_2rpc_8c_a51bbf2caf4916c0c08d8c8d8d86e562e}
+发起\+R\+P\+C调用 
+\begin{DoxyParams}{参数}
+{\em rpc} & krpc\+\_\+t实例 \\
+\hline
+{\em stream} & 数据流 \\
+\hline
+{\em rpcid} & 回调\+I\+D \\
+\hline
+{\em o} & 参数 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+
+
+在文件 rpc.\+c 第 170 行定义.
+
+\hypertarget{knet_2rpc_8c_a5d55f838d222f44965d99eac9a0381c1}{}\index{knet/rpc.\+c@{knet/rpc.\+c}!krpc\+\_\+create@{krpc\+\_\+create}}
+\index{krpc\+\_\+create@{krpc\+\_\+create}!knet/rpc.\+c@{knet/rpc.\+c}}
+\subsubsection[{krpc\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf krpc\+\_\+t}$\ast$ krpc\+\_\+create (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{knet_2rpc_8c_a5d55f838d222f44965d99eac9a0381c1}
+R\+P\+C框架提供了一套底层\+R\+P\+C序列化及反序列化的基础，开发者不应该直接调用这些\+A\+P\+I，应使用代码生成工具 提供的代码框架来进行\+R\+P\+C操作，生成的代码框架屏蔽了所有烦人的细节，使用起来也会比直接调用这些\+A\+P\+I更 方便. 建立\+R\+P\+C \begin{DoxyReturn}{返回}
+krpc\+\_\+t实例 
+\end{DoxyReturn}
+
+
+在文件 rpc.\+c 第 62 行定义.
+
+\hypertarget{knet_2rpc_8c_a76529ccab5c6f0ada79cac791e299ef9}{}\index{knet/rpc.\+c@{knet/rpc.\+c}!krpc\+\_\+del\+\_\+cb@{krpc\+\_\+del\+\_\+cb}}
+\index{krpc\+\_\+del\+\_\+cb@{krpc\+\_\+del\+\_\+cb}!knet/rpc.\+c@{knet/rpc.\+c}}
+\subsubsection[{krpc\+\_\+del\+\_\+cb}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+del\+\_\+cb (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+t} $\ast$}]{rpc, }
+\item[{uint16\+\_\+t}]{rpcid}
+\end{DoxyParamCaption}
+)}\label{knet_2rpc_8c_a76529ccab5c6f0ada79cac791e299ef9}
+删除注册过的\+R\+P\+C调用回调函数 
+\begin{DoxyParams}{参数}
+{\em rpc} & krpc\+\_\+t实例 \\
+\hline
+{\em rpcid} & 回调\+I\+D \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+
+
+在文件 rpc.\+c 第 87 行定义.
+
+\hypertarget{knet_2rpc_8c_ab07c8ccf1abc99b85f455a2f4280ac76}{}\index{knet/rpc.\+c@{knet/rpc.\+c}!krpc\+\_\+destroy@{krpc\+\_\+destroy}}
+\index{krpc\+\_\+destroy@{krpc\+\_\+destroy}!knet/rpc.\+c@{knet/rpc.\+c}}
+\subsubsection[{krpc\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+destroy (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+t} $\ast$}]{rpc}
+\end{DoxyParamCaption}
+)}\label{knet_2rpc_8c_ab07c8ccf1abc99b85f455a2f4280ac76}
+销毁\+R\+P\+C 
+\begin{DoxyParams}{参数}
+{\em rpc} & krpc\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+
+
+在文件 rpc.\+c 第 71 行定义.
+
+\hypertarget{knet_2rpc_8c_a7841a0b4c828efcb607a51bbdd9c9ab1}{}\index{knet/rpc.\+c@{knet/rpc.\+c}!krpc\+\_\+get\+\_\+cb@{krpc\+\_\+get\+\_\+cb}}
+\index{krpc\+\_\+get\+\_\+cb@{krpc\+\_\+get\+\_\+cb}!knet/rpc.\+c@{knet/rpc.\+c}}
+\subsubsection[{krpc\+\_\+get\+\_\+cb}]{\setlength{\rightskip}{0pt plus 5cm}{\bf krpc\+\_\+cb\+\_\+t} krpc\+\_\+get\+\_\+cb (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+t} $\ast$}]{rpc, }
+\item[{uint16\+\_\+t}]{rpcid}
+\end{DoxyParamCaption}
+)}\label{knet_2rpc_8c_a7841a0b4c828efcb607a51bbdd9c9ab1}
+取得注册过的\+R\+P\+C调用回调函数 
+\begin{DoxyParams}{参数}
+{\em rpc} & krpc\+\_\+t实例 \\
+\hline
+{\em rpcid} & 回调\+I\+D \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+回调函数指针 
+\end{DoxyReturn}
+
+
+在文件 rpc.\+c 第 93 行定义.
+
+\hypertarget{knet_2rpc_8c_a9c94cce18fdcbb5e184af7f2ea20cceb}{}\index{knet/rpc.\+c@{knet/rpc.\+c}!krpc\+\_\+proc@{krpc\+\_\+proc}}
+\index{krpc\+\_\+proc@{krpc\+\_\+proc}!knet/rpc.\+c@{knet/rpc.\+c}}
+\subsubsection[{krpc\+\_\+proc}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+proc (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+t} $\ast$}]{rpc, }
+\item[{{\bf stream\+\_\+t} $\ast$}]{stream}
+\end{DoxyParamCaption}
+)}\label{knet_2rpc_8c_a9c94cce18fdcbb5e184af7f2ea20cceb}
+处理\+R\+P\+C调用，从数据流反序列化\+R\+P\+C调用，并调用回调函数 
+\begin{DoxyParams}{参数}
+{\em rpc} & krpc\+\_\+t实例 \\
+\hline
+{\em stream} & 数据流 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+
+
+在文件 rpc.\+c 第 99 行定义.
+

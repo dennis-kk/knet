@@ -1,0 +1,466 @@
+\hypertarget{classkrpc__lexer__t}{}\section{krpc\+\_\+lexer\+\_\+t}
+\label{classkrpc__lexer__t}\index{krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}}
+
+
+{\ttfamily \#include \char`\"{}krpc\+\_\+lexer.\+h\char`\"{}}
+
+\subsection*{Public 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classkrpc__lexer__t_aef965ee4139d9bd6b0db053627a2e52d}{krpc\+\_\+lexer\+\_\+t} (const char $\ast$stream)
+\item 
+\hyperlink{classkrpc__lexer__t_af950a67f2446c73e417937a8af2b3597}{$\sim$krpc\+\_\+lexer\+\_\+t} ()
+\item 
+int \hyperlink{classkrpc__lexer__t_a8999d23f1d24a3c83cd09576b63dc10c}{get\+\_\+col} ()
+\item 
+int \hyperlink{classkrpc__lexer__t_abed0416ea8998a0934c9000f3b4bcd88}{get\+\_\+row} ()
+\item 
+\hyperlink{classkrpc__token__t}{krpc\+\_\+token\+\_\+t} $\ast$ \hyperlink{classkrpc__lexer__t_ad8cf136fc4a6adc94564e0bafcaecd83}{next\+\_\+token} ()  throw (std\+::exception)
+\end{DoxyCompactItemize}
+\subsection*{Private 类型}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::list$<$ \hyperlink{classkrpc__token__t}{krpc\+\_\+token\+\_\+t} $\ast$ $>$ \hyperlink{classkrpc__lexer__t_ad8bdce05269a6b358903a11c1e09d6ac}{token\+\_\+list\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Private 成员函数}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classkrpc__lexer__t_ab28dc24940e8cf45fb2f7220cc28b3f6}{add\+\_\+col} (int cols)
+\item 
+bool \hyperlink{classkrpc__lexer__t_a73ed4d367a4a544cf8a09e1ac62486a6}{check\+\_\+keyword2} (const char $\ast$s, char c1, char c2)
+\item 
+bool \hyperlink{classkrpc__lexer__t_a1a5593113b358e867a840892e79bd080}{check\+\_\+keyword3} (const char $\ast$s, char c1, char c2, char c3)
+\item 
+bool \hyperlink{classkrpc__lexer__t_a05efd992603a36720d6ef982dfbf2caa}{check\+\_\+keyword4} (const char $\ast$s, char c1, char c2, char c3, char c4)
+\item 
+bool \hyperlink{classkrpc__lexer__t_a6332f12a493d28168117a2c68381437c}{check\+\_\+keyword5} (const char $\ast$s, char c1, char c2, char c3, char c4, char c5)
+\item 
+bool \hyperlink{classkrpc__lexer__t_a0ee172be08d531266ae54d38b3344d6d}{check\+\_\+keyword6} (const char $\ast$s, char c1, char c2, char c3, char c4, char c5, char c6)
+\item 
+bool \hyperlink{classkrpc__lexer__t_ab8f823eb4debb2a2d655398ee57d268f}{check\+\_\+terminator} (char c, bool icomment)
+\item 
+bool \hyperlink{classkrpc__lexer__t_a8eca34404a5f28dae0854b9102925106}{check\+\_\+var\+\_\+name} (const char $\ast$var\+\_\+name)
+\item 
+bool \hyperlink{classkrpc__lexer__t_af12313c32b3d32c7b5743f2683af9eea}{check\+\_\+white} (char c)
+\item 
+char \hyperlink{classkrpc__lexer__t_ab43dfafd882bdd29eb3e86527ecf1a96}{current} ()
+\item 
+void \hyperlink{classkrpc__lexer__t_aac9c4da23c68633eb36a4f1ad1a2eace}{eat\+\_\+comment} ()
+\item 
+void \hyperlink{classkrpc__lexer__t_a70bc40fc4b1b9f89050e1af7e452409f}{eat\+\_\+whites} ()
+\item 
+char \hyperlink{classkrpc__lexer__t_aa53d78a1c216f17be7fa4589bda3d751}{forward} (int step)
+\item 
+\hyperlink{classkrpc__token__t}{krpc\+\_\+token\+\_\+t} $\ast$ \hyperlink{classkrpc__lexer__t_a11855adc8ca66763b315ee6c4f57a00c}{get\+\_\+token} ()
+\item 
+bool \hyperlink{classkrpc__lexer__t_aa0ff97d948e1a549665d5dcc64a193cf}{has\+\_\+next} ()
+\item 
+void \hyperlink{classkrpc__lexer__t_aae9633b064a078139fadcd1740bfff7a}{inc\+\_\+row} ()
+\item 
+bool \hyperlink{classkrpc__lexer__t_a8af5038360da3cdd202091591ffde915}{verify} ()
+\end{DoxyCompactItemize}
+\subsection*{Private 属性}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classkrpc__lexer__t_a01ae7de0d6a18d91fa340cfa16a3e29e}{\+\_\+col}
+\item 
+bool \hyperlink{classkrpc__lexer__t_a1dff5704d4f4cf03e612b387f2e0e8f3}{\+\_\+icomment}
+\item 
+int \hyperlink{classkrpc__lexer__t_a2c788815cbc67c3734ad77878c81dda8}{\+\_\+row}
+\item 
+char $\ast$ \hyperlink{classkrpc__lexer__t_a20b4eb27ad7e1ff727fdb2e25d7fd04a}{\+\_\+stream}
+\item 
+\hyperlink{classkrpc__lexer__t_ad8bdce05269a6b358903a11c1e09d6ac}{token\+\_\+list\+\_\+t} \hyperlink{classkrpc__lexer__t_aaf4e19b186e6ebcb707160ec088ac91c}{\+\_\+tokens}
+\end{DoxyCompactItemize}
+
+
+\subsection{详细描述}
+token解析器 
+
+在文件 krpc\+\_\+lexer.\+h 第 114 行定义.
+
+
+
+\subsection{成员类型定义说明}
+\hypertarget{classkrpc__lexer__t_ad8bdce05269a6b358903a11c1e09d6ac}{}\index{krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}!token\+\_\+list\+\_\+t@{token\+\_\+list\+\_\+t}}
+\index{token\+\_\+list\+\_\+t@{token\+\_\+list\+\_\+t}!krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}}
+\subsubsection[{token\+\_\+list\+\_\+t}]{\setlength{\rightskip}{0pt plus 5cm}typedef std\+::list$<${\bf krpc\+\_\+token\+\_\+t}$\ast$$>$ {\bf token\+\_\+list\+\_\+t}\hspace{0.3cm}{\ttfamily [private]}}\label{classkrpc__lexer__t_ad8bdce05269a6b358903a11c1e09d6ac}
+
+
+在文件 krpc\+\_\+lexer.\+h 第 229 行定义.
+
+
+
+\subsection{构造及析构函数说明}
+\hypertarget{classkrpc__lexer__t_aef965ee4139d9bd6b0db053627a2e52d}{}\index{krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}!krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}}
+\index{krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}!krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}}
+\subsubsection[{krpc\+\_\+lexer\+\_\+t}]{\setlength{\rightskip}{0pt plus 5cm}{\bf krpc\+\_\+lexer\+\_\+t} (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{stream}
+\end{DoxyParamCaption}
+)}\label{classkrpc__lexer__t_aef965ee4139d9bd6b0db053627a2e52d}
+构造 
+\begin{DoxyParams}{参数}
+{\em stream} & 字符流 \\
+\hline
+\end{DoxyParams}
+
+
+在文件 krpc\+\_\+lexer.\+cpp 第 59 行定义.
+
+\hypertarget{classkrpc__lexer__t_af950a67f2446c73e417937a8af2b3597}{}\index{krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}!````~krpc\+\_\+lexer\+\_\+t@{$\sim$krpc\+\_\+lexer\+\_\+t}}
+\index{````~krpc\+\_\+lexer\+\_\+t@{$\sim$krpc\+\_\+lexer\+\_\+t}!krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}}
+\subsubsection[{$\sim$krpc\+\_\+lexer\+\_\+t}]{\setlength{\rightskip}{0pt plus 5cm}$\sim${\bf krpc\+\_\+lexer\+\_\+t} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{classkrpc__lexer__t_af950a67f2446c73e417937a8af2b3597}
+析构 
+
+在文件 krpc\+\_\+lexer.\+cpp 第 66 行定义.
+
+
+
+\subsection{成员函数说明}
+\hypertarget{classkrpc__lexer__t_ab28dc24940e8cf45fb2f7220cc28b3f6}{}\index{krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}!add\+\_\+col@{add\+\_\+col}}
+\index{add\+\_\+col@{add\+\_\+col}!krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}}
+\subsubsection[{add\+\_\+col}]{\setlength{\rightskip}{0pt plus 5cm}void add\+\_\+col (
+\begin{DoxyParamCaption}
+\item[{int}]{cols}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{classkrpc__lexer__t_ab28dc24940e8cf45fb2f7220cc28b3f6}
+增加列 
+\begin{DoxyParams}{参数}
+{\em cols} & 列 \\
+\hline
+\end{DoxyParams}
+
+
+在文件 krpc\+\_\+lexer.\+cpp 第 243 行定义.
+
+\hypertarget{classkrpc__lexer__t_a73ed4d367a4a544cf8a09e1ac62486a6}{}\index{krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}!check\+\_\+keyword2@{check\+\_\+keyword2}}
+\index{check\+\_\+keyword2@{check\+\_\+keyword2}!krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}}
+\subsubsection[{check\+\_\+keyword2}]{\setlength{\rightskip}{0pt plus 5cm}bool check\+\_\+keyword2 (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{s, }
+\item[{char}]{c1, }
+\item[{char}]{c2}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{classkrpc__lexer__t_a73ed4d367a4a544cf8a09e1ac62486a6}
+
+
+在文件 krpc\+\_\+lexer.\+cpp 第 316 行定义.
+
+\hypertarget{classkrpc__lexer__t_a1a5593113b358e867a840892e79bd080}{}\index{krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}!check\+\_\+keyword3@{check\+\_\+keyword3}}
+\index{check\+\_\+keyword3@{check\+\_\+keyword3}!krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}}
+\subsubsection[{check\+\_\+keyword3}]{\setlength{\rightskip}{0pt plus 5cm}bool check\+\_\+keyword3 (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{s, }
+\item[{char}]{c1, }
+\item[{char}]{c2, }
+\item[{char}]{c3}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{classkrpc__lexer__t_a1a5593113b358e867a840892e79bd080}
+
+
+在文件 krpc\+\_\+lexer.\+cpp 第 320 行定义.
+
+\hypertarget{classkrpc__lexer__t_a05efd992603a36720d6ef982dfbf2caa}{}\index{krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}!check\+\_\+keyword4@{check\+\_\+keyword4}}
+\index{check\+\_\+keyword4@{check\+\_\+keyword4}!krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}}
+\subsubsection[{check\+\_\+keyword4}]{\setlength{\rightskip}{0pt plus 5cm}bool check\+\_\+keyword4 (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{s, }
+\item[{char}]{c1, }
+\item[{char}]{c2, }
+\item[{char}]{c3, }
+\item[{char}]{c4}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{classkrpc__lexer__t_a05efd992603a36720d6ef982dfbf2caa}
+
+
+在文件 krpc\+\_\+lexer.\+cpp 第 324 行定义.
+
+\hypertarget{classkrpc__lexer__t_a6332f12a493d28168117a2c68381437c}{}\index{krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}!check\+\_\+keyword5@{check\+\_\+keyword5}}
+\index{check\+\_\+keyword5@{check\+\_\+keyword5}!krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}}
+\subsubsection[{check\+\_\+keyword5}]{\setlength{\rightskip}{0pt plus 5cm}bool check\+\_\+keyword5 (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{s, }
+\item[{char}]{c1, }
+\item[{char}]{c2, }
+\item[{char}]{c3, }
+\item[{char}]{c4, }
+\item[{char}]{c5}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{classkrpc__lexer__t_a6332f12a493d28168117a2c68381437c}
+
+
+在文件 krpc\+\_\+lexer.\+cpp 第 328 行定义.
+
+\hypertarget{classkrpc__lexer__t_a0ee172be08d531266ae54d38b3344d6d}{}\index{krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}!check\+\_\+keyword6@{check\+\_\+keyword6}}
+\index{check\+\_\+keyword6@{check\+\_\+keyword6}!krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}}
+\subsubsection[{check\+\_\+keyword6}]{\setlength{\rightskip}{0pt plus 5cm}bool check\+\_\+keyword6 (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{s, }
+\item[{char}]{c1, }
+\item[{char}]{c2, }
+\item[{char}]{c3, }
+\item[{char}]{c4, }
+\item[{char}]{c5, }
+\item[{char}]{c6}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{classkrpc__lexer__t_a0ee172be08d531266ae54d38b3344d6d}
+
+
+在文件 krpc\+\_\+lexer.\+cpp 第 332 行定义.
+
+\hypertarget{classkrpc__lexer__t_ab8f823eb4debb2a2d655398ee57d268f}{}\index{krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}!check\+\_\+terminator@{check\+\_\+terminator}}
+\index{check\+\_\+terminator@{check\+\_\+terminator}!krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}}
+\subsubsection[{check\+\_\+terminator}]{\setlength{\rightskip}{0pt plus 5cm}bool check\+\_\+terminator (
+\begin{DoxyParamCaption}
+\item[{char}]{c, }
+\item[{bool}]{icomment}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{classkrpc__lexer__t_ab8f823eb4debb2a2d655398ee57d268f}
+检查是否为终结符 
+\begin{DoxyParams}{参数}
+{\em c} & 当前字符 \\
+\hline
+{\em icomment} & 是否在嵌入注释体内 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em true} & 是 \\
+\hline
+{\em false} & 否 \\
+\hline
+\end{DoxyRetVals}
+
+
+在文件 krpc\+\_\+lexer.\+cpp 第 301 行定义.
+
+\hypertarget{classkrpc__lexer__t_a8eca34404a5f28dae0854b9102925106}{}\index{krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}!check\+\_\+var\+\_\+name@{check\+\_\+var\+\_\+name}}
+\index{check\+\_\+var\+\_\+name@{check\+\_\+var\+\_\+name}!krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}}
+\subsubsection[{check\+\_\+var\+\_\+name}]{\setlength{\rightskip}{0pt plus 5cm}bool check\+\_\+var\+\_\+name (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{var\+\_\+name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{classkrpc__lexer__t_a8eca34404a5f28dae0854b9102925106}
+检查变量名是否合法 
+\begin{DoxyParams}{参数}
+{\em var\+\_\+name} & 变量名 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em true} & 是 \\
+\hline
+{\em false} & 否 \\
+\hline
+\end{DoxyRetVals}
+
+
+在文件 krpc\+\_\+lexer.\+cpp 第 236 行定义.
+
+\hypertarget{classkrpc__lexer__t_af12313c32b3d32c7b5743f2683af9eea}{}\index{krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}!check\+\_\+white@{check\+\_\+white}}
+\index{check\+\_\+white@{check\+\_\+white}!krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}}
+\subsubsection[{check\+\_\+white}]{\setlength{\rightskip}{0pt plus 5cm}bool check\+\_\+white (
+\begin{DoxyParamCaption}
+\item[{char}]{c}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{classkrpc__lexer__t_af12313c32b3d32c7b5743f2683af9eea}
+检查是否为空白 
+\begin{DoxyParams}{参数}
+{\em c} & 当前字符 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em true} & 是 \\
+\hline
+{\em false} & 否 \\
+\hline
+\end{DoxyRetVals}
+
+
+在文件 krpc\+\_\+lexer.\+cpp 第 293 行定义.
+
+\hypertarget{classkrpc__lexer__t_ab43dfafd882bdd29eb3e86527ecf1a96}{}\index{krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}!current@{current}}
+\index{current@{current}!krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}}
+\subsubsection[{current}]{\setlength{\rightskip}{0pt plus 5cm}char current (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{classkrpc__lexer__t_ab43dfafd882bdd29eb3e86527ecf1a96}
+取得当前字符 
+
+在文件 krpc\+\_\+lexer.\+cpp 第 264 行定义.
+
+\hypertarget{classkrpc__lexer__t_aac9c4da23c68633eb36a4f1ad1a2eace}{}\index{krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}!eat\+\_\+comment@{eat\+\_\+comment}}
+\index{eat\+\_\+comment@{eat\+\_\+comment}!krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}}
+\subsubsection[{eat\+\_\+comment}]{\setlength{\rightskip}{0pt plus 5cm}void eat\+\_\+comment (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{classkrpc__lexer__t_aac9c4da23c68633eb36a4f1ad1a2eace}
+消除流当前注释 
+
+在文件 krpc\+\_\+lexer.\+cpp 第 340 行定义.
+
+\hypertarget{classkrpc__lexer__t_a70bc40fc4b1b9f89050e1af7e452409f}{}\index{krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}!eat\+\_\+whites@{eat\+\_\+whites}}
+\index{eat\+\_\+whites@{eat\+\_\+whites}!krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}}
+\subsubsection[{eat\+\_\+whites}]{\setlength{\rightskip}{0pt plus 5cm}void eat\+\_\+whites (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{classkrpc__lexer__t_a70bc40fc4b1b9f89050e1af7e452409f}
+消除流当前空白 
+
+在文件 krpc\+\_\+lexer.\+cpp 第 272 行定义.
+
+\hypertarget{classkrpc__lexer__t_aa53d78a1c216f17be7fa4589bda3d751}{}\index{krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}!forward@{forward}}
+\index{forward@{forward}!krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}}
+\subsubsection[{forward}]{\setlength{\rightskip}{0pt plus 5cm}char forward (
+\begin{DoxyParamCaption}
+\item[{int}]{step}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{classkrpc__lexer__t_aa53d78a1c216f17be7fa4589bda3d751}
+步进流 
+\begin{DoxyParams}{参数}
+{\em step} & 步长 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+当前字符 
+\end{DoxyReturn}
+
+
+在文件 krpc\+\_\+lexer.\+cpp 第 259 行定义.
+
+\hypertarget{classkrpc__lexer__t_a8999d23f1d24a3c83cd09576b63dc10c}{}\index{krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}!get\+\_\+col@{get\+\_\+col}}
+\index{get\+\_\+col@{get\+\_\+col}!krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}}
+\subsubsection[{get\+\_\+col}]{\setlength{\rightskip}{0pt plus 5cm}int get\+\_\+col (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{classkrpc__lexer__t_a8999d23f1d24a3c83cd09576b63dc10c}
+取得当前行 
+
+在文件 krpc\+\_\+lexer.\+cpp 第 251 行定义.
+
+\hypertarget{classkrpc__lexer__t_abed0416ea8998a0934c9000f3b4bcd88}{}\index{krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}!get\+\_\+row@{get\+\_\+row}}
+\index{get\+\_\+row@{get\+\_\+row}!krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}}
+\subsubsection[{get\+\_\+row}]{\setlength{\rightskip}{0pt plus 5cm}int get\+\_\+row (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{classkrpc__lexer__t_abed0416ea8998a0934c9000f3b4bcd88}
+取得当前列 
+
+在文件 krpc\+\_\+lexer.\+cpp 第 255 行定义.
+
+\hypertarget{classkrpc__lexer__t_a11855adc8ca66763b315ee6c4f57a00c}{}\index{krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}!get\+\_\+token@{get\+\_\+token}}
+\index{get\+\_\+token@{get\+\_\+token}!krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}}
+\subsubsection[{get\+\_\+token}]{\setlength{\rightskip}{0pt plus 5cm}{\bf krpc\+\_\+token\+\_\+t} $\ast$ get\+\_\+token (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{classkrpc__lexer__t_a11855adc8ca66763b315ee6c4f57a00c}
+取得下一个token \begin{DoxyReturn}{返回}
+krpc\+\_\+token\+\_\+t实例 
+\end{DoxyReturn}
+
+
+在文件 krpc\+\_\+lexer.\+cpp 第 84 行定义.
+
+\hypertarget{classkrpc__lexer__t_aa0ff97d948e1a549665d5dcc64a193cf}{}\index{krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}!has\+\_\+next@{has\+\_\+next}}
+\index{has\+\_\+next@{has\+\_\+next}!krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}}
+\subsubsection[{has\+\_\+next}]{\setlength{\rightskip}{0pt plus 5cm}bool has\+\_\+next (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{classkrpc__lexer__t_aa0ff97d948e1a549665d5dcc64a193cf}
+流是否结束 
+
+在文件 krpc\+\_\+lexer.\+cpp 第 268 行定义.
+
+\hypertarget{classkrpc__lexer__t_aae9633b064a078139fadcd1740bfff7a}{}\index{krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}!inc\+\_\+row@{inc\+\_\+row}}
+\index{inc\+\_\+row@{inc\+\_\+row}!krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}}
+\subsubsection[{inc\+\_\+row}]{\setlength{\rightskip}{0pt plus 5cm}void inc\+\_\+row (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{classkrpc__lexer__t_aae9633b064a078139fadcd1740bfff7a}
+递增行 
+
+在文件 krpc\+\_\+lexer.\+cpp 第 247 行定义.
+
+\hypertarget{classkrpc__lexer__t_ad8cf136fc4a6adc94564e0bafcaecd83}{}\index{krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}!next\+\_\+token@{next\+\_\+token}}
+\index{next\+\_\+token@{next\+\_\+token}!krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}}
+\subsubsection[{next\+\_\+token}]{\setlength{\rightskip}{0pt plus 5cm}{\bf krpc\+\_\+token\+\_\+t} $\ast$ next\+\_\+token (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) throw  std\+::exception) }\label{classkrpc__lexer__t_ad8cf136fc4a6adc94564e0bafcaecd83}
+取得下一个token \begin{DoxyReturn}{返回}
+krpc\+\_\+token\+\_\+t实例 
+\end{DoxyReturn}
+
+
+在文件 krpc\+\_\+lexer.\+cpp 第 73 行定义.
+
+\hypertarget{classkrpc__lexer__t_a8af5038360da3cdd202091591ffde915}{}\index{krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}!verify@{verify}}
+\index{verify@{verify}!krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}}
+\subsubsection[{verify}]{\setlength{\rightskip}{0pt plus 5cm}bool verify (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [private]}}\label{classkrpc__lexer__t_a8af5038360da3cdd202091591ffde915}
+检查流是否有效 
+
+在文件 krpc\+\_\+lexer.\+cpp 第 336 行定义.
+
+
+
+\subsection{结构体成员变量说明}
+\hypertarget{classkrpc__lexer__t_a01ae7de0d6a18d91fa340cfa16a3e29e}{}\index{krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}!\+\_\+col@{\+\_\+col}}
+\index{\+\_\+col@{\+\_\+col}!krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}}
+\subsubsection[{\+\_\+col}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+col\hspace{0.3cm}{\ttfamily [private]}}\label{classkrpc__lexer__t_a01ae7de0d6a18d91fa340cfa16a3e29e}
+
+
+在文件 krpc\+\_\+lexer.\+h 第 232 行定义.
+
+\hypertarget{classkrpc__lexer__t_a1dff5704d4f4cf03e612b387f2e0e8f3}{}\index{krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}!\+\_\+icomment@{\+\_\+icomment}}
+\index{\+\_\+icomment@{\+\_\+icomment}!krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}}
+\subsubsection[{\+\_\+icomment}]{\setlength{\rightskip}{0pt plus 5cm}bool \+\_\+icomment\hspace{0.3cm}{\ttfamily [private]}}\label{classkrpc__lexer__t_a1dff5704d4f4cf03e612b387f2e0e8f3}
+
+
+在文件 krpc\+\_\+lexer.\+h 第 234 行定义.
+
+\hypertarget{classkrpc__lexer__t_a2c788815cbc67c3734ad77878c81dda8}{}\index{krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}!\+\_\+row@{\+\_\+row}}
+\index{\+\_\+row@{\+\_\+row}!krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}}
+\subsubsection[{\+\_\+row}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+row\hspace{0.3cm}{\ttfamily [private]}}\label{classkrpc__lexer__t_a2c788815cbc67c3734ad77878c81dda8}
+
+
+在文件 krpc\+\_\+lexer.\+h 第 231 行定义.
+
+\hypertarget{classkrpc__lexer__t_a20b4eb27ad7e1ff727fdb2e25d7fd04a}{}\index{krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}!\+\_\+stream@{\+\_\+stream}}
+\index{\+\_\+stream@{\+\_\+stream}!krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}}
+\subsubsection[{\+\_\+stream}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ \+\_\+stream\hspace{0.3cm}{\ttfamily [private]}}\label{classkrpc__lexer__t_a20b4eb27ad7e1ff727fdb2e25d7fd04a}
+
+
+在文件 krpc\+\_\+lexer.\+h 第 233 行定义.
+
+\hypertarget{classkrpc__lexer__t_aaf4e19b186e6ebcb707160ec088ac91c}{}\index{krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}!\+\_\+tokens@{\+\_\+tokens}}
+\index{\+\_\+tokens@{\+\_\+tokens}!krpc\+\_\+lexer\+\_\+t@{krpc\+\_\+lexer\+\_\+t}}
+\subsubsection[{\+\_\+tokens}]{\setlength{\rightskip}{0pt plus 5cm}{\bf token\+\_\+list\+\_\+t} \+\_\+tokens\hspace{0.3cm}{\ttfamily [private]}}\label{classkrpc__lexer__t_aaf4e19b186e6ebcb707160ec088ac91c}
+
+
+在文件 krpc\+\_\+lexer.\+h 第 230 行定义.
+
+
+
+该类的文档由以下文件生成\+:\begin{DoxyCompactItemize}
+\item 
+E\+:/knet-\/git/knet/krpc/\hyperlink{krpc__lexer_8h}{krpc\+\_\+lexer.\+h}\item 
+E\+:/knet-\/git/knet/krpc/\hyperlink{krpc__lexer_8cpp}{krpc\+\_\+lexer.\+cpp}\end{DoxyCompactItemize}

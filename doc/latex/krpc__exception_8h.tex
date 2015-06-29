@@ -1,0 +1,51 @@
+\hypertarget{krpc__exception_8h}{}\section{E\+:/knet-\/git/knet/krpc/krpc\+\_\+exception.h 文件参考}
+\label{krpc__exception_8h}\index{E\+:/knet-\/git/knet/krpc/krpc\+\_\+exception.\+h@{E\+:/knet-\/git/knet/krpc/krpc\+\_\+exception.\+h}}
+{\ttfamily \#include $<$stdexcept$>$}\\*
+{\ttfamily \#include $<$sstream$>$}\\*
+\subsection*{宏定义}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{krpc__exception_8h_a9f002bc50b76170a65e908d6a1a5fb8d}{check\+\_\+raise\+\_\+exception}(b,  param)
+\item 
+\#define \hyperlink{krpc__exception_8h_adec54403ac3d7b636a71f20a563de370}{raise\+\_\+exception}(param)
+\end{DoxyCompactItemize}
+
+
+\subsection{宏定义说明}
+\hypertarget{krpc__exception_8h_a9f002bc50b76170a65e908d6a1a5fb8d}{}\index{krpc\+\_\+exception.\+h@{krpc\+\_\+exception.\+h}!check\+\_\+raise\+\_\+exception@{check\+\_\+raise\+\_\+exception}}
+\index{check\+\_\+raise\+\_\+exception@{check\+\_\+raise\+\_\+exception}!krpc\+\_\+exception.\+h@{krpc\+\_\+exception.\+h}}
+\subsubsection[{check\+\_\+raise\+\_\+exception}]{\setlength{\rightskip}{0pt plus 5cm}\#define check\+\_\+raise\+\_\+exception(
+\begin{DoxyParamCaption}
+\item[{}]{b, }
+\item[{}]{param}
+\end{DoxyParamCaption}
+)}\label{krpc__exception_8h_a9f002bc50b76170a65e908d6a1a5fb8d}
+{\bfseries 值\+:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{if} (!(b)) \{ \hyperlink{krpc__exception_8h_adec54403ac3d7b636a71f20a563de370}{\(\backslash\)}
+\hyperlink{krpc__exception_8h_adec54403ac3d7b636a71f20a563de370}{        raise\_exception}(param); \(\backslash\)
+    \}
+\end{DoxyCode}
+
+
+在文件 krpc\+\_\+exception.\+h 第 38 行定义.
+
+\hypertarget{krpc__exception_8h_adec54403ac3d7b636a71f20a563de370}{}\index{krpc\+\_\+exception.\+h@{krpc\+\_\+exception.\+h}!raise\+\_\+exception@{raise\+\_\+exception}}
+\index{raise\+\_\+exception@{raise\+\_\+exception}!krpc\+\_\+exception.\+h@{krpc\+\_\+exception.\+h}}
+\subsubsection[{raise\+\_\+exception}]{\setlength{\rightskip}{0pt plus 5cm}\#define raise\+\_\+exception(
+\begin{DoxyParamCaption}
+\item[{}]{param}
+\end{DoxyParamCaption}
+)}\label{krpc__exception_8h_adec54403ac3d7b636a71f20a563de370}
+{\bfseries 值\+:}
+\begin{DoxyCode}
+\textcolor{keywordflow}{do} \{ \(\backslash\)
+        std::stringstream ss; \(\backslash\)
+        ss << param; \(\backslash\)
+        throw std::logic\_error(ss.str()); \(\backslash\)
+    \} \textcolor{keywordflow}{while}(0);
+\end{DoxyCode}
+
+
+在文件 krpc\+\_\+exception.\+h 第 31 行定义.
+

@@ -1,0 +1,355 @@
+\hypertarget{channel__ref__api_8h}{}\section{E\+:/knet-\/git/knet/knet/channel\+\_\+ref\+\_\+api.h 文件参考}
+\label{channel__ref__api_8h}\index{E\+:/knet-\/git/knet/knet/channel\+\_\+ref\+\_\+api.\+h@{E\+:/knet-\/git/knet/knet/channel\+\_\+ref\+\_\+api.\+h}}
+{\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\\*
+\subsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{channel__ref__api_8h_ae9ae0ae2a42eabf6a544ce4e0f001c9e}{channel\+\_\+ref\+\_\+accept} (\hyperlink{config_8h_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref, const char $\ast$\hyperlink{test__client_8c_afbc356cd0e25d1dbbece7c10fd025fa6}{ip}, int \hyperlink{test__client_8c_a63c89c04d1feae07ca35558055155ffb}{port}, int backlog)
+\item 
+int \hyperlink{channel__ref__api_8h_ae003fde214ddbf4feec22ddb89b8257c}{channel\+\_\+ref\+\_\+check\+\_\+balance} (\hyperlink{config_8h_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\item 
+int \hyperlink{channel__ref__api_8h_adddbdc58824b567334d46493decc90f8}{channel\+\_\+ref\+\_\+check\+\_\+state} (\hyperlink{config_8h_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref, \hyperlink{config_8h_a1956eea3012f780b5d592a9d09d9873c}{channel\+\_\+state\+\_\+e} state)
+\item 
+void \hyperlink{channel__ref__api_8h_a49d6ba5f0b9aad95ae5c5710dca392a1}{channel\+\_\+ref\+\_\+close} (\hyperlink{config_8h_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\item 
+int \hyperlink{channel__ref__api_8h_a1a8d1f5550cf26313cbb6575e8b2a32c}{channel\+\_\+ref\+\_\+connect} (\hyperlink{config_8h_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref, const char $\ast$\hyperlink{test__client_8c_afbc356cd0e25d1dbbece7c10fd025fa6}{ip}, int \hyperlink{test__client_8c_a63c89c04d1feae07ca35558055155ffb}{port}, int timeout)
+\item 
+\hyperlink{config_8h_a7a6e75b85c8b441f843bd40004a7d9d5}{address\+\_\+t} $\ast$ \hyperlink{channel__ref__api_8h_a1dcf6af0c992fa21f9dcd03c8f763ec4}{channel\+\_\+ref\+\_\+get\+\_\+local\+\_\+address} (\hyperlink{config_8h_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\item 
+\hyperlink{config_8h_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$ \hyperlink{channel__ref__api_8h_ad840fd786ca7092d528a8fc45c2e2a76}{channel\+\_\+ref\+\_\+get\+\_\+loop} (\hyperlink{config_8h_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\item 
+\hyperlink{config_8h_a7a6e75b85c8b441f843bd40004a7d9d5}{address\+\_\+t} $\ast$ \hyperlink{channel__ref__api_8h_a7bcafd2461a1edfde9c581cb946dcd44}{channel\+\_\+ref\+\_\+get\+\_\+peer\+\_\+address} (\hyperlink{config_8h_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\item 
+\hyperlink{config_8h_a0d9e0afbf02fb6ed6c5b1415dce51b05}{socket\+\_\+t} \hyperlink{channel__ref__api_8h_af0c977ef05b7e767a8ef166a8037ec8b}{channel\+\_\+ref\+\_\+get\+\_\+socket\+\_\+fd} (\hyperlink{config_8h_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\item 
+\hyperlink{config_8h_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$ \hyperlink{channel__ref__api_8h_af8d2758e1e063e04512049c9a9869d5e}{channel\+\_\+ref\+\_\+get\+\_\+stream} (\hyperlink{config_8h_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\item 
+uint64\+\_\+t \hyperlink{channel__ref__api_8h_a3fd39b821fef38abd518db6240e79068}{channel\+\_\+ref\+\_\+get\+\_\+uuid} (\hyperlink{config_8h_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\item 
+void \hyperlink{channel__ref__api_8h_ab4248c6e10ac538b5d37b927bbe39ef1}{channel\+\_\+ref\+\_\+leave} (\hyperlink{config_8h_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\item 
+void \hyperlink{channel__ref__api_8h_a7627dbcdb87269ef2fae5bcbbb210720}{channel\+\_\+ref\+\_\+set\+\_\+cb} (\hyperlink{config_8h_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref, \hyperlink{config_8h_ae296ec4d1ce108960de8dcc423956a1d}{channel\+\_\+ref\+\_\+cb\+\_\+t} cb)
+\item 
+void \hyperlink{channel__ref__api_8h_a4e46196f7ac40bdd14a1407167e88b7b}{channel\+\_\+ref\+\_\+set\+\_\+timeout} (\hyperlink{config_8h_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref, int timeout)
+\item 
+\hyperlink{config_8h_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$ \hyperlink{channel__ref__api_8h_a7b76c4078bbe8272206a5d7467ccd4ed}{channel\+\_\+ref\+\_\+share} (\hyperlink{config_8h_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\end{DoxyCompactItemize}
+
+
+\subsection{函数说明}
+\hypertarget{channel__ref__api_8h_ae9ae0ae2a42eabf6a544ce4e0f001c9e}{}\index{channel\+\_\+ref\+\_\+api.\+h@{channel\+\_\+ref\+\_\+api.\+h}!channel\+\_\+ref\+\_\+accept@{channel\+\_\+ref\+\_\+accept}}
+\index{channel\+\_\+ref\+\_\+accept@{channel\+\_\+ref\+\_\+accept}!channel\+\_\+ref\+\_\+api.\+h@{channel\+\_\+ref\+\_\+api.\+h}}
+\subsubsection[{channel\+\_\+ref\+\_\+accept}]{\setlength{\rightskip}{0pt plus 5cm}int channel\+\_\+ref\+\_\+accept (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref, }
+\item[{const char $\ast$}]{ip, }
+\item[{int}]{port, }
+\item[{int}]{backlog}
+\end{DoxyParamCaption}
+)}\label{channel__ref__api_8h_ae9ae0ae2a42eabf6a544ce4e0f001c9e}
+将管道转换为监听管道 由这个监听管道接受的新连接将使用与监听管道相同的发送缓冲区最大数量限制和接受缓冲区长度限制, channel\+\_\+ref\+\_\+accept所接受的新连接将被负载均衡，实际运行在哪个loop\+\_\+t内依赖于实际运行的情况 
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+{\em ip} & I\+P \\
+\hline
+{\em port} & 端口 \\
+\hline
+{\em backlog} & 等待队列上限（listen()) \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+
+
+在文件 channel\+\_\+ref.\+c 第 120 行定义.
+
+\hypertarget{channel__ref__api_8h_ae003fde214ddbf4feec22ddb89b8257c}{}\index{channel\+\_\+ref\+\_\+api.\+h@{channel\+\_\+ref\+\_\+api.\+h}!channel\+\_\+ref\+\_\+check\+\_\+balance@{channel\+\_\+ref\+\_\+check\+\_\+balance}}
+\index{channel\+\_\+ref\+\_\+check\+\_\+balance@{channel\+\_\+ref\+\_\+check\+\_\+balance}!channel\+\_\+ref\+\_\+api.\+h@{channel\+\_\+ref\+\_\+api.\+h}}
+\subsubsection[{channel\+\_\+ref\+\_\+check\+\_\+balance}]{\setlength{\rightskip}{0pt plus 5cm}int channel\+\_\+ref\+\_\+check\+\_\+balance (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\end{DoxyParamCaption}
+)}\label{channel__ref__api_8h_ae003fde214ddbf4feec22ddb89b8257c}
+检测管道是否是通过负载均衡关联到当前的loop\+\_\+t 
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em 0} & 不是 \\
+\hline
+{\em 非0} & 是 \\
+\hline
+\end{DoxyRetVals}
+
+
+在文件 channel\+\_\+ref.\+c 第 492 行定义.
+
+\hypertarget{channel__ref__api_8h_adddbdc58824b567334d46493decc90f8}{}\index{channel\+\_\+ref\+\_\+api.\+h@{channel\+\_\+ref\+\_\+api.\+h}!channel\+\_\+ref\+\_\+check\+\_\+state@{channel\+\_\+ref\+\_\+check\+\_\+state}}
+\index{channel\+\_\+ref\+\_\+check\+\_\+state@{channel\+\_\+ref\+\_\+check\+\_\+state}!channel\+\_\+ref\+\_\+api.\+h@{channel\+\_\+ref\+\_\+api.\+h}}
+\subsubsection[{channel\+\_\+ref\+\_\+check\+\_\+state}]{\setlength{\rightskip}{0pt plus 5cm}int channel\+\_\+ref\+\_\+check\+\_\+state (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref, }
+\item[{{\bf channel\+\_\+state\+\_\+e}}]{state}
+\end{DoxyParamCaption}
+)}\label{channel__ref__api_8h_adddbdc58824b567334d46493decc90f8}
+检测管道当前状态 
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+{\em state} & 需要测试的状态 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em 1} & 是 \\
+\hline
+{\em 0} & 不是 \\
+\hline
+\end{DoxyRetVals}
+
+
+在文件 channel\+\_\+ref.\+c 第 291 行定义.
+
+\hypertarget{channel__ref__api_8h_a49d6ba5f0b9aad95ae5c5710dca392a1}{}\index{channel\+\_\+ref\+\_\+api.\+h@{channel\+\_\+ref\+\_\+api.\+h}!channel\+\_\+ref\+\_\+close@{channel\+\_\+ref\+\_\+close}}
+\index{channel\+\_\+ref\+\_\+close@{channel\+\_\+ref\+\_\+close}!channel\+\_\+ref\+\_\+api.\+h@{channel\+\_\+ref\+\_\+api.\+h}}
+\subsubsection[{channel\+\_\+ref\+\_\+close}]{\setlength{\rightskip}{0pt plus 5cm}void channel\+\_\+ref\+\_\+close (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\end{DoxyParamCaption}
+)}\label{channel__ref__api_8h_a49d6ba5f0b9aad95ae5c5710dca392a1}
+关闭管道 
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+
+
+在文件 channel\+\_\+ref.\+c 第 175 行定义.
+
+\hypertarget{channel__ref__api_8h_a1a8d1f5550cf26313cbb6575e8b2a32c}{}\index{channel\+\_\+ref\+\_\+api.\+h@{channel\+\_\+ref\+\_\+api.\+h}!channel\+\_\+ref\+\_\+connect@{channel\+\_\+ref\+\_\+connect}}
+\index{channel\+\_\+ref\+\_\+connect@{channel\+\_\+ref\+\_\+connect}!channel\+\_\+ref\+\_\+api.\+h@{channel\+\_\+ref\+\_\+api.\+h}}
+\subsubsection[{channel\+\_\+ref\+\_\+connect}]{\setlength{\rightskip}{0pt plus 5cm}int channel\+\_\+ref\+\_\+connect (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref, }
+\item[{const char $\ast$}]{ip, }
+\item[{int}]{port, }
+\item[{int}]{timeout}
+\end{DoxyParamCaption}
+)}\label{channel__ref__api_8h_a1a8d1f5550cf26313cbb6575e8b2a32c}
+主动连接 调用channel\+\_\+ref\+\_\+connect的管道不会被负载均衡，将在当前loop\+\_\+t所运行的线程运行 
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+{\em ip} & I\+P \\
+\hline
+{\em port} & 端口 \\
+\hline
+{\em timeout} & 连接超时（秒） \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+
+
+在文件 channel\+\_\+ref.\+c 第 106 行定义.
+
+\hypertarget{channel__ref__api_8h_a1dcf6af0c992fa21f9dcd03c8f763ec4}{}\index{channel\+\_\+ref\+\_\+api.\+h@{channel\+\_\+ref\+\_\+api.\+h}!channel\+\_\+ref\+\_\+get\+\_\+local\+\_\+address@{channel\+\_\+ref\+\_\+get\+\_\+local\+\_\+address}}
+\index{channel\+\_\+ref\+\_\+get\+\_\+local\+\_\+address@{channel\+\_\+ref\+\_\+get\+\_\+local\+\_\+address}!channel\+\_\+ref\+\_\+api.\+h@{channel\+\_\+ref\+\_\+api.\+h}}
+\subsubsection[{channel\+\_\+ref\+\_\+get\+\_\+local\+\_\+address}]{\setlength{\rightskip}{0pt plus 5cm}{\bf address\+\_\+t}$\ast$ channel\+\_\+ref\+\_\+get\+\_\+local\+\_\+address (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\end{DoxyParamCaption}
+)}\label{channel__ref__api_8h_a1dcf6af0c992fa21f9dcd03c8f763ec4}
+取得本地地址 
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+address\+\_\+t实例 
+\end{DoxyReturn}
+
+
+在文件 channel\+\_\+ref.\+c 第 554 行定义.
+
+\hypertarget{channel__ref__api_8h_ad840fd786ca7092d528a8fc45c2e2a76}{}\index{channel\+\_\+ref\+\_\+api.\+h@{channel\+\_\+ref\+\_\+api.\+h}!channel\+\_\+ref\+\_\+get\+\_\+loop@{channel\+\_\+ref\+\_\+get\+\_\+loop}}
+\index{channel\+\_\+ref\+\_\+get\+\_\+loop@{channel\+\_\+ref\+\_\+get\+\_\+loop}!channel\+\_\+ref\+\_\+api.\+h@{channel\+\_\+ref\+\_\+api.\+h}}
+\subsubsection[{channel\+\_\+ref\+\_\+get\+\_\+loop}]{\setlength{\rightskip}{0pt plus 5cm}{\bf loop\+\_\+t}$\ast$ channel\+\_\+ref\+\_\+get\+\_\+loop (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\end{DoxyParamCaption}
+)}\label{channel__ref__api_8h_ad840fd786ca7092d528a8fc45c2e2a76}
+取得管道所关联的事件循环 
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+loop\+\_\+t实例 
+\end{DoxyReturn}
+
+
+在文件 channel\+\_\+ref.\+c 第 254 行定义.
+
+\hypertarget{channel__ref__api_8h_a7bcafd2461a1edfde9c581cb946dcd44}{}\index{channel\+\_\+ref\+\_\+api.\+h@{channel\+\_\+ref\+\_\+api.\+h}!channel\+\_\+ref\+\_\+get\+\_\+peer\+\_\+address@{channel\+\_\+ref\+\_\+get\+\_\+peer\+\_\+address}}
+\index{channel\+\_\+ref\+\_\+get\+\_\+peer\+\_\+address@{channel\+\_\+ref\+\_\+get\+\_\+peer\+\_\+address}!channel\+\_\+ref\+\_\+api.\+h@{channel\+\_\+ref\+\_\+api.\+h}}
+\subsubsection[{channel\+\_\+ref\+\_\+get\+\_\+peer\+\_\+address}]{\setlength{\rightskip}{0pt plus 5cm}{\bf address\+\_\+t}$\ast$ channel\+\_\+ref\+\_\+get\+\_\+peer\+\_\+address (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\end{DoxyParamCaption}
+)}\label{channel__ref__api_8h_a7bcafd2461a1edfde9c581cb946dcd44}
+取得对端地址 
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+address\+\_\+t实例 
+\end{DoxyReturn}
+
+
+在文件 channel\+\_\+ref.\+c 第 545 行定义.
+
+\hypertarget{channel__ref__api_8h_af0c977ef05b7e767a8ef166a8037ec8b}{}\index{channel\+\_\+ref\+\_\+api.\+h@{channel\+\_\+ref\+\_\+api.\+h}!channel\+\_\+ref\+\_\+get\+\_\+socket\+\_\+fd@{channel\+\_\+ref\+\_\+get\+\_\+socket\+\_\+fd}}
+\index{channel\+\_\+ref\+\_\+get\+\_\+socket\+\_\+fd@{channel\+\_\+ref\+\_\+get\+\_\+socket\+\_\+fd}!channel\+\_\+ref\+\_\+api.\+h@{channel\+\_\+ref\+\_\+api.\+h}}
+\subsubsection[{channel\+\_\+ref\+\_\+get\+\_\+socket\+\_\+fd}]{\setlength{\rightskip}{0pt plus 5cm}{\bf socket\+\_\+t} channel\+\_\+ref\+\_\+get\+\_\+socket\+\_\+fd (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\end{DoxyParamCaption}
+)}\label{channel__ref__api_8h_af0c977ef05b7e767a8ef166a8037ec8b}
+取得管道套接字 
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+套接字 
+\end{DoxyReturn}
+
+
+在文件 channel\+\_\+ref.\+c 第 244 行定义.
+
+\hypertarget{channel__ref__api_8h_af8d2758e1e063e04512049c9a9869d5e}{}\index{channel\+\_\+ref\+\_\+api.\+h@{channel\+\_\+ref\+\_\+api.\+h}!channel\+\_\+ref\+\_\+get\+\_\+stream@{channel\+\_\+ref\+\_\+get\+\_\+stream}}
+\index{channel\+\_\+ref\+\_\+get\+\_\+stream@{channel\+\_\+ref\+\_\+get\+\_\+stream}!channel\+\_\+ref\+\_\+api.\+h@{channel\+\_\+ref\+\_\+api.\+h}}
+\subsubsection[{channel\+\_\+ref\+\_\+get\+\_\+stream}]{\setlength{\rightskip}{0pt plus 5cm}{\bf stream\+\_\+t}$\ast$ channel\+\_\+ref\+\_\+get\+\_\+stream (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\end{DoxyParamCaption}
+)}\label{channel__ref__api_8h_af8d2758e1e063e04512049c9a9869d5e}
+取得管道数据流 
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+stream\+\_\+t实例 
+\end{DoxyReturn}
+
+
+在文件 channel\+\_\+ref.\+c 第 249 行定义.
+
+\hypertarget{channel__ref__api_8h_a3fd39b821fef38abd518db6240e79068}{}\index{channel\+\_\+ref\+\_\+api.\+h@{channel\+\_\+ref\+\_\+api.\+h}!channel\+\_\+ref\+\_\+get\+\_\+uuid@{channel\+\_\+ref\+\_\+get\+\_\+uuid}}
+\index{channel\+\_\+ref\+\_\+get\+\_\+uuid@{channel\+\_\+ref\+\_\+get\+\_\+uuid}!channel\+\_\+ref\+\_\+api.\+h@{channel\+\_\+ref\+\_\+api.\+h}}
+\subsubsection[{channel\+\_\+ref\+\_\+get\+\_\+uuid}]{\setlength{\rightskip}{0pt plus 5cm}uint64\+\_\+t channel\+\_\+ref\+\_\+get\+\_\+uuid (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\end{DoxyParamCaption}
+)}\label{channel__ref__api_8h_a3fd39b821fef38abd518db6240e79068}
+获取管道\+U\+U\+I\+D 
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & channel\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+管道\+U\+U\+I\+D 
+\end{DoxyReturn}
+
+
+在文件 channel\+\_\+ref.\+c 第 598 行定义.
+
+\hypertarget{channel__ref__api_8h_ab4248c6e10ac538b5d37b927bbe39ef1}{}\index{channel\+\_\+ref\+\_\+api.\+h@{channel\+\_\+ref\+\_\+api.\+h}!channel\+\_\+ref\+\_\+leave@{channel\+\_\+ref\+\_\+leave}}
+\index{channel\+\_\+ref\+\_\+leave@{channel\+\_\+ref\+\_\+leave}!channel\+\_\+ref\+\_\+api.\+h@{channel\+\_\+ref\+\_\+api.\+h}}
+\subsubsection[{channel\+\_\+ref\+\_\+leave}]{\setlength{\rightskip}{0pt plus 5cm}void channel\+\_\+ref\+\_\+leave (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\end{DoxyParamCaption}
+)}\label{channel__ref__api_8h_ab4248c6e10ac538b5d37b927bbe39ef1}
+减少管道引用计数，并销毁channel\+\_\+ref\+\_\+t实例 
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+
+
+在文件 channel\+\_\+ref.\+c 第 151 行定义.
+
+\hypertarget{channel__ref__api_8h_a7627dbcdb87269ef2fae5bcbbb210720}{}\index{channel\+\_\+ref\+\_\+api.\+h@{channel\+\_\+ref\+\_\+api.\+h}!channel\+\_\+ref\+\_\+set\+\_\+cb@{channel\+\_\+ref\+\_\+set\+\_\+cb}}
+\index{channel\+\_\+ref\+\_\+set\+\_\+cb@{channel\+\_\+ref\+\_\+set\+\_\+cb}!channel\+\_\+ref\+\_\+api.\+h@{channel\+\_\+ref\+\_\+api.\+h}}
+\subsubsection[{channel\+\_\+ref\+\_\+set\+\_\+cb}]{\setlength{\rightskip}{0pt plus 5cm}void channel\+\_\+ref\+\_\+set\+\_\+cb (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref, }
+\item[{{\bf channel\+\_\+ref\+\_\+cb\+\_\+t}}]{cb}
+\end{DoxyParamCaption}
+)}\label{channel__ref__api_8h_a7627dbcdb87269ef2fae5bcbbb210720}
+设置管道事件回调 事件回调将在关联的loop\+\_\+t实例所在线程内被回调 
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+{\em cb} & 回调函数 \\
+\hline
+\end{DoxyParams}
+
+
+在文件 channel\+\_\+ref.\+c 第 524 行定义.
+
+\hypertarget{channel__ref__api_8h_a4e46196f7ac40bdd14a1407167e88b7b}{}\index{channel\+\_\+ref\+\_\+api.\+h@{channel\+\_\+ref\+\_\+api.\+h}!channel\+\_\+ref\+\_\+set\+\_\+timeout@{channel\+\_\+ref\+\_\+set\+\_\+timeout}}
+\index{channel\+\_\+ref\+\_\+set\+\_\+timeout@{channel\+\_\+ref\+\_\+set\+\_\+timeout}!channel\+\_\+ref\+\_\+api.\+h@{channel\+\_\+ref\+\_\+api.\+h}}
+\subsubsection[{channel\+\_\+ref\+\_\+set\+\_\+timeout}]{\setlength{\rightskip}{0pt plus 5cm}void channel\+\_\+ref\+\_\+set\+\_\+timeout (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref, }
+\item[{int}]{timeout}
+\end{DoxyParamCaption}
+)}\label{channel__ref__api_8h_a4e46196f7ac40bdd14a1407167e88b7b}
+设置管道空闲超时 管道空闲超时依赖读操作作为判断，在timeout间隔内未有可读数据既触发超时 
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+{\em timeout} & 超时（秒） \\
+\hline
+\end{DoxyParams}
+
+
+在文件 channel\+\_\+ref.\+c 第 496 行定义.
+
+\hypertarget{channel__ref__api_8h_a7b76c4078bbe8272206a5d7467ccd4ed}{}\index{channel\+\_\+ref\+\_\+api.\+h@{channel\+\_\+ref\+\_\+api.\+h}!channel\+\_\+ref\+\_\+share@{channel\+\_\+ref\+\_\+share}}
+\index{channel\+\_\+ref\+\_\+share@{channel\+\_\+ref\+\_\+share}!channel\+\_\+ref\+\_\+api.\+h@{channel\+\_\+ref\+\_\+api.\+h}}
+\subsubsection[{channel\+\_\+ref\+\_\+share}]{\setlength{\rightskip}{0pt plus 5cm}{\bf channel\+\_\+ref\+\_\+t}$\ast$ channel\+\_\+ref\+\_\+share (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\end{DoxyParamCaption}
+)}\label{channel__ref__api_8h_a7b76c4078bbe8272206a5d7467ccd4ed}
+增加管道引用计数，并创建与管道关联的新的channel\+\_\+ref\+\_\+t实例 channel\+\_\+ref\+\_\+share调用完成后，可以在当前线程内访问其他线程(loop\+\_\+t)内运行的管道 
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+channel\+\_\+ref\+\_\+t实例 
+\end{DoxyReturn}
+
+
+在文件 channel\+\_\+ref.\+c 第 137 行定义.
+

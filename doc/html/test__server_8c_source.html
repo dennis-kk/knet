@@ -1,0 +1,238 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.9.1"/>
+<title>knet: E:/knet-git/knet/test/test_server.c 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">knet
+   &#160;<span id="projectnumber">1.4.1</span>
+   </div>
+   <div id="projectbrief">cross platform, light-weight, multithreading net library</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.9.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="pages.html"><span>相关页面</span></a></li>
+      <li><a href="namespaces.html"><span>命名空间</span></a></li>
+      <li><a href="annotated.html"><span>结构体</span></a></li>
+      <li class="current"><a href="files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>文件列表</span></a></li>
+      <li><a href="globals.html"><span>全局定义</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_885cc87fac2d91e269af0a5a959fa5f6.html">E:</a></li><li class="navelem"><a class="el" href="dir_4e74998c9a9305a116abc25fcf9a1edb.html">knet-git</a></li><li class="navelem"><a class="el" href="dir_a1c045b39f32066568ae964b52db514f.html">knet</a></li><li class="navelem"><a class="el" href="dir_608f7b12c8c9fcc58e6bfd031254d210.html">test</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">test_server.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="test__server_8c.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="knet_8h.html">knet.h</a>&quot;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
+<div class="line"><a name="l00003"></a><span class="lineno"><a class="line" href="test__server_8c.html#af31b42bfc0a16d5ce39dc3cadc4e726c">    3</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="test__server_8c.html#af31b42bfc0a16d5ce39dc3cadc4e726c">client_cb</a>(<a class="code" href="struct__channel__ref__t.html">channel_ref_t</a>* channel, <a class="code" href="config_8h.html#aaf2cba5d4035f3d56350b59342ebf65c">channel_cb_event_e</a> e) {</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;    <span class="keywordtype">char</span>      buffer[1024] = {0};</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    <span class="keywordtype">int</span>       bytes      = 0;</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <a class="code" href="struct__stream__t.html">stream_t</a>* stream     = <a class="code" href="channel__ref_8c.html#af8d2758e1e063e04512049c9a9869d5e">channel_ref_get_stream</a>(channel);</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <span class="keywordflow">if</span> (e &amp; <a class="code" href="config_8h.html#a2217ac7363dbae279d056a361d122915ae7aa0d7fc417f5d1b3242e858ab23b82">channel_cb_event_recv</a>) {</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;        bytes = <a class="code" href="stream_8c.html#a6e109b2dc520782567dc1891af3b945e">stream_available</a>(stream);</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;        <span class="keywordflow">if</span> (<a class="code" href="config_8h.html#ad8bc998d415be9115a064a8307df0ed5a722f316dc97e835ba613f7a505992dfd">error_ok</a> == <a class="code" href="stream_8c.html#a6e01758abf49f8b08cd457f1cb48a954">stream_pop</a>(stream, buffer, <span class="keyword">sizeof</span>(buffer))) {</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;            <span class="comment">/* echo写入 */</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;            <span class="keywordflow">if</span> (bytes) {</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;                <a class="code" href="stream_8c.html#a34e0f4c2a5beb6f6d35c77b95040947d">stream_push</a>(stream, buffer, bytes);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;            }</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        }        </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (e &amp; <a class="code" href="config_8h.html#a2217ac7363dbae279d056a361d122915a7bb5e8d7574bce246b68c022c06b91e6">channel_cb_event_close</a>) {</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        printf(<span class="stringliteral">&quot;active channel count: %d, close channel count: %d\n&quot;</span>,</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            <a class="code" href="loop_8c.html#a6fa8f99fdc7a036fea6ca91971885e52">loop_get_active_channel_count</a>(<a class="code" href="channel__ref_8c.html#ad840fd786ca7092d528a8fc45c2e2a76">channel_ref_get_loop</a>(channel)),</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            <a class="code" href="loop_8c.html#a604184ddcd3e06bc7bfd4f1722778029">loop_get_close_channel_count</a>(<a class="code" href="channel__ref_8c.html#ad840fd786ca7092d528a8fc45c2e2a76">channel_ref_get_loop</a>(channel)));</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (e &amp; <a class="code" href="config_8h.html#a2217ac7363dbae279d056a361d122915ad307a6d5eae25c2c76488221a9e8aa06">channel_cb_event_timeout</a>) {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        printf(<span class="stringliteral">&quot;client channel timeout\n&quot;</span>);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <a class="code" href="channel__ref_8c.html#a49d6ba5f0b9aad95ae5c5710dca392a1">channel_ref_close</a>(channel);</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    }</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;}</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="test__server_8c.html#a4ef7d97742bc9410f486ebc4e0b75e82">   25</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="test__server_8c.html#a4ef7d97742bc9410f486ebc4e0b75e82">acceptor_cb</a>(<a class="code" href="struct__channel__ref__t.html">channel_ref_t</a>* channel, <a class="code" href="config_8h.html#aaf2cba5d4035f3d56350b59342ebf65c">channel_cb_event_e</a> e) {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordflow">if</span> (e &amp; <a class="code" href="config_8h.html#a2217ac7363dbae279d056a361d122915a337bcdd5a997178d2c2500c077e594a1">channel_cb_event_accept</a>) {</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        printf(<span class="stringliteral">&quot;accept fd: %d, active channel count: %d, close channel count: %d\n&quot;</span>,</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            <a class="code" href="channel__ref_8c.html#af0c977ef05b7e767a8ef166a8037ec8b">channel_ref_get_socket_fd</a>(channel),</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            <a class="code" href="loop_8c.html#a6fa8f99fdc7a036fea6ca91971885e52">loop_get_active_channel_count</a>(<a class="code" href="channel__ref_8c.html#ad840fd786ca7092d528a8fc45c2e2a76">channel_ref_get_loop</a>(channel)),</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            <a class="code" href="loop_8c.html#a604184ddcd3e06bc7bfd4f1722778029">loop_get_close_channel_count</a>(<a class="code" href="channel__ref_8c.html#ad840fd786ca7092d528a8fc45c2e2a76">channel_ref_get_loop</a>(channel)));</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <a class="code" href="channel__ref_8c.html#a4e46196f7ac40bdd14a1407167e88b7b">channel_ref_set_timeout</a>(channel, 5);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <a class="code" href="channel__ref_8c.html#a7627dbcdb87269ef2fae5bcbbb210720">channel_ref_set_cb</a>(channel, <a class="code" href="test__server_8c.html#af31b42bfc0a16d5ce39dc3cadc4e726c">client_cb</a>);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    }</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;}</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="test__server_8c.html#a0ddf1224851353fc92bfbff6f499fa97">   36</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="test__server_8c.html#a0ddf1224851353fc92bfbff6f499fa97">main</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span>* argv[]) {</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">int</span>               i        = 0;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">int</span>               worker   = 0;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">char</span>*             <a class="code" href="test__client_8c.html#afbc356cd0e25d1dbbece7c10fd025fa6">ip</a>       = 0;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">int</span>               <a class="code" href="test__client_8c.html#a63c89c04d1feae07ca35558055155ffb">port</a>     = 0;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="struct__loop__t.html">loop_t</a>*           loop     = 0;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="struct__loop__t.html">loop_t</a>**          loops    = 0;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="struct__loop__balancer__t.html">loop_balancer_t</a>*  balancer = 0;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="struct__channel__ref__t.html">channel_ref_t</a>*    acceptor = 0;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="struct__thread__runner__t.html">thread_runner_t</a>** threads  = 0;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordflow">if</span> (argc &gt; 2) {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordflow">for</span> (i = 1; i &lt; argc; i++) {</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            <span class="keywordflow">if</span> (!strcmp(<span class="stringliteral">&quot;-ip&quot;</span>, argv[i])) {</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                ip = argv[i+1];</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (!strcmp(<span class="stringliteral">&quot;-port&quot;</span>, argv[i])) {</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                port = atoi(argv[i+1]);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (!strcmp(<span class="stringliteral">&quot;-w&quot;</span>, argv[i])) {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                worker = atoi(argv[i+1]);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            }</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    balancer = <a class="code" href="loop__balancer_8c.html#a9992a50e96839282c678e51bc11158d1">loop_balancer_create</a>();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    loop     = <a class="code" href="loop_8c.html#a878bf0cd280e0bd183144bb95ca4a7b1">loop_create</a>();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    threads  = (<a class="code" href="struct__thread__runner__t.html">thread_runner_t</a>**)malloc(<span class="keyword">sizeof</span>(<a class="code" href="struct__thread__runner__t.html">thread_runner_t</a>*) * worker);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    loops    = (<a class="code" href="struct__loop__t.html">loop_t</a>**)malloc(<span class="keyword">sizeof</span>(<a class="code" href="struct__loop__t.html">loop_t</a>*) * worker);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="loop__balancer_8c.html#a2b3cf2cb63d914efe226e901a50d8b0a">loop_balancer_attach</a>(balancer, loop);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    acceptor = <a class="code" href="loop_8c.html#ab5b73ea9a0347b431f93ebf30ecd05b5">loop_create_channel</a>(loop, 8, 1024);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="channel__ref_8c.html#a7627dbcdb87269ef2fae5bcbbb210720">channel_ref_set_cb</a>(acceptor, <a class="code" href="test__server_8c.html#a4ef7d97742bc9410f486ebc4e0b75e82">acceptor_cb</a>);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="channel__ref_8c.html#ae9ae0ae2a42eabf6a544ce4e0f001c9e">channel_ref_accept</a>(acceptor, ip, port, 500);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordflow">for</span> (i = 0; i &lt; worker; i++) {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        loops[i] = <a class="code" href="loop_8c.html#a878bf0cd280e0bd183144bb95ca4a7b1">loop_create</a>();</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        assert(loop[i]);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <a class="code" href="loop__balancer_8c.html#a2b3cf2cb63d914efe226e901a50d8b0a">loop_balancer_attach</a>(balancer, loops[i]);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        threads[i] = <a class="code" href="misc_8c.html#ac20d7726e152e0b49209ce228893c25d">thread_runner_create</a>(0, 0);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        assert(threads[i]);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <a class="code" href="misc_8c.html#a93f88ba77e7eab786da6fe7d1f681a2e">thread_runner_start_loop</a>(threads[i], loops[i], 0);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    }</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <a class="code" href="loop_8c.html#a8eb0f6c8d398c70fc5ca2292664a1187">loop_run</a>(loop);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordflow">for</span> (i = 0; i &lt; worker; i++) {</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <a class="code" href="misc_8c.html#a8b9d3d45b6055971fc40f24ec6572cf6">thread_runner_destroy</a>(threads[i]);        </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    }</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordflow">for</span> (i = 0; i &lt; worker; i++) {</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <a class="code" href="loop_8c.html#a921fd5e5e16a73de123e81baab187a0a">loop_destroy</a>(loops[i]);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    }</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <a class="code" href="loop_8c.html#a921fd5e5e16a73de123e81baab187a0a">loop_destroy</a>(loop);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <a class="code" href="loop__balancer_8c.html#a2d702b5f965fe587fdaea3f5f9e2400c">loop_balancer_destroy</a>(balancer);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordflow">if</span> (loops) {</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        free(loops);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordflow">if</span> (threads) {</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        free(threads);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    }</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;}</div>
+<div class="ttc" id="channel__ref_8c_html_ad840fd786ca7092d528a8fc45c2e2a76"><div class="ttname"><a href="channel__ref_8c.html#ad840fd786ca7092d528a8fc45c2e2a76">channel_ref_get_loop</a></div><div class="ttdeci">loop_t * channel_ref_get_loop(channel_ref_t *channel_ref)</div><div class="ttdef"><b>Definition:</b> <a href="channel__ref_8c_source.html#l00254">channel_ref.c:254</a></div></div>
+<div class="ttc" id="test__client_8c_html_a63c89c04d1feae07ca35558055155ffb"><div class="ttname"><a href="test__client_8c.html#a63c89c04d1feae07ca35558055155ffb">port</a></div><div class="ttdeci">int port</div><div class="ttdef"><b>Definition:</b> <a href="test__client_8c_source.html#l00008">test_client.c:8</a></div></div>
+<div class="ttc" id="stream_8c_html_a6e109b2dc520782567dc1891af3b945e"><div class="ttname"><a href="stream_8c.html#a6e109b2dc520782567dc1891af3b945e">stream_available</a></div><div class="ttdeci">int stream_available(stream_t *stream)</div><div class="ttdef"><b>Definition:</b> <a href="stream_8c_source.html#l00052">stream.c:52</a></div></div>
+<div class="ttc" id="test__server_8c_html_a0ddf1224851353fc92bfbff6f499fa97"><div class="ttname"><a href="test__server_8c.html#a0ddf1224851353fc92bfbff6f499fa97">main</a></div><div class="ttdeci">int main(int argc, char *argv[])</div><div class="ttdef"><b>Definition:</b> <a href="test__server_8c_source.html#l00036">test_server.c:36</a></div></div>
+<div class="ttc" id="loop__balancer_8c_html_a9992a50e96839282c678e51bc11158d1"><div class="ttname"><a href="loop__balancer_8c.html#a9992a50e96839282c678e51bc11158d1">loop_balancer_create</a></div><div class="ttdeci">loop_balancer_t * loop_balancer_create()</div><div class="ttdef"><b>Definition:</b> <a href="loop__balancer_8c_source.html#l00041">loop_balancer.c:41</a></div></div>
+<div class="ttc" id="config_8h_html_a2217ac7363dbae279d056a361d122915ae7aa0d7fc417f5d1b3242e858ab23b82"><div class="ttname"><a href="config_8h.html#a2217ac7363dbae279d056a361d122915ae7aa0d7fc417f5d1b3242e858ab23b82">channel_cb_event_recv</a></div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00207">config.h:207</a></div></div>
+<div class="ttc" id="loop_8c_html_ab5b73ea9a0347b431f93ebf30ecd05b5"><div class="ttname"><a href="loop_8c.html#ab5b73ea9a0347b431f93ebf30ecd05b5">loop_create_channel</a></div><div class="ttdeci">channel_ref_t * loop_create_channel(loop_t *loop, uint32_t max_send_list_len, uint32_t recv_ring_len)</div><div class="ttdef"><b>Definition:</b> <a href="loop_8c_source.html#l00239">loop.c:239</a></div></div>
+<div class="ttc" id="loop_8c_html_a878bf0cd280e0bd183144bb95ca4a7b1"><div class="ttname"><a href="loop_8c.html#a878bf0cd280e0bd183144bb95ca4a7b1">loop_create</a></div><div class="ttdeci">loop_t * loop_create()</div><div class="ttdef"><b>Definition:</b> <a href="loop_8c_source.html#l00090">loop.c:90</a></div></div>
+<div class="ttc" id="loop__balancer_8c_html_a2d702b5f965fe587fdaea3f5f9e2400c"><div class="ttname"><a href="loop__balancer_8c.html#a2d702b5f965fe587fdaea3f5f9e2400c">loop_balancer_destroy</a></div><div class="ttdeci">void loop_balancer_destroy(loop_balancer_t *balancer)</div><div class="ttdef"><b>Definition:</b> <a href="loop__balancer_8c_source.html#l00051">loop_balancer.c:51</a></div></div>
+<div class="ttc" id="struct__thread__runner__t_html"><div class="ttname"><a href="struct__thread__runner__t.html">_thread_runner_t</a></div><div class="ttdef"><b>Definition:</b> <a href="misc_8c_source.html#l00036">misc.c:36</a></div></div>
+<div class="ttc" id="config_8h_html_a2217ac7363dbae279d056a361d122915ad307a6d5eae25c2c76488221a9e8aa06"><div class="ttname"><a href="config_8h.html#a2217ac7363dbae279d056a361d122915ad307a6d5eae25c2c76488221a9e8aa06">channel_cb_event_timeout</a></div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00210">config.h:210</a></div></div>
+<div class="ttc" id="knet_8h_html"><div class="ttname"><a href="knet_8h.html">knet.h</a></div></div>
+<div class="ttc" id="channel__ref_8c_html_a49d6ba5f0b9aad95ae5c5710dca392a1"><div class="ttname"><a href="channel__ref_8c.html#a49d6ba5f0b9aad95ae5c5710dca392a1">channel_ref_close</a></div><div class="ttdeci">void channel_ref_close(channel_ref_t *channel_ref)</div><div class="ttdef"><b>Definition:</b> <a href="channel__ref_8c_source.html#l00175">channel_ref.c:175</a></div></div>
+<div class="ttc" id="channel__ref_8c_html_a4e46196f7ac40bdd14a1407167e88b7b"><div class="ttname"><a href="channel__ref_8c.html#a4e46196f7ac40bdd14a1407167e88b7b">channel_ref_set_timeout</a></div><div class="ttdeci">void channel_ref_set_timeout(channel_ref_t *channel_ref, int timeout)</div><div class="ttdef"><b>Definition:</b> <a href="channel__ref_8c_source.html#l00496">channel_ref.c:496</a></div></div>
+<div class="ttc" id="channel__ref_8c_html_af8d2758e1e063e04512049c9a9869d5e"><div class="ttname"><a href="channel__ref_8c.html#af8d2758e1e063e04512049c9a9869d5e">channel_ref_get_stream</a></div><div class="ttdeci">stream_t * channel_ref_get_stream(channel_ref_t *channel_ref)</div><div class="ttdef"><b>Definition:</b> <a href="channel__ref_8c_source.html#l00249">channel_ref.c:249</a></div></div>
+<div class="ttc" id="misc_8c_html_ac20d7726e152e0b49209ce228893c25d"><div class="ttname"><a href="misc_8c.html#ac20d7726e152e0b49209ce228893c25d">thread_runner_create</a></div><div class="ttdeci">thread_runner_t * thread_runner_create(thread_func_t func, void *params)</div><div class="ttdef"><b>Definition:</b> <a href="misc_8c_source.html#l00539">misc.c:539</a></div></div>
+<div class="ttc" id="struct__loop__t_html"><div class="ttname"><a href="struct__loop__t.html">_loop_t</a></div><div class="ttdef"><b>Definition:</b> <a href="loop_8c_source.html#l00035">loop.c:35</a></div></div>
+<div class="ttc" id="channel__ref_8c_html_af0c977ef05b7e767a8ef166a8037ec8b"><div class="ttname"><a href="channel__ref_8c.html#af0c977ef05b7e767a8ef166a8037ec8b">channel_ref_get_socket_fd</a></div><div class="ttdeci">socket_t channel_ref_get_socket_fd(channel_ref_t *channel_ref)</div><div class="ttdef"><b>Definition:</b> <a href="channel__ref_8c_source.html#l00244">channel_ref.c:244</a></div></div>
+<div class="ttc" id="loop_8c_html_a921fd5e5e16a73de123e81baab187a0a"><div class="ttname"><a href="loop_8c.html#a921fd5e5e16a73de123e81baab187a0a">loop_destroy</a></div><div class="ttdeci">void loop_destroy(loop_t *loop)</div><div class="ttdef"><b>Definition:</b> <a href="loop_8c_source.html#l00127">loop.c:127</a></div></div>
+<div class="ttc" id="test__server_8c_html_af31b42bfc0a16d5ce39dc3cadc4e726c"><div class="ttname"><a href="test__server_8c.html#af31b42bfc0a16d5ce39dc3cadc4e726c">client_cb</a></div><div class="ttdeci">void client_cb(channel_ref_t *channel, channel_cb_event_e e)</div><div class="ttdef"><b>Definition:</b> <a href="test__server_8c_source.html#l00003">test_server.c:3</a></div></div>
+<div class="ttc" id="struct__channel__ref__t_html"><div class="ttname"><a href="struct__channel__ref__t.html">_channel_ref_t</a></div><div class="ttdef"><b>Definition:</b> <a href="channel__ref_8c_source.html#l00057">channel_ref.c:57</a></div></div>
+<div class="ttc" id="stream_8c_html_a34e0f4c2a5beb6f6d35c77b95040947d"><div class="ttname"><a href="stream_8c.html#a34e0f4c2a5beb6f6d35c77b95040947d">stream_push</a></div><div class="ttdeci">int stream_push(stream_t *stream, void *buffer, int size)</div><div class="ttdef"><b>Definition:</b> <a href="stream_8c_source.html#l00080">stream.c:80</a></div></div>
+<div class="ttc" id="struct__stream__t_html"><div class="ttname"><a href="struct__stream__t.html">_stream_t</a></div><div class="ttdef"><b>Definition:</b> <a href="stream_8c_source.html#l00033">stream.c:33</a></div></div>
+<div class="ttc" id="misc_8c_html_a93f88ba77e7eab786da6fe7d1f681a2e"><div class="ttname"><a href="misc_8c.html#a93f88ba77e7eab786da6fe7d1f681a2e">thread_runner_start_loop</a></div><div class="ttdeci">int thread_runner_start_loop(thread_runner_t *runner, loop_t *loop, int stack_size)</div><div class="ttdef"><b>Definition:</b> <a href="misc_8c_source.html#l00662">misc.c:662</a></div></div>
+<div class="ttc" id="loop_8c_html_a6fa8f99fdc7a036fea6ca91971885e52"><div class="ttname"><a href="loop_8c.html#a6fa8f99fdc7a036fea6ca91971885e52">loop_get_active_channel_count</a></div><div class="ttdeci">int loop_get_active_channel_count(loop_t *loop)</div><div class="ttdef"><b>Definition:</b> <a href="loop_8c_source.html#l00381">loop.c:381</a></div></div>
+<div class="ttc" id="loop_8c_html_a604184ddcd3e06bc7bfd4f1722778029"><div class="ttname"><a href="loop_8c.html#a604184ddcd3e06bc7bfd4f1722778029">loop_get_close_channel_count</a></div><div class="ttdeci">int loop_get_close_channel_count(loop_t *loop)</div><div class="ttdef"><b>Definition:</b> <a href="loop_8c_source.html#l00385">loop.c:385</a></div></div>
+<div class="ttc" id="channel__ref_8c_html_a7627dbcdb87269ef2fae5bcbbb210720"><div class="ttname"><a href="channel__ref_8c.html#a7627dbcdb87269ef2fae5bcbbb210720">channel_ref_set_cb</a></div><div class="ttdeci">void channel_ref_set_cb(channel_ref_t *channel_ref, channel_ref_cb_t cb)</div><div class="ttdef"><b>Definition:</b> <a href="channel__ref_8c_source.html#l00524">channel_ref.c:524</a></div></div>
+<div class="ttc" id="test__server_8c_html_a4ef7d97742bc9410f486ebc4e0b75e82"><div class="ttname"><a href="test__server_8c.html#a4ef7d97742bc9410f486ebc4e0b75e82">acceptor_cb</a></div><div class="ttdeci">void acceptor_cb(channel_ref_t *channel, channel_cb_event_e e)</div><div class="ttdef"><b>Definition:</b> <a href="test__server_8c_source.html#l00025">test_server.c:25</a></div></div>
+<div class="ttc" id="loop_8c_html_a8eb0f6c8d398c70fc5ca2292664a1187"><div class="ttname"><a href="loop_8c.html#a8eb0f6c8d398c70fc5ca2292664a1187">loop_run</a></div><div class="ttdeci">int loop_run(loop_t *loop)</div><div class="ttdef"><b>Definition:</b> <a href="loop_8c_source.html#l00255">loop.c:255</a></div></div>
+<div class="ttc" id="misc_8c_html_a8b9d3d45b6055971fc40f24ec6572cf6"><div class="ttname"><a href="misc_8c.html#a8b9d3d45b6055971fc40f24ec6572cf6">thread_runner_destroy</a></div><div class="ttdeci">void thread_runner_destroy(thread_runner_t *runner)</div><div class="ttdef"><b>Definition:</b> <a href="misc_8c_source.html#l00548">misc.c:548</a></div></div>
+<div class="ttc" id="config_8h_html_ad8bc998d415be9115a064a8307df0ed5a722f316dc97e835ba613f7a505992dfd"><div class="ttname"><a href="config_8h.html#ad8bc998d415be9115a064a8307df0ed5a722f316dc97e835ba613f7a505992dfd">error_ok</a></div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00159">config.h:159</a></div></div>
+<div class="ttc" id="stream_8c_html_a6e01758abf49f8b08cd457f1cb48a954"><div class="ttname"><a href="stream_8c.html#a6e01758abf49f8b08cd457f1cb48a954">stream_pop</a></div><div class="ttdeci">int stream_pop(stream_t *stream, void *buffer, int size)</div><div class="ttdef"><b>Definition:</b> <a href="stream_8c_source.html#l00057">stream.c:57</a></div></div>
+<div class="ttc" id="config_8h_html_aaf2cba5d4035f3d56350b59342ebf65c"><div class="ttname"><a href="config_8h.html#aaf2cba5d4035f3d56350b59342ebf65c">channel_cb_event_e</a></div><div class="ttdeci">enum _channel_cb_event_e channel_cb_event_e</div></div>
+<div class="ttc" id="config_8h_html_a2217ac7363dbae279d056a361d122915a337bcdd5a997178d2c2500c077e594a1"><div class="ttname"><a href="config_8h.html#a2217ac7363dbae279d056a361d122915a337bcdd5a997178d2c2500c077e594a1">channel_cb_event_accept</a></div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00206">config.h:206</a></div></div>
+<div class="ttc" id="loop__balancer_8c_html_a2b3cf2cb63d914efe226e901a50d8b0a"><div class="ttname"><a href="loop__balancer_8c.html#a2b3cf2cb63d914efe226e901a50d8b0a">loop_balancer_attach</a></div><div class="ttdeci">int loop_balancer_attach(loop_balancer_t *balancer, loop_t *loop)</div><div class="ttdef"><b>Definition:</b> <a href="loop__balancer_8c_source.html#l00063">loop_balancer.c:63</a></div></div>
+<div class="ttc" id="config_8h_html_a2217ac7363dbae279d056a361d122915a7bb5e8d7574bce246b68c022c06b91e6"><div class="ttname"><a href="config_8h.html#a2217ac7363dbae279d056a361d122915a7bb5e8d7574bce246b68c022c06b91e6">channel_cb_event_close</a></div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00209">config.h:209</a></div></div>
+<div class="ttc" id="struct__loop__balancer__t_html"><div class="ttname"><a href="struct__loop__balancer__t.html">_loop_balancer_t</a></div><div class="ttdef"><b>Definition:</b> <a href="loop__balancer_8c_source.html#l00036">loop_balancer.c:36</a></div></div>
+<div class="ttc" id="channel__ref_8c_html_ae9ae0ae2a42eabf6a544ce4e0f001c9e"><div class="ttname"><a href="channel__ref_8c.html#ae9ae0ae2a42eabf6a544ce4e0f001c9e">channel_ref_accept</a></div><div class="ttdeci">int channel_ref_accept(channel_ref_t *channel_ref, const char *ip, int port, int backlog)</div><div class="ttdef"><b>Definition:</b> <a href="channel__ref_8c_source.html#l00120">channel_ref.c:120</a></div></div>
+<div class="ttc" id="test__client_8c_html_afbc356cd0e25d1dbbece7c10fd025fa6"><div class="ttname"><a href="test__client_8c.html#afbc356cd0e25d1dbbece7c10fd025fa6">ip</a></div><div class="ttdeci">char * ip</div><div class="ttdef"><b>Definition:</b> <a href="test__client_8c_source.html#l00007">test_client.c:7</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+生成于 2015年 六月 29日 星期一 16:51:00 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.9.1
+</small></address>
+</body>
+</html>

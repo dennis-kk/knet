@@ -1,0 +1,266 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.9.1"/>
+<title>knet: E:/knet-git/knet/krpc/examples/rpc_sample.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">knet
+   &#160;<span id="projectnumber">1.4.1</span>
+   </div>
+   <div id="projectbrief">cross platform, light-weight, multithreading net library</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.9.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="pages.html"><span>相关页面</span></a></li>
+      <li><a href="namespaces.html"><span>命名空间</span></a></li>
+      <li><a href="annotated.html"><span>结构体</span></a></li>
+      <li class="current"><a href="files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>文件列表</span></a></li>
+      <li><a href="globals.html"><span>全局定义</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_885cc87fac2d91e269af0a5a959fa5f6.html">E:</a></li><li class="navelem"><a class="el" href="dir_4e74998c9a9305a116abc25fcf9a1edb.html">knet-git</a></li><li class="navelem"><a class="el" href="dir_a1c045b39f32066568ae964b52db514f.html">knet</a></li><li class="navelem"><a class="el" href="dir_1fc146881cba3aa6f98e662576ab61b9.html">krpc</a></li><li class="navelem"><a class="el" href="dir_337a259655bfcdee98e5e1be42b13950.html">examples</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">rpc_sample.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="rpc__sample_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// KRPC - Generated code, *DO NOT CHANGE*</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef _krpc_rpc_sample_h_</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define _krpc_rpc_sample_h_</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="knet_8h.html">knet.h</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacerpc__sample.html">rpc_sample</a> {</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">struct </span>my_object_other_t;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">struct </span>my_object_t;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="structrpc__sample_1_1my__object__other__t.html">   21</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structrpc__sample_1_1my__object__other__t.html">my_object_other_t</a> {</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="structrpc__sample_1_1my__object__other__t.html#aefa08182691a0dffb9e0bdad6a50b421">   22</a></span>&#160;    std::vector&lt;my_object_t&gt; <a class="code" href="structrpc__sample_1_1my__object__other__t.html#aefa08182691a0dffb9e0bdad6a50b421">objects</a>; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="structrpc__sample_1_1my__object__other__t.html#aac16f58d6e1fac3e520e9a30b73bc312">   23</a></span>&#160;    std::vector&lt;int32_t&gt; <a class="code" href="structrpc__sample_1_1my__object__other__t.html#aac16f58d6e1fac3e520e9a30b73bc312">i32_array</a>; </div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="structrpc__sample_1_1my__object__other__t.html#a5270a6498aa55551693b9a5e077dfbfc">   24</a></span>&#160;    std::vector&lt;std::string&gt; <a class="code" href="structrpc__sample_1_1my__object__other__t.html#a5270a6498aa55551693b9a5e077dfbfc">str_array</a>; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="structrpc__sample_1_1my__object__other__t.html#af8d68c085da6a3ee0b53c76b2fa54864">my_object_other_t</a>();</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="structrpc__sample_1_1my__object__other__t.html#af8d68c085da6a3ee0b53c76b2fa54864">my_object_other_t</a>(<span class="keyword">const</span> <a class="code" href="structrpc__sample_1_1my__object__other__t.html">my_object_other_t</a>&amp; rht);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">const</span> <a class="code" href="structrpc__sample_1_1my__object__other__t.html">my_object_other_t</a>&amp; <a class="code" href="structrpc__sample_1_1my__object__other__t.html#adadbf95f0789826090919d933ffd9c61">operator=</a>(<span class="keyword">const</span> <a class="code" href="structrpc__sample_1_1my__object__other__t.html">my_object_other_t</a>&amp; rht);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="structrpc__sample_1_1my__object__other__t.html#a2f718b12c2666105404ac2314de6e5e7">print</a>(std::stringstream&amp; ss, std::string white = <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;};</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="structrpc__sample_1_1my__object__t.html">   53</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structrpc__sample_1_1my__object__t.html">my_object_t</a> {</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="structrpc__sample_1_1my__object__t.html#aab8e35cb9f5f7c6e9e466d8d3698c05a">   54</a></span>&#160;    int8_t <a class="code" href="structrpc__sample_1_1my__object__t.html#aab8e35cb9f5f7c6e9e466d8d3698c05a">ni8</a>; </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="structrpc__sample_1_1my__object__t.html#ae8b3700159b74a9b7d2ec0a7ea827ed4">   55</a></span>&#160;    int16_t <a class="code" href="structrpc__sample_1_1my__object__t.html#ae8b3700159b74a9b7d2ec0a7ea827ed4">ni16</a>; </div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="structrpc__sample_1_1my__object__t.html#a93e8e1b4ecdf7dab9db55ecfe51344cc">   56</a></span>&#160;    int32_t <a class="code" href="structrpc__sample_1_1my__object__t.html#a93e8e1b4ecdf7dab9db55ecfe51344cc">ni32</a>; </div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="structrpc__sample_1_1my__object__t.html#a65d691fd650bea991337c5c966f5203e">   57</a></span>&#160;    int64_t <a class="code" href="structrpc__sample_1_1my__object__t.html#a65d691fd650bea991337c5c966f5203e">ni64</a>; </div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="structrpc__sample_1_1my__object__t.html#a46e051ce3e4e6ea30d9680fa779db6d2">   58</a></span>&#160;    uint8_t <a class="code" href="structrpc__sample_1_1my__object__t.html#a46e051ce3e4e6ea30d9680fa779db6d2">nui8</a>; </div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="structrpc__sample_1_1my__object__t.html#af4874e99994fc17939dbf1ac4ef00279">   59</a></span>&#160;    uint16_t <a class="code" href="structrpc__sample_1_1my__object__t.html#af4874e99994fc17939dbf1ac4ef00279">nui16</a>; </div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="structrpc__sample_1_1my__object__t.html#af28e05226ac75406862acdb1e630595a">   60</a></span>&#160;    uint32_t <a class="code" href="structrpc__sample_1_1my__object__t.html#af28e05226ac75406862acdb1e630595a">nui32</a>; </div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="structrpc__sample_1_1my__object__t.html#aa7c0dd5e376ab704bbb9186f7f214f42">   61</a></span>&#160;    uint64_t <a class="code" href="structrpc__sample_1_1my__object__t.html#aa7c0dd5e376ab704bbb9186f7f214f42">nui64</a>; </div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="structrpc__sample_1_1my__object__t.html#a72897bf89c2ddb75f977e87405646438">   62</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="structrpc__sample_1_1my__object__t.html#a72897bf89c2ddb75f977e87405646438">nf32</a>; </div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="structrpc__sample_1_1my__object__t.html#ab1cd61707e68d246e0096f4275c0d138">   63</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="structrpc__sample_1_1my__object__t.html#ab1cd61707e68d246e0096f4275c0d138">nf64</a>; </div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="structrpc__sample_1_1my__object__t.html#a5d55e2558544e2ad2ea0b54f8e3d41fc">   64</a></span>&#160;    std::string <a class="code" href="structrpc__sample_1_1my__object__t.html#a5d55e2558544e2ad2ea0b54f8e3d41fc">str</a>; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="structrpc__sample_1_1my__object__t.html#a97bcc8d2b802b19e262555ad2353edc5">my_object_t</a>();</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <a class="code" href="structrpc__sample_1_1my__object__t.html#a97bcc8d2b802b19e262555ad2353edc5">my_object_t</a>(<span class="keyword">const</span> <a class="code" href="structrpc__sample_1_1my__object__t.html">my_object_t</a>&amp; rht);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keyword">const</span> <a class="code" href="structrpc__sample_1_1my__object__t.html">my_object_t</a>&amp; <a class="code" href="structrpc__sample_1_1my__object__t.html#a3eb77592cbd8c158afe2b82dfbe8c856">operator=</a>(<span class="keyword">const</span> <a class="code" href="structrpc__sample_1_1my__object__t.html">my_object_t</a>&amp; rht);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="structrpc__sample_1_1my__object__t.html#a2f718b12c2666105404ac2314de6e5e7">print</a>(std::stringstream&amp; ss, std::string white = <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;};</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<a class="code" href="struct__krpc__object__t.html">krpc_object_t</a>* <a class="code" href="namespacerpc__sample.html#ab2202ee13cd75c46e3f91be33afeaac6">marshal</a>(<a class="code" href="structrpc__sample_1_1my__object__other__t.html">my_object_other_t</a>&amp; o);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="namespacerpc__sample.html#a0f4a1b54cc4f4ea395b01b850dd781c2">unmarshal</a>(<a class="code" href="struct__krpc__object__t.html">krpc_object_t</a>* v, <a class="code" href="structrpc__sample_1_1my__object__other__t.html">my_object_other_t</a>&amp; o);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<a class="code" href="struct__krpc__object__t.html">krpc_object_t</a>* <a class="code" href="namespacerpc__sample.html#ab2202ee13cd75c46e3f91be33afeaac6">marshal</a>(<a class="code" href="structrpc__sample_1_1my__object__t.html">my_object_t</a>&amp; o);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="namespacerpc__sample.html#a0f4a1b54cc4f4ea395b01b850dd781c2">unmarshal</a>(<a class="code" href="struct__krpc__object__t.html">krpc_object_t</a>* v, <a class="code" href="structrpc__sample_1_1my__object__t.html">my_object_t</a>&amp; o);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<a class="code" href="struct__krpc__object__t.html">krpc_object_t</a>* <a class="code" href="namespacerpc__sample.html#a4c4d2f86fffa111a3d1356be078d8773">my_rpc_func1_proxy</a>(<a class="code" href="structrpc__sample_1_1my__object__t.html">my_object_t</a>&amp; my_obj);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="keywordtype">int</span> <a class="code" href="namespacerpc__sample.html#a4c2d6fb366e7559aeb1df4510cf8af84">my_rpc_func1_stub</a>(<a class="code" href="struct__krpc__object__t.html">krpc_object_t</a>* o);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="keywordtype">int</span> <a class="code" href="namespacerpc__sample.html#a9cbde3db2e2c41ccf893d9bb9d98a663">my_rpc_func1</a>(<a class="code" href="structrpc__sample_1_1my__object__t.html">my_object_t</a>&amp; my_obj);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<a class="code" href="struct__krpc__object__t.html">krpc_object_t</a>* <a class="code" href="namespacerpc__sample.html#acfed9f5da95ebfc7f132819ea5af29d2">my_rpc_func2_proxy</a>(std::vector&lt;my_object_t&gt;&amp; my_objs, int8_t my_i8);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="keywordtype">int</span> <a class="code" href="namespacerpc__sample.html#a6c9ad9cfafcae822427e7e297600e5a1">my_rpc_func2_stub</a>(<a class="code" href="struct__krpc__object__t.html">krpc_object_t</a>* o);</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="keywordtype">int</span> <a class="code" href="namespacerpc__sample.html#ab316c95cfbb182bd7c074a83dc6ed59a">my_rpc_func2</a>(std::vector&lt;my_object_t&gt;&amp; my_objs, int8_t my_i8);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<a class="code" href="struct__krpc__object__t.html">krpc_object_t</a>* <a class="code" href="namespacerpc__sample.html#a1102959a5aec9ebc59affda9545de8b3">my_rpc_func3_proxy</a>(<span class="keyword">const</span> std::string&amp; my_str, int8_t my_i8);</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;<span class="keywordtype">int</span> <a class="code" href="namespacerpc__sample.html#ae9274d206c168bf89a17ca229fb05ce6">my_rpc_func3_stub</a>(<a class="code" href="struct__krpc__object__t.html">krpc_object_t</a>* o);</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="keywordtype">int</span> <a class="code" href="namespacerpc__sample.html#a93e5778517cbdbcc2e43b27a6f7c8636">my_rpc_func3</a>(<span class="keyword">const</span> std::string&amp; my_str, int8_t my_i8);</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;</div>
+<div class="line"><a name="l00159"></a><span class="lineno"><a class="line" href="classrpc__sample_1_1rpc__sample__t.html">  159</a></span>&#160;<span class="keyword">class </span><a class="code" href="classrpc__sample_1_1rpc__sample__t.html">rpc_sample_t</a> {</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <a class="code" href="classrpc__sample_1_1rpc__sample__t.html#a5fadb73b0293c923802be0585ed0aef7">~rpc_sample_t</a>();</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;    <span class="keyword">static</span> <a class="code" href="classrpc__sample_1_1rpc__sample__t.html">rpc_sample_t</a>* <a class="code" href="classrpc__sample_1_1rpc__sample__t.html#ad041951322824124d5b5f0ab8c9fc6f1">instance</a>();</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="classrpc__sample_1_1rpc__sample__t.html#a32d626626eee0bc4ade146973f6abb1c">finalize</a>();</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classrpc__sample_1_1rpc__sample__t.html#a33828bf33ef507e4b26d259f74704d53">rpc_proc</a>(<a class="code" href="struct__stream__t.html">stream_t</a>* stream); </div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classrpc__sample_1_1rpc__sample__t.html#a6816697300fea69a29dd9ee4225c70be">my_rpc_func1</a>(<a class="code" href="struct__stream__t.html">stream_t</a>* stream, <a class="code" href="structrpc__sample_1_1my__object__t.html">my_object_t</a>&amp; my_obj);</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classrpc__sample_1_1rpc__sample__t.html#ae15eff7ca37c2490467a6b8244af5898">my_rpc_func2</a>(<a class="code" href="struct__stream__t.html">stream_t</a>* stream, std::vector&lt;my_object_t&gt;&amp; my_objs, int8_t my_i8);</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="classrpc__sample_1_1rpc__sample__t.html#ab66cd17879eff5b0f41e8b35477c579f">my_rpc_func3</a>(<a class="code" href="struct__stream__t.html">stream_t</a>* stream, <span class="keyword">const</span> std::string&amp; my_str, int8_t my_i8);</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    <a class="code" href="classrpc__sample_1_1rpc__sample__t.html#a80e5cd04284d2f0fe09a09632d7b4d05">rpc_sample_t</a>();</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    <a class="code" href="classrpc__sample_1_1rpc__sample__t.html#a80e5cd04284d2f0fe09a09632d7b4d05">rpc_sample_t</a>(<span class="keyword">const</span> <a class="code" href="classrpc__sample_1_1rpc__sample__t.html">rpc_sample_t</a>&amp;);</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00232"></a><span class="lineno"><a class="line" href="classrpc__sample_1_1rpc__sample__t.html#ab21a57379ad2184d3f228b9dfca29ad9">  232</a></span>&#160;    <span class="keyword">static</span> <a class="code" href="classrpc__sample_1_1rpc__sample__t.html">rpc_sample_t</a>* <a class="code" href="classrpc__sample_1_1rpc__sample__t.html#ab21a57379ad2184d3f228b9dfca29ad9">_instance</a>; <span class="comment">// 单件指针</span></div>
+<div class="line"><a name="l00233"></a><span class="lineno"><a class="line" href="classrpc__sample_1_1rpc__sample__t.html#a9e1768d7a6a84aa321a1e51a4b622c2d">  233</a></span>&#160;    <a class="code" href="struct__krpc__t.html">krpc_t</a>* <a class="code" href="classrpc__sample_1_1rpc__sample__t.html#a9e1768d7a6a84aa321a1e51a4b622c2d">_rpc</a>; <span class="comment">// RPC实现类</span></div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;};</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;</div>
+<div class="line"><a name="l00236"></a><span class="lineno"><a class="line" href="namespacerpc__sample.html#aacb9a9be19b7e72fa0ac4d4efe20bb48">  236</a></span>&#160;<span class="keyword">inline</span> <span class="keyword">static</span> <a class="code" href="classrpc__sample_1_1rpc__sample__t.html">rpc_sample_t</a>* <a class="code" href="namespacerpc__sample.html#aacb9a9be19b7e72fa0ac4d4efe20bb48">rpc_sample_ptr</a>() {</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classrpc__sample_1_1rpc__sample__t.html#ad041951322824124d5b5f0ab8c9fc6f1">rpc_sample_t::instance</a>();</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;}</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;}</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;<span class="preprocessor">#endif // _krpc_rpc_sample_h_</span></div>
+<div class="ttc" id="structrpc__sample_1_1my__object__t_html_a3eb77592cbd8c158afe2b82dfbe8c856"><div class="ttname"><a href="structrpc__sample_1_1my__object__t.html#a3eb77592cbd8c158afe2b82dfbe8c856">rpc_sample::my_object_t::operator=</a></div><div class="ttdeci">const my_object_t &amp; operator=(const my_object_t &amp;rht)</div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8cpp_source.html#l00069">rpc_sample.cpp:69</a></div></div>
+<div class="ttc" id="structrpc__sample_1_1my__object__other__t_html_a2f718b12c2666105404ac2314de6e5e7"><div class="ttname"><a href="structrpc__sample_1_1my__object__other__t.html#a2f718b12c2666105404ac2314de6e5e7">rpc_sample::my_object_other_t::print</a></div><div class="ttdeci">void print(std::stringstream &amp;ss, std::string white=&quot;&quot;)</div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8cpp_source.html#l00033">rpc_sample.cpp:33</a></div></div>
+<div class="ttc" id="classrpc__sample_1_1rpc__sample__t_html_ad041951322824124d5b5f0ab8c9fc6f1"><div class="ttname"><a href="classrpc__sample_1_1rpc__sample__t.html#ad041951322824124d5b5f0ab8c9fc6f1">rpc_sample::rpc_sample_t::instance</a></div><div class="ttdeci">static rpc_sample_t * instance()</div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8cpp_source.html#l00292">rpc_sample.cpp:292</a></div></div>
+<div class="ttc" id="structrpc__sample_1_1my__object__other__t_html_a5270a6498aa55551693b9a5e077dfbfc"><div class="ttname"><a href="structrpc__sample_1_1my__object__other__t.html#a5270a6498aa55551693b9a5e077dfbfc">rpc_sample::my_object_other_t::str_array</a></div><div class="ttdeci">std::vector&lt; std::string &gt; str_array</div><div class="ttdoc">字符串数组 </div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8h_source.html#l00024">rpc_sample.h:24</a></div></div>
+<div class="ttc" id="struct__krpc__object__t_html"><div class="ttname"><a href="struct__krpc__object__t.html">_krpc_object_t</a></div><div class="ttdef"><b>Definition:</b> <a href="rpc__object_8c_source.html#l00074">rpc_object.c:74</a></div></div>
+<div class="ttc" id="classrpc__sample_1_1rpc__sample__t_html"><div class="ttname"><a href="classrpc__sample_1_1rpc__sample__t.html">rpc_sample::rpc_sample_t</a></div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8h_source.html#l00159">rpc_sample.h:159</a></div></div>
+<div class="ttc" id="structrpc__sample_1_1my__object__t_html_ab1cd61707e68d246e0096f4275c0d138"><div class="ttname"><a href="structrpc__sample_1_1my__object__t.html#ab1cd61707e68d246e0096f4275c0d138">rpc_sample::my_object_t::nf64</a></div><div class="ttdeci">double nf64</div><div class="ttdoc">64位浮点数 </div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8h_source.html#l00063">rpc_sample.h:63</a></div></div>
+<div class="ttc" id="namespacerpc__sample_html_a93e5778517cbdbcc2e43b27a6f7c8636"><div class="ttname"><a href="namespacerpc__sample.html#a93e5778517cbdbcc2e43b27a6f7c8636">rpc_sample::my_rpc_func3</a></div><div class="ttdeci">int my_rpc_func3(const std::string &amp;my_str, int8_t my_i8)</div><div class="ttdef"><b>Definition:</b> <a href="rpc_8cpp_source.html#l00031">rpc.cpp:31</a></div></div>
+<div class="ttc" id="classrpc__sample_1_1rpc__sample__t_html_a80e5cd04284d2f0fe09a09632d7b4d05"><div class="ttname"><a href="classrpc__sample_1_1rpc__sample__t.html#a80e5cd04284d2f0fe09a09632d7b4d05">rpc_sample::rpc_sample_t::rpc_sample_t</a></div><div class="ttdeci">rpc_sample_t()</div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8cpp_source.html#l00281">rpc_sample.cpp:281</a></div></div>
+<div class="ttc" id="namespacerpc__sample_html_a6c9ad9cfafcae822427e7e297600e5a1"><div class="ttname"><a href="namespacerpc__sample.html#a6c9ad9cfafcae822427e7e297600e5a1">rpc_sample::my_rpc_func2_stub</a></div><div class="ttdeci">int my_rpc_func2_stub(krpc_object_t *o)</div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8cpp_source.html#l00129">rpc_sample.cpp:129</a></div></div>
+<div class="ttc" id="namespacerpc__sample_html"><div class="ttname"><a href="namespacerpc__sample.html">rpc_sample</a></div><div class="ttdef"><b>Definition:</b> <a href="rpc_8cpp_source.html#l00007">rpc.cpp:7</a></div></div>
+<div class="ttc" id="classrpc__sample_1_1rpc__sample__t_html_ab21a57379ad2184d3f228b9dfca29ad9"><div class="ttname"><a href="classrpc__sample_1_1rpc__sample__t.html#ab21a57379ad2184d3f228b9dfca29ad9">rpc_sample::rpc_sample_t::_instance</a></div><div class="ttdeci">static rpc_sample_t * _instance</div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8h_source.html#l00232">rpc_sample.h:232</a></div></div>
+<div class="ttc" id="namespacerpc__sample_html_aacb9a9be19b7e72fa0ac4d4efe20bb48"><div class="ttname"><a href="namespacerpc__sample.html#aacb9a9be19b7e72fa0ac4d4efe20bb48">rpc_sample::rpc_sample_ptr</a></div><div class="ttdeci">static rpc_sample_t * rpc_sample_ptr()</div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8h_source.html#l00236">rpc_sample.h:236</a></div></div>
+<div class="ttc" id="classrpc__sample_1_1rpc__sample__t_html_ab66cd17879eff5b0f41e8b35477c579f"><div class="ttname"><a href="classrpc__sample_1_1rpc__sample__t.html#ab66cd17879eff5b0f41e8b35477c579f">rpc_sample::rpc_sample_t::my_rpc_func3</a></div><div class="ttdeci">int my_rpc_func3(stream_t *stream, const std::string &amp;my_str, int8_t my_i8)</div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8cpp_source.html#l00323">rpc_sample.cpp:323</a></div></div>
+<div class="ttc" id="structrpc__sample_1_1my__object__t_html_a93e8e1b4ecdf7dab9db55ecfe51344cc"><div class="ttname"><a href="structrpc__sample_1_1my__object__t.html#a93e8e1b4ecdf7dab9db55ecfe51344cc">rpc_sample::my_object_t::ni32</a></div><div class="ttdeci">int32_t ni32</div><div class="ttdoc">有符号32位整数 </div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8h_source.html#l00056">rpc_sample.h:56</a></div></div>
+<div class="ttc" id="classrpc__sample_1_1rpc__sample__t_html_a33828bf33ef507e4b26d259f74704d53"><div class="ttname"><a href="classrpc__sample_1_1rpc__sample__t.html#a33828bf33ef507e4b26d259f74704d53">rpc_sample::rpc_sample_t::rpc_proc</a></div><div class="ttdeci">int rpc_proc(stream_t *stream)</div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8cpp_source.html#l00305">rpc_sample.cpp:305</a></div></div>
+<div class="ttc" id="knet_8h_html"><div class="ttname"><a href="knet_8h.html">knet.h</a></div></div>
+<div class="ttc" id="structrpc__sample_1_1my__object__t_html_a65d691fd650bea991337c5c966f5203e"><div class="ttname"><a href="structrpc__sample_1_1my__object__t.html#a65d691fd650bea991337c5c966f5203e">rpc_sample::my_object_t::ni64</a></div><div class="ttdeci">int64_t ni64</div><div class="ttdoc">有符号64位整数 </div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8h_source.html#l00057">rpc_sample.h:57</a></div></div>
+<div class="ttc" id="structrpc__sample_1_1my__object__other__t_html_adadbf95f0789826090919d933ffd9c61"><div class="ttname"><a href="structrpc__sample_1_1my__object__other__t.html#adadbf95f0789826090919d933ffd9c61">rpc_sample::my_object_other_t::operator=</a></div><div class="ttdeci">const my_object_other_t &amp; operator=(const my_object_other_t &amp;rht)</div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8cpp_source.html#l00026">rpc_sample.cpp:26</a></div></div>
+<div class="ttc" id="structrpc__sample_1_1my__object__t_html_af4874e99994fc17939dbf1ac4ef00279"><div class="ttname"><a href="structrpc__sample_1_1my__object__t.html#af4874e99994fc17939dbf1ac4ef00279">rpc_sample::my_object_t::nui16</a></div><div class="ttdeci">uint16_t nui16</div><div class="ttdoc">无符号16位整数 </div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8h_source.html#l00059">rpc_sample.h:59</a></div></div>
+<div class="ttc" id="structrpc__sample_1_1my__object__t_html_a2f718b12c2666105404ac2314de6e5e7"><div class="ttname"><a href="structrpc__sample_1_1my__object__t.html#a2f718b12c2666105404ac2314de6e5e7">rpc_sample::my_object_t::print</a></div><div class="ttdeci">void print(std::stringstream &amp;ss, std::string white=&quot;&quot;)</div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8cpp_source.html#l00084">rpc_sample.cpp:84</a></div></div>
+<div class="ttc" id="namespacerpc__sample_html_ae9274d206c168bf89a17ca229fb05ce6"><div class="ttname"><a href="namespacerpc__sample.html#ae9274d206c168bf89a17ca229fb05ce6">rpc_sample::my_rpc_func3_stub</a></div><div class="ttdeci">int my_rpc_func3_stub(krpc_object_t *o)</div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8cpp_source.html#l00155">rpc_sample.cpp:155</a></div></div>
+<div class="ttc" id="namespacerpc__sample_html_ab316c95cfbb182bd7c074a83dc6ed59a"><div class="ttname"><a href="namespacerpc__sample.html#ab316c95cfbb182bd7c074a83dc6ed59a">rpc_sample::my_rpc_func2</a></div><div class="ttdeci">int my_rpc_func2(std::vector&lt; my_object_t &gt; &amp;my_objs, int8_t my_i8)</div><div class="ttdef"><b>Definition:</b> <a href="rpc_8cpp_source.html#l00018">rpc.cpp:18</a></div></div>
+<div class="ttc" id="structrpc__sample_1_1my__object__t_html_a72897bf89c2ddb75f977e87405646438"><div class="ttname"><a href="structrpc__sample_1_1my__object__t.html#a72897bf89c2ddb75f977e87405646438">rpc_sample::my_object_t::nf32</a></div><div class="ttdeci">float nf32</div><div class="ttdoc">32位浮点数 </div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8h_source.html#l00062">rpc_sample.h:62</a></div></div>
+<div class="ttc" id="struct__krpc__t_html"><div class="ttname"><a href="struct__krpc__t.html">_krpc_t</a></div><div class="ttdef"><b>Definition:</b> <a href="knet_2rpc_8c_source.html#l00058">rpc.c:58</a></div></div>
+<div class="ttc" id="structrpc__sample_1_1my__object__t_html_ae8b3700159b74a9b7d2ec0a7ea827ed4"><div class="ttname"><a href="structrpc__sample_1_1my__object__t.html#ae8b3700159b74a9b7d2ec0a7ea827ed4">rpc_sample::my_object_t::ni16</a></div><div class="ttdeci">int16_t ni16</div><div class="ttdoc">有符号16位整数 </div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8h_source.html#l00055">rpc_sample.h:55</a></div></div>
+<div class="ttc" id="structrpc__sample_1_1my__object__t_html"><div class="ttname"><a href="structrpc__sample_1_1my__object__t.html">rpc_sample::my_object_t</a></div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8h_source.html#l00053">rpc_sample.h:53</a></div></div>
+<div class="ttc" id="structrpc__sample_1_1my__object__t_html_a46e051ce3e4e6ea30d9680fa779db6d2"><div class="ttname"><a href="structrpc__sample_1_1my__object__t.html#a46e051ce3e4e6ea30d9680fa779db6d2">rpc_sample::my_object_t::nui8</a></div><div class="ttdeci">uint8_t nui8</div><div class="ttdoc">无符号8位整数 </div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8h_source.html#l00058">rpc_sample.h:58</a></div></div>
+<div class="ttc" id="namespacerpc__sample_html_ab2202ee13cd75c46e3f91be33afeaac6"><div class="ttname"><a href="namespacerpc__sample.html#ab2202ee13cd75c46e3f91be33afeaac6">rpc_sample::marshal</a></div><div class="ttdeci">krpc_object_t * marshal(my_object_other_t &amp;o)</div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8cpp_source.html#l00163">rpc_sample.cpp:163</a></div></div>
+<div class="ttc" id="structrpc__sample_1_1my__object__t_html_aab8e35cb9f5f7c6e9e466d8d3698c05a"><div class="ttname"><a href="structrpc__sample_1_1my__object__t.html#aab8e35cb9f5f7c6e9e466d8d3698c05a">rpc_sample::my_object_t::ni8</a></div><div class="ttdeci">int8_t ni8</div><div class="ttdoc">有符号8位整数 </div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8h_source.html#l00054">rpc_sample.h:54</a></div></div>
+<div class="ttc" id="structrpc__sample_1_1my__object__other__t_html_aac16f58d6e1fac3e520e9a30b73bc312"><div class="ttname"><a href="structrpc__sample_1_1my__object__other__t.html#aac16f58d6e1fac3e520e9a30b73bc312">rpc_sample::my_object_other_t::i32_array</a></div><div class="ttdeci">std::vector&lt; int32_t &gt; i32_array</div><div class="ttdoc">i32数组 </div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8h_source.html#l00023">rpc_sample.h:23</a></div></div>
+<div class="ttc" id="namespacerpc__sample_html_acfed9f5da95ebfc7f132819ea5af29d2"><div class="ttname"><a href="namespacerpc__sample.html#acfed9f5da95ebfc7f132819ea5af29d2">rpc_sample::my_rpc_func2_proxy</a></div><div class="ttdeci">krpc_object_t * my_rpc_func2_proxy(std::vector&lt; my_object_t &gt; &amp;my_objs, int8_t my_i8)</div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8cpp_source.html#l00112">rpc_sample.cpp:112</a></div></div>
+<div class="ttc" id="struct__stream__t_html"><div class="ttname"><a href="struct__stream__t.html">_stream_t</a></div><div class="ttdef"><b>Definition:</b> <a href="stream_8c_source.html#l00033">stream.c:33</a></div></div>
+<div class="ttc" id="structrpc__sample_1_1my__object__t_html_af28e05226ac75406862acdb1e630595a"><div class="ttname"><a href="structrpc__sample_1_1my__object__t.html#af28e05226ac75406862acdb1e630595a">rpc_sample::my_object_t::nui32</a></div><div class="ttdeci">uint32_t nui32</div><div class="ttdoc">无符号32位整数 </div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8h_source.html#l00060">rpc_sample.h:60</a></div></div>
+<div class="ttc" id="classrpc__sample_1_1rpc__sample__t_html_a6816697300fea69a29dd9ee4225c70be"><div class="ttname"><a href="classrpc__sample_1_1rpc__sample__t.html#a6816697300fea69a29dd9ee4225c70be">rpc_sample::rpc_sample_t::my_rpc_func1</a></div><div class="ttdeci">int my_rpc_func1(stream_t *stream, my_object_t &amp;my_obj)</div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8cpp_source.html#l00309">rpc_sample.cpp:309</a></div></div>
+<div class="ttc" id="namespacerpc__sample_html_a4c4d2f86fffa111a3d1356be078d8773"><div class="ttname"><a href="namespacerpc__sample.html#a4c4d2f86fffa111a3d1356be078d8773">rpc_sample::my_rpc_func1_proxy</a></div><div class="ttdeci">krpc_object_t * my_rpc_func1_proxy(my_object_t &amp;my_obj)</div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8cpp_source.html#l00100">rpc_sample.cpp:100</a></div></div>
+<div class="ttc" id="structrpc__sample_1_1my__object__other__t_html_aefa08182691a0dffb9e0bdad6a50b421"><div class="ttname"><a href="structrpc__sample_1_1my__object__other__t.html#aefa08182691a0dffb9e0bdad6a50b421">rpc_sample::my_object_other_t::objects</a></div><div class="ttdeci">std::vector&lt; my_object_t &gt; objects</div><div class="ttdoc">对象数组 </div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8h_source.html#l00022">rpc_sample.h:22</a></div></div>
+<div class="ttc" id="namespacerpc__sample_html_a1102959a5aec9ebc59affda9545de8b3"><div class="ttname"><a href="namespacerpc__sample.html#a1102959a5aec9ebc59affda9545de8b3">rpc_sample::my_rpc_func3_proxy</a></div><div class="ttdeci">krpc_object_t * my_rpc_func3_proxy(const std::string &amp;my_str, int8_t my_i8)</div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8cpp_source.html#l00144">rpc_sample.cpp:144</a></div></div>
+<div class="ttc" id="structrpc__sample_1_1my__object__t_html_a5d55e2558544e2ad2ea0b54f8e3d41fc"><div class="ttname"><a href="structrpc__sample_1_1my__object__t.html#a5d55e2558544e2ad2ea0b54f8e3d41fc">rpc_sample::my_object_t::str</a></div><div class="ttdeci">std::string str</div><div class="ttdoc">字符串 </div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8h_source.html#l00064">rpc_sample.h:64</a></div></div>
+<div class="ttc" id="namespacerpc__sample_html_a0f4a1b54cc4f4ea395b01b850dd781c2"><div class="ttname"><a href="namespacerpc__sample.html#a0f4a1b54cc4f4ea395b01b850dd781c2">rpc_sample::unmarshal</a></div><div class="ttdeci">bool unmarshal(krpc_object_t *v, my_object_other_t &amp;o)</div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8cpp_source.html#l00237">rpc_sample.cpp:237</a></div></div>
+<div class="ttc" id="classrpc__sample_1_1rpc__sample__t_html_a9e1768d7a6a84aa321a1e51a4b622c2d"><div class="ttname"><a href="classrpc__sample_1_1rpc__sample__t.html#a9e1768d7a6a84aa321a1e51a4b622c2d">rpc_sample::rpc_sample_t::_rpc</a></div><div class="ttdeci">krpc_t * _rpc</div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8h_source.html#l00233">rpc_sample.h:233</a></div></div>
+<div class="ttc" id="structrpc__sample_1_1my__object__other__t_html"><div class="ttname"><a href="structrpc__sample_1_1my__object__other__t.html">rpc_sample::my_object_other_t</a></div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8h_source.html#l00021">rpc_sample.h:21</a></div></div>
+<div class="ttc" id="structrpc__sample_1_1my__object__t_html_a97bcc8d2b802b19e262555ad2353edc5"><div class="ttname"><a href="structrpc__sample_1_1my__object__t.html#a97bcc8d2b802b19e262555ad2353edc5">rpc_sample::my_object_t::my_object_t</a></div><div class="ttdeci">my_object_t()</div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8cpp_source.html#l00053">rpc_sample.cpp:53</a></div></div>
+<div class="ttc" id="classrpc__sample_1_1rpc__sample__t_html_a5fadb73b0293c923802be0585ed0aef7"><div class="ttname"><a href="classrpc__sample_1_1rpc__sample__t.html#a5fadb73b0293c923802be0585ed0aef7">rpc_sample::rpc_sample_t::~rpc_sample_t</a></div><div class="ttdeci">~rpc_sample_t()</div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8cpp_source.html#l00288">rpc_sample.cpp:288</a></div></div>
+<div class="ttc" id="namespacerpc__sample_html_a4c2d6fb366e7559aeb1df4510cf8af84"><div class="ttname"><a href="namespacerpc__sample.html#a4c2d6fb366e7559aeb1df4510cf8af84">rpc_sample::my_rpc_func1_stub</a></div><div class="ttdeci">int my_rpc_func1_stub(krpc_object_t *o)</div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8cpp_source.html#l00106">rpc_sample.cpp:106</a></div></div>
+<div class="ttc" id="classrpc__sample_1_1rpc__sample__t_html_a32d626626eee0bc4ade146973f6abb1c"><div class="ttname"><a href="classrpc__sample_1_1rpc__sample__t.html#a32d626626eee0bc4ade146973f6abb1c">rpc_sample::rpc_sample_t::finalize</a></div><div class="ttdeci">static void finalize()</div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8cpp_source.html#l00299">rpc_sample.cpp:299</a></div></div>
+<div class="ttc" id="namespacerpc__sample_html_a9cbde3db2e2c41ccf893d9bb9d98a663"><div class="ttname"><a href="namespacerpc__sample.html#a9cbde3db2e2c41ccf893d9bb9d98a663">rpc_sample::my_rpc_func1</a></div><div class="ttdeci">int my_rpc_func1(my_object_t &amp;my_obj)</div><div class="ttdef"><b>Definition:</b> <a href="rpc_8cpp_source.html#l00009">rpc.cpp:9</a></div></div>
+<div class="ttc" id="classrpc__sample_1_1rpc__sample__t_html_ae15eff7ca37c2490467a6b8244af5898"><div class="ttname"><a href="classrpc__sample_1_1rpc__sample__t.html#ae15eff7ca37c2490467a6b8244af5898">rpc_sample::rpc_sample_t::my_rpc_func2</a></div><div class="ttdeci">int my_rpc_func2(stream_t *stream, std::vector&lt; my_object_t &gt; &amp;my_objs, int8_t my_i8)</div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8cpp_source.html#l00316">rpc_sample.cpp:316</a></div></div>
+<div class="ttc" id="structrpc__sample_1_1my__object__t_html_aa7c0dd5e376ab704bbb9186f7f214f42"><div class="ttname"><a href="structrpc__sample_1_1my__object__t.html#aa7c0dd5e376ab704bbb9186f7f214f42">rpc_sample::my_object_t::nui64</a></div><div class="ttdeci">uint64_t nui64</div><div class="ttdoc">无符号64位整数 </div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8h_source.html#l00061">rpc_sample.h:61</a></div></div>
+<div class="ttc" id="structrpc__sample_1_1my__object__other__t_html_af8d68c085da6a3ee0b53c76b2fa54864"><div class="ttname"><a href="structrpc__sample_1_1my__object__other__t.html#af8d68c085da6a3ee0b53c76b2fa54864">rpc_sample::my_object_other_t::my_object_other_t</a></div><div class="ttdeci">my_object_other_t()</div><div class="ttdef"><b>Definition:</b> <a href="rpc__sample_8cpp_source.html#l00018">rpc_sample.cpp:18</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+生成于 2015年 六月 29日 星期一 16:51:00 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.9.1
+</small></address>
+</body>
+</html>

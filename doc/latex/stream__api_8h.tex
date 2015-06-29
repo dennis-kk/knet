@@ -1,0 +1,176 @@
+\hypertarget{stream__api_8h}{}\section{E\+:/knet-\/git/knet/knet/stream\+\_\+api.h 文件参考}
+\label{stream__api_8h}\index{E\+:/knet-\/git/knet/knet/stream\+\_\+api.\+h@{E\+:/knet-\/git/knet/knet/stream\+\_\+api.\+h}}
+{\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\\*
+\subsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{stream__api_8h_a6e109b2dc520782567dc1891af3b945e}{stream\+\_\+available} (\hyperlink{config_8h_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$stream)
+\item 
+int \hyperlink{stream__api_8h_a380555bf71ee99f6b2bb4f76738d507f}{stream\+\_\+copy} (\hyperlink{config_8h_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$stream, void $\ast$buffer, int size)
+\item 
+int \hyperlink{stream__api_8h_a1ab922f8bab979099b3abc3ee54dc59d}{stream\+\_\+eat} (\hyperlink{config_8h_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$stream, int size)
+\item 
+int \hyperlink{stream__api_8h_aef7f4ca2c201faf5d82a1dad4c8d7814}{stream\+\_\+eat\+\_\+all} (\hyperlink{config_8h_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$stream)
+\item 
+int \hyperlink{stream__api_8h_a6e01758abf49f8b08cd457f1cb48a954}{stream\+\_\+pop} (\hyperlink{config_8h_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$stream, void $\ast$buffer, int size)
+\item 
+int \hyperlink{stream__api_8h_a34e0f4c2a5beb6f6d35c77b95040947d}{stream\+\_\+push} (\hyperlink{config_8h_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$stream, void $\ast$buffer, int size)
+\end{DoxyCompactItemize}
+
+
+\subsection{函数说明}
+\hypertarget{stream__api_8h_a6e109b2dc520782567dc1891af3b945e}{}\index{stream\+\_\+api.\+h@{stream\+\_\+api.\+h}!stream\+\_\+available@{stream\+\_\+available}}
+\index{stream\+\_\+available@{stream\+\_\+available}!stream\+\_\+api.\+h@{stream\+\_\+api.\+h}}
+\subsubsection[{stream\+\_\+available}]{\setlength{\rightskip}{0pt plus 5cm}int stream\+\_\+available (
+\begin{DoxyParamCaption}
+\item[{{\bf stream\+\_\+t} $\ast$}]{stream}
+\end{DoxyParamCaption}
+)}\label{stream__api_8h_a6e109b2dc520782567dc1891af3b945e}
+取得数据流内可读字节数 
+\begin{DoxyParams}{参数}
+{\em stream} & stream\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+可读字节数 
+\end{DoxyReturn}
+
+
+在文件 stream.\+c 第 52 行定义.
+
+\hypertarget{stream__api_8h_a380555bf71ee99f6b2bb4f76738d507f}{}\index{stream\+\_\+api.\+h@{stream\+\_\+api.\+h}!stream\+\_\+copy@{stream\+\_\+copy}}
+\index{stream\+\_\+copy@{stream\+\_\+copy}!stream\+\_\+api.\+h@{stream\+\_\+api.\+h}}
+\subsubsection[{stream\+\_\+copy}]{\setlength{\rightskip}{0pt plus 5cm}int stream\+\_\+copy (
+\begin{DoxyParamCaption}
+\item[{{\bf stream\+\_\+t} $\ast$}]{stream, }
+\item[{void $\ast$}]{buffer, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}\label{stream__api_8h_a380555bf71ee99f6b2bb4f76738d507f}
+从数据流内拷贝数据，但不清除数据流内数据 
+\begin{DoxyParams}{参数}
+{\em stream} & stream\+\_\+t实例 \\
+\hline
+{\em buffer} & 缓冲区 \\
+\hline
+{\em size} & 缓冲区大小 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+
+
+在文件 stream.\+c 第 87 行定义.
+
+\hypertarget{stream__api_8h_a1ab922f8bab979099b3abc3ee54dc59d}{}\index{stream\+\_\+api.\+h@{stream\+\_\+api.\+h}!stream\+\_\+eat@{stream\+\_\+eat}}
+\index{stream\+\_\+eat@{stream\+\_\+eat}!stream\+\_\+api.\+h@{stream\+\_\+api.\+h}}
+\subsubsection[{stream\+\_\+eat}]{\setlength{\rightskip}{0pt plus 5cm}int stream\+\_\+eat (
+\begin{DoxyParamCaption}
+\item[{{\bf stream\+\_\+t} $\ast$}]{stream, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}\label{stream__api_8h_a1ab922f8bab979099b3abc3ee54dc59d}
+删除指定长度数据 
+\begin{DoxyParams}{参数}
+{\em stream} & stream\+\_\+t实例 \\
+\hline
+{\em size} & 需要删除的长度 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+
+
+在文件 stream.\+c 第 72 行定义.
+
+\hypertarget{stream__api_8h_aef7f4ca2c201faf5d82a1dad4c8d7814}{}\index{stream\+\_\+api.\+h@{stream\+\_\+api.\+h}!stream\+\_\+eat\+\_\+all@{stream\+\_\+eat\+\_\+all}}
+\index{stream\+\_\+eat\+\_\+all@{stream\+\_\+eat\+\_\+all}!stream\+\_\+api.\+h@{stream\+\_\+api.\+h}}
+\subsubsection[{stream\+\_\+eat\+\_\+all}]{\setlength{\rightskip}{0pt plus 5cm}int stream\+\_\+eat\+\_\+all (
+\begin{DoxyParamCaption}
+\item[{{\bf stream\+\_\+t} $\ast$}]{stream}
+\end{DoxyParamCaption}
+)}\label{stream__api_8h_aef7f4ca2c201faf5d82a1dad4c8d7814}
+清空数据流 
+\begin{DoxyParams}{参数}
+{\em stream} & stream\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+
+
+在文件 stream.\+c 第 67 行定义.
+
+\hypertarget{stream__api_8h_a6e01758abf49f8b08cd457f1cb48a954}{}\index{stream\+\_\+api.\+h@{stream\+\_\+api.\+h}!stream\+\_\+pop@{stream\+\_\+pop}}
+\index{stream\+\_\+pop@{stream\+\_\+pop}!stream\+\_\+api.\+h@{stream\+\_\+api.\+h}}
+\subsubsection[{stream\+\_\+pop}]{\setlength{\rightskip}{0pt plus 5cm}int stream\+\_\+pop (
+\begin{DoxyParamCaption}
+\item[{{\bf stream\+\_\+t} $\ast$}]{stream, }
+\item[{void $\ast$}]{buffer, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}\label{stream__api_8h_a6e01758abf49f8b08cd457f1cb48a954}
+从数据流内读取数据并清除数据 
+\begin{DoxyParams}{参数}
+{\em stream} & stream\+\_\+t实例 \\
+\hline
+{\em buffer} & 缓冲区 \\
+\hline
+{\em size} & 缓冲区大小 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+
+
+在文件 stream.\+c 第 57 行定义.
+
+\hypertarget{stream__api_8h_a34e0f4c2a5beb6f6d35c77b95040947d}{}\index{stream\+\_\+api.\+h@{stream\+\_\+api.\+h}!stream\+\_\+push@{stream\+\_\+push}}
+\index{stream\+\_\+push@{stream\+\_\+push}!stream\+\_\+api.\+h@{stream\+\_\+api.\+h}}
+\subsubsection[{stream\+\_\+push}]{\setlength{\rightskip}{0pt plus 5cm}int stream\+\_\+push (
+\begin{DoxyParamCaption}
+\item[{{\bf stream\+\_\+t} $\ast$}]{stream, }
+\item[{void $\ast$}]{buffer, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}\label{stream__api_8h_a34e0f4c2a5beb6f6d35c77b95040947d}
+向数据流内写数据 
+\begin{DoxyParams}{参数}
+{\em stream} & stream\+\_\+t实例 \\
+\hline
+{\em buffer} & 缓冲区 \\
+\hline
+{\em size} & 缓冲区大小 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+
+
+在文件 stream.\+c 第 80 行定义.
+

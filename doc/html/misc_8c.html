@@ -1,0 +1,1674 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.9.1"/>
+<title>knet: E:/knet-git/knet/knet/misc.c 文件参考</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">knet
+   &#160;<span id="projectnumber">1.4.1</span>
+   </div>
+   <div id="projectbrief">cross platform, light-weight, multithreading net library</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.9.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="pages.html"><span>相关页面</span></a></li>
+      <li><a href="namespaces.html"><span>命名空间</span></a></li>
+      <li><a href="annotated.html"><span>结构体</span></a></li>
+      <li class="current"><a href="files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>文件列表</span></a></li>
+      <li><a href="globals.html"><span>全局定义</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_885cc87fac2d91e269af0a5a959fa5f6.html">E:</a></li><li class="navelem"><a class="el" href="dir_4e74998c9a9305a116abc25fcf9a1edb.html">knet-git</a></li><li class="navelem"><a class="el" href="dir_a1c045b39f32066568ae964b52db514f.html">knet</a></li><li class="navelem"><a class="el" href="dir_f76d03789f0b12416cfffea59e2ed47d.html">knet</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">结构体</a> &#124;
+<a href="#func-members">函数</a>  </div>
+  <div class="headertitle">
+<div class="title">misc.c 文件参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;linux/tcp.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="misc_8h_source.html">misc.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="loop_8h_source.html">loop.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="channel__ref_8h_source.html">channel_ref.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="address_8h_source.html">address.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="timer_8h_source.html">timer.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="logger_8h_source.html">logger.h</a>&quot;</code><br />
+</div>
+<p><a href="misc_8c_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+结构体</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__lock__t.html">_lock_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__thread__runner__t.html">_thread_runner_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:aeea3ecc7113624673710e5f8570325c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#aeea3ecc7113624673710e5f8570325c7">_lock_init</a> (<a class="el" href="config_8h.html#ad3e00e0eb0c79dfd77ff2ff833f49c7d">lock_t</a> *lock)</td></tr>
+<tr class="separator:aeea3ecc7113624673710e5f8570325c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1217c770962ea59a20fa931ad6fee0c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#ae1217c770962ea59a20fa931ad6fee0c">_thread_func</a> (void *params)</td></tr>
+<tr class="separator:ae1217c770962ea59a20fa931ad6fee0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2578ccaa4c6ce7670eabd9575204c38"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#ad2578ccaa4c6ce7670eabd9575204c38">_thread_loop_func</a> (void *params)</td></tr>
+<tr class="separator:ad2578ccaa4c6ce7670eabd9575204c38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3540c31c89a280433080939f96da861"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#af3540c31c89a280433080939f96da861">_thread_timer_loop_func</a> (void *params)</td></tr>
+<tr class="separator:af3540c31c89a280433080939f96da861"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc2df03d75cf9168b72e8c5e11953437"><td class="memItemLeft" align="right" valign="top"><a class="el" href="config_8h.html#a0d043bbb6b8db19fea54ab9271d352b6">atomic_counter_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#afc2df03d75cf9168b72e8c5e11953437">atomic_counter_dec</a> (<a class="el" href="config_8h.html#a0d043bbb6b8db19fea54ab9271d352b6">atomic_counter_t</a> *counter)</td></tr>
+<tr class="separator:afc2df03d75cf9168b72e8c5e11953437"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade4f41f1cd519f2719b5114ce7801232"><td class="memItemLeft" align="right" valign="top"><a class="el" href="config_8h.html#a0d043bbb6b8db19fea54ab9271d352b6">atomic_counter_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#ade4f41f1cd519f2719b5114ce7801232">atomic_counter_inc</a> (<a class="el" href="config_8h.html#a0d043bbb6b8db19fea54ab9271d352b6">atomic_counter_t</a> *counter)</td></tr>
+<tr class="separator:ade4f41f1cd519f2719b5114ce7801232"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a141897cac9743394a99ff7780daa6a80"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a141897cac9743394a99ff7780daa6a80">atomic_counter_zero</a> (<a class="el" href="config_8h.html#a0d043bbb6b8db19fea54ab9271d352b6">atomic_counter_t</a> *counter)</td></tr>
+<tr class="separator:a141897cac9743394a99ff7780daa6a80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e47279c8c752d22446932673be52e38"><td class="memItemLeft" align="right" valign="top"><a class="el" href="config_8h.html#ad3e00e0eb0c79dfd77ff2ff833f49c7d">lock_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a0e47279c8c752d22446932673be52e38">lock_create</a> ()</td></tr>
+<tr class="separator:a0e47279c8c752d22446932673be52e38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba61c8c4b8ee5ec7e337ed950d680702"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#aba61c8c4b8ee5ec7e337ed950d680702">lock_destroy</a> (<a class="el" href="config_8h.html#ad3e00e0eb0c79dfd77ff2ff833f49c7d">lock_t</a> *lock)</td></tr>
+<tr class="separator:aba61c8c4b8ee5ec7e337ed950d680702"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8e04f3d702d3f15868c064947d396b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#ad8e04f3d702d3f15868c064947d396b3">lock_lock</a> (<a class="el" href="config_8h.html#ad3e00e0eb0c79dfd77ff2ff833f49c7d">lock_t</a> *lock)</td></tr>
+<tr class="separator:ad8e04f3d702d3f15868c064947d396b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2caa15f5d1698c623c1861bd02184d0e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a2caa15f5d1698c623c1861bd02184d0e">lock_trylock</a> (<a class="el" href="config_8h.html#ad3e00e0eb0c79dfd77ff2ff833f49c7d">lock_t</a> *lock)</td></tr>
+<tr class="separator:a2caa15f5d1698c623c1861bd02184d0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99cf1d42527f5715b798064281e918ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a99cf1d42527f5715b798064281e918ed">lock_unlock</a> (<a class="el" href="config_8h.html#ad3e00e0eb0c79dfd77ff2ff833f49c7d">lock_t</a> *lock)</td></tr>
+<tr class="separator:a99cf1d42527f5715b798064281e918ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c98a04f00772c05a1f51afc185f7513"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a6c98a04f00772c05a1f51afc185f7513">path_getcwd</a> (char *buffer, int size)</td></tr>
+<tr class="separator:a6c98a04f00772c05a1f51afc185f7513"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3db4aef68a8961e075d700673594f9d3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a3db4aef68a8961e075d700673594f9d3">socket_accept</a> (<a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd)</td></tr>
+<tr class="separator:a3db4aef68a8961e075d700673594f9d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ab6846ac2d5706e2357ee17a0178bc3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a5ab6846ac2d5706e2357ee17a0178bc3">socket_bind_and_listen</a> (<a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd, const char *<a class="el" href="test__client_8c.html#afbc356cd0e25d1dbbece7c10fd025fa6">ip</a>, int <a class="el" href="test__client_8c.html#a63c89c04d1feae07ca35558055155ffb">port</a>, int backlog)</td></tr>
+<tr class="separator:a5ab6846ac2d5706e2357ee17a0178bc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8afd26cc26824e35f1ec942d2c367c2b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a8afd26cc26824e35f1ec942d2c367c2b">socket_check_send_ready</a> (<a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd)</td></tr>
+<tr class="separator:a8afd26cc26824e35f1ec942d2c367c2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3972a34b212a86a683834f05ed37034f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a3972a34b212a86a683834f05ed37034f">socket_close</a> (<a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd)</td></tr>
+<tr class="separator:a3972a34b212a86a683834f05ed37034f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ec48de5c316491b068fbb3c76b21c91"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a1ec48de5c316491b068fbb3c76b21c91">socket_connect</a> (<a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd, const char *<a class="el" href="test__client_8c.html#afbc356cd0e25d1dbbece7c10fd025fa6">ip</a>, int <a class="el" href="test__client_8c.html#a63c89c04d1feae07ca35558055155ffb">port</a>)</td></tr>
+<tr class="separator:a1ec48de5c316491b068fbb3c76b21c91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71cc84510563a2981ed5a47f86ccb7f6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a71cc84510563a2981ed5a47f86ccb7f6">socket_create</a> ()</td></tr>
+<tr class="separator:a71cc84510563a2981ed5a47f86ccb7f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9dec30d9e18787252fecc0de537843f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#af9dec30d9e18787252fecc0de537843f">socket_getpeername</a> (<a class="el" href="config_8h.html#a151271c9d188ef28d4d24bb81dcc1263">channel_ref_t</a> *channel_ref, <a class="el" href="config_8h.html#a7a6e75b85c8b441f843bd40004a7d9d5">address_t</a> *address)</td></tr>
+<tr class="separator:af9dec30d9e18787252fecc0de537843f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad427473485df55e150741186f3ef2879"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#ad427473485df55e150741186f3ef2879">socket_getsockname</a> (<a class="el" href="config_8h.html#a151271c9d188ef28d4d24bb81dcc1263">channel_ref_t</a> *channel_ref, <a class="el" href="config_8h.html#a7a6e75b85c8b441f843bd40004a7d9d5">address_t</a> *address)</td></tr>
+<tr class="separator:ad427473485df55e150741186f3ef2879"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64d681185ca861b010c81db7479e9e08"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a64d681185ca861b010c81db7479e9e08">socket_pair</a> (<a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> pair[2])</td></tr>
+<tr class="separator:a64d681185ca861b010c81db7479e9e08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a4b901f1586de59d1d0a88d3326c934"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a8a4b901f1586de59d1d0a88d3326c934">socket_recv</a> (<a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd, char *data, uint32_t size)</td></tr>
+<tr class="separator:a8a4b901f1586de59d1d0a88d3326c934"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1acbefba637d7c0c3fd77355f84d4c22"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a1acbefba637d7c0c3fd77355f84d4c22">socket_send</a> (<a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd, const char *data, uint32_t size)</td></tr>
+<tr class="separator:a1acbefba637d7c0c3fd77355f84d4c22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d090d32a5cdf8b76b9e8eb650dfab60"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a1d090d32a5cdf8b76b9e8eb650dfab60">socket_set_donot_route_on</a> (<a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd)</td></tr>
+<tr class="separator:a1d090d32a5cdf8b76b9e8eb650dfab60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeaa8128921474edb7c47efb40c8383ff"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#aeaa8128921474edb7c47efb40c8383ff">socket_set_keepalive_off</a> (<a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd)</td></tr>
+<tr class="separator:aeaa8128921474edb7c47efb40c8383ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3f2774813f23e084f5268d51e6c4983"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#ae3f2774813f23e084f5268d51e6c4983">socket_set_linger_off</a> (<a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd)</td></tr>
+<tr class="separator:ae3f2774813f23e084f5268d51e6c4983"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac38b97ead3e51bdc95124910f3657c8a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#ac38b97ead3e51bdc95124910f3657c8a">socket_set_nagle_off</a> (<a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd)</td></tr>
+<tr class="separator:ac38b97ead3e51bdc95124910f3657c8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd473c5857939c252deb9bfa30da8366"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#afd473c5857939c252deb9bfa30da8366">socket_set_non_blocking_on</a> (<a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd)</td></tr>
+<tr class="separator:afd473c5857939c252deb9bfa30da8366"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2d51397a3f343ea4daaf96b4d203f73"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#ae2d51397a3f343ea4daaf96b4d203f73">socket_set_recv_buffer_size</a> (<a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd, int size)</td></tr>
+<tr class="separator:ae2d51397a3f343ea4daaf96b4d203f73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10039d2f0e29d4b0d3b0cab3c7a1b63c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a10039d2f0e29d4b0d3b0cab3c7a1b63c">socket_set_reuse_addr_on</a> (<a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd)</td></tr>
+<tr class="separator:a10039d2f0e29d4b0d3b0cab3c7a1b63c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8489cd06398f759fff9660006dc8c10d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a8489cd06398f759fff9660006dc8c10d">socket_set_send_buffer_size</a> (<a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd, int size)</td></tr>
+<tr class="separator:a8489cd06398f759fff9660006dc8c10d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e3ede072c59452900afcb1334611dac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="config_8h.html#aeaea39e7ef5adeec1efaee3eee6b12ff">sys_error_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a2e3ede072c59452900afcb1334611dac">sys_get_errno</a> ()</td></tr>
+<tr class="separator:a2e3ede072c59452900afcb1334611dac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75b9d7e4a1d3734e2a4c0ba298b1578c"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a75b9d7e4a1d3734e2a4c0ba298b1578c">thread_func_pthread</a> (void *params)</td></tr>
+<tr class="separator:a75b9d7e4a1d3734e2a4c0ba298b1578c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecf10907eee00ec0e807271c906a6645"><td class="memItemLeft" align="right" valign="top"><a class="el" href="config_8h.html#ad0ada5642d10ce71bdd90816182f9b79">thread_id_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#aecf10907eee00ec0e807271c906a6645">thread_get_self_id</a> ()</td></tr>
+<tr class="separator:aecf10907eee00ec0e807271c906a6645"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63c9be5b8fb04c0b26382f51b7bdf237"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a63c9be5b8fb04c0b26382f51b7bdf237">thread_get_tls_data</a> (<a class="el" href="config_8h.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *runner)</td></tr>
+<tr class="separator:a63c9be5b8fb04c0b26382f51b7bdf237"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f94afc82ab1358bdfdaa1739ca71655"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a4f94afc82ab1358bdfdaa1739ca71655">thread_loop_func_pthread</a> (void *params)</td></tr>
+<tr class="separator:a4f94afc82ab1358bdfdaa1739ca71655"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95c00ec3d6ef1710cc8d8bb8cb7e585d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a95c00ec3d6ef1710cc8d8bb8cb7e585d">thread_runner_check_start</a> (<a class="el" href="config_8h.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *runner)</td></tr>
+<tr class="separator:a95c00ec3d6ef1710cc8d8bb8cb7e585d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac20d7726e152e0b49209ce228893c25d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="config_8h.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#ac20d7726e152e0b49209ce228893c25d">thread_runner_create</a> (<a class="el" href="config_8h.html#a46bcd8005e5d86fdbc6be5af0a77156c">thread_func_t</a> func, void *params)</td></tr>
+<tr class="separator:ac20d7726e152e0b49209ce228893c25d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b9d3d45b6055971fc40f24ec6572cf6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a8b9d3d45b6055971fc40f24ec6572cf6">thread_runner_destroy</a> (<a class="el" href="config_8h.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *runner)</td></tr>
+<tr class="separator:a8b9d3d45b6055971fc40f24ec6572cf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af67fa2b2cfefc2de422a31b9dfad2bca"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#af67fa2b2cfefc2de422a31b9dfad2bca">thread_runner_get_params</a> (<a class="el" href="config_8h.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *runner)</td></tr>
+<tr class="separator:af67fa2b2cfefc2de422a31b9dfad2bca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a813a718c56e0923be9396630c8460794"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a813a718c56e0923be9396630c8460794">thread_runner_join</a> (<a class="el" href="config_8h.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *runner)</td></tr>
+<tr class="separator:a813a718c56e0923be9396630c8460794"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1114fd962e310f9d31ed4e83d8a21897"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a1114fd962e310f9d31ed4e83d8a21897">thread_runner_start</a> (<a class="el" href="config_8h.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *runner, int stack_size)</td></tr>
+<tr class="separator:a1114fd962e310f9d31ed4e83d8a21897"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93f88ba77e7eab786da6fe7d1f681a2e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a93f88ba77e7eab786da6fe7d1f681a2e">thread_runner_start_loop</a> (<a class="el" href="config_8h.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *runner, <a class="el" href="config_8h.html#a9c3ad1cd2de83e09f3a7b59fa82c94ee">loop_t</a> *loop, int stack_size)</td></tr>
+<tr class="separator:a93f88ba77e7eab786da6fe7d1f681a2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9191991e2bd7f91fe68324c2855d581d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a9191991e2bd7f91fe68324c2855d581d">thread_runner_start_timer_loop</a> (<a class="el" href="config_8h.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *runner, <a class="el" href="config_8h.html#a024af2aa29615e7a811ea6c45438157d">ktimer_loop_t</a> *<a class="el" href="test__client_8c.html#a40fd1f9b725724e96d0b9bc37e9e4972">timer_loop</a>, int stack_size)</td></tr>
+<tr class="separator:a9191991e2bd7f91fe68324c2855d581d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa035f190ffd3d7f117b8fbb58716f042"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#aa035f190ffd3d7f117b8fbb58716f042">thread_runner_stop</a> (<a class="el" href="config_8h.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *runner)</td></tr>
+<tr class="separator:aa035f190ffd3d7f117b8fbb58716f042"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa187b2cd2c906680890fb4ea2833d665"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#aa187b2cd2c906680890fb4ea2833d665">thread_set_tls_data</a> (<a class="el" href="config_8h.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *runner, void *data)</td></tr>
+<tr class="separator:aa187b2cd2c906680890fb4ea2833d665"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abddf3ac30aac3f22f8c53b7517e6eb35"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#abddf3ac30aac3f22f8c53b7517e6eb35">thread_sleep_ms</a> (int ms)</td></tr>
+<tr class="separator:abddf3ac30aac3f22f8c53b7517e6eb35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a878593e36d665dc3334cf71e88bf93e6"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a878593e36d665dc3334cf71e88bf93e6">thread_timer_loop_func_pthread</a> (void *params)</td></tr>
+<tr class="separator:a878593e36d665dc3334cf71e88bf93e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5eb6de730bc28be3fbc402b9841c1819"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a5eb6de730bc28be3fbc402b9841c1819">time_get_microseconds</a> ()</td></tr>
+<tr class="separator:a5eb6de730bc28be3fbc402b9841c1819"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a528d27a7218cb2fdabf81ca343e24fc9"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a528d27a7218cb2fdabf81ca343e24fc9">time_get_milliseconds</a> ()</td></tr>
+<tr class="separator:a528d27a7218cb2fdabf81ca343e24fc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d3f7fda67a3c61f767f7b2dbfcbe4ee"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a6d3f7fda67a3c61f767f7b2dbfcbe4ee">time_get_string</a> (char *buffer, int size)</td></tr>
+<tr class="separator:a6d3f7fda67a3c61f767f7b2dbfcbe4ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cab12b4908938ca999206a67c8ee032"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a3cab12b4908938ca999206a67c8ee032">time_gettimeofday</a> (struct timeval *tp, void *tzp)</td></tr>
+<tr class="separator:a3cab12b4908938ca999206a67c8ee032"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b1df51bc127460a3bf25949068bfe92"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="misc_8c.html#a2b1df51bc127460a3bf25949068bfe92">uuid_create</a> ()</td></tr>
+<tr class="separator:a2b1df51bc127460a3bf25949068bfe92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">函数说明</h2>
+<a class="anchor" id="aeea3ecc7113624673710e5f8570325c7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void _lock_init </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#ad3e00e0eb0c79dfd77ff2ff833f49c7d">lock_t</a> *&#160;</td>
+          <td class="paramname"><em>lock</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00487">487</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae1217c770962ea59a20fa931ad6fee0c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void _thread_func </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>params</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00564">564</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad2578ccaa4c6ce7670eabd9575204c38"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void _thread_loop_func </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>params</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00571">571</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="af3540c31c89a280433080939f96da861"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void _thread_timer_loop_func </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>params</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00584">584</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="afc2df03d75cf9168b72e8c5e11953437"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="config_8h.html#a0d043bbb6b8db19fea54ab9271d352b6">atomic_counter_t</a> atomic_counter_dec </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a0d043bbb6b8db19fea54ab9271d352b6">atomic_counter_t</a> *&#160;</td>
+          <td class="paramname"><em>counter</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>原子操作 - 递减 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">counter</td><td>atomic_counter_t实例 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>递减后的值 </dd></dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00467">467</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="ade4f41f1cd519f2719b5114ce7801232"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="config_8h.html#a0d043bbb6b8db19fea54ab9271d352b6">atomic_counter_t</a> atomic_counter_inc </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a0d043bbb6b8db19fea54ab9271d352b6">atomic_counter_t</a> *&#160;</td>
+          <td class="paramname"><em>counter</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>原子操作 - 递增 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">counter</td><td>atomic_counter_t实例 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>递增后的值 </dd></dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00459">459</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a141897cac9743394a99ff7780daa6a80"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int atomic_counter_zero </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a0d043bbb6b8db19fea54ab9271d352b6">atomic_counter_t</a> *&#160;</td>
+          <td class="paramname"><em>counter</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>原子操作 - 是否为零 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">counter</td><td>atomic_counter_t实例 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>非零 </td></tr>
+    <tr><td class="paramname">其他</td><td>零 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00475">475</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0e47279c8c752d22446932673be52e38"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="config_8h.html#ad3e00e0eb0c79dfd77ff2ff833f49c7d">lock_t</a>* lock_create </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>建立互斥锁实例 </p><dl class="section return"><dt>返回</dt><dd>lock_t实例 </dd></dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00495">495</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="aba61c8c4b8ee5ec7e337ed950d680702"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lock_destroy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#ad3e00e0eb0c79dfd77ff2ff833f49c7d">lock_t</a> *&#160;</td>
+          <td class="paramname"><em>lock</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>销毁互斥锁 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lock</td><td>lock_t实例 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00502">502</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad8e04f3d702d3f15868c064947d396b3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lock_lock </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#ad3e00e0eb0c79dfd77ff2ff833f49c7d">lock_t</a> *&#160;</td>
+          <td class="paramname"><em>lock</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>锁 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lock</td><td>lock_t实例 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00512">512</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2caa15f5d1698c623c1861bd02184d0e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int lock_trylock </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#ad3e00e0eb0c79dfd77ff2ff833f49c7d">lock_t</a> *&#160;</td>
+          <td class="paramname"><em>lock</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>测试锁 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lock</td><td>lock_t实例 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>参见</dt><dd>pthread_mutex_trylock </dd></dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00521">521</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a99cf1d42527f5715b798064281e918ed"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void lock_unlock </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#ad3e00e0eb0c79dfd77ff2ff833f49c7d">lock_t</a> *&#160;</td>
+          <td class="paramname"><em>lock</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>解锁 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lock</td><td>lock_t实例 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00530">530</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6c98a04f00772c05a1f51afc185f7513"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* path_getcwd </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>取得当前工作目录 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buffer</td><td>路径缓冲区指针 </td></tr>
+    <tr><td class="paramname">size</td><td>缓冲区大小 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>失败 </td></tr>
+    <tr><td class="paramname">路径缓冲区指针</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00916">916</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3db4aef68a8961e075d700673594f9d3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_accept </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a>&#160;</td>
+          <td class="paramname"><em>socket_fd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>accept </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">socket_fd</td><td>套接字 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>失败 </td></tr>
+    <tr><td class="paramname">有效的套接字</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00141">141</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5ab6846ac2d5706e2357ee17a0178bc3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int socket_bind_and_listen </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a>&#160;</td>
+          <td class="paramname"><em>socket_fd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>ip</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>backlog</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>bind &amp; listen </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">socket_fd</td><td>套接字 </td></tr>
+    <tr><td class="paramname">ip</td><td>IP </td></tr>
+    <tr><td class="paramname">port</td><td>端口 </td></tr>
+    <tr><td class="paramname">backlog</td><td>函数listen()参数 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">error_ok</td><td>成功 </td></tr>
+    <tr><td class="paramname">其他</td><td>失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00108">108</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8afd26cc26824e35f1ec942d2c367c2b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int socket_check_send_ready </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a>&#160;</td>
+          <td class="paramname"><em>socket_fd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>检查套接字是否可写 </p><dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>不可写 </td></tr>
+    <tr><td class="paramname">1</td><td>可写 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00223">223</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3972a34b212a86a683834f05ed37034f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int socket_close </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a>&#160;</td>
+          <td class="paramname"><em>socket_fd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>关闭套接字（强制关闭） </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">socket_fd</td><td>套接字 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>成功 </td></tr>
+    <tr><td class="paramname">其他</td><td>失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00183">183</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1ec48de5c316491b068fbb3c76b21c91"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int socket_connect </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a>&#160;</td>
+          <td class="paramname"><em>socket_fd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>ip</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>port</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>发起异步connect </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">socket_fd</td><td>套接字 </td></tr>
+    <tr><td class="paramname">ip</td><td>IP </td></tr>
+    <tr><td class="paramname">port</td><td>端口 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">error_ok</td><td>成功 </td></tr>
+    <tr><td class="paramname">其他</td><td>失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00068">68</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a71cc84510563a2981ed5a47f86ccb7f6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_create </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>建立一个套接字 </p><dl class="section return"><dt>返回</dt><dd>套接字 </dd></dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00048">48</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="af9dec30d9e18787252fecc0de537843f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int socket_getpeername </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a151271c9d188ef28d4d24bb81dcc1263">channel_ref_t</a> *&#160;</td>
+          <td class="paramname"><em>channel_ref</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a7a6e75b85c8b441f843bd40004a7d9d5">address_t</a> *&#160;</td>
+          <td class="paramname"><em>address</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>getpeername </p><dl class="section see"><dt>参见</dt><dd>getpeername </dd></dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00411">411</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad427473485df55e150741186f3ef2879"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int socket_getsockname </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a151271c9d188ef28d4d24bb81dcc1263">channel_ref_t</a> *&#160;</td>
+          <td class="paramname"><em>channel_ref</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a7a6e75b85c8b441f843bd40004a7d9d5">address_t</a> *&#160;</td>
+          <td class="paramname"><em>address</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>getsockname </p><dl class="section see"><dt>参见</dt><dd>getsockname </dd></dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00435">435</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a64d681185ca861b010c81db7479e9e08"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int socket_pair </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a>&#160;</td>
+          <td class="paramname"><em>pair</em>[2]</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>socketpair </p><dl class="section see"><dt>参见</dt><dd>socketpair </dd></dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00312">312</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8a4b901f1586de59d1d0a88d3326c934"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int socket_recv </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a>&#160;</td>
+          <td class="paramname"><em>socket_fd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00273">273</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1acbefba637d7c0c3fd77355f84d4c22"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int socket_send </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a>&#160;</td>
+          <td class="paramname"><em>socket_fd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00241">241</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1d090d32a5cdf8b76b9e8eb650dfab60"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int socket_set_donot_route_on </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a>&#160;</td>
+          <td class="paramname"><em>socket_fd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00210">210</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="aeaa8128921474edb7c47efb40c8383ff"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int socket_set_keepalive_off </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a>&#160;</td>
+          <td class="paramname"><em>socket_fd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00205">205</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae3f2774813f23e084f5268d51e6c4983"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int socket_set_linger_off </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a>&#160;</td>
+          <td class="paramname"><em>socket_fd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00199">199</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac38b97ead3e51bdc95124910f3657c8a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int socket_set_nagle_off </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a>&#160;</td>
+          <td class="paramname"><em>socket_fd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00194">194</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="afd473c5857939c252deb9bfa30da8366"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int socket_set_non_blocking_on </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a>&#160;</td>
+          <td class="paramname"><em>socket_fd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00160">160</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae2d51397a3f343ea4daaf96b4d203f73"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int socket_set_recv_buffer_size </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a>&#160;</td>
+          <td class="paramname"><em>socket_fd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00215">215</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a10039d2f0e29d4b0d3b0cab3c7a1b63c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int socket_set_reuse_addr_on </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a>&#160;</td>
+          <td class="paramname"><em>socket_fd</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00155">155</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8489cd06398f759fff9660006dc8c10d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int socket_set_send_buffer_size </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a>&#160;</td>
+          <td class="paramname"><em>socket_fd</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00219">219</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2e3ede072c59452900afcb1334611dac"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="config_8h.html#aeaea39e7ef5adeec1efaee3eee6b12ff">sys_error_t</a> sys_get_errno </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>获取最新的系统错误码 </p><dl class="section return"><dt>返回</dt><dd>系统错误码 </dd></dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00931">931</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a75b9d7e4a1d3734e2a4c0ba298b1578c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* thread_func_pthread </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>params</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00621">621</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="aecf10907eee00ec0e807271c906a6645"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="config_8h.html#ad0ada5642d10ce71bdd90816182f9b79">thread_id_t</a> thread_get_self_id </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>取得线程ID </p><dl class="section return"><dt>返回</dt><dd>线程ID </dd></dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00763">763</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a63c9be5b8fb04c0b26382f51b7bdf237"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* thread_get_tls_data </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *&#160;</td>
+          <td class="paramname"><em>runner</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>取得线程本地存储 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">runner</td><td>thread_runner_t实例 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>获取失败或不存在 </td></tr>
+    <tr><td class="paramname">有效指针</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00809">809</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4f94afc82ab1358bdfdaa1739ca71655"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* thread_loop_func_pthread </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>params</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00599">599</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a95c00ec3d6ef1710cc8d8bb8cb7e585d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int thread_runner_check_start </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *&#160;</td>
+          <td class="paramname"><em>runner</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>检查线程是否正在运行 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">runner</td><td>thread_runner_t实例 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>未运行 </td></tr>
+    <tr><td class="paramname">非零</td><td>正在运行 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00753">753</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac20d7726e152e0b49209ce228893c25d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="config_8h.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a>* thread_runner_create </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a46bcd8005e5d86fdbc6be5af0a77156c">thread_func_t</a>&#160;</td>
+          <td class="paramname"><em>func</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>params</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>创建一个线程 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">func</td><td>线程函数 </td></tr>
+    <tr><td class="paramname">params</td><td>参数 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>thread_runner_t实例 </dd></dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00539">539</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8b9d3d45b6055971fc40f24ec6572cf6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void thread_runner_destroy </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *&#160;</td>
+          <td class="paramname"><em>runner</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>销毁一个线程 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">runner</td><td>thread_runner_t实例 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00548">548</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="af67fa2b2cfefc2de422a31b9dfad2bca"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* thread_runner_get_params </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *&#160;</td>
+          <td class="paramname"><em>runner</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>取得线程运行参数，thread_runner_create()第二个参数 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">runner</td><td>thread_runner_t实例 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>线程运行参数 </dd></dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00758">758</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a813a718c56e0923be9396630c8460794"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void thread_runner_join </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *&#160;</td>
+          <td class="paramname"><em>runner</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>等待线程终止 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">runner</td><td>thread_runner_t实例 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00735">735</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1114fd962e310f9d31ed4e83d8a21897"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int thread_runner_start </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *&#160;</td>
+          <td class="paramname"><em>runner</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>stack_size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>启动线程 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">runner</td><td>thread_runner_t实例 </td></tr>
+    <tr><td class="paramname">stack_size</td><td>线程栈大小（字节） </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">error_ok</td><td>成功 </td></tr>
+    <tr><td class="paramname">其他</td><td>失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00627">627</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a93f88ba77e7eab786da6fe7d1f681a2e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int thread_runner_start_loop </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *&#160;</td>
+          <td class="paramname"><em>runner</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a9c3ad1cd2de83e09f3a7b59fa82c94ee">loop_t</a> *&#160;</td>
+          <td class="paramname"><em>loop</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>stack_size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>在线程内运行loop_run() </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">runner</td><td>thread_runner_t实例 </td></tr>
+    <tr><td class="paramname">loop</td><td>loop_t实例 </td></tr>
+    <tr><td class="paramname">stack_size</td><td>线程栈大小（字节） </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">error_ok</td><td>成功 </td></tr>
+    <tr><td class="paramname">其他</td><td>失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00662">662</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9191991e2bd7f91fe68324c2855d581d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int thread_runner_start_timer_loop </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *&#160;</td>
+          <td class="paramname"><em>runner</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a024af2aa29615e7a811ea6c45438157d">ktimer_loop_t</a> *&#160;</td>
+          <td class="paramname"><em>timer_loop</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>stack_size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>在线程内运行timer_loop_run() </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">runner</td><td>thread_runner_t实例 </td></tr>
+    <tr><td class="paramname">timer_loop</td><td>ktimer_loop_t实例 </td></tr>
+    <tr><td class="paramname">stack_size</td><td>线程栈大小（字节） </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">error_ok</td><td>成功 </td></tr>
+    <tr><td class="paramname">其他</td><td>失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00696">696</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa035f190ffd3d7f117b8fbb58716f042"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void thread_runner_stop </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *&#160;</td>
+          <td class="paramname"><em>runner</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>停止线程 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">runner</td><td>thread_runner_t实例 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00730">730</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa187b2cd2c906680890fb4ea2833d665"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int thread_set_tls_data </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="config_8h.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *&#160;</td>
+          <td class="paramname"><em>runner</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>data</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>设置线程本地存储 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">runner</td><td>thread_runner_t实例 </td></tr>
+    <tr><td class="paramname">data</td><td>自定义数据指针 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">error_ok</td><td>成功 </td></tr>
+    <tr><td class="paramname">其他</td><td>失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00779">779</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="abddf3ac30aac3f22f8c53b7517e6eb35"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void thread_sleep_ms </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ms</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>睡眠 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ms</td><td>睡眠时间（毫秒） </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00771">771</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a878593e36d665dc3334cf71e88bf93e6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* thread_timer_loop_func_pthread </td>
+          <td>(</td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>params</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00610">610</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5eb6de730bc28be3fbc402b9841c1819"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t time_get_microseconds </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>获取当前微秒 </p>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00881">881</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a528d27a7218cb2fdabf81ca343e24fc9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t time_get_milliseconds </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>获取当前毫秒 </p>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00822">822</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6d3f7fda67a3c61f767f7b2dbfcbe4ee"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* time_get_string </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>取得当前可阅读时间字符串 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">buffer</td><td>输出缓冲区 </td></tr>
+    <tr><td class="paramname">size</td><td>缓冲区大小 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>格式为YYYY-MM-DD HH:mm:SS:MS </dd></dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00858">858</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3cab12b4908938ca999206a67c8ee032"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int time_gettimeofday </td>
+          <td>(</td>
+          <td class="paramtype">struct timeval *&#160;</td>
+          <td class="paramname"><em>tp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>tzp</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>gettimeofday </p><dl class="section see"><dt>参见</dt><dd>gettimeofday </dd></dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00835">835</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2b1df51bc127460a3bf25949068bfe92"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint64_t uuid_create </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>产生一个伪UUID，只保证本进程内不重复 </p><dl class="section return"><dt>返回</dt><dd>伪UUID </dd></dl>
+
+<p>在文件 <a class="el" href="misc_8c_source.html">misc.c</a> 第 <a class="el" href="misc_8c_source.html#l00902">902</a> 行定义.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+生成于 2015年 六月 29日 星期一 16:51:00 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.9.1
+</small></address>
+</body>
+</html>

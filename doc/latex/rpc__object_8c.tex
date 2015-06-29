@@ -1,0 +1,875 @@
+\hypertarget{rpc__object_8c}{}\section{E\+:/knet-\/git/knet/knet/rpc\+\_\+object.c 文件参考}
+\label{rpc__object_8c}\index{E\+:/knet-\/git/knet/knet/rpc\+\_\+object.\+c@{E\+:/knet-\/git/knet/knet/rpc\+\_\+object.\+c}}
+{\ttfamily \#include \char`\"{}rpc\+\_\+object.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}stream.\+h\char`\"{}}\\*
+\subsection*{结构体}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{struct__krpc__number__t}{\+\_\+krpc\+\_\+number\+\_\+t}
+\item 
+struct \hyperlink{struct__krpc__object__t}{\+\_\+krpc\+\_\+object\+\_\+t}
+\item 
+struct \hyperlink{struct__krpc__string__t}{\+\_\+krpc\+\_\+string\+\_\+t}
+\item 
+struct \hyperlink{struct__krpc__vector__t}{\+\_\+krpc\+\_\+vector\+\_\+t}
+\item 
+struct \hyperlink{structkrpc__object__header__t}{krpc\+\_\+object\+\_\+header\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{类型定义}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{structkrpc__object__header__t}{krpc\+\_\+object\+\_\+header\+\_\+t} \hyperlink{rpc__object_8c_a12a12afbc4f5962e88fac9bfadc68c56}{krpc\+\_\+object\+\_\+header\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{config_8h_a24938fa843048398799e12d52d3e3693}{float32\+\_\+t} \hyperlink{rpc__object_8c_aa646cc26fc434789e5d4a58ec39a99fa}{krpc\+\_\+number\+\_\+get\+\_\+f32} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
+\item 
+\hyperlink{config_8h_a584460dce5c6f292dfffb0e7fbca0842}{float64\+\_\+t} \hyperlink{rpc__object_8c_a000db715b85193d0b6750b46bfc590b5}{krpc\+\_\+number\+\_\+get\+\_\+f64} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
+\item 
+int16\+\_\+t \hyperlink{rpc__object_8c_a090dd58301d21979a05fe6fc249e3a80}{krpc\+\_\+number\+\_\+get\+\_\+i16} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
+\item 
+int32\+\_\+t \hyperlink{rpc__object_8c_ad287178bafa8b9495016ee747db8e090}{krpc\+\_\+number\+\_\+get\+\_\+i32} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
+\item 
+int64\+\_\+t \hyperlink{rpc__object_8c_a41bb57b2a053c9aeb22c98e0cbfbc2e4}{krpc\+\_\+number\+\_\+get\+\_\+i64} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
+\item 
+int8\+\_\+t \hyperlink{rpc__object_8c_a5f14e2a44d3dd64fc1bc54e28b431587}{krpc\+\_\+number\+\_\+get\+\_\+i8} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
+\item 
+uint16\+\_\+t \hyperlink{rpc__object_8c_aaa8a155df38de3bbf2a876b94686d195}{krpc\+\_\+number\+\_\+get\+\_\+marshal\+\_\+size} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
+\item 
+uint16\+\_\+t \hyperlink{rpc__object_8c_aa2f3b1c450f36d181e585924ff7954a5}{krpc\+\_\+number\+\_\+get\+\_\+ui16} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
+\item 
+uint32\+\_\+t \hyperlink{rpc__object_8c_abc1d9560a6f2baf606c4a232488ee76a}{krpc\+\_\+number\+\_\+get\+\_\+ui32} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
+\item 
+uint64\+\_\+t \hyperlink{rpc__object_8c_a951b99916dd94a6d8c5ad335578c35d7}{krpc\+\_\+number\+\_\+get\+\_\+ui64} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
+\item 
+uint8\+\_\+t \hyperlink{rpc__object_8c_a921ba1649bda27068e3d048b854ed708}{krpc\+\_\+number\+\_\+get\+\_\+ui8} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
+\item 
+void \hyperlink{rpc__object_8c_a0e16d4b0c82cb88b148e82bc076a840c}{krpc\+\_\+number\+\_\+set\+\_\+f32} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, \hyperlink{config_8h_a24938fa843048398799e12d52d3e3693}{float32\+\_\+t} f32)
+\item 
+void \hyperlink{rpc__object_8c_a8aeb77dbdf5aaab4bb75f57ee0ddd8b9}{krpc\+\_\+number\+\_\+set\+\_\+f64} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, \hyperlink{config_8h_a584460dce5c6f292dfffb0e7fbca0842}{float64\+\_\+t} f64)
+\item 
+void \hyperlink{rpc__object_8c_a1b6cbaa51e2171bec6e5b2f97fe6223c}{krpc\+\_\+number\+\_\+set\+\_\+i16} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, int16\+\_\+t i16)
+\item 
+void \hyperlink{rpc__object_8c_af70d32f6fb59d76e67e596d0feeee14b}{krpc\+\_\+number\+\_\+set\+\_\+i32} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, int32\+\_\+t i32)
+\item 
+void \hyperlink{rpc__object_8c_abf92e2dab46131d75789812059214724}{krpc\+\_\+number\+\_\+set\+\_\+i64} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, int64\+\_\+t i64)
+\item 
+void \hyperlink{rpc__object_8c_ac97afef390289879f19cda9149beb684}{krpc\+\_\+number\+\_\+set\+\_\+i8} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, int8\+\_\+t i8)
+\item 
+void \hyperlink{rpc__object_8c_a7990cb68203c5ab0d1534ef616fd1aad}{krpc\+\_\+number\+\_\+set\+\_\+ui16} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, uint16\+\_\+t ui16)
+\item 
+void \hyperlink{rpc__object_8c_af864070d7b20a77c9191acbe49f9382f}{krpc\+\_\+number\+\_\+set\+\_\+ui32} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, uint32\+\_\+t ui32)
+\item 
+void \hyperlink{rpc__object_8c_afd0da43f7cb46188c6d2f1657b39c3ba}{krpc\+\_\+number\+\_\+set\+\_\+ui64} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, int64\+\_\+t ui64)
+\item 
+void \hyperlink{rpc__object_8c_a0abbc84b15e73781209485cbfa4d2a56}{krpc\+\_\+number\+\_\+set\+\_\+ui8} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, uint8\+\_\+t ui8)
+\item 
+int \hyperlink{rpc__object_8c_a207aac182f9f86e96ddea230ee9c8f61}{krpc\+\_\+object\+\_\+check\+\_\+type} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, \hyperlink{config_8h_a6bca3ecacad337637254bb43ab58a0b6}{krpc\+\_\+type\+\_\+e} type)
+\item 
+\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$ \hyperlink{rpc__object_8c_a6aad58d8460944596e39822181bf4848}{krpc\+\_\+object\+\_\+create} ()
+\item 
+void \hyperlink{rpc__object_8c_a8bb578f8ba5a8de682a1fe2a4c8a20f6}{krpc\+\_\+object\+\_\+destroy} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
+\item 
+uint16\+\_\+t \hyperlink{rpc__object_8c_ad51ebf7392be0ee1fd9597aa22a43015}{krpc\+\_\+object\+\_\+get\+\_\+marshal\+\_\+size} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
+\item 
+int \hyperlink{rpc__object_8c_a88e197e67ba6e7dc4b6fa361db77376b}{krpc\+\_\+object\+\_\+marshal} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, \hyperlink{config_8h_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$stream, uint16\+\_\+t $\ast$bytes)
+\item 
+int \hyperlink{rpc__object_8c_aff1ec30de69047da0315283957d877ca}{krpc\+\_\+object\+\_\+unmarshal} (\hyperlink{config_8h_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$stream, \hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$$\ast$o, uint16\+\_\+t $\ast$bytes)
+\item 
+const char $\ast$ \hyperlink{rpc__object_8c_a4cbbacb71688aa9ee2c5811076132bce}{krpc\+\_\+string\+\_\+get} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
+\item 
+uint16\+\_\+t \hyperlink{rpc__object_8c_a1de7973df219a3f8d3f466d27ba8c080}{krpc\+\_\+string\+\_\+get\+\_\+size} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
+\item 
+void \hyperlink{rpc__object_8c_a6985230e52d14d9e6d1f0de75a7c2f93}{krpc\+\_\+string\+\_\+set} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, const char $\ast$s)
+\item 
+void \hyperlink{rpc__object_8c_a478faec6f30727235d29aaeb8d54f22f}{krpc\+\_\+string\+\_\+set\+\_\+s} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, const char $\ast$s, uint16\+\_\+t size)
+\item 
+int \hyperlink{rpc__object_8c_af0d124108915f859d85fccd58facf12f}{krpc\+\_\+string\+\_\+set\+\_\+size} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, uint16\+\_\+t size)
+\item 
+void \hyperlink{rpc__object_8c_a02d5eeffe865f129911f42ffbfa0d119}{krpc\+\_\+vector\+\_\+clear} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$v)
+\item 
+void \hyperlink{rpc__object_8c_a13be7946c84baeebe93977ef511e125f}{krpc\+\_\+vector\+\_\+enlarge} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
+\item 
+\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$ \hyperlink{rpc__object_8c_a0291a0548378269354fc614712f4c31e}{krpc\+\_\+vector\+\_\+get} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$v, int index)
+\item 
+uint32\+\_\+t \hyperlink{rpc__object_8c_ac86bb807e52193aaa69ce6fe36cd59c8}{krpc\+\_\+vector\+\_\+get\+\_\+size} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$v)
+\item 
+int \hyperlink{rpc__object_8c_ac870fa910b5e155c9f566ead4fac2b54}{krpc\+\_\+vector\+\_\+push\+\_\+back} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$v, \hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
+\item 
+int \hyperlink{rpc__object_8c_af08956a35d983893f382974abcfca177}{krpc\+\_\+vector\+\_\+set} (\hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$v, \hyperlink{config_8h_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, int index)
+\end{DoxyCompactItemize}
+
+
+\subsection{类型定义说明}
+\hypertarget{rpc__object_8c_a12a12afbc4f5962e88fac9bfadc68c56}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+object\+\_\+header\+\_\+t@{krpc\+\_\+object\+\_\+header\+\_\+t}}
+\index{krpc\+\_\+object\+\_\+header\+\_\+t@{krpc\+\_\+object\+\_\+header\+\_\+t}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+object\+\_\+header\+\_\+t}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf krpc\+\_\+object\+\_\+header\+\_\+t}  {\bf krpc\+\_\+object\+\_\+header\+\_\+t}}\label{rpc__object_8c_a12a12afbc4f5962e88fac9bfadc68c56}
+
+
+\subsection{函数说明}
+\hypertarget{rpc__object_8c_aa646cc26fc434789e5d4a58ec39a99fa}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+number\+\_\+get\+\_\+f32@{krpc\+\_\+number\+\_\+get\+\_\+f32}}
+\index{krpc\+\_\+number\+\_\+get\+\_\+f32@{krpc\+\_\+number\+\_\+get\+\_\+f32}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+f32}]{\setlength{\rightskip}{0pt plus 5cm}{\bf float32\+\_\+t} krpc\+\_\+number\+\_\+get\+\_\+f32 (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_aa646cc26fc434789e5d4a58ec39a99fa}
+获取浮点数32位 
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+浮点数32位 
+\end{DoxyReturn}
+
+
+在文件 rpc\+\_\+object.\+c 第 418 行定义.
+
+\hypertarget{rpc__object_8c_a000db715b85193d0b6750b46bfc590b5}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+number\+\_\+get\+\_\+f64@{krpc\+\_\+number\+\_\+get\+\_\+f64}}
+\index{krpc\+\_\+number\+\_\+get\+\_\+f64@{krpc\+\_\+number\+\_\+get\+\_\+f64}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+f64}]{\setlength{\rightskip}{0pt plus 5cm}{\bf float64\+\_\+t} krpc\+\_\+number\+\_\+get\+\_\+f64 (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_a000db715b85193d0b6750b46bfc590b5}
+获取浮点数64位 
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+浮点数64位 
+\end{DoxyReturn}
+
+
+在文件 rpc\+\_\+object.\+c 第 435 行定义.
+
+\hypertarget{rpc__object_8c_a090dd58301d21979a05fe6fc249e3a80}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+number\+\_\+get\+\_\+i16@{krpc\+\_\+number\+\_\+get\+\_\+i16}}
+\index{krpc\+\_\+number\+\_\+get\+\_\+i16@{krpc\+\_\+number\+\_\+get\+\_\+i16}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+i16}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t krpc\+\_\+number\+\_\+get\+\_\+i16 (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_a090dd58301d21979a05fe6fc249e3a80}
+获取有符号16位 
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+有符号16位 
+\end{DoxyReturn}
+
+
+在文件 rpc\+\_\+object.\+c 第 299 行定义.
+
+\hypertarget{rpc__object_8c_ad287178bafa8b9495016ee747db8e090}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+number\+\_\+get\+\_\+i32@{krpc\+\_\+number\+\_\+get\+\_\+i32}}
+\index{krpc\+\_\+number\+\_\+get\+\_\+i32@{krpc\+\_\+number\+\_\+get\+\_\+i32}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+i32}]{\setlength{\rightskip}{0pt plus 5cm}int32\+\_\+t krpc\+\_\+number\+\_\+get\+\_\+i32 (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_ad287178bafa8b9495016ee747db8e090}
+获取有符号32位 
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+有符号32位 
+\end{DoxyReturn}
+
+
+在文件 rpc\+\_\+object.\+c 第 316 行定义.
+
+\hypertarget{rpc__object_8c_a41bb57b2a053c9aeb22c98e0cbfbc2e4}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+number\+\_\+get\+\_\+i64@{krpc\+\_\+number\+\_\+get\+\_\+i64}}
+\index{krpc\+\_\+number\+\_\+get\+\_\+i64@{krpc\+\_\+number\+\_\+get\+\_\+i64}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+i64}]{\setlength{\rightskip}{0pt plus 5cm}int64\+\_\+t krpc\+\_\+number\+\_\+get\+\_\+i64 (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_a41bb57b2a053c9aeb22c98e0cbfbc2e4}
+获取有符号64位 
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+有符号64位 
+\end{DoxyReturn}
+
+
+在文件 rpc\+\_\+object.\+c 第 333 行定义.
+
+\hypertarget{rpc__object_8c_a5f14e2a44d3dd64fc1bc54e28b431587}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+number\+\_\+get\+\_\+i8@{krpc\+\_\+number\+\_\+get\+\_\+i8}}
+\index{krpc\+\_\+number\+\_\+get\+\_\+i8@{krpc\+\_\+number\+\_\+get\+\_\+i8}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+i8}]{\setlength{\rightskip}{0pt plus 5cm}int8\+\_\+t krpc\+\_\+number\+\_\+get\+\_\+i8 (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_a5f14e2a44d3dd64fc1bc54e28b431587}
+获取有符号8位 
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+有符号8位 
+\end{DoxyReturn}
+
+
+在文件 rpc\+\_\+object.\+c 第 282 行定义.
+
+\hypertarget{rpc__object_8c_aaa8a155df38de3bbf2a876b94686d195}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+number\+\_\+get\+\_\+marshal\+\_\+size@{krpc\+\_\+number\+\_\+get\+\_\+marshal\+\_\+size}}
+\index{krpc\+\_\+number\+\_\+get\+\_\+marshal\+\_\+size@{krpc\+\_\+number\+\_\+get\+\_\+marshal\+\_\+size}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+marshal\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t krpc\+\_\+number\+\_\+get\+\_\+marshal\+\_\+size (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_aaa8a155df38de3bbf2a876b94686d195}
+获取数字对象序列化长度 
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+数字对象序列化长度 
+\end{DoxyReturn}
+
+
+在文件 rpc\+\_\+object.\+c 第 118 行定义.
+
+\hypertarget{rpc__object_8c_aa2f3b1c450f36d181e585924ff7954a5}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+number\+\_\+get\+\_\+ui16@{krpc\+\_\+number\+\_\+get\+\_\+ui16}}
+\index{krpc\+\_\+number\+\_\+get\+\_\+ui16@{krpc\+\_\+number\+\_\+get\+\_\+ui16}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+ui16}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t krpc\+\_\+number\+\_\+get\+\_\+ui16 (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_aa2f3b1c450f36d181e585924ff7954a5}
+获取无符号16位 
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+无符号16位 
+\end{DoxyReturn}
+
+
+在文件 rpc\+\_\+object.\+c 第 367 行定义.
+
+\hypertarget{rpc__object_8c_abc1d9560a6f2baf606c4a232488ee76a}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+number\+\_\+get\+\_\+ui32@{krpc\+\_\+number\+\_\+get\+\_\+ui32}}
+\index{krpc\+\_\+number\+\_\+get\+\_\+ui32@{krpc\+\_\+number\+\_\+get\+\_\+ui32}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+ui32}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t krpc\+\_\+number\+\_\+get\+\_\+ui32 (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_abc1d9560a6f2baf606c4a232488ee76a}
+获取无符号32位 
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+无符号32位 
+\end{DoxyReturn}
+
+
+在文件 rpc\+\_\+object.\+c 第 384 行定义.
+
+\hypertarget{rpc__object_8c_a951b99916dd94a6d8c5ad335578c35d7}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+number\+\_\+get\+\_\+ui64@{krpc\+\_\+number\+\_\+get\+\_\+ui64}}
+\index{krpc\+\_\+number\+\_\+get\+\_\+ui64@{krpc\+\_\+number\+\_\+get\+\_\+ui64}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+ui64}]{\setlength{\rightskip}{0pt plus 5cm}uint64\+\_\+t krpc\+\_\+number\+\_\+get\+\_\+ui64 (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_a951b99916dd94a6d8c5ad335578c35d7}
+获取无符号64位 
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+无符号64位 
+\end{DoxyReturn}
+
+
+在文件 rpc\+\_\+object.\+c 第 401 行定义.
+
+\hypertarget{rpc__object_8c_a921ba1649bda27068e3d048b854ed708}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+number\+\_\+get\+\_\+ui8@{krpc\+\_\+number\+\_\+get\+\_\+ui8}}
+\index{krpc\+\_\+number\+\_\+get\+\_\+ui8@{krpc\+\_\+number\+\_\+get\+\_\+ui8}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+ui8}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t krpc\+\_\+number\+\_\+get\+\_\+ui8 (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_a921ba1649bda27068e3d048b854ed708}
+获取无符号8位 
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+无符号8位 
+\end{DoxyReturn}
+
+
+在文件 rpc\+\_\+object.\+c 第 350 行定义.
+
+\hypertarget{rpc__object_8c_a0e16d4b0c82cb88b148e82bc076a840c}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+number\+\_\+set\+\_\+f32@{krpc\+\_\+number\+\_\+set\+\_\+f32}}
+\index{krpc\+\_\+number\+\_\+set\+\_\+f32@{krpc\+\_\+number\+\_\+set\+\_\+f32}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+number\+\_\+set\+\_\+f32}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+number\+\_\+set\+\_\+f32 (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
+\item[{{\bf float32\+\_\+t}}]{f32}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_a0e16d4b0c82cb88b148e82bc076a840c}
+设置数字 
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+{\em f32} & 浮点数32位 \\
+\hline
+\end{DoxyParams}
+
+
+在文件 rpc\+\_\+object.\+c 第 409 行定义.
+
+\hypertarget{rpc__object_8c_a8aeb77dbdf5aaab4bb75f57ee0ddd8b9}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+number\+\_\+set\+\_\+f64@{krpc\+\_\+number\+\_\+set\+\_\+f64}}
+\index{krpc\+\_\+number\+\_\+set\+\_\+f64@{krpc\+\_\+number\+\_\+set\+\_\+f64}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+number\+\_\+set\+\_\+f64}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+number\+\_\+set\+\_\+f64 (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
+\item[{{\bf float64\+\_\+t}}]{f64}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_a8aeb77dbdf5aaab4bb75f57ee0ddd8b9}
+设置数字 
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+{\em f64} & 浮点数64位 \\
+\hline
+\end{DoxyParams}
+
+
+在文件 rpc\+\_\+object.\+c 第 426 行定义.
+
+\hypertarget{rpc__object_8c_a1b6cbaa51e2171bec6e5b2f97fe6223c}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+number\+\_\+set\+\_\+i16@{krpc\+\_\+number\+\_\+set\+\_\+i16}}
+\index{krpc\+\_\+number\+\_\+set\+\_\+i16@{krpc\+\_\+number\+\_\+set\+\_\+i16}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+number\+\_\+set\+\_\+i16}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+number\+\_\+set\+\_\+i16 (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
+\item[{int16\+\_\+t}]{i16}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_a1b6cbaa51e2171bec6e5b2f97fe6223c}
+设置数字 
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+{\em i16} & 有符号16位 \\
+\hline
+\end{DoxyParams}
+
+
+在文件 rpc\+\_\+object.\+c 第 290 行定义.
+
+\hypertarget{rpc__object_8c_af70d32f6fb59d76e67e596d0feeee14b}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+number\+\_\+set\+\_\+i32@{krpc\+\_\+number\+\_\+set\+\_\+i32}}
+\index{krpc\+\_\+number\+\_\+set\+\_\+i32@{krpc\+\_\+number\+\_\+set\+\_\+i32}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+number\+\_\+set\+\_\+i32}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+number\+\_\+set\+\_\+i32 (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
+\item[{int32\+\_\+t}]{i32}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_af70d32f6fb59d76e67e596d0feeee14b}
+设置数字 
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+{\em i32} & 有符号32位 \\
+\hline
+\end{DoxyParams}
+
+
+在文件 rpc\+\_\+object.\+c 第 307 行定义.
+
+\hypertarget{rpc__object_8c_abf92e2dab46131d75789812059214724}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+number\+\_\+set\+\_\+i64@{krpc\+\_\+number\+\_\+set\+\_\+i64}}
+\index{krpc\+\_\+number\+\_\+set\+\_\+i64@{krpc\+\_\+number\+\_\+set\+\_\+i64}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+number\+\_\+set\+\_\+i64}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+number\+\_\+set\+\_\+i64 (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
+\item[{int64\+\_\+t}]{i64}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_abf92e2dab46131d75789812059214724}
+设置数字 
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+{\em i64} & 有符号64位 \\
+\hline
+\end{DoxyParams}
+
+
+在文件 rpc\+\_\+object.\+c 第 324 行定义.
+
+\hypertarget{rpc__object_8c_ac97afef390289879f19cda9149beb684}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+number\+\_\+set\+\_\+i8@{krpc\+\_\+number\+\_\+set\+\_\+i8}}
+\index{krpc\+\_\+number\+\_\+set\+\_\+i8@{krpc\+\_\+number\+\_\+set\+\_\+i8}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+number\+\_\+set\+\_\+i8}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+number\+\_\+set\+\_\+i8 (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
+\item[{int8\+\_\+t}]{i8}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_ac97afef390289879f19cda9149beb684}
+设置数字 
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+{\em i8} & 有符号8位 \\
+\hline
+\end{DoxyParams}
+
+
+在文件 rpc\+\_\+object.\+c 第 273 行定义.
+
+\hypertarget{rpc__object_8c_a7990cb68203c5ab0d1534ef616fd1aad}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+number\+\_\+set\+\_\+ui16@{krpc\+\_\+number\+\_\+set\+\_\+ui16}}
+\index{krpc\+\_\+number\+\_\+set\+\_\+ui16@{krpc\+\_\+number\+\_\+set\+\_\+ui16}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+number\+\_\+set\+\_\+ui16}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+number\+\_\+set\+\_\+ui16 (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
+\item[{uint16\+\_\+t}]{ui16}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_a7990cb68203c5ab0d1534ef616fd1aad}
+设置数字 
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+{\em ui16} & 无符号16位 \\
+\hline
+\end{DoxyParams}
+
+
+在文件 rpc\+\_\+object.\+c 第 358 行定义.
+
+\hypertarget{rpc__object_8c_af864070d7b20a77c9191acbe49f9382f}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+number\+\_\+set\+\_\+ui32@{krpc\+\_\+number\+\_\+set\+\_\+ui32}}
+\index{krpc\+\_\+number\+\_\+set\+\_\+ui32@{krpc\+\_\+number\+\_\+set\+\_\+ui32}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+number\+\_\+set\+\_\+ui32}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+number\+\_\+set\+\_\+ui32 (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
+\item[{uint32\+\_\+t}]{ui32}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_af864070d7b20a77c9191acbe49f9382f}
+设置数字 
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+{\em ui32} & 无符号32位 \\
+\hline
+\end{DoxyParams}
+
+
+在文件 rpc\+\_\+object.\+c 第 375 行定义.
+
+\hypertarget{rpc__object_8c_afd0da43f7cb46188c6d2f1657b39c3ba}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+number\+\_\+set\+\_\+ui64@{krpc\+\_\+number\+\_\+set\+\_\+ui64}}
+\index{krpc\+\_\+number\+\_\+set\+\_\+ui64@{krpc\+\_\+number\+\_\+set\+\_\+ui64}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+number\+\_\+set\+\_\+ui64}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+number\+\_\+set\+\_\+ui64 (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
+\item[{int64\+\_\+t}]{ui64}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_afd0da43f7cb46188c6d2f1657b39c3ba}
+设置数字 
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+{\em ui64} & 无符号64位 \\
+\hline
+\end{DoxyParams}
+
+
+在文件 rpc\+\_\+object.\+c 第 392 行定义.
+
+\hypertarget{rpc__object_8c_a0abbc84b15e73781209485cbfa4d2a56}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+number\+\_\+set\+\_\+ui8@{krpc\+\_\+number\+\_\+set\+\_\+ui8}}
+\index{krpc\+\_\+number\+\_\+set\+\_\+ui8@{krpc\+\_\+number\+\_\+set\+\_\+ui8}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+number\+\_\+set\+\_\+ui8}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+number\+\_\+set\+\_\+ui8 (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
+\item[{uint8\+\_\+t}]{ui8}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_a0abbc84b15e73781209485cbfa4d2a56}
+设置数字 
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+{\em ui8} & 无符号8位 \\
+\hline
+\end{DoxyParams}
+
+
+在文件 rpc\+\_\+object.\+c 第 341 行定义.
+
+\hypertarget{rpc__object_8c_a207aac182f9f86e96ddea230ee9c8f61}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+object\+\_\+check\+\_\+type@{krpc\+\_\+object\+\_\+check\+\_\+type}}
+\index{krpc\+\_\+object\+\_\+check\+\_\+type@{krpc\+\_\+object\+\_\+check\+\_\+type}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+object\+\_\+check\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+object\+\_\+check\+\_\+type (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
+\item[{{\bf krpc\+\_\+type\+\_\+e}}]{type}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_a207aac182f9f86e96ddea230ee9c8f61}
+测试\+R\+P\+C对象类型 
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+{\em type} & 类型 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em 0} & 不是type类型 \\
+\hline
+{\em 非零} & 是type类型 \\
+\hline
+\end{DoxyRetVals}
+
+
+在文件 rpc\+\_\+object.\+c 第 110 行定义.
+
+\hypertarget{rpc__object_8c_a6aad58d8460944596e39822181bf4848}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+object\+\_\+create@{krpc\+\_\+object\+\_\+create}}
+\index{krpc\+\_\+object\+\_\+create@{krpc\+\_\+object\+\_\+create}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+object\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf krpc\+\_\+object\+\_\+t}$\ast$ krpc\+\_\+object\+\_\+create (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_a6aad58d8460944596e39822181bf4848}
+所有set类方法调用时确定krpc\+\_\+object\+\_\+t实际类型，类型一旦确定不能再次更改 建立\+R\+P\+C对象 \begin{DoxyReturn}{返回}
+krpc\+\_\+object\+\_\+t实例 
+\end{DoxyReturn}
+
+
+在文件 rpc\+\_\+object.\+c 第 83 行定义.
+
+\hypertarget{rpc__object_8c_a8bb578f8ba5a8de682a1fe2a4c8a20f6}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+object\+\_\+destroy@{krpc\+\_\+object\+\_\+destroy}}
+\index{krpc\+\_\+object\+\_\+destroy@{krpc\+\_\+object\+\_\+destroy}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+object\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+object\+\_\+destroy (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_a8bb578f8ba5a8de682a1fe2a4c8a20f6}
+销毁\+R\+P\+C对象 
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+
+
+在文件 rpc\+\_\+object.\+c 第 90 行定义.
+
+\hypertarget{rpc__object_8c_ad51ebf7392be0ee1fd9597aa22a43015}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+object\+\_\+get\+\_\+marshal\+\_\+size@{krpc\+\_\+object\+\_\+get\+\_\+marshal\+\_\+size}}
+\index{krpc\+\_\+object\+\_\+get\+\_\+marshal\+\_\+size@{krpc\+\_\+object\+\_\+get\+\_\+marshal\+\_\+size}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+object\+\_\+get\+\_\+marshal\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t krpc\+\_\+object\+\_\+get\+\_\+marshal\+\_\+size (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_ad51ebf7392be0ee1fd9597aa22a43015}
+取得序列化后的长度 
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+取得序列化后的长度 
+\end{DoxyReturn}
+
+
+在文件 rpc\+\_\+object.\+c 第 143 行定义.
+
+\hypertarget{rpc__object_8c_a88e197e67ba6e7dc4b6fa361db77376b}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+object\+\_\+marshal@{krpc\+\_\+object\+\_\+marshal}}
+\index{krpc\+\_\+object\+\_\+marshal@{krpc\+\_\+object\+\_\+marshal}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+object\+\_\+marshal}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+object\+\_\+marshal (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
+\item[{{\bf stream\+\_\+t} $\ast$}]{stream, }
+\item[{uint16\+\_\+t $\ast$}]{bytes}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_a88e197e67ba6e7dc4b6fa361db77376b}
+序列化到数据流 
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+{\em stream} & stream\+\_\+t实例 \\
+\hline
+{\em bytes} & 写入流的数据字节数 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+
+
+在文件 rpc\+\_\+object.\+c 第 163 行定义.
+
+\hypertarget{rpc__object_8c_aff1ec30de69047da0315283957d877ca}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+object\+\_\+unmarshal@{krpc\+\_\+object\+\_\+unmarshal}}
+\index{krpc\+\_\+object\+\_\+unmarshal@{krpc\+\_\+object\+\_\+unmarshal}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+object\+\_\+unmarshal}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+object\+\_\+unmarshal (
+\begin{DoxyParamCaption}
+\item[{{\bf stream\+\_\+t} $\ast$}]{stream, }
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$$\ast$}]{o, }
+\item[{uint16\+\_\+t $\ast$}]{length}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_aff1ec30de69047da0315283957d877ca}
+从数据流反序列化对象 
+\begin{DoxyParams}{参数}
+{\em stream} & stream\+\_\+t实例 \\
+\hline
+{\em o} & 存储得到的对象指针 \\
+\hline
+{\em length} & 读取的流数据字节数 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+
+
+在文件 rpc\+\_\+object.\+c 第 202 行定义.
+
+\hypertarget{rpc__object_8c_a4cbbacb71688aa9ee2c5811076132bce}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+string\+\_\+get@{krpc\+\_\+string\+\_\+get}}
+\index{krpc\+\_\+string\+\_\+get@{krpc\+\_\+string\+\_\+get}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+string\+\_\+get}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ krpc\+\_\+string\+\_\+get (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_a4cbbacb71688aa9ee2c5811076132bce}
+获取字符串指针 
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+字符串指针 
+\end{DoxyReturn}
+
+
+在文件 rpc\+\_\+object.\+c 第 490 行定义.
+
+\hypertarget{rpc__object_8c_a1de7973df219a3f8d3f466d27ba8c080}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+string\+\_\+get\+\_\+size@{krpc\+\_\+string\+\_\+get\+\_\+size}}
+\index{krpc\+\_\+string\+\_\+get\+\_\+size@{krpc\+\_\+string\+\_\+get\+\_\+size}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+string\+\_\+get\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t krpc\+\_\+string\+\_\+get\+\_\+size (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_a1de7973df219a3f8d3f466d27ba8c080}
+获取字符串长度，包含结尾符 
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+字符串长度 
+\end{DoxyReturn}
+
+
+在文件 rpc\+\_\+object.\+c 第 498 行定义.
+
+\hypertarget{rpc__object_8c_a6985230e52d14d9e6d1f0de75a7c2f93}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+string\+\_\+set@{krpc\+\_\+string\+\_\+set}}
+\index{krpc\+\_\+string\+\_\+set@{krpc\+\_\+string\+\_\+set}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+string\+\_\+set}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+string\+\_\+set (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
+\item[{const char $\ast$}]{s}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_a6985230e52d14d9e6d1f0de75a7c2f93}
+设置字符串 
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+{\em s} & 字符串指针 \\
+\hline
+\end{DoxyParams}
+
+
+在文件 rpc\+\_\+object.\+c 第 443 行定义.
+
+\hypertarget{rpc__object_8c_a478faec6f30727235d29aaeb8d54f22f}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+string\+\_\+set\+\_\+s@{krpc\+\_\+string\+\_\+set\+\_\+s}}
+\index{krpc\+\_\+string\+\_\+set\+\_\+s@{krpc\+\_\+string\+\_\+set\+\_\+s}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+string\+\_\+set\+\_\+s}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+string\+\_\+set\+\_\+s (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
+\item[{const char $\ast$}]{s, }
+\item[{uint16\+\_\+t}]{size}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_a478faec6f30727235d29aaeb8d54f22f}
+设置字符串 
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+{\em size} & 字符串长度，包含结尾符 \\
+\hline
+{\em s} & 字符串指针 \\
+\hline
+\end{DoxyParams}
+
+
+在文件 rpc\+\_\+object.\+c 第 461 行定义.
+
+\hypertarget{rpc__object_8c_af0d124108915f859d85fccd58facf12f}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+string\+\_\+set\+\_\+size@{krpc\+\_\+string\+\_\+set\+\_\+size}}
+\index{krpc\+\_\+string\+\_\+set\+\_\+size@{krpc\+\_\+string\+\_\+set\+\_\+size}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+string\+\_\+set\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+string\+\_\+set\+\_\+size (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
+\item[{uint16\+\_\+t}]{size}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_af0d124108915f859d85fccd58facf12f}
+设置字符串长度 
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+{\em size} & 长度 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+
+
+在文件 rpc\+\_\+object.\+c 第 477 行定义.
+
+\hypertarget{rpc__object_8c_a02d5eeffe865f129911f42ffbfa0d119}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+vector\+\_\+clear@{krpc\+\_\+vector\+\_\+clear}}
+\index{krpc\+\_\+vector\+\_\+clear@{krpc\+\_\+vector\+\_\+clear}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+vector\+\_\+clear}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+vector\+\_\+clear (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{v}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_a02d5eeffe865f129911f42ffbfa0d119}
+清空数组 
+\begin{DoxyParams}{参数}
+{\em v} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+
+
+在文件 rpc\+\_\+object.\+c 第 573 行定义.
+
+\hypertarget{rpc__object_8c_a13be7946c84baeebe93977ef511e125f}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+vector\+\_\+enlarge@{krpc\+\_\+vector\+\_\+enlarge}}
+\index{krpc\+\_\+vector\+\_\+enlarge@{krpc\+\_\+vector\+\_\+enlarge}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+vector\+\_\+enlarge}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+vector\+\_\+enlarge (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_a13be7946c84baeebe93977ef511e125f}
+扩展数组 
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+
+
+在文件 rpc\+\_\+object.\+c 第 506 行定义.
+
+\hypertarget{rpc__object_8c_a0291a0548378269354fc614712f4c31e}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+vector\+\_\+get@{krpc\+\_\+vector\+\_\+get}}
+\index{krpc\+\_\+vector\+\_\+get@{krpc\+\_\+vector\+\_\+get}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+vector\+\_\+get}]{\setlength{\rightskip}{0pt plus 5cm}{\bf krpc\+\_\+object\+\_\+t}$\ast$ krpc\+\_\+vector\+\_\+get (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{v, }
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_a0291a0548378269354fc614712f4c31e}
+按索引取得数组元素 
+\begin{DoxyParams}{参数}
+{\em v} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+{\em index} & 下标索引 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+数组元素 
+\end{DoxyReturn}
+
+
+在文件 rpc\+\_\+object.\+c 第 545 行定义.
+
+\hypertarget{rpc__object_8c_ac86bb807e52193aaa69ce6fe36cd59c8}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+vector\+\_\+get\+\_\+size@{krpc\+\_\+vector\+\_\+get\+\_\+size}}
+\index{krpc\+\_\+vector\+\_\+get\+\_\+size@{krpc\+\_\+vector\+\_\+get\+\_\+size}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+vector\+\_\+get\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t krpc\+\_\+vector\+\_\+get\+\_\+size (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{v}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_ac86bb807e52193aaa69ce6fe36cd59c8}
+取得数组元素个数 
+\begin{DoxyParams}{参数}
+{\em v} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+数组元素个数 
+\end{DoxyReturn}
+
+
+在文件 rpc\+\_\+object.\+c 第 537 行定义.
+
+\hypertarget{rpc__object_8c_ac870fa910b5e155c9f566ead4fac2b54}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+vector\+\_\+push\+\_\+back@{krpc\+\_\+vector\+\_\+push\+\_\+back}}
+\index{krpc\+\_\+vector\+\_\+push\+\_\+back@{krpc\+\_\+vector\+\_\+push\+\_\+back}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+vector\+\_\+push\+\_\+back}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+vector\+\_\+push\+\_\+back (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{v, }
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_ac870fa910b5e155c9f566ead4fac2b54}
+添加到数组尾，数组默认长度为8，每次递增8 
+\begin{DoxyParams}{参数}
+{\em v} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+{\em o} & 新增的数组元素 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+
+
+在文件 rpc\+\_\+object.\+c 第 524 行定义.
+
+\hypertarget{rpc__object_8c_af08956a35d983893f382974abcfca177}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+vector\+\_\+set@{krpc\+\_\+vector\+\_\+set}}
+\index{krpc\+\_\+vector\+\_\+set@{krpc\+\_\+vector\+\_\+set}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
+\subsubsection[{krpc\+\_\+vector\+\_\+set}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+vector\+\_\+set (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{v, }
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
+\item[{int}]{index}
+\end{DoxyParamCaption}
+)}\label{rpc__object_8c_af08956a35d983893f382974abcfca177}
+按索引设置数组元素，若已存在元素则销毁旧元素 
+\begin{DoxyParams}{参数}
+{\em v} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+{\em o} & 新元素 \\
+\hline
+{\em index} & 下标索引 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+
+
+在文件 rpc\+\_\+object.\+c 第 556 行定义.
+

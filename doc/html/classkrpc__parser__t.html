@@ -1,0 +1,709 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.9.1"/>
+<title>knet: krpc_parser_t</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">knet
+   &#160;<span id="projectnumber">1.4.1</span>
+   </div>
+   <div id="projectbrief">cross platform, light-weight, multithreading net library</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.9.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="pages.html"><span>相关页面</span></a></li>
+      <li><a href="namespaces.html"><span>命名空间</span></a></li>
+      <li class="current"><a href="annotated.html"><span>结构体</span></a></li>
+      <li><a href="files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>结构体</span></a></li>
+      <li><a href="classes.html"><span>结构体索引</span></a></li>
+      <li><a href="functions.html"><span>成员变量</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#pub-types">Public 类型</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pri-methods">Private 成员函数</a> &#124;
+<a href="#pri-attribs">Private 属性</a>  </div>
+  <div class="headertitle">
+<div class="title">krpc_parser_t</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &quot;<a class="el" href="krpc__parser_8h_source.html">krpc_parser.h</a>&quot;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public 类型</h2></td></tr>
+<tr class="memitem:a2e43854d69b1505000c452feb196e4a6"><td class="memItemLeft" align="right" valign="top">typedef std::map&lt; std::string, <a class="el" href="classkrpc__attribute__t.html">krpc_attribute_t</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkrpc__parser__t.html#a2e43854d69b1505000c452feb196e4a6">object_map_t</a></td></tr>
+<tr class="separator:a2e43854d69b1505000c452feb196e4a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17e6cf9e3f91f90b0e06055f1d2be839"><td class="memItemLeft" align="right" valign="top">typedef std::map&lt; std::string, <a class="el" href="classkrpc__rpc__call__t.html">krpc_rpc_call_t</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkrpc__parser__t.html#a17e6cf9e3f91f90b0e06055f1d2be839">rpc_call_map_t</a></td></tr>
+<tr class="separator:a17e6cf9e3f91f90b0e06055f1d2be839"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a7428409ffe64512e9cbf8d534eec7ee9"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkrpc__parser__t.html#a7428409ffe64512e9cbf8d534eec7ee9">krpc_parser_t</a> (<a class="el" href="classkrpc__parser__t.html">krpc_parser_t</a> *parent, const char *dir, const char *file_name)</td></tr>
+<tr class="separator:a7428409ffe64512e9cbf8d534eec7ee9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f7e664698171fb1e71d9768de1bdc34"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkrpc__parser__t.html#a9f7e664698171fb1e71d9768de1bdc34">~krpc_parser_t</a> ()</td></tr>
+<tr class="separator:a9f7e664698171fb1e71d9768de1bdc34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd79a609b32dee7d524a4a3287291a27"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkrpc__parser__t.html#a2e43854d69b1505000c452feb196e4a6">object_map_t</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkrpc__parser__t.html#acd79a609b32dee7d524a4a3287291a27">get_attributes</a> ()</td></tr>
+<tr class="separator:acd79a609b32dee7d524a4a3287291a27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afad76c489daebed275cfbadc39da897d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkrpc__parser__t.html#a17e6cf9e3f91f90b0e06055f1d2be839">rpc_call_map_t</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkrpc__parser__t.html#afad76c489daebed275cfbadc39da897d">get_rpc_calls</a> ()</td></tr>
+<tr class="separator:afad76c489daebed275cfbadc39da897d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7c704b34912678d95c13243cacf9d7f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkrpc__parser__t.html#ad7c704b34912678d95c13243cacf9d7f">parse</a> ()  throw (std::exception)</td></tr>
+<tr class="separator:ad7c704b34912678d95c13243cacf9d7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private 成员函数</h2></td></tr>
+<tr class="memitem:ad8cf136fc4a6adc94564e0bafcaecd83"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkrpc__token__t.html">krpc_token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkrpc__parser__t.html#ad8cf136fc4a6adc94564e0bafcaecd83">next_token</a> ()</td></tr>
+<tr class="separator:ad8cf136fc4a6adc94564e0bafcaecd83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a898d6df49be083591ea497d616b9902a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkrpc__attribute__t.html">krpc_attribute_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkrpc__parser__t.html#a898d6df49be083591ea497d616b9902a">parse_attribute</a> (<a class="el" href="classkrpc__token__t.html">krpc_token_t</a> *token)</td></tr>
+<tr class="separator:a898d6df49be083591ea497d616b9902a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cd1f1c739e0218d49ec8a54a91c17f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkrpc__field__t.html">krpc_field_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkrpc__parser__t.html#a6cd1f1c739e0218d49ec8a54a91c17f0">parse_field</a> (<a class="el" href="classkrpc__token__t.html">krpc_token_t</a> *token)</td></tr>
+<tr class="separator:a6cd1f1c739e0218d49ec8a54a91c17f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1087f9ec985970967482a2872497ad07"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkrpc__parser__t.html#a1087f9ec985970967482a2872497ad07">parse_import</a> (<a class="el" href="classkrpc__token__t.html">krpc_token_t</a> *token)</td></tr>
+<tr class="separator:a1087f9ec985970967482a2872497ad07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48e708c2f3583d6f0ce649f5be1fb442"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkrpc__token__t.html">krpc_token_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkrpc__parser__t.html#a48e708c2f3583d6f0ce649f5be1fb442">parse_inline_comment</a> (<a class="el" href="classkrpc__token__t.html">krpc_token_t</a> *token, std::string &amp;comment)</td></tr>
+<tr class="separator:a48e708c2f3583d6f0ce649f5be1fb442"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a80b63175c46e43a74c2f72452ba743"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkrpc__rpc__call__t.html">krpc_rpc_call_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkrpc__parser__t.html#a9a80b63175c46e43a74c2f72452ba743">parse_rpc_call</a> (<a class="el" href="classkrpc__token__t.html">krpc_token_t</a> *token)</td></tr>
+<tr class="separator:a9a80b63175c46e43a74c2f72452ba743"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f0d89da9389b7dd4edd3749959a637d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkrpc__parser__t.html#a2f0d89da9389b7dd4edd3749959a637d">parse_trunk</a> (<a class="el" href="classkrpc__token__t.html">krpc_token_t</a> *token)</td></tr>
+<tr class="separator:a2f0d89da9389b7dd4edd3749959a637d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private 属性</h2></td></tr>
+<tr class="memitem:a9a1689a590c34f978bc63be9b7dc3d1d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkrpc__parser__t.html">krpc_parser_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkrpc__parser__t.html#a9a1689a590c34f978bc63be9b7dc3d1d">_current_parser</a></td></tr>
+<tr class="separator:a9a1689a590c34f978bc63be9b7dc3d1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c2f62a9907553e5feb1ecef65c6c386"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkrpc__parser__t.html#a2c2f62a9907553e5feb1ecef65c6c386">_dir</a></td></tr>
+<tr class="separator:a2c2f62a9907553e5feb1ecef65c6c386"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabe9a05e7efc4b887c62ffd6cfd61fa8"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkrpc__parser__t.html#aabe9a05e7efc4b887c62ffd6cfd61fa8">_file_name</a></td></tr>
+<tr class="separator:aabe9a05e7efc4b887c62ffd6cfd61fa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b21e509d9c4629900830ab5a2a69064"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkrpc__lexer__t.html">krpc_lexer_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkrpc__parser__t.html#a7b21e509d9c4629900830ab5a2a69064">_lexer</a></td></tr>
+<tr class="separator:a7b21e509d9c4629900830ab5a2a69064"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e6d4b7ed08d14795824c111ce052943"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkrpc__parser__t.html#a2e43854d69b1505000c452feb196e4a6">object_map_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkrpc__parser__t.html#a1e6d4b7ed08d14795824c111ce052943">_objects</a></td></tr>
+<tr class="separator:a1e6d4b7ed08d14795824c111ce052943"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76215a2f96b4cacaf59f61bcd2217849"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkrpc__parser__t.html">krpc_parser_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkrpc__parser__t.html#a76215a2f96b4cacaf59f61bcd2217849">_parent</a></td></tr>
+<tr class="separator:a76215a2f96b4cacaf59f61bcd2217849"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a384832cb4d7e8e7dd7fbc4e51e5ccf12"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classkrpc__parser__t.html#a17e6cf9e3f91f90b0e06055f1d2be839">rpc_call_map_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classkrpc__parser__t.html#a384832cb4d7e8e7dd7fbc4e51e5ccf12">_rpc_calls</a></td></tr>
+<tr class="separator:a384832cb4d7e8e7dd7fbc4e51e5ccf12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>语法解析器 </p>
+
+<p>在文件 <a class="el" href="krpc__parser_8h_source.html">krpc_parser.h</a> 第 <a class="el" href="krpc__parser_8h_source.html#l00248">248</a> 行定义.</p>
+</div><h2 class="groupheader">成员类型定义说明</h2>
+<a class="anchor" id="a2e43854d69b1505000c452feb196e4a6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::map&lt;std::string, <a class="el" href="classkrpc__attribute__t.html">krpc_attribute_t</a>*&gt; <a class="el" href="classkrpc__parser__t.html#a2e43854d69b1505000c452feb196e4a6">object_map_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>在文件 <a class="el" href="krpc__parser_8h_source.html">krpc_parser.h</a> 第 <a class="el" href="krpc__parser_8h_source.html#l00250">250</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a17e6cf9e3f91f90b0e06055f1d2be839"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::map&lt;std::string, <a class="el" href="classkrpc__rpc__call__t.html">krpc_rpc_call_t</a>*&gt; <a class="el" href="classkrpc__parser__t.html#a17e6cf9e3f91f90b0e06055f1d2be839">rpc_call_map_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>在文件 <a class="el" href="krpc__parser_8h_source.html">krpc_parser.h</a> 第 <a class="el" href="krpc__parser_8h_source.html#l00251">251</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">构造及析构函数说明</h2>
+<a class="anchor" id="a7428409ffe64512e9cbf8d534eec7ee9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkrpc__parser__t.html">krpc_parser_t</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkrpc__parser__t.html">krpc_parser_t</a> *&#160;</td>
+          <td class="paramname"><em>parent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>dir</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>file_name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>构造 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">parent</td><td>父解析器 </td></tr>
+    <tr><td class="paramname">dir</td><td>文件所在目录 </td></tr>
+    <tr><td class="paramname">file_name</td><td>文件名 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件 <a class="el" href="krpc__parser_8cpp_source.html">krpc_parser.cpp</a> 第 <a class="el" href="krpc__parser_8cpp_source.html#l00170">170</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9f7e664698171fb1e71d9768de1bdc34"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">~<a class="el" href="classkrpc__parser__t.html">krpc_parser_t</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>析构 </p>
+
+<p>在文件 <a class="el" href="krpc__parser_8cpp_source.html">krpc_parser.cpp</a> 第 <a class="el" href="krpc__parser_8cpp_source.html#l00179">179</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a class="anchor" id="acd79a609b32dee7d524a4a3287291a27"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkrpc__parser__t.html#a2e43854d69b1505000c452feb196e4a6">krpc_parser_t::object_map_t</a> &amp; get_attributes </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>获取属性列表 </p><dl class="section return"><dt>返回</dt><dd>属性列表 </dd></dl>
+
+<p>在文件 <a class="el" href="krpc__parser_8cpp_source.html">krpc_parser.cpp</a> 第 <a class="el" href="krpc__parser_8cpp_source.html#l00391">391</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="afad76c489daebed275cfbadc39da897d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkrpc__parser__t.html#a17e6cf9e3f91f90b0e06055f1d2be839">krpc_parser_t::rpc_call_map_t</a> &amp; get_rpc_calls </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>获取RPC函数列表 </p><dl class="section return"><dt>返回</dt><dd>RPC函数列表 </dd></dl>
+
+<p>在文件 <a class="el" href="krpc__parser_8cpp_source.html">krpc_parser.cpp</a> 第 <a class="el" href="krpc__parser_8cpp_source.html#l00399">399</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad8cf136fc4a6adc94564e0bafcaecd83"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkrpc__token__t.html">krpc_token_t</a> * next_token </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>取得下一个token </p><dl class="section return"><dt>返回</dt><dd>krpc_token_t实例 </dd></dl>
+
+<p>在文件 <a class="el" href="krpc__parser_8cpp_source.html">krpc_parser.cpp</a> 第 <a class="el" href="krpc__parser_8cpp_source.html#l00193">193</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad7c704b34912678d95c13243cacf9d7f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void parse </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td align="right">throw </td><td>(</td><td colspan="2">std::exception</td>
+        </tr>
+        <tr>
+          <td align="right"></td><td>)</td><td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>解析 </p>
+
+<p>在文件 <a class="el" href="krpc__parser_8cpp_source.html">krpc_parser.cpp</a> 第 <a class="el" href="krpc__parser_8cpp_source.html#l00363">363</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a898d6df49be083591ea497d616b9902a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkrpc__attribute__t.html">krpc_attribute_t</a> * parse_attribute </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkrpc__token__t.html">krpc_token_t</a> *&#160;</td>
+          <td class="paramname"><em>token</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>解析属性 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">token</td><td>当前token </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>krpc_attribute_t实例 </dd></dl>
+
+<p>在文件 <a class="el" href="krpc__parser_8cpp_source.html">krpc_parser.cpp</a> 第 <a class="el" href="krpc__parser_8cpp_source.html#l00224">224</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6cd1f1c739e0218d49ec8a54a91c17f0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkrpc__field__t.html">krpc_field_t</a> * parse_field </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkrpc__token__t.html">krpc_token_t</a> *&#160;</td>
+          <td class="paramname"><em>token</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>解析字段 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">token</td><td>当前token </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>krpc_field_t实例 </dd></dl>
+
+<p>在文件 <a class="el" href="krpc__parser_8cpp_source.html">krpc_parser.cpp</a> 第 <a class="el" href="krpc__parser_8cpp_source.html#l00197">197</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1087f9ec985970967482a2872497ad07"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void parse_import </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkrpc__token__t.html">krpc_token_t</a> *&#160;</td>
+          <td class="paramname"><em>token</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>解析导入文件 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">token</td><td>当前token </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件 <a class="el" href="krpc__parser_8cpp_source.html">krpc_parser.cpp</a> 第 <a class="el" href="krpc__parser_8cpp_source.html#l00304">304</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a48e708c2f3583d6f0ce649f5be1fb442"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkrpc__token__t.html">krpc_token_t</a> * parse_inline_comment </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkrpc__token__t.html">krpc_token_t</a> *&#160;</td>
+          <td class="paramname"><em>token</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string &amp;&#160;</td>
+          <td class="paramname"><em>comment</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>取得嵌入注释 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">token</td><td>当前token </td></tr>
+    <tr><td class="paramname">comment</td><td>注释 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>当前节点 </dd></dl>
+
+<p>在文件 <a class="el" href="krpc__parser_8cpp_source.html">krpc_parser.cpp</a> 第 <a class="el" href="krpc__parser_8cpp_source.html#l00317">317</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9a80b63175c46e43a74c2f72452ba743"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkrpc__rpc__call__t.html">krpc_rpc_call_t</a> * parse_rpc_call </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkrpc__token__t.html">krpc_token_t</a> *&#160;</td>
+          <td class="paramname"><em>token</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>解析RPC调用 </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">token</td><td>当前token </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>krpc_rpc_call_t实例 </dd></dl>
+
+<p>在文件 <a class="el" href="krpc__parser_8cpp_source.html">krpc_parser.cpp</a> 第 <a class="el" href="krpc__parser_8cpp_source.html#l00259">259</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2f0d89da9389b7dd4edd3749959a637d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void parse_trunk </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classkrpc__token__t.html">krpc_token_t</a> *&#160;</td>
+          <td class="paramname"><em>token</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>解析chunk </p><dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">token</td><td>当前token </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>在文件 <a class="el" href="krpc__parser_8cpp_source.html">krpc_parser.cpp</a> 第 <a class="el" href="krpc__parser_8cpp_source.html#l00331">331</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">结构体成员变量说明</h2>
+<a class="anchor" id="a9a1689a590c34f978bc63be9b7dc3d1d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkrpc__parser__t.html">krpc_parser_t</a>* _current_parser</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>在文件 <a class="el" href="krpc__parser_8h_source.html">krpc_parser.h</a> 第 <a class="el" href="krpc__parser_8h_source.html#l00340">340</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2c2f62a9907553e5feb1ecef65c6c386"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string _dir</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>在文件 <a class="el" href="krpc__parser_8h_source.html">krpc_parser.h</a> 第 <a class="el" href="krpc__parser_8h_source.html#l00337">337</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="aabe9a05e7efc4b887c62ffd6cfd61fa8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string _file_name</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>在文件 <a class="el" href="krpc__parser_8h_source.html">krpc_parser.h</a> 第 <a class="el" href="krpc__parser_8h_source.html#l00336">336</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7b21e509d9c4629900830ab5a2a69064"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkrpc__lexer__t.html">krpc_lexer_t</a>* _lexer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>在文件 <a class="el" href="krpc__parser_8h_source.html">krpc_parser.h</a> 第 <a class="el" href="krpc__parser_8h_source.html#l00338">338</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1e6d4b7ed08d14795824c111ce052943"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkrpc__parser__t.html#a2e43854d69b1505000c452feb196e4a6">object_map_t</a> _objects</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>在文件 <a class="el" href="krpc__parser_8h_source.html">krpc_parser.h</a> 第 <a class="el" href="krpc__parser_8h_source.html#l00334">334</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a76215a2f96b4cacaf59f61bcd2217849"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkrpc__parser__t.html">krpc_parser_t</a>* _parent</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>在文件 <a class="el" href="krpc__parser_8h_source.html">krpc_parser.h</a> 第 <a class="el" href="krpc__parser_8h_source.html#l00339">339</a> 行定义.</p>
+
+</div>
+</div>
+<a class="anchor" id="a384832cb4d7e8e7dd7fbc4e51e5ccf12"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classkrpc__parser__t.html#a17e6cf9e3f91f90b0e06055f1d2be839">rpc_call_map_t</a> _rpc_calls</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>在文件 <a class="el" href="krpc__parser_8h_source.html">krpc_parser.h</a> 第 <a class="el" href="krpc__parser_8h_source.html#l00335">335</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>E:/knet-git/knet/krpc/<a class="el" href="krpc__parser_8h_source.html">krpc_parser.h</a></li>
+<li>E:/knet-git/knet/krpc/<a class="el" href="krpc__parser_8cpp_source.html">krpc_parser.cpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+生成于 2015年 六月 29日 星期一 16:51:00 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.9.1
+</small></address>
+</body>
+</html>

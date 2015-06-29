@@ -1,0 +1,341 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.9.1"/>
+<title>knet: E:/knet-git/knet/knet/ringbuffer.c 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">knet
+   &#160;<span id="projectnumber">1.4.1</span>
+   </div>
+   <div id="projectbrief">cross platform, light-weight, multithreading net library</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.9.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="pages.html"><span>相关页面</span></a></li>
+      <li><a href="namespaces.html"><span>命名空间</span></a></li>
+      <li><a href="annotated.html"><span>结构体</span></a></li>
+      <li class="current"><a href="files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>文件列表</span></a></li>
+      <li><a href="globals.html"><span>全局定义</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_885cc87fac2d91e269af0a5a959fa5f6.html">E:</a></li><li class="navelem"><a class="el" href="dir_4e74998c9a9305a116abc25fcf9a1edb.html">knet-git</a></li><li class="navelem"><a class="el" href="dir_a1c045b39f32066568ae964b52db514f.html">knet</a></li><li class="navelem"><a class="el" href="dir_f76d03789f0b12416cfffea59e2ed47d.html">knet</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">ringbuffer.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="ringbuffer_8c.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2014-2015, dennis wang</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * All rights reserved.</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * </span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Redistribution and use in source and binary forms, with or without</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * modification, are permitted provided that the following conditions are met:</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> *     * Redistributions of source code must retain the above copyright</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *       notice, this list of conditions and the following disclaimer.</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> *     * Redistributions in binary form must reproduce the above copyright</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> *       notice, this list of conditions and the following disclaimer in the</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> *       documentation and/or other materials provided with the distribution.</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> * </span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> * DISCLAIMED. IN NO EVENT SHALL dennis wang BE LIABLE FOR ANY</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment"> * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"> * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ringbuffer_8h.html">ringbuffer.h</a>&quot;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="logger_8h.html">logger.h</a>&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="struct__ringbuffer__t.html">   29</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct__ringbuffer__t.html">_ringbuffer_t</a> {</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="struct__ringbuffer__t.html#a935adc2e417a61d7eb6f04efb18ba031">   30</a></span>&#160;    <span class="keywordtype">char</span>*    <a class="code" href="struct__ringbuffer__t.html#a935adc2e417a61d7eb6f04efb18ba031">ptr</a>;       <span class="comment">/* 缓冲区指针 */</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="struct__ringbuffer__t.html#a7a7c296c9063d85aeecac846c73c2775">   31</a></span>&#160;    uint32_t <a class="code" href="struct__ringbuffer__t.html#a7a7c296c9063d85aeecac846c73c2775">read_pos</a>;  <span class="comment">/* 读索引 */</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="struct__ringbuffer__t.html#ab1cb0fa55deec8b7cfec28fac1f81700">   32</a></span>&#160;    uint32_t <a class="code" href="struct__ringbuffer__t.html#ab1cb0fa55deec8b7cfec28fac1f81700">write_pos</a>; <span class="comment">/* 写索引 */</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="struct__ringbuffer__t.html#a5d749e86bf9e5299c1a5af7bcce2397c">   33</a></span>&#160;    uint32_t <a class="code" href="struct__ringbuffer__t.html#a5d749e86bf9e5299c1a5af7bcce2397c">max_size</a>;  <span class="comment">/* 最大长度 */</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="struct__ringbuffer__t.html#a84b7e6afd7b5057f5069b5757814d48c">   34</a></span>&#160;    uint32_t <a class="code" href="struct__ringbuffer__t.html#a84b7e6afd7b5057f5069b5757814d48c">lock_size</a>; <span class="comment">/* 锁定长度 */</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="struct__ringbuffer__t.html#ac857cf0a05d19ede280166517461fde3">   35</a></span>&#160;    uint32_t <a class="code" href="struct__ringbuffer__t.html#ac857cf0a05d19ede280166517461fde3">lock_type</a>; <span class="comment">/* 锁定类型， 1： 读锁定  2： 写锁定 */</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="struct__ringbuffer__t.html#a86988a65e0d3ece7990c032c159786d6">   36</a></span>&#160;    uint32_t <a class="code" href="struct__ringbuffer__t.html#a86988a65e0d3ece7990c032c159786d6">count</a>;     <span class="comment">/* 可读数据长度 */</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;};</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="ringbuffer_8h.html#a535c5ed96efcd2415e6cad1cfcf44228">   39</a></span>&#160;<a class="code" href="struct__ringbuffer__t.html">ringbuffer_t</a>* <a class="code" href="ringbuffer_8c.html#a535c5ed96efcd2415e6cad1cfcf44228">ringbuffer_create</a>(uint32_t size) {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="struct__ringbuffer__t.html">ringbuffer_t</a>* rb = <a class="code" href="config_8h.html#ab079e894d07566f511f1a5046a1eefe5">create</a>(<a class="code" href="struct__ringbuffer__t.html">ringbuffer_t</a>);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    assert(rb);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    rb-&gt;<a class="code" href="struct__ringbuffer__t.html#ac857cf0a05d19ede280166517461fde3">lock_type</a> = 0;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a5d749e86bf9e5299c1a5af7bcce2397c">max_size</a>  = size;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a935adc2e417a61d7eb6f04efb18ba031">ptr</a>       = <a class="code" href="config_8h.html#ac51313f7018a7879123a0c5e43707f58">create_raw</a>(size);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    assert(rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a935adc2e417a61d7eb6f04efb18ba031">ptr</a>);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a84b7e6afd7b5057f5069b5757814d48c">lock_size</a> = 0;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a7a7c296c9063d85aeecac846c73c2775">read_pos</a>  = 0;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    rb-&gt;<a class="code" href="struct__ringbuffer__t.html#ab1cb0fa55deec8b7cfec28fac1f81700">write_pos</a> = 0;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a86988a65e0d3ece7990c032c159786d6">count</a>     = 0;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordflow">return</span> rb;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="ringbuffer_8h.html#a9af8341a5cc83cc1d6acbb868c498a03">   53</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="ringbuffer_8c.html#a9af8341a5cc83cc1d6acbb868c498a03">ringbuffer_eat_all</a>(<a class="code" href="struct__ringbuffer__t.html">ringbuffer_t</a>* rb) {</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    assert(rb);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordflow">if</span> (rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a84b7e6afd7b5057f5069b5757814d48c">lock_size</a> || rb-&gt;<a class="code" href="struct__ringbuffer__t.html#ac857cf0a05d19ede280166517461fde3">lock_type</a>) {</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="config_8h.html#ad8bc998d415be9115a064a8307df0ed5af5cd4563f043d358cb7b09d628d0f0f6">error_recvbuffer_locked</a>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a84b7e6afd7b5057f5069b5757814d48c">lock_size</a> = 0;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a7a7c296c9063d85aeecac846c73c2775">read_pos</a>  = 0;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    rb-&gt;<a class="code" href="struct__ringbuffer__t.html#ab1cb0fa55deec8b7cfec28fac1f81700">write_pos</a> = 0;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a86988a65e0d3ece7990c032c159786d6">count</a>     = 0;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="config_8h.html#ad8bc998d415be9115a064a8307df0ed5a722f316dc97e835ba613f7a505992dfd">error_ok</a>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="ringbuffer_8h.html#aaab3eabc3d26998d7ec5458e89781b1d">   65</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="ringbuffer_8c.html#aaab3eabc3d26998d7ec5458e89781b1d">ringbuffer_eat</a>(<a class="code" href="struct__ringbuffer__t.html">ringbuffer_t</a>* rb, uint32_t size) {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    assert(rb);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordflow">if</span> (rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a84b7e6afd7b5057f5069b5757814d48c">lock_size</a> || rb-&gt;<a class="code" href="struct__ringbuffer__t.html#ac857cf0a05d19ede280166517461fde3">lock_type</a>) {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="config_8h.html#ad8bc998d415be9115a064a8307df0ed5af5cd4563f043d358cb7b09d628d0f0f6">error_recvbuffer_locked</a>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    }</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordflow">if</span> (size &gt; rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a86988a65e0d3ece7990c032c159786d6">count</a>) {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="config_8h.html#ad8bc998d415be9115a064a8307df0ed5a70d80c910205fc4fc0a60f490ae86b7b">error_recvbuffer_not_enough</a>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    }</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a86988a65e0d3ece7990c032c159786d6">count</a> -= size;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a7a7c296c9063d85aeecac846c73c2775">read_pos</a> = (rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a7a7c296c9063d85aeecac846c73c2775">read_pos</a> + size) % rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a5d749e86bf9e5299c1a5af7bcce2397c">max_size</a>;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="config_8h.html#ad8bc998d415be9115a064a8307df0ed5a722f316dc97e835ba613f7a505992dfd">error_ok</a>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;}</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="ringbuffer_8h.html#a93296c953b97b465aa6d878d7ddaff87">   78</a></span>&#160;uint32_t <a class="code" href="ringbuffer_8c.html#a93296c953b97b465aa6d878d7ddaff87">ringbuffer_read</a>(<a class="code" href="struct__ringbuffer__t.html">ringbuffer_t</a>* rb, <span class="keywordtype">char</span>* buffer, uint32_t size) {</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    uint32_t i = 0;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    assert(rb);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    assert(buffer);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    assert(size);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    size = <a class="code" href="config_8h.html#ac6afabdc09a49a433ee19d8a9486056d">min</a>(rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a86988a65e0d3ece7990c032c159786d6">count</a>, size);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordflow">for</span> (; i &lt; size; i++) {</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        buffer[i] = rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a935adc2e417a61d7eb6f04efb18ba031">ptr</a>[rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a7a7c296c9063d85aeecac846c73c2775">read_pos</a>];</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a7a7c296c9063d85aeecac846c73c2775">read_pos</a> = (rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a7a7c296c9063d85aeecac846c73c2775">read_pos</a> + 1) % rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a5d749e86bf9e5299c1a5af7bcce2397c">max_size</a>;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    }</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a86988a65e0d3ece7990c032c159786d6">count</a> -= size;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    <span class="keywordflow">return</span> size;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;}</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="ringbuffer_8h.html#a0b57361c8632557fc144c7f7b853a33e">   92</a></span>&#160;uint32_t <a class="code" href="ringbuffer_8c.html#a0b57361c8632557fc144c7f7b853a33e">ringbuffer_copy</a>(<a class="code" href="struct__ringbuffer__t.html">ringbuffer_t</a>* rb, <span class="keywordtype">char</span>* buffer, uint32_t size) {</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    uint32_t i        = 0;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    uint32_t read_pos = 0;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    assert(rb);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    assert(buffer);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    assert(size);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    read_pos = rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a7a7c296c9063d85aeecac846c73c2775">read_pos</a>;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    size = <a class="code" href="config_8h.html#ac6afabdc09a49a433ee19d8a9486056d">min</a>(rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a86988a65e0d3ece7990c032c159786d6">count</a>, size);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordflow">for</span> (; i &lt; size; i++) {</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        buffer[i] = rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a935adc2e417a61d7eb6f04efb18ba031">ptr</a>[read_pos];</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        read_pos = (read_pos + 1) % rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a5d749e86bf9e5299c1a5af7bcce2397c">max_size</a>;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    }</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordflow">return</span> size;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;}</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="ringbuffer_8h.html#a4fca0cda42cddc178da4ab3abd92ae3a">  107</a></span>&#160;uint32_t <a class="code" href="ringbuffer_8c.html#a4fca0cda42cddc178da4ab3abd92ae3a">ringbuffer_available</a>(<a class="code" href="struct__ringbuffer__t.html">ringbuffer_t</a>* rb) {</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    assert(rb);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordflow">return</span> rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a86988a65e0d3ece7990c032c159786d6">count</a>;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;}</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="ringbuffer_8h.html#a968f7b808cc3085482292c1f31d92740">  112</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="ringbuffer_8c.html#a968f7b808cc3085482292c1f31d92740">ringbuffer_destroy</a>(<a class="code" href="struct__ringbuffer__t.html">ringbuffer_t</a>* rb) {</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    assert(rb);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <a class="code" href="config_8h.html#a7bb0b359ffebe8a540dded73bd47417a">destroy</a>(rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a935adc2e417a61d7eb6f04efb18ba031">ptr</a>);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <a class="code" href="config_8h.html#a7bb0b359ffebe8a540dded73bd47417a">destroy</a>(rb);</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;}</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="ringbuffer_8h.html#a17f80ee6eedc285a3086107f10d0605b">  118</a></span>&#160;uint32_t <a class="code" href="ringbuffer_8c.html#a17f80ee6eedc285a3086107f10d0605b">ringbuffer_read_lock_size</a>(<a class="code" href="struct__ringbuffer__t.html">ringbuffer_t</a>* rb) {</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    assert(rb);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="ringbuffer_8c.html#aa11ec2026dde62682aa1583f2505afb9">ringbuffer_empty</a>(rb)) {</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    }</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    rb-&gt;<a class="code" href="struct__ringbuffer__t.html#ac857cf0a05d19ede280166517461fde3">lock_type</a> = 1;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a84b7e6afd7b5057f5069b5757814d48c">lock_size</a> = 0;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <span class="keywordflow">if</span> (rb-&gt;<a class="code" href="struct__ringbuffer__t.html#ab1cb0fa55deec8b7cfec28fac1f81700">write_pos</a> &gt; rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a7a7c296c9063d85aeecac846c73c2775">read_pos</a>) {</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a84b7e6afd7b5057f5069b5757814d48c">lock_size</a> = rb-&gt;<a class="code" href="struct__ringbuffer__t.html#ab1cb0fa55deec8b7cfec28fac1f81700">write_pos</a> - rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a7a7c296c9063d85aeecac846c73c2775">read_pos</a>;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;        rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a84b7e6afd7b5057f5069b5757814d48c">lock_size</a> = rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a5d749e86bf9e5299c1a5af7bcce2397c">max_size</a> - rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a7a7c296c9063d85aeecac846c73c2775">read_pos</a>;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    }</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keywordflow">return</span> rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a84b7e6afd7b5057f5069b5757814d48c">lock_size</a>;</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;}</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
+<div class="line"><a name="l00133"></a><span class="lineno"><a class="line" href="ringbuffer_8h.html#a7611ebce8ddc6637724794195ad6c035">  133</a></span>&#160;<span class="keywordtype">char</span>* <a class="code" href="ringbuffer_8c.html#a7611ebce8ddc6637724794195ad6c035">ringbuffer_read_lock_ptr</a>(<a class="code" href="struct__ringbuffer__t.html">ringbuffer_t</a>* rb) {</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    assert(rb);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="keywordflow">if</span> (rb-&gt;<a class="code" href="struct__ringbuffer__t.html#ac857cf0a05d19ede280166517461fde3">lock_type</a> != 1) {</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    }</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <span class="keywordflow">return</span> rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a935adc2e417a61d7eb6f04efb18ba031">ptr</a> + rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a7a7c296c9063d85aeecac846c73c2775">read_pos</a>;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;}</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
+<div class="line"><a name="l00141"></a><span class="lineno"><a class="line" href="ringbuffer_8h.html#aea7ff5a3bd3ede77f076abaefad3fcb1">  141</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="ringbuffer_8c.html#aea7ff5a3bd3ede77f076abaefad3fcb1">ringbuffer_read_commit</a>(<a class="code" href="struct__ringbuffer__t.html">ringbuffer_t</a>* rb, uint32_t size) {</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    assert(rb);</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    <span class="keywordflow">if</span> (rb-&gt;<a class="code" href="struct__ringbuffer__t.html#ac857cf0a05d19ede280166517461fde3">lock_type</a> != 1) {</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    }</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <span class="keywordflow">if</span> (rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a84b7e6afd7b5057f5069b5757814d48c">lock_size</a> &lt; size) {</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    }</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a7a7c296c9063d85aeecac846c73c2775">read_pos</a> = (rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a7a7c296c9063d85aeecac846c73c2775">read_pos</a> + size) % rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a5d749e86bf9e5299c1a5af7bcce2397c">max_size</a>;</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a84b7e6afd7b5057f5069b5757814d48c">lock_size</a> = 0;</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;    rb-&gt;<a class="code" href="struct__ringbuffer__t.html#ac857cf0a05d19ede280166517461fde3">lock_type</a> = 0;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a86988a65e0d3ece7990c032c159786d6">count</a> -= size;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;}</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;</div>
+<div class="line"><a name="l00155"></a><span class="lineno"><a class="line" href="ringbuffer_8h.html#ada2b3f0cea4e372229709a5cb1f54725">  155</a></span>&#160;uint32_t <a class="code" href="ringbuffer_8c.html#ada2b3f0cea4e372229709a5cb1f54725">ringbuffer_write_lock_size</a>(<a class="code" href="struct__ringbuffer__t.html">ringbuffer_t</a>* rb) {</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    assert(rb);</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="ringbuffer_8c.html#ae0a8267d340411191b1c666914e17628">ringbuffer_full</a>(rb)) {</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    }</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    rb-&gt;<a class="code" href="struct__ringbuffer__t.html#ac857cf0a05d19ede280166517461fde3">lock_type</a> = 2;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a84b7e6afd7b5057f5069b5757814d48c">lock_size</a> = 0;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <span class="keywordflow">if</span> (rb-&gt;<a class="code" href="struct__ringbuffer__t.html#ab1cb0fa55deec8b7cfec28fac1f81700">write_pos</a> &gt;= rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a7a7c296c9063d85aeecac846c73c2775">read_pos</a>) {</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a84b7e6afd7b5057f5069b5757814d48c">lock_size</a> = rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a5d749e86bf9e5299c1a5af7bcce2397c">max_size</a> - rb-&gt;<a class="code" href="struct__ringbuffer__t.html#ab1cb0fa55deec8b7cfec28fac1f81700">write_pos</a>;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;        rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a84b7e6afd7b5057f5069b5757814d48c">lock_size</a> = rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a7a7c296c9063d85aeecac846c73c2775">read_pos</a> - rb-&gt;<a class="code" href="struct__ringbuffer__t.html#ab1cb0fa55deec8b7cfec28fac1f81700">write_pos</a>;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    }</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <span class="keywordflow">return</span> rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a84b7e6afd7b5057f5069b5757814d48c">lock_size</a>;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;}</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;</div>
+<div class="line"><a name="l00170"></a><span class="lineno"><a class="line" href="ringbuffer_8h.html#a67c7cbb3e39d70fc9ef3e4938fbc6d1d">  170</a></span>&#160;<span class="keywordtype">char</span>* <a class="code" href="ringbuffer_8c.html#a67c7cbb3e39d70fc9ef3e4938fbc6d1d">ringbuffer_write_lock_ptr</a>(<a class="code" href="struct__ringbuffer__t.html">ringbuffer_t</a>* rb) {</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    assert(rb);</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;    <span class="keywordflow">if</span> (rb-&gt;<a class="code" href="struct__ringbuffer__t.html#ac857cf0a05d19ede280166517461fde3">lock_type</a> != 2) {</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    }</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    <span class="keywordflow">return</span> rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a935adc2e417a61d7eb6f04efb18ba031">ptr</a> + rb-&gt;<a class="code" href="struct__ringbuffer__t.html#ab1cb0fa55deec8b7cfec28fac1f81700">write_pos</a>;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;}</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;</div>
+<div class="line"><a name="l00178"></a><span class="lineno"><a class="line" href="ringbuffer_8h.html#a88804c221b00561ac45b12b6e54bb8d1">  178</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="ringbuffer_8c.html#a88804c221b00561ac45b12b6e54bb8d1">ringbuffer_write_commit</a>(<a class="code" href="struct__ringbuffer__t.html">ringbuffer_t</a>* rb, uint32_t size) {</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;    assert(rb);</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    <span class="keywordflow">if</span> (rb-&gt;<a class="code" href="struct__ringbuffer__t.html#ac857cf0a05d19ede280166517461fde3">lock_type</a> != 2) {</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    }</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    <span class="keywordflow">if</span> (rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a84b7e6afd7b5057f5069b5757814d48c">lock_size</a> &lt; size) {</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    }</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    rb-&gt;<a class="code" href="struct__ringbuffer__t.html#ab1cb0fa55deec8b7cfec28fac1f81700">write_pos</a> = (rb-&gt;<a class="code" href="struct__ringbuffer__t.html#ab1cb0fa55deec8b7cfec28fac1f81700">write_pos</a> + size) % rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a5d749e86bf9e5299c1a5af7bcce2397c">max_size</a>;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a84b7e6afd7b5057f5069b5757814d48c">lock_size</a> = 0;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    rb-&gt;<a class="code" href="struct__ringbuffer__t.html#ac857cf0a05d19ede280166517461fde3">lock_type</a> = 0;</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a86988a65e0d3ece7990c032c159786d6">count</a> += size;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;}</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;</div>
+<div class="line"><a name="l00192"></a><span class="lineno"><a class="line" href="ringbuffer_8h.html#ae0a8267d340411191b1c666914e17628">  192</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="ringbuffer_8c.html#ae0a8267d340411191b1c666914e17628">ringbuffer_full</a>(<a class="code" href="struct__ringbuffer__t.html">ringbuffer_t</a>* rb) {</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    assert(rb);</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;    <span class="keywordflow">return</span> (rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a86988a65e0d3ece7990c032c159786d6">count</a> == rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a5d749e86bf9e5299c1a5af7bcce2397c">max_size</a>);</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;}</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;</div>
+<div class="line"><a name="l00197"></a><span class="lineno"><a class="line" href="ringbuffer_8h.html#aa11ec2026dde62682aa1583f2505afb9">  197</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="ringbuffer_8c.html#aa11ec2026dde62682aa1583f2505afb9">ringbuffer_empty</a>(<a class="code" href="struct__ringbuffer__t.html">ringbuffer_t</a>* rb) {</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    assert(rb);</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    <span class="keywordflow">return</span> !(rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a86988a65e0d3ece7990c032c159786d6">count</a>);</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;}</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;</div>
+<div class="line"><a name="l00202"></a><span class="lineno"><a class="line" href="ringbuffer_8h.html#adb01000b575c0696d466c93819c4aeff">  202</a></span>&#160;uint32_t <a class="code" href="ringbuffer_8c.html#adb01000b575c0696d466c93819c4aeff">ringbuffer_get_max_size</a>(<a class="code" href="struct__ringbuffer__t.html">ringbuffer_t</a>* rb) {</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;    assert(rb);</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;    <span class="keywordflow">return</span> rb-&gt;<a class="code" href="struct__ringbuffer__t.html#a5d749e86bf9e5299c1a5af7bcce2397c">max_size</a>;</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;}</div>
+<div class="ttc" id="ringbuffer_8c_html_aaab3eabc3d26998d7ec5458e89781b1d"><div class="ttname"><a href="ringbuffer_8c.html#aaab3eabc3d26998d7ec5458e89781b1d">ringbuffer_eat</a></div><div class="ttdeci">int ringbuffer_eat(ringbuffer_t *rb, uint32_t size)</div><div class="ttdef"><b>Definition:</b> <a href="ringbuffer_8c_source.html#l00065">ringbuffer.c:65</a></div></div>
+<div class="ttc" id="ringbuffer_8h_html"><div class="ttname"><a href="ringbuffer_8h.html">ringbuffer.h</a></div></div>
+<div class="ttc" id="ringbuffer_8c_html_a0b57361c8632557fc144c7f7b853a33e"><div class="ttname"><a href="ringbuffer_8c.html#a0b57361c8632557fc144c7f7b853a33e">ringbuffer_copy</a></div><div class="ttdeci">uint32_t ringbuffer_copy(ringbuffer_t *rb, char *buffer, uint32_t size)</div><div class="ttdef"><b>Definition:</b> <a href="ringbuffer_8c_source.html#l00092">ringbuffer.c:92</a></div></div>
+<div class="ttc" id="struct__ringbuffer__t_html"><div class="ttname"><a href="struct__ringbuffer__t.html">_ringbuffer_t</a></div><div class="ttdef"><b>Definition:</b> <a href="ringbuffer_8c_source.html#l00029">ringbuffer.c:29</a></div></div>
+<div class="ttc" id="ringbuffer_8c_html_a968f7b808cc3085482292c1f31d92740"><div class="ttname"><a href="ringbuffer_8c.html#a968f7b808cc3085482292c1f31d92740">ringbuffer_destroy</a></div><div class="ttdeci">void ringbuffer_destroy(ringbuffer_t *rb)</div><div class="ttdef"><b>Definition:</b> <a href="ringbuffer_8c_source.html#l00112">ringbuffer.c:112</a></div></div>
+<div class="ttc" id="ringbuffer_8c_html_a7611ebce8ddc6637724794195ad6c035"><div class="ttname"><a href="ringbuffer_8c.html#a7611ebce8ddc6637724794195ad6c035">ringbuffer_read_lock_ptr</a></div><div class="ttdeci">char * ringbuffer_read_lock_ptr(ringbuffer_t *rb)</div><div class="ttdef"><b>Definition:</b> <a href="ringbuffer_8c_source.html#l00133">ringbuffer.c:133</a></div></div>
+<div class="ttc" id="struct__ringbuffer__t_html_a7a7c296c9063d85aeecac846c73c2775"><div class="ttname"><a href="struct__ringbuffer__t.html#a7a7c296c9063d85aeecac846c73c2775">_ringbuffer_t::read_pos</a></div><div class="ttdeci">uint32_t read_pos</div><div class="ttdef"><b>Definition:</b> <a href="ringbuffer_8c_source.html#l00031">ringbuffer.c:31</a></div></div>
+<div class="ttc" id="struct__ringbuffer__t_html_a935adc2e417a61d7eb6f04efb18ba031"><div class="ttname"><a href="struct__ringbuffer__t.html#a935adc2e417a61d7eb6f04efb18ba031">_ringbuffer_t::ptr</a></div><div class="ttdeci">char * ptr</div><div class="ttdef"><b>Definition:</b> <a href="ringbuffer_8c_source.html#l00030">ringbuffer.c:30</a></div></div>
+<div class="ttc" id="struct__ringbuffer__t_html_a5d749e86bf9e5299c1a5af7bcce2397c"><div class="ttname"><a href="struct__ringbuffer__t.html#a5d749e86bf9e5299c1a5af7bcce2397c">_ringbuffer_t::max_size</a></div><div class="ttdeci">uint32_t max_size</div><div class="ttdef"><b>Definition:</b> <a href="ringbuffer_8c_source.html#l00033">ringbuffer.c:33</a></div></div>
+<div class="ttc" id="config_8h_html_ab079e894d07566f511f1a5046a1eefe5"><div class="ttname"><a href="config_8h.html#ab079e894d07566f511f1a5046a1eefe5">create</a></div><div class="ttdeci">#define create(type)</div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00095">config.h:95</a></div></div>
+<div class="ttc" id="struct__ringbuffer__t_html_a86988a65e0d3ece7990c032c159786d6"><div class="ttname"><a href="struct__ringbuffer__t.html#a86988a65e0d3ece7990c032c159786d6">_ringbuffer_t::count</a></div><div class="ttdeci">uint32_t count</div><div class="ttdef"><b>Definition:</b> <a href="ringbuffer_8c_source.html#l00036">ringbuffer.c:36</a></div></div>
+<div class="ttc" id="ringbuffer_8c_html_a17f80ee6eedc285a3086107f10d0605b"><div class="ttname"><a href="ringbuffer_8c.html#a17f80ee6eedc285a3086107f10d0605b">ringbuffer_read_lock_size</a></div><div class="ttdeci">uint32_t ringbuffer_read_lock_size(ringbuffer_t *rb)</div><div class="ttdef"><b>Definition:</b> <a href="ringbuffer_8c_source.html#l00118">ringbuffer.c:118</a></div></div>
+<div class="ttc" id="config_8h_html_ad8bc998d415be9115a064a8307df0ed5af5cd4563f043d358cb7b09d628d0f0f6"><div class="ttname"><a href="config_8h.html#ad8bc998d415be9115a064a8307df0ed5af5cd4563f043d358cb7b09d628d0f0f6">error_recvbuffer_locked</a></div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00196">config.h:196</a></div></div>
+<div class="ttc" id="ringbuffer_8c_html_a9af8341a5cc83cc1d6acbb868c498a03"><div class="ttname"><a href="ringbuffer_8c.html#a9af8341a5cc83cc1d6acbb868c498a03">ringbuffer_eat_all</a></div><div class="ttdeci">int ringbuffer_eat_all(ringbuffer_t *rb)</div><div class="ttdef"><b>Definition:</b> <a href="ringbuffer_8c_source.html#l00053">ringbuffer.c:53</a></div></div>
+<div class="ttc" id="ringbuffer_8c_html_a88804c221b00561ac45b12b6e54bb8d1"><div class="ttname"><a href="ringbuffer_8c.html#a88804c221b00561ac45b12b6e54bb8d1">ringbuffer_write_commit</a></div><div class="ttdeci">void ringbuffer_write_commit(ringbuffer_t *rb, uint32_t size)</div><div class="ttdef"><b>Definition:</b> <a href="ringbuffer_8c_source.html#l00178">ringbuffer.c:178</a></div></div>
+<div class="ttc" id="ringbuffer_8c_html_a93296c953b97b465aa6d878d7ddaff87"><div class="ttname"><a href="ringbuffer_8c.html#a93296c953b97b465aa6d878d7ddaff87">ringbuffer_read</a></div><div class="ttdeci">uint32_t ringbuffer_read(ringbuffer_t *rb, char *buffer, uint32_t size)</div><div class="ttdef"><b>Definition:</b> <a href="ringbuffer_8c_source.html#l00078">ringbuffer.c:78</a></div></div>
+<div class="ttc" id="ringbuffer_8c_html_ada2b3f0cea4e372229709a5cb1f54725"><div class="ttname"><a href="ringbuffer_8c.html#ada2b3f0cea4e372229709a5cb1f54725">ringbuffer_write_lock_size</a></div><div class="ttdeci">uint32_t ringbuffer_write_lock_size(ringbuffer_t *rb)</div><div class="ttdef"><b>Definition:</b> <a href="ringbuffer_8c_source.html#l00155">ringbuffer.c:155</a></div></div>
+<div class="ttc" id="ringbuffer_8c_html_aa11ec2026dde62682aa1583f2505afb9"><div class="ttname"><a href="ringbuffer_8c.html#aa11ec2026dde62682aa1583f2505afb9">ringbuffer_empty</a></div><div class="ttdeci">int ringbuffer_empty(ringbuffer_t *rb)</div><div class="ttdef"><b>Definition:</b> <a href="ringbuffer_8c_source.html#l00197">ringbuffer.c:197</a></div></div>
+<div class="ttc" id="ringbuffer_8c_html_ae0a8267d340411191b1c666914e17628"><div class="ttname"><a href="ringbuffer_8c.html#ae0a8267d340411191b1c666914e17628">ringbuffer_full</a></div><div class="ttdeci">int ringbuffer_full(ringbuffer_t *rb)</div><div class="ttdef"><b>Definition:</b> <a href="ringbuffer_8c_source.html#l00192">ringbuffer.c:192</a></div></div>
+<div class="ttc" id="config_8h_html_ac51313f7018a7879123a0c5e43707f58"><div class="ttname"><a href="config_8h.html#ac51313f7018a7879123a0c5e43707f58">create_raw</a></div><div class="ttdeci">#define create_raw(size)</div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00096">config.h:96</a></div></div>
+<div class="ttc" id="ringbuffer_8c_html_adb01000b575c0696d466c93819c4aeff"><div class="ttname"><a href="ringbuffer_8c.html#adb01000b575c0696d466c93819c4aeff">ringbuffer_get_max_size</a></div><div class="ttdeci">uint32_t ringbuffer_get_max_size(ringbuffer_t *rb)</div><div class="ttdef"><b>Definition:</b> <a href="ringbuffer_8c_source.html#l00202">ringbuffer.c:202</a></div></div>
+<div class="ttc" id="logger_8h_html"><div class="ttname"><a href="logger_8h.html">logger.h</a></div></div>
+<div class="ttc" id="config_8h_html_ad8bc998d415be9115a064a8307df0ed5a722f316dc97e835ba613f7a505992dfd"><div class="ttname"><a href="config_8h.html#ad8bc998d415be9115a064a8307df0ed5a722f316dc97e835ba613f7a505992dfd">error_ok</a></div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00159">config.h:159</a></div></div>
+<div class="ttc" id="ringbuffer_8c_html_a67c7cbb3e39d70fc9ef3e4938fbc6d1d"><div class="ttname"><a href="ringbuffer_8c.html#a67c7cbb3e39d70fc9ef3e4938fbc6d1d">ringbuffer_write_lock_ptr</a></div><div class="ttdeci">char * ringbuffer_write_lock_ptr(ringbuffer_t *rb)</div><div class="ttdef"><b>Definition:</b> <a href="ringbuffer_8c_source.html#l00170">ringbuffer.c:170</a></div></div>
+<div class="ttc" id="struct__ringbuffer__t_html_ac857cf0a05d19ede280166517461fde3"><div class="ttname"><a href="struct__ringbuffer__t.html#ac857cf0a05d19ede280166517461fde3">_ringbuffer_t::lock_type</a></div><div class="ttdeci">uint32_t lock_type</div><div class="ttdef"><b>Definition:</b> <a href="ringbuffer_8c_source.html#l00035">ringbuffer.c:35</a></div></div>
+<div class="ttc" id="struct__ringbuffer__t_html_a84b7e6afd7b5057f5069b5757814d48c"><div class="ttname"><a href="struct__ringbuffer__t.html#a84b7e6afd7b5057f5069b5757814d48c">_ringbuffer_t::lock_size</a></div><div class="ttdeci">uint32_t lock_size</div><div class="ttdef"><b>Definition:</b> <a href="ringbuffer_8c_source.html#l00034">ringbuffer.c:34</a></div></div>
+<div class="ttc" id="config_8h_html_ac6afabdc09a49a433ee19d8a9486056d"><div class="ttname"><a href="config_8h.html#ac6afabdc09a49a433ee19d8a9486056d">min</a></div><div class="ttdeci">#define min(a, b)</div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00103">config.h:103</a></div></div>
+<div class="ttc" id="config_8h_html_ad8bc998d415be9115a064a8307df0ed5a70d80c910205fc4fc0a60f490ae86b7b"><div class="ttname"><a href="config_8h.html#ad8bc998d415be9115a064a8307df0ed5a70d80c910205fc4fc0a60f490ae86b7b">error_recvbuffer_not_enough</a></div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00195">config.h:195</a></div></div>
+<div class="ttc" id="ringbuffer_8c_html_a535c5ed96efcd2415e6cad1cfcf44228"><div class="ttname"><a href="ringbuffer_8c.html#a535c5ed96efcd2415e6cad1cfcf44228">ringbuffer_create</a></div><div class="ttdeci">ringbuffer_t * ringbuffer_create(uint32_t size)</div><div class="ttdef"><b>Definition:</b> <a href="ringbuffer_8c_source.html#l00039">ringbuffer.c:39</a></div></div>
+<div class="ttc" id="config_8h_html_a7bb0b359ffebe8a540dded73bd47417a"><div class="ttname"><a href="config_8h.html#a7bb0b359ffebe8a540dded73bd47417a">destroy</a></div><div class="ttdeci">#define destroy(ptr)</div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00100">config.h:100</a></div></div>
+<div class="ttc" id="struct__ringbuffer__t_html_ab1cb0fa55deec8b7cfec28fac1f81700"><div class="ttname"><a href="struct__ringbuffer__t.html#ab1cb0fa55deec8b7cfec28fac1f81700">_ringbuffer_t::write_pos</a></div><div class="ttdeci">uint32_t write_pos</div><div class="ttdef"><b>Definition:</b> <a href="ringbuffer_8c_source.html#l00032">ringbuffer.c:32</a></div></div>
+<div class="ttc" id="ringbuffer_8c_html_a4fca0cda42cddc178da4ab3abd92ae3a"><div class="ttname"><a href="ringbuffer_8c.html#a4fca0cda42cddc178da4ab3abd92ae3a">ringbuffer_available</a></div><div class="ttdeci">uint32_t ringbuffer_available(ringbuffer_t *rb)</div><div class="ttdef"><b>Definition:</b> <a href="ringbuffer_8c_source.html#l00107">ringbuffer.c:107</a></div></div>
+<div class="ttc" id="ringbuffer_8c_html_aea7ff5a3bd3ede77f076abaefad3fcb1"><div class="ttname"><a href="ringbuffer_8c.html#aea7ff5a3bd3ede77f076abaefad3fcb1">ringbuffer_read_commit</a></div><div class="ttdeci">void ringbuffer_read_commit(ringbuffer_t *rb, uint32_t size)</div><div class="ttdef"><b>Definition:</b> <a href="ringbuffer_8c_source.html#l00141">ringbuffer.c:141</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+生成于 2015年 六月 29日 星期一 16:51:00 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.9.1
+</small></address>
+</body>
+</html>

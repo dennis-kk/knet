@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.9.1"/>
+<title>knet: E:/knet-git/knet/examples/basic.c 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">knet
+   &#160;<span id="projectnumber">1.4.1</span>
+   </div>
+   <div id="projectbrief">cross platform, light-weight, multithreading net library</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.9.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="pages.html"><span>相关页面</span></a></li>
+      <li><a href="namespaces.html"><span>命名空间</span></a></li>
+      <li><a href="annotated.html"><span>结构体</span></a></li>
+      <li class="current"><a href="files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>文件列表</span></a></li>
+      <li><a href="globals.html"><span>全局定义</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_885cc87fac2d91e269af0a5a959fa5f6.html">E:</a></li><li class="navelem"><a class="el" href="dir_4e74998c9a9305a116abc25fcf9a1edb.html">knet-git</a></li><li class="navelem"><a class="el" href="dir_a1c045b39f32066568ae964b52db514f.html">knet</a></li><li class="navelem"><a class="el" href="dir_234e5898cca97992dee7f65bf24f8eb2.html">examples</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">basic.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="basic_8c.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="example__config_8h.html">example_config.h</a>&quot;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#if COMPILE_BASIC_C</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="knet_8h.html">knet.h</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/* 客户端 - 连接器回调 */</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keywordtype">void</span> <a class="code" href="rpc_8cpp.html#aed42b835742e3baa48a1f4df25678db7">connector_cb</a>(<a class="code" href="struct__channel__ref__t.html">channel_ref_t</a>* channel, <a class="code" href="config_8h.html#aaf2cba5d4035f3d56350b59342ebf65c">channel_cb_event_e</a> e) {</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keywordtype">char</span>* hello = <span class="stringliteral">&quot;hello world&quot;</span>;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <a class="code" href="struct__stream__t.html">stream_t</a>* stream = <a class="code" href="channel__ref_8c.html#af8d2758e1e063e04512049c9a9869d5e">channel_ref_get_stream</a>(channel);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordflow">if</span> (e &amp; <a class="code" href="config_8h.html#a2217ac7363dbae279d056a361d122915ab5e6d4ae4351ea845a0b0ec7b06524d9">channel_cb_event_connect</a>) { <span class="comment">/* 连接成功 */</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="comment">/* 写入 */</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="stream_8c.html#a34e0f4c2a5beb6f6d35c77b95040947d">stream_push</a>(stream, hello, 12);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    }</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;}</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">/* 服务端 - 客户端回调 */</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keywordtype">void</span> <a class="code" href="rpc_8cpp.html#af31b42bfc0a16d5ce39dc3cadc4e726c">client_cb</a>(<a class="code" href="struct__channel__ref__t.html">channel_ref_t</a>* channel, <a class="code" href="config_8h.html#aaf2cba5d4035f3d56350b59342ebf65c">channel_cb_event_e</a> e) {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">char</span> buffer[32] = {0};</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="comment">/* 获取对端地址 */</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="struct__address__t.html">address_t</a>* peer_addr = <a class="code" href="channel__ref_8c.html#a7bcafd2461a1edfde9c581cb946dcd44">channel_ref_get_peer_address</a>(channel);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="struct__stream__t.html">stream_t</a>* stream = <a class="code" href="channel__ref_8c.html#af8d2758e1e063e04512049c9a9869d5e">channel_ref_get_stream</a>(channel);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordflow">if</span> (e &amp; <a class="code" href="config_8h.html#a2217ac7363dbae279d056a361d122915ae7aa0d7fc417f5d1b3242e858ab23b82">channel_cb_event_recv</a>) { <span class="comment">/* 有数据可以读 */</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="comment">/* 读取 */</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <a class="code" href="stream_8c.html#a6e01758abf49f8b08cd457f1cb48a954">stream_pop</a>(stream, buffer, <span class="keyword">sizeof</span>(buffer));</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="comment">/* 关闭 */</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <a class="code" href="channel__ref_8c.html#a49d6ba5f0b9aad95ae5c5710dca392a1">channel_ref_close</a>(channel);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="comment">/* 退出循环 */</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <a class="code" href="loop_8c.html#a898c7e8ef4ff2f360a32454b2b1013de">loop_exit</a>(<a class="code" href="channel__ref_8c.html#ad840fd786ca7092d528a8fc45c2e2a76">channel_ref_get_loop</a>(channel));</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        printf(<span class="stringliteral">&quot;recv from connector: %s, ip: %s, port: %d\n&quot;</span>, buffer,</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            <a class="code" href="address_8c.html#ac1cb1b6031c4a8a724d42e3ed01d1ba6">address_get_ip</a>(peer_addr), <a class="code" href="address_8c.html#a223a2192ce38fc5e79a73b5030a42e0e">address_get_port</a>(peer_addr));</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    }</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">/* 监听者回调 */</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keywordtype">void</span> <a class="code" href="rpc_8cpp.html#a4ef7d97742bc9410f486ebc4e0b75e82">acceptor_cb</a>(<a class="code" href="struct__channel__ref__t.html">channel_ref_t</a>* channel, <a class="code" href="config_8h.html#aaf2cba5d4035f3d56350b59342ebf65c">channel_cb_event_e</a> e) {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordflow">if</span> (e &amp; <a class="code" href="config_8h.html#a2217ac7363dbae279d056a361d122915a337bcdd5a997178d2c2500c077e594a1">channel_cb_event_accept</a>) { <span class="comment">/* 新连接 */</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="comment">/* 设置回调 */</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <a class="code" href="channel__ref_8c.html#a7627dbcdb87269ef2fae5bcbbb210720">channel_ref_set_cb</a>(channel, <a class="code" href="rpc_8cpp.html#af31b42bfc0a16d5ce39dc3cadc4e726c">client_cb</a>);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    }</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;}</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">int</span> <a class="code" href="rpc_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>() {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="comment">/* 创建循环 */</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="struct__loop__t.html">loop_t</a>* loop = <a class="code" href="loop_8c.html#a878bf0cd280e0bd183144bb95ca4a7b1">loop_create</a>();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="comment">/* 创建客户端 */</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="struct__channel__ref__t.html">channel_ref_t</a>* connector = <a class="code" href="loop_8c.html#ab5b73ea9a0347b431f93ebf30ecd05b5">loop_create_channel</a>(loop, 8, 1024);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">/* 创建监听者 */</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="struct__channel__ref__t.html">channel_ref_t</a>* acceptor = <a class="code" href="loop_8c.html#ab5b73ea9a0347b431f93ebf30ecd05b5">loop_create_channel</a>(loop, 8, 1024);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="comment">/* 设置回调 */</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="channel__ref_8c.html#a7627dbcdb87269ef2fae5bcbbb210720">channel_ref_set_cb</a>(connector, <a class="code" href="rpc_8cpp.html#aed42b835742e3baa48a1f4df25678db7">connector_cb</a>);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="channel__ref_8c.html#a7627dbcdb87269ef2fae5bcbbb210720">channel_ref_set_cb</a>(acceptor, <a class="code" href="rpc_8cpp.html#a4ef7d97742bc9410f486ebc4e0b75e82">acceptor_cb</a>);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="comment">/* 监听 */</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="channel__ref_8c.html#ae9ae0ae2a42eabf6a544ce4e0f001c9e">channel_ref_accept</a>(acceptor, 0, 80, 10);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">/* 连接 */</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="channel__ref_8c.html#a1a8d1f5550cf26313cbb6575e8b2a32c">channel_ref_connect</a>(connector, <span class="stringliteral">&quot;127.0.0.1&quot;</span>, 80, 5);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="comment">/* 启动 */</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <a class="code" href="loop_8c.html#a8eb0f6c8d398c70fc5ca2292664a1187">loop_run</a>(loop);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="comment">/* 销毁, connector, acceptor不需要手动销毁 */</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="loop_8c.html#a921fd5e5e16a73de123e81baab187a0a">loop_destroy</a>(loop);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;}</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* COMPILE_BASIC_C */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="channel__ref_8c_html_ad840fd786ca7092d528a8fc45c2e2a76"><div class="ttname"><a href="channel__ref_8c.html#ad840fd786ca7092d528a8fc45c2e2a76">channel_ref_get_loop</a></div><div class="ttdeci">loop_t * channel_ref_get_loop(channel_ref_t *channel_ref)</div><div class="ttdef"><b>Definition:</b> <a href="channel__ref_8c_source.html#l00254">channel_ref.c:254</a></div></div>
+<div class="ttc" id="address_8c_html_ac1cb1b6031c4a8a724d42e3ed01d1ba6"><div class="ttname"><a href="address_8c.html#ac1cb1b6031c4a8a724d42e3ed01d1ba6">address_get_ip</a></div><div class="ttdeci">const char * address_get_ip(address_t *address)</div><div class="ttdef"><b>Definition:</b> <a href="address_8c_source.html#l00053">address.c:53</a></div></div>
+<div class="ttc" id="config_8h_html_a2217ac7363dbae279d056a361d122915ae7aa0d7fc417f5d1b3242e858ab23b82"><div class="ttname"><a href="config_8h.html#a2217ac7363dbae279d056a361d122915ae7aa0d7fc417f5d1b3242e858ab23b82">channel_cb_event_recv</a></div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00207">config.h:207</a></div></div>
+<div class="ttc" id="rpc_8cpp_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="rpc_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdef"><b>Definition:</b> <a href="rpc_8cpp_source.html#l00094">rpc.cpp:94</a></div></div>
+<div class="ttc" id="loop_8c_html_ab5b73ea9a0347b431f93ebf30ecd05b5"><div class="ttname"><a href="loop_8c.html#ab5b73ea9a0347b431f93ebf30ecd05b5">loop_create_channel</a></div><div class="ttdeci">channel_ref_t * loop_create_channel(loop_t *loop, uint32_t max_send_list_len, uint32_t recv_ring_len)</div><div class="ttdef"><b>Definition:</b> <a href="loop_8c_source.html#l00239">loop.c:239</a></div></div>
+<div class="ttc" id="loop_8c_html_a878bf0cd280e0bd183144bb95ca4a7b1"><div class="ttname"><a href="loop_8c.html#a878bf0cd280e0bd183144bb95ca4a7b1">loop_create</a></div><div class="ttdeci">loop_t * loop_create()</div><div class="ttdef"><b>Definition:</b> <a href="loop_8c_source.html#l00090">loop.c:90</a></div></div>
+<div class="ttc" id="channel__ref_8c_html_a1a8d1f5550cf26313cbb6575e8b2a32c"><div class="ttname"><a href="channel__ref_8c.html#a1a8d1f5550cf26313cbb6575e8b2a32c">channel_ref_connect</a></div><div class="ttdeci">int channel_ref_connect(channel_ref_t *channel_ref, const char *ip, int port, int timeout)</div><div class="ttdef"><b>Definition:</b> <a href="channel__ref_8c_source.html#l00106">channel_ref.c:106</a></div></div>
+<div class="ttc" id="knet_8h_html"><div class="ttname"><a href="knet_8h.html">knet.h</a></div></div>
+<div class="ttc" id="channel__ref_8c_html_a49d6ba5f0b9aad95ae5c5710dca392a1"><div class="ttname"><a href="channel__ref_8c.html#a49d6ba5f0b9aad95ae5c5710dca392a1">channel_ref_close</a></div><div class="ttdeci">void channel_ref_close(channel_ref_t *channel_ref)</div><div class="ttdef"><b>Definition:</b> <a href="channel__ref_8c_source.html#l00175">channel_ref.c:175</a></div></div>
+<div class="ttc" id="rpc_8cpp_html_af31b42bfc0a16d5ce39dc3cadc4e726c"><div class="ttname"><a href="rpc_8cpp.html#af31b42bfc0a16d5ce39dc3cadc4e726c">client_cb</a></div><div class="ttdeci">void client_cb(channel_ref_t *channel, channel_cb_event_e e)</div><div class="ttdef"><b>Definition:</b> <a href="rpc_8cpp_source.html#l00068">rpc.cpp:68</a></div></div>
+<div class="ttc" id="channel__ref_8c_html_a7bcafd2461a1edfde9c581cb946dcd44"><div class="ttname"><a href="channel__ref_8c.html#a7bcafd2461a1edfde9c581cb946dcd44">channel_ref_get_peer_address</a></div><div class="ttdeci">address_t * channel_ref_get_peer_address(channel_ref_t *channel_ref)</div><div class="ttdef"><b>Definition:</b> <a href="channel__ref_8c_source.html#l00545">channel_ref.c:545</a></div></div>
+<div class="ttc" id="channel__ref_8c_html_af8d2758e1e063e04512049c9a9869d5e"><div class="ttname"><a href="channel__ref_8c.html#af8d2758e1e063e04512049c9a9869d5e">channel_ref_get_stream</a></div><div class="ttdeci">stream_t * channel_ref_get_stream(channel_ref_t *channel_ref)</div><div class="ttdef"><b>Definition:</b> <a href="channel__ref_8c_source.html#l00249">channel_ref.c:249</a></div></div>
+<div class="ttc" id="struct__loop__t_html"><div class="ttname"><a href="struct__loop__t.html">_loop_t</a></div><div class="ttdef"><b>Definition:</b> <a href="loop_8c_source.html#l00035">loop.c:35</a></div></div>
+<div class="ttc" id="rpc_8cpp_html_a4ef7d97742bc9410f486ebc4e0b75e82"><div class="ttname"><a href="rpc_8cpp.html#a4ef7d97742bc9410f486ebc4e0b75e82">acceptor_cb</a></div><div class="ttdeci">void acceptor_cb(channel_ref_t *channel, channel_cb_event_e e)</div><div class="ttdef"><b>Definition:</b> <a href="rpc_8cpp_source.html#l00087">rpc.cpp:87</a></div></div>
+<div class="ttc" id="loop_8c_html_a921fd5e5e16a73de123e81baab187a0a"><div class="ttname"><a href="loop_8c.html#a921fd5e5e16a73de123e81baab187a0a">loop_destroy</a></div><div class="ttdeci">void loop_destroy(loop_t *loop)</div><div class="ttdef"><b>Definition:</b> <a href="loop_8c_source.html#l00127">loop.c:127</a></div></div>
+<div class="ttc" id="address_8c_html_a223a2192ce38fc5e79a73b5030a42e0e"><div class="ttname"><a href="address_8c.html#a223a2192ce38fc5e79a73b5030a42e0e">address_get_port</a></div><div class="ttdeci">int address_get_port(address_t *address)</div><div class="ttdef"><b>Definition:</b> <a href="address_8c_source.html#l00058">address.c:58</a></div></div>
+<div class="ttc" id="example__config_8h_html"><div class="ttname"><a href="example__config_8h.html">example_config.h</a></div></div>
+<div class="ttc" id="struct__channel__ref__t_html"><div class="ttname"><a href="struct__channel__ref__t.html">_channel_ref_t</a></div><div class="ttdef"><b>Definition:</b> <a href="channel__ref_8c_source.html#l00057">channel_ref.c:57</a></div></div>
+<div class="ttc" id="stream_8c_html_a34e0f4c2a5beb6f6d35c77b95040947d"><div class="ttname"><a href="stream_8c.html#a34e0f4c2a5beb6f6d35c77b95040947d">stream_push</a></div><div class="ttdeci">int stream_push(stream_t *stream, void *buffer, int size)</div><div class="ttdef"><b>Definition:</b> <a href="stream_8c_source.html#l00080">stream.c:80</a></div></div>
+<div class="ttc" id="config_8h_html_a2217ac7363dbae279d056a361d122915ab5e6d4ae4351ea845a0b0ec7b06524d9"><div class="ttname"><a href="config_8h.html#a2217ac7363dbae279d056a361d122915ab5e6d4ae4351ea845a0b0ec7b06524d9">channel_cb_event_connect</a></div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00205">config.h:205</a></div></div>
+<div class="ttc" id="struct__stream__t_html"><div class="ttname"><a href="struct__stream__t.html">_stream_t</a></div><div class="ttdef"><b>Definition:</b> <a href="stream_8c_source.html#l00033">stream.c:33</a></div></div>
+<div class="ttc" id="channel__ref_8c_html_a7627dbcdb87269ef2fae5bcbbb210720"><div class="ttname"><a href="channel__ref_8c.html#a7627dbcdb87269ef2fae5bcbbb210720">channel_ref_set_cb</a></div><div class="ttdeci">void channel_ref_set_cb(channel_ref_t *channel_ref, channel_ref_cb_t cb)</div><div class="ttdef"><b>Definition:</b> <a href="channel__ref_8c_source.html#l00524">channel_ref.c:524</a></div></div>
+<div class="ttc" id="loop_8c_html_a8eb0f6c8d398c70fc5ca2292664a1187"><div class="ttname"><a href="loop_8c.html#a8eb0f6c8d398c70fc5ca2292664a1187">loop_run</a></div><div class="ttdeci">int loop_run(loop_t *loop)</div><div class="ttdef"><b>Definition:</b> <a href="loop_8c_source.html#l00255">loop.c:255</a></div></div>
+<div class="ttc" id="stream_8c_html_a6e01758abf49f8b08cd457f1cb48a954"><div class="ttname"><a href="stream_8c.html#a6e01758abf49f8b08cd457f1cb48a954">stream_pop</a></div><div class="ttdeci">int stream_pop(stream_t *stream, void *buffer, int size)</div><div class="ttdef"><b>Definition:</b> <a href="stream_8c_source.html#l00057">stream.c:57</a></div></div>
+<div class="ttc" id="struct__address__t_html"><div class="ttname"><a href="struct__address__t.html">_address_t</a></div><div class="ttdef"><b>Definition:</b> <a href="address_8c_source.html#l00028">address.c:28</a></div></div>
+<div class="ttc" id="config_8h_html_aaf2cba5d4035f3d56350b59342ebf65c"><div class="ttname"><a href="config_8h.html#aaf2cba5d4035f3d56350b59342ebf65c">channel_cb_event_e</a></div><div class="ttdeci">enum _channel_cb_event_e channel_cb_event_e</div></div>
+<div class="ttc" id="config_8h_html_a2217ac7363dbae279d056a361d122915a337bcdd5a997178d2c2500c077e594a1"><div class="ttname"><a href="config_8h.html#a2217ac7363dbae279d056a361d122915a337bcdd5a997178d2c2500c077e594a1">channel_cb_event_accept</a></div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00206">config.h:206</a></div></div>
+<div class="ttc" id="rpc_8cpp_html_aed42b835742e3baa48a1f4df25678db7"><div class="ttname"><a href="rpc_8cpp.html#aed42b835742e3baa48a1f4df25678db7">connector_cb</a></div><div class="ttdeci">void connector_cb(channel_ref_t *channel, channel_cb_event_e e)</div><div class="ttdef"><b>Definition:</b> <a href="rpc_8cpp_source.html#l00042">rpc.cpp:42</a></div></div>
+<div class="ttc" id="loop_8c_html_a898c7e8ef4ff2f360a32454b2b1013de"><div class="ttname"><a href="loop_8c.html#a898c7e8ef4ff2f360a32454b2b1013de">loop_exit</a></div><div class="ttdeci">void loop_exit(loop_t *loop)</div><div class="ttdef"><b>Definition:</b> <a href="loop_8c_source.html#l00268">loop.c:268</a></div></div>
+<div class="ttc" id="channel__ref_8c_html_ae9ae0ae2a42eabf6a544ce4e0f001c9e"><div class="ttname"><a href="channel__ref_8c.html#ae9ae0ae2a42eabf6a544ce4e0f001c9e">channel_ref_accept</a></div><div class="ttdeci">int channel_ref_accept(channel_ref_t *channel_ref, const char *ip, int port, int backlog)</div><div class="ttdef"><b>Definition:</b> <a href="channel__ref_8c_source.html#l00120">channel_ref.c:120</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+生成于 2015年 六月 29日 星期一 16:51:00 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.9.1
+</small></address>
+</body>
+</html>

@@ -1,0 +1,500 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.9.1"/>
+<title>knet: E:/knet-git/knet/knet/timer.c 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">knet
+   &#160;<span id="projectnumber">1.4.1</span>
+   </div>
+   <div id="projectbrief">cross platform, light-weight, multithreading net library</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.9.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="pages.html"><span>相关页面</span></a></li>
+      <li><a href="namespaces.html"><span>命名空间</span></a></li>
+      <li><a href="annotated.html"><span>结构体</span></a></li>
+      <li class="current"><a href="files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>文件列表</span></a></li>
+      <li><a href="globals.html"><span>全局定义</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_885cc87fac2d91e269af0a5a959fa5f6.html">E:</a></li><li class="navelem"><a class="el" href="dir_4e74998c9a9305a116abc25fcf9a1edb.html">knet-git</a></li><li class="navelem"><a class="el" href="dir_a1c045b39f32066568ae964b52db514f.html">knet</a></li><li class="navelem"><a class="el" href="dir_f76d03789f0b12416cfffea59e2ed47d.html">knet</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">timer.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="knet_2timer_8c.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2014-2015, dennis wang</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * All rights reserved.</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * </span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Redistribution and use in source and binary forms, with or without</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * modification, are permitted provided that the following conditions are met:</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> *     * Redistributions of source code must retain the above copyright</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *       notice, this list of conditions and the following disclaimer.</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> *     * Redistributions in binary form must reproduce the above copyright</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> *       notice, this list of conditions and the following disclaimer in the</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> *       documentation and/or other materials provided with the distribution.</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> * </span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> * DISCLAIMED. IN NO EVENT SHALL dennis wang BE LIABLE FOR ANY</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment"> * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"> * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="timer_8h.html">timer.h</a>&quot;</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="list_8h.html">list.h</a>&quot;</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="misc_8h.html">misc.h</a>&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="logger_8h.html">logger.h</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="struct__ktimer__t.html">   30</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct__ktimer__t.html">_ktimer_t</a> {</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="struct__ktimer__t.html#a8621a5cdd71a0fb2a93c75ad076f43af">   31</a></span>&#160;    <a class="code" href="struct__dlist__t.html">dlist_t</a>*       <a class="code" href="struct__ktimer__t.html#a8621a5cdd71a0fb2a93c75ad076f43af">current_list</a>;  <span class="comment">/* 所属链表 */</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="struct__ktimer__t.html#a1077e5b0269760e53b61c2d62c5ae6a3">   32</a></span>&#160;    <a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>*  <a class="code" href="struct__ktimer__t.html#a1077e5b0269760e53b61c2d62c5ae6a3">list_node</a>;     <span class="comment">/* 链表节点 */</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="struct__ktimer__t.html#afecd1f25004f7b34c54195e15b9b6f26">   33</a></span>&#160;    <a class="code" href="struct__ktimer__loop__t.html">ktimer_loop_t</a>* <a class="code" href="struct__ktimer__t.html#afecd1f25004f7b34c54195e15b9b6f26">ktimer_loop</a>;   <span class="comment">/* 定时器循环 */</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="struct__ktimer__t.html#aa889e3eed3259dbe68bac4c2887fd912">   34</a></span>&#160;    <a class="code" href="config_8h.html#a42e924130e6eb3bd995344f6d3f3e918">ktimer_type_e</a>  <a class="code" href="struct__ktimer__t.html#aa889e3eed3259dbe68bac4c2887fd912">type</a>;          <span class="comment">/* 定时器类型 */</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="struct__ktimer__t.html#a4009fd19bb25e5ed5e9b971db1d62a98">   35</a></span>&#160;    <a class="code" href="config_8h.html#a2333fd0f2c3a85faf586300ca40deed4">ktimer_cb_t</a>    <a class="code" href="struct__ktimer__t.html#a4009fd19bb25e5ed5e9b971db1d62a98">cb</a>;            <span class="comment">/* 定时器回调 */</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="struct__ktimer__t.html#a735984d41155bc1032e09bece8f8d66d">   36</a></span>&#160;    <span class="keywordtype">void</span>*          <a class="code" href="struct__ktimer__t.html#a735984d41155bc1032e09bece8f8d66d">data</a>;          <span class="comment">/* 自定义数据 */</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="struct__ktimer__t.html#ac00f09be782cfb10bb1b179c189ad18b">   37</a></span>&#160;    time_t         <a class="code" href="struct__ktimer__t.html#ac00f09be782cfb10bb1b179c189ad18b">ms</a>;            <span class="comment">/* 下次触发时间 */</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="struct__ktimer__t.html#ac51a900086331031163d965952207477">   38</a></span>&#160;    time_t         <a class="code" href="struct__ktimer__t.html#ac51a900086331031163d965952207477">intval</a>;        <span class="comment">/* 定时器间隔 */</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="struct__ktimer__t.html#aad4f4c24ba75d1526ad9a49089a2d067">   39</a></span>&#160;    <span class="keywordtype">int</span>            <a class="code" href="struct__ktimer__t.html#aad4f4c24ba75d1526ad9a49089a2d067">times</a>;         <span class="comment">/* 触发最大次数 */</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="struct__ktimer__t.html#a3ac569d3fe93e34db02d334b0515146e">   40</a></span>&#160;    <span class="keywordtype">int</span>            <a class="code" href="struct__ktimer__t.html#a3ac569d3fe93e34db02d334b0515146e">current_times</a>; <span class="comment">/* 当前触发次数 */</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="struct__ktimer__t.html#a6c0af9f2e97842405fb15ed952ef2976">   41</a></span>&#160;    <span class="keywordtype">int</span>            <a class="code" href="struct__ktimer__t.html#a6c0af9f2e97842405fb15ed952ef2976">stop</a>;          <span class="comment">/* 终止标志 */</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;};</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="struct__ktimer__loop__t.html">   44</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct__ktimer__loop__t.html">_ktimer_loop_t</a> {</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="struct__ktimer__loop__t.html#a69102bd45d4b4970f3e1835cb4f71609">   45</a></span>&#160;    <a class="code" href="struct__dlist__t.html">dlist_t</a>** <a class="code" href="struct__ktimer__loop__t.html#a69102bd45d4b4970f3e1835cb4f71609">ktimer_wheels</a>; <span class="comment">/* 时间轮链表数组 */</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="struct__ktimer__loop__t.html#a2f45113638a0b749a8a205d2cd7fb42b">   46</a></span>&#160;    <span class="keywordtype">int</span>       <a class="code" href="struct__ktimer__loop__t.html#a2f45113638a0b749a8a205d2cd7fb42b">running</a>;       <span class="comment">/* 运行标志 */</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="struct__ktimer__loop__t.html#a539d113be48c3032a148a47336b35821">   47</a></span>&#160;    <span class="keywordtype">int</span>       <a class="code" href="struct__ktimer__loop__t.html#a539d113be48c3032a148a47336b35821">max_slot</a>;      <span class="comment">/* 时间轮数组长度 */</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="struct__ktimer__loop__t.html#a83d6e2127b4cc5e01f2012608487d31a">   48</a></span>&#160;    <span class="keywordtype">int</span>       <a class="code" href="struct__ktimer__loop__t.html#a83d6e2127b4cc5e01f2012608487d31a">slot</a>;          <span class="comment">/* 当前槽位 */</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="struct__ktimer__loop__t.html#aaaecc5607d83f3b99b0eafd1240c33e8">   49</a></span>&#160;    time_t    <a class="code" href="struct__ktimer__loop__t.html#aaaecc5607d83f3b99b0eafd1240c33e8">last_tick</a>;     <span class="comment">/* 上一次调用循环的时间（毫秒） */</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="struct__ktimer__loop__t.html#a0856d0e2658f936061e29b6429eb0852">   50</a></span>&#160;    time_t    <a class="code" href="struct__ktimer__loop__t.html#a0856d0e2658f936061e29b6429eb0852">tick_intval</a>;   <span class="comment">/* 槽位刻度间隔（毫秒） */</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;};</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keywordtype">int</span> <a class="code" href="knet_2timer_8c.html#a0da724208f00bf918c6a211978987564">_ktimer_loop_select_slot</a>(<a class="code" href="struct__ktimer__loop__t.html">ktimer_loop_t</a>* ktimer_loop, time_t ms);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keywordtype">void</span> <a class="code" href="knet_2timer_8c.html#a24405f7d3c813580ab995e6dd8d35871">_ktimer_loop_add_timer</a>(<a class="code" href="struct__ktimer__loop__t.html">ktimer_loop_t</a>* ktimer_loop, <a class="code" href="struct__ktimer__t.html">ktimer_t</a>* timer);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keywordtype">void</span> <a class="code" href="knet_2timer_8c.html#ac3dbbad088660cb92568eaf14d4a57d6">_ktimer_loop_add_ktimer_node</a>(<a class="code" href="struct__ktimer__loop__t.html">ktimer_loop_t</a>* ktimer_loop, <a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* node, time_t ms);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* <a class="code" href="knet_2timer_8c.html#a68416fe66d6354b07e258713db6adb2d">_ktimer_loop_remove_timer</a>(<a class="code" href="struct__ktimer__t.html">ktimer_t</a>* timer);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keywordtype">int</span> <a class="code" href="knet_2timer_8c.html#a16dfe04af38883e142c0a6583c1ea664">_ktimer_check_stop</a>(<a class="code" href="struct__ktimer__t.html">ktimer_t</a>* timer);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="timer__api_8h.html#aef96e7c368db456236a2121e3d75c49c">   59</a></span>&#160;<a class="code" href="struct__ktimer__loop__t.html">ktimer_loop_t</a>* <a class="code" href="knet_2timer_8c.html#aef96e7c368db456236a2121e3d75c49c">ktimer_loop_create</a>(time_t freq, <span class="keywordtype">int</span> slot) {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">int</span> i = 0;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="struct__ktimer__loop__t.html">ktimer_loop_t</a>* ktimer_loop = <a class="code" href="config_8h.html#ab079e894d07566f511f1a5046a1eefe5">create</a>(<a class="code" href="struct__ktimer__loop__t.html">ktimer_loop_t</a>);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    assert(ktimer_loop);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    assert(freq);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    assert(slot);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    memset(ktimer_loop, 0, <span class="keyword">sizeof</span>(<a class="code" href="struct__ktimer__loop__t.html">ktimer_loop_t</a>));</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#a539d113be48c3032a148a47336b35821">max_slot</a>     = slot;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#a0856d0e2658f936061e29b6429eb0852">tick_intval</a>  = freq;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#aaaecc5607d83f3b99b0eafd1240c33e8">last_tick</a>    = <a class="code" href="misc_8c.html#a528d27a7218cb2fdabf81ca343e24fc9">time_get_milliseconds</a>();</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#a83d6e2127b4cc5e01f2012608487d31a">slot</a>         = 1;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#a69102bd45d4b4970f3e1835cb4f71609">ktimer_wheels</a> = (<a class="code" href="struct__dlist__t.html">dlist_t</a>**)<a class="code" href="config_8h.html#a73e5ea936513264f9b838f33dc3eace9">create_type</a>(<a class="code" href="struct__dlist__t.html">dlist_t</a>, <span class="keyword">sizeof</span>(<a class="code" href="struct__dlist__t.html">dlist_t</a>*) * ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#a539d113be48c3032a148a47336b35821">max_slot</a>);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    assert(ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#a69102bd45d4b4970f3e1835cb4f71609">ktimer_wheels</a>);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordflow">for</span> (; i &lt; ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#a539d113be48c3032a148a47336b35821">max_slot</a>; i++) {</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#a69102bd45d4b4970f3e1835cb4f71609">ktimer_wheels</a>[i] = <a class="code" href="list_8c.html#ac1229375358b81e2ae8fdf7a1e7dfee1">dlist_create</a>();</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        assert(ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#a69102bd45d4b4970f3e1835cb4f71609">ktimer_wheels</a>[i]);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordflow">return</span> ktimer_loop;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;}</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno"><a class="line" href="timer__api_8h.html#ad3dafe93f5b45424bd5983ef0c163687">   79</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="knet_2timer_8c.html#ad3dafe93f5b45424bd5983ef0c163687">ktimer_loop_destroy</a>(<a class="code" href="struct__ktimer__loop__t.html">ktimer_loop_t</a>* ktimer_loop) {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">int</span> i = 0;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <a class="code" href="struct__ktimer__t.html">ktimer_t</a>*      timer = 0;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* node  = 0;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* temp  = 0;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    assert(ktimer_loop);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="comment">/* 销毁所有槽内链表 */</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordflow">for</span> (; i &lt; ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#a539d113be48c3032a148a47336b35821">max_slot</a>; i++) {</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <a class="code" href="list_8h.html#a06e8f967efba4722dce2899baaa5c155">dlist_for_each_safe</a>(ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#a69102bd45d4b4970f3e1835cb4f71609">ktimer_wheels</a>[i], node, temp) {</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            timer = (<a class="code" href="struct__ktimer__t.html">ktimer_t</a>*)<a class="code" href="list_8c.html#a8a84722d067652fd9347f0a59732ec80">dlist_node_get_data</a>(node);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;            <a class="code" href="knet_2timer_8c.html#af64f93b32c31cd222c02f0ad40bb642c">ktimer_destroy</a>(timer);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        }</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <a class="code" href="list_8c.html#a1808c7551ebb6dcbae569f7e784456ce">dlist_destroy</a>(ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#a69102bd45d4b4970f3e1835cb4f71609">ktimer_wheels</a>[i]);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    }</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <a class="code" href="config_8h.html#a7bb0b359ffebe8a540dded73bd47417a">destroy</a>(ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#a69102bd45d4b4970f3e1835cb4f71609">ktimer_wheels</a>);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <a class="code" href="config_8h.html#a7bb0b359ffebe8a540dded73bd47417a">destroy</a>(ktimer_loop);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;}</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="timer__api_8h.html#a5e31b2fc26af005e97b09804c5a98099">   97</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="knet_2timer_8c.html#a5e31b2fc26af005e97b09804c5a98099">ktimer_loop_run</a>(<a class="code" href="struct__ktimer__loop__t.html">ktimer_loop_t</a>* ktimer_loop) {</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    assert(ktimer_loop);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#a2f45113638a0b749a8a205d2cd7fb42b">running</a> = 1;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordflow">while</span> (ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#a2f45113638a0b749a8a205d2cd7fb42b">running</a>) {</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <a class="code" href="misc_8c.html#abddf3ac30aac3f22f8c53b7517e6eb35">thread_sleep_ms</a>((<span class="keywordtype">int</span>)ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#a0856d0e2658f936061e29b6429eb0852">tick_intval</a>);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <a class="code" href="knet_2timer_8c.html#af195cf4006bced494e99242c36ad36c0">ktimer_loop_run_once</a>(ktimer_loop);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    }</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;}</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="timer__api_8h.html#a9d51f5fa5d9609d783eb4b0e05101079">  106</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="knet_2timer_8c.html#a9d51f5fa5d9609d783eb4b0e05101079">ktimer_loop_exit</a>(<a class="code" href="struct__ktimer__loop__t.html">ktimer_loop_t</a>* ktimer_loop) {</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    assert(ktimer_loop);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#a2f45113638a0b749a8a205d2cd7fb42b">running</a> = 0;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;}</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="knet_2timer_8c.html#a0da724208f00bf918c6a211978987564">  111</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="knet_2timer_8c.html#a0da724208f00bf918c6a211978987564">_ktimer_loop_select_slot</a>(<a class="code" href="struct__ktimer__loop__t.html">ktimer_loop_t</a>* ktimer_loop, time_t ms) {</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="comment">/* 计算按当前槽位的位置，后面哪个槽位会触发定时器 */</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordflow">return</span> (<span class="keywordtype">int</span>)(ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#a83d6e2127b4cc5e01f2012608487d31a">slot</a> + ms / ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#a0856d0e2658f936061e29b6429eb0852">tick_intval</a>) % ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#a539d113be48c3032a148a47336b35821">max_slot</a>;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;}</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="knet_2timer_8c.html#a24405f7d3c813580ab995e6dd8d35871">  116</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="knet_2timer_8c.html#a24405f7d3c813580ab995e6dd8d35871">_ktimer_loop_add_timer</a>(<a class="code" href="struct__ktimer__loop__t.html">ktimer_loop_t</a>* ktimer_loop, <a class="code" href="struct__ktimer__t.html">ktimer_t</a>* timer) {</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="comment">/* 新timer都加入到下次运行的槽位，如果未过期会被调整到后续槽位 */</span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* node = <a class="code" href="list_8c.html#aadf245848d5b31e84c73a6755b78b23c">dlist_add_tail_node</a>(ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#a69102bd45d4b4970f3e1835cb4f71609">ktimer_wheels</a>[ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#a83d6e2127b4cc5e01f2012608487d31a">slot</a>], timer);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <a class="code" href="knet_2timer_8c.html#a7c448e677f3022e5e7d910d3961dda61">ktimer_set_current_list</a>(timer, ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#a69102bd45d4b4970f3e1835cb4f71609">ktimer_wheels</a>[ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#a83d6e2127b4cc5e01f2012608487d31a">slot</a>]);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <a class="code" href="knet_2timer_8c.html#a9d06164f71d9a170962ba64e2cb7b79f">ktimer_set_current_list_node</a>(timer, node);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;}</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
+<div class="line"><a name="l00123"></a><span class="lineno"><a class="line" href="knet_2timer_8c.html#ac3dbbad088660cb92568eaf14d4a57d6">  123</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="knet_2timer_8c.html#ac3dbbad088660cb92568eaf14d4a57d6">_ktimer_loop_add_ktimer_node</a>(<a class="code" href="struct__ktimer__loop__t.html">ktimer_loop_t</a>* ktimer_loop, <a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* node, time_t ms) {</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keywordtype">int</span> slot = <a class="code" href="knet_2timer_8c.html#a0da724208f00bf918c6a211978987564">_ktimer_loop_select_slot</a>(ktimer_loop, ms);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    <a class="code" href="struct__ktimer__t.html">ktimer_t</a>* timer = (<a class="code" href="struct__ktimer__t.html">ktimer_t</a>*)<a class="code" href="list_8c.html#a8a84722d067652fd9347f0a59732ec80">dlist_node_get_data</a>(node);</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <a class="code" href="list_8c.html#a2786bda01e956f3ecb544184d01b6402">dlist_add_tail</a>(ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#a69102bd45d4b4970f3e1835cb4f71609">ktimer_wheels</a>[slot], node);</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <a class="code" href="knet_2timer_8c.html#a7c448e677f3022e5e7d910d3961dda61">ktimer_set_current_list</a>(timer, ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#a69102bd45d4b4970f3e1835cb4f71609">ktimer_wheels</a>[slot]);</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;}</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div>
+<div class="line"><a name="l00130"></a><span class="lineno"><a class="line" href="knet_2timer_8c.html#a68416fe66d6354b07e258713db6adb2d">  130</a></span>&#160;<a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* <a class="code" href="knet_2timer_8c.html#a68416fe66d6354b07e258713db6adb2d">_ktimer_loop_remove_timer</a>(<a class="code" href="struct__ktimer__t.html">ktimer_t</a>* timer) {</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <a class="code" href="struct__dlist__t.html">dlist_t</a>* current_list = <a class="code" href="knet_2timer_8c.html#ad43b4e56bb273f1559d13143a783c974">ktimer_get_current_list</a>(timer);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* list_node = <a class="code" href="knet_2timer_8c.html#afdfb2aec56b4e94af90f3befcef9b223">ktimer_get_current_list_node</a>(timer);</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <a class="code" href="list_8c.html#a81811e5aa6e78ba8bbfad6b065c2c06b">dlist_remove</a>(current_list, list_node);</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    <a class="code" href="knet_2timer_8c.html#a7c448e677f3022e5e7d910d3961dda61">ktimer_set_current_list</a>(timer, 0);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <span class="keywordflow">return</span> list_node;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;} </div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;</div>
+<div class="line"><a name="l00138"></a><span class="lineno"><a class="line" href="timer__api_8h.html#af195cf4006bced494e99242c36ad36c0">  138</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="knet_2timer_8c.html#af195cf4006bced494e99242c36ad36c0">ktimer_loop_run_once</a>(<a class="code" href="struct__ktimer__loop__t.html">ktimer_loop_t</a>* ktimer_loop) {</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* node   = 0;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;    <a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* temp   = 0;</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    <a class="code" href="struct__dlist__t.html">dlist_t</a>*      timers = 0;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <a class="code" href="struct__ktimer__t.html">ktimer_t</a>*      timer = 0;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;    time_t        ms     = <a class="code" href="misc_8c.html#a528d27a7218cb2fdabf81ca343e24fc9">time_get_milliseconds</a>(); <span class="comment">/* 当前时间戳（毫秒） */</span></div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <span class="keywordtype">int</span>           count  = 0;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    assert(ktimer_loop);</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    timers = ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#a69102bd45d4b4970f3e1835cb4f71609">ktimer_wheels</a>[ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#a83d6e2127b4cc5e01f2012608487d31a">slot</a>];</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    <a class="code" href="list_8h.html#a06e8f967efba4722dce2899baaa5c155">dlist_for_each_safe</a>(timers, node, temp) {</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        timer = (<a class="code" href="struct__ktimer__t.html">ktimer_t</a>*)<a class="code" href="list_8c.html#a8a84722d067652fd9347f0a59732ec80">dlist_node_get_data</a>(node);</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        <span class="keywordflow">if</span> (!<a class="code" href="knet_2timer_8c.html#a16dfe04af38883e142c0a6583c1ea664">_ktimer_check_stop</a>(timer)) {</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;            <span class="comment">/* 处理定时器 */</span></div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="knet_2timer_8c.html#a6e263963404ff40c8d7865ba117d3446">ktimer_check_timeout</a>(timer, ms)) {</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;                count++;</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;            }</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;            <span class="comment">/* 销毁 */</span></div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;            <a class="code" href="knet_2timer_8c.html#af64f93b32c31cd222c02f0ad40bb642c">ktimer_destroy</a>(timer);</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;        }</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    }</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    <span class="comment">/* 下一个槽位 */</span></div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#a83d6e2127b4cc5e01f2012608487d31a">slot</a> = (ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#a83d6e2127b4cc5e01f2012608487d31a">slot</a> + 1) % ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#a539d113be48c3032a148a47336b35821">max_slot</a>;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="comment">/* 记录上次tick时间戳 */</span></div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#aaaecc5607d83f3b99b0eafd1240c33e8">last_tick</a> = ms;</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <span class="keywordflow">return</span> count;</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;}</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;</div>
+<div class="line"><a name="l00166"></a><span class="lineno"><a class="line" href="knet_2timer_8c.html#a16dfe04af38883e142c0a6583c1ea664">  166</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="knet_2timer_8c.html#a16dfe04af38883e142c0a6583c1ea664">_ktimer_check_stop</a>(<a class="code" href="struct__ktimer__t.html">ktimer_t</a>* timer) {</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <span class="keywordflow">return</span> timer-&gt;<a class="code" href="struct__ktimer__t.html#a6c0af9f2e97842405fb15ed952ef2976">stop</a>;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;}</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;</div>
+<div class="line"><a name="l00170"></a><span class="lineno"><a class="line" href="timer__api_8h.html#ad2c8d1024db56a0bef97ea47fb07a920">  170</a></span>&#160;<a class="code" href="struct__ktimer__loop__t.html">ktimer_loop_t</a>* <a class="code" href="knet_2timer_8c.html#ad2c8d1024db56a0bef97ea47fb07a920">ktimer_get_loop</a>(<a class="code" href="struct__ktimer__t.html">ktimer_t</a>* timer) {</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    <span class="keywordflow">return</span> timer-&gt;<a class="code" href="struct__ktimer__t.html#afecd1f25004f7b34c54195e15b9b6f26">ktimer_loop</a>;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;}</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;</div>
+<div class="line"><a name="l00174"></a><span class="lineno"><a class="line" href="timer_8h.html#a7c448e677f3022e5e7d910d3961dda61">  174</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="knet_2timer_8c.html#a7c448e677f3022e5e7d910d3961dda61">ktimer_set_current_list</a>(<a class="code" href="struct__ktimer__t.html">ktimer_t</a>* timer, <a class="code" href="struct__dlist__t.html">dlist_t</a>* list) {</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    assert(timer); <span class="comment">/* list可以为零 */</span></div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    timer-&gt;<a class="code" href="struct__ktimer__t.html#a8621a5cdd71a0fb2a93c75ad076f43af">current_list</a> = list;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;}</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;</div>
+<div class="line"><a name="l00179"></a><span class="lineno"><a class="line" href="timer_8h.html#a9d06164f71d9a170962ba64e2cb7b79f">  179</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="knet_2timer_8c.html#a9d06164f71d9a170962ba64e2cb7b79f">ktimer_set_current_list_node</a>(<a class="code" href="struct__ktimer__t.html">ktimer_t</a>* timer, <a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* node) {</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;    assert(timer);</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    assert(node);</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    timer-&gt;<a class="code" href="struct__ktimer__t.html#a1077e5b0269760e53b61c2d62c5ae6a3">list_node</a> = node;</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;}</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;</div>
+<div class="line"><a name="l00185"></a><span class="lineno"><a class="line" href="timer_8h.html#ad43b4e56bb273f1559d13143a783c974">  185</a></span>&#160;<a class="code" href="struct__dlist__t.html">dlist_t</a>* <a class="code" href="knet_2timer_8c.html#ad43b4e56bb273f1559d13143a783c974">ktimer_get_current_list</a>(<a class="code" href="struct__ktimer__t.html">ktimer_t</a>* timer) {</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    assert(timer);</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;    <span class="keywordflow">return</span> timer-&gt;<a class="code" href="struct__ktimer__t.html#a8621a5cdd71a0fb2a93c75ad076f43af">current_list</a>;</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;}</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;</div>
+<div class="line"><a name="l00190"></a><span class="lineno"><a class="line" href="timer_8h.html#afdfb2aec56b4e94af90f3befcef9b223">  190</a></span>&#160;<a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* <a class="code" href="knet_2timer_8c.html#afdfb2aec56b4e94af90f3befcef9b223">ktimer_get_current_list_node</a>(<a class="code" href="struct__ktimer__t.html">ktimer_t</a>* timer) {</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;    assert(timer);</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    <span class="keywordflow">return</span> timer-&gt;<a class="code" href="struct__ktimer__t.html#a1077e5b0269760e53b61c2d62c5ae6a3">list_node</a>;</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;}</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;</div>
+<div class="line"><a name="l00195"></a><span class="lineno"><a class="line" href="timer__api_8h.html#a37901569361ae2a726a1973d7da2d6e5">  195</a></span>&#160;<a class="code" href="struct__ktimer__t.html">ktimer_t</a>* <a class="code" href="knet_2timer_8c.html#a37901569361ae2a726a1973d7da2d6e5">ktimer_create</a>(<a class="code" href="struct__ktimer__loop__t.html">ktimer_loop_t</a>* ktimer_loop) {</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    <a class="code" href="struct__ktimer__t.html">ktimer_t</a>* timer = 0;</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    assert(ktimer_loop);</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;    timer = <a class="code" href="config_8h.html#ab079e894d07566f511f1a5046a1eefe5">create</a>(<a class="code" href="struct__ktimer__t.html">ktimer_t</a>);</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    assert(timer);</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;    memset(timer, 0, <span class="keyword">sizeof</span>(<a class="code" href="struct__ktimer__t.html">ktimer_t</a>));</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    timer-&gt;<a class="code" href="struct__ktimer__t.html#afecd1f25004f7b34c54195e15b9b6f26">ktimer_loop</a> = ktimer_loop;</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    <span class="keywordflow">return</span> timer;</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;}</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;</div>
+<div class="line"><a name="l00205"></a><span class="lineno"><a class="line" href="timer_8h.html#af64f93b32c31cd222c02f0ad40bb642c">  205</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="knet_2timer_8c.html#af64f93b32c31cd222c02f0ad40bb642c">ktimer_destroy</a>(<a class="code" href="struct__ktimer__t.html">ktimer_t</a>* timer) {</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    assert(timer);</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    assert(timer-&gt;<a class="code" href="struct__ktimer__t.html#a8621a5cdd71a0fb2a93c75ad076f43af">current_list</a>);</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;    assert(timer-&gt;<a class="code" href="struct__ktimer__t.html#a1077e5b0269760e53b61c2d62c5ae6a3">list_node</a>);</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    <a class="code" href="list_8c.html#a865e84612f96509282eb9735761b1106">dlist_delete</a>(timer-&gt;<a class="code" href="struct__ktimer__t.html#a8621a5cdd71a0fb2a93c75ad076f43af">current_list</a>, timer-&gt;<a class="code" href="struct__ktimer__t.html#a1077e5b0269760e53b61c2d62c5ae6a3">list_node</a>);</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;    free(timer);</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;}</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;</div>
+<div class="line"><a name="l00213"></a><span class="lineno"><a class="line" href="timer__api_8h.html#a9387b99ff760183fe8b61c8c46d6efc8">  213</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="knet_2timer_8c.html#a9387b99ff760183fe8b61c8c46d6efc8">ktimer_check_dead</a>(<a class="code" href="struct__ktimer__t.html">ktimer_t</a>* timer) {</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    <span class="keywordflow">if</span> (timer-&gt;<a class="code" href="struct__ktimer__t.html#aa889e3eed3259dbe68bac4c2887fd912">type</a> == <a class="code" href="config_8h.html#a7945681f6589a5f4f6cf55f4f4092d28a38f811140d9f2e24e4f0497b3cc98c12">ktimer_type_once</a>) {</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (timer-&gt;<a class="code" href="struct__ktimer__t.html#aa889e3eed3259dbe68bac4c2887fd912">type</a> == <a class="code" href="config_8h.html#a7945681f6589a5f4f6cf55f4f4092d28a5177e187d996ae100c6a6f4664b213b4">ktimer_type_times</a>) {</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;        <span class="keywordflow">if</span> (timer-&gt;<a class="code" href="struct__ktimer__t.html#aad4f4c24ba75d1526ad9a49089a2d067">times</a> &lt;= timer-&gt;<a class="code" href="struct__ktimer__t.html#a3ac569d3fe93e34db02d334b0515146e">current_times</a>) {</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;            <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;        }</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    }</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;}</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;</div>
+<div class="line"><a name="l00224"></a><span class="lineno"><a class="line" href="timer__api_8h.html#a71282c2dc8bac0935617b1271f4066e6">  224</a></span>&#160;time_t <a class="code" href="knet_2timer_8c.html#a71282c2dc8bac0935617b1271f4066e6">ktimer_loop_get_tick_intval</a>(<a class="code" href="struct__ktimer__loop__t.html">ktimer_loop_t</a>* ktimer_loop) {</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;    <span class="keywordflow">return</span> ktimer_loop-&gt;<a class="code" href="struct__ktimer__loop__t.html#a0856d0e2658f936061e29b6429eb0852">tick_intval</a>;</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;}</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;</div>
+<div class="line"><a name="l00228"></a><span class="lineno"><a class="line" href="timer_8h.html#a6e263963404ff40c8d7865ba117d3446">  228</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="knet_2timer_8c.html#a6e263963404ff40c8d7865ba117d3446">ktimer_check_timeout</a>(<a class="code" href="struct__ktimer__t.html">ktimer_t</a>* timer, time_t ms) {</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    <a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* node         = 0;</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;    time_t        tick_intval  = 0;</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    <a class="code" href="struct__ktimer__loop__t.html">ktimer_loop_t</a>* ktimer_loop = 0;</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    assert(timer);</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    ktimer_loop = timer-&gt;<a class="code" href="struct__ktimer__t.html#afecd1f25004f7b34c54195e15b9b6f26">ktimer_loop</a>;</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;    assert(ktimer_loop);</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;    tick_intval = <a class="code" href="knet_2timer_8c.html#a71282c2dc8bac0935617b1271f4066e6">ktimer_loop_get_tick_intval</a>(ktimer_loop);</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    <span class="keywordflow">if</span> (timer-&gt;<a class="code" href="struct__ktimer__t.html#ac00f09be782cfb10bb1b179c189ad18b">ms</a> &gt; ms) {</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;        <span class="comment">/* 在将来的时间到期，检测是否可以触发 */</span></div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;        <span class="keywordflow">if</span> (timer-&gt;<a class="code" href="struct__ktimer__t.html#ac00f09be782cfb10bb1b179c189ad18b">ms</a> - ms &gt;= tick_intval) {</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;            <span class="comment">/* 距离下次超时时间大于（等于）一个tick间隔, 可以被下次触发, 调整到后续槽位槽位 */</span></div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;            node = <a class="code" href="knet_2timer_8c.html#a68416fe66d6354b07e258713db6adb2d">_ktimer_loop_remove_timer</a>(timer);</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;            <a class="code" href="knet_2timer_8c.html#ac3dbbad088660cb92568eaf14d4a57d6">_ktimer_loop_add_ktimer_node</a>(timer-&gt;<a class="code" href="struct__ktimer__t.html#afecd1f25004f7b34c54195e15b9b6f26">ktimer_loop</a>, node, timer-&gt;<a class="code" href="struct__ktimer__t.html#ac00f09be782cfb10bb1b179c189ad18b">ms</a> - ms);</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;            <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;            <span class="comment">/* 距离下次超时时间小于一个tick间隔, 如果下一轮触发已经多超时了一个tick间隔 */</span></div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        }</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    }</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    <span class="keywordflow">if</span> (timer-&gt;<a class="code" href="struct__ktimer__t.html#aa889e3eed3259dbe68bac4c2887fd912">type</a> == <a class="code" href="config_8h.html#a7945681f6589a5f4f6cf55f4f4092d28a5177e187d996ae100c6a6f4664b213b4">ktimer_type_times</a>) {</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;        <span class="comment">/* 先改变次数 */</span></div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;        timer-&gt;<a class="code" href="struct__ktimer__t.html#ac00f09be782cfb10bb1b179c189ad18b">ms</a> = ms + timer-&gt;<a class="code" href="struct__ktimer__t.html#ac51a900086331031163d965952207477">intval</a>;</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;        timer-&gt;<a class="code" href="struct__ktimer__t.html#a3ac569d3fe93e34db02d334b0515146e">current_times</a>++;</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    }</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    timer-&gt;<a class="code" href="struct__ktimer__t.html#a4009fd19bb25e5ed5e9b971db1d62a98">cb</a>(timer, timer-&gt;<a class="code" href="struct__ktimer__t.html#a735984d41155bc1032e09bece8f8d66d">data</a>);</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    <span class="keywordflow">if</span> (<a class="code" href="knet_2timer_8c.html#a16dfe04af38883e142c0a6583c1ea664">_ktimer_check_stop</a>(timer)) {</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;        <span class="comment">/* 回调内调用ktimer_stop() */</span></div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;        <a class="code" href="knet_2timer_8c.html#af64f93b32c31cd222c02f0ad40bb642c">ktimer_destroy</a>(timer);</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;        <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    }</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;    <span class="keywordflow">if</span> (timer-&gt;<a class="code" href="struct__ktimer__t.html#aa889e3eed3259dbe68bac4c2887fd912">type</a> == <a class="code" href="config_8h.html#a7945681f6589a5f4f6cf55f4f4092d28a38f811140d9f2e24e4f0497b3cc98c12">ktimer_type_once</a>) {</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;        <a class="code" href="knet_2timer_8c.html#af64f93b32c31cd222c02f0ad40bb642c">ktimer_destroy</a>(timer);</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (timer-&gt;<a class="code" href="struct__ktimer__t.html#aa889e3eed3259dbe68bac4c2887fd912">type</a> == <a class="code" href="config_8h.html#a7945681f6589a5f4f6cf55f4f4092d28a3a34fc04caa1ae76860b989fa8b5033d">ktimer_type_period</a>) {</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;        timer-&gt;<a class="code" href="struct__ktimer__t.html#ac00f09be782cfb10bb1b179c189ad18b">ms</a> = ms + timer-&gt;<a class="code" href="struct__ktimer__t.html#ac51a900086331031163d965952207477">intval</a>;</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;        node = <a class="code" href="knet_2timer_8c.html#a68416fe66d6354b07e258713db6adb2d">_ktimer_loop_remove_timer</a>(timer);</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;        <a class="code" href="knet_2timer_8c.html#ac3dbbad088660cb92568eaf14d4a57d6">_ktimer_loop_add_ktimer_node</a>(timer-&gt;<a class="code" href="struct__ktimer__t.html#afecd1f25004f7b34c54195e15b9b6f26">ktimer_loop</a>, node, timer-&gt;<a class="code" href="struct__ktimer__t.html#ac51a900086331031163d965952207477">intval</a>);</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (timer-&gt;<a class="code" href="struct__ktimer__t.html#aa889e3eed3259dbe68bac4c2887fd912">type</a> == <a class="code" href="config_8h.html#a7945681f6589a5f4f6cf55f4f4092d28a5177e187d996ae100c6a6f4664b213b4">ktimer_type_times</a>) {</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;        <span class="keywordflow">if</span> (timer-&gt;<a class="code" href="struct__ktimer__t.html#aad4f4c24ba75d1526ad9a49089a2d067">times</a> &lt;= timer-&gt;<a class="code" href="struct__ktimer__t.html#a3ac569d3fe93e34db02d334b0515146e">current_times</a>) {</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;            <a class="code" href="knet_2timer_8c.html#af64f93b32c31cd222c02f0ad40bb642c">ktimer_destroy</a>(timer);</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;        } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;            node = <a class="code" href="knet_2timer_8c.html#a68416fe66d6354b07e258713db6adb2d">_ktimer_loop_remove_timer</a>(timer);</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;            <a class="code" href="knet_2timer_8c.html#ac3dbbad088660cb92568eaf14d4a57d6">_ktimer_loop_add_ktimer_node</a>(timer-&gt;<a class="code" href="struct__ktimer__t.html#afecd1f25004f7b34c54195e15b9b6f26">ktimer_loop</a>, node, timer-&gt;<a class="code" href="struct__ktimer__t.html#ac51a900086331031163d965952207477">intval</a>);</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;        }</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;    }</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;}</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;</div>
+<div class="line"><a name="l00275"></a><span class="lineno"><a class="line" href="timer__api_8h.html#a1465f5ddec41fa81c429d1647dc5e7a9">  275</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="knet_2timer_8c.html#a1465f5ddec41fa81c429d1647dc5e7a9">ktimer_stop</a>(<a class="code" href="struct__ktimer__t.html">ktimer_t</a>* timer) {</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;    assert(timer);</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;    timer-&gt;<a class="code" href="struct__ktimer__t.html#a6c0af9f2e97842405fb15ed952ef2976">stop</a> = 1;</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="config_8h.html#ad8bc998d415be9115a064a8307df0ed5a722f316dc97e835ba613f7a505992dfd">error_ok</a>;</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;}</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;</div>
+<div class="line"><a name="l00281"></a><span class="lineno"><a class="line" href="timer__api_8h.html#a8c5900fb62a63dc71cc9f38ac6427ad1">  281</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="knet_2timer_8c.html#a8c5900fb62a63dc71cc9f38ac6427ad1">ktimer_start</a>(<a class="code" href="struct__ktimer__t.html">ktimer_t</a>* timer, <a class="code" href="config_8h.html#a2333fd0f2c3a85faf586300ca40deed4">ktimer_cb_t</a> cb, <span class="keywordtype">void</span>* data, time_t ms) {</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;    assert(timer);</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    assert(cb);</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;    assert(ms);</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    <span class="keywordflow">if</span> (timer-&gt;<a class="code" href="struct__ktimer__t.html#a8621a5cdd71a0fb2a93c75ad076f43af">current_list</a>) {</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="config_8h.html#ad8bc998d415be9115a064a8307df0ed5aa31d63fb607c438a0fc7f5fed4fec444">error_multiple_start</a>;</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;    }</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;    timer-&gt;<a class="code" href="struct__ktimer__t.html#a4009fd19bb25e5ed5e9b971db1d62a98">cb</a>     = cb;</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;    timer-&gt;<a class="code" href="struct__ktimer__t.html#a735984d41155bc1032e09bece8f8d66d">data</a>   = data;</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;    timer-&gt;<a class="code" href="struct__ktimer__t.html#aa889e3eed3259dbe68bac4c2887fd912">type</a>   = <a class="code" href="config_8h.html#a7945681f6589a5f4f6cf55f4f4092d28a3a34fc04caa1ae76860b989fa8b5033d">ktimer_type_period</a>;</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    timer-&gt;<a class="code" href="struct__ktimer__t.html#ac00f09be782cfb10bb1b179c189ad18b">ms</a>     = <a class="code" href="misc_8c.html#a528d27a7218cb2fdabf81ca343e24fc9">time_get_milliseconds</a>() + ms;</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    timer-&gt;<a class="code" href="struct__ktimer__t.html#ac51a900086331031163d965952207477">intval</a> = ms;</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;    <a class="code" href="knet_2timer_8c.html#a24405f7d3c813580ab995e6dd8d35871">_ktimer_loop_add_timer</a>(timer-&gt;<a class="code" href="struct__ktimer__t.html#afecd1f25004f7b34c54195e15b9b6f26">ktimer_loop</a>, timer);</div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="config_8h.html#ad8bc998d415be9115a064a8307df0ed5a722f316dc97e835ba613f7a505992dfd">error_ok</a>;</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;}</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;</div>
+<div class="line"><a name="l00297"></a><span class="lineno"><a class="line" href="timer__api_8h.html#a9c37409260a72e3218ae4fcaf44d79bc">  297</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="knet_2timer_8c.html#a9c37409260a72e3218ae4fcaf44d79bc">ktimer_start_once</a>(<a class="code" href="struct__ktimer__t.html">ktimer_t</a>* timer, <a class="code" href="config_8h.html#a2333fd0f2c3a85faf586300ca40deed4">ktimer_cb_t</a> cb, <span class="keywordtype">void</span>* data, time_t ms) {</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    assert(timer);</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    assert(cb);</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;    assert(ms);</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;    <span class="keywordflow">if</span> (timer-&gt;<a class="code" href="struct__ktimer__t.html#a8621a5cdd71a0fb2a93c75ad076f43af">current_list</a>) {</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="config_8h.html#ad8bc998d415be9115a064a8307df0ed5aa31d63fb607c438a0fc7f5fed4fec444">error_multiple_start</a>;</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    }</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    timer-&gt;<a class="code" href="struct__ktimer__t.html#a4009fd19bb25e5ed5e9b971db1d62a98">cb</a>     = cb;</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    timer-&gt;<a class="code" href="struct__ktimer__t.html#a735984d41155bc1032e09bece8f8d66d">data</a>   = data;</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;    timer-&gt;<a class="code" href="struct__ktimer__t.html#aa889e3eed3259dbe68bac4c2887fd912">type</a>   = <a class="code" href="config_8h.html#a7945681f6589a5f4f6cf55f4f4092d28a38f811140d9f2e24e4f0497b3cc98c12">ktimer_type_once</a>;</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;    timer-&gt;<a class="code" href="struct__ktimer__t.html#ac00f09be782cfb10bb1b179c189ad18b">ms</a>     = <a class="code" href="misc_8c.html#a528d27a7218cb2fdabf81ca343e24fc9">time_get_milliseconds</a>() + ms;</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    timer-&gt;<a class="code" href="struct__ktimer__t.html#ac51a900086331031163d965952207477">intval</a> = ms;</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;    <a class="code" href="knet_2timer_8c.html#a24405f7d3c813580ab995e6dd8d35871">_ktimer_loop_add_timer</a>(timer-&gt;<a class="code" href="struct__ktimer__t.html#afecd1f25004f7b34c54195e15b9b6f26">ktimer_loop</a>, timer);</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="config_8h.html#ad8bc998d415be9115a064a8307df0ed5a722f316dc97e835ba613f7a505992dfd">error_ok</a>;</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;}</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;</div>
+<div class="line"><a name="l00313"></a><span class="lineno"><a class="line" href="timer__api_8h.html#a285936846760d9f325e588d2e2105fe5">  313</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="knet_2timer_8c.html#a285936846760d9f325e588d2e2105fe5">ktimer_start_times</a>(<a class="code" href="struct__ktimer__t.html">ktimer_t</a>* timer, <a class="code" href="config_8h.html#a2333fd0f2c3a85faf586300ca40deed4">ktimer_cb_t</a> cb, <span class="keywordtype">void</span>* data, time_t ms, <span class="keywordtype">int</span> times) {</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;    assert(timer);</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    assert(cb);</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    assert(ms);</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    <span class="keywordflow">if</span> (timer-&gt;<a class="code" href="struct__ktimer__t.html#a8621a5cdd71a0fb2a93c75ad076f43af">current_list</a>) {</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="config_8h.html#ad8bc998d415be9115a064a8307df0ed5aa31d63fb607c438a0fc7f5fed4fec444">error_multiple_start</a>;</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    }</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    timer-&gt;<a class="code" href="struct__ktimer__t.html#a4009fd19bb25e5ed5e9b971db1d62a98">cb</a>     = cb;</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    timer-&gt;<a class="code" href="struct__ktimer__t.html#a735984d41155bc1032e09bece8f8d66d">data</a>   = data;</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;    timer-&gt;<a class="code" href="struct__ktimer__t.html#aa889e3eed3259dbe68bac4c2887fd912">type</a>   = <a class="code" href="config_8h.html#a7945681f6589a5f4f6cf55f4f4092d28a5177e187d996ae100c6a6f4664b213b4">ktimer_type_times</a>;</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    timer-&gt;<a class="code" href="struct__ktimer__t.html#aad4f4c24ba75d1526ad9a49089a2d067">times</a>  = times;</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;    timer-&gt;<a class="code" href="struct__ktimer__t.html#ac00f09be782cfb10bb1b179c189ad18b">ms</a>     = <a class="code" href="misc_8c.html#a528d27a7218cb2fdabf81ca343e24fc9">time_get_milliseconds</a>() + ms;</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    timer-&gt;<a class="code" href="struct__ktimer__t.html#ac51a900086331031163d965952207477">intval</a> = ms;</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;    <a class="code" href="knet_2timer_8c.html#a24405f7d3c813580ab995e6dd8d35871">_ktimer_loop_add_timer</a>(timer-&gt;<a class="code" href="struct__ktimer__t.html#afecd1f25004f7b34c54195e15b9b6f26">ktimer_loop</a>, timer);</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="config_8h.html#ad8bc998d415be9115a064a8307df0ed5a722f316dc97e835ba613f7a505992dfd">error_ok</a>;</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;}</div>
+<div class="ttc" id="struct__ktimer__loop__t_html"><div class="ttname"><a href="struct__ktimer__loop__t.html">_ktimer_loop_t</a></div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00044">timer.c:44</a></div></div>
+<div class="ttc" id="knet_2timer_8c_html_a285936846760d9f325e588d2e2105fe5"><div class="ttname"><a href="knet_2timer_8c.html#a285936846760d9f325e588d2e2105fe5">ktimer_start_times</a></div><div class="ttdeci">int ktimer_start_times(ktimer_t *timer, ktimer_cb_t cb, void *data, time_t ms, int times)</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00313">timer.c:313</a></div></div>
+<div class="ttc" id="misc_8c_html_abddf3ac30aac3f22f8c53b7517e6eb35"><div class="ttname"><a href="misc_8c.html#abddf3ac30aac3f22f8c53b7517e6eb35">thread_sleep_ms</a></div><div class="ttdeci">void thread_sleep_ms(int ms)</div><div class="ttdef"><b>Definition:</b> <a href="misc_8c_source.html#l00771">misc.c:771</a></div></div>
+<div class="ttc" id="misc_8h_html"><div class="ttname"><a href="misc_8h.html">misc.h</a></div></div>
+<div class="ttc" id="knet_2timer_8c_html_ad43b4e56bb273f1559d13143a783c974"><div class="ttname"><a href="knet_2timer_8c.html#ad43b4e56bb273f1559d13143a783c974">ktimer_get_current_list</a></div><div class="ttdeci">dlist_t * ktimer_get_current_list(ktimer_t *timer)</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00185">timer.c:185</a></div></div>
+<div class="ttc" id="list_8c_html_a8a84722d067652fd9347f0a59732ec80"><div class="ttname"><a href="list_8c.html#a8a84722d067652fd9347f0a59732ec80">dlist_node_get_data</a></div><div class="ttdeci">void * dlist_node_get_data(dlist_node_t *node)</div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00078">list.c:78</a></div></div>
+<div class="ttc" id="knet_2timer_8c_html_a0da724208f00bf918c6a211978987564"><div class="ttname"><a href="knet_2timer_8c.html#a0da724208f00bf918c6a211978987564">_ktimer_loop_select_slot</a></div><div class="ttdeci">int _ktimer_loop_select_slot(ktimer_loop_t *ktimer_loop, time_t ms)</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00111">timer.c:111</a></div></div>
+<div class="ttc" id="list_8c_html_aadf245848d5b31e84c73a6755b78b23c"><div class="ttname"><a href="list_8c.html#aadf245848d5b31e84c73a6755b78b23c">dlist_add_tail_node</a></div><div class="ttdeci">dlist_node_t * dlist_add_tail_node(dlist_t *dlist, void *data)</div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00150">list.c:150</a></div></div>
+<div class="ttc" id="knet_2timer_8c_html_a7c448e677f3022e5e7d910d3961dda61"><div class="ttname"><a href="knet_2timer_8c.html#a7c448e677f3022e5e7d910d3961dda61">ktimer_set_current_list</a></div><div class="ttdeci">void ktimer_set_current_list(ktimer_t *timer, dlist_t *list)</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00174">timer.c:174</a></div></div>
+<div class="ttc" id="list_8c_html_a81811e5aa6e78ba8bbfad6b065c2c06b"><div class="ttname"><a href="list_8c.html#a81811e5aa6e78ba8bbfad6b065c2c06b">dlist_remove</a></div><div class="ttdeci">dlist_node_t * dlist_remove(dlist_t *dlist, dlist_node_t *node)</div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00170">list.c:170</a></div></div>
+<div class="ttc" id="config_8h_html_a2333fd0f2c3a85faf586300ca40deed4"><div class="ttname"><a href="config_8h.html#a2333fd0f2c3a85faf586300ca40deed4">ktimer_cb_t</a></div><div class="ttdeci">void(* ktimer_cb_t)(ktimer_t *, void *)</div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00261">config.h:261</a></div></div>
+<div class="ttc" id="knet_2timer_8c_html_ad2c8d1024db56a0bef97ea47fb07a920"><div class="ttname"><a href="knet_2timer_8c.html#ad2c8d1024db56a0bef97ea47fb07a920">ktimer_get_loop</a></div><div class="ttdeci">ktimer_loop_t * ktimer_get_loop(ktimer_t *timer)</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00170">timer.c:170</a></div></div>
+<div class="ttc" id="misc_8c_html_a528d27a7218cb2fdabf81ca343e24fc9"><div class="ttname"><a href="misc_8c.html#a528d27a7218cb2fdabf81ca343e24fc9">time_get_milliseconds</a></div><div class="ttdeci">uint32_t time_get_milliseconds()</div><div class="ttdef"><b>Definition:</b> <a href="misc_8c_source.html#l00822">misc.c:822</a></div></div>
+<div class="ttc" id="knet_2timer_8c_html_a71282c2dc8bac0935617b1271f4066e6"><div class="ttname"><a href="knet_2timer_8c.html#a71282c2dc8bac0935617b1271f4066e6">ktimer_loop_get_tick_intval</a></div><div class="ttdeci">time_t ktimer_loop_get_tick_intval(ktimer_loop_t *ktimer_loop)</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00224">timer.c:224</a></div></div>
+<div class="ttc" id="struct__ktimer__t_html"><div class="ttname"><a href="struct__ktimer__t.html">_ktimer_t</a></div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00030">timer.c:30</a></div></div>
+<div class="ttc" id="config_8h_html_a73e5ea936513264f9b838f33dc3eace9"><div class="ttname"><a href="config_8h.html#a73e5ea936513264f9b838f33dc3eace9">create_type</a></div><div class="ttdeci">#define create_type(type, size)</div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00097">config.h:97</a></div></div>
+<div class="ttc" id="knet_2timer_8c_html_a68416fe66d6354b07e258713db6adb2d"><div class="ttname"><a href="knet_2timer_8c.html#a68416fe66d6354b07e258713db6adb2d">_ktimer_loop_remove_timer</a></div><div class="ttdeci">dlist_node_t * _ktimer_loop_remove_timer(ktimer_t *timer)</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00130">timer.c:130</a></div></div>
+<div class="ttc" id="struct__ktimer__loop__t_html_a83d6e2127b4cc5e01f2012608487d31a"><div class="ttname"><a href="struct__ktimer__loop__t.html#a83d6e2127b4cc5e01f2012608487d31a">_ktimer_loop_t::slot</a></div><div class="ttdeci">int slot</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00048">timer.c:48</a></div></div>
+<div class="ttc" id="knet_2timer_8c_html_a37901569361ae2a726a1973d7da2d6e5"><div class="ttname"><a href="knet_2timer_8c.html#a37901569361ae2a726a1973d7da2d6e5">ktimer_create</a></div><div class="ttdeci">ktimer_t * ktimer_create(ktimer_loop_t *ktimer_loop)</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00195">timer.c:195</a></div></div>
+<div class="ttc" id="timer_8h_html"><div class="ttname"><a href="timer_8h.html">timer.h</a></div></div>
+<div class="ttc" id="struct__dlist__node__t_html"><div class="ttname"><a href="struct__dlist__node__t.html">_dlist_node_t</a></div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00031">list.c:31</a></div></div>
+<div class="ttc" id="knet_2timer_8c_html_afdfb2aec56b4e94af90f3befcef9b223"><div class="ttname"><a href="knet_2timer_8c.html#afdfb2aec56b4e94af90f3befcef9b223">ktimer_get_current_list_node</a></div><div class="ttdeci">dlist_node_t * ktimer_get_current_list_node(ktimer_t *timer)</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00190">timer.c:190</a></div></div>
+<div class="ttc" id="knet_2timer_8c_html_aef96e7c368db456236a2121e3d75c49c"><div class="ttname"><a href="knet_2timer_8c.html#aef96e7c368db456236a2121e3d75c49c">ktimer_loop_create</a></div><div class="ttdeci">ktimer_loop_t * ktimer_loop_create(time_t freq, int slot)</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00059">timer.c:59</a></div></div>
+<div class="ttc" id="knet_2timer_8c_html_a5e31b2fc26af005e97b09804c5a98099"><div class="ttname"><a href="knet_2timer_8c.html#a5e31b2fc26af005e97b09804c5a98099">ktimer_loop_run</a></div><div class="ttdeci">void ktimer_loop_run(ktimer_loop_t *ktimer_loop)</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00097">timer.c:97</a></div></div>
+<div class="ttc" id="list_8c_html_ac1229375358b81e2ae8fdf7a1e7dfee1"><div class="ttname"><a href="list_8c.html#ac1229375358b81e2ae8fdf7a1e7dfee1">dlist_create</a></div><div class="ttdeci">dlist_t * dlist_create()</div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00083">list.c:83</a></div></div>
+<div class="ttc" id="struct__ktimer__t_html_a1077e5b0269760e53b61c2d62c5ae6a3"><div class="ttname"><a href="struct__ktimer__t.html#a1077e5b0269760e53b61c2d62c5ae6a3">_ktimer_t::list_node</a></div><div class="ttdeci">dlist_node_t * list_node</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00032">timer.c:32</a></div></div>
+<div class="ttc" id="struct__ktimer__t_html_ac51a900086331031163d965952207477"><div class="ttname"><a href="struct__ktimer__t.html#ac51a900086331031163d965952207477">_ktimer_t::intval</a></div><div class="ttdeci">time_t intval</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00038">timer.c:38</a></div></div>
+<div class="ttc" id="knet_2timer_8c_html_a24405f7d3c813580ab995e6dd8d35871"><div class="ttname"><a href="knet_2timer_8c.html#a24405f7d3c813580ab995e6dd8d35871">_ktimer_loop_add_timer</a></div><div class="ttdeci">void _ktimer_loop_add_timer(ktimer_loop_t *ktimer_loop, ktimer_t *timer)</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00116">timer.c:116</a></div></div>
+<div class="ttc" id="config_8h_html_ab079e894d07566f511f1a5046a1eefe5"><div class="ttname"><a href="config_8h.html#ab079e894d07566f511f1a5046a1eefe5">create</a></div><div class="ttdeci">#define create(type)</div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00095">config.h:95</a></div></div>
+<div class="ttc" id="knet_2timer_8c_html_ac3dbbad088660cb92568eaf14d4a57d6"><div class="ttname"><a href="knet_2timer_8c.html#ac3dbbad088660cb92568eaf14d4a57d6">_ktimer_loop_add_ktimer_node</a></div><div class="ttdeci">void _ktimer_loop_add_ktimer_node(ktimer_loop_t *ktimer_loop, dlist_node_t *node, time_t ms)</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00123">timer.c:123</a></div></div>
+<div class="ttc" id="config_8h_html_a7945681f6589a5f4f6cf55f4f4092d28a5177e187d996ae100c6a6f4664b213b4"><div class="ttname"><a href="config_8h.html#a7945681f6589a5f4f6cf55f4f4092d28a5177e187d996ae100c6a6f4664b213b4">ktimer_type_times</a></div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00148">config.h:148</a></div></div>
+<div class="ttc" id="config_8h_html_a7945681f6589a5f4f6cf55f4f4092d28a38f811140d9f2e24e4f0497b3cc98c12"><div class="ttname"><a href="config_8h.html#a7945681f6589a5f4f6cf55f4f4092d28a38f811140d9f2e24e4f0497b3cc98c12">ktimer_type_once</a></div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00146">config.h:146</a></div></div>
+<div class="ttc" id="struct__ktimer__t_html_aad4f4c24ba75d1526ad9a49089a2d067"><div class="ttname"><a href="struct__ktimer__t.html#aad4f4c24ba75d1526ad9a49089a2d067">_ktimer_t::times</a></div><div class="ttdeci">int times</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00039">timer.c:39</a></div></div>
+<div class="ttc" id="knet_2timer_8c_html_ad3dafe93f5b45424bd5983ef0c163687"><div class="ttname"><a href="knet_2timer_8c.html#ad3dafe93f5b45424bd5983ef0c163687">ktimer_loop_destroy</a></div><div class="ttdeci">void ktimer_loop_destroy(ktimer_loop_t *ktimer_loop)</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00079">timer.c:79</a></div></div>
+<div class="ttc" id="struct__ktimer__t_html_a3ac569d3fe93e34db02d334b0515146e"><div class="ttname"><a href="struct__ktimer__t.html#a3ac569d3fe93e34db02d334b0515146e">_ktimer_t::current_times</a></div><div class="ttdeci">int current_times</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00040">timer.c:40</a></div></div>
+<div class="ttc" id="struct__ktimer__loop__t_html_a2f45113638a0b749a8a205d2cd7fb42b"><div class="ttname"><a href="struct__ktimer__loop__t.html#a2f45113638a0b749a8a205d2cd7fb42b">_ktimer_loop_t::running</a></div><div class="ttdeci">int running</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00046">timer.c:46</a></div></div>
+<div class="ttc" id="list_8h_html"><div class="ttname"><a href="list_8h.html">list.h</a></div></div>
+<div class="ttc" id="knet_2timer_8c_html_a9d51f5fa5d9609d783eb4b0e05101079"><div class="ttname"><a href="knet_2timer_8c.html#a9d51f5fa5d9609d783eb4b0e05101079">ktimer_loop_exit</a></div><div class="ttdeci">void ktimer_loop_exit(ktimer_loop_t *ktimer_loop)</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00106">timer.c:106</a></div></div>
+<div class="ttc" id="struct__ktimer__loop__t_html_a69102bd45d4b4970f3e1835cb4f71609"><div class="ttname"><a href="struct__ktimer__loop__t.html#a69102bd45d4b4970f3e1835cb4f71609">_ktimer_loop_t::ktimer_wheels</a></div><div class="ttdeci">dlist_t ** ktimer_wheels</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00045">timer.c:45</a></div></div>
+<div class="ttc" id="list_8c_html_a1808c7551ebb6dcbae569f7e784456ce"><div class="ttname"><a href="list_8c.html#a1808c7551ebb6dcbae569f7e784456ce">dlist_destroy</a></div><div class="ttdeci">void dlist_destroy(dlist_t *dlist)</div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00107">list.c:107</a></div></div>
+<div class="ttc" id="knet_2timer_8c_html_a1465f5ddec41fa81c429d1647dc5e7a9"><div class="ttname"><a href="knet_2timer_8c.html#a1465f5ddec41fa81c429d1647dc5e7a9">ktimer_stop</a></div><div class="ttdeci">int ktimer_stop(ktimer_t *timer)</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00275">timer.c:275</a></div></div>
+<div class="ttc" id="knet_2timer_8c_html_af195cf4006bced494e99242c36ad36c0"><div class="ttname"><a href="knet_2timer_8c.html#af195cf4006bced494e99242c36ad36c0">ktimer_loop_run_once</a></div><div class="ttdeci">int ktimer_loop_run_once(ktimer_loop_t *ktimer_loop)</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00138">timer.c:138</a></div></div>
+<div class="ttc" id="knet_2timer_8c_html_a9387b99ff760183fe8b61c8c46d6efc8"><div class="ttname"><a href="knet_2timer_8c.html#a9387b99ff760183fe8b61c8c46d6efc8">ktimer_check_dead</a></div><div class="ttdeci">int ktimer_check_dead(ktimer_t *timer)</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00213">timer.c:213</a></div></div>
+<div class="ttc" id="struct__ktimer__t_html_a4009fd19bb25e5ed5e9b971db1d62a98"><div class="ttname"><a href="struct__ktimer__t.html#a4009fd19bb25e5ed5e9b971db1d62a98">_ktimer_t::cb</a></div><div class="ttdeci">ktimer_cb_t cb</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00035">timer.c:35</a></div></div>
+<div class="ttc" id="list_8c_html_a865e84612f96509282eb9735761b1106"><div class="ttname"><a href="list_8c.html#a865e84612f96509282eb9735761b1106">dlist_delete</a></div><div class="ttdeci">void dlist_delete(dlist_t *dlist, dlist_node_t *node)</div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00182">list.c:182</a></div></div>
+<div class="ttc" id="knet_2timer_8c_html_a16dfe04af38883e142c0a6583c1ea664"><div class="ttname"><a href="knet_2timer_8c.html#a16dfe04af38883e142c0a6583c1ea664">_ktimer_check_stop</a></div><div class="ttdeci">int _ktimer_check_stop(ktimer_t *timer)</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00166">timer.c:166</a></div></div>
+<div class="ttc" id="knet_2timer_8c_html_af64f93b32c31cd222c02f0ad40bb642c"><div class="ttname"><a href="knet_2timer_8c.html#af64f93b32c31cd222c02f0ad40bb642c">ktimer_destroy</a></div><div class="ttdeci">void ktimer_destroy(ktimer_t *timer)</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00205">timer.c:205</a></div></div>
+<div class="ttc" id="knet_2timer_8c_html_a9c37409260a72e3218ae4fcaf44d79bc"><div class="ttname"><a href="knet_2timer_8c.html#a9c37409260a72e3218ae4fcaf44d79bc">ktimer_start_once</a></div><div class="ttdeci">int ktimer_start_once(ktimer_t *timer, ktimer_cb_t cb, void *data, time_t ms)</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00297">timer.c:297</a></div></div>
+<div class="ttc" id="struct__ktimer__t_html_a735984d41155bc1032e09bece8f8d66d"><div class="ttname"><a href="struct__ktimer__t.html#a735984d41155bc1032e09bece8f8d66d">_ktimer_t::data</a></div><div class="ttdeci">void * data</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00036">timer.c:36</a></div></div>
+<div class="ttc" id="logger_8h_html"><div class="ttname"><a href="logger_8h.html">logger.h</a></div></div>
+<div class="ttc" id="config_8h_html_ad8bc998d415be9115a064a8307df0ed5a722f316dc97e835ba613f7a505992dfd"><div class="ttname"><a href="config_8h.html#ad8bc998d415be9115a064a8307df0ed5a722f316dc97e835ba613f7a505992dfd">error_ok</a></div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00159">config.h:159</a></div></div>
+<div class="ttc" id="struct__ktimer__t_html_a6c0af9f2e97842405fb15ed952ef2976"><div class="ttname"><a href="struct__ktimer__t.html#a6c0af9f2e97842405fb15ed952ef2976">_ktimer_t::stop</a></div><div class="ttdeci">int stop</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00041">timer.c:41</a></div></div>
+<div class="ttc" id="struct__ktimer__t_html_afecd1f25004f7b34c54195e15b9b6f26"><div class="ttname"><a href="struct__ktimer__t.html#afecd1f25004f7b34c54195e15b9b6f26">_ktimer_t::ktimer_loop</a></div><div class="ttdeci">ktimer_loop_t * ktimer_loop</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00033">timer.c:33</a></div></div>
+<div class="ttc" id="knet_2timer_8c_html_a8c5900fb62a63dc71cc9f38ac6427ad1"><div class="ttname"><a href="knet_2timer_8c.html#a8c5900fb62a63dc71cc9f38ac6427ad1">ktimer_start</a></div><div class="ttdeci">int ktimer_start(ktimer_t *timer, ktimer_cb_t cb, void *data, time_t ms)</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00281">timer.c:281</a></div></div>
+<div class="ttc" id="struct__ktimer__t_html_ac00f09be782cfb10bb1b179c189ad18b"><div class="ttname"><a href="struct__ktimer__t.html#ac00f09be782cfb10bb1b179c189ad18b">_ktimer_t::ms</a></div><div class="ttdeci">time_t ms</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00037">timer.c:37</a></div></div>
+<div class="ttc" id="list_8h_html_a06e8f967efba4722dce2899baaa5c155"><div class="ttname"><a href="list_8h.html#a06e8f967efba4722dce2899baaa5c155">dlist_for_each_safe</a></div><div class="ttdeci">#define dlist_for_each_safe(list, node, temp)</div><div class="ttdef"><b>Definition:</b> <a href="list_8h_source.html#l00173">list.h:173</a></div></div>
+<div class="ttc" id="list_8c_html_a2786bda01e956f3ecb544184d01b6402"><div class="ttname"><a href="list_8c.html#a2786bda01e956f3ecb544184d01b6402">dlist_add_tail</a></div><div class="ttdeci">void dlist_add_tail(dlist_t *dlist, dlist_node_t *node)</div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00130">list.c:130</a></div></div>
+<div class="ttc" id="struct__ktimer__t_html_aa889e3eed3259dbe68bac4c2887fd912"><div class="ttname"><a href="struct__ktimer__t.html#aa889e3eed3259dbe68bac4c2887fd912">_ktimer_t::type</a></div><div class="ttdeci">ktimer_type_e type</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00034">timer.c:34</a></div></div>
+<div class="ttc" id="struct__ktimer__loop__t_html_a539d113be48c3032a148a47336b35821"><div class="ttname"><a href="struct__ktimer__loop__t.html#a539d113be48c3032a148a47336b35821">_ktimer_loop_t::max_slot</a></div><div class="ttdeci">int max_slot</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00047">timer.c:47</a></div></div>
+<div class="ttc" id="struct__dlist__t_html"><div class="ttname"><a href="struct__dlist__t.html">_dlist_t</a></div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00039">list.c:39</a></div></div>
+<div class="ttc" id="config_8h_html_a7bb0b359ffebe8a540dded73bd47417a"><div class="ttname"><a href="config_8h.html#a7bb0b359ffebe8a540dded73bd47417a">destroy</a></div><div class="ttdeci">#define destroy(ptr)</div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00100">config.h:100</a></div></div>
+<div class="ttc" id="config_8h_html_a7945681f6589a5f4f6cf55f4f4092d28a3a34fc04caa1ae76860b989fa8b5033d"><div class="ttname"><a href="config_8h.html#a7945681f6589a5f4f6cf55f4f4092d28a3a34fc04caa1ae76860b989fa8b5033d">ktimer_type_period</a></div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00147">config.h:147</a></div></div>
+<div class="ttc" id="knet_2timer_8c_html_a9d06164f71d9a170962ba64e2cb7b79f"><div class="ttname"><a href="knet_2timer_8c.html#a9d06164f71d9a170962ba64e2cb7b79f">ktimer_set_current_list_node</a></div><div class="ttdeci">void ktimer_set_current_list_node(ktimer_t *timer, dlist_node_t *node)</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00179">timer.c:179</a></div></div>
+<div class="ttc" id="knet_2timer_8c_html_a6e263963404ff40c8d7865ba117d3446"><div class="ttname"><a href="knet_2timer_8c.html#a6e263963404ff40c8d7865ba117d3446">ktimer_check_timeout</a></div><div class="ttdeci">int ktimer_check_timeout(ktimer_t *timer, time_t ms)</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00228">timer.c:228</a></div></div>
+<div class="ttc" id="config_8h_html_a42e924130e6eb3bd995344f6d3f3e918"><div class="ttname"><a href="config_8h.html#a42e924130e6eb3bd995344f6d3f3e918">ktimer_type_e</a></div><div class="ttdeci">enum _ktimer_type_e ktimer_type_e</div></div>
+<div class="ttc" id="config_8h_html_ad8bc998d415be9115a064a8307df0ed5aa31d63fb607c438a0fc7f5fed4fec444"><div class="ttname"><a href="config_8h.html#ad8bc998d415be9115a064a8307df0ed5aa31d63fb607c438a0fc7f5fed4fec444">error_multiple_start</a></div><div class="ttdef"><b>Definition:</b> <a href="config_8h_source.html#l00180">config.h:180</a></div></div>
+<div class="ttc" id="struct__ktimer__loop__t_html_a0856d0e2658f936061e29b6429eb0852"><div class="ttname"><a href="struct__ktimer__loop__t.html#a0856d0e2658f936061e29b6429eb0852">_ktimer_loop_t::tick_intval</a></div><div class="ttdeci">time_t tick_intval</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00050">timer.c:50</a></div></div>
+<div class="ttc" id="struct__ktimer__loop__t_html_aaaecc5607d83f3b99b0eafd1240c33e8"><div class="ttname"><a href="struct__ktimer__loop__t.html#aaaecc5607d83f3b99b0eafd1240c33e8">_ktimer_loop_t::last_tick</a></div><div class="ttdeci">time_t last_tick</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00049">timer.c:49</a></div></div>
+<div class="ttc" id="struct__ktimer__t_html_a8621a5cdd71a0fb2a93c75ad076f43af"><div class="ttname"><a href="struct__ktimer__t.html#a8621a5cdd71a0fb2a93c75ad076f43af">_ktimer_t::current_list</a></div><div class="ttdeci">dlist_t * current_list</div><div class="ttdef"><b>Definition:</b> <a href="knet_2timer_8c_source.html#l00031">timer.c:31</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+生成于 2015年 六月 29日 星期一 16:51:00 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.9.1
+</small></address>
+</body>
+</html>

@@ -1,0 +1,120 @@
+\hypertarget{test__client_8c}{}\section{E\+:/knet-\/git/knet/test/test\+\_\+client.c 文件参考}
+\label{test__client_8c}\index{E\+:/knet-\/git/knet/test/test\+\_\+client.\+c@{E\+:/knet-\/git/knet/test/test\+\_\+client.\+c}}
+{\ttfamily \#include \char`\"{}knet.\+h\char`\"{}}\\*
+\subsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{test__client_8c_aed42b835742e3baa48a1f4df25678db7}{connector\+\_\+cb} (\hyperlink{config_8h_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel, \hyperlink{config_8h_aaf2cba5d4035f3d56350b59342ebf65c}{channel\+\_\+cb\+\_\+event\+\_\+e} e)
+\item 
+int \hyperlink{test__client_8c_a0ddf1224851353fc92bfbff6f499fa97}{main} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\item 
+void \hyperlink{test__client_8c_aeb5277d9f4caa815be33f4ce70967122}{timer\+\_\+cb} (\hyperlink{config_8h_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer, void $\ast$data)
+\end{DoxyCompactItemize}
+\subsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+uint32\+\_\+t \hyperlink{test__client_8c_aba7384083b52c105f22f00e4425b8011}{active\+\_\+channel} = 0
+\item 
+uint32\+\_\+t \hyperlink{test__client_8c_af3da5682143473e43a10da730e65060b}{client\+\_\+n} = 50
+\item 
+char $\ast$ \hyperlink{test__client_8c_afbc356cd0e25d1dbbece7c10fd025fa6}{ip} = 0
+\item 
+int \hyperlink{test__client_8c_a63c89c04d1feae07ca35558055155ffb}{port} = 0
+\item 
+uint32\+\_\+t \hyperlink{test__client_8c_abd462240a58cefcd6e1c55ada30f792c}{recv\+\_\+bytes} = 0
+\item 
+uint32\+\_\+t \hyperlink{test__client_8c_ad6c5400a02153cdee17c513eda6c1fcf}{send\+\_\+bytes} = 0
+\item 
+\hyperlink{config_8h_a024af2aa29615e7a811ea6c45438157d}{ktimer\+\_\+loop\+\_\+t} $\ast$ \hyperlink{test__client_8c_a40fd1f9b725724e96d0b9bc37e9e4972}{timer\+\_\+loop} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{函数说明}
+\hypertarget{test__client_8c_aed42b835742e3baa48a1f4df25678db7}{}\index{test\+\_\+client.\+c@{test\+\_\+client.\+c}!connector\+\_\+cb@{connector\+\_\+cb}}
+\index{connector\+\_\+cb@{connector\+\_\+cb}!test\+\_\+client.\+c@{test\+\_\+client.\+c}}
+\subsubsection[{connector\+\_\+cb}]{\setlength{\rightskip}{0pt plus 5cm}void connector\+\_\+cb (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel, }
+\item[{{\bf channel\+\_\+cb\+\_\+event\+\_\+e}}]{e}
+\end{DoxyParamCaption}
+)}\label{test__client_8c_aed42b835742e3baa48a1f4df25678db7}
+
+
+在文件 test\+\_\+client.\+c 第 16 行定义.
+
+\hypertarget{test__client_8c_a0ddf1224851353fc92bfbff6f499fa97}{}\index{test\+\_\+client.\+c@{test\+\_\+client.\+c}!main@{main}}
+\index{main@{main}!test\+\_\+client.\+c@{test\+\_\+client.\+c}}
+\subsubsection[{main}]{\setlength{\rightskip}{0pt plus 5cm}int main (
+\begin{DoxyParamCaption}
+\item[{int}]{argc, }
+\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]}}
+\end{DoxyParamCaption}
+)}\label{test__client_8c_a0ddf1224851353fc92bfbff6f499fa97}
+
+
+在文件 test\+\_\+client.\+c 第 52 行定义.
+
+\hypertarget{test__client_8c_aeb5277d9f4caa815be33f4ce70967122}{}\index{test\+\_\+client.\+c@{test\+\_\+client.\+c}!timer\+\_\+cb@{timer\+\_\+cb}}
+\index{timer\+\_\+cb@{timer\+\_\+cb}!test\+\_\+client.\+c@{test\+\_\+client.\+c}}
+\subsubsection[{timer\+\_\+cb}]{\setlength{\rightskip}{0pt plus 5cm}void timer\+\_\+cb (
+\begin{DoxyParamCaption}
+\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer, }
+\item[{void $\ast$}]{data}
+\end{DoxyParamCaption}
+)}\label{test__client_8c_aeb5277d9f4caa815be33f4ce70967122}
+
+
+在文件 test\+\_\+client.\+c 第 11 行定义.
+
+
+
+\subsection{变量说明}
+\hypertarget{test__client_8c_aba7384083b52c105f22f00e4425b8011}{}\index{test\+\_\+client.\+c@{test\+\_\+client.\+c}!active\+\_\+channel@{active\+\_\+channel}}
+\index{active\+\_\+channel@{active\+\_\+channel}!test\+\_\+client.\+c@{test\+\_\+client.\+c}}
+\subsubsection[{active\+\_\+channel}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t active\+\_\+channel = 0}\label{test__client_8c_aba7384083b52c105f22f00e4425b8011}
+
+
+在文件 test\+\_\+client.\+c 第 3 行定义.
+
+\hypertarget{test__client_8c_af3da5682143473e43a10da730e65060b}{}\index{test\+\_\+client.\+c@{test\+\_\+client.\+c}!client\+\_\+n@{client\+\_\+n}}
+\index{client\+\_\+n@{client\+\_\+n}!test\+\_\+client.\+c@{test\+\_\+client.\+c}}
+\subsubsection[{client\+\_\+n}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t client\+\_\+n = 50}\label{test__client_8c_af3da5682143473e43a10da730e65060b}
+
+
+在文件 test\+\_\+client.\+c 第 6 行定义.
+
+\hypertarget{test__client_8c_afbc356cd0e25d1dbbece7c10fd025fa6}{}\index{test\+\_\+client.\+c@{test\+\_\+client.\+c}!ip@{ip}}
+\index{ip@{ip}!test\+\_\+client.\+c@{test\+\_\+client.\+c}}
+\subsubsection[{ip}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ ip = 0}\label{test__client_8c_afbc356cd0e25d1dbbece7c10fd025fa6}
+
+
+在文件 test\+\_\+client.\+c 第 7 行定义.
+
+\hypertarget{test__client_8c_a63c89c04d1feae07ca35558055155ffb}{}\index{test\+\_\+client.\+c@{test\+\_\+client.\+c}!port@{port}}
+\index{port@{port}!test\+\_\+client.\+c@{test\+\_\+client.\+c}}
+\subsubsection[{port}]{\setlength{\rightskip}{0pt plus 5cm}int port = 0}\label{test__client_8c_a63c89c04d1feae07ca35558055155ffb}
+
+
+在文件 test\+\_\+client.\+c 第 8 行定义.
+
+\hypertarget{test__client_8c_abd462240a58cefcd6e1c55ada30f792c}{}\index{test\+\_\+client.\+c@{test\+\_\+client.\+c}!recv\+\_\+bytes@{recv\+\_\+bytes}}
+\index{recv\+\_\+bytes@{recv\+\_\+bytes}!test\+\_\+client.\+c@{test\+\_\+client.\+c}}
+\subsubsection[{recv\+\_\+bytes}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t recv\+\_\+bytes = 0}\label{test__client_8c_abd462240a58cefcd6e1c55ada30f792c}
+
+
+在文件 test\+\_\+client.\+c 第 4 行定义.
+
+\hypertarget{test__client_8c_ad6c5400a02153cdee17c513eda6c1fcf}{}\index{test\+\_\+client.\+c@{test\+\_\+client.\+c}!send\+\_\+bytes@{send\+\_\+bytes}}
+\index{send\+\_\+bytes@{send\+\_\+bytes}!test\+\_\+client.\+c@{test\+\_\+client.\+c}}
+\subsubsection[{send\+\_\+bytes}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t send\+\_\+bytes = 0}\label{test__client_8c_ad6c5400a02153cdee17c513eda6c1fcf}
+
+
+在文件 test\+\_\+client.\+c 第 5 行定义.
+
+\hypertarget{test__client_8c_a40fd1f9b725724e96d0b9bc37e9e4972}{}\index{test\+\_\+client.\+c@{test\+\_\+client.\+c}!timer\+\_\+loop@{timer\+\_\+loop}}
+\index{timer\+\_\+loop@{timer\+\_\+loop}!test\+\_\+client.\+c@{test\+\_\+client.\+c}}
+\subsubsection[{timer\+\_\+loop}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ktimer\+\_\+loop\+\_\+t}$\ast$ timer\+\_\+loop = 0}\label{test__client_8c_a40fd1f9b725724e96d0b9bc37e9e4972}
+
+
+在文件 test\+\_\+client.\+c 第 9 行定义.
+

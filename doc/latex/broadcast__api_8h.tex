@@ -1,0 +1,143 @@
+\hypertarget{broadcast__api_8h}{}\section{E\+:/knet-\/git/knet/knet/broadcast\+\_\+api.h 文件参考}
+\label{broadcast__api_8h}\index{E\+:/knet-\/git/knet/knet/broadcast\+\_\+api.\+h@{E\+:/knet-\/git/knet/knet/broadcast\+\_\+api.\+h}}
+{\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\\*
+\subsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{config_8h_ac970c5deaf6417a866aabed01cd57b1b}{broadcast\+\_\+t} $\ast$ \hyperlink{broadcast__api_8h_aa3b09fb6ff3281cb10736c0aabac18fc}{broadcast\+\_\+create} ()
+\item 
+void \hyperlink{broadcast__api_8h_aa28451fa4656633ded0c7b966ff159c3}{broadcast\+\_\+destroy} (\hyperlink{config_8h_ac970c5deaf6417a866aabed01cd57b1b}{broadcast\+\_\+t} $\ast$broadcast)
+\item 
+int \hyperlink{broadcast__api_8h_acd045b1ca8be7fa8fac6e337934acc97}{broadcast\+\_\+get\+\_\+count} (\hyperlink{config_8h_ac970c5deaf6417a866aabed01cd57b1b}{broadcast\+\_\+t} $\ast$broadcast)
+\item 
+\hyperlink{config_8h_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$ \hyperlink{broadcast__api_8h_a1c736809a1d0e4b7c77b617ac8ce590d}{broadcast\+\_\+join} (\hyperlink{config_8h_ac970c5deaf6417a866aabed01cd57b1b}{broadcast\+\_\+t} $\ast$broadcast, \hyperlink{config_8h_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\item 
+int \hyperlink{broadcast__api_8h_ad846ced37d33b750f61a88565eaed9a4}{broadcast\+\_\+leave} (\hyperlink{config_8h_ac970c5deaf6417a866aabed01cd57b1b}{broadcast\+\_\+t} $\ast$broadcast, \hyperlink{config_8h_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\item 
+int \hyperlink{broadcast__api_8h_a0e8a8826a84c9c93a96e0fda1ca846aa}{broadcast\+\_\+write} (\hyperlink{config_8h_ac970c5deaf6417a866aabed01cd57b1b}{broadcast\+\_\+t} $\ast$broadcast, char $\ast$buffer, uint32\+\_\+t size)
+\end{DoxyCompactItemize}
+
+
+\subsection{函数说明}
+\hypertarget{broadcast__api_8h_aa3b09fb6ff3281cb10736c0aabac18fc}{}\index{broadcast\+\_\+api.\+h@{broadcast\+\_\+api.\+h}!broadcast\+\_\+create@{broadcast\+\_\+create}}
+\index{broadcast\+\_\+create@{broadcast\+\_\+create}!broadcast\+\_\+api.\+h@{broadcast\+\_\+api.\+h}}
+\subsubsection[{broadcast\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf broadcast\+\_\+t}$\ast$ broadcast\+\_\+create (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{broadcast__api_8h_aa3b09fb6ff3281cb10736c0aabac18fc}
+创建广播域 \begin{DoxyReturn}{返回}
+broadcast\+\_\+t实例 
+\end{DoxyReturn}
+
+
+在文件 broadcast.\+c 第 37 行定义.
+
+\hypertarget{broadcast__api_8h_aa28451fa4656633ded0c7b966ff159c3}{}\index{broadcast\+\_\+api.\+h@{broadcast\+\_\+api.\+h}!broadcast\+\_\+destroy@{broadcast\+\_\+destroy}}
+\index{broadcast\+\_\+destroy@{broadcast\+\_\+destroy}!broadcast\+\_\+api.\+h@{broadcast\+\_\+api.\+h}}
+\subsubsection[{broadcast\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void broadcast\+\_\+destroy (
+\begin{DoxyParamCaption}
+\item[{{\bf broadcast\+\_\+t} $\ast$}]{broadcast}
+\end{DoxyParamCaption}
+)}\label{broadcast__api_8h_aa28451fa4656633ded0c7b966ff159c3}
+销毁广播域 
+\begin{DoxyParams}{参数}
+{\em broadcast} & broadcast\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+
+
+在文件 broadcast.\+c 第 48 行定义.
+
+\hypertarget{broadcast__api_8h_acd045b1ca8be7fa8fac6e337934acc97}{}\index{broadcast\+\_\+api.\+h@{broadcast\+\_\+api.\+h}!broadcast\+\_\+get\+\_\+count@{broadcast\+\_\+get\+\_\+count}}
+\index{broadcast\+\_\+get\+\_\+count@{broadcast\+\_\+get\+\_\+count}!broadcast\+\_\+api.\+h@{broadcast\+\_\+api.\+h}}
+\subsubsection[{broadcast\+\_\+get\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}int broadcast\+\_\+get\+\_\+count (
+\begin{DoxyParamCaption}
+\item[{{\bf broadcast\+\_\+t} $\ast$}]{broadcast}
+\end{DoxyParamCaption}
+)}\label{broadcast__api_8h_acd045b1ca8be7fa8fac6e337934acc97}
+取得广播域内管道数量 
+\begin{DoxyParams}{参数}
+{\em broadcast} & broadcast\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+管道数量 
+\end{DoxyReturn}
+
+
+在文件 broadcast.\+c 第 94 行定义.
+
+\hypertarget{broadcast__api_8h_a1c736809a1d0e4b7c77b617ac8ce590d}{}\index{broadcast\+\_\+api.\+h@{broadcast\+\_\+api.\+h}!broadcast\+\_\+join@{broadcast\+\_\+join}}
+\index{broadcast\+\_\+join@{broadcast\+\_\+join}!broadcast\+\_\+api.\+h@{broadcast\+\_\+api.\+h}}
+\subsubsection[{broadcast\+\_\+join}]{\setlength{\rightskip}{0pt plus 5cm}{\bf channel\+\_\+ref\+\_\+t}$\ast$ broadcast\+\_\+join (
+\begin{DoxyParamCaption}
+\item[{{\bf broadcast\+\_\+t} $\ast$}]{broadcast, }
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\end{DoxyParamCaption}
+)}\label{broadcast__api_8h_a1c736809a1d0e4b7c77b617ac8ce590d}
+加入广播域 加入成功会生成一个新的引用 
+\begin{DoxyParams}{参数}
+{\em broadcast} & broadcast\+\_\+t实例 \\
+\hline
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+channel\+\_\+ref\+\_\+t实例，新的在广播域内的引用 
+\end{DoxyReturn}
+
+
+在文件 broadcast.\+c 第 62 行定义.
+
+\hypertarget{broadcast__api_8h_ad846ced37d33b750f61a88565eaed9a4}{}\index{broadcast\+\_\+api.\+h@{broadcast\+\_\+api.\+h}!broadcast\+\_\+leave@{broadcast\+\_\+leave}}
+\index{broadcast\+\_\+leave@{broadcast\+\_\+leave}!broadcast\+\_\+api.\+h@{broadcast\+\_\+api.\+h}}
+\subsubsection[{broadcast\+\_\+leave}]{\setlength{\rightskip}{0pt plus 5cm}int broadcast\+\_\+leave (
+\begin{DoxyParamCaption}
+\item[{{\bf broadcast\+\_\+t} $\ast$}]{broadcast, }
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\end{DoxyParamCaption}
+)}\label{broadcast__api_8h_ad846ced37d33b750f61a88565eaed9a4}
+离开广播域 
+\begin{DoxyParams}{参数}
+{\em broadcast} & broadcast\+\_\+t实例 \\
+\hline
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例，由broadcast\+\_\+join()返回 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+
+
+在文件 broadcast.\+c 第 76 行定义.
+
+\hypertarget{broadcast__api_8h_a0e8a8826a84c9c93a96e0fda1ca846aa}{}\index{broadcast\+\_\+api.\+h@{broadcast\+\_\+api.\+h}!broadcast\+\_\+write@{broadcast\+\_\+write}}
+\index{broadcast\+\_\+write@{broadcast\+\_\+write}!broadcast\+\_\+api.\+h@{broadcast\+\_\+api.\+h}}
+\subsubsection[{broadcast\+\_\+write}]{\setlength{\rightskip}{0pt plus 5cm}int broadcast\+\_\+write (
+\begin{DoxyParamCaption}
+\item[{{\bf broadcast\+\_\+t} $\ast$}]{broadcast, }
+\item[{char $\ast$}]{buffer, }
+\item[{uint32\+\_\+t}]{size}
+\end{DoxyParamCaption}
+)}\label{broadcast__api_8h_a0e8a8826a84c9c93a96e0fda1ca846aa}
+广播 
+\begin{DoxyParams}{参数}
+{\em broadcast} & broadcast\+\_\+t实例 \\
+\hline
+{\em buffer} & 缓冲区指针 \\
+\hline
+{\em size} & 缓冲区长度 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+发送成功管道的数量 
+\end{DoxyReturn}
+
+
+在文件 broadcast.\+c 第 104 行定义.
+

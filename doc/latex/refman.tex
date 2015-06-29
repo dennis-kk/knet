@@ -1,0 +1,279 @@
+\documentclass[twoside]{book}
+
+% Packages required by doxygen
+\usepackage{fixltx2e}
+\usepackage{calc}
+\usepackage{doxygen}
+\usepackage[export]{adjustbox} % also loads graphicx
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{makeidx}
+\usepackage{multicol}
+\usepackage{multirow}
+\PassOptionsToPackage{warn}{textcomp}
+\usepackage{textcomp}
+\usepackage[nointegrals]{wasysym}
+\usepackage[table]{xcolor}
+
+% Font selection
+\usepackage[T1]{fontenc}
+\usepackage[scaled=.90]{helvet}
+\usepackage{courier}
+\usepackage{amssymb}
+\usepackage{sectsty}
+\renewcommand{\familydefault}{\sfdefault}
+\allsectionsfont{%
+  \fontseries{bc}\selectfont%
+  \color{darkgray}%
+}
+\renewcommand{\DoxyLabelFont}{%
+  \fontseries{bc}\selectfont%
+  \color{darkgray}%
+}
+\newcommand{\+}{\discretionary{\mbox{\scriptsize$\hookleftarrow$}}{}{}}
+
+% Page & text layout
+\usepackage{geometry}
+\geometry{%
+  a4paper,%
+  top=2.5cm,%
+  bottom=2.5cm,%
+  left=2.5cm,%
+  right=2.5cm%
+}
+\tolerance=750
+\hfuzz=15pt
+\hbadness=750
+\setlength{\emergencystretch}{15pt}
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{0.2cm}
+\makeatletter
+\renewcommand{\paragraph}{%
+  \@startsection{paragraph}{4}{0ex}{-1.0ex}{1.0ex}{%
+    \normalfont\normalsize\bfseries\SS@parafont%
+  }%
+}
+\renewcommand{\subparagraph}{%
+  \@startsection{subparagraph}{5}{0ex}{-1.0ex}{1.0ex}{%
+    \normalfont\normalsize\bfseries\SS@subparafont%
+  }%
+}
+\makeatother
+
+% Headers & footers
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\fancyhead[LE]{\fancyplain{}{\bfseries\thepage}}
+\fancyhead[CE]{\fancyplain{}{}}
+\fancyhead[RE]{\fancyplain{}{\bfseries\leftmark}}
+\fancyhead[LO]{\fancyplain{}{\bfseries\rightmark}}
+\fancyhead[CO]{\fancyplain{}{}}
+\fancyhead[RO]{\fancyplain{}{\bfseries\thepage}}
+\fancyfoot[LE]{\fancyplain{}{}}
+\fancyfoot[CE]{\fancyplain{}{}}
+\fancyfoot[RE]{\fancyplain{}{\bfseries\scriptsize 生成于 2015年 六月 29日 星期一 16\+:51\+:00 , 为 knet使用  Doxygen }}
+\fancyfoot[LO]{\fancyplain{}{\bfseries\scriptsize 生成于 2015年 六月 29日 星期一 16\+:51\+:00 , 为 knet使用  Doxygen }}
+\fancyfoot[CO]{\fancyplain{}{}}
+\fancyfoot[RO]{\fancyplain{}{}}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\chaptermark}[1]{%
+  \markboth{#1}{}%
+}
+\renewcommand{\sectionmark}[1]{%
+  \markright{\thesection\ #1}%
+}
+
+% Indices & bibliography
+\usepackage{natbib}
+\usepackage[titles]{tocloft}
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{5}
+\makeindex
+
+% Hyperlinks (required, but should be loaded last)
+\usepackage{ifpdf}
+\ifpdf
+  \usepackage[pdftex,pagebackref=true]{hyperref}
+\else
+  \usepackage[ps2pdf,pagebackref=true]{hyperref}
+\fi
+\hypersetup{%
+  colorlinks=true,%
+  linkcolor=blue,%
+  citecolor=blue,%
+  unicode%
+}
+
+% Custom commands
+\newcommand{\clearemptydoublepage}{%
+  \newpage{\pagestyle{empty}\cleardoublepage}%
+}
+
+
+%===== C O N T E N T S =====
+
+\begin{document}
+
+% Titlepage & ToC
+\hypersetup{pageanchor=false,
+             bookmarks=true,
+             bookmarksnumbered=true,
+             pdfencoding=unicode
+            }
+\pagenumbering{roman}
+\begin{titlepage}
+\vspace*{7cm}
+\begin{center}%
+{\Large knet \\[1ex]\large 1.\+4.\+1 }\\
+\vspace*{1cm}
+{\large 制作者 Doxygen 1.8.9.1}\\
+\vspace*{0.5cm}
+{\small 2015年 六月 29日 星期一 16:51:00}\\
+\end{center}
+\end{titlepage}
+\clearemptydoublepage
+\tableofcontents
+\clearemptydoublepage
+\pagenumbering{arabic}
+\hypersetup{pageanchor=true}
+
+%--- Begin generated contents ---
+\chapter{knet 1.4.x}
+\label{md_E_1_knet-git_knet_README}
+\hypertarget{md_E_1_knet-git_knet_README}{}
+\input{md_E_1_knet-git_knet_README}
+\chapter{命名空间索引}
+\input{namespaces}
+\chapter{结构体索引}
+\input{annotated}
+\chapter{文件索引}
+\input{files}
+\chapter{命名空间文档}
+\input{namespacerpc__sample}
+\chapter{结构体说明}
+\input{struct__address__t}
+\input{struct__broadcast__t}
+\input{struct__buffer__t}
+\input{struct__channel__ref__info__t}
+\input{struct__channel__ref__t}
+\input{struct__channel__t}
+\input{struct__dlist__node__t}
+\input{struct__dlist__t}
+\input{struct__hash__t}
+\input{struct__hash__value__t}
+\input{struct__krpc__number__t}
+\input{struct__krpc__object__t}
+\input{struct__krpc__string__t}
+\input{struct__krpc__t}
+\input{struct__krpc__vector__t}
+\input{struct__ktimer__loop__t}
+\input{struct__ktimer__t}
+\input{struct__lock__t}
+\input{struct__logger__t}
+\input{struct__loop__balancer__t}
+\input{struct__loop__event__t}
+\input{struct__loop__info__t}
+\input{struct__loop__t}
+\input{struct__ringbuffer__t}
+\input{struct__stream__t}
+\input{struct__thread__runner__t}
+\input{classkrpc__attribute__t}
+\input{classkrpc__field__t}
+\input{classkrpc__gen__cpp__t}
+\input{classkrpc__gen__t}
+\input{structkrpc__header__t}
+\input{classkrpc__lexer__t}
+\input{structkrpc__object__header__t}
+\input{classkrpc__ostream__t}
+\input{classkrpc__parser__t}
+\input{classkrpc__rpc__call__t}
+\input{classkrpc__token__t}
+\input{structrpc__sample_1_1my__object__other__t}
+\input{structrpc__sample_1_1my__object__t}
+\input{classrpc__sample_1_1rpc__sample__t}
+\chapter{文件说明}
+\input{basic_8c}
+\input{examples_2broadcast_8c}
+\input{knet_2broadcast_8c}
+\input{connector__timeout_8c}
+\input{example__config_8h}
+\input{multi__connector_8c}
+\input{multi__loop_8c}
+\input{examples_2rpc_8c}
+\input{knet_2rpc_8c}
+\input{telnet__echo_8c}
+\input{examples_2timer_8c}
+\input{knet_2timer_8c}
+\input{address_8c}
+\input{address_8h}
+\input{address__api_8h}
+\input{broadcast__api_8h}
+\input{buffer_8c}
+\input{buffer_8h}
+\input{channel_8c}
+\input{channel_8h}
+\input{channel__ref_8c}
+\input{channel__ref_8h}
+\input{channel__ref__api_8h}
+\input{config_8h}
+\input{hash_8c}
+\input{hash_8h}
+\input{knet_8h}
+\input{list_8c}
+\input{list_8h}
+\input{logger_8c}
+\input{logger_8h}
+\input{loop_8c}
+\input{loop_8h}
+\input{loop__api_8h}
+\input{loop__balancer_8c}
+\input{loop__balancer_8h}
+\input{loop__balancer__api_8h}
+\input{loop__epoll_8c}
+\input{loop__impl_8c}
+\input{loop__iocp_8c}
+\input{loop__select_8c}
+\input{misc_8c}
+\input{misc_8h}
+\input{ringbuffer_8c}
+\input{ringbuffer_8h}
+\input{rpc__api_8h}
+\input{rpc__object_8c}
+\input{rpc__object_8h}
+\input{rpc__object__api_8h}
+\input{stream_8c}
+\input{stream_8h}
+\input{stream__api_8h}
+\input{thread__api_8h}
+\input{timer_8h}
+\input{timer__api_8h}
+\input{version_8c}
+\input{version_8h}
+\input{krpc__cpp_8cpp}
+\input{krpc__cpp_8h}
+\input{rpc_8cpp}
+\input{rpc__sample_8cpp}
+\input{rpc__sample_8h}
+\input{krpc_8cpp}
+\input{krpc_8h}
+\input{krpc__exception_8h}
+\input{krpc__lexer_8cpp}
+\input{krpc__lexer_8h}
+\input{krpc__ostream_8cpp}
+\input{krpc__ostream_8h}
+\input{krpc__parser_8cpp}
+\input{krpc__parser_8h}
+\input{README_8md}
+\input{test__client_8c}
+\input{test__server_8c}
+%--- End generated contents ---
+
+% Index
+\backmatter
+\newpage
+\phantomsection
+\clearemptydoublepage
+\addcontentsline{toc}{chapter}{索引}
+\printindex
+
+\end{document}

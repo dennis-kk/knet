@@ -1,0 +1,105 @@
+\hypertarget{krpc__lexer_8h}{}\section{E\+:/knet-\/git/knet/krpc/krpc\+\_\+lexer.h 文件参考}
+\label{krpc__lexer_8h}\index{E\+:/knet-\/git/knet/krpc/krpc\+\_\+lexer.\+h@{E\+:/knet-\/git/knet/krpc/krpc\+\_\+lexer.\+h}}
+{\ttfamily \#include $<$exception$>$}\\*
+{\ttfamily \#include $<$string$>$}\\*
+{\ttfamily \#include $<$list$>$}\\*
+\subsection*{结构体}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classkrpc__lexer__t}{krpc\+\_\+lexer\+\_\+t}
+\item 
+class \hyperlink{classkrpc__token__t}{krpc\+\_\+token\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{枚举}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \\*
+\hyperlink{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06cad1dac4a1da774cd405db748ad02e241b}{krpc\+\_\+token\+\_\+i8} = 1, 
+\hyperlink{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06ca5cf26374f4b4bcf4b84579610893012e}{krpc\+\_\+token\+\_\+i16}, 
+\hyperlink{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06ca41becba29a618b91518392d3720cd800}{krpc\+\_\+token\+\_\+i32}, 
+\hyperlink{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06ca8ff2c66f88d77510ba542f3ea6ddf6bc}{krpc\+\_\+token\+\_\+i64}, 
+\\*
+\hyperlink{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06ca6736c91e2b5a407bf4a76928f115cd52}{krpc\+\_\+token\+\_\+ui8}, 
+\hyperlink{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06cab6060025e3fea3216433d75b53e8909f}{krpc\+\_\+token\+\_\+ui16}, 
+\hyperlink{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06cabc8c015ac01260cd89ae02e301f3fbe1}{krpc\+\_\+token\+\_\+ui32}, 
+\hyperlink{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06ca3490a62f47246d0422f756d9ecce0946}{krpc\+\_\+token\+\_\+ui64}, 
+\\*
+\hyperlink{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06caed76d963d36c7e119203d98e0c0f67fd}{krpc\+\_\+token\+\_\+f32}, 
+\hyperlink{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06cacf909a45f498d5e41cfa9dd94a101dc7}{krpc\+\_\+token\+\_\+f64}, 
+\hyperlink{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06ca5682f33a4439ddffd108aa0eb9c64a57}{krpc\+\_\+token\+\_\+string}, 
+\hyperlink{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06caa91d5acd1be0137fcd7e4d7a74feecb3}{krpc\+\_\+token\+\_\+array}, 
+\\*
+\hyperlink{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06ca654247e3f4b2edb1502d7f251410e327}{krpc\+\_\+token\+\_\+object}, 
+\hyperlink{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06ca0881fde5c82154fcbac03abe205b7aa8}{krpc\+\_\+token\+\_\+rpc}, 
+\hyperlink{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06ca7b47a31c305c687b70ccf7f3f1f55e5c}{krpc\+\_\+token\+\_\+import}, 
+\hyperlink{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06cabbf4d62076af785ed47ed8150095fedb}{krpc\+\_\+token\+\_\+text}, 
+\\*
+\hyperlink{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06cac3b467122864be8c4222b25458f6cd1d}{krpc\+\_\+token\+\_\+left\+\_\+brace}, 
+\hyperlink{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06cac9e701fdebdcc73c750da94b40a78517}{krpc\+\_\+token\+\_\+right\+\_\+brace}, 
+\hyperlink{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06cabf75b5caaa4345001de1b9ddbca1f1e1}{krpc\+\_\+token\+\_\+left\+\_\+round}, 
+\hyperlink{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06cabf73fa01cf62b0c7639b89afa82bf891}{krpc\+\_\+token\+\_\+right\+\_\+round}, 
+\\*
+\hyperlink{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06cab89f8c2653e5977247ef1032bc341aa7}{krpc\+\_\+token\+\_\+right\+\_\+square}, 
+\hyperlink{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06caad17070f0761fbe9a7cae37cd462b229}{krpc\+\_\+token\+\_\+comma}, 
+\hyperlink{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06caa4f9498046808982cac8d5380f0c4b9e}{krpc\+\_\+token\+\_\+inline\+\_\+comment}
+ \}
+\end{DoxyCompactItemize}
+
+
+\subsection{枚举类型说明}
+\hypertarget{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06c}{}\subsubsection[{anonymous enum}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}\label{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06c}
+token类型 \begin{Desc}
+\item[枚举值]\par
+\begin{description}
+\index{krpc\+\_\+token\+\_\+i8@{krpc\+\_\+token\+\_\+i8}!krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}}\index{krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}!krpc\+\_\+token\+\_\+i8@{krpc\+\_\+token\+\_\+i8}}\item[{\em 
+\hypertarget{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06cad1dac4a1da774cd405db748ad02e241b}{}krpc\+\_\+token\+\_\+i8\label{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06cad1dac4a1da774cd405db748ad02e241b}
+}]\index{krpc\+\_\+token\+\_\+i16@{krpc\+\_\+token\+\_\+i16}!krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}}\index{krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}!krpc\+\_\+token\+\_\+i16@{krpc\+\_\+token\+\_\+i16}}\item[{\em 
+\hypertarget{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06ca5cf26374f4b4bcf4b84579610893012e}{}krpc\+\_\+token\+\_\+i16\label{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06ca5cf26374f4b4bcf4b84579610893012e}
+}]\index{krpc\+\_\+token\+\_\+i32@{krpc\+\_\+token\+\_\+i32}!krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}}\index{krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}!krpc\+\_\+token\+\_\+i32@{krpc\+\_\+token\+\_\+i32}}\item[{\em 
+\hypertarget{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06ca41becba29a618b91518392d3720cd800}{}krpc\+\_\+token\+\_\+i32\label{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06ca41becba29a618b91518392d3720cd800}
+}]\index{krpc\+\_\+token\+\_\+i64@{krpc\+\_\+token\+\_\+i64}!krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}}\index{krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}!krpc\+\_\+token\+\_\+i64@{krpc\+\_\+token\+\_\+i64}}\item[{\em 
+\hypertarget{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06ca8ff2c66f88d77510ba542f3ea6ddf6bc}{}krpc\+\_\+token\+\_\+i64\label{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06ca8ff2c66f88d77510ba542f3ea6ddf6bc}
+}]\index{krpc\+\_\+token\+\_\+ui8@{krpc\+\_\+token\+\_\+ui8}!krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}}\index{krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}!krpc\+\_\+token\+\_\+ui8@{krpc\+\_\+token\+\_\+ui8}}\item[{\em 
+\hypertarget{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06ca6736c91e2b5a407bf4a76928f115cd52}{}krpc\+\_\+token\+\_\+ui8\label{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06ca6736c91e2b5a407bf4a76928f115cd52}
+}]\index{krpc\+\_\+token\+\_\+ui16@{krpc\+\_\+token\+\_\+ui16}!krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}}\index{krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}!krpc\+\_\+token\+\_\+ui16@{krpc\+\_\+token\+\_\+ui16}}\item[{\em 
+\hypertarget{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06cab6060025e3fea3216433d75b53e8909f}{}krpc\+\_\+token\+\_\+ui16\label{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06cab6060025e3fea3216433d75b53e8909f}
+}]\index{krpc\+\_\+token\+\_\+ui32@{krpc\+\_\+token\+\_\+ui32}!krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}}\index{krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}!krpc\+\_\+token\+\_\+ui32@{krpc\+\_\+token\+\_\+ui32}}\item[{\em 
+\hypertarget{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06cabc8c015ac01260cd89ae02e301f3fbe1}{}krpc\+\_\+token\+\_\+ui32\label{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06cabc8c015ac01260cd89ae02e301f3fbe1}
+}]\index{krpc\+\_\+token\+\_\+ui64@{krpc\+\_\+token\+\_\+ui64}!krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}}\index{krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}!krpc\+\_\+token\+\_\+ui64@{krpc\+\_\+token\+\_\+ui64}}\item[{\em 
+\hypertarget{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06ca3490a62f47246d0422f756d9ecce0946}{}krpc\+\_\+token\+\_\+ui64\label{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06ca3490a62f47246d0422f756d9ecce0946}
+}]\index{krpc\+\_\+token\+\_\+f32@{krpc\+\_\+token\+\_\+f32}!krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}}\index{krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}!krpc\+\_\+token\+\_\+f32@{krpc\+\_\+token\+\_\+f32}}\item[{\em 
+\hypertarget{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06caed76d963d36c7e119203d98e0c0f67fd}{}krpc\+\_\+token\+\_\+f32\label{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06caed76d963d36c7e119203d98e0c0f67fd}
+}]\index{krpc\+\_\+token\+\_\+f64@{krpc\+\_\+token\+\_\+f64}!krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}}\index{krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}!krpc\+\_\+token\+\_\+f64@{krpc\+\_\+token\+\_\+f64}}\item[{\em 
+\hypertarget{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06cacf909a45f498d5e41cfa9dd94a101dc7}{}krpc\+\_\+token\+\_\+f64\label{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06cacf909a45f498d5e41cfa9dd94a101dc7}
+}]\index{krpc\+\_\+token\+\_\+string@{krpc\+\_\+token\+\_\+string}!krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}}\index{krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}!krpc\+\_\+token\+\_\+string@{krpc\+\_\+token\+\_\+string}}\item[{\em 
+\hypertarget{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06ca5682f33a4439ddffd108aa0eb9c64a57}{}krpc\+\_\+token\+\_\+string\label{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06ca5682f33a4439ddffd108aa0eb9c64a57}
+}]\index{krpc\+\_\+token\+\_\+array@{krpc\+\_\+token\+\_\+array}!krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}}\index{krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}!krpc\+\_\+token\+\_\+array@{krpc\+\_\+token\+\_\+array}}\item[{\em 
+\hypertarget{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06caa91d5acd1be0137fcd7e4d7a74feecb3}{}krpc\+\_\+token\+\_\+array\label{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06caa91d5acd1be0137fcd7e4d7a74feecb3}
+}]\index{krpc\+\_\+token\+\_\+object@{krpc\+\_\+token\+\_\+object}!krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}}\index{krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}!krpc\+\_\+token\+\_\+object@{krpc\+\_\+token\+\_\+object}}\item[{\em 
+\hypertarget{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06ca654247e3f4b2edb1502d7f251410e327}{}krpc\+\_\+token\+\_\+object\label{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06ca654247e3f4b2edb1502d7f251410e327}
+}]\index{krpc\+\_\+token\+\_\+rpc@{krpc\+\_\+token\+\_\+rpc}!krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}}\index{krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}!krpc\+\_\+token\+\_\+rpc@{krpc\+\_\+token\+\_\+rpc}}\item[{\em 
+\hypertarget{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06ca0881fde5c82154fcbac03abe205b7aa8}{}krpc\+\_\+token\+\_\+rpc\label{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06ca0881fde5c82154fcbac03abe205b7aa8}
+}]\index{krpc\+\_\+token\+\_\+import@{krpc\+\_\+token\+\_\+import}!krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}}\index{krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}!krpc\+\_\+token\+\_\+import@{krpc\+\_\+token\+\_\+import}}\item[{\em 
+\hypertarget{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06ca7b47a31c305c687b70ccf7f3f1f55e5c}{}krpc\+\_\+token\+\_\+import\label{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06ca7b47a31c305c687b70ccf7f3f1f55e5c}
+}]\index{krpc\+\_\+token\+\_\+text@{krpc\+\_\+token\+\_\+text}!krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}}\index{krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}!krpc\+\_\+token\+\_\+text@{krpc\+\_\+token\+\_\+text}}\item[{\em 
+\hypertarget{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06cabbf4d62076af785ed47ed8150095fedb}{}krpc\+\_\+token\+\_\+text\label{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06cabbf4d62076af785ed47ed8150095fedb}
+}]\index{krpc\+\_\+token\+\_\+left\+\_\+brace@{krpc\+\_\+token\+\_\+left\+\_\+brace}!krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}}\index{krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}!krpc\+\_\+token\+\_\+left\+\_\+brace@{krpc\+\_\+token\+\_\+left\+\_\+brace}}\item[{\em 
+\hypertarget{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06cac3b467122864be8c4222b25458f6cd1d}{}krpc\+\_\+token\+\_\+left\+\_\+brace\label{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06cac3b467122864be8c4222b25458f6cd1d}
+}]\index{krpc\+\_\+token\+\_\+right\+\_\+brace@{krpc\+\_\+token\+\_\+right\+\_\+brace}!krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}}\index{krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}!krpc\+\_\+token\+\_\+right\+\_\+brace@{krpc\+\_\+token\+\_\+right\+\_\+brace}}\item[{\em 
+\hypertarget{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06cac9e701fdebdcc73c750da94b40a78517}{}krpc\+\_\+token\+\_\+right\+\_\+brace\label{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06cac9e701fdebdcc73c750da94b40a78517}
+}]\index{krpc\+\_\+token\+\_\+left\+\_\+round@{krpc\+\_\+token\+\_\+left\+\_\+round}!krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}}\index{krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}!krpc\+\_\+token\+\_\+left\+\_\+round@{krpc\+\_\+token\+\_\+left\+\_\+round}}\item[{\em 
+\hypertarget{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06cabf75b5caaa4345001de1b9ddbca1f1e1}{}krpc\+\_\+token\+\_\+left\+\_\+round\label{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06cabf75b5caaa4345001de1b9ddbca1f1e1}
+}]\index{krpc\+\_\+token\+\_\+right\+\_\+round@{krpc\+\_\+token\+\_\+right\+\_\+round}!krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}}\index{krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}!krpc\+\_\+token\+\_\+right\+\_\+round@{krpc\+\_\+token\+\_\+right\+\_\+round}}\item[{\em 
+\hypertarget{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06cabf73fa01cf62b0c7639b89afa82bf891}{}krpc\+\_\+token\+\_\+right\+\_\+round\label{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06cabf73fa01cf62b0c7639b89afa82bf891}
+}]\index{krpc\+\_\+token\+\_\+right\+\_\+square@{krpc\+\_\+token\+\_\+right\+\_\+square}!krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}}\index{krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}!krpc\+\_\+token\+\_\+right\+\_\+square@{krpc\+\_\+token\+\_\+right\+\_\+square}}\item[{\em 
+\hypertarget{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06cab89f8c2653e5977247ef1032bc341aa7}{}krpc\+\_\+token\+\_\+right\+\_\+square\label{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06cab89f8c2653e5977247ef1032bc341aa7}
+}]\index{krpc\+\_\+token\+\_\+comma@{krpc\+\_\+token\+\_\+comma}!krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}}\index{krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}!krpc\+\_\+token\+\_\+comma@{krpc\+\_\+token\+\_\+comma}}\item[{\em 
+\hypertarget{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06caad17070f0761fbe9a7cae37cd462b229}{}krpc\+\_\+token\+\_\+comma\label{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06caad17070f0761fbe9a7cae37cd462b229}
+}]\index{krpc\+\_\+token\+\_\+inline\+\_\+comment@{krpc\+\_\+token\+\_\+inline\+\_\+comment}!krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}}\index{krpc\+\_\+lexer.\+h@{krpc\+\_\+lexer.\+h}!krpc\+\_\+token\+\_\+inline\+\_\+comment@{krpc\+\_\+token\+\_\+inline\+\_\+comment}}\item[{\em 
+\hypertarget{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06caa4f9498046808982cac8d5380f0c4b9e}{}krpc\+\_\+token\+\_\+inline\+\_\+comment\label{krpc__lexer_8h_adc29c2ff13d900c2f185ee95427fb06caa4f9498046808982cac8d5380f0c4b9e}
+}]\end{description}
+\end{Desc}
+
+
+在文件 krpc\+\_\+lexer.\+h 第 38 行定义.
+

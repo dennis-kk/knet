@@ -1,0 +1,147 @@
+\subsection*{}
+
+{\bfseries knet} is cross-\/platform multi-\/threading light-\/weight T\+C\+P transport library, for now, knet support {\bfseries I\+O\+C\+P}, {\bfseries select}, {\bfseries epoll} model on {\bfseries Windows} and {\bfseries Cent\+O\+S}. it will testing under more Linux and Unix O\+S version, more model will be implemented like\+: kqueue(kevent) etc. {\bfseries knet} is not a event loop like {\bfseries libevent}, {\bfseries knet} focus on transport only.
+
+\subsubsection*{loop}
+
+\subsection*{}
+
+{\ttfamily loop\+\_\+t} is the wrapper of different implemented model, it\textquotesingle{}s easy to use {\ttfamily loop\+\_\+t} to build a loop. \begin{DoxyVerb}#include "knet.h"
+loop_t* loop = loop_create();
+\end{DoxyVerb}
+
+
+For now, a loop is ready for run, we create a {\ttfamily channel\+\_\+ref\+\_\+t} as acceptor. \begin{DoxyVerb}channel_ref_t* channel = loop_create_channel(loop, 0, 1024);
+channel_ref_accept(channel, "127.0.0.1", 80);
+\end{DoxyVerb}
+
+
+We built a acceptor channel with infinite send chain size and maximal read buffer size 1024, after that run endless loop. \begin{DoxyVerb}loop_run(loop);
+loop_destroy(loop);
+\end{DoxyVerb}
+
+
+The program just holds your screen, we should add some code for new client coming. \begin{DoxyVerb}void acceptor_cb(channel_ref_t* channel, channel_cb_event_e e) {
+    if (e & channel_cb_event_accept) {
+        /* TODO do job here */
+    }
+}
+\end{DoxyVerb}
+
+
+The whole story\+: \begin{DoxyVerb}#include "knet.h"
+
+void acceptor_cb(channel_ref_t* channel, channel_cb_event_e e) {
+    if (e & channel_cb_event_accept) { /* the new client coming */
+        /* TODO do job here */
+    }
+}
+
+int main() {
+    loop_t* loop = loop_create();
+    channel_ref_t* channel = loop_create_channel(loop, 0, 1024);
+    channel_ref_accept(channel, "127.0.0.1", 80);
+    channel_ref_set_cb(channel, acceptor_cb);
+    loop_run(loop);
+    loop_destroy(loop);
+    return 0;
+}
+\end{DoxyVerb}
+
+
+For more detail, see {\ttfamily \hyperlink{basic_8c}{examples/basic.\+c}}
+
+\paragraph*{\hyperlink{config_8h}{config.\+h}}
+
+\subsection*{}
+
+\begin{DoxyVerb}#if defined(WIN32)
+    #define LOOP_IOCP 1    /* IOCP */
+    #define LOOP_SELECT 0  /* select */
+#else
+    #define LOOP_EPOLL 1   /* epoll */
+    #define LOOP_SELECT 0  /* select */
+#endif /* defined(WIN32) */
+\end{DoxyVerb}
+
+
+In header file {\ttfamily \hyperlink{config_8h}{knet/config.\+h}}, change the macro value to tell compiler choose specific implement, I\+O\+C\+P on Windows, epoll on Linux by default, more implement will be appended in the future release. \begin{DoxyVerb}#define LOGGER_ON 0 /* the switch of internal logger */
+#define LOGGER_MODE (logger_mode_file | logger_mode_console | logger_mode_flush | logger_mode_override) /* the mode of logger */
+#define LOGGER_LEVEL logger_level_verbose /* the level of logger */
+\end{DoxyVerb}
+
+
+{\ttfamily L\+O\+G\+G\+E\+R\+\_\+\+O\+N} is the switch of {\bfseries knet} internal logger, the macro {\ttfamily L\+O\+G\+G\+E\+R\+\_\+\+M\+O\+D\+E} and {\ttfamily L\+O\+G\+G\+E\+R\+\_\+\+L\+E\+V\+E\+L} can change the mode and the level of logger. Internal logger may help developer find the problom A\+S\+A\+P, {\ttfamily L\+O\+G\+G\+E\+R\+\_\+\+O\+N} should be set to 0 in release version.
+
+\subsubsection*{balancer}
+
+\subsection*{}
+
+{\ttfamily loop\+\_\+t} runs at the thread which calling {\ttfamily loop\+\_\+run} or {\ttfamily loop\+\_\+run\+\_\+once}, each {\ttfamily loop\+\_\+t} knows nothing about others. {\ttfamily loop\+\_\+balancer\+\_\+t} coordinates all attached {\ttfamily loop\+\_\+t}({\ttfamily loop\+\_\+balance\+\_\+attach}) and try to balance load for them.
+
+{\ttfamily loop\+\_\+balancer\+\_\+t} conceal the details and sophisticated for developer, the process of balancing is thread-\/safety and highly efficent. {\bfseries knet} offers a simple thread A\+P\+I to run internally {\ttfamily loop\+\_\+run}, the interact among loops are also transparent for developers.
+
+For more detail, see {\ttfamily \hyperlink{multi__loop_8c}{examples/multi\+\_\+loop.\+c}}
+
+\subsubsection*{rpc}
+
+\subsection*{}
+
+{\bfseries knet} offers a low level {\bfseries R\+P\+C} object framework for developer. {\ttfamily krpc\+\_\+t} is the base for the next version(1.\+5.\+x), developers may develop handwriting code by {\ttfamily krpc\+\_\+t}, but its not a good way to maintain code for future development.
+
+For more detail, see {\ttfamily \hyperlink{examples_2rpc_8c}{examples/rpc.\+c}}
+
+\subsubsection*{rpc code generating}
+
+\subsection*{}
+
+{\bfseries krpc} is a command line tool to generate R\+P\+C code for developes. The generated code utilizes R\+P\+C object framework to marshal/unmarshal the R\+P\+C method parameters, and a simple singleton R\+P\+C entry class.
+
+{\ttfamily krpc -\/d output-\/directory -\/f input\+\_\+rpc\+\_\+file -\/n rpc\+\_\+class\+\_\+name -\/l the\+\_\+language\+\_\+to\+\_\+generate}
+
+After run the command, you\textquotesingle{}ll find two files in the output-\/directory, {\ttfamily rpc\+\_\+class\+\_\+name.\+h} and {\ttfamily rpc\+\_\+class\+\_\+name.\+cpp}. For now, {\ttfamily krpc} supports C++ only.
+
+For more detail, see
+
+
+\begin{DoxyItemize}
+\item {\ttfamily krpc/examples/rpc\+\_\+sample.\+rpc}
+\item {\ttfamily krpc/examples/rpc\+\_\+sample\+\_\+object.\+rpc}
+\item {\ttfamily \hyperlink{rpc_8cpp}{krpc/examples/rpc.\+cpp}}
+\item {\ttfamily \hyperlink{rpc__sample_8h}{krpc/examples/rpc\+\_\+sample.\+h}}
+\item {\ttfamily \hyperlink{rpc__sample_8cpp}{krpc/examples/rpc\+\_\+sample.\+cpp}}
+\end{DoxyItemize}
+
+\subsubsection*{build}
+
+\subsection*{}
+
+
+\begin{DoxyEnumerate}
+\item Windows see {\ttfamily knet/win-\/proj/knet-\/vs2010.\+sln}
+\item Linux see {\ttfamily knet/\+C\+Make\+Lists.\+txt} {\ttfamily cmake C\+Make\+Lists.\+txt} {\ttfamily make}
+\end{DoxyEnumerate}
+
+The build result in folder {\ttfamily knet/bin}.
+
+\subsubsection*{test}
+
+see {\ttfamily knet/bin}.
+
+
+\begin{DoxyEnumerate}
+\item Windows {\ttfamily test\+\_\+client-\/vs2010.\+exe} {\ttfamily test\+\_\+server-\/vs2010.\+exe}
+\item Linux {\ttfamily test\+\_\+client} {\ttfamily test\+\_\+server}
+\item The command line of client
+\begin{DoxyEnumerate}
+\item {\ttfamily -\/ip} server listening I\+P
+\item {\ttfamily -\/port} server listening port
+\item {\ttfamily -\/n} connector count
+\end{DoxyEnumerate}
+\item the command line of server
+\begin{DoxyEnumerate}
+\item {\ttfamily -\/ip} server listening I\+P
+\item {\ttfamily -\/port} server listening port
+\item {\ttfamily -\/w} worker count 
+\end{DoxyEnumerate}
+\end{DoxyEnumerate}
