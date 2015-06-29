@@ -43,17 +43,19 @@ void krpc_gen_cpp_t::lang_gen_code() {
     krpc_ostream_t source(options["dir"] + options["name"] + ".cpp");
     header.write(
         "//\n"
-        "// KRPC - Generated code, DO NOT modify\n"
+        "// KRPC - Generated code, *DO NOT CHANGE*\n"
         "//\n\n");
     source.write(
         "//\n"
-        "// KRPC - Generated code, DO NOT modify\n"
+        "// KRPC - Generated code, *DO NOT CHANGE*\n"
         "//\n\n");
     header.replace(
         "#ifndef _krpc_@file_name@_h_\n"
         "#define _krpc_@file_name@_h_\n\n",
         options["name"]);
-    lang_gen_includes(header);                         // 头文件
+    lang_gen_includes(header, source);                 // 包含文件
+    header.write("namespace @name@ {\n\n", options["name"].c_str());
+    source.write("namespace @name@ {\n\n", options["name"].c_str());
     lang_gen_attributes_pre_decls(header);             // 预先声明
     lang_gen_attributes(header, source);               // 属性对象
     lang_gen_rpc_call_decls(header);                   // RPC声明
@@ -61,15 +63,22 @@ void krpc_gen_cpp_t::lang_gen_code() {
     lang_gen_attribute_marshal_method_impls(source);   // marshal方法
     lang_gen_attribute_unmarshal_method_impls(source); // unmarshal方法
     lang_gen_framework(header, source);                // 入口框架
+    header << "}\n\n";
+    source << "}\n\n";
     header.replace("#endif // _krpc_@file_name@_h_\n", options["name"]);
 }
 
-void krpc_gen_cpp_t::lang_gen_includes(krpc_ostream_t& header) {
+void krpc_gen_cpp_t::lang_gen_includes(krpc_ostream_t& header, krpc_ostream_t& source) {
+    krpc_gen_t::option_map_t& options = _rpc_gen->get_options();
     header.write(
         "#include <cstdint>\n"
         "#include <string>\n" 
         "#include <vector>\n"
         "#include \"knet.h\"\n\n");
+    source.write(
+        "#include <sstream>\n"
+        "#include \"@name@.h\"\n\n",
+        options["name"].c_str());
 }
 
 void krpc_gen_cpp_t::lang_gen_framework(krpc_ostream_t& header,
@@ -81,22 +90,70 @@ void krpc_gen_cpp_t::lang_gen_framework(krpc_ostream_t& header,
 void krpc_gen_cpp_t::lang_gen_framework_decls(krpc_ostream_t& header) {
     krpc_gen_t::option_map_t& options = _rpc_gen->get_options();
     header.replace(
+        "/*\n"
+        " * RPC单件类\n"
+        " */\n"
         "class @name@_t {\n"
         "public:\n"
-        "\t~@name@_t();\n"
-        "\tstatic @name@_t* instance();\n"
-        "\tstatic void finalize();\n"
-        "\tint rpc_proc(stream_t* stream); \n",
+        "\t/*\n"
+        "\t * 析构\n"
+        "\t */\n"
+        "\t~@name@_t();\n\n"
+        "\t/*\n"
+        "\t * 取得单件指针\n"
+        "\t * \\return @name@_t指针\n"
+        "\t */\n"
+        "\tstatic @name@_t* instance();\n\n"
+        "\t/*\n"
+        "\t * 销毁单件\n"
+        "\t */\n"
+        "\tstatic void finalize();\n\n"
+        "\t/*\n"
+        "\t * 从stream_t读取RPC调用请求\n"
+        "\t * \\param stream stream_t实例\n"
+        "\t * \\retval error_ok 成功处理一次RPC调用\n"
+        "\t * \\retval error_rpc_not_enough_bytes 没有完整的RPC可以处理\n"
+        "\t * \\retval error_rpc_unmarshal_fail 处理RPC包字节流时读取失败\n"
+        "\t * \\retval error_rpc_unknown_id 读取到RPC调用，但RPC ID未注册\n"
+        "\t * \\retval error_rpc_cb_fail 调用RPC处理函数时，处理函数内部发生错误\n"
+        "\t * \\retval error_rpc_cb_fail_close 调用RPC处理函数时，处理函数内部发生错误，处理函数要求关闭stream_t相关联的管道\n"
+        "\t * \\retval error_rpc_cb_close 调用RPC处理函数后，处理函数要求关闭stream_t相关联的管道\n"
+        "\t * \\retval error_rpc_unknown_type RPC类型错误\n"
+        "\t */\n"
+        "\tint rpc_proc(stream_t* stream); \n\n",
         options["name"]);
     // RPC包装方法
     krpc_parser_t* parser = _rpc_gen->get_parser();
     krpc_parser_t::rpc_call_map_t::iterator rpc_call =
         parser->get_rpc_calls().begin();
     for (; rpc_call != parser->get_rpc_calls().end(); rpc_call++) {
-        header << "\tint " << rpc_call->first << "(stream_t* stream, ";
+        header.write(
+            "\t/*\n"
+            "\t * @rpc@ @method_comment@\n",
+            rpc_call->second->get_name().c_str(),
+            rpc_call->second->get_comment().empty() ?
+                "代理调用包装方法" : rpc_call->second->get_comment().c_str());
         krpc_attribute_t* attribute = rpc_call->second->get_attribute();
         krpc_attribute_t::field_list_t::iterator field =
             attribute->get_field_list().begin();
+        for (; field != attribute->get_field_list().end(); field++) {
+            if ((*field)->get_comment().empty()) {
+                header.write("\t * \\param @field@ @comment@\n",
+                    (*field)->get_field_name().c_str(),
+                    "N/A.");
+            } else {
+                header.write("\t * \\param @field@ @comment@\n",
+                    (*field)->get_field_name().c_str(),
+                    (*field)->get_comment().c_str());
+            }
+        }
+        header.write(
+            "\t * \\retval error_ok 成功\n"
+            "\t * \\retval error_rpc_marshal_fail 序列化RPC调用时失败\n"
+            "\t */\n");
+        header << "\tint " << rpc_call->first << "(stream_t* stream, ";
+        attribute = rpc_call->second->get_attribute();
+        field = attribute->get_field_list().begin();
         size_t size = attribute->get_field_list().size();
         for (size_t pos = 0; field != attribute->get_field_list().end();
             field++, pos++) {
@@ -105,15 +162,22 @@ void krpc_gen_cpp_t::lang_gen_framework_decls(krpc_ostream_t& header) {
                 header << ", ";
             }
         }
-        header.write(");\n");
+        header.write(");\n\n");
     }
     // 私有成员
     header.replace(
         "private:\n"
-        "\t@name@_t();\n"
-        "\t@name@_t(const @name@_t&);\n"
-        "\tstatic @name@_t* _instance;\n"
-        "\tkrpc_t* _rpc;\n"
+        "\t/*\n"
+        "\t * 构造函数\n"
+        "\t */\n"
+        "\t@name@_t();\n\n"
+        "\t/*\n"
+        "\t * 拷贝构造\n"
+        "\t */\n"
+        "\t@name@_t(const @name@_t&);\n\n"
+        "private:\n"
+        "\tstatic @name@_t* _instance; // 单件指针\n"
+        "\tkrpc_t* _rpc; // RPC实现类\n"
         "};\n\n",
         options["name"]);
 }
@@ -192,6 +256,11 @@ void krpc_gen_cpp_t::lang_gen_rpc_call_decls(krpc_ostream_t& header) {
     krpc_parser_t::rpc_call_map_t::iterator rpc_call =
         parser->get_rpc_calls().begin();
     for (; rpc_call != parser->get_rpc_calls().end(); rpc_call++) {
+        header.write(
+            "/*\n"
+            " * @method_name@代理\n"
+            " */\n",
+            rpc_call->first.c_str());
         header << "krpc_object_t* " << rpc_call->first << "_proxy(";
         krpc_attribute_t* attribute = rpc_call->second->get_attribute();
         krpc_attribute_t::field_list_t::iterator field =
@@ -204,9 +273,19 @@ void krpc_gen_cpp_t::lang_gen_rpc_call_decls(krpc_ostream_t& header) {
                 header << ", ";
             }
         }
-        header << ");\n"
-               << "int " << rpc_call->first << "_stub(krpc_object_t* o);\n"
-               << "int " << rpc_call->first << "(";
+        header << ");\n\n";
+        header.write(
+            "/*\n"
+            " * @method_name@桩\n"
+            " */\n",
+            rpc_call->first.c_str());
+        header << "int " << rpc_call->first << "_stub(krpc_object_t* o);\n\n";
+        header.write(
+            "/*\n"
+            " * @method_name@声明，需实现此方法\n"
+            " */\n",
+            rpc_call->first.c_str());
+        header << "int " << rpc_call->first << "(";
         field = attribute->get_field_list().begin();
         size = attribute->get_field_list().size();
         for (size_t pos = 0; field != attribute->get_field_list().end();
@@ -216,7 +295,7 @@ void krpc_gen_cpp_t::lang_gen_rpc_call_decls(krpc_ostream_t& header) {
                 header << ", ";
             }
         }
-        header << ");\n";
+        header << ");\n\n";
     }
     header << "\n";
 }
@@ -406,7 +485,7 @@ void krpc_gen_cpp_t::lang_gen_attribute_marshal_method_decls(
     krpc_parser_t* parser = _rpc_gen->get_parser();
     krpc_parser_t::object_map_t::iterator object =
         parser->get_attributes().begin();
-    for (; object != parser->get_attributes().end(); object++) {
+    for (; object != parser->get_attributes().end(); object++) {        
         lang_gen_attribute_marshal_method_decl(object->second, header);
     }
 }
@@ -426,7 +505,7 @@ void krpc_gen_cpp_t::lang_gen_attribute_unmarshal_method_impls(
     krpc_parser_t* parser = _rpc_gen->get_parser();
     krpc_parser_t::object_map_t::iterator object =
         parser->get_attributes().begin();
-    for (; object != parser->get_attributes().end(); object++) {
+    for (; object != parser->get_attributes().end(); object++) {        
         lang_gen_attribute_unmarshal_method_impl(object->second, source);
     }
 }
@@ -434,12 +513,22 @@ void krpc_gen_cpp_t::lang_gen_attribute_unmarshal_method_impls(
 void krpc_gen_cpp_t::lang_gen_attribute_marshal_method_decl(
     krpc_attribute_t* attribute,
     krpc_ostream_t& header) {
+    header.write(
+        "/*\n"
+        " * @attribute_name@序列化\n"
+        " */\n",
+        attribute->get_name().c_str());
     header << "krpc_object_t* marshal("
            << attribute->get_name()
-           << "& o);\n"
-           << "bool unmarshal(krpc_object_t* v, "
+           << "& o);\n\n";
+     header.write(
+        "/*\n"
+        " * @attribute_name@反列化\n"
+        " */\n",
+        attribute->get_name().c_str());
+    header << "bool unmarshal(krpc_object_t* v, "
            << attribute->get_name()
-           << "& o);\n";
+           << "& o);\n\n";
 }
 
 void krpc_gen_cpp_t::lang_gen_attribute_marshal_method_impl(
@@ -609,7 +698,7 @@ void krpc_gen_cpp_t::lang_gen_field_marshal_impl_array(krpc_field_t* field,
         source << whites << "\t\t" << "for(; guard != "
                << field->get_field_name() << ".end(); guard++) {\n";
     }
-    lang_gen_field_marshal_impl_not_array(field, source, "*guard", "v_",
+    lang_gen_field_marshal_impl_not_array(field, source, "(*guard)", "v_",
         whites + "\t\t");
     source << whites << "\t\t}\n"
            << whites << "\t\tkrpc_vector_push_back(v, v_);\n"
@@ -731,7 +820,7 @@ void krpc_gen_cpp_t::lang_gen_attribute_method_print_impl(
                         (*field)->get_field_name());
                 } else {
                     source.replace(
-                        "\t\tss << white << \"  @name@=\"@name@[i] << std::endl;\n",
+                        "\t\tss << white << \"  @name@=\" << @name@[i] << std::endl;\n",
                         (*field)->get_field_name());
                 }
                 source << "\t}\n"
@@ -762,9 +851,10 @@ void krpc_gen_cpp_t::lang_gen_attribute_method_print_impl(
 
 void krpc_gen_cpp_t::lang_gen_attribute_method_impl(krpc_attribute_t* attribute,
     krpc_ostream_t& source) {
-    source.replace("@name@::@name@() {}\n\n"
-                   "@name@::@name@(const @name@& rht) {\n",
-                   attribute->get_name());
+    source.replace(
+        "@name@::@name@() {}\n\n"
+        "@name@::@name@(const @name@& rht) {\n",
+        attribute->get_name());
     krpc_attribute_t::field_list_t::iterator field =
         attribute->get_field_list().begin();
     for (; field != attribute->get_field_list().end(); field++) {
@@ -803,9 +893,25 @@ void krpc_gen_cpp_t::lang_gen_attribute_method_impl(krpc_attribute_t* attribute,
 void krpc_gen_cpp_t::lang_gen_attribute_method_decl(krpc_attribute_t* attribute,
     krpc_ostream_t& header) {
     header.replace(
-        "\t@name@();\n"
-        "\t@name@(const @name@& rht);\n"
-        "\tconst @name@& operator=(const @name@& rht);\n"
+        "\t/*\n"
+        "\t * 构造函数\n"
+        "\t */\n"
+        "\t@name@();\n\n"
+        "\t/*\n"
+        "\t * 拷贝构造\n"
+        "\t * \\param rht @name@引用\n"
+        "\t */\n"
+        "\t@name@(const @name@& rht);\n\n"
+        "\t/*\n"
+        "\t * 赋值\n"
+        "\t * \\param rht @name@引用\n"
+        "\t */\n"
+        "\tconst @name@& operator=(const @name@& rht);\n\n"
+        "\t/*\n"
+        "\t * 打印对象\n"
+        "\t * \\param ss std::stringstream引用， 对象信息将输出到ss\n"
+        "\t * \\param white 缩进空格\n"
+        "\t */\n"
         "\tvoid print(std::stringstream& ss, std::string white = \"\");\n",
         attribute->get_name());
 }
@@ -813,8 +919,6 @@ void krpc_gen_cpp_t::lang_gen_attribute_method_decl(krpc_attribute_t* attribute,
 void krpc_gen_cpp_t::lang_gen_attributes(krpc_ostream_t& header,
     krpc_ostream_t& source) {
     source.replace(
-        "#include <sstream>\n"
-        "#include \"@name@.h\"\n\n"
         "template<typename T>\n"
         "void push_back_all(std::vector<T>& v, typename std::vector<T>::const_iterator begin,\n"
         "\ttypename std::vector<T>::const_iterator end) {\n"
@@ -827,6 +931,12 @@ void krpc_gen_cpp_t::lang_gen_attributes(krpc_ostream_t& header,
     krpc_parser_t::object_map_t::iterator object =
         parser->get_attributes().begin();
     for (; object != parser->get_attributes().end(); object++) {
+        if (!object->second->get_comment().empty()) {
+            header.write(
+                "/*\n"
+                " * @comment@\n"
+                " */\n", object->second->get_comment().c_str());
+        }
         header << "struct " << object->first << " {\n";
         krpc_attribute_t::field_list_t::iterator field =
             object->second->get_field_list().begin();
@@ -850,7 +960,11 @@ void krpc_gen_cpp_t::lang_gen_attribute_field_decl(krpc_ostream_t& header,
         // 普通变量
         header << lang_field_find_type_name(field);
     }
-    header << " " << field->get_field_name() << ";\n";
+    header << " " << field->get_field_name() << ";";
+    if (!field->get_comment().empty()) {
+        header << " ///< " << field->get_comment();
+    }
+    header << "\n";
 }
 
 void krpc_gen_cpp_t::lang_gen_rpc_call_param_decl(krpc_ostream_t& header,

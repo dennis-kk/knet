@@ -4,4 +4,22 @@
 
 import rpc_sample_object.rpc
 
-rpc my_rpc_func(my_object_t my_obj, my_object_t[] obj_array, string test_str, f32[] array_f32)
+// 示例my_rpc_func1
+rpc
+my_rpc_func1 [# RPC调用示例](
+	my_object_t my_obj [# 参数1]
+)
+
+// 示例my_rpc_func2
+rpc
+my_rpc_func2 [# RPC调用示例](
+	my_object_t[] my_objs [# 参数1],
+	i8            my_i8   [# 参数2]
+)
+
+// 示例my_rpc_func3
+rpc
+my_rpc_func3 [# RPC调用示例](
+	string my_str [# 参数1],
+	i8     my_i8  [# 参数2]
+)

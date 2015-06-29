@@ -59,7 +59,8 @@ int krpc_token_t::get_type() const {
 krpc_lexer_t::krpc_lexer_t(const char* stream)
 : _row(1),
   _col(1),
-  _stream(const_cast<char*>(stream)) {
+  _stream(const_cast<char*>(stream)),
+  _icomment(false) {
 }
 
 krpc_lexer_t::~krpc_lexer_t() {
@@ -91,13 +92,13 @@ krpc_token_t* krpc_lexer_t::get_token() {
         return 0;
     }
     eat_whites();
-    for (c = current(); (c) && (!check_terminator(c)); c = forward(1), i++) {
+    for (c = current(); (c) && (!check_terminator(c, _icomment)); c = forward(1), i++) {
         token[i] = c;
     }
     if (i >= MAX_TOKEN_SIZE) {
         raise_exception("reach max name length");
     }
-    if (!token[0] && check_terminator(c)) {
+    if (!token[0] && check_terminator(c, false)) {
         token[i++] = current();
     }
     if (!token[0]) {
@@ -195,9 +196,21 @@ krpc_token_t* krpc_lexer_t::get_token() {
             forward(2);
             add_col(2);
             type = krpc_token_array;
+        } else if (has_next() && (_stream[1] == '#')) {
+            // 嵌入注释
+            _icomment = true;
+            forward(2);
+            add_col(2);
+            type = krpc_token_inline_comment;
         } else {
             raise_exception("invalid array declaration");
         }
+        break;
+    case ']':
+        _icomment = false;
+        forward(1);
+        add_col(1);
+        type = krpc_token_right_square;
         break;
     case '/':
         // 单行/多行注释
@@ -210,8 +223,10 @@ krpc_token_t* krpc_lexer_t::get_token() {
     if (0 == type) {
         // 变量名，对象名
         add_col(i);
-        if (!check_var_name(token)) {
-            raise_exception("variable name must start by '_' or letter");
+        if (!_icomment) {
+            if (!check_var_name(token)) {
+                raise_exception("variable name must start by '_' or letter");
+            }
         }
         type = krpc_token_text;
     }
@@ -283,12 +298,19 @@ bool krpc_lexer_t::check_white(char c) {
     return false;
 }
 
-bool krpc_lexer_t::check_terminator(char c) {
-    switch (c) {
-    case '{': case '}': case '(': case ')': case ',': case '[': case '/':
-        return true;
+bool krpc_lexer_t::check_terminator(char c, bool icomment) {
+    if (icomment) {
+        if (c != ']') {
+            return false;
+        }
+    } else {
+        switch (c) {
+        case '{': case '}': case '(': case ')': case ',': case '[': case ']': case '/':
+            return true;
+        }
+        return check_white(c);
     }
-    return check_white(c);
+    return true;
 }
 
 bool krpc_lexer_t::check_keyword2(const char* s, char c1, char c2) {

@@ -79,6 +79,7 @@ channel_ref_t* channel_ref_create(loop_t* loop, channel_t* channel) {
 
 int channel_ref_destroy(channel_ref_t* channel_ref) {
     assert(channel_ref);
+    assert(channel_ref->ref_info);
     /* 检测引用计数 */
     if (!atomic_counter_zero(&channel_ref->ref_info->ref_count)) {
         return error_ref_nonzero;

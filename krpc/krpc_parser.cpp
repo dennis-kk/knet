@@ -51,6 +51,14 @@ bool krpc_field_t::check_type(int type) {
     return (type == (type & _type));
 }
 
+void krpc_field_t::set_comment(const std::string& comment) {
+    _comment = comment;
+}
+
+const std::string& krpc_field_t::get_comment() {
+    return _comment;
+}
+
 int krpc_field_t::convert(int type) {
     switch (type) {
     case krpc_token_text:
@@ -126,6 +134,14 @@ krpc_attribute_t::field_list_t& krpc_attribute_t::get_field_list() {
     return _fields;
 }
 
+void krpc_attribute_t::set_comment(const std::string& comment) {
+    _comment = comment;
+}
+
+const std::string& krpc_attribute_t::get_comment() {
+    return _comment;
+}
+
 krpc_rpc_call_t::krpc_rpc_call_t(const std::string& rpc_name)
 : _name(rpc_name),
   _attribute(new krpc_attribute_t("")) {
@@ -141,6 +157,14 @@ const std::string& krpc_rpc_call_t::get_name() {
 
 krpc_attribute_t* krpc_rpc_call_t::get_attribute() {
     return _attribute;
+}
+
+void krpc_rpc_call_t::set_comment(const std::string& comment) {
+    _comment = comment;
+}
+
+const std::string& krpc_rpc_call_t::get_comment() {
+    return _comment;
 }
 
 krpc_parser_t::krpc_parser_t(krpc_parser_t* parent, const char* dir,
@@ -202,14 +226,30 @@ krpc_attribute_t* krpc_parser_t::parse_attribute(krpc_token_t* token) {
     // attribute `name` { `field`* }
     //
     krpc_attribute_t* attribute = new krpc_attribute_t(token->get_literal());
-    check_raise_exception(token = next_token(), "attribute need a '{'");
+    check_raise_exception(token = next_token(), "attribute need a '{' or comment");
+    std::string comment;
+    krpc_token_t* next = parse_inline_comment(token, comment);
+    if (next != token) {
+        attribute->set_comment(comment);
+        check_raise_exception(next = next_token(), "need a '{'");
+    }
+    token = next;
     check_raise_exception(krpc_token_left_brace == token->get_type(),
         "need a '{'");
-    for (token = next_token();
-        token && (krpc_token_right_brace != token->get_type());
+    krpc_field_t* field = 0;
+    for (token = next_token(); token && (krpc_token_right_brace != token->get_type());
         token = next_token()) {
-        krpc_field_t* field = parse_field(token);
-        attribute->push_field(field);
+        // 嵌入注释
+        std::string comment;
+        if (token->get_type() == krpc_token_inline_comment) {
+            krpc_token_t* next = parse_inline_comment(token, comment);
+            if (next != token) {
+                field->set_comment(comment);
+            }
+        } else {
+            field = parse_field(token);
+            attribute->push_field(field);
+        }
     }
     check_raise_exception(krpc_token_right_brace == token->get_type(),
         "need a '}'");
@@ -220,24 +260,43 @@ krpc_rpc_call_t* krpc_parser_t::parse_rpc_call(krpc_token_t* token) {
     //
     // rpc `name` ( `field`* )
     //
-    check_raise_exception(token, "attribute need a RPC name");
+    check_raise_exception(token, "need a RPC name");
     check_raise_exception(krpc_token_text == token->get_type(),
-        "attribute need a RPC name");
+        "need a RPC name");
     krpc_rpc_call_t* rpc_call = new krpc_rpc_call_t(token->get_literal());
-    check_raise_exception(token = next_token(), "need a '('");
+    check_raise_exception(token = next_token(), "need a '(' or comment");
+    std::string comment;
+    krpc_token_t* next = parse_inline_comment(token, comment);
+    if (next != token) {
+        rpc_call->set_comment(comment);
+        check_raise_exception(next = next_token(), "need a '('");
+    }
+    token = next;
     check_raise_exception(krpc_token_left_round == token->get_type(),
         "need a '('");
-    for (token = next_token(); token; token = next_token()) {
+    for (token = next_token(); (token); token = next_token()) {
         krpc_field_t* field = parse_field(token);
         rpc_call->get_attribute()->push_field(field);
         check_raise_exception(token = next_token(),
-            "attribute need a ',' or ')'");
-        check_raise_exception((krpc_token_comma == token->get_type()) ||
-                              (krpc_token_right_round == token->get_type()),
-                              "attribute need a ',' or ')'");
+            "need a ',' ,')' or comment");
+        check_raise_exception(
+            (krpc_token_comma == token->get_type()) ||
+            (krpc_token_right_round == token->get_type()) ||
+            (krpc_token_inline_comment == token->get_type()),
+            "need a ',' ')' or comment");
         if (krpc_token_right_round == token->get_type()) {
             break;
         }
+        std::string comment;
+        krpc_token_t* next = parse_inline_comment(token, comment);
+        if (next != token) {
+            field->set_comment(comment);
+            check_raise_exception(token = next_token(),
+                "need a ',' ,')' or comment");
+            if (krpc_token_right_round == token->get_type()) {
+                break;
+            }
+        }        
     }
     return rpc_call;
 }
@@ -255,6 +314,20 @@ void krpc_parser_t::parse_import(krpc_token_t* token) {
     delete parser;
 }
 
+krpc_token_t* krpc_parser_t::parse_inline_comment(krpc_token_t* token, std::string& comment) {
+    if (token->get_type() != krpc_token_inline_comment) {
+        return token;
+    }
+    krpc_token_t* comment_token = 0;
+    check_raise_exception(comment_token = next_token(), "need a ']' or comment");
+    if (comment_token->get_type() == krpc_token_text) {
+        comment = comment_token->get_literal();
+        check_raise_exception(token = next_token(), "need a ']'");
+        check_raise_exception(token->get_type() == krpc_token_right_square, "need a ']' or comment");
+    }
+    return token;
+}
+
 void krpc_parser_t::parse_trunk(krpc_token_t* token) {
     //
     // `chunk` = (`object-declare` | `rpc-call` | `single-line-comment` | `import-file`)*
@@ -270,7 +343,8 @@ void krpc_parser_t::parse_trunk(krpc_token_t* token) {
         get_attributes().insert(
             std::make_pair(name, attribute));
     } else if (krpc_token_rpc == token->get_type()) { // RPC方法
-        krpc_rpc_call_t* rpc_call = parse_rpc_call(next_token());
+        check_raise_exception(token = next_token(), "need rpc method name");
+        krpc_rpc_call_t* rpc_call = parse_rpc_call(token);
         // 检查重复
         std::string name = rpc_call->get_name();
         if (get_rpc_calls().find(name) != get_rpc_calls().end()) {

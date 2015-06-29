@@ -320,7 +320,7 @@ int socket_pair(socket_t pair[2]) {
     socket_t accept_sock = INVALID_SOCKET;
     struct sockaddr_in accept_addr;
     struct sockaddr_in connect_addr;
-    memset(pair, INVALID_SOCKET, sizeof(pair));
+    memset(pair, INVALID_SOCKET, sizeof(socket_t) * 2);
     memset(&accept_addr, 0, sizeof(accept_addr));
     memset(&connect_addr, 0, sizeof(connect_addr));
     accept_sock = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);

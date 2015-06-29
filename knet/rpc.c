@@ -126,6 +126,7 @@ int krpc_proc(krpc_t* rpc, stream_t* stream) {
     /* unmarshal */
     error = krpc_object_unmarshal(stream, &o, &length);
     if (error_ok != error) {
+        error = error_rpc_unmarshal_fail;
         goto error_return;
     }
     /* 调用回调 */

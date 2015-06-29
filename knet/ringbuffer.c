@@ -91,10 +91,11 @@ uint32_t ringbuffer_read(ringbuffer_t* rb, char* buffer, uint32_t size) {
 
 uint32_t ringbuffer_copy(ringbuffer_t* rb, char* buffer, uint32_t size) {
     uint32_t i        = 0;
-    uint32_t read_pos = rb->read_pos;
+    uint32_t read_pos = 0;
     assert(rb);
     assert(buffer);
     assert(size);
+    read_pos = rb->read_pos;
     size = min(rb->count, size);
     for (; i < size; i++) {
         buffer[i] = rb->ptr[read_pos];

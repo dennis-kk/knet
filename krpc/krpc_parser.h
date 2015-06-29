@@ -91,9 +91,22 @@ public:
      */
     field_list_t& get_field_list();
 
+    /*
+     * 设置注释
+     * @param comment 注释
+     */
+    void set_comment(const std::string& comment);
+
+    /*
+     * 取得注释
+     * @return 注释
+     */
+    const std::string& get_comment();
+
 private:
-    field_list_t _fields; // 字段列表
-    std::string  _name;   // 属性名
+    field_list_t _fields;  // 字段列表
+    std::string  _name;    // 属性名
+    std::string  _comment; // 注释
 };
 
 /*
@@ -157,6 +170,18 @@ public:
      */
     const std::string& get_field_type();
 
+    /*
+     * 设置注释
+     * @param comment 注释
+     */
+    void set_comment(const std::string& comment);
+
+    /*
+     * 取得注释
+     * @return 注释
+     */
+    const std::string& get_comment();
+
 private:
     /*
      * 转换token类型到字段类型
@@ -167,6 +192,7 @@ private:
 private:
     std::string _field_name; // 字段名
     std::string _field_type; // 字段类型名
+    std::string _comment;    // 注释
     int         _type;       // 字段类型
 };
 
@@ -198,9 +224,22 @@ public:
      */
     krpc_attribute_t* get_attribute();
 
+    /*
+     * 设置注释
+     * @param comment 注释
+     */
+    void set_comment(const std::string& comment);
+
+    /*
+     * 取得注释
+     * @return 注释
+     */
+    const std::string& get_comment();
+
 private:
     std::string       _name;      // 函数名
     krpc_attribute_t* _attribute; // 参数表
+    std::string       _comment;    // 注释
 };
 
 /*
@@ -255,6 +294,14 @@ private:
      * @param token 当前token
      */
     void parse_trunk(krpc_token_t* token);
+
+    /*
+     * 取得嵌入注释
+     * @param token 当前token
+     * @param comment 注释
+     * @return 当前节点
+     */
+    krpc_token_t* parse_inline_comment(krpc_token_t* token, std::string& comment);
 
     /*
      * 解析属性

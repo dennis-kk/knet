@@ -72,7 +72,7 @@ private:
     /*
      * 包含头文件
      */
-    void lang_gen_includes(krpc_ostream_t& header);
+    void lang_gen_includes(krpc_ostream_t& header, krpc_ostream_t& source);
 
     /*
      * 属性对象预先声明

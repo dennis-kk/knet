@@ -69,8 +69,10 @@ int main(int argc, char* argv[]) {
 
     for (i = 0; i < worker; i++) {
         loops[i] = loop_create();
+        assert(loop[i]);
         loop_balancer_attach(balancer, loops[i]);
         threads[i] = thread_runner_create(0, 0);
+        assert(threads[i]);
         thread_runner_start_loop(threads[i], loops[i], 0);
     }
 

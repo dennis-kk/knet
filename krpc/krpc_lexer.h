@@ -56,7 +56,9 @@ enum {
     krpc_token_right_brace,
     krpc_token_left_round,
     krpc_token_right_round,
+    krpc_token_right_square,
     krpc_token_comma,
+    krpc_token_inline_comment,
 };
 
 /*
@@ -166,10 +168,11 @@ private:
     /*
      * 检查是否为终结符
      * @param c 当前字符
+     * @param icomment 是否在嵌入注释体内
      * @retval true 是
      * @retval false 否
      */
-    bool check_terminator(char c);
+    bool check_terminator(char ck, bool icomment);
 
     /*
      * 步进流
@@ -224,10 +227,11 @@ private:
 
 private:
     typedef std::list<krpc_token_t*> token_list_t;
-    token_list_t _tokens;  // token链表
-    int          _row;     // 当前行
-    int          _col;     // 当前列
-    char*        _stream;  // 字符流
+    token_list_t _tokens;   // token链表
+    int          _row;      // 当前行
+    int          _col;      // 当前列
+    char*        _stream;   // 字符流
+    bool         _icomment; // 是否在嵌入注释体内
 };
 
 #endif // KRPC_LEXER_H

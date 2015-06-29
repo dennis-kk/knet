@@ -2,21 +2,22 @@
 // rpc sample file
 //
 
-object my_message_t {
-	string str
+object my_object_t [#对象事例] {
+	i8     ni8   [#有符号8位整数]
+	i16    ni16  [#有符号16位整数]
+	i32    ni32  [#有符号32位整数]
+	i64    ni64  [#有符号64位整数]
+	ui8    nui8  [#无符号8位整数]
+	ui16   nui16 [#无符号16位整数]
+	ui32   nui32 [#无符号32位整数]
+	ui64   nui64 [#无符号64位整数]
+	f32    nf32  [#32位浮点数]
+	f64    nf64  [#64位浮点数]
+	string str   [#字符串]
 }
 
-object my_object_t {
-	i8 n_i8
-	i16 n_i16
-	i32 n_i32
-	i64 n_i64
-	ui8 n_ui8
-	ui16 n_ui16
-	ui32 n_ui32
-	ui64 n_ui64
-	f32  n_f32
-	f64 n_f64
-	my_message_t[] message
-	i32[] test_array
+object my_object_other_t [#自定义对象] {
+	my_object_t[] objects   [#对象数组]
+	i32[]         i32_array [#i32数组]
+	string[]      str_array [#字符串数组]
 }

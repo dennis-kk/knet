@@ -88,6 +88,23 @@ For more detail, see `examples/multi_loop.c`
 
 For more detail, see `examples/rpc.c`
 
+### rpc code generating ###
+##
+
+**krpc** is a command line tool to generate RPC code for developes. The generated code utilzes RPC object framework to marshal/unmarshal the RPC method parameters, and a simple singleton RPC entry class.
+
+`krpc -d output-directory -f input_rpc_file -n rpc_class_name -l the_language_to_generate`
+
+After run the command, you'll find two files in the output-directory, `rpc_class_name.h` and `rpc_class_name.cpp`. For now, `krpc` supports C++ only.
+
+For more detail, see
+
+- `krpc/examples/rpc_sample.rpc`
+- `krpc/examples/rpc_sample_object.rpc`
+- `krpc/examples/rpc.cpp`
+- `krpc/examples/rpc_sample.h`
+- `krpc/examples/rpc_sample.cpp`
+
 ### build ###
 ##
 
