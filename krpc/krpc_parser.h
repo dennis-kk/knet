@@ -243,11 +243,6 @@ public:
      */
     rpc_call_map_t& get_rpc_calls();
 
-    /*
-     * 屏幕输出文件结构
-     */
-    void print();
-
 private:
     /*
      * 取得下一个token

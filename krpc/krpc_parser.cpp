@@ -177,6 +177,13 @@ krpc_field_t* krpc_parser_t::parse_field(krpc_token_t* token) {
     check_raise_exception(token, "need a field type");
     krpc_token_t* first = token;
     krpc_field_t* field = new krpc_field_t(first->get_type());
+    // 检查类型是否已经定义
+    if (field->check_type(krpc_field_type_attribute)) {
+        if (get_attributes().find(first->get_literal()) == get_attributes().end()) {
+            raise_exception("object type undefined '"
+                << first->get_literal() << "'");
+        }
+    }
     field->set_field_type(first->get_literal());
     check_raise_exception(token = next_token(),
         "need a field type or array declaration");
@@ -321,7 +328,4 @@ krpc_parser_t::rpc_call_map_t& krpc_parser_t::get_rpc_calls() {
         return _parent->get_rpc_calls();
     }
     return _rpc_calls;
-}
-
-void krpc_parser_t::print() {
 }
