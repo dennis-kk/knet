@@ -91,7 +91,7 @@ For more detail, see `examples/rpc.c`
 ### rpc code generating ###
 ##
 
-**krpc** is a command line tool to generate RPC code for developes. The generated code utilzes RPC object framework to marshal/unmarshal the RPC method parameters, and a simple singleton RPC entry class.
+**krpc** is a command line tool to generate RPC code for developes. The generated code utilizes RPC object framework to marshal/unmarshal the RPC method parameters, and a simple singleton RPC entry class.
 
 `krpc -d output-directory -f input_rpc_file -n rpc_class_name -l the_language_to_generate`
 
