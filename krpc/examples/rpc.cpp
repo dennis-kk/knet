@@ -66,9 +66,17 @@ void connector_cb(channel_ref_t* channel, channel_cb_event_e e) {
 
 /* 服务端 - 客户端回调 */
 void client_cb(channel_ref_t* channel, channel_cb_event_e e) {
+    static int i = 0;
     stream_t* stream = channel_ref_get_stream(channel);
     if (e & channel_cb_event_recv) { /* 有数据可以读 */
-        for (;error_rpc_not_enough_bytes != rpc_sample_t::instance()->rpc_proc(stream);) {
+        for (;;) {
+            int error = rpc_sample_t::instance()->rpc_proc(stream);
+            if (error == error_ok) {
+                if (++i >= 3) {
+                    loop_exit(channel_ref_get_loop(channel));
+                    break;
+                }
+            }
         }
     }
 }
