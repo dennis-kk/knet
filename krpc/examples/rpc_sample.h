@@ -93,7 +93,7 @@ struct my_object_t {
 krpc_object_t* marshal(my_object_other_t& o);
 
 /*
- * my_object_other_t反列化
+ * my_object_other_t反序列化
  */
 bool unmarshal(krpc_object_t* v, my_object_other_t& o);
 
@@ -103,7 +103,7 @@ bool unmarshal(krpc_object_t* v, my_object_other_t& o);
 krpc_object_t* marshal(my_object_t& o);
 
 /*
- * my_object_t反列化
+ * my_object_t反序列化
  */
 bool unmarshal(krpc_object_t* v, my_object_t& o);
 

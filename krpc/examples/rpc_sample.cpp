@@ -307,15 +307,24 @@ int rpc_sample_t::rpc_proc(stream_t* stream) {
 }
 
 int rpc_sample_t::my_rpc_func1(stream_t* stream, my_object_t& my_obj) {
-	return krpc_call(_rpc, stream, 1, my_rpc_func1_proxy(my_obj));
+	krpc_object_t* o = my_rpc_func1_proxy(my_obj);
+	int error = krpc_call(_rpc, stream, 1, o);
+	krpc_object_destroy(o);
+	return error;
 }
 
 int rpc_sample_t::my_rpc_func2(stream_t* stream, std::vector<my_object_t>& my_objs, int8_t my_i8) {
-	return krpc_call(_rpc, stream, 2, my_rpc_func2_proxy(my_objs, my_i8));
+	krpc_object_t* o = my_rpc_func2_proxy(my_objs, my_i8);
+	int error = krpc_call(_rpc, stream, 2, o);
+	krpc_object_destroy(o);
+	return error;
 }
 
 int rpc_sample_t::my_rpc_func3(stream_t* stream, const std::string& my_str, int8_t my_i8) {
-	return krpc_call(_rpc, stream, 3, my_rpc_func3_proxy(my_str, my_i8));
+	krpc_object_t* o = my_rpc_func3_proxy(my_str, my_i8);
+	int error = krpc_call(_rpc, stream, 3, o);
+	krpc_object_destroy(o);
+	return error;
 }
 
 }

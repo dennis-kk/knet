@@ -235,7 +235,7 @@ void krpc_gen_cpp_t::lang_gen_framework_impls(krpc_ostream_t& source) {
             }
         }
         source << ") {\n"
-               << "\treturn krpc_call(_rpc, stream, " << rpcid << ", "
+               << "\tkrpc_object_t* o = "
                << rpc_call->first << "_proxy(";
         field = attribute->get_field_list().begin();
         size = attribute->get_field_list().size();
@@ -246,7 +246,10 @@ void krpc_gen_cpp_t::lang_gen_framework_impls(krpc_ostream_t& source) {
                 source << ", ";
             }
         }
-        source << "));\n"
+        source << ");\n"
+               << "\tint error = krpc_call(_rpc, stream, " << rpcid << ", o);\n"
+               << "\tkrpc_object_destroy(o);\n"
+               << "\treturn error;\n"
                << "}\n\n";
     }
 }
@@ -523,7 +526,7 @@ void krpc_gen_cpp_t::lang_gen_attribute_marshal_method_decl(
            << "& o);\n\n";
      header.write(
         "/*\n"
-        " * @attribute_name@反列化\n"
+        " * @attribute_name@反序列化\n"
         " */\n",
         attribute->get_name().c_str());
     header << "bool unmarshal(krpc_object_t* v, "
