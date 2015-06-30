@@ -207,6 +207,11 @@ private:
      */
     bool has_next();
 
+    /*
+     * 取下一个字符但不递增字符流
+     */
+    char try_next();
+
     /**
      * 检查变量名是否合法
      * @param var_name 变量名
@@ -219,11 +224,11 @@ private:
     // 关键字比较
     //
 
-    bool check_keyword2(const char* s, char c1, char c2);
-    bool check_keyword3(const char* s, char c1, char c2, char c3);
-    bool check_keyword4(const char* s, char c1, char c2, char c3, char c4);
-    bool check_keyword5(const char* s, char c1, char c2, char c3, char c4, char c5);
-    bool check_keyword6(const char* s, char c1, char c2, char c3, char c4, char c5, char c6);
+    bool check_keyword(const char* s, char c1, char c2);
+    bool check_keyword(const char* s, char c1, char c2, char c3);
+    bool check_keyword(const char* s, char c1, char c2, char c3, char c4);
+    bool check_keyword(const char* s, char c1, char c2, char c3, char c4, char c5);
+    bool check_keyword(const char* s, char c1, char c2, char c3, char c4, char c5, char c6);
 
 private:
     typedef std::list<krpc_token_t*> token_list_t;

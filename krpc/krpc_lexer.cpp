@@ -84,20 +84,18 @@ krpc_token_t* krpc_lexer_t::next_token() throw(std::exception) {
 krpc_token_t* krpc_lexer_t::get_token() {
     static const int MAX_TOKEN_SIZE = 64;
     char token[MAX_TOKEN_SIZE] = {0};
-    int  i         = 0;
-    int  type      = 0;
-    char c         = 0;
+    int  i    = 0;
+    int  type = 0;
+    char c    = 0;
     memset(token, 0, sizeof(token));
     if (!verify()) {
         return 0;
     }
     eat_whites();
-    for (c = current(); (c) && (!check_terminator(c, _icomment)); c = forward(1), i++) {
+    for (c = current(); (c) && (!check_terminator(c, _icomment) && (i < MAX_TOKEN_SIZE)); c = forward(1), i++) {
         token[i] = c;
     }
-    if (i >= MAX_TOKEN_SIZE) {
-        raise_exception("reach max name length");
-    }
+    check_raise_exception(i < MAX_TOKEN_SIZE, "reach max name length");
     if (!token[0] && check_terminator(c, false)) {
         token[i++] = current();
     }
@@ -106,55 +104,55 @@ krpc_token_t* krpc_lexer_t::get_token() {
     }
     switch (token[0]) {
     case 'o':
-        if (check_keyword6(token, 'o', 'b', 'j', 'e', 'c', 't')) {
+        if (check_keyword(token, 'o', 'b', 'j', 'e', 'c', 't')) {
             type = krpc_token_object;
             add_col(6);
         }
         break;
     case 'i':
-        if (check_keyword2(token, 'i', '8')) {
+        if (check_keyword(token, 'i', '8')) {
             type = krpc_token_i8;
             add_col(2);
-        } else if (check_keyword3(token, 'i', '1', '6')) {
+        } else if (check_keyword(token, 'i', '1', '6')) {
             type = krpc_token_i16;
             add_col(3);
-        } else if (check_keyword3(token, 'i', '3', '2')) {
+        } else if (check_keyword(token, 'i', '3', '2')) {
             type = krpc_token_i32;
             add_col(3);
-        } else if (check_keyword3(token, 'i', '6', '4')) {
+        } else if (check_keyword(token, 'i', '6', '4')) {
             type = krpc_token_i64;
             add_col(3);
-        } else if (check_keyword6(token, 'i', 'm', 'p', 'o', 'r', 't')) {
+        } else if (check_keyword(token, 'i', 'm', 'p', 'o', 'r', 't')) {
             type = krpc_token_import;
             add_col(6);
         }
         break;
     case 'u':
-        if (check_keyword3(token, 'u', 'i', '8')) {
+        if (check_keyword(token, 'u', 'i', '8')) {
             type = krpc_token_ui8;
             add_col(3);
-        } else if (check_keyword4(token, 'u', 'i', '1', '6')) {
+        } else if (check_keyword(token, 'u', 'i', '1', '6')) {
             type = krpc_token_ui16;
             add_col(4);
-        } else if (check_keyword4(token, 'u', 'i', '3', '2')) {
+        } else if (check_keyword(token, 'u', 'i', '3', '2')) {
             type = krpc_token_ui32;
             add_col(4);
-        } else if (check_keyword4(token, 'u', 'i', '6', '4')) {
+        } else if (check_keyword(token, 'u', 'i', '6', '4')) {
             type = krpc_token_ui64;
             add_col(4);
         }
         break;
     case 'f':
-        if (check_keyword3(token, 'f', '3', '2')) {
+        if (check_keyword(token, 'f', '3', '2')) {
             type = krpc_token_f32;
             add_col(3);
-        } else if (check_keyword3(token, 'f', '6', '4')) {
+        } else if (check_keyword(token, 'f', '6', '4')) {
             type = krpc_token_f64;
             add_col(3);
         }
         break;
     case 's':
-        if (check_keyword6(token, 's', 't', 'r', 'i', 'n', 'g')) {
+        if (check_keyword(token, 's', 't', 'r', 'i', 'n', 'g')) {
             type = krpc_token_string;
             add_col(6);
         }
@@ -180,7 +178,7 @@ krpc_token_t* krpc_lexer_t::get_token() {
         type = krpc_token_right_round;
         break;
     case 'r':
-        if (check_keyword3(token, 'r', 'p', 'c')) {
+        if (check_keyword(token, 'r', 'p', 'c')) {
             type = krpc_token_rpc;
             add_col(3);
         }
@@ -191,12 +189,12 @@ krpc_token_t* krpc_lexer_t::get_token() {
         type = krpc_token_comma;
         break;
     case '[':
-        if (has_next() && (_stream[1] == ']')) {
+        if (has_next() && (try_next() == ']')) {
             // Êý×é
             forward(2);
             add_col(2);
             type = krpc_token_array;
-        } else if (has_next() && (_stream[1] == '#')) {
+        } else if (has_next() && (try_next() == '#')) {
             // Ç¶Èë×¢ÊÍ
             _icomment = true;
             forward(2);
@@ -238,6 +236,10 @@ bool krpc_lexer_t::check_var_name(const char* var_name) {
         return false;
     }
     return true;
+}
+
+char krpc_lexer_t::try_next() {
+    return has_next() ? _stream[1] : 0;
 }
 
 void krpc_lexer_t::add_col(int cols) {
@@ -313,23 +315,23 @@ bool krpc_lexer_t::check_terminator(char c, bool icomment) {
     return true;
 }
 
-bool krpc_lexer_t::check_keyword2(const char* s, char c1, char c2) {
+bool krpc_lexer_t::check_keyword(const char* s, char c1, char c2) {
     return (s[0] == c1) && (s[1] == c2) && (!s[2]);
 }
 
-bool krpc_lexer_t::check_keyword3(const char* s, char c1, char c2, char c3) {
+bool krpc_lexer_t::check_keyword(const char* s, char c1, char c2, char c3) {
     return (s[0] == c1) && (s[1] == c2) && (s[2] == c3) && (!s[3]);
 }
 
-bool krpc_lexer_t::check_keyword4(const char* s, char c1, char c2, char c3, char c4) {
+bool krpc_lexer_t::check_keyword(const char* s, char c1, char c2, char c3, char c4) {
     return (s[0] == c1) && (s[1] == c2) && (s[2] == c3) && (s[3] == c4) && (!s[4]);
 }
 
-bool krpc_lexer_t::check_keyword5(const char* s, char c1, char c2, char c3, char c4, char c5) {
+bool krpc_lexer_t::check_keyword(const char* s, char c1, char c2, char c3, char c4, char c5) {
     return (s[0] == c1) && (s[1] == c2) && (s[2] == c3) && (s[3] == c4) && (s[4] == c5) && (!s[5]);
 }
 
-bool krpc_lexer_t::check_keyword6(const char* s, char c1, char c2, char c3, char c4, char c5, char c6) {
+bool krpc_lexer_t::check_keyword(const char* s, char c1, char c2, char c3, char c4, char c5, char c6) {
     return (s[0] == c1) && (s[1] == c2) && (s[2] == c3) && (s[3] == c4) && (s[4] == c5) && (s[5] == c6) && (!s[6]);
 }
 
