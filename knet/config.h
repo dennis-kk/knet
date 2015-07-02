@@ -124,6 +124,8 @@ typedef struct _krpc_number_t krpc_number_t;
 typedef struct _krpc_string_t krpc_string_t;
 typedef struct _krpc_vector_t krpc_vector_t;
 typedef struct _krpc_object_t krpc_object_t;
+typedef struct _krpc_map_t krpc_map_t;
+typedef struct _krpc_value_t krpc_value_t;
 typedef struct _hash_t hash_t;
 typedef struct _hash_value_t hash_value_t;
 
@@ -192,6 +194,7 @@ typedef enum _error_e {
     error_rpc_vector_out_of_bound,
     error_rpc_marshal_fail,
     error_rpc_unmarshal_fail,
+    error_rpc_map_error_key_or_value,
     error_recvbuffer_not_enough,
     error_recvbuffer_locked,
     error_stream_enable,
@@ -251,6 +254,7 @@ typedef enum _krpc_type_e {
     krpc_type_number = 1024, /* 数字 */
     krpc_type_string = 2048, /* 字符串 */
     krpc_type_vector = 4096, /* 数组 */
+    krpc_type_map    = 8192, /* 表 */
 } krpc_type_e;
 
 /* 线程函数 */

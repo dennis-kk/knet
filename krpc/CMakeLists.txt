@@ -20,4 +20,3 @@ add_executable(krpc
 
 target_link_libraries(krpc)
 ADD_SUBDIRECTORY(examples)
-

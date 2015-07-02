@@ -140,7 +140,7 @@ hash_t* hash_create(uint32_t size, hash_dtor_t dtor) {
     assert(hash);
     memset(hash, 0, sizeof(hash_t));
     if (!size) {
-        size = 16; /* 默认bucket数量 */
+        size = 512; /* 默认bucket数量 */
     }
     hash->dtor = dtor;
     hash->size = size;
@@ -201,7 +201,7 @@ int hash_add_string_key(hash_t* hash, const char* key, void* value) {
     hash_value_t* hash_value = 0;
     assert(hash);
     assert(value);
-    hash_key = _hash_string(key);
+    hash_key = _hash_string(key) % hash->size;
     /* 创建值 */
     hash_value = hash_value_create(0, key, value);
     /* 添加到链表尾 */
@@ -244,7 +244,7 @@ void* hash_remove_string_key(hash_t* hash, const char* key) {
     hash_value_t* hash_value = 0;
     void*         value      = 0;
     assert(hash);
-    hash_key = _hash_string(key);
+    hash_key = _hash_string(key) % hash->size;
     /* 遍历链表查找 */
     dlist_for_each_safe(hash->buckets[hash_key], node, temp) {
         if (node == hash->it_node_next) { /* 删除正在遍历节点的后续节点 */
@@ -309,7 +309,7 @@ void* hash_get_string_key(hash_t* hash, const char* key) {
     dlist_node_t* node       = 0;
     hash_value_t* hash_value = 0;
     assert(hash);
-    hash_key = _hash_string(key);
+    hash_key = _hash_string(key) % hash->size;
     /* 遍历链表查找 */
     dlist_for_each(hash->buckets[hash_key], node) {
         hash_value = (hash_value_t*)dlist_node_get_data(node);
@@ -370,12 +370,12 @@ hash_value_t* hash_next(hash_t* hash) {
     hash_value_t* hash_value = 0;
     assert(hash);
     if (!hash->it_node_safe) { /* 未调用hash_get_first() */
-        assert(0);
-        return 0;
+        hash_get_first(hash);
     }
     if (hash->it_node_next) { /* 当前桶还有下一个元素 */
         hash->it_node_safe = hash->it_node_next; /* 交换 */
     } else { /* 到下一个有元素的桶 */
+        hash->it_node_safe = 0;
         if (hash->it_index >= hash->size) {
             return 0;
         }
@@ -386,16 +386,15 @@ hash_value_t* hash_next(hash_t* hash) {
             list = hash->buckets[i];
             assert(list);
             if (!dlist_empty(list)) {
+                hash->it_node_safe = dlist_get_front(list);
+                assert(hash->it_node_safe);
                 hash->it_index = i;
                 break;
             }
         }
-        if (!list) { /* 后续桶都为空 */
+        if (!hash->it_node_safe) { /* 后续桶都为空 */
             return 0;
         }
-        /* 取当前元素 */
-        hash->it_node_safe = dlist_get_front(list);
-        assert(hash->it_node_safe);
     }
     /* 预先取下一个元素，不论是否有元素 */
     hash->it_node_next = dlist_next(list, hash->it_node_safe);

@@ -79,4 +79,9 @@ int krpc_string_set_size(krpc_object_t* o, uint16_t size);
  */
 void krpc_vector_enlarge(krpc_object_t* o);
 
+/**
+ * 表值销毁函数
+ */
+void hash_value_dtor(void* v);
+
 #endif /* RPC_OBJECT_H */

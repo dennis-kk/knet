@@ -183,6 +183,16 @@ krpc_token_t* krpc_lexer_t::get_token() {
             add_col(3);
         }
         break;
+    case '>':
+        forward(1);
+        add_col(1);
+        type = krpc_token_greater;
+        break;
+    case '<':
+        forward(1);
+        add_col(1);
+        type = krpc_token_lesser;
+        break;
     case ',':
         forward(1);
         add_col(1);
@@ -307,7 +317,8 @@ bool krpc_lexer_t::check_terminator(char c, bool icomment) {
         }
     } else {
         switch (c) {
-        case '{': case '}': case '(': case ')': case ',': case '[': case ']': case '/':
+        case '{': case '}': case '(': case ')': case ',': case '[': case ']':
+        case '/': case '>': case '<':
             return true;
         }
         return check_white(c);

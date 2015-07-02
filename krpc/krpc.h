@@ -62,6 +62,11 @@ public:
     option_map_t& get_options();
 
     /**
+     * 获取命令行配置
+     */
+    const std::string& get_option(const std::string& key);
+
+    /**
      * 获取语法解析器
      * @return krpc_parser_t实例
      */

@@ -15,3 +15,9 @@ ADD_SUBDIRECTORY(knet)
 ADD_SUBDIRECTORY(krpc)
 ADD_SUBDIRECTORY(examples)
 ADD_SUBDIRECTORY(test)
+
+add_custom_command(TARGET krpc_post_build
+	POST_BUILD 
+	COMMAND mkdir ${BINARY_OUTPUT_DIR}/cpp_tpl
+	COMMAND cp -rf ${PROJECT_SOURCE_DIR}/cpp_tpl/*.* ${BINARY_OUTPUT_DIR}/cpp_tpl/
+)

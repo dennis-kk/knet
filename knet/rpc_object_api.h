@@ -263,4 +263,56 @@ extern int krpc_vector_set(krpc_object_t* v, krpc_object_t* o, int index);
  */
 extern void krpc_vector_clear(krpc_object_t* v);
 
+/**
+ * 添加<key, value>
+ * @param m krpc_object_t实例
+ * @param k key
+ * @param v value
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int krpc_map_insert(krpc_object_t* m, krpc_object_t* k, krpc_object_t* v);
+
+/**
+ * 查找
+ * @param m krpc_object_t实例
+ * @param k key
+ * @retval krpc_object_t实例
+ * @retval 0 未找到
+ */
+extern krpc_object_t* krpc_map_get(krpc_object_t* m, krpc_object_t* k);
+
+/**
+ * 取得表<kev, value>个数
+ * @param m krpc_object_t实例
+ * @return <kev, value>个数
+ */
+extern uint32_t krpc_map_get_size(krpc_object_t* m);
+
+/**
+ * 重置遍历器并取第一个<key, value>
+ * @param m krpc_object_t实例
+ * @param k key
+ * @param v value
+ * @retval 0 没有
+ * @retval 非零 有
+ */
+extern int krpc_map_get_first(krpc_object_t* m, krpc_object_t** k, krpc_object_t** v);
+
+/**
+ * 取下一个未遍历的<key, value>
+ * @param m krpc_object_t实例
+ * @param k key
+ * @param v value
+ * @retval 0 没有
+ * @retval 非零 有
+ */
+extern int krpc_map_next(krpc_object_t* m, krpc_object_t** k, krpc_object_t** v);
+
+/**
+ * 清空表
+ * @param m krpc_object_t实例
+ */
+extern void krpc_map_clear(krpc_object_t* m);
+
 #endif /* RPC_OBJECT_API_H */

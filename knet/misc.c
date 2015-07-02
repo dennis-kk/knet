@@ -935,3 +935,11 @@ sys_error_t sys_get_errno() {
     return errno;
 #endif /* defined(WIN32) */
 }
+
+uint64_t htonll(uint64_t ui64) { 
+     return (((uint64_t)htonl((uint32_t)ui64)) << 32) + htonl(ui64 >> 32); 
+} 
+
+uint64_t ntohll(uint64_t ui64) { 
+     return (((uint64_t)ntohl((uint32_t)ui64)) << 32) + ntohl(ui64 >> 32); 
+} 

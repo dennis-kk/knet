@@ -47,6 +47,8 @@ public:
 
     /**
      * std::string
+     * @param s std::string
+     * @return krpc_ostream_t引用
      */
     krpc_ostream_t& operator<<(const std::string& s) {
         _ofs << s;
@@ -55,6 +57,8 @@ public:
 
     /**
      * int
+     * @param i int
+     * @return krpc_ostream_t引用
      */
     krpc_ostream_t& operator<<(int i) {
         std::stringstream ss;
@@ -64,7 +68,9 @@ public:
     }
 
     /**
-     * const char**
+     * const char*
+     * @param s c string
+     * @return krpc_ostream_t引用
      */
     krpc_ostream_t& operator<<(const char* s) {
         _ofs << s;
@@ -73,16 +79,97 @@ public:
     
     /**
      * 可变参数模板替换，只支持字符串参数
+     * @param fmt 格式
+     * @return krpc_ostream_t引用
      */
     const krpc_ostream_t& write(const char* fmt, ...);
 
     /**
      * 替换单个模板
+     * @param fmt 格式
+     * @param source 源字符串
+     * @return krpc_ostream_t引用
      */
     const krpc_ostream_t& replace(const char* fmt, const std::string& source);
 
+    /**
+     * 从文件内读取模板，可变参数模板替换，只支持字符串参数
+     * @param file_name 路径
+     * @return krpc_ostream_t引用
+     */
+    const krpc_ostream_t& write_template(const char* file_name, ...);
+
+    /**
+     * 从文件内读取模板，并替换单个模板
+     * @param file_name 路径
+     * @param source 源字符串
+     * @return krpc_ostream_t引用
+     */
+    const krpc_ostream_t& replace_template(const char* file_name, const std::string& source);
+
 private:
-    std::ofstream _ofs; // 文件输出流
+    /**
+     * 模板类型
+     */
+    enum {
+        NONE,    // 非模板
+        INTEGER, // 整数$
+        STRING,  // 字符串@
+    };
+
+    /**
+     * 分析并提取模板
+     * @return 模板类型
+     */
+    int analyze();
+
+    /**
+     * 检查下一个字符是否为指定字符
+     * @param c 字符
+     * @retval true 是
+     * @retval false 不是
+     */
+    bool want(char c);
+
+    /**
+     * 检查下一个字符是否为指定字符并跳过
+     * @param c 字符
+     * @retval true 是
+     * @retval false 不是
+     */
+    bool want_skip(char c);
+
+    /**
+     * 检查下一个字符是否为非指定字符
+     * @param c 字符
+     * @retval true 是
+     * @retval false 不是
+     */
+    bool if_not(char c);
+
+    /**
+     * 跳过一个字符
+     */
+    void skip();
+
+    /**
+     * 输出一个字符
+     */
+    void save();
+
+    /**
+     * 文件读取
+     * @param file_name 路径
+     * @param source 读到的内容
+     */
+    void read_file(const char* file_name, std::string& source);
+
+private:
+    int           _row;       ///< 当前行
+    std::string   _file_name; ///< 当前模板
+    std::ofstream _ofs;       ///< 文件输出流
+    char*         _stream;    ///< 输入字符流
+    char*         _start;     ///< 当前输入流起始
 };
 
 #endif // KRPC_OSTREAM_H

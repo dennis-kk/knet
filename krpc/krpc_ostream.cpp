@@ -26,7 +26,8 @@
 #include "krpc_exception.h"
 #include "krpc_ostream.h"
 
-krpc_ostream_t::krpc_ostream_t(const std::string& file_name) {
+krpc_ostream_t::krpc_ostream_t(const std::string& file_name)
+: _row(0) {
     _ofs.open(file_name.c_str());
     if (!_ofs) {
         raise_exception("open " << file_name << " failed");
@@ -37,23 +38,100 @@ krpc_ostream_t::~krpc_ostream_t() {
     _ofs.close();
 }
 
-const krpc_ostream_t& krpc_ostream_t::write(const char* fmt, ...) {
-    va_list argv;
-    va_start(argv, fmt);
-    for (; *fmt; ) {
-        if (*fmt != '@') {
-            _ofs.write(fmt++, 1);
-        } else {
-            fmt++; // skip @
-            for (; *fmt && (*fmt != '@'); ) {
-                fmt++;
-            }
-            if (*fmt) {
-                fmt++; // skip @
-            } else {
+int krpc_ostream_t::analyze() {
+    for (; *_stream; ) {
+        if (want_skip('{')) { // 找到 '{'
+            if (!want_skip('{')) { // 临接字符不是 '{'
+                _ofs << '{';
+                save();
+            } else { // 临接字符是 '{'
                 break;
             }
+        } else {
+            save();
+        }
+    }
+    if (!*_stream) {
+        return NONE;
+    }
+    int type = NONE;
+    switch (*_stream++) {
+    case '@':
+        type = STRING;
+        break;
+    case '$':
+        type = INTEGER;
+        break;
+    default:
+        raise_exception(_file_name << "(" << _row
+            << "):invalid template format, need a template type:\n"
+            << _start);
+    }
+    for (; if_not('}'); ) {
+        skip();
+    }
+    if (!want_skip('}') || !want_skip('}')) {
+        raise_exception(_file_name << "(" << _row
+            << "):invalid template format, need a '}':\n"
+            << _start);
+    }
+    return type;
+}
+
+void krpc_ostream_t::save() {
+    if (!*_stream) {
+        return;
+    }
+    if (*_stream == '\n') {
+        _row++;
+    }
+    _ofs << *_stream++;
+}
+
+bool krpc_ostream_t::if_not(char c) {
+    if (!*_stream) {
+        return false;
+    }
+    return (*_stream != c);
+}
+
+bool krpc_ostream_t::want(char c) {
+    if (!*_stream) {
+        return false;
+    }
+    return (*_stream && (*_stream == c));
+}
+
+bool krpc_ostream_t::want_skip(char c) {
+    if (!want(c)) {
+        return false;
+    }
+    _stream++;
+    return true;
+}
+
+void krpc_ostream_t::skip() {
+    if (!*_stream) {
+        return;
+    }
+    _stream++;
+}
+
+const krpc_ostream_t& krpc_ostream_t::write(const char* fmt, ...) {
+    _row = 1;
+    _file_name = "";
+    va_list argv;
+    va_start(argv, fmt);
+    _stream = const_cast<char*>(fmt);
+    _start = _stream;
+    for (; *_stream; ) {
+        switch (analyze()) {
+        case INTEGER:
+            _ofs << va_arg(argv, int);
+            break;
+        case STRING:
             _ofs << va_arg(argv, char*);
+            break;
         }
     }
     va_end(argv);
@@ -62,21 +140,77 @@ const krpc_ostream_t& krpc_ostream_t::write(const char* fmt, ...) {
 
 const krpc_ostream_t& krpc_ostream_t::replace(const char* fmt,
     const std::string& source) {
-    for (; *fmt; ) {
-        if (*fmt != '@') {
-            _ofs.write(fmt++, 1);
-        } else {
-            fmt++; // skip @
-            for (; *fmt && (*fmt != '@'); ) {
-                fmt++;
-            }
-            if (*fmt) {
-                fmt++; // skip @
-            } else {
-                break;
-            }
+    _row = 1;
+    _file_name = "";
+    _stream = const_cast<char*>(fmt);
+    _start = _stream;
+    for (; *_stream; ) {
+        switch (analyze()) {
+        case INTEGER:
+            raise_exception("string only");
+            break;
+        case STRING:
             _ofs << source;
+            break;
         }
     }
     return *this;
+}
+
+const krpc_ostream_t& krpc_ostream_t::write_template(const char* file_name, ...) {
+    _row = 1;
+    _file_name = file_name;
+    std::string line;
+    read_file(file_name, line);
+    _stream = const_cast<char*>(line.c_str());
+    _start = _stream;
+    va_list argv;
+    va_start(argv, file_name);
+    for (; *_stream; ) {
+        switch (analyze()) {
+        case INTEGER:
+            _ofs << va_arg(argv, int);
+            break;
+        case STRING:
+            _ofs << va_arg(argv, char*);
+            break;
+        }
+    }
+    va_end(argv);
+    return *this;
+}
+
+const krpc_ostream_t& krpc_ostream_t::replace_template(const char* file_name, const std::string& source) {
+    _row = 1;
+    _file_name = file_name;
+    std::string line;
+    read_file(file_name, line);
+    _stream = const_cast<char*>(line.c_str());
+    _start = _stream;
+    for (; *_stream; ) {
+        switch (analyze()) {
+        case INTEGER:
+            raise_exception("string only");
+            break;
+        case STRING:
+            _ofs << source;
+            break;
+        }
+    }
+    return *this;
+}
+
+void krpc_ostream_t::read_file(const char* file_name, std::string& source) {
+    _row = 1;
+    _file_name = file_name;
+    std::ifstream ifs;
+    ifs.open(file_name);
+    if (!ifs) {
+        raise_exception("open " << file_name << " failed");
+    }
+    while (!ifs.eof()) {
+        char c = 0;
+        ifs.read(&c, 1);
+        source += c;
+    }
 }

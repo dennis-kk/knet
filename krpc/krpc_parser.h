@@ -51,6 +51,7 @@ enum {
     krpc_field_type_array     = 2048,
     krpc_field_type_attribute = 4096,
     krpc_field_type_rpc       = 8192,
+    krpc_field_type_table     = 16384,
 };
 
 /**
@@ -123,7 +124,7 @@ public:
     /**
      * 析构
      */
-    ~krpc_field_t();
+    virtual ~krpc_field_t();
 
     /**
      * 设置字段类型
@@ -133,10 +134,17 @@ public:
 
     /**
      * 检查字段是否是数组
-     * @retval true 是数组
-     * @retval false 不是数组
+     * @retval true 是
+     * @retval false 不是
      */
     bool check_array();
+
+    /**
+     * 检查字段是否是表
+     * @retval true 是
+     * @retval false 不是
+     */
+    bool check_table();
 
     /**
      * 检查字段类型
@@ -156,7 +164,7 @@ public:
      * 设置字段类型名
      * @param field_type 字段类型名
      */
-    void set_field_type(const std::string& field_type);
+    void set_field_type_name(const std::string& field_type);
 
     /**
      * 取得字段名
@@ -168,7 +176,7 @@ public:
      * 取得字段类型名
      * @return 字段类型名
      */
-    const std::string& get_field_type();
+    const std::string& get_field_type_name();
 
     /**
      * 设置注释
@@ -182,18 +190,34 @@ public:
      */
     const std::string& get_comment();
 
-private:
+    void set_key_type(int key_type);
+    bool check_key_type(int type);
+
+    void set_key_type_name(const std::string& key_type_name);
+    const std::string& get_key_type_name();
+
+    void set_value_type(int value_type);
+    bool check_value_type(int type);
+
+    void set_value_type_name(const std::string& value_type_name);
+    const std::string& get_value_type_name();
+
+public:
     /**
      * 转换token类型到字段类型
      * @return 字段类型
      */
-    int convert(int type);
+    static int convert(int type);
 
 private:
-    std::string _field_name; // 字段名
-    std::string _field_type; // 字段类型名
-    std::string _comment;    // 注释
-    int         _type;       // 字段类型
+    std::string _field_name;      // 字段名
+    std::string _field_type;      // 字段类型名
+    std::string _comment;         // 注释
+    int         _type;            // 字段类型
+    int         _key_type;        // 键类型
+    std::string _key_type_name;   // 键类型字符串
+    int         _value_type;      // 值类型
+    std::string _value_type_name; // 值类型字符串
 };
 
 /**
@@ -329,6 +353,14 @@ private:
      * @return krpc_field_t实例
      */
     krpc_field_t* parse_field(krpc_token_t* token);
+
+    /*
+     * 解析表
+     * @param field krpc_field_t实例
+     * @param token 当前token
+     * @return krpc_token_t实例
+     */
+    krpc_token_t* parse_table(krpc_field_t* field, krpc_token_t* token);
 
 private:
     object_map_t   _objects;        // 属性表

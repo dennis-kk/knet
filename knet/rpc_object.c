@@ -25,7 +25,9 @@
 /* TODO 待测试 */
 
 #include "rpc_object.h"
+#include "hash.h"
 #include "stream.h"
+#include "misc.h"
 
 #if defined(_MSC_VER )
     #pragma pack(push)
@@ -71,12 +73,24 @@ struct _krpc_vector_t {
     krpc_object_t** objects;  /* 对象指针数组 */
 };
 
+struct _krpc_value_t {
+    krpc_object_t* key;
+    krpc_object_t* value;
+};
+
+struct _krpc_map_t {
+    uint16_t key_type;   /* 键类型 */
+    uint16_t value_type; /* 值类型 */
+    hash_t*  hash;
+};
+
 struct _krpc_object_t {
     uint16_t type;
     union {
         krpc_number_t number; /* 数字 */
         krpc_string_t string; /* 字符串 */
         krpc_vector_t vector; /* 数组 */
+        krpc_map_t    map;    /* 表 */
     };
 };
 
@@ -101,8 +115,15 @@ void krpc_object_destroy(krpc_object_t* o) {
             /* 递归销毁 */
             krpc_object_destroy(o->vector.objects[i]);
         }
-    } else {
+    } else if (o->type & krpc_type_map) {
+        /* 表 */
+        if (o->map.hash) {
+            hash_destroy(o->map.hash);
+        }
+    } else if (o->type & krpc_type_number) {
         /* 数字 */
+    } else {
+        assert(0);
     }
     destroy(o);
 }
@@ -141,8 +162,10 @@ uint16_t krpc_number_get_marshal_size(krpc_object_t* o) {
 }
 
 uint16_t krpc_object_get_marshal_size(krpc_object_t* o) {
-    uint16_t size = sizeof(krpc_object_header_t);
-    uint16_t i    = 0;
+    uint16_t       size = sizeof(krpc_object_header_t);
+    uint16_t       i    = 0;
+    krpc_object_t* k    = 0;
+    krpc_object_t* v    = 0;
     if (o->type & krpc_type_string) {
         /* 字符串 */
         size += o->string.size;
@@ -154,6 +177,16 @@ uint16_t krpc_object_get_marshal_size(krpc_object_t* o) {
     } else if (o->type & krpc_type_number) {
         /* 数字 */
         size += krpc_number_get_marshal_size(o);
+    } else if (o->type & krpc_type_map) {
+        /* 表 */
+        if (krpc_map_get_first(o, &k, &v)) {
+            size += krpc_object_get_marshal_size(k);
+            size += krpc_object_get_marshal_size(v);
+            while (krpc_map_next(o, &k, &v)) {
+                size += krpc_object_get_marshal_size(k);
+                size += krpc_object_get_marshal_size(v);
+            }
+        }
     } else {
         return 0;
     }
@@ -161,8 +194,10 @@ uint16_t krpc_object_get_marshal_size(krpc_object_t* o) {
 }
 
 int krpc_object_marshal(krpc_object_t* o, stream_t* stream, uint16_t* bytes) {
-    uint16_t size = 0;
-    int      i    = 0;
+    uint16_t       size = 0;
+    int            i    = 0;
+    krpc_object_t* k    = 0;
+    krpc_object_t* v    = 0;
     krpc_object_header_t header;
     assert(o);
     assert(stream);
@@ -185,10 +220,45 @@ int krpc_object_marshal(krpc_object_t* o, stream_t* stream, uint16_t* bytes) {
                 return error_rpc_marshal_fail;
             }
         }
+    } else if (o->type & krpc_type_map) {
+        /* 表 */
+        if (krpc_map_get_first(o, &k, &v)) {
+            if (error_ok != krpc_object_marshal(k, stream, &size)) {
+                return error_rpc_marshal_fail;
+            }
+            if (error_ok != krpc_object_marshal(v, stream, &size)) {
+                return error_rpc_marshal_fail;
+            }
+            while (krpc_map_next(o, &k, &v)) {
+                if (error_ok != krpc_object_marshal(k, stream, &size)) {
+                    return error_rpc_marshal_fail;
+                }
+                if (error_ok != krpc_object_marshal(v, stream, &size)) {
+                    return error_rpc_marshal_fail;
+                }
+            }
+        }
     } else if (o->type & krpc_type_number) {
         /* 数字 */
-        if (error_ok != stream_push(stream, &o->number, krpc_number_get_marshal_size(o))) {
-            return error_rpc_marshal_fail;
+        if (krpc_object_check_type(o, krpc_type_i16) || krpc_object_check_type(o, krpc_type_ui16)) {
+            o->number.ui16 = htons(o->number.ui16);
+            if (error_ok != stream_push(stream, &o->number, krpc_number_get_marshal_size(o))) {
+                return error_rpc_marshal_fail;
+            }
+        } else if (krpc_object_check_type(o, krpc_type_i32) || krpc_object_check_type(o, krpc_type_ui32)) {
+            o->number.ui32 = htonl(o->number.ui32);
+            if (error_ok != stream_push(stream, &o->number, krpc_number_get_marshal_size(o))) {
+                return error_rpc_marshal_fail;
+            }
+        } else if (krpc_object_check_type(o, krpc_type_i64) || krpc_object_check_type(o, krpc_type_ui64)) {
+            o->number.ui64 = htonll(o->number.ui64);
+            if (error_ok != stream_push(stream, &o->number, krpc_number_get_marshal_size(o))) {
+                return error_rpc_marshal_fail;
+            }
+        } else {
+            if (error_ok != stream_push(stream, &o->number, krpc_number_get_marshal_size(o))) {
+                return error_rpc_marshal_fail;
+            }
         }
     } else {
         return error_rpc_marshal_fail;
@@ -204,6 +274,8 @@ int krpc_object_unmarshal(stream_t* stream, krpc_object_t** o, uint16_t* bytes) 
     int            available = 0; /* 可读字节数 */
     uint16_t       consume   = 0; /* 单次unmarshal消耗字节数 */
     krpc_object_t* vo        = 0; /* 数组内对象指针 */
+    krpc_object_t* k         = 0; /* key - 表 */
+    krpc_object_t* v         = 0; /* value - 表 */
     krpc_object_header_t header;  /* 对象协议头 */
     assert(stream);
     assert(o);
@@ -231,6 +303,14 @@ int krpc_object_unmarshal(stream_t* stream, krpc_object_t** o, uint16_t* bytes) 
         if (error_ok != stream_pop(stream, &(*o)->number, header.length - sizeof(krpc_object_header_t))) {
             goto error_return;
         }
+        /* 数字 */
+        if ((header.type & krpc_type_i16) || (header.type & krpc_type_ui16)) {
+            (*o)->number.ui16 = ntohs((*o)->number.ui16);
+        } else if ((header.type & krpc_type_i32) || (header.type & krpc_type_ui32)) {
+            (*o)->number.ui32 = ntohl((*o)->number.ui32);
+        } else if ((header.type & krpc_type_i64) || (header.type & krpc_type_ui64)) {
+            (*o)->number.ui64 = ntohll((*o)->number.ui64);
+        }
     } else if (header.type & krpc_type_string) {
         /* 字符串 */
         if (error_ok != krpc_string_set_size(*o, header.length - sizeof(krpc_object_header_t))) {
@@ -253,6 +333,25 @@ int krpc_object_unmarshal(stream_t* stream, krpc_object_t** o, uint16_t* bytes) 
             }
             length -= consume;
         }
+    } else if (header.type & krpc_type_map) {
+        /* 表 */
+        length = header.length - sizeof(krpc_object_header_t);
+        for (; length; ) {
+            /* 递归调用 - key*/
+            if (error_ok != krpc_object_unmarshal(stream, &k, &consume)) {
+                goto error_return;
+            }
+            length -= consume;
+            /* 递归调用 - value */
+            if (error_ok != krpc_object_unmarshal(stream, &v, &consume)) {
+                goto error_return;
+            }
+            /* 插入表 */
+            krpc_map_insert(*o, k, v);
+            length -= consume;
+            k = 0; /* 已经插入表 */
+            v = 0; /* 已经插入表 */
+        }
     } else {
         /* 未知类型 */
         goto error_return;
@@ -265,6 +364,12 @@ error_return:
     if (*o) {
         krpc_object_destroy(*o);
         *o = 0;
+    }
+    if (k) { /* 还未插入表 */
+        krpc_object_destroy(k);
+    }
+    if (v) { /* 还未插入表 */
+        krpc_object_destroy(v);
     }
     /* 告诉调用者失败，外部应关闭本连接 */
     return error_rpc_unmarshal_fail;
@@ -582,4 +687,160 @@ void krpc_vector_clear(krpc_object_t* v) {
     }
     v->type = krpc_type_vector;
     v->vector.size = 0;
+}
+
+void hash_value_dtor(void* v) {
+    krpc_value_t* value = 0;
+    assert(v);
+    value = (krpc_value_t*)v;
+    if (value->key) {
+        krpc_object_destroy(value->key);
+    }
+    if (value->value) {
+        krpc_object_destroy(value->value);
+    }
+    destroy(v);
+}
+
+int krpc_map_insert(krpc_object_t* m, krpc_object_t* k, krpc_object_t* v) {
+    krpc_value_t* value = 0;
+    int           error = error_ok;
+    assert(m);
+    assert(k);
+    assert(v);
+    if (!krpc_object_check_type(m, krpc_type_map)) {
+        assert(0);
+    }
+    /* 未确定类型的<key, value> */
+    if (!k->type || !v->type) {
+        error = error_rpc_map_error_key_or_value;
+        goto error_return;
+    }
+    if (!krpc_object_check_type(k, krpc_type_number) &&
+        !krpc_object_check_type(k, krpc_type_string)) {
+        /* 只支持整数或字符串键 */
+        error = error_rpc_map_error_key_or_value;
+        goto error_return;
+    }
+    if (m->map.key_type) {
+        /* 与已经插入键类型不一致 */
+        if (!krpc_object_check_type(k, m->map.key_type)) {
+            error = error_rpc_map_error_key_or_value;
+            goto error_return;
+        }
+    } else {
+        m->map.key_type   = k->type;
+    }
+    if (m->map.value_type) {
+        /* 与已经插入值类型不一致 */
+        if (!krpc_object_check_type(v, m->map.value_type)) {
+            error = error_rpc_map_error_key_or_value;
+            goto error_return;
+        }
+    } else {
+        m->map.value_type = v->type;
+    }
+    if (!m->map.hash) {
+        m->map.hash = hash_create(0, hash_value_dtor);
+    }
+    value        = create(krpc_value_t);
+    value->key   = k;
+    value->value = v;
+    if (krpc_object_check_type(k, krpc_type_number)) {
+        /* 数字键 */
+        error = hash_add(m->map.hash, krpc_number_get_ui32(k), value);
+        if (error_ok != error) {
+            goto error_return;
+        }
+    } else {
+        /* 字符串键 */
+        error = hash_add_string_key(m->map.hash, krpc_string_get(k), value);
+        if (error_ok != error) {
+            goto error_return;
+        }
+    }
+    m->type = krpc_type_map;
+    return error;
+error_return:
+    if (value) {
+        destroy(value);
+    }
+    return error;
+}
+
+krpc_object_t* krpc_map_get(krpc_object_t* m, krpc_object_t* k) {
+    krpc_value_t* kvalue = 0;
+    hash_value_t* value = 0;
+    assert(m);
+    assert(k);
+    if (!(m->type & krpc_type_map)) {
+        assert(0);
+    }
+    if (!krpc_object_check_type(k, m->map.key_type)) {
+        return 0;
+    }
+    if (krpc_object_check_type(k, krpc_type_number)) {
+        value = (hash_value_t*)hash_get(m->map.hash, krpc_number_get_ui32(k));
+    } else if (krpc_object_check_type(k, krpc_type_string)) {
+        value = (hash_value_t*)hash_get_string_key(m->map.hash, krpc_string_get(k));
+    }
+    if (!value) {
+        return 0;
+    }
+    kvalue = (krpc_value_t*)hash_value_get_value(value);
+    return kvalue->value;
+}
+
+uint32_t krpc_map_get_size(krpc_object_t* m) {
+    assert(m);
+    if (!(m->type & krpc_type_map)) {
+        return 0;
+    }
+    return hash_get_size(m->map.hash);
+}
+
+int krpc_map_get_first(krpc_object_t* m, krpc_object_t** k, krpc_object_t** v) {
+    krpc_value_t* kvalue = 0;
+    hash_value_t* value = 0;
+    assert(m);
+    if (!(m->type & krpc_type_map)) {
+        return 0;
+    }
+    if (!m->map.hash) {
+        return 0;
+    }
+    value = (hash_value_t*)hash_get_first(m->map.hash);
+    if (!value) {
+        return 0;
+    }
+    kvalue = (krpc_value_t*)hash_value_get_value(value);
+    *k = kvalue->key;
+    *v = kvalue->value;
+    return 1;
+}
+
+int krpc_map_next(krpc_object_t* m, krpc_object_t** k, krpc_object_t** v) {
+    krpc_value_t* kvalue = 0;
+    hash_value_t* value = 0;
+    assert(m);
+    if (!(m->type & krpc_type_map)) {
+        return 0;
+    }
+    assert(m->map.hash);
+    value = (hash_value_t*)hash_next(m->map.hash);
+    if (!value) {
+        return 0;
+    }
+    kvalue = (krpc_value_t*)hash_value_get_value(value);
+    *k = kvalue->key;
+    *v = kvalue->value;
+    return 1;
+}
+
+void krpc_map_clear(krpc_object_t* m) {
+    assert(m);
+    if (!krpc_object_check_type(m, krpc_type_map)) {
+        assert(0);
+    }
+    m->type = krpc_type_map;
 }

@@ -29,7 +29,9 @@
 #include "krpc_exception.h"
 
 krpc_field_t::krpc_field_t(int type)
-: _type(convert(type)) {
+: _type(convert(type)),
+  _key_type(0),
+  _value_type(0) {
 }
 
 krpc_field_t::~krpc_field_t() {
@@ -41,6 +43,10 @@ void krpc_field_t::set_type(int type) {
 
 bool krpc_field_t::check_array() {
     return (krpc_field_type_array == (_type & krpc_field_type_array));
+}
+
+bool krpc_field_t::check_table() {
+    return (krpc_field_type_table == (_type & krpc_field_type_table));
 }
 
 const std::string& krpc_field_t::get_field_name() {
@@ -95,12 +101,44 @@ void krpc_field_t::set_field_name(const std::string& field_name) {
     _field_name = field_name;
 }
 
-void krpc_field_t::set_field_type(const std::string& field_type) {
+void krpc_field_t::set_field_type_name(const std::string& field_type) {
     _field_type = field_type;
 }
 
-const std::string& krpc_field_t::get_field_type() {
+const std::string& krpc_field_t::get_field_type_name() {
     return _field_type;
+}
+
+void krpc_field_t::set_key_type(int key_type) {
+    _key_type |= key_type;
+}
+
+bool krpc_field_t::check_key_type(int type) {
+    return (_key_type == (_key_type & type));
+}
+
+void krpc_field_t::set_key_type_name(const std::string& key_type_name) {
+    _key_type_name = key_type_name;
+}
+
+const std::string& krpc_field_t::get_key_type_name() {
+    return _key_type_name;
+}
+
+void krpc_field_t::set_value_type(int value_type) {
+    _value_type |= value_type;
+}
+
+bool krpc_field_t::check_value_type(int type) {
+    return (_value_type == (_value_type & type));
+}
+
+void krpc_field_t::set_value_type_name(const std::string& value_type_name) {
+    _value_type_name = value_type_name;
+}
+
+const std::string& krpc_field_t::get_value_type_name() {
+    return _value_type_name;
 }
 
 krpc_attribute_t::krpc_attribute_t(const std::string& name)
@@ -194,9 +232,32 @@ krpc_token_t* krpc_parser_t::next_token() {
     return _lexer->next_token();
 }
 
+krpc_token_t* krpc_parser_t::parse_table(krpc_field_t* field, krpc_token_t* token) {
+    // check key type
+    if (field->check_type(krpc_field_type_i8) ||
+        field->check_type(krpc_field_type_i16) ||
+        field->check_type(krpc_field_type_i32) ||
+        field->check_type(krpc_field_type_i64) ||
+        field->check_type(krpc_field_type_ui8) ||
+        field->check_type(krpc_field_type_ui16) ||
+        field->check_type(krpc_field_type_ui32) ||
+        field->check_type(krpc_field_type_ui64) ||
+        field->check_type(krpc_field_type_string)) {
+        check_raise_exception(token = next_token(), "need a table value type");
+        field->set_value_type(krpc_field_t::convert(token->get_type()));
+        field->set_value_type_name(token->get_literal());
+        check_raise_exception(token = next_token(), "need a '>'");
+        check_raise_exception(token->get_type() == krpc_token_greater, "need a '>'");
+        check_raise_exception(token = next_token(), "need a field name");
+    } else {
+        raise_exception("table key must be number or string");
+    }
+    return token;
+}
+
 krpc_field_t* krpc_parser_t::parse_field(krpc_token_t* token) {
     //
-    // `type` `name`
+    // `type` `name` | `type`< `type` > `name` | `type` [] `name`
     //
     check_raise_exception(token, "need a field type");
     krpc_token_t* first = token;
@@ -208,12 +269,19 @@ krpc_field_t* krpc_parser_t::parse_field(krpc_token_t* token) {
                 << first->get_literal() << "'");
         }
     }
-    field->set_field_type(first->get_literal());
+    field->set_field_type_name(first->get_literal());
     check_raise_exception(token = next_token(),
         "need a field type or array declaration");
     if (krpc_token_array == token->get_type()) {
+        // สýื้
         field->set_type(krpc_field_type_array);
         check_raise_exception(token = next_token(), "need a field name");
+    } else if (krpc_token_lesser == token->get_type()) {
+        // ฑํ
+        field->set_key_type(krpc_field_t::convert(first->get_type()));
+        field->set_key_type_name(first->get_literal());
+        field->set_type(krpc_field_type_table);
+        token = parse_table(field, token);
     }
     check_raise_exception(krpc_token_text == token->get_type(),
         "need a field name but got a '" << token->get_literal() << "'");

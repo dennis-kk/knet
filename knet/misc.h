@@ -183,4 +183,18 @@ char* path_getcwd(char* buffer, int size);
  */
 sys_error_t sys_get_errno();
 
+/**
+ * 字节序转换 - 主机序到网络序
+ * @param ui64 64位无符号整数
+ * @return 64位无符号整数
+ */
+uint64_t htonll(uint64_t ui64);
+
+/**
+ * 字节序转换 - 网络序到主机序
+ * @param ui64 64位无符号整数
+ * @return 64位无符号整数
+ */
+uint64_t ntohll(uint64_t ui64);
+
 #endif /* MISC_H */

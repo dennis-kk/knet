@@ -79,11 +79,15 @@ krpc_parser_t* krpc_gen_t::get_parser() const {
 void krpc_gen_t::lang_gen_code() {
     if (_options["lang"] == "cpp") { // c++Éú³É
         krpc_gen_cpp_t gen_cpp(this);
-        gen_cpp.lang_gen_code();
+        gen_cpp.gen_code();
     } else {
         std::cout << "the language '" << _options["lang"] << "'"
             << " is not supported" << std::endl;
     }
+}
+
+const std::string& krpc_gen_t::get_option(const std::string& key) {
+    return _options[key];
 }
 
 int main(int argc, char** argv) {

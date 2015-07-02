@@ -58,6 +58,8 @@ enum {
     krpc_token_right_round,
     krpc_token_right_square,
     krpc_token_comma,
+    krpc_token_lesser,
+    krpc_token_greater,
     krpc_token_inline_comment,
 };
 

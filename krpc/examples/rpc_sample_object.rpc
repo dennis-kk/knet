@@ -2,6 +2,14 @@
 // rpc sample file
 //
 
+/*
+ my_object_other_t
+ */
+
+object my_object_other_t [#自定义对象] {
+	string<string> string_string_table [#表]
+}
+
 object my_object_t [#对象事例] {
 	i8     ni8   [#有符号8位整数]
 	i16    ni16  [#有符号16位整数]
@@ -14,14 +22,6 @@ object my_object_t [#对象事例] {
 	f32    nf32  [#32位浮点数]
 	f64    nf64  [#64位浮点数]
 	string str   [#字符串]
-}
-
-/*
- my_object_other_t
- */
-
-object my_object_other_t [#自定义对象] {
-	my_object_t[] objects   [#对象数组]
-	i32[]         i32_array [#i32数组]
-	string[]      str_array [#字符串数组]
+	i8<string>   int_string_table [#表]
+	i8<my_object_other_t> int_object_table [#表]
 }
