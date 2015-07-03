@@ -235,7 +235,9 @@ private:
     krpc_t* _rpc; // RPC µœ÷¿‡"
 };
 
-#define rpc_sample_ptr() rpc_sample_t::instance()
+inline static rpc_sample_t* rpc_sample_ptr() {
+	return rpc_sample_t::instance();
+}
 
 } // namespace rpc_sample
 

@@ -57,7 +57,8 @@ extern channel_ref_t* loop_create_channel(loop_t* loop, uint32_t max_send_list_l
  * @param recv_ring_len 接受环形缓冲区最大长度
  * @return channel_ref_t实例
  */
-extern channel_ref_t* loop_create_channel_exist_socket_fd(loop_t* loop, socket_t socket_fd, uint32_t max_send_list_len, uint32_t recv_ring_len);
+extern channel_ref_t* loop_create_channel_exist_socket_fd(loop_t* loop, socket_t socket_fd,
+    uint32_t max_send_list_len, uint32_t recv_ring_len);
 
 /**
  * 运行一次事件循环
