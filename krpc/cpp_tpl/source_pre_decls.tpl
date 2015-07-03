@@ -1,3 +1,7 @@
+//
+// KRPC - Generated code, *DO NOT CHANGE*
+//
+
 #include <sstream>
 #include "{{@file_name}}.h"
 

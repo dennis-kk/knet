@@ -138,8 +138,8 @@ channel_ref_t* channel_ref_share(channel_ref_t* channel_ref) {
     channel_ref_t* channel_ref_shared = 0;
     assert(channel_ref);
     channel_ref_shared = create(channel_ref_t);
-    memset(channel_ref_shared, 0, sizeof(channel_ref_t));
     assert(channel_ref_shared);
+    memset(channel_ref_shared, 0, sizeof(channel_ref_t));
     /* 增加管道引用计数 */
     atomic_counter_inc(&channel_ref->ref_info->ref_count);
     /* 共享管道信息指针 */
