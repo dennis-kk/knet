@@ -140,7 +140,7 @@ hash_t* hash_create(uint32_t size, hash_dtor_t dtor) {
     assert(hash);
     memset(hash, 0, sizeof(hash_t));
     if (!size) {
-        size = 512; /* 默认bucket数量 */
+        size = 64; /* 默认bucket数量 */
     }
     hash->dtor = dtor;
     hash->size = size;
