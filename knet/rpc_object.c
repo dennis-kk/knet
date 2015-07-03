@@ -782,7 +782,6 @@ error_return:
 
 krpc_object_t* krpc_map_get(krpc_object_t* m, krpc_object_t* k) {
     krpc_value_t* kvalue = 0;
-    hash_value_t* value = 0;
     assert(m);
     assert(k);
     if (!(m->type & krpc_type_map)) {
@@ -792,14 +791,13 @@ krpc_object_t* krpc_map_get(krpc_object_t* m, krpc_object_t* k) {
         return 0;
     }
     if (krpc_object_check_type(k, krpc_type_number)) {
-        value = (hash_value_t*)hash_get(m->map.hash, krpc_number_get_ui32(k));
+        kvalue = (krpc_value_t*)hash_get(m->map.hash, krpc_number_get_ui32(k));
     } else if (krpc_object_check_type(k, krpc_type_string)) {
-        value = (hash_value_t*)hash_get_string_key(m->map.hash, krpc_string_get(k));
+        kvalue = (krpc_value_t*)hash_get_string_key(m->map.hash, krpc_string_get(k));
     }
-    if (!value) {
+    if (!kvalue) {
         return 0;
     }
-    kvalue = (krpc_value_t*)hash_value_get_value(value);
     return kvalue->value;
 }
 
@@ -808,13 +806,20 @@ uint32_t krpc_map_get_size(krpc_object_t* m) {
     if (!(m->type & krpc_type_map)) {
         return 0;
     }
+    if (!m->map.hash) {
+        return 0;
+    }
     return hash_get_size(m->map.hash);
 }
 
 int krpc_map_get_first(krpc_object_t* m, krpc_object_t** k, krpc_object_t** v) {
     krpc_value_t* kvalue = 0;
     hash_value_t* value = 0;
+    assert(k);
+    assert(v);
     assert(m);
+    *k = 0;
+    *v = 0;
     if (!(m->type & krpc_type_map)) {
         return 0;
     }
@@ -834,7 +839,11 @@ int krpc_map_get_first(krpc_object_t* m, krpc_object_t** k, krpc_object_t** v) {
 int krpc_map_next(krpc_object_t* m, krpc_object_t** k, krpc_object_t** v) {
     krpc_value_t* kvalue = 0;
     hash_value_t* value = 0;
+    assert(k);
+    assert(v);
     assert(m);
+    *k = 0;
+    *v = 0;
     if (!(m->type & krpc_type_map)) {
         return 0;
     }
@@ -853,6 +862,12 @@ void krpc_map_clear(krpc_object_t* m) {
     assert(m);
     if (!krpc_object_check_type(m, krpc_type_map)) {
         assert(0);
+    }
+    if (m->map.hash) {
+        hash_destroy(m->map.hash);
+        m->map.key_type   = 0;
+        m->map.value_type = 0;
+        m->map.hash       = 0;
     }
     m->type = krpc_type_map;
 }
