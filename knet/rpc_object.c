@@ -557,7 +557,13 @@ void krpc_string_set(krpc_object_t* o, const char* s) {
         o->string.str = create_type(char, size);
     }
     assert(o->string.str);
-    o->string.size = size;
+    if (!o->string.size) {
+        o->string.size = size;
+    } else {
+        if (size > o->string.size) {
+            size = o->string.size;
+        }
+    }
     memcpy(o->string.str, s, size);
     o->string.str[size - 1] = 0;
     o->type = krpc_type_string;
@@ -573,7 +579,13 @@ void krpc_string_set_s(krpc_object_t* o, const char* s, uint16_t size) {
         o->string.str = create_type(char, size);
     }
     assert(o->string.str);
-    o->string.size = size;
+    if (!o->string.size) {
+        o->string.size = size;
+    } else {
+        if (size > o->string.size) {
+            size = o->string.size;
+        }
+    }
     memcpy(o->string.str, s, size);
     o->string.str[size - 1] = 0;
     o->type = krpc_type_string;
