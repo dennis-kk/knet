@@ -235,6 +235,9 @@ private:
     krpc_t* _rpc; // RPCʵ����"
 };
 
+/**
+ * rpc_sample单件访问帮助函数
+ */
 inline static rpc_sample_t* rpc_sample_ptr() {
 	return rpc_sample_t::instance();
 }

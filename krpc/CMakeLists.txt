@@ -20,3 +20,9 @@ add_executable(krpc
 
 target_link_libraries(krpc)
 ADD_SUBDIRECTORY(examples)
+
+add_custom_command(TARGET krpc
+	POST_BUILD 
+	COMMAND echo ${EXECUTABLE_OUTPUT_PATH}
+	COMMAND cp -rf ${PROJECT_SOURCE_DIR}/cpp_tpl/*.* ${EXECUTABLE_OUTPUT_PATH}/cpp_tpl/
+)
