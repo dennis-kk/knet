@@ -184,9 +184,28 @@ void krpc_gen_cpp_t::gen_rpc_call_decls(krpc_ostream_t& header) {
 }
 
 void krpc_gen_cpp_t::gen_rpc_call_decl(krpc_ostream_t& header, krpc_rpc_call_t* rpc_call) {
-    header.replace_template("cpp_tpl/header_rpc_call_begin.tpl", rpc_call->get_name());
+    header.write(
+        "/**\n"
+        " * {{@comment}}, {{@method_name}}声明，需实现此方法\n",
+        (rpc_call->get_comment().empty() ? "N/A." : rpc_call->get_comment().c_str()),
+        rpc_call->get_name().c_str());
     krpc_attribute_t* attribute = rpc_call->get_attribute();
     krpc_attribute_t::field_list_t::iterator field = attribute->get_field_list().begin();
+    for (; field != attribute->get_field_list().end(); field++) {
+        header.write(
+            " * \\param {{@name}} {{@comment}}\n",
+            (*field)->get_field_name().c_str(),
+            ((*field)->get_comment().empty() ? "N/A." : (*field)->get_comment().c_str()));
+    }
+    header.write(
+        " * \\retval rpc_ok          成功\n"
+        " * \\retval rpc_close       忽略错误，关闭\n"
+        " * \\retval rpc_error       错误，但不关闭\n"
+        " * \\retval rpc_error_close 错误且关闭\n"
+        " */\n"
+        "int {{@method_name}}(",
+        rpc_call->get_name().c_str());
+    field = attribute->get_field_list().begin();
     size_t size = attribute->get_field_list().size();
     for (size_t pos = 0; field != attribute->get_field_list().end();
         field++, pos++) {

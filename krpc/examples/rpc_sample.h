@@ -125,33 +125,50 @@ krpc_object_t* my_rpc_func2_proxy(std::vector<my_object_t>& my_objs, int8_t my_i
  */
 krpc_object_t* my_rpc_func3_proxy(const std::string& my_str, int8_t my_i8);
 
-/**\n
+/**
  * my_rpc_func1桩
  */
 int my_rpc_func1_stub(krpc_object_t* o);
 
-/**\n
+/**
  * my_rpc_func2桩
  */
 int my_rpc_func2_stub(krpc_object_t* o);
 
-/**\n
+/**
  * my_rpc_func3桩
  */
 int my_rpc_func3_stub(krpc_object_t* o);
 
 /**
- * my_rpc_func1声明，需实现此方法
+ * RPC调用示例, my_rpc_func1声明，需实现此方法
+ * \param my_obj 参数1
+ * \retval rpc_ok          成功
+ * \retval rpc_close       忽略错误，关闭
+ * \retval rpc_error       错误，但不关闭
+ * \retval rpc_error_close 错误且关闭
  */
 int my_rpc_func1(my_object_t& my_obj);
 
 /**
- * my_rpc_func2声明，需实现此方法
+ * RPC调用示例, my_rpc_func2声明，需实现此方法
+ * \param my_objs 参数1
+ * \param my_i8 参数2
+ * \retval rpc_ok          成功
+ * \retval rpc_close       忽略错误，关闭
+ * \retval rpc_error       错误，但不关闭
+ * \retval rpc_error_close 错误且关闭
  */
 int my_rpc_func2(std::vector<my_object_t>& my_objs, int8_t my_i8);
 
 /**
- * my_rpc_func3声明，需实现此方法
+ * RPC调用示例, my_rpc_func3声明，需实现此方法
+ * \param my_str 参数1
+ * \param my_i8 参数2
+ * \retval rpc_ok          成功
+ * \retval rpc_close       忽略错误，关闭
+ * \retval rpc_error       错误，但不关闭
+ * \retval rpc_error_close 错误且关闭
  */
 int my_rpc_func3(const std::string& my_str, int8_t my_i8);
 
