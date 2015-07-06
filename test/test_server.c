@@ -44,6 +44,11 @@ int main(int argc, char* argv[]) {
     channel_ref_t*    acceptor = 0;
     thread_runner_t** threads  = 0;
 
+    static const char* helper_string =
+        "-w    loop worker count\n"
+        "-ip   host IP\n"
+        "-port listening port\n";
+
     if (argc > 2) {
         for (i = 1; i < argc; i++) {
             if (!strcmp("-ip", argv[i])) {
@@ -54,6 +59,9 @@ int main(int argc, char* argv[]) {
                 worker = atoi(argv[i+1]);
             }
         }
+    } else {
+        printf(helper_string);
+        exit(0);
     }
 
     balancer = loop_balancer_create();
@@ -69,7 +77,6 @@ int main(int argc, char* argv[]) {
 
     for (i = 0; i < worker; i++) {
         loops[i] = loop_create();
-        assert(loop[i]);
         loop_balancer_attach(balancer, loops[i]);
         threads[i] = thread_runner_create(0, 0);
         assert(threads[i]);

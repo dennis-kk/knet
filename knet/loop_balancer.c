@@ -26,7 +26,7 @@
 #include "list.h"
 #include "misc.h"
 #include "loop.h"
-#include "logger.h"
+
 
 typedef struct _loop_info_t {
     loop_t*  loop;    /* loop_t实例 */
@@ -40,18 +40,18 @@ struct _loop_balancer_t {
 
 loop_balancer_t* loop_balancer_create() {
     loop_balancer_t* balancer = create(loop_balancer_t);
-    assert(balancer);
+    verify(balancer);
     balancer->loop_info_list = dlist_create();
-    assert(balancer->loop_info_list);
+    verify(balancer->loop_info_list);
     balancer->lock = lock_create();
-    assert(balancer->lock);
+    verify(balancer->lock);
     return balancer;
 }
 
 void loop_balancer_destroy(loop_balancer_t* balancer) {
     dlist_node_t* node = 0;
     dlist_node_t* temp = 0;
-    assert(balancer);
+    verify(balancer);
     lock_destroy(balancer->lock);
     dlist_for_each_safe(balancer->loop_info_list, node, temp) {
         destroy(dlist_node_get_data(node));
@@ -65,8 +65,8 @@ int loop_balancer_attach(loop_balancer_t* balancer, loop_t* loop) {
     dlist_node_t* temp      = 0;
     loop_info_t*  loop_info = 0;
     int           error     = error_ok;
-    assert(balancer);
-    assert(loop);
+    verify(balancer);
+    verify(loop);
     lock_lock(balancer->lock);
     dlist_for_each_safe(balancer->loop_info_list, node, temp) {
         loop_info = (loop_info_t*)dlist_node_get_data(node);
@@ -76,7 +76,7 @@ int loop_balancer_attach(loop_balancer_t* balancer, loop_t* loop) {
         }
     }
     loop_info = create(loop_info_t);
-    assert(loop_info);
+    verify(loop_info);
     memset(loop_info, 0, sizeof(loop_info_t));
     loop_info->loop = loop;
     dlist_add_tail_node(balancer->loop_info_list, loop_info);
@@ -92,8 +92,8 @@ int loop_balancer_detach(loop_balancer_t* balancer, loop_t* loop) {
     dlist_node_t* temp      = 0;
     loop_info_t*  loop_info = 0;
     int           error     = error_ok;
-    assert(balancer);
-    assert(loop);
+    verify(balancer);
+    verify(loop);
     lock_lock(balancer->lock);
     dlist_for_each_safe(balancer->loop_info_list, node, temp) {
         loop_info = (loop_info_t*)dlist_node_get_data(node);
@@ -121,7 +121,7 @@ loop_t* loop_balancer_choose(loop_balancer_t* balancer) {
     loop_info_t*  loop_info     = 0;
     int           channel_count = INT_MAX;
     int           count         = 0;
-    assert(balancer);
+    verify(balancer);
     lock_lock(balancer->lock);
     /* 选取当前活跃管道数最少的loop_t */
     dlist_for_each_safe(balancer->loop_info_list, node, temp) {

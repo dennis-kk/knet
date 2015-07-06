@@ -23,7 +23,7 @@
  */
 
 #include <stdarg.h>
-#include "logger.h"
+
 #include "misc.h"
 
 logger_t* global_logger = 0; /* 全局日志指针 */
@@ -38,18 +38,22 @@ struct _logger_t {
 logger_t* logger_create(const char* path, logger_level_e level, logger_mode_e mode) {
     char temp[PATH_MAX] = {0};
     logger_t* logger = create(logger_t);
+    verify(logger);
+    if (!logger) {
+        return 0;
+    }
     memset(logger, 0, sizeof(logger_t));
     logger->mode  = mode;
     logger->level = level;
     logger->lock  = lock_create();
-    assert(logger->lock);
+    verify(logger->lock);
     if (!path) {
         /* 日志建立在当前目录 */
         path = path_getcwd(temp, sizeof(temp));
         strcat(temp, "/knet.log");
     }
     if (mode & logger_mode_file) {
-        assert(path);
+        verify(path);
         if (mode & logger_mode_override) {
             /* 打开并清空 */
             logger->fd = fopen(path, "w+");
@@ -68,7 +72,7 @@ fail_return:
 }
 
 void logger_destroy(logger_t* logger) {
-    assert(logger);
+    verify(logger);
     if (logger->fd) {
         fclose(logger->fd);
     }
@@ -81,8 +85,8 @@ int logger_write(logger_t* logger, logger_level_e level, const char* format, ...
     int  bytes = 0;
     static const char* logger_level_name[] = { 0, "VERB", "INFO", "WARN", "ERRO", "FATA" };
     va_list arg_ptr;
-    assert(logger);
-    assert(format);
+    verify(logger);
+    verify(format);
     if (logger->level > level) {
         /* 日志等级不足 */
         return error_ok;

@@ -25,7 +25,7 @@
 #include "timer.h"
 #include "list.h"
 #include "misc.h"
-#include "logger.h"
+
 
 struct _ktimer_t {
     dlist_t*       current_list;  /* 所属链表 */
@@ -59,19 +59,19 @@ int _ktimer_check_stop(ktimer_t* timer);
 ktimer_loop_t* ktimer_loop_create(time_t freq, int slot) {
     int i = 0;
     ktimer_loop_t* ktimer_loop = create(ktimer_loop_t);
-    assert(ktimer_loop);
-    assert(freq);
-    assert(slot);
+    verify(ktimer_loop);
+    verify(freq);
+    verify(slot);
     memset(ktimer_loop, 0, sizeof(ktimer_loop_t));
     ktimer_loop->max_slot     = slot;
     ktimer_loop->tick_intval  = freq;
     ktimer_loop->last_tick    = time_get_milliseconds();
     ktimer_loop->slot         = 1;
     ktimer_loop->ktimer_wheels = (dlist_t**)create_type(dlist_t, sizeof(dlist_t*) * ktimer_loop->max_slot);
-    assert(ktimer_loop->ktimer_wheels);
+    verify(ktimer_loop->ktimer_wheels);
     for (; i < ktimer_loop->max_slot; i++) {
         ktimer_loop->ktimer_wheels[i] = dlist_create();
-        assert(ktimer_loop->ktimer_wheels[i]);
+        verify(ktimer_loop->ktimer_wheels[i]);
     }
     return ktimer_loop;
 }
@@ -81,7 +81,7 @@ void ktimer_loop_destroy(ktimer_loop_t* ktimer_loop) {
     ktimer_t*      timer = 0;
     dlist_node_t* node  = 0;
     dlist_node_t* temp  = 0;
-    assert(ktimer_loop);
+    verify(ktimer_loop);
     /* 销毁所有槽内链表 */
     for (; i < ktimer_loop->max_slot; i++) {
         dlist_for_each_safe(ktimer_loop->ktimer_wheels[i], node, temp) {
@@ -95,7 +95,7 @@ void ktimer_loop_destroy(ktimer_loop_t* ktimer_loop) {
 }
 
 void ktimer_loop_run(ktimer_loop_t* ktimer_loop) {
-    assert(ktimer_loop);
+    verify(ktimer_loop);
     ktimer_loop->running = 1;
     while (ktimer_loop->running) {
         thread_sleep_ms((int)ktimer_loop->tick_intval);
@@ -104,7 +104,7 @@ void ktimer_loop_run(ktimer_loop_t* ktimer_loop) {
 }
 
 void ktimer_loop_exit(ktimer_loop_t* ktimer_loop) {
-    assert(ktimer_loop);
+    verify(ktimer_loop);
     ktimer_loop->running = 0;
 }
 
@@ -142,7 +142,7 @@ int ktimer_loop_run_once(ktimer_loop_t* ktimer_loop) {
     ktimer_t*      timer = 0;
     time_t        ms     = time_get_milliseconds(); /* 当前时间戳（毫秒） */
     int           count  = 0;
-    assert(ktimer_loop);
+    verify(ktimer_loop);
     timers = ktimer_loop->ktimer_wheels[ktimer_loop->slot];
     dlist_for_each_safe(timers, node, temp) {
         timer = (ktimer_t*)dlist_node_get_data(node);
@@ -172,40 +172,40 @@ ktimer_loop_t* ktimer_get_loop(ktimer_t* timer) {
 }
 
 void ktimer_set_current_list(ktimer_t* timer, dlist_t* list) {
-    assert(timer); /* list可以为零 */
+    verify(timer); /* list可以为零 */
     timer->current_list = list;
 }
 
 void ktimer_set_current_list_node(ktimer_t* timer, dlist_node_t* node) {
-    assert(timer);
-    assert(node);
+    verify(timer);
+    verify(node);
     timer->list_node = node;
 }
 
 dlist_t* ktimer_get_current_list(ktimer_t* timer) {
-    assert(timer);
+    verify(timer);
     return timer->current_list;
 }
 
 dlist_node_t* ktimer_get_current_list_node(ktimer_t* timer) {
-    assert(timer);
+    verify(timer);
     return timer->list_node;
 }
 
 ktimer_t* ktimer_create(ktimer_loop_t* ktimer_loop) {
     ktimer_t* timer = 0;
-    assert(ktimer_loop);
+    verify(ktimer_loop);
     timer = create(ktimer_t);
-    assert(timer);
+    verify(timer);
     memset(timer, 0, sizeof(ktimer_t));
     timer->ktimer_loop = ktimer_loop;
     return timer;
 }
 
 void ktimer_destroy(ktimer_t* timer) {
-    assert(timer);
-    assert(timer->current_list);
-    assert(timer->list_node);
+    verify(timer);
+    verify(timer->current_list);
+    verify(timer->list_node);
     dlist_delete(timer->current_list, timer->list_node);
     free(timer);
 }
@@ -229,9 +229,9 @@ int ktimer_check_timeout(ktimer_t* timer, time_t ms) {
     dlist_node_t* node         = 0;
     time_t        tick_intval  = 0;
     ktimer_loop_t* ktimer_loop = 0;
-    assert(timer);
+    verify(timer);
     ktimer_loop = timer->ktimer_loop;
-    assert(ktimer_loop);
+    verify(ktimer_loop);
     tick_intval = ktimer_loop_get_tick_intval(ktimer_loop);
     if (timer->ms > ms) {
         /* 在将来的时间到期，检测是否可以触发 */
@@ -273,15 +273,15 @@ int ktimer_check_timeout(ktimer_t* timer, time_t ms) {
 }
 
 int ktimer_stop(ktimer_t* timer) {
-    assert(timer);
+    verify(timer);
     timer->stop = 1;
     return error_ok;
 }
 
 int ktimer_start(ktimer_t* timer, ktimer_cb_t cb, void* data, time_t ms) {
-    assert(timer);
-    assert(cb);
-    assert(ms);
+    verify(timer);
+    verify(cb);
+    verify(ms);
     if (timer->current_list) {
         return error_multiple_start;
     }
@@ -295,9 +295,9 @@ int ktimer_start(ktimer_t* timer, ktimer_cb_t cb, void* data, time_t ms) {
 }
 
 int ktimer_start_once(ktimer_t* timer, ktimer_cb_t cb, void* data, time_t ms) {
-    assert(timer);
-    assert(cb);
-    assert(ms);
+    verify(timer);
+    verify(cb);
+    verify(ms);
     if (timer->current_list) {
         return error_multiple_start;
     }
@@ -311,9 +311,9 @@ int ktimer_start_once(ktimer_t* timer, ktimer_cb_t cb, void* data, time_t ms) {
 }
 
 int ktimer_start_times(ktimer_t* timer, ktimer_cb_t cb, void* data, time_t ms, int times) {
-    assert(timer);
-    assert(cb);
-    assert(ms);
+    verify(timer);
+    verify(cb);
+    verify(ms);
     if (timer->current_list) {
         return error_multiple_start;
     }

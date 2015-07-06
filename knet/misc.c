@@ -31,7 +31,7 @@
 #include "channel_ref.h"
 #include "address.h"
 #include "timer.h"
-#include "logger.h"
+
 
 struct _thread_runner_t {
     thread_func_t func;
@@ -161,17 +161,17 @@ int socket_set_non_blocking_on(socket_t socket_fd) {
 #if defined(WIN32)
     u_long nonblocking = 1;
     if (socket_fd == INVALID_SOCKET) {
-        assert(0);
+        verify(0);
         return 1;
     }
     if (SOCKET_ERROR == ioctlsocket(socket_fd, FIONBIO, &nonblocking)) {
-        assert(0);
+        verify(0);
         return 1;
     }
 #else
     int flags = 0;
     if (socket_fd < 0) {
-        assert(0);
+        verify(0);
         return 1;
     }
     flags = fcntl(socket_fd, F_GETFL, 0);
@@ -494,13 +494,13 @@ void _lock_init(lock_t* lock) {
 
 lock_t* lock_create() {
     lock_t* lock = create(lock_t);
-    assert(lock);
+    verify(lock);
     _lock_init(lock);
     return lock;
 }
 
 void lock_destroy(lock_t* lock) {
-    assert(lock);
+    verify(lock);
     #if defined(WIN32)
         DeleteCriticalSection(&lock->lock);
     #else
@@ -510,7 +510,7 @@ void lock_destroy(lock_t* lock) {
 }
 
 void lock_lock(lock_t* lock) {
-    assert(lock);
+    verify(lock);
     #if defined(WIN32)
         EnterCriticalSection(&lock->lock);
     #else
@@ -519,7 +519,7 @@ void lock_lock(lock_t* lock) {
 }
 
 int lock_trylock(lock_t* lock) {
-    assert(lock);
+    verify(lock);
     #if defined(WIN32)
         return TryEnterCriticalSection(&lock->lock);
     #else
@@ -528,7 +528,7 @@ int lock_trylock(lock_t* lock) {
 }
 
 void lock_unlock(lock_t* lock) {
-    assert(lock);
+    verify(lock);
     #if defined(WIN32)
         LeaveCriticalSection(&lock->lock);
     #else
@@ -538,7 +538,7 @@ void lock_unlock(lock_t* lock) {
 
 thread_runner_t* thread_runner_create(thread_func_t func, void* params) {
     thread_runner_t* runner = create(thread_runner_t);
-    assert(runner);
+    verify(runner);
     memset(runner, 0, sizeof(thread_runner_t));
     runner->func   = func;
     runner->params = params;
@@ -546,7 +546,7 @@ thread_runner_t* thread_runner_create(thread_func_t func, void* params) {
 }
 
 void thread_runner_destroy(thread_runner_t* runner) {
-    assert(runner);
+    verify(runner);
     if (runner->running) {
         thread_runner_stop(runner);
     }
@@ -563,7 +563,7 @@ void thread_runner_destroy(thread_runner_t* runner) {
 
 void _thread_func(void* params) {
     thread_runner_t* runner = 0;
-    assert(params);
+    verify(params);
     runner = (thread_runner_t*)params;
     runner->func(runner->params);
 }
@@ -576,7 +576,7 @@ void _thread_loop_func(void* params) {
         error = loop_run_once(loop);
         if (error != error_ok) {
             thread_runner_stop(runner);
-            assert(0);
+            verify(0);
         }
     }
 }
@@ -631,7 +631,7 @@ int thread_runner_start(thread_runner_t* runner, int stack_size) {
     int retval = 0;
     pthread_attr_t attr;
 #endif /* defined(WIN32) || defined(WIN64) */
-    assert(runner);
+    verify(runner);
     if (!runner->func) {
         return error_thread_start_fail;
     }
@@ -666,8 +666,8 @@ int thread_runner_start_loop(thread_runner_t* runner, loop_t* loop, int stack_si
     int retval = 0;
     pthread_attr_t attr;
 #endif /* defined(WIN32) || defined(WIN64) */
-    assert(runner);
-    assert(loop);
+    verify(runner);
+    verify(loop);
     runner->params = loop;
     runner->running = 1;
 #if defined(WIN32)
@@ -700,8 +700,8 @@ int thread_runner_start_timer_loop(thread_runner_t* runner, ktimer_loop_t* timer
     int retval = 0;
     pthread_attr_t attr;
 #endif /* defined(WIN32) || defined(WIN64) */
-    assert(runner);
-    assert(timer_loop);
+    verify(runner);
+    verify(timer_loop);
     runner->params = timer_loop;
     runner->running = 1;
 #if defined(WIN32)
@@ -728,7 +728,7 @@ int thread_runner_start_timer_loop(thread_runner_t* runner, ktimer_loop_t* timer
 }
 
 void thread_runner_stop(thread_runner_t* runner) {
-    assert(runner);
+    verify(runner);
     runner->running = 0;
 }
 
@@ -738,12 +738,12 @@ void thread_runner_join(thread_runner_t* runner) {
 #else
     void* retval = 0;
 #endif /* defined(WIN32) || defined(WIN64) */
-    assert(runner);
+    verify(runner);
 #if defined(WIN32)
     error = WaitForSingleObject((HANDLE)runner->thread_id, INFINITE);
     if ((error != WAIT_OBJECT_0) && (error != WAIT_ABANDONED)) {
         log_error("WaitForSingleObject() failed, system error: %d", sys_get_errno());
-        assert(0);
+        verify(0);
     }
 #else
     pthread_join(runner->thread_id, &retval);
@@ -751,12 +751,12 @@ void thread_runner_join(thread_runner_t* runner) {
 }
 
 int thread_runner_check_start(thread_runner_t* runner) {
-    assert(runner);
+    verify(runner);
     return runner->running;
 }
 
 void* thread_runner_get_params(thread_runner_t* runner) {
-    assert(runner);
+    verify(runner);
     return runner->params;
 }
 
@@ -777,7 +777,7 @@ void thread_sleep_ms(int ms) {
 }
 
 int thread_set_tls_data(thread_runner_t* runner, void* data) {
-    assert(runner);
+    verify(runner);
     if (!runner->tls_key) {
 #if defined(WIN32)
         runner->tls_key = TlsAlloc();
@@ -807,7 +807,7 @@ int thread_set_tls_data(thread_runner_t* runner, void* data) {
 }
 
 void* thread_get_tls_data(thread_runner_t* runner) {
-    assert(runner);
+    verify(runner);
     if (!runner->tls_key) {
         log_error("tls never initialize");
         return 0;
@@ -859,8 +859,8 @@ char* time_get_string(char* buffer, int size) {
     struct timeval tp;
     struct tm      t;
     time_t timestamp = time(0);
-    assert(buffer);
-    assert(size);
+    verify(buffer);
+    verify(size);
     time_gettimeofday(&tp, 0);
     memset(buffer, 0, size);
 #if defined(WIN32)
@@ -883,10 +883,10 @@ uint64_t time_get_microseconds() {
     LARGE_INTEGER freq;
     LARGE_INTEGER fc;
     if (!QueryPerformanceFrequency(&freq)) {
-        assert(0);
+        verify(0);
     }
     if (!QueryPerformanceCounter(&fc)) {
-        assert(0);
+        verify(0);
     }
     return fc.QuadPart / (freq.QuadPart / 1000 / 1000);
 #else
@@ -943,3 +943,23 @@ uint64_t htonll(uint64_t ui64) {
 uint64_t ntohll(uint64_t ui64) { 
      return (((uint64_t)ntohl((uint32_t)ui64)) << 32) + ntohl(ui64 >> 32); 
 } 
+
+const char* get_channel_cb_event_string(channel_cb_event_e e) {
+    switch (e) {
+    case channel_cb_event_connect:
+        return "channel as connector connected successfully";
+    case channel_cb_event_accept:
+        return "channel as acceptor accepted a new TCP socket";
+    case channel_cb_event_recv:
+        return "received serveral bytes";
+    case channel_cb_event_send:
+        return "several bytes has been sent";
+    case channel_cb_event_close:
+        return "channel has beed closed";
+    case channel_cb_event_timeout:
+        return "channel idle timeout because there is no bytes received according to the idle timeout setting";
+    case channel_cb_event_connect_timeout:
+        return "channel try to connect remote host failed because the connect timeout setting reached";
+    }
+    return "unknown channel callback event";
+}

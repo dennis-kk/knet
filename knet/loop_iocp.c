@@ -79,13 +79,13 @@ void on_iocp_send(channel_ref_t* channel_ref);
 
 per_sock_t* socket_data_create() {
     per_sock_t* data = create(per_sock_t);
-    assert(data);
+    verify(data);
     memset(data, 0, sizeof(per_sock_t));
     return data;
 }
 
 void socket_data_destroy(per_sock_t* data) {
-    assert(data);
+    verify(data);
     if (data->AcceptEx_info) {
         /* 关闭套接字 */
         if (data->AcceptEx_info->socket_fd) {
@@ -98,11 +98,11 @@ void socket_data_destroy(per_sock_t* data) {
 
 AcceptEx_t* socket_data_prepare_accept(per_sock_t* data) {
     socket_t fd = 0;
-    assert(data);
+    verify(data);
     fd = channel_ref_get_socket_fd(data->channel_ref);
     if (!data->AcceptEx_info) {
         data->AcceptEx_info = create(AcceptEx_t);
-        assert(data->AcceptEx_info);
+        verify(data->AcceptEx_info);
         memset(data->AcceptEx_info, 0, sizeof(AcceptEx_t));
     }
     if (!data->AcceptEx_info->fn_AcceptEx) {
@@ -111,7 +111,7 @@ AcceptEx_t* socket_data_prepare_accept(per_sock_t* data) {
     /* 建立一个支持重叠I/O的套接字 */
     data->AcceptEx_info->socket_fd = WSASocket(AF_INET, SOCK_STREAM, IPPROTO_TCP, 0, 0, WSA_FLAG_OVERLAPPED);
     if (data->AcceptEx_info->socket_fd == INVALID_SOCKET) {
-        assert(0);
+        verify(0);
         return 0;
     }
     return data->AcceptEx_info;
@@ -128,7 +128,7 @@ per_sock_t* get_data(channel_ref_t* channel_ref) {
 int impl_create(loop_t* loop) {
     WSADATA wsa;
     loop_iocp_t* impl = create(loop_iocp_t);
-    assert(impl);
+    verify(impl);
     memset(impl, 0, sizeof(loop_iocp_t));
     loop_set_impl(loop, impl);
     impl->iocp = CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, 0, 0);
@@ -142,7 +142,7 @@ int impl_create(loop_t* loop) {
 
 void impl_destroy(loop_t* loop) {
     loop_iocp_t* impl = get_impl(loop);
-    assert(impl);
+    verify(impl);
     CloseHandle(impl->iocp);
     destroy(impl);
     WSACleanup();
@@ -163,10 +163,10 @@ int _select(loop_t* loop, time_t ts) {
             return error_ok;
         }
     }
-    assert(per_sock);
-    assert(per_io);
+    verify(per_sock);
+    verify(per_io);
     channel_ref = per_sock->channel_ref;  
-    assert(channel_ref);
+    verify(channel_ref);
     if ((per_io->type & io_type_recv) || (per_io->type & io_type_accept)) {
         channel_ref_update(channel_ref, channel_event_recv, ts);
     } else if ((per_io->type & io_type_send) || (per_io->type & io_type_connect)) {
@@ -178,7 +178,7 @@ int _select(loop_t* loop, time_t ts) {
 int impl_run_once(loop_t* loop) {
     int    error = 0;
     time_t ts    = time(0);
-    assert(loop);
+    verify(loop);
     error = _select(loop, ts);
     if (error != error_ok) {
         return error;
@@ -192,12 +192,12 @@ socket_t impl_channel_accept(channel_ref_t* channel_ref) {
     socket_t    acceptor = 0;
     per_sock_t* per_sock = 0;
     socket_t    client   = 0;
-    assert(channel_ref);
+    verify(channel_ref);
     acceptor = channel_ref_get_socket_fd(channel_ref);
-    assert(acceptor);
+    verify(acceptor);
     per_sock = (per_sock_t*)channel_ref_get_data(channel_ref);
-    assert(per_sock);
-    assert(per_sock->AcceptEx_info);
+    verify(per_sock);
+    verify(per_sock->AcceptEx_info);
     client = per_sock->AcceptEx_info->socket_fd;
     /* MSDN: On Windows XP and later, once the AcceptEx function completes and the SO_UPDATE_ACCEPT_CONTEXT
        option is set on the accepted socket, the local address associated with the accepted socket can also
@@ -217,7 +217,7 @@ ACCEPTEX get_fn_AcceptEx(socket_t fd) {
     error = WSAIoctl(fd, SIO_GET_EXTENSION_FUNCTION_POINTER, &guid_AcceptEx, sizeof(guid_AcceptEx),
                 &fn_AcceptEx, sizeof(ACCEPTEX), &bytes, NULL, NULL);
     if (error) {
-        assert(0);
+        verify(0);
         return 0;
     }
     return fn_AcceptEx;
@@ -301,7 +301,7 @@ void on_iocp_send(channel_ref_t* channel_ref) {
 }
 
 int impl_event_add(channel_ref_t* channel_ref, channel_event_e e) {
-    assert(channel_ref);
+    verify(channel_ref);
     if (channel_ref_check_state(channel_ref, channel_state_close)) {
         return error_already_close;
     }
@@ -319,7 +319,7 @@ int impl_event_remove(channel_ref_t* channel_ref, channel_event_e e) {
     int         flag     = 0;
     per_sock_t* per_sock = 0;
     e;
-    assert(channel_ref);
+    verify(channel_ref);
     flag = channel_ref_get_flag(channel_ref);
     if (flag & io_type_recv) {
         flag &= ~io_type_recv;
@@ -341,13 +341,13 @@ int impl_add_channel_ref(loop_t* loop, channel_ref_t* channel_ref) {
     socket_t     socket_fd = 0;
     HANDLE       iocp      = 0;
     per_sock_t*  per_sock  = 0;
-    assert(loop);
-    assert(channel_ref);
+    verify(loop);
+    verify(channel_ref);
     impl      = get_impl(loop);
     socket_fd = channel_ref_get_socket_fd(channel_ref);
     iocp      = 0;
     per_sock  = socket_data_create();
-    assert(per_sock);
+    verify(per_sock);
     /* 增加引用计数 */
     channel_ref_incref(channel_ref);
     per_sock->channel_ref  = channel_ref;
@@ -363,10 +363,10 @@ int impl_add_channel_ref(loop_t* loop, channel_ref_t* channel_ref) {
 
 int impl_remove_channel_ref(loop_t* loop, channel_ref_t* channel_ref) {
     per_sock_t* per_sock  = 0;
-    assert(loop);
-    assert(channel_ref);
+    verify(loop);
+    verify(channel_ref);
     per_sock = get_data(channel_ref);
-    assert(per_sock);
+    verify(per_sock);
     /* 销毁相关资源 */
     socket_data_destroy(per_sock);
     return error_ok;

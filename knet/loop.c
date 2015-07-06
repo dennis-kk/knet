@@ -30,7 +30,7 @@
 #include "misc.h"
 #include "loop_balancer.h"
 #include "stream.h"
-#include "logger.h"
+
 
 struct _loop_t {
     dlist_t*              active_channel_list; /* 活跃管道链表 */
@@ -59,38 +59,40 @@ typedef struct _loop_event_t {
 } loop_event_t;
 
 loop_event_t* loop_event_create(channel_ref_t* channel_ref, buffer_t* send_buffer, loop_event_e e) {
-    loop_event_t* event = create(loop_event_t);
-    assert(event);
-    event->channel_ref = channel_ref;
-    event->send_buffer = send_buffer;
-    event->event = e;
-    return event;
+    loop_event_t* ev = 0;
+    verify(channel_ref); /* send_buffer可以为0 */
+    ev = create(loop_event_t);
+    verify(ev);
+    ev->channel_ref = channel_ref;
+    ev->send_buffer = send_buffer;
+    ev->event = e;
+    return ev;
 }
 
 void loop_event_destroy(loop_event_t* loop_event) {
-    assert(loop_event);
+    verify(loop_event);
     destroy(loop_event);
 }
 
 channel_ref_t* loop_event_get_channel_ref(loop_event_t* loop_event) {
-    assert(loop_event);
+    verify(loop_event);
     return loop_event->channel_ref;
 }
 
 buffer_t* loop_event_get_send_buffer(loop_event_t* loop_event) {
-    assert(loop_event);
+    verify(loop_event);
     return loop_event->send_buffer;
 }
 
 loop_event_e loop_event_get_event(loop_event_t* loop_event) {
-    assert(loop_event);
+    verify(loop_event);
     return loop_event->event;
 }
 
 loop_t* loop_create() {
     socket_t pair[2] = {0}; /* 事件读写描述符 */
     loop_t*  loop    = create(loop_t);
-    assert(loop);
+    verify(loop);
     memset(loop, 0, sizeof(loop_t));
     /* 建立选取器实现 */
     if (impl_create(loop)) {
@@ -110,9 +112,9 @@ loop_t* loop_create() {
     loop->lock = lock_create();
     loop->balance_options = loop_balancer_in | loop_balancer_out;
     loop->notify_channel = loop_create_channel_exist_socket_fd(loop, pair[0], 0, 0);
-    assert(loop->notify_channel);
+    verify(loop->notify_channel);
     loop->read_channel = loop_create_channel_exist_socket_fd(loop, pair[1], 0, 1024 * 64);
-    assert(loop->read_channel);
+    verify(loop->read_channel);
     loop_add_channel_ref(loop, loop->notify_channel);
     loop_add_channel_ref(loop, loop->read_channel);
     channel_ref_set_state(loop->notify_channel, channel_state_active);
@@ -129,6 +131,7 @@ void loop_destroy(loop_t* loop) {
     dlist_node_t*  temp        = 0;
     channel_ref_t* channel_ref = 0;
     loop_event_t*  event       = 0;
+    verify(loop);
     /* 关闭管道 */
     dlist_for_each_safe(loop->active_channel_list, node, temp) {
         channel_ref = (channel_ref_t*)dlist_node_get_data(node);
@@ -154,8 +157,8 @@ void loop_destroy(loop_t* loop) {
 }
 
 void loop_add_event(loop_t* loop, loop_event_t* loop_event) {
-    assert(loop);
-    assert(loop_event);
+    verify(loop);
+    verify(loop_event);
     lock_lock(loop->lock);
     log_info("invoke loop_add_event(), event[type:%d]", loop_event->event);
     /* 事件添加到链表尾部 */
@@ -165,25 +168,26 @@ void loop_add_event(loop_t* loop, loop_event_t* loop_event) {
 }
 
 void loop_notify_accept(loop_t* loop, channel_ref_t* channel_ref) {
-    assert(loop);
-    assert(channel_ref);
+    verify(loop);
+    verify(channel_ref);
     loop_add_event(loop, loop_event_create(channel_ref, 0, loop_event_accept));
 }
 
 void loop_notify_send(loop_t* loop, channel_ref_t* channel_ref, buffer_t* send_buffer) {
-    assert(loop);
-    assert(channel_ref);
-    assert(send_buffer);
+    verify(loop);
+    verify(channel_ref);
+    verify(send_buffer);
     loop_add_event(loop, loop_event_create(channel_ref, send_buffer, loop_event_send));
 }
 
 void loop_notify_close(loop_t* loop, channel_ref_t* channel_ref) {
-    assert(loop);
-    assert(channel_ref);
+    verify(loop);
+    verify(channel_ref);
     loop_add_event(loop, loop_event_create(channel_ref, 0, loop_event_close));
 }
 
 void loop_queue_cb(channel_ref_t* channel, channel_cb_event_e e) {
+    verify(channel);
     if (e & channel_cb_event_recv) {
         /* 清空所有读到的数据 */
         stream_eat_all(channel_ref_get_stream(channel));
@@ -191,14 +195,14 @@ void loop_queue_cb(channel_ref_t* channel, channel_cb_event_e e) {
     } else if (e & channel_cb_event_close) {
         if (loop_check_running(channel_ref_get_loop(channel))) {
             /* 连接断开, 致命错误 */
-            assert(0);
+            verify(0);
         }
     }
 }
 
 void loop_notify(loop_t* loop) {
     char c = 1;
-    assert(loop);
+    verify(loop);
     /* 发送一个字节触发读回调  */
     socket_send(channel_ref_get_socket_fd(loop->notify_channel), &c, sizeof(c));
 }
@@ -207,7 +211,7 @@ void loop_event_process(loop_t* loop) {
     dlist_node_t* node       = 0;
     dlist_node_t* temp       = 0;
     loop_event_t* loop_event = 0;
-    assert(loop);
+    verify(loop);
     lock_lock(loop->lock);
     /* 每次读事件回调内处理整个事件链表 */
     dlist_for_each_safe(loop->event_list, node, temp) {
@@ -232,29 +236,29 @@ void loop_event_process(loop_t* loop) {
 }
 
 channel_ref_t* loop_create_channel_exist_socket_fd(loop_t* loop, socket_t socket_fd, uint32_t max_send_list_len, uint32_t recv_ring_len) {
-    assert(loop);
+    verify(loop);
     return channel_ref_create(loop, channel_create_exist_socket_fd(socket_fd, max_send_list_len, recv_ring_len));
 }
 
 channel_ref_t* loop_create_channel(loop_t* loop, uint32_t max_send_list_len, uint32_t recv_ring_len) {
-    assert(loop);
+    verify(loop);
     return channel_ref_create(loop, channel_create(max_send_list_len, recv_ring_len));
 }
 
 thread_id_t loop_get_thread_id(loop_t* loop) {
-    assert(loop);
+    verify(loop);
     return loop->thread_id;
 }
 
 int loop_run_once(loop_t* loop) {
-    assert(loop);
+    verify(loop);
     loop->thread_id = thread_get_self_id();
     return impl_run_once(loop);
 }
 
 int loop_run(loop_t* loop) {
     int error = 0;
-    assert(loop);
+    verify(loop);
     loop->running = 1;
     while (loop->running) {
         error = loop_run_once(loop);
@@ -266,24 +270,25 @@ int loop_run(loop_t* loop) {
 }
 
 void loop_exit(loop_t* loop) {
-    assert(loop);
+    verify(loop);
     loop->running = 0;
 }
 
 dlist_t* loop_get_active_list(loop_t* loop) {
-    assert(loop);
+    verify(loop);
     return loop->active_channel_list;
 }
 
 dlist_t* loop_get_close_list(loop_t* loop) {
-    assert(loop);
+    verify(loop);
     return loop->close_channel_list;
 }
 
 void loop_add_channel_ref(loop_t* loop, channel_ref_t* channel_ref) {
-    dlist_node_t* node = channel_ref_get_loop_node(channel_ref);
-    assert(loop);
-    assert(channel_ref);
+    dlist_node_t* node = 0;
+    verify(channel_ref);
+    verify(loop);
+    node = channel_ref_get_loop_node(channel_ref);
     if (node) {
         /* 已经加入过链表，不需要创建链表节点 */
         dlist_add_front(loop->active_channel_list, node);
@@ -298,26 +303,26 @@ void loop_add_channel_ref(loop_t* loop, channel_ref_t* channel_ref) {
 }
 
 void loop_remove_channel_ref(loop_t* loop, channel_ref_t* channel_ref) {
-    assert(loop);
-    assert(channel_ref);
+    verify(loop);
+    verify(channel_ref);
     /* 解除与当前链表关联，但不销毁节点 */
     dlist_remove(loop->active_channel_list, channel_ref_get_loop_node(channel_ref));
 }
 
 void loop_set_impl(loop_t* loop, void* impl) {
-    assert(loop);
-    assert(impl);
+    verify(loop);
+    verify(impl);
     loop->impl = impl;
 }
 
 void* loop_get_impl(loop_t* loop) {
-    assert(loop);
+    verify(loop);
     return loop->impl;
 }
 
 void loop_close_channel_ref(loop_t* loop, channel_ref_t* channel_ref) {
-    assert(loop);
-    assert(channel_ref);
+    verify(loop);
+    verify(channel_ref);
     /* 在外层函数内套接字已经被关闭 */
     /* 从活跃链表内取出 */
     loop_remove_channel_ref(loop, channel_ref);
@@ -326,12 +331,12 @@ void loop_close_channel_ref(loop_t* loop, channel_ref_t* channel_ref) {
 }
 
 void loop_set_balancer(loop_t* loop, loop_balancer_t* balancer) {
-    assert(loop); /* balancer可以为0 */
+    verify(loop); /* balancer可以为0 */
     loop->balancer = balancer;
 }
 
 loop_balancer_t* loop_get_balancer(loop_t* loop) {
-    assert(loop);
+    verify(loop);
     return loop->balancer;
 }
 
@@ -339,6 +344,7 @@ void loop_check_timeout(loop_t* loop, time_t ts) {
     dlist_node_t*  node        = 0;
     dlist_node_t*  temp        = 0;
     channel_ref_t* channel_ref = 0;
+    verify(loop);
     dlist_for_each_safe(loop_get_active_list(loop), node, temp) {
         channel_ref = (channel_ref_t*)dlist_node_get_data(node);
         if (channel_ref_check_state(channel_ref, channel_state_connect)) {
@@ -366,6 +372,7 @@ void loop_check_close(loop_t* loop) {
     dlist_node_t*  node        = 0;
     dlist_node_t*  temp        = 0;
     channel_ref_t* channel_ref = 0;
+    verify(loop);
     dlist_for_each_safe(loop_get_close_list(loop), node, temp) {
         channel_ref = (channel_ref_t*)dlist_node_get_data(node);
         if (error_ok == channel_ref_destroy(channel_ref)) {
@@ -375,25 +382,31 @@ void loop_check_close(loop_t* loop) {
 }
 
 int loop_check_running(loop_t* loop) {
+    verify(loop);
     return loop->running;
 }
 
 int loop_get_active_channel_count(loop_t* loop) {
+    verify(loop);
     return dlist_get_count(loop->active_channel_list);
 }
 
 int loop_get_close_channel_count(loop_t* loop) {
+    verify(loop);
     return dlist_get_count(loop->close_channel_list);
 }
 
 void loop_set_balance_options(loop_t* loop, loop_balance_option_e options) {
+    verify(loop);
     loop->balance_options |= options;
 }
 
 loop_balance_option_e loop_get_balance_options(loop_t* loop) {
+    verify(loop);
     return loop->balance_options;
 }
 
 int loop_check_balance_options(loop_t* loop, loop_balance_option_e options) {
+    verify(loop);
     return (loop->balance_options & options);
 }

@@ -25,6 +25,7 @@
 #include "hash.h"
 #include "list.h"
 
+
 struct _hash_t {
     uint32_t      size;         /* 桶数量 */
     uint32_t      count;        /* 当前表内元素个数 */
@@ -83,10 +84,14 @@ uint32_t _hash_string(const char* key);
 
 hash_value_t* hash_value_create(uint32_t key, const char* string_key, void* value) {
     hash_value_t* hash_value = create(hash_value_t);
-    assert(hash_value);
+    verify(hash_value);
     memset(hash_value, 0, sizeof(hash_value_t));    
     if (string_key) { /* 字符串键 */
         hash_value->string_key = create_type(char, strlen(string_key) + 1);
+        if (!hash_value->string_key) {
+            destroy(hash_value);
+            return 0;
+        }
         strcpy(hash_value->string_key, string_key);
     } else { /* 数字键 */
         hash_value->key = key;
@@ -96,7 +101,7 @@ hash_value_t* hash_value_create(uint32_t key, const char* string_key, void* valu
 }
 
 void hash_value_destroy(hash_value_t* hash_value) {
-    assert(hash_value);
+    verify(hash_value);
     if (hash_value->string_key) {
         destroy(hash_value->string_key);
     }
@@ -104,31 +109,31 @@ void hash_value_destroy(hash_value_t* hash_value) {
 }
 
 void* hash_value_get_value(hash_value_t* hash_value) {
-    assert(hash_value);
+    verify(hash_value);
     return hash_value->value;
 }
 
 uint32_t hash_value_get_key(hash_value_t* hash_value) {
-    assert(hash_value);
+    verify(hash_value);
     return hash_value->key;
 }
 
 const char* hash_value_get_string_key(hash_value_t* hash_value) {
-    assert(hash_value);
+    verify(hash_value);
     return hash_value->string_key;
 }
 
 int hash_value_equal(hash_value_t* hash_value, uint32_t key) {
-    assert(hash_value);
+    verify(hash_value);
     return (key == hash_value->key);
 }
 
 int hash_value_equal_string_key(hash_value_t* hash_value, const char* key) {
-    assert(hash_value);
-    assert(key);
+    verify(hash_value);
+    verify(key);
     if (!hash_value->string_key) {
         /* 外部错误的调用 */
-        assert(0);
+        verify(0);
         return 0;
     }
     return (0 == strcmp(key, hash_value->string_key));
@@ -137,7 +142,7 @@ int hash_value_equal_string_key(hash_value_t* hash_value, const char* key) {
 hash_t* hash_create(uint32_t size, hash_dtor_t dtor) {
     uint32_t i = 0;
     hash_t* hash = create(hash_t);
-    assert(hash);
+    verify(hash);
     memset(hash, 0, sizeof(hash_t));
     if (!size) {
         size = 64; /* 默认bucket数量 */
@@ -145,7 +150,11 @@ hash_t* hash_create(uint32_t size, hash_dtor_t dtor) {
     hash->dtor = dtor;
     hash->size = size;
     hash->buckets = (dlist_t**)create_type(dlist_t*, sizeof(dlist_t*) * size);
-    assert(hash->buckets);
+    verify(hash->buckets);
+    if (!hash->buckets) {
+        destroy(hash);
+        return 0;
+    }
     memset(hash->buckets, 0, size * sizeof(dlist_t*));
     /* 创建bucket链表 */
     for (; i < size; i++) {
@@ -159,7 +168,7 @@ void hash_destroy(hash_t* hash) {
     dlist_node_t* node  = 0;
     dlist_node_t* temp  = 0;
     hash_value_t* value = 0;
-    assert(hash);
+    verify(hash);
     /* 遍历所有bucket并销毁 */
     for (; i < hash->size; i++) {
         if (hash->buckets[i]) {
@@ -185,13 +194,19 @@ void hash_destroy(hash_t* hash) {
 int hash_add(hash_t* hash, uint32_t key, void* value) {
     uint32_t      hash_key   = 0;
     hash_value_t* hash_value = 0;
-    assert(hash);
-    assert(value);
+    verify(hash);
+    verify(value);
     hash_key = key % hash->size;
     /* 创建值 */
     hash_value = hash_value_create(key, 0, value);
+    verify(hash_value);
+    if (!hash_value) {
+        return error_no_memory;
+    }
     /* 添加到链表尾 */
-    dlist_add_tail_node(hash->buckets[hash_key], hash_value);
+    if (!dlist_add_tail_node(hash->buckets[hash_key], hash_value)) {
+        return error_no_memory;
+    }
     hash->count++;
     return error_ok;
 }
@@ -199,13 +214,18 @@ int hash_add(hash_t* hash, uint32_t key, void* value) {
 int hash_add_string_key(hash_t* hash, const char* key, void* value) {
     uint32_t      hash_key   = 0;
     hash_value_t* hash_value = 0;
-    assert(hash);
-    assert(value);
+    verify(hash);
+    verify(value);
     hash_key = _hash_string(key) % hash->size;
     /* 创建值 */
     hash_value = hash_value_create(0, key, value);
+    if (!hash_value) {
+        return error_no_memory;
+    }
     /* 添加到链表尾 */
-    dlist_add_tail_node(hash->buckets[hash_key], hash_value);
+    if (!dlist_add_tail_node(hash->buckets[hash_key], hash_value)) {
+        return error_no_memory;
+    }
     hash->count++;
     return error_ok;
 }
@@ -216,7 +236,7 @@ void* hash_remove(hash_t* hash, uint32_t key) {
     dlist_node_t* temp       = 0;
     hash_value_t* hash_value = 0;
     void*         value      = 0;
-    assert(hash);
+    verify(hash);
     hash_key = key % hash->size;
     /* 遍历链表查找 */
     dlist_for_each_safe(hash->buckets[hash_key], node, temp) {
@@ -243,7 +263,7 @@ void* hash_remove_string_key(hash_t* hash, const char* key) {
     dlist_node_t* temp       = 0;
     hash_value_t* hash_value = 0;
     void*         value      = 0;
-    assert(hash);
+    verify(hash);
     hash_key = _hash_string(key) % hash->size;
     /* 遍历链表查找 */
     dlist_for_each_safe(hash->buckets[hash_key], node, temp) {
@@ -266,8 +286,11 @@ void* hash_remove_string_key(hash_t* hash, const char* key) {
 
 int hash_delete(hash_t* hash, uint32_t key) {
     void* value = 0;
-    assert(hash);
+    verify(hash);
     value = hash_remove(hash, key);
+    if (!value) {
+        return error_hash_not_found;
+    }
     if (hash->dtor) {
         hash->dtor(value);
     } else {
@@ -278,8 +301,11 @@ int hash_delete(hash_t* hash, uint32_t key) {
 
 int hash_delete_string_key(hash_t* hash, const char* key) {
     void* value = 0;
-    assert(hash);
+    verify(hash);
     value = hash_remove_string_key(hash, key);
+    if (!value) {
+        return error_hash_not_found;
+    }
     if (hash->dtor) {
         hash->dtor(value);
     } else {
@@ -292,7 +318,7 @@ void* hash_get(hash_t* hash, uint32_t key) {
     uint32_t      hash_key   = 0;
     dlist_node_t* node       = 0;
     hash_value_t* hash_value = 0;
-    assert(hash);
+    verify(hash);
     hash_key = key % hash->size;
     /* 遍历链表查找 */
     dlist_for_each(hash->buckets[hash_key], node) {
@@ -308,7 +334,8 @@ void* hash_get_string_key(hash_t* hash, const char* key) {
     uint32_t      hash_key   = 0;
     dlist_node_t* node       = 0;
     hash_value_t* hash_value = 0;
-    assert(hash);
+    verify(hash);
+    verify(key);
     hash_key = _hash_string(key) % hash->size;
     /* 遍历链表查找 */
     dlist_for_each(hash->buckets[hash_key], node) {
@@ -321,7 +348,7 @@ void* hash_get_string_key(hash_t* hash, const char* key) {
 }
 
 uint32_t hash_get_size(hash_t* hash) {
-    assert(hash);
+    verify(hash);
     return hash->count;
 }
 
@@ -335,10 +362,10 @@ uint32_t _hash_string(const char* key) {
 }
 
 hash_value_t* hash_get_first(hash_t* hash) {
-    uint32_t i = 0;
-    dlist_t* list = 0;
+    uint32_t      i          = 0;
+    dlist_t*      list       = 0;
     hash_value_t* hash_value = 0;
-    assert(hash);
+    verify(hash);
     hash->it_index     = 0;
     hash->it_node_safe = 0;
     hash->it_node_next = 0;
@@ -348,27 +375,30 @@ hash_value_t* hash_get_first(hash_t* hash) {
     /* 找到第一个有元素的桶 */
     for (; i < hash->size; i++) {
         list = hash->buckets[i];
-        assert(list);
+        verify(list);
         if (!dlist_empty(list)) {
             hash->it_index = i;
             break;
         }
     }
-    assert(list);
+    verify(list);
+    if (!list) {
+        return 0;
+    }
     hash->it_node_safe = dlist_get_front(list);
-    assert(hash->it_node_safe);
+    verify(hash->it_node_safe);
     /* 预先取下一个元素，不论是否有元素 */
     hash->it_node_next = dlist_next(list, hash->it_node_safe);
     hash_value = (hash_value_t*)dlist_node_get_data(hash->it_node_safe);
-    assert(hash_value);
+    verify(hash_value);
     return hash_value;
 }
 
 hash_value_t* hash_next(hash_t* hash) {
-    uint32_t i = 0;
-    dlist_t* list = 0;
+    uint32_t      i          = 0;
+    dlist_t*      list       = 0;
     hash_value_t* hash_value = 0;
-    assert(hash);
+    verify(hash);
     if (!hash->it_node_safe) { /* 未调用hash_get_first() */
         hash_get_first(hash);
     }
@@ -384,10 +414,10 @@ hash_value_t* hash_next(hash_t* hash) {
         /* 遍历后续桶 */
         for (i = hash->it_index; i < hash->size; i++) {
             list = hash->buckets[i];
-            assert(list);
+            verify(list);
             if (!dlist_empty(list)) {
                 hash->it_node_safe = dlist_get_front(list);
-                assert(hash->it_node_safe);
+                verify(hash->it_node_safe);
                 hash->it_index = i;
                 break;
             }
@@ -399,6 +429,6 @@ hash_value_t* hash_next(hash_t* hash) {
     /* 预先取下一个元素，不论是否有元素 */
     hash->it_node_next = dlist_next(list, hash->it_node_safe);
     hash_value = (hash_value_t*)dlist_node_get_data(hash->it_node_safe);
-    assert(hash_value);
+    verify(hash_value);
     return hash_value;
 }

@@ -26,7 +26,7 @@
 #include "config.h"
 #include "channel_ref.h"
 #include "ringbuffer.h"
-#include "logger.h"
+
 #include "buffer.h"
 #include "misc.h"
 
@@ -36,28 +36,28 @@ struct _stream_t {
 
 stream_t* stream_create(channel_ref_t* channel_ref) {
     stream_t* stream = 0;
-    assert(channel_ref);
+    verify(channel_ref);
     stream = create(stream_t);
     memset(stream, 0, sizeof(stream_t));
-    assert(stream);
+    verify(stream);
     stream->channel_ref = channel_ref;
     return stream;
 }
 
 void stream_destroy(stream_t* stream) {
-    assert(stream);
+    verify(stream);
     destroy(stream);
 }
 
 int stream_available(stream_t* stream) {
-    assert(stream);
+    verify(stream);
     return ringbuffer_available(channel_ref_get_ringbuffer(stream->channel_ref));
 }
 
 int stream_pop(stream_t* stream, void* buffer, int size) {
-    assert(stream);
-    assert(buffer);
-    assert(size);
+    verify(stream);
+    verify(buffer);
+    verify(size);
     if (0 < ringbuffer_read(channel_ref_get_ringbuffer(stream->channel_ref), (char*)buffer, size)) {
         return error_ok;
     }
@@ -65,12 +65,12 @@ int stream_pop(stream_t* stream, void* buffer, int size) {
 }
 
 int stream_eat_all(stream_t* stream) {
-    assert(stream);
+    verify(stream);
     return ringbuffer_eat_all(channel_ref_get_ringbuffer(stream->channel_ref));
 }
 
 int stream_eat(stream_t* stream, int size) {
-    assert(stream);
+    verify(stream);
     if (!size) {
         return error_ok;
     }
@@ -78,16 +78,16 @@ int stream_eat(stream_t* stream, int size) {
 }
 
 int stream_push(stream_t* stream, void* buffer, int size) {
-    assert(stream);
-    assert(buffer);
-    assert(size);
+    verify(stream);
+    verify(buffer);
+    verify(size);
     return channel_ref_write(stream->channel_ref, (char*)buffer, size);
 }
 
 int stream_copy(stream_t* stream, void* buffer, int size) {
-    assert(stream);
-    assert(buffer);
-    assert(size);
+    verify(stream);
+    verify(buffer);
+    verify(size);
     if (0 > ringbuffer_copy(channel_ref_get_ringbuffer(stream->channel_ref), (char*)buffer, size)) {
         return error_recv_fail;
     }

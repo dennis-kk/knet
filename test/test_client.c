@@ -50,11 +50,15 @@ void connector_cb(channel_ref_t* channel, channel_cb_event_e e) {
 }
 
 int main(int argc, char* argv[]) {
-    int              i            = 0;
-    loop_t*          loop         = 0;
-    ktimer_t*        timer        = 0;
-    channel_ref_t*   connector    = 0;
-    thread_runner_t* timer_thread = 0;
+    int                i            = 0;
+    loop_t*            loop         = 0;
+    ktimer_t*          timer        = 0;
+    channel_ref_t*     connector    = 0;
+    thread_runner_t*   timer_thread = 0;
+    static const char* helper_string =
+        "-n    client count\n"
+        "-ip   remote host IP\n"
+        "-port remote host port\n";
 
     if (argc > 2) {
         for (i = 1; i < argc; i++) {
@@ -66,6 +70,9 @@ int main(int argc, char* argv[]) {
                 port = atoi(argv[i+1]);
             }
         }
+    } else {
+        printf(helper_string);
+        exit(0);
     }
 
     loop       = loop_create();

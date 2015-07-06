@@ -185,7 +185,7 @@ CASE(Test_Rpc_Map) {
         krpc_object_destroy(k);
     }
 
-    do {
+    {
         krpc_object_t* k = krpc_object_create();
         krpc_object_t* v = krpc_object_create();
         krpc_string_set(k, "key");
@@ -196,9 +196,9 @@ CASE(Test_Rpc_Map) {
 
         krpc_object_destroy(k);
         krpc_object_destroy(v);
-    } while(0);
+    }
 
-    do {
+    {
         krpc_object_t* k = 0;
         krpc_object_t* v = 0;
         int value = 0;
@@ -206,7 +206,7 @@ CASE(Test_Rpc_Map) {
             EXPECT_TRUE(value == krpc_number_get_i32(k));
             EXPECT_TRUE(value == krpc_number_get_i32(v));
         }
-    } while(0);
+    }
 
     krpc_map_clear(m);
     EXPECT_TRUE(0 == krpc_map_get_size(m));

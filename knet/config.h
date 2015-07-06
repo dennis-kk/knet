@@ -33,7 +33,13 @@
 #include <assert.h>
 
 #if defined(WIN32)
-    #define _WIN32_WINNT 0X0500 /* TryEnterCriticalSection */
+    #if defined(_WIN32_WINNT)
+        #if _WIN32_WINNT < 0X0500
+            #define _WIN32_WINNT 0X0500
+        #endif /* _WIN32_WINNT < 0X0500 */ 
+    #else
+        #define _WIN32_WINNT 0X0500 /* TryEnterCriticalSection */
+    #endif /* defined(_WIN32_WINNT) */
     #if defined(FD_SETSIZE)
         #undef FD_SETSIZE
         #define FD_SETSIZE 1024
@@ -97,7 +103,7 @@
 #define create_type(type, size)       (type*)malloc(size)
 #define rcreate_raw(ptr, size)        (char*)realloc(ptr, size)
 #define rcreate_type(type, ptr, size) (type*)realloc(ptr, size)
-#define destroy(ptr)                  free(ptr)
+#define destroy(ptr)                  do { if (ptr) { free(ptr); } } while(0);
 
 #ifndef min
 #define min(a, b) ((a) < (b) ? (a) : (b))
@@ -160,6 +166,12 @@ typedef enum _loop_balance_option_e {
 typedef enum _error_e {
     error_ok = 0,
     error_fail,
+    error_invalid_parameters,
+    error_must_be_shared_channel_ref,
+    error_invalid_channel,
+    error_invalid_broadcast,
+    error_no_memory,
+    error_hash_not_found,
     error_recv_fail,
     error_send_fail,
     error_send_patial,
@@ -280,5 +292,23 @@ typedef void (*hash_dtor_t)(void*);
 #define LOGGER_ON 1 /* 是否开启日志 */
 #define LOGGER_MODE (logger_mode_file | logger_mode_console | logger_mode_flush | logger_mode_override) /* 日志模式 */
 #define LOGGER_LEVEL logger_level_verbose /* 日志等级 */
+
+#include "logger.h"
+
+#if defined(DEBUG) || defined(_DEBUG)
+    #define verify(expr) assert(expr)
+#elif defined(NDEBUG)
+    #define verify(expr) \
+        if (!(expr)) { \
+            log_fatal("crash point abort, file:(%s:%d): cause:(%s)", __FILE__, __LINE__, #expr); \
+            abort(); \
+        }
+#else
+    #define verify(expr) \
+        if (!(expr)) { \
+            log_fatal("crash point abort, file:(%s:%d): cause:(%s)", __FILE__, __LINE__, #expr); \
+            abort(); \
+        }
+#endif /* defined(DEBUG) || defined(_DEBUG) */
 
 #endif /* CONFIG_H */

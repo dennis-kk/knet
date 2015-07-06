@@ -23,7 +23,7 @@
  */
 
 #include "buffer.h"
-#include "logger.h"
+
 
 struct _buffer_t {
     char*    ptr;
@@ -33,24 +33,40 @@ struct _buffer_t {
 
 buffer_t* buffer_create(uint32_t size) {
     buffer_t* sb = create(buffer_t);
-    assert(sb);
+    verify(sb);
+    if (!sb) {
+        return 0;
+    }
     sb->ptr = create_raw(size);
-    assert(sb->ptr);
+    verify(sb->ptr);
+    if (!sb->ptr) {
+        buffer_destroy(sb);
+    }
     sb->pos = 0;
     sb->len = size;
     return sb;
 }
 
 void buffer_destroy(buffer_t* sb) {
-    assert(sb);
-    destroy(sb->ptr);
-    destroy(sb);
+    verify(sb);
+    if (!sb) {
+        return;
+    }
+    if (sb->ptr) {
+        destroy(sb->ptr);
+    }
+    if (sb) {
+        destroy(sb);
+    }
 }
 
 uint32_t buffer_put(buffer_t* sb, const char* temp, uint32_t size) {
-    assert(sb);
-    assert(temp);
-    assert(size);
+    verify(sb);
+    verify(temp);
+    verify(size);
+    if (!sb || !temp || !size) {
+        return 0;
+    }
     if (size > sb->len - sb->pos) {
         return 0;
     }
@@ -60,32 +76,53 @@ uint32_t buffer_put(buffer_t* sb, const char* temp, uint32_t size) {
 }
 
 uint32_t buffer_get_length(buffer_t* sb) {
-    assert(sb);
+    verify(sb);
+    if (!sb) {
+        return 0;
+    }
     return sb->pos;
 }
 
 uint32_t buffer_get_max_size(buffer_t* sb) {
-    assert(sb);
+    verify(sb);
+    if (!sb) {
+        return 0;
+    }
     return sb->len;
 }
 
 int buffer_enough(buffer_t* sb, uint32_t size) {
-    assert(sb);
+    verify(sb);
+    if (!sb) {
+        return 0;
+    }
     return (sb->pos + size > sb->len);
 }
 
 char* buffer_get_ptr(buffer_t* sb) {
-    assert(sb);
+    verify(sb);
+    if (!sb) {
+        return 0;
+    }
     return sb->ptr;
 }
 
 void buffer_adjust(buffer_t* sb, uint32_t gap) {
-    assert(sb); /* gap可以为0 */
+    verify(sb); /* gap可以为0 */
+    if (!sb) {
+        return;
+    }
     sb->ptr += gap;
 }
 
 void buffer_clear(buffer_t* sb) {
-    assert(sb);
+    verify(sb);
+    if (!sb) {
+        return;
+    }
+    if (!sb->ptr) {
+        return;
+    }
     sb->ptr = sb->ptr - sb->pos;
     sb->pos = 0;
 }

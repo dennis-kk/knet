@@ -31,7 +31,7 @@
 #include "buffer.h"
 #include "ringbuffer.h"
 #include "address.h"
-#include "logger.h"
+
 
 typedef struct _channel_ref_info_t {
     /* 基础数据成员 */
@@ -63,13 +63,13 @@ struct _channel_ref_t {
 
 channel_ref_t* channel_ref_create(loop_t* loop, channel_t* channel) {
     channel_ref_t* channel_ref = create(channel_ref_t);
-    assert(channel_ref);
+    verify(channel_ref);
     memset(channel_ref, 0, sizeof(channel_ref_t));
     channel_ref->ref_info = create(channel_ref_info_t);
-    assert(channel_ref->ref_info);
+    verify(channel_ref->ref_info);
     memset(channel_ref->ref_info, 0, sizeof(channel_ref_info_t));
     channel_ref->ref_info->stream = stream_create(channel_ref);
-    assert(channel_ref->ref_info->stream);
+    verify(channel_ref->ref_info->stream);
     channel_ref->ref_info->channel      = channel;
     channel_ref->ref_info->ref_count    = 0;
     channel_ref->ref_info->loop         = loop;
@@ -78,33 +78,38 @@ channel_ref_t* channel_ref_create(loop_t* loop, channel_t* channel) {
 }
 
 int channel_ref_destroy(channel_ref_t* channel_ref) {
-    assert(channel_ref);
-    assert(channel_ref->ref_info);
+    verify(channel_ref);
     /* 检测引用计数 */
-    if (!atomic_counter_zero(&channel_ref->ref_info->ref_count)) {
-        return error_ref_nonzero;
+    if (channel_ref->ref_info) {
+        if (!atomic_counter_zero(&channel_ref->ref_info->ref_count)) {
+            return error_ref_nonzero;
+        }
+        if (channel_ref->ref_info->peer_address) {
+            address_destroy(channel_ref->ref_info->peer_address);
+        }
+        if (channel_ref->ref_info->local_address) {
+            address_destroy(channel_ref->ref_info->local_address);
+        }
+        /* 通知选取器删除管道相关资源 */
+        if (channel_ref->ref_info->loop) {
+            impl_remove_channel_ref(channel_ref->ref_info->loop, channel_ref);
+        }
+        if (channel_ref->ref_info->channel) {
+            channel_destroy(channel_ref->ref_info->channel);
+        }
+        if (channel_ref->ref_info->stream) {
+            stream_destroy(channel_ref->ref_info->stream);
+        }
+        destroy(channel_ref->ref_info);
     }
-    assert(channel_ref->ref_info);
-    assert(channel_ref->ref_info->loop);
-    assert(channel_ref->ref_info->channel);
-    assert(channel_ref->ref_info->stream);
-    if (channel_ref->ref_info->peer_address) {
-        address_destroy(channel_ref->ref_info->peer_address);
-    }
-    if (channel_ref->ref_info->local_address) {
-        address_destroy(channel_ref->ref_info->local_address);
-    }
-    /* 通知选取器删除管道相关资源 */
-    impl_remove_channel_ref(channel_ref->ref_info->loop, channel_ref);
-    channel_destroy(channel_ref->ref_info->channel);
-    stream_destroy(channel_ref->ref_info->stream);
-    destroy(channel_ref->ref_info);
     destroy(channel_ref);
     return error_ok;
 }
 
 int channel_ref_connect(channel_ref_t* channel_ref, const char* ip, int port, int timeout) {
-    assert(channel_ref);
+    verify(channel_ref);
+    verify(ip);
+    verify(port);
     if (channel_ref_check_state(channel_ref, channel_state_connect)) {
         /* 已经处于连接状态 */
         return error_ok;
@@ -119,7 +124,8 @@ int channel_ref_connect(channel_ref_t* channel_ref, const char* ip, int port, in
 
 int channel_ref_accept(channel_ref_t* channel_ref, const char* ip, int port, int backlog) {
     int error = 0;
-    assert(channel_ref);
+    verify(channel_ref);
+    verify(port);
     if (channel_ref_check_state(channel_ref, channel_state_accept)) {
         /* 已经处于监听状态 */
         return error_ok;
@@ -136,9 +142,9 @@ int channel_ref_accept(channel_ref_t* channel_ref, const char* ip, int port, int
 
 channel_ref_t* channel_ref_share(channel_ref_t* channel_ref) {
     channel_ref_t* channel_ref_shared = 0;
-    assert(channel_ref);
+    verify(channel_ref);
     channel_ref_shared = create(channel_ref_t);
-    assert(channel_ref_shared);
+    verify(channel_ref_shared);
     memset(channel_ref_shared, 0, sizeof(channel_ref_t));
     /* 增加管道引用计数 */
     atomic_counter_inc(&channel_ref->ref_info->ref_count);
@@ -149,7 +155,7 @@ channel_ref_t* channel_ref_share(channel_ref_t* channel_ref) {
 }
 
 void channel_ref_leave(channel_ref_t* channel_ref) {
-    assert(channel_ref);
+    verify(channel_ref);
     /* 递减引用计数 */
     atomic_counter_dec(&channel_ref->ref_info->ref_count);
     /* 管道信息最终由loop_t销毁 */
@@ -157,8 +163,8 @@ void channel_ref_leave(channel_ref_t* channel_ref) {
 }
 
 void channel_ref_update_close_in_loop(loop_t* loop, channel_ref_t* channel_ref) {
-    assert(loop);
-    assert(channel_ref);
+    verify(loop);
+    verify(channel_ref);
     if (channel_ref_check_state(channel_ref, channel_state_close)) {
         return;
     }
@@ -174,7 +180,7 @@ void channel_ref_update_close_in_loop(loop_t* loop, channel_ref_t* channel_ref) 
 
 void channel_ref_close(channel_ref_t* channel_ref) {
     loop_t* loop = 0;
-    assert(channel_ref);
+    verify(channel_ref);
     loop = channel_ref->ref_info->loop;
     if (loop_get_thread_id(loop) != thread_get_self_id()) {
         /* 通知管道所属线程 */
@@ -189,9 +195,9 @@ void channel_ref_close(channel_ref_t* channel_ref) {
 
 void channel_ref_update_send_in_loop(loop_t* loop, channel_ref_t* channel_ref, buffer_t* send_buffer) {
     int error = 0;
-    assert(loop);
-    assert(channel_ref);
-    assert(send_buffer);
+    verify(loop);
+    verify(channel_ref);
+    verify(send_buffer);
     error = channel_send_buffer(channel_ref->ref_info->channel, send_buffer);
     switch (error) {
     case error_send_patial:
@@ -209,9 +215,9 @@ int channel_ref_write(channel_ref_t* channel_ref, const char* data, int size) {
     loop_t*   loop        = 0;
     buffer_t* send_buffer = 0;
     int       error       = error_ok;
-    assert(channel_ref);
-    assert(data);
-    assert(size);
+    verify(channel_ref);
+    verify(data);
+    verify(size);
     if (!channel_ref_check_state(channel_ref, channel_state_active)) {
         return error_not_connected;
     }
@@ -220,6 +226,10 @@ int channel_ref_write(channel_ref_t* channel_ref, const char* data, int size) {
         /* 转到loop所在线程发送 */
         log_info("send cross thread, notify thread[id:%d]", loop_get_thread_id(loop));
         send_buffer = buffer_create(size);
+        verify(send_buffer);
+        if (!send_buffer) {
+            return error_no_memory;
+        }
         buffer_put(send_buffer, data, size);
         loop_notify_send(loop, channel_ref, send_buffer);
     } else {
@@ -242,68 +252,81 @@ int channel_ref_write(channel_ref_t* channel_ref, const char* data, int size) {
 }
 
 socket_t channel_ref_get_socket_fd(channel_ref_t* channel_ref) {
-    assert(channel_ref);
+    verify(channel_ref);
     return channel_get_socket_fd(channel_ref->ref_info->channel);
 }
 
 stream_t* channel_ref_get_stream(channel_ref_t* channel_ref) {
-    assert(channel_ref);
+    verify(channel_ref);
     return channel_ref->ref_info->stream;
 }
 
 loop_t* channel_ref_get_loop(channel_ref_t* channel_ref) {
-    assert(channel_ref);
+    verify(channel_ref);
     return channel_ref->ref_info->loop;
 }
 
 void channel_ref_set_loop_node(channel_ref_t* channel_ref, dlist_node_t* node) {
-    assert(channel_ref); /* node可以为0 */
+    verify(channel_ref); /* node可以为0 */
     channel_ref->ref_info->loop_node = node;
 }
 
 dlist_node_t* channel_ref_get_loop_node(channel_ref_t* channel_ref) {
-    assert(channel_ref);
+    verify(channel_ref);
     return channel_ref->ref_info->loop_node;
 }
 
 void channel_ref_set_event(channel_ref_t* channel_ref, channel_event_e e) {
-    assert(channel_ref);
+    verify(channel_ref);
     impl_event_add(channel_ref, e);
     channel_ref->ref_info->event |= e;
 }
 
 channel_event_e channel_ref_get_event(channel_ref_t* channel_ref) {
-    assert(channel_ref);
+    verify(channel_ref);
     return channel_ref->ref_info->event;
 }
 
 void channel_ref_clear_event(channel_ref_t* channel_ref, channel_event_e e) {
-    assert(channel_ref);
+    verify(channel_ref);
     impl_event_remove(channel_ref, e);
     channel_ref->ref_info->event &= ~e;
 }
 
 void channel_ref_set_state(channel_ref_t* channel_ref, channel_state_e state) {
-    assert(channel_ref);
+    verify(channel_ref);
     channel_ref->ref_info->state = state;
 }
 
 int channel_ref_check_state(channel_ref_t* channel_ref, channel_state_e state) {
-    assert(channel_ref);
+    verify(channel_ref);
     return (channel_ref->ref_info->state == state);
 }
 
 int channel_ref_check_event(channel_ref_t* channel_ref, channel_event_e event) {
-    assert(channel_ref);
+    verify(channel_ref);
     return (channel_ref->ref_info->event & event);
 }
 
 channel_ref_t* channel_ref_accept_from_socket_fd(channel_ref_t* channel_ref, loop_t* loop, socket_t client_fd, int event) {
-    channel_t*     acceptor_channel    = channel_ref->ref_info->channel;
-    uint32_t       max_send_list_len   = channel_get_max_send_list_len(acceptor_channel);
-    uint32_t       max_ringbuffer_size = ringbuffer_get_max_size(channel_get_ringbuffer(acceptor_channel));
-    channel_t*     client_channel      = channel_create_exist_socket_fd(client_fd, max_send_list_len, max_ringbuffer_size);
-    channel_ref_t* client_ref          = channel_ref_create(loop, client_channel);
+    channel_t*     acceptor_channel    = 0;
+    uint32_t       max_send_list_len   = 0;
+    uint32_t       max_ringbuffer_size = 0;
+    channel_t*     client_channel      = 0;
+    channel_ref_t* client_ref          = 0;
+    verify(channel_ref);
+    verify(channel_ref->ref_info);
+    verify(client_fd > 0);
+    acceptor_channel = channel_ref->ref_info->channel;
+    verify(acceptor_channel);
+    max_send_list_len = channel_get_max_send_list_len(acceptor_channel);
+    verify(max_send_list_len);
+    max_ringbuffer_size = ringbuffer_get_max_size(channel_get_ringbuffer(acceptor_channel));
+    verify(max_ringbuffer_size);
+    client_channel = channel_create_exist_socket_fd(client_fd, max_send_list_len, max_ringbuffer_size);
+    verify(client_channel);
+    client_ref = channel_ref_create(loop, client_channel);
+    verify(client_ref);
     if (event) {
         /* 添加到当前线程loop */
         loop_add_channel_ref(channel_ref->ref_info->loop, client_ref);
@@ -318,19 +341,21 @@ void channel_ref_update_accept(channel_ref_t* channel_ref) {
     channel_ref_t* client_ref = 0;
     loop_t*        loop       = 0;
     socket_t       client_fd  = 0;
-    assert(channel_ref);
+    verify(channel_ref);
     /* 查看选取器是否有自定义实现 */
     client_fd = impl_channel_accept(channel_ref);
     if (!client_fd) {
         /* 默认实现 */
         client_fd = socket_accept(channel_get_socket_fd(channel_ref->ref_info->channel));
     }
+    verify(client_fd > 0);
     channel_ref_set_state(channel_ref, channel_state_accept);
     channel_ref_set_event(channel_ref, channel_event_recv);
     if (client_fd) {
         loop = channel_ref_choose_loop(channel_ref);
         if (loop) {
             client_ref = channel_ref_accept_from_socket_fd(channel_ref, loop, client_fd, 0);
+            verify(client_ref);
             /* 设置回调 */
             channel_ref_set_cb(client_ref, channel_ref->ref_info->cb);
             /* 添加到其他loop */
@@ -346,8 +371,8 @@ void channel_ref_update_accept(channel_ref_t* channel_ref) {
 }
 
 void channel_ref_update_accept_in_loop(loop_t* loop, channel_ref_t* channel_ref) {
-    assert(loop);
-    assert(channel_ref);
+    verify(loop);
+    verify(channel_ref);
     /* 添加到当前线程loop */
     loop_add_channel_ref(loop, channel_ref);
     channel_ref_set_state(channel_ref, channel_state_active);
@@ -358,7 +383,8 @@ void channel_ref_update_accept_in_loop(loop_t* loop, channel_ref_t* channel_ref)
     }
 }
 
-void channel_ref_update_connect(channel_ref_t* channel_ref) {  
+void channel_ref_update_connect(channel_ref_t* channel_ref) {
+    verify(channel_ref);
     channel_ref_set_event(channel_ref, channel_event_recv);
     channel_ref_set_state(channel_ref, channel_state_active);
     /* 调用回调 */
@@ -369,7 +395,7 @@ void channel_ref_update_connect(channel_ref_t* channel_ref) {
 
 void channel_ref_update_recv(channel_ref_t* channel_ref) {
     int error = 0;
-    assert(channel_ref);
+    verify(channel_ref);
     error = channel_update_recv(channel_ref->ref_info->channel);
     switch (error) {
         case error_recv_fail:
@@ -391,7 +417,7 @@ void channel_ref_update_recv(channel_ref_t* channel_ref) {
 
 void channel_ref_update_send(channel_ref_t* channel_ref) {
     int error = 0;
-    assert(channel_ref);
+    verify(channel_ref);
     error = channel_update_send(channel_ref->ref_info->channel);
     switch (error) {
         case error_send_fail:
@@ -411,7 +437,7 @@ void channel_ref_update_send(channel_ref_t* channel_ref) {
 }
 
 void channel_ref_update(channel_ref_t* channel_ref, channel_event_e e, time_t ts) {
-    assert(channel_ref);
+    verify(channel_ref);
     if (channel_ref_check_state(channel_ref, channel_state_close)) {
         return;
     }
@@ -438,7 +464,7 @@ void channel_ref_update(channel_ref_t* channel_ref, channel_event_e e, time_t ts
 }
 
 ringbuffer_t* channel_ref_get_ringbuffer(channel_ref_t* channel_ref) {
-    assert(channel_ref);
+    verify(channel_ref);
     return channel_get_ringbuffer(channel_ref->ref_info->channel);
 }
 
@@ -446,7 +472,7 @@ loop_t* channel_ref_choose_loop(channel_ref_t* channel_ref) {
     loop_t*          loop         = 0;
     loop_t*          current_loop = 0;
     loop_balancer_t* balancer     = 0;
-    assert(channel_ref);
+    verify(channel_ref);
     current_loop = channel_ref->ref_info->loop;
     if (!loop_get_thread_id(current_loop)) {
         return 0;
@@ -466,22 +492,22 @@ loop_t* channel_ref_choose_loop(channel_ref_t* channel_ref) {
 }
 
 void channel_ref_set_flag(channel_ref_t* channel_ref, int flag) {
-    assert(channel_ref);
+    verify(channel_ref);
     channel_ref->ref_info->flag = flag;
 }
 
 int channel_ref_get_flag(channel_ref_t* channel_ref) {
-    assert(channel_ref);
+    verify(channel_ref);
     return channel_ref->ref_info->flag;
 }
 
 void channel_ref_set_data(channel_ref_t* channel_ref, void* data) {
-    assert(channel_ref);
+    verify(channel_ref);
     channel_ref->ref_info->data = data;
 }
 
 void* channel_ref_get_data(channel_ref_t* channel_ref) {
-    assert(channel_ref);
+    verify(channel_ref);
     return channel_ref->ref_info->data;
 }
 
@@ -490,17 +516,18 @@ void channel_ref_set_loop(channel_ref_t* channel_ref, loop_t* loop) {
 }
 
 int channel_ref_check_balance(channel_ref_t* channel_ref) {
+    verify(channel_ref);
     return channel_ref->ref_info->balance;
 }
 
 void channel_ref_set_timeout(channel_ref_t* channel_ref, int timeout) {
-    assert(channel_ref);
-    assert(timeout);
+    verify(channel_ref);
+    verify(timeout);
     channel_ref->ref_info->timeout = (time_t)timeout;
 }
 
 int channel_ref_check_connect_timeout(channel_ref_t* channel_ref, time_t ts) {
-    assert(channel_ref);
+    verify(channel_ref);
     if (channel_ref_check_state(channel_ref, channel_state_connect)) {
         if (channel_ref->ref_info->connect_timeout) {
             return (channel_ref->ref_info->connect_timeout < ts);
@@ -510,10 +537,7 @@ int channel_ref_check_connect_timeout(channel_ref_t* channel_ref, time_t ts) {
 }
 
 int channel_ref_check_timeout(channel_ref_t* channel_ref, time_t ts) {
-    assert(channel_ref);
-    if (!channel_ref->ref_info->timeout) {
-        return 0;
-    }
+    verify(channel_ref);
     if ((ts - channel_ref->ref_info->last_recv_ts) > channel_ref->ref_info->timeout) {
         channel_ref->ref_info->last_recv_ts = ts;
         return 1;
@@ -522,17 +546,20 @@ int channel_ref_check_timeout(channel_ref_t* channel_ref, time_t ts) {
 }
 
 void channel_ref_set_cb(channel_ref_t* channel_ref, channel_ref_cb_t cb) {
-    assert(channel_ref);
+    verify(channel_ref);
     channel_ref->ref_info->cb = cb;
 }
 
 channel_ref_cb_t channel_ref_get_cb(channel_ref_t* channel_ref) {
+    verify(channel_ref);
     return channel_ref->ref_info->cb;
 }
 
 int channel_ref_connect_in_loop(channel_ref_t* channel_ref, const char* ip, int port) {
     int error = 0;
-    assert(channel_ref);
+    verify(channel_ref);
+    verify(ip);
+    verify(port);
     error = channel_connect(channel_ref->ref_info->channel, ip, port);
     if (error == error_ok) {
         loop_add_channel_ref(channel_ref->ref_info->loop, channel_ref);
@@ -543,6 +570,7 @@ int channel_ref_connect_in_loop(channel_ref_t* channel_ref, const char* ip, int 
 }
 
 address_t* channel_ref_get_peer_address(channel_ref_t* channel_ref) {
+    verify(channel_ref);
     if (channel_ref->ref_info->peer_address) {
         return channel_ref->ref_info->peer_address;
     }
@@ -552,6 +580,7 @@ address_t* channel_ref_get_peer_address(channel_ref_t* channel_ref) {
 }
 
 address_t* channel_ref_get_local_address(channel_ref_t* channel_ref) {
+    verify(channel_ref);
     if (channel_ref->ref_info->local_address) {
         return channel_ref->ref_info->local_address;
     }
@@ -561,41 +590,41 @@ address_t* channel_ref_get_local_address(channel_ref_t* channel_ref) {
 }
 
 void channel_ref_set_domain_node(channel_ref_t* channel_ref, dlist_node_t* node) {
-    assert(channel_ref);
+    verify(channel_ref);
     channel_ref->list_node = node;
 }
 
 dlist_node_t* channel_ref_get_domain_node(channel_ref_t* channel_ref) {
-    assert(channel_ref);
+    verify(channel_ref);
     return channel_ref->list_node;
 }
 
 int channel_ref_check_share(channel_ref_t* channel_ref) {
-    assert(channel_ref);
+    verify(channel_ref);
     return channel_ref->share;
 }
 
 void channel_ref_set_domain_id(channel_ref_t* channel_ref, uint64_t domain_id) {
-    assert(channel_ref);
+    verify(channel_ref);
     channel_ref->domain_id = domain_id;
 }
 
 uint64_t channel_ref_get_domain_id(channel_ref_t* channel_ref) {
-    assert(channel_ref);
+    verify(channel_ref);
     return channel_ref->domain_id;
 }
 
 void channel_ref_incref(channel_ref_t* channel_ref) {
-    assert(channel_ref);
+    verify(channel_ref);
     atomic_counter_inc(&channel_ref->ref_info->ref_count);
 }
 
 void channel_ref_decref(channel_ref_t* channel_ref) {
-    assert(channel_ref);
+    verify(channel_ref);
     atomic_counter_dec(&channel_ref->ref_info->ref_count);
 }
 
 uint64_t channel_ref_get_uuid(channel_ref_t* channel_ref) {
-    assert(channel_ref);
+    verify(channel_ref);
     return channel_get_uuid(channel_ref->ref_info->channel);
 }

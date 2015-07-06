@@ -30,6 +30,7 @@
 #include "stream.h"
 #include "rpc_object.h"
 
+
 #if defined(_MSC_VER )
     #pragma pack(push)
     #pragma pack(1)
@@ -61,23 +62,23 @@ struct _krpc_t {
 
 krpc_t* krpc_create() {
     krpc_t* rpc = create(krpc_t);
-    assert(rpc);
+    verify(rpc);
     memset(rpc, 0, sizeof(krpc_t));
     rpc->cb_table = hash_create(0, 0);
-    assert(rpc->cb_table);
+    verify(rpc->cb_table);
     return rpc;
 }
 
 void krpc_destroy(krpc_t* rpc) {
-    assert(rpc);
+    verify(rpc);
     hash_destroy(rpc->cb_table);
     destroy(rpc);
 }
 
 int krpc_add_cb(krpc_t* rpc, uint16_t rpcid, krpc_cb_t cb) {
-    assert(rpc);
-    assert(rpcid);
-    assert(cb);
+    verify(rpc);
+    verify(rpcid);
+    verify(cb);
     if (hash_get(rpc->cb_table, rpcid)) {
         return error_rpc_dup_id;
     }
@@ -85,14 +86,14 @@ int krpc_add_cb(krpc_t* rpc, uint16_t rpcid, krpc_cb_t cb) {
 }
 
 int krpc_del_cb(krpc_t* rpc, uint16_t rpcid) {
-    assert(rpc);
-    assert(rpcid);
+    verify(rpc);
+    verify(rpcid);
     return hash_delete(rpc->cb_table, rpcid);
 }
 
 krpc_cb_t krpc_get_cb(krpc_t* rpc, uint16_t rpcid) {
-    assert(rpc);
-    assert(rpcid);
+    verify(rpc);
+    verify(rpcid);
     return (krpc_cb_t)hash_get(rpc->cb_table, rpcid);
 }
 
@@ -104,8 +105,8 @@ int krpc_proc(krpc_t* rpc, stream_t* stream) {
     int            error_cb  = 0;         /* 回调函数返回值 */
     int            error     = error_ok;  /* 本函数返回值 */
     krpc_header_t  header; /* RPC协议头 */
-    assert(rpc);
-    assert(stream);
+    verify(rpc);
+    verify(stream);
     memset(&header, 0, sizeof(krpc_header_t));
     available = stream_available(stream);
     if (available < sizeof(krpc_header_t)) {
@@ -169,10 +170,10 @@ error_return:
 
 int krpc_call(krpc_t* rpc, stream_t* stream, uint16_t rpcid, krpc_object_t* o) {
     krpc_header_t header; /* RPC协议头 */
-    assert(rpc);
-    assert(stream);
-    assert(rpcid);
-    assert(o);
+    verify(rpc);
+    verify(stream);
+    verify(rpcid);
+    verify(o);
     memset(&header, 0, sizeof(krpc_header_t));
     header.rpcid  = rpcid;
     header.type   = krpc_call_type_call;

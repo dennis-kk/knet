@@ -197,4 +197,11 @@ uint64_t htonll(uint64_t ui64);
  */
 uint64_t ntohll(uint64_t ui64);
 
+/**
+ * 取得管道回调事件描述
+ * @param e 管道回调事件ID
+ * @return 管道回调事件描述
+ */
+const char* get_channel_cb_event_string(channel_cb_event_e e);
+
 #endif /* MISC_H */

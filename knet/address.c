@@ -23,27 +23,28 @@
  */
 
 #include "address.h"
-#include "logger.h"
 
 struct _address_t {
     char ip[32];
-    int port;
+    int  port;
 };
 
 address_t* address_create() {
     address_t* address = create(address_t);
-    assert(address);
+    verify(address);
     memset(address, 0, sizeof(address_t));
     return address;
 }
 
 void address_destroy(address_t* address) {
-    assert(address);
-    destroy(address);
+    verify(address);
+    if (address) {
+        destroy(address);
+    }
 }
 
 void address_set(address_t* address, const char* ip, int port) {
-    assert(address);
+    verify(address);
     if (ip) {
         strcpy(address->ip, ip);
     }
@@ -51,11 +52,11 @@ void address_set(address_t* address, const char* ip, int port) {
 }
 
 const char* address_get_ip(address_t* address) {
-    assert(address);
+    verify(address);
     return address->ip;
 }
 
 int address_get_port(address_t* address) {
-    assert(address);
+    verify(address);
     return address->port;
 }

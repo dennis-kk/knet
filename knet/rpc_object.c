@@ -29,6 +29,7 @@
 #include "stream.h"
 #include "misc.h"
 
+
 #if defined(_MSC_VER )
     #pragma pack(push)
     #pragma pack(1)
@@ -96,14 +97,14 @@ struct _krpc_object_t {
 
 krpc_object_t* krpc_object_create() {
     krpc_object_t* o = create(krpc_object_t);
-    assert(o);
+    verify(o);
     memset(o, 0, sizeof(krpc_object_t));
     return o;
 }
 
 void krpc_object_destroy(krpc_object_t* o) {
     int i = 0;
-    assert(o);
+    verify(o);
     if (o->type & krpc_type_string) {
         /* 字符串 */
         if (o->string.str) {
@@ -123,13 +124,13 @@ void krpc_object_destroy(krpc_object_t* o) {
     } else if (o->type & krpc_type_number) {
         /* 数字 */
     } else {
-        assert(0);
+        verify(0);
     }
     destroy(o);
 }
 
 int krpc_object_check_type(krpc_object_t* o, krpc_type_e type) {
-    assert(o);
+    verify(o);
     if (!o->type) {
         return 1;
     }
@@ -199,8 +200,8 @@ int krpc_object_marshal(krpc_object_t* o, stream_t* stream, uint16_t* bytes) {
     krpc_object_t* k    = 0;
     krpc_object_t* v    = 0;
     krpc_object_header_t header;
-    assert(o);
-    assert(stream);
+    verify(o);
+    verify(stream);
     memset(&header, 0, sizeof(krpc_object_header_t));
     header.type   = o->type;
     header.length += krpc_object_get_marshal_size(o);
@@ -277,9 +278,9 @@ int krpc_object_unmarshal(stream_t* stream, krpc_object_t** o, uint16_t* bytes) 
     krpc_object_t* k         = 0; /* key - 表 */
     krpc_object_t* v         = 0; /* value - 表 */
     krpc_object_header_t header;  /* 对象协议头 */
-    assert(stream);
-    assert(o);
-    assert(bytes);
+    verify(stream);
+    verify(o);
+    verify(bytes);
     available = stream_available(stream);
     if (available < sizeof(krpc_object_header_t)) {
         /* 字节数不够 */
@@ -297,7 +298,7 @@ int krpc_object_unmarshal(stream_t* stream, krpc_object_t** o, uint16_t* bytes) 
     }
     /* 建立一个对象 */
     *o = krpc_object_create();
-    assert(*o);
+    verify(*o);
     if (header.type & krpc_type_number) {
         /* 数字 */
         if (error_ok != stream_pop(stream, &(*o)->number, header.length - sizeof(krpc_object_header_t))) {
@@ -376,187 +377,187 @@ error_return:
 }
 
 void krpc_number_set_i8(krpc_object_t* o, int8_t i8) {
-    assert(o);
+    verify(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
-        assert(0);
+        verify(0);
     }
     o->type = krpc_type_number | krpc_type_i8;
     o->number.i8 = i8;
 }
 
 int8_t krpc_number_get_i8(krpc_object_t* o) {
-    assert(o);
+    verify(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
-        assert(0);
+        verify(0);
     }
     return o->number.i8;
 }
 
 void krpc_number_set_i16(krpc_object_t* o, int16_t i16) {
-    assert(o);
+    verify(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
-        assert(0);
+        verify(0);
     }
     o->type = krpc_type_number | krpc_type_i16;
     o->number.i16 = i16;
 }
 
 int16_t krpc_number_get_i16(krpc_object_t* o) {
-    assert(o);
+    verify(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
-        assert(0);
+        verify(0);
     }
     return o->number.i16;
 }
 
 void krpc_number_set_i32(krpc_object_t* o, int32_t i32) {
-    assert(o);
+    verify(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
-        assert(0);
+        verify(0);
     }
     o->type = krpc_type_number | krpc_type_i32;
     o->number.i32 = i32;
 }
 
 int32_t krpc_number_get_i32(krpc_object_t* o) {
-    assert(o);
+    verify(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
-        assert(0);
+        verify(0);
     }
     return o->number.i32;
 }
 
 void krpc_number_set_i64(krpc_object_t* o, int64_t i64) {
-    assert(o);
+    verify(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
-        assert(0);
+        verify(0);
     }
     o->type = krpc_type_number | krpc_type_i64;
     o->number.i64 = i64;
 }
 
 int64_t krpc_number_get_i64(krpc_object_t* o) {
-    assert(o);
+    verify(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
-        assert(0);
+        verify(0);
     }
     return o->number.i64;
 }
 
 void krpc_number_set_ui8(krpc_object_t* o, uint8_t ui8) {
-    assert(o);
+    verify(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
-        assert(0);
+        verify(0);
     }
     o->type = krpc_type_number | krpc_type_ui8;
     o->number.ui8 = ui8;
 }
 
 uint8_t krpc_number_get_ui8(krpc_object_t* o) {
-    assert(o);
+    verify(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
-        assert(0);
+        verify(0);
     }
     return o->number.ui8;
 }
 
 void krpc_number_set_ui16(krpc_object_t* o, uint16_t ui16) {
-    assert(o);
+    verify(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
-        assert(0);
+        verify(0);
     }
     o->type = krpc_type_number | krpc_type_ui16;
     o->number.ui16 = ui16;
 }
 
 uint16_t krpc_number_get_ui16(krpc_object_t* o) {
-    assert(o);
+    verify(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
-        assert(0);
+        verify(0);
     }
     return o->number.ui16;
 }
 
 void krpc_number_set_ui32(krpc_object_t* o, uint32_t ui32) {
-    assert(o);
+    verify(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
-        assert(0);
+        verify(0);
     }
     o->type = krpc_type_number | krpc_type_ui32;
     o->number.ui32 = ui32;
 }
 
 uint32_t krpc_number_get_ui32(krpc_object_t* o) {
-    assert(o);
+    verify(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
-        assert(0);
+        verify(0);
     }
     return o->number.ui32;
 }
 
 void krpc_number_set_ui64(krpc_object_t* o, int64_t ui64) {
-    assert(o);
+    verify(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
-        assert(0);
+        verify(0);
     }
     o->type = krpc_type_number | krpc_type_ui64;
     o->number.ui64 = ui64;
 }
 
 uint64_t krpc_number_get_ui64(krpc_object_t* o) {
-    assert(o);
+    verify(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
-        assert(0);
+        verify(0);
     }
     return o->number.ui64;
 }
 
 void krpc_number_set_f32(krpc_object_t* o, float32_t f32) {
-    assert(o);
+    verify(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
-        assert(0);
+        verify(0);
     }
     o->type = krpc_type_number | krpc_type_f32;
     o->number.f32 = f32;
 }
 
 float32_t krpc_number_get_f32(krpc_object_t* o) {
-    assert(o);
+    verify(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
-        assert(0);
+        verify(0);
     }
     return o->number.f32;
 }
 
 void krpc_number_set_f64(krpc_object_t* o, float64_t f64) {
-    assert(o);
+    verify(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
-        assert(0);
+        verify(0);
     }
     o->type = krpc_type_number | krpc_type_f64;
     o->number.f64 = f64;
 }
 
 float64_t krpc_number_get_f64(krpc_object_t* o) {
-    assert(o);
+    verify(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
-        assert(0);
+        verify(0);
     }
     return o->number.f64;
 }
 
 void krpc_string_set(krpc_object_t* o, const char* s) {
     uint16_t size = 0;
-    assert(o);
-    assert(s);
+    verify(o);
+    verify(s);
     if (!krpc_object_check_type(o, krpc_type_string)) {
-        assert(0);
+        verify(0);
     }
     size = (uint16_t)strlen(s) + 1;
     if (!o->string.str) {
         o->string.str = create_type(char, size);
     }
-    assert(o->string.str);
+    verify(o->string.str);
     if (!o->string.size) {
         o->string.size = size;
     } else {
@@ -570,15 +571,15 @@ void krpc_string_set(krpc_object_t* o, const char* s) {
 }
 
 void krpc_string_set_s(krpc_object_t* o, const char* s, uint16_t size) {
-    assert(o);
-    assert(s);
+    verify(o);
+    verify(s);
     if (!krpc_object_check_type(o, krpc_type_string)) {
-        assert(0);
+        verify(0);
     }
     if (!o->string.str) {
         o->string.str = create_type(char, size);
     }
-    assert(o->string.str);
+    verify(o->string.str);
     if (!o->string.size) {
         o->string.size = size;
     } else {
@@ -592,12 +593,12 @@ void krpc_string_set_s(krpc_object_t* o, const char* s, uint16_t size) {
 }
 
 int krpc_string_set_size(krpc_object_t* o, uint16_t size) {
-    assert(o);
-    assert(size);
+    verify(o);
+    verify(size);
     if (!krpc_object_check_type(o, krpc_type_string)) {
-        assert(0);
+        verify(0);
     }
-    assert(!o->string.str);
+    verify(!o->string.str);
     o->string.str  = create_type(char, size);
     o->string.size = size;
     o->type = krpc_type_string;
@@ -605,17 +606,17 @@ int krpc_string_set_size(krpc_object_t* o, uint16_t size) {
 }
 
 const char* krpc_string_get(krpc_object_t* o) {
-    assert(o);
+    verify(o);
     if (!(o->type & krpc_type_string)) {
-        assert(0);
+        verify(0);
     }
     return o->string.str;
 }
 
 uint16_t krpc_string_get_size(krpc_object_t* o) {
-    assert(o);
+    verify(o);
     if (!(o->type & krpc_type_string)) {
-        assert(0);
+        verify(0);
     }
     return o->string.size;
 }
@@ -626,23 +627,23 @@ void krpc_vector_enlarge(krpc_object_t* o) {
         o->vector.max_size = DEFAULT_SIZE;
         o->vector.objects = (krpc_object_t**)create_type(krpc_object_t,
             sizeof(krpc_object_t*) * o->vector.max_size);
-        assert(o->vector.objects);
+        verify(o->vector.objects);
         memset(o->vector.objects, 0, sizeof(krpc_object_t*) * o->vector.max_size);
     }
     if (o->vector.size >= o->vector.max_size) { /* 扩容 */
         o->vector.max_size += DEFAULT_SIZE;
         o->vector.objects = (krpc_object_t**)rcreate_type(krpc_object_t,
             o->vector.objects, sizeof(krpc_object_t*) * o->vector.max_size);
-        assert(o->vector.objects);
+        verify(o->vector.objects);
         memset(o->vector.objects + (o->vector.max_size - DEFAULT_SIZE), 0, sizeof(krpc_object_t*) * DEFAULT_SIZE);
     }
 }
 
 int krpc_vector_push_back(krpc_object_t* v, krpc_object_t* o) {
-    assert(v);
-    assert(o);
+    verify(v);
+    verify(o);
     if (!krpc_object_check_type(v, krpc_type_vector)) {
-        assert(0);
+        verify(0);
     }
     krpc_vector_enlarge(v);
     v->vector.objects[v->vector.size] = o;
@@ -652,17 +653,17 @@ int krpc_vector_push_back(krpc_object_t* v, krpc_object_t* o) {
 }
 
 uint32_t krpc_vector_get_size(krpc_object_t* v) {
-    assert(v);
+    verify(v);
     if (!(v->type & krpc_type_vector)) {
-        assert(0);
+        verify(0);
     }
     return v->vector.size;
 }
 
 krpc_object_t* krpc_vector_get(krpc_object_t* v, int index) {
-    assert(v);
+    verify(v);
     if (!(v->type & krpc_type_vector)) {
-        assert(0);
+        verify(0);
     }
     if (index >= v->vector.size) {
         return 0;
@@ -671,10 +672,10 @@ krpc_object_t* krpc_vector_get(krpc_object_t* v, int index) {
 }
 
 int krpc_vector_set(krpc_object_t* v, krpc_object_t* o, int index) {
-    assert(v);
-    assert(o);
+    verify(v);
+    verify(o);
     if (!krpc_object_check_type(v, krpc_type_vector)) {
-        assert(0);
+        verify(0);
     }
     if (index >= v->vector.size) {
         return error_rpc_vector_out_of_bound;
@@ -689,9 +690,9 @@ int krpc_vector_set(krpc_object_t* v, krpc_object_t* o, int index) {
 
 void krpc_vector_clear(krpc_object_t* v) {
     uint16_t i = 0;
-    assert(v);
+    verify(v);
     if (!krpc_object_check_type(v, krpc_type_vector)) {
-        assert(0);
+        verify(0);
     }
     for (; i < v->vector.size; i++) {
         krpc_object_destroy(v->vector.objects[i]);
@@ -703,7 +704,7 @@ void krpc_vector_clear(krpc_object_t* v) {
 
 void hash_value_dtor(void* v) {
     krpc_value_t* value = 0;
-    assert(v);
+    verify(v);
     value = (krpc_value_t*)v;
     if (value->key) {
         krpc_object_destroy(value->key);
@@ -717,11 +718,11 @@ void hash_value_dtor(void* v) {
 int krpc_map_insert(krpc_object_t* m, krpc_object_t* k, krpc_object_t* v) {
     krpc_value_t* value = 0;
     int           error = error_ok;
-    assert(m);
-    assert(k);
-    assert(v);
+    verify(m);
+    verify(k);
+    verify(v);
     if (!krpc_object_check_type(m, krpc_type_map)) {
-        assert(0);
+        verify(0);
     }
     /* 未确定类型的<key, value> */
     if (!k->type || !v->type) {
@@ -782,10 +783,10 @@ error_return:
 
 krpc_object_t* krpc_map_get(krpc_object_t* m, krpc_object_t* k) {
     krpc_value_t* kvalue = 0;
-    assert(m);
-    assert(k);
+    verify(m);
+    verify(k);
     if (!(m->type & krpc_type_map)) {
-        assert(0);
+        verify(0);
     }
     if (!krpc_object_check_type(k, m->map.key_type)) {
         return 0;
@@ -802,7 +803,7 @@ krpc_object_t* krpc_map_get(krpc_object_t* m, krpc_object_t* k) {
 }
 
 uint32_t krpc_map_get_size(krpc_object_t* m) {
-    assert(m);
+    verify(m);
     if (!(m->type & krpc_type_map)) {
         return 0;
     }
@@ -815,9 +816,9 @@ uint32_t krpc_map_get_size(krpc_object_t* m) {
 int krpc_map_get_first(krpc_object_t* m, krpc_object_t** k, krpc_object_t** v) {
     krpc_value_t* kvalue = 0;
     hash_value_t* value = 0;
-    assert(k);
-    assert(v);
-    assert(m);
+    verify(k);
+    verify(v);
+    verify(m);
     *k = 0;
     *v = 0;
     if (!(m->type & krpc_type_map)) {
@@ -839,15 +840,15 @@ int krpc_map_get_first(krpc_object_t* m, krpc_object_t** k, krpc_object_t** v) {
 int krpc_map_next(krpc_object_t* m, krpc_object_t** k, krpc_object_t** v) {
     krpc_value_t* kvalue = 0;
     hash_value_t* value = 0;
-    assert(k);
-    assert(v);
-    assert(m);
+    verify(k);
+    verify(v);
+    verify(m);
     *k = 0;
     *v = 0;
     if (!(m->type & krpc_type_map)) {
         return 0;
     }
-    assert(m->map.hash);
+    verify(m->map.hash);
     value = (hash_value_t*)hash_next(m->map.hash);
     if (!value) {
         return 0;
@@ -859,9 +860,9 @@ int krpc_map_next(krpc_object_t* m, krpc_object_t** k, krpc_object_t** v) {
 }
 
 void krpc_map_clear(krpc_object_t* m) {
-    assert(m);
+    verify(m);
     if (!krpc_object_check_type(m, krpc_type_map)) {
-        assert(0);
+        verify(0);
     }
     if (m->map.hash) {
         hash_destroy(m->map.hash);

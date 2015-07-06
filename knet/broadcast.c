@@ -26,19 +26,26 @@
 #include "list.h"
 #include "channel_ref.h"
 #include "misc.h"
-#include "logger.h"
 
 struct _broadcast_t {
-    uint64_t domain_id;
-    dlist_t* channels;
-    lock_t*  lock;
+    uint64_t domain_id; /* 域ID */
+    dlist_t* channels;  /* 广播域内管道引用链表 */
+    lock_t*  lock;      /* 锁 */
 };
 
 broadcast_t* broadcast_create() {
     broadcast_t* broadcast = create(broadcast_t);
-    assert(broadcast);
+    verify(broadcast);
+    memset(broadcast, 0, sizeof(broadcast_t));
     broadcast->channels = dlist_create();
-    assert(broadcast->channels);
+    if (!broadcast->channels) {
+        broadcast_destroy(broadcast);
+        return 0;
+    }
+    if (!broadcast->channels) {
+        broadcast_destroy(broadcast);
+        return 0;
+    }
     /* 生成一个域ID */
     broadcast->domain_id = uuid_create();
     broadcast->lock      = lock_create();
@@ -49,21 +56,29 @@ void broadcast_destroy(broadcast_t* broadcast) {
     dlist_node_t*  node        = 0;
     dlist_node_t*  temp        = 0;
     channel_ref_t* channel_ref = 0;
-    assert(broadcast);
+    verify(broadcast);
     /* 销毁所有引用 */
-    dlist_for_each_safe(broadcast->channels, node, temp) {
-        channel_ref = (channel_ref_t*)dlist_node_get_data(node);
-        broadcast_leave(broadcast, channel_ref);
+    if (broadcast->channels) {
+        dlist_for_each_safe(broadcast->channels, node, temp) {
+            channel_ref = (channel_ref_t*)dlist_node_get_data(node);
+            verify(channel_ref);
+            broadcast_leave(broadcast, channel_ref);
+        }
     }
-    lock_destroy(broadcast->lock);
+    if (broadcast->lock) {
+        lock_destroy(broadcast->lock);
+    }
     destroy(broadcast);
 }
 
 channel_ref_t* broadcast_join(broadcast_t* broadcast, channel_ref_t* channel_ref) {
     dlist_node_t* node = 0;
     /* 创建新的引用 */
-    channel_ref_t* channel_shared = channel_ref_share(channel_ref);
-    assert(channel_shared);
+    channel_ref_t* channel_shared = 0;
+    verify(broadcast);
+    verify(channel_ref);
+    channel_shared = channel_ref_share(channel_ref);
+    verify(channel_shared);
     lock_lock(broadcast->lock);
     /* 添加到广播域链表，设置链表节点（快速删除） */
     node = dlist_add_tail_node(broadcast->channels, channel_shared);
@@ -75,14 +90,14 @@ channel_ref_t* broadcast_join(broadcast_t* broadcast, channel_ref_t* channel_ref
 
 int broadcast_leave(broadcast_t* broadcast, channel_ref_t* channel_ref) {
     dlist_node_t* node = 0;
-    assert(broadcast);
-    assert(channel_ref);
-    assert(channel_ref_check_share(channel_ref));
+    verify(broadcast);
+    verify(channel_ref);
+    verify(channel_ref_check_share(channel_ref));
+    node = channel_ref_get_domain_node(channel_ref);
+    verify(node);
     if (broadcast->domain_id != channel_ref_get_domain_id(channel_ref)) {
         return error_not_correct_domain;
     }
-    node = channel_ref_get_domain_node(channel_ref);
-    assert(node);
     lock_lock(broadcast->lock);
     dlist_delete(broadcast->channels, node);
     lock_unlock(broadcast->lock);
@@ -92,9 +107,10 @@ int broadcast_leave(broadcast_t* broadcast, channel_ref_t* channel_ref) {
 }
 
 int broadcast_get_count(broadcast_t* broadcast) {
-    int count;
-    assert(broadcast);
-    assert(broadcast->channels);
+    int count = 0;
+    verify(broadcast);
+    verify(broadcast->channels);
+    verify(broadcast->lock);
     lock_lock(broadcast->lock);
     count = dlist_get_count(broadcast->channels);
     lock_unlock(broadcast->lock);
@@ -107,8 +123,11 @@ int broadcast_write(broadcast_t* broadcast, char* buffer, uint32_t size) {
     channel_ref_t* channel_ref = 0;
     int            error       = 0;
     int            count       = 0;
-    assert(broadcast);
-    assert(broadcast->channels);
+    verify(broadcast);
+    verify(broadcast->channels);
+    verify(broadcast->lock);
+    verify(buffer);
+    verify(size);
     lock_lock(broadcast->lock);
     dlist_for_each_safe(broadcast->channels, node, temp) {
         channel_ref = (channel_ref_t*)dlist_node_get_data(node);

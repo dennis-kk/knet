@@ -28,7 +28,7 @@
 #include "ringbuffer.h"
 #include "loop.h"
 #include "misc.h"
-#include "logger.h"
+
 
 struct _channel_t {
     dlist_t*      send_buffer_list;  /* 发送链表 */
@@ -40,18 +40,22 @@ struct _channel_t {
 
 channel_t* channel_create(uint32_t max_send_list_len, uint32_t recv_ring_len) {
     socket_t socket_fd = socket_create();
-    assert(socket_fd > 0);
+    verify(socket_fd > 0);
+    if (socket_fd <= 0) {
+        return 0;
+    }
     return channel_create_exist_socket_fd(socket_fd, max_send_list_len, recv_ring_len);
 }
 
 channel_t* channel_create_exist_socket_fd(socket_t socket_fd, uint32_t max_send_list_len, uint32_t recv_ring_len) {
     channel_t* channel = create(channel_t);
-    assert(channel);
+    verify(channel);
+    memset(channel, 0, sizeof(channel_t));
     channel->uuid = uuid_create();
     channel->send_buffer_list = dlist_create();
-    assert(channel->send_buffer_list);
+    verify(channel->send_buffer_list);
     channel->recv_ringbuffer = ringbuffer_create(recv_ring_len);
-    assert(channel->recv_ringbuffer);
+    verify(channel->recv_ringbuffer);
     channel->max_send_list_len = max_send_list_len;
     channel->socket_fd = socket_fd;
     /* 设置为非阻塞 */
@@ -69,28 +73,34 @@ void channel_destroy(channel_t* channel) {
     dlist_node_t* node        = 0;
     dlist_node_t* temp        = 0;
     buffer_t*     send_buffer = 0;
-    assert(channel);
+    verify(channel);
     /* 销毁未发送的数据 */
-    dlist_for_each_safe(channel->send_buffer_list, node, temp) {
-        send_buffer = (buffer_t*)dlist_node_get_data(node);
-        buffer_destroy(send_buffer);
+    if (channel->send_buffer_list) {
+        dlist_for_each_safe(channel->send_buffer_list, node, temp) {
+            send_buffer = (buffer_t*)dlist_node_get_data(node);
+            buffer_destroy(send_buffer);
+        }
+        dlist_destroy(channel->send_buffer_list);
     }
-    dlist_destroy(channel->send_buffer_list);
     /* 销毁接收缓冲区 */
-    ringbuffer_destroy(channel->recv_ringbuffer);
+    if (channel->recv_ringbuffer) {
+        ringbuffer_destroy(channel->recv_ringbuffer);
+    }
     destroy(channel);
 }
 
 int channel_connect(channel_t* channel, const char* ip, int port) {
-    assert(channel);
-    assert(ip);
+    verify(channel);
+    verify(ip);
     return socket_connect(channel->socket_fd, ip, port);
 }
 
 int channel_accept(channel_t* channel, const char* ip, int port, int backlog) {
-    assert(channel);
-    assert(port);
-    assert(backlog);
+    verify(channel);
+    verify(port);
+    if (!backlog) {
+        backlog = 50;
+    }
     if (!ip) {
         ip = "0.0.0.0";
     }
@@ -99,8 +109,9 @@ int channel_accept(channel_t* channel, const char* ip, int port, int backlog) {
 }
 
 int channel_send_buffer(channel_t* channel, buffer_t* send_buffer) {
-    assert(channel);
-    assert(send_buffer);
+    verify(channel);
+    verify(send_buffer);
+    verify(channel->send_buffer_list);
     /* 将发送缓冲区加到链表尾部 */
     dlist_add_tail_node(channel->send_buffer_list, send_buffer);
     /* 让调用者重新设置写事件 */
@@ -110,9 +121,10 @@ int channel_send_buffer(channel_t* channel, buffer_t* send_buffer) {
 int channel_send(channel_t* channel, const char* data, int size) {
     int       bytes       = 0;
     buffer_t* send_buffer = 0;
-    assert(channel);
-    assert(data);
-    assert(size);
+    verify(channel);
+    verify(data);
+    verify(size);
+    verify(channel->send_buffer_list);
     if (dlist_empty(channel->send_buffer_list)) {
         /* 尝试直接发送 */
         bytes = socket_send(channel->socket_fd, data, size);
@@ -123,6 +135,7 @@ int channel_send(channel_t* channel, const char* data, int size) {
     /* 直接发送失败，或者没有发送完毕的字节放入发送链表等待下次发送 */
     if (size > bytes) {
         send_buffer = buffer_create(size - bytes);
+        verify(send_buffer);
         buffer_put(send_buffer, data + bytes, size - bytes);
         dlist_add_tail_node(channel->send_buffer_list, send_buffer);
         /* 需要稍后发送 */
@@ -136,7 +149,8 @@ int channel_update_send(channel_t* channel) {
     dlist_node_t* temp        = 0;
     buffer_t*     send_buffer = 0;
     int           bytes       = 0;
-    assert(channel);
+    verify(channel);
+    verify(channel->send_buffer_list);
     /* 发送链表内所有数据 */
     dlist_for_each_safe(channel->send_buffer_list, node, temp) {
         send_buffer = (buffer_t*)dlist_node_get_data(node);
@@ -164,7 +178,8 @@ int channel_update_recv(channel_t* channel) {
     int      recv_bytes = 0;
     uint32_t size       = 0;
     char*    ptr        = 0;
-    assert(channel);
+    verify(channel);
+    verify(channel->recv_ringbuffer);
     if (ringbuffer_full(channel->recv_ringbuffer)) {
         /* 读缓冲区满，关闭, 防攻击, 可根据需求调整大小 */
         return error_recv_buffer_full;
@@ -193,25 +208,26 @@ int channel_update_recv(channel_t* channel) {
 }
 
 void channel_close(channel_t* channel) {
-    assert(channel);
+    verify(channel);
     socket_close(channel->socket_fd);
 }
 
 socket_t channel_get_socket_fd(channel_t* channel) {
-    assert(channel);
+    verify(channel);
     return channel->socket_fd;
 }
 
 ringbuffer_t* channel_get_ringbuffer(channel_t* channel) {
-    assert(channel);
+    verify(channel);
     return channel->recv_ringbuffer;
 }
 
 uint32_t channel_get_max_send_list_len(channel_t* channel) {
-    assert(channel);
+    verify(channel);
     return channel->max_send_list_len;
 }
 
 uint64_t channel_get_uuid(channel_t* channel) {
+    verify(channel);
     return channel->uuid;
 }

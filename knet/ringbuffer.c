@@ -24,7 +24,7 @@
 
 #include <stdlib.h>
 #include "ringbuffer.h"
-#include "logger.h"
+
 
 struct _ringbuffer_t {
     char*    ptr;       /* »º³åÇøÖ¸Õë */
@@ -38,11 +38,11 @@ struct _ringbuffer_t {
 
 ringbuffer_t* ringbuffer_create(uint32_t size) {
     ringbuffer_t* rb = create(ringbuffer_t);
-    assert(rb);
+    verify(rb);
     rb->lock_type = 0;
     rb->max_size  = size;
     rb->ptr       = create_raw(size);
-    assert(rb->ptr);
+    verify(rb->ptr);
     rb->lock_size = 0;
     rb->read_pos  = 0;
     rb->write_pos = 0;
@@ -51,7 +51,7 @@ ringbuffer_t* ringbuffer_create(uint32_t size) {
 }
 
 int ringbuffer_eat_all(ringbuffer_t* rb) {
-    assert(rb);
+    verify(rb);
     if (rb->lock_size || rb->lock_type) {
         return error_recvbuffer_locked;
     }
@@ -63,7 +63,7 @@ int ringbuffer_eat_all(ringbuffer_t* rb) {
 }
 
 int ringbuffer_eat(ringbuffer_t* rb, uint32_t size) {
-    assert(rb);
+    verify(rb);
     if (rb->lock_size || rb->lock_type) {
         return error_recvbuffer_locked;
     }
@@ -77,9 +77,9 @@ int ringbuffer_eat(ringbuffer_t* rb, uint32_t size) {
 
 uint32_t ringbuffer_read(ringbuffer_t* rb, char* buffer, uint32_t size) {
     uint32_t i = 0;
-    assert(rb);
-    assert(buffer);
-    assert(size);
+    verify(rb);
+    verify(buffer);
+    verify(size);
     size = min(rb->count, size);
     for (; i < size; i++) {
         buffer[i] = rb->ptr[rb->read_pos];
@@ -92,9 +92,9 @@ uint32_t ringbuffer_read(ringbuffer_t* rb, char* buffer, uint32_t size) {
 uint32_t ringbuffer_copy(ringbuffer_t* rb, char* buffer, uint32_t size) {
     uint32_t i        = 0;
     uint32_t read_pos = 0;
-    assert(rb);
-    assert(buffer);
-    assert(size);
+    verify(rb);
+    verify(buffer);
+    verify(size);
     read_pos = rb->read_pos;
     size = min(rb->count, size);
     for (; i < size; i++) {
@@ -105,18 +105,18 @@ uint32_t ringbuffer_copy(ringbuffer_t* rb, char* buffer, uint32_t size) {
 }
 
 uint32_t ringbuffer_available(ringbuffer_t* rb) {
-    assert(rb);
+    verify(rb);
     return rb->count;
 }
 
 void ringbuffer_destroy(ringbuffer_t* rb) {
-    assert(rb);
+    verify(rb);
     destroy(rb->ptr);
     destroy(rb);
 }
 
 uint32_t ringbuffer_read_lock_size(ringbuffer_t* rb) {
-    assert(rb);
+    verify(rb);
     if (ringbuffer_empty(rb)) {
         return 0;
     }
@@ -131,7 +131,7 @@ uint32_t ringbuffer_read_lock_size(ringbuffer_t* rb) {
 }
 
 char* ringbuffer_read_lock_ptr(ringbuffer_t* rb) {
-    assert(rb);
+    verify(rb);
     if (rb->lock_type != 1) {
         return 0;
     }
@@ -139,7 +139,7 @@ char* ringbuffer_read_lock_ptr(ringbuffer_t* rb) {
 }
 
 void ringbuffer_read_commit(ringbuffer_t* rb, uint32_t size) {
-    assert(rb);
+    verify(rb);
     if (rb->lock_type != 1) {
         return;
     }
@@ -153,7 +153,7 @@ void ringbuffer_read_commit(ringbuffer_t* rb, uint32_t size) {
 }
 
 uint32_t ringbuffer_write_lock_size(ringbuffer_t* rb) {
-    assert(rb);
+    verify(rb);
     if (ringbuffer_full(rb)) {
         return 0;
     }
@@ -168,7 +168,7 @@ uint32_t ringbuffer_write_lock_size(ringbuffer_t* rb) {
 }
 
 char* ringbuffer_write_lock_ptr(ringbuffer_t* rb) {
-    assert(rb);
+    verify(rb);
     if (rb->lock_type != 2) {
         return 0;
     }
@@ -176,7 +176,7 @@ char* ringbuffer_write_lock_ptr(ringbuffer_t* rb) {
 }
 
 void ringbuffer_write_commit(ringbuffer_t* rb, uint32_t size) {
-    assert(rb);
+    verify(rb);
     if (rb->lock_type != 2) {
         return;
     }
@@ -190,16 +190,16 @@ void ringbuffer_write_commit(ringbuffer_t* rb, uint32_t size) {
 }
 
 int ringbuffer_full(ringbuffer_t* rb) {
-    assert(rb);
+    verify(rb);
     return (rb->count == rb->max_size);
 }
 
 int ringbuffer_empty(ringbuffer_t* rb) {
-    assert(rb);
+    verify(rb);
     return !(rb->count);
 }
 
 uint32_t ringbuffer_get_max_size(ringbuffer_t* rb) {
-    assert(rb);
+    verify(rb);
     return rb->max_size;
 }
