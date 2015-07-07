@@ -71,7 +71,7 @@ void testing_t::start_all_test_cases() {
     for (; guard != _case_list.end(); guard++) {
         _current = *guard;
         try {
-            std::cout << std::endl << blue << "[RUN]" << white << _current->get_name() << std::endl;
+            std::cout << std::endl << yellow << "[RUN]" << white << _current->get_name() << std::endl;
             _current->run();
         } catch (std::exception& e) {
             _current->set_result(false);

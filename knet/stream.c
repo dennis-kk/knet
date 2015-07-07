@@ -93,3 +93,25 @@ int stream_copy(stream_t* stream, void* buffer, int size) {
     }
     return error_ok;
 }
+
+int stream_push_stream(stream_t* stream, stream_t* target) {
+    uint32_t      size = 0;
+    ringbuffer_t* rb   = 0;
+    char*         ptr  = 0;
+    verify(stream);
+    verify(target);
+    rb = channel_ref_get_ringbuffer(stream->channel_ref);
+    verify(rb);
+    /* 从ringbuffer内取数据写入另一个stream */
+    for (size = ringbuffer_read_lock_size(rb);
+        (size);
+        ringbuffer_read_commit(rb, size), size = ringbuffer_read_lock_size(rb)) {
+        ptr = ringbuffer_read_lock_ptr(rb);
+        verify(ptr);
+        if (error_ok != stream_push(target, ptr, size)) {
+            ringbuffer_read_commit(rb, size);
+            return error_send_fail;
+        }
+    }
+    return error_ok;
+}

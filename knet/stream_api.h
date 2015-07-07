@@ -81,4 +81,13 @@ extern int stream_push(stream_t* stream, const void* buffer, int size);
  */
 extern int stream_copy(stream_t* stream, void* buffer, int size);
 
+/**
+ * 将stream内数据写入target, 并清除stream内数据
+ * @param stream stream_t实例
+ * @param target stream_t实例
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int stream_push_stream(stream_t* stream, stream_t* target);
+
 #endif /* STREAM_API_H */
