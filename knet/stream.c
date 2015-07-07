@@ -77,7 +77,7 @@ int stream_eat(stream_t* stream, int size) {
     return ringbuffer_eat(channel_ref_get_ringbuffer(stream->channel_ref), size);
 }
 
-int stream_push(stream_t* stream, void* buffer, int size) {
+int stream_push(stream_t* stream, const void* buffer, int size) {
     verify(stream);
     verify(buffer);
     verify(size);

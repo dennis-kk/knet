@@ -33,6 +33,7 @@ address_t* address_create() {
     address_t* address = create(address_t);
     verify(address);
     memset(address, 0, sizeof(address_t));
+    strcpy(address->ip, "0.0.0.0");
     return address;
 }
 

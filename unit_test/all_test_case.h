@@ -26,5 +26,7 @@
 #define ALL_TEST_CASE_H
 
 #include "rpc_object_case.h"
+#include "address_case.h"
+#include "channel_ref_case.h"
 
 #endif // ALL_TEST_CASE_H

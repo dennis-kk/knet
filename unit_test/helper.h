@@ -25,6 +25,8 @@
 #ifndef HELPER_H
 #define HELPER_H
 
+#include <sstream>
+
 #define CASE(name) \
     class TestCase_##name : public test_case_t { \
     public: \
@@ -40,12 +42,28 @@
 
 #define EXPECT_TRUE(expr) \
     if (!(expr)) { \
+        std::stringstream ss; \
+        ss << "(" << __FILE__ << ":" << __LINE__ << ")" << #expr; \
         testing_t::instance()->current()->set_result(false); \
-        testing_t::instance()->current()->set_error(#expr); \
+        testing_t::instance()->current()->set_error(ss.str()); \
+    }
+
+#define EXPECT_TRUE_OUTPUT(expr, output) \
+    if (!(expr)) { \
+        std::stringstream ss; \
+        ss << "(" << __FILE__ << ":" << __LINE__ << ")" << #expr << "," << output; \
+        testing_t::instance()->current()->set_result(false); \
+        testing_t::instance()->current()->set_error(ss.str()); \
     }
 
 #define EXPECT_FALSE(expr) \
     EXPECT_TRUE(!(expr))
+
+#define EXPECT_FALSE_OUTPUT(expr, output) \
+    EXPECT_TRUE_OUTPUT(!(expr), output)
+
+#define CASE_FAIL() \
+    testing_t::instance()->current()->set_result(false);
 
 #include <ostream>
 

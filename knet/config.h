@@ -147,6 +147,7 @@ typedef enum _channel_state_e {
     channel_state_accept = 2,  /* 监听 */
     channel_state_close = 4,   /* 管道已关闭 */
     channel_state_active = 8,  /* 管道已激活，可以收发数据 */
+    channel_state_init = 16,   /* 管道已建立，但未连接 */
 } channel_state_e;
 
 /* 定时器类型 */
@@ -178,6 +179,8 @@ typedef enum _error_e {
     error_recv_buffer_full,
     error_recv_nothing,
     error_connect_fail,
+    error_connect_in_progress,
+    error_accept_in_progress,
     error_bind_fail,
     error_listen_fail,
     error_ref_nonzero,
@@ -289,7 +292,12 @@ typedef void (*hash_dtor_t)(void*);
     #define LOOP_SELECT 0  /* select */
 #endif /* defined(WIN32) */
 
-#define LOGGER_ON 1 /* 是否开启日志 */
+#if defined(DEBUG) || defined(_DEBUG)
+    #define LOGGER_ON 1 /* 调试版本开启日志 */
+#else
+    #define LOGGER_ON 0 /* 发行版关闭日志 */
+#endif /* defined(DEBUG) || defined(_DEBUG) */
+
 #define LOGGER_MODE (logger_mode_file | logger_mode_console | logger_mode_flush | logger_mode_override) /* 日志模式 */
 #define LOGGER_LEVEL logger_level_verbose /* 日志等级 */
 

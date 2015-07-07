@@ -22,63 +22,35 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef STREAM_API_H
-#define STREAM_API_H
+#include "helper.h"
+#include "knet.h"
 
-#include "config.h"
+CASE(Test_Address) {
+    loop_t* loop = loop_create();
 
-/**
- * 取得数据流内可读字节数
- * @param stream stream_t实例
- * @return 可读字节数
- */
-extern int stream_available(stream_t* stream);
+    channel_ref_t* channel = loop_create_channel(loop, 0, 1024);
+    address_t* peer = channel_ref_get_peer_address(channel);
+    address_t* local = channel_ref_get_local_address(channel);
+    // 未建立连接
+    EXPECT_TRUE(std::string("0.0.0.0") == address_get_ip(peer));
+    EXPECT_FALSE(address_get_port(peer));
+    EXPECT_TRUE_OUTPUT(std::string("0.0.0.0") == address_get_ip(local), address_get_ip(local));
+    EXPECT_FALSE(address_get_port(local));
 
-/**
- * 清空数据流
- * @param stream stream_t实例
- * @retval error_ok 成功
- * @retval 其他 失败
- */
-extern int stream_eat_all(stream_t* stream);
+    channel_ref_close(channel); /* 未建立起连接，需要手动销毁 */
 
-/**
- * 删除指定长度数据
- * @param stream stream_t实例
- * @param size 需要删除的长度
- * @retval error_ok 成功
- * @retval 其他 失败
- */
-extern int stream_eat(stream_t* stream, int size);
+    channel_ref_t* connector = loop_create_channel(loop, 1, 1024);
+    channel_ref_t* acceptor = loop_create_channel(loop, 1, 1024);
+    channel_ref_accept(acceptor, 0, 80, 1);
+    channel_ref_connect(connector, "127.0.0.1", 80, 1);
+    loop_run_once(loop);
 
-/**
- * 从数据流内读取数据并清除数据
- * @param stream stream_t实例
- * @param buffer 缓冲区
- * @param size 缓冲区大小
- * @retval error_ok 成功
- * @retval 其他 失败
- */
-extern int stream_pop(stream_t* stream, void* buffer, int size);
+    peer = channel_ref_get_peer_address(connector);
+    local = channel_ref_get_local_address(connector);
+    EXPECT_TRUE(std::string("0.0.0.0") != address_get_ip(peer));
+    EXPECT_TRUE(80 == address_get_port(peer));
+    EXPECT_TRUE(std::string("0.0.0.0") != address_get_ip(local));
+    EXPECT_TRUE(0 != address_get_port(local));
 
-/**
- * 向数据流内写数据
- * @param stream stream_t实例
- * @param buffer 缓冲区
- * @param size 缓冲区大小
- * @retval error_ok 成功
- * @retval 其他 失败
- */
-extern int stream_push(stream_t* stream, const void* buffer, int size);
-
-/**
- * 从数据流内拷贝数据，但不清除数据流内数据
- * @param stream stream_t实例
- * @param buffer 缓冲区
- * @param size 缓冲区大小
- * @retval error_ok 成功
- * @retval 其他 失败
- */
-extern int stream_copy(stream_t* stream, void* buffer, int size);
-
-#endif /* STREAM_API_H */
+    loop_destroy(loop);
+}

@@ -167,6 +167,7 @@ uint16_t krpc_object_get_marshal_size(krpc_object_t* o) {
     uint16_t       i    = 0;
     krpc_object_t* k    = 0;
     krpc_object_t* v    = 0;
+    verify(o);
     if (o->type & krpc_type_string) {
         /* 字符串 */
         size += o->string.size;
@@ -623,6 +624,7 @@ uint16_t krpc_string_get_size(krpc_object_t* o) {
 
 void krpc_vector_enlarge(krpc_object_t* o) {
     static const uint16_t DEFAULT_SIZE = 8;
+    verify(o);
     if (!o->vector.objects) { /* 第一次建立 */
         o->vector.max_size = DEFAULT_SIZE;
         o->vector.objects = (krpc_object_t**)create_type(krpc_object_t,
@@ -674,6 +676,7 @@ krpc_object_t* krpc_vector_get(krpc_object_t* v, int index) {
 int krpc_vector_set(krpc_object_t* v, krpc_object_t* o, int index) {
     verify(v);
     verify(o);
+    verify(index >= 0);
     if (!krpc_object_check_type(v, krpc_type_vector)) {
         verify(0);
     }

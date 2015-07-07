@@ -350,12 +350,11 @@ void loop_check_timeout(loop_t* loop, time_t ts) {
         if (channel_ref_check_state(channel_ref, channel_state_connect)) {
             if (socket_check_send_ready(channel_ref_get_socket_fd(channel_ref))) {
                 impl_event_add(channel_ref, channel_event_send);
-            } else {
-                if (channel_ref_check_connect_timeout(channel_ref, ts)) {
-                    /* 连接超时 */            
-                    if (channel_ref_get_cb(channel_ref)) {
-                        channel_ref_get_cb(channel_ref)(channel_ref, channel_cb_event_connect_timeout);
-                    }
+            }
+            if (channel_ref_check_connect_timeout(channel_ref, ts)) {
+                /* 连接超时 */            
+                if (channel_ref_get_cb(channel_ref)) {
+                    channel_ref_get_cb(channel_ref)(channel_ref, channel_cb_event_connect_timeout);
                 }
             }
         }

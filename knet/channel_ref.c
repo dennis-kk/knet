@@ -74,6 +74,7 @@ channel_ref_t* channel_ref_create(loop_t* loop, channel_t* channel) {
     channel_ref->ref_info->ref_count    = 0;
     channel_ref->ref_info->loop         = loop;
     channel_ref->ref_info->last_recv_ts = time(0);
+    channel_ref->ref_info->state        = channel_state_init;
     return channel_ref;
 }
 
@@ -91,7 +92,8 @@ int channel_ref_destroy(channel_ref_t* channel_ref) {
             address_destroy(channel_ref->ref_info->local_address);
         }
         /* 通知选取器删除管道相关资源 */
-        if (channel_ref->ref_info->loop) {
+        if ((channel_ref->ref_info->state != channel_state_init) && /* 已经被加入到loop管道链表 */
+            channel_ref->ref_info->loop) {
             impl_remove_channel_ref(channel_ref->ref_info->loop, channel_ref);
         }
         if (channel_ref->ref_info->channel) {
@@ -112,7 +114,7 @@ int channel_ref_connect(channel_ref_t* channel_ref, const char* ip, int port, in
     verify(port);
     if (channel_ref_check_state(channel_ref, channel_state_connect)) {
         /* 已经处于连接状态 */
-        return error_ok;
+        return error_connect_in_progress;
     }
     if (timeout) {
         /* 设置超时时间戳 */
@@ -128,7 +130,7 @@ int channel_ref_accept(channel_ref_t* channel_ref, const char* ip, int port, int
     verify(port);
     if (channel_ref_check_state(channel_ref, channel_state_accept)) {
         /* 已经处于监听状态 */
-        return error_ok;
+        return error_accept_in_progress;
     }
     /* 监听 */
     error = channel_accept(channel_ref->ref_info->channel, ip, port, backlog);
@@ -179,9 +181,14 @@ void channel_ref_update_close_in_loop(loop_t* loop, channel_ref_t* channel_ref) 
 }
 
 void channel_ref_close(channel_ref_t* channel_ref) {
-    loop_t* loop = 0;
+    loop_t*     loop = 0;
     verify(channel_ref);
     loop = channel_ref->ref_info->loop;
+    if (!loop_get_thread_id(loop) || (channel_ref->ref_info->state == channel_state_init)) {
+        /* 未被加入到链表内 */
+        channel_ref_destroy(channel_ref);
+        return;
+    }
     if (loop_get_thread_id(loop) != thread_get_self_id()) {
         /* 通知管道所属线程 */
         log_info("close channel cross thread, notify thread[id:%d]", loop_get_thread_id(loop));
@@ -538,6 +545,9 @@ int channel_ref_check_connect_timeout(channel_ref_t* channel_ref, time_t ts) {
 
 int channel_ref_check_timeout(channel_ref_t* channel_ref, time_t ts) {
     verify(channel_ref);
+    if (!channel_ref->ref_info->timeout) {
+        return 0;
+    }
     if ((ts - channel_ref->ref_info->last_recv_ts) > channel_ref->ref_info->timeout) {
         channel_ref->ref_info->last_recv_ts = ts;
         return 1;
