@@ -235,7 +235,6 @@ int socket_check_send_ready(socket_t socket_fd) {
     return FD_ISSET(socket_fd, &send_fds);
 #else
     return 0;
-    /*return (0 == socket_send(socket_fd, 0, 0));*/
 #endif /* defined(WIN32) */    
 }
 
