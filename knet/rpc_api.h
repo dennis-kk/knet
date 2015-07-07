@@ -94,4 +94,22 @@ extern int krpc_proc(krpc_t* rpc, stream_t* stream);
  */
 extern int krpc_call(krpc_t* rpc, stream_t* stream, uint16_t rpcid, krpc_object_t* o);
 
+/**
+ * 设置签名加密回调
+ * @param rpc krpc_t实例
+ * @param func 回调函数指针
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int krpc_set_encrypt_cb(krpc_t* rpc, krpc_encrypt_t func);
+
+/**
+ * 设置签名解密回调
+ * @param rpc krpc_t实例
+ * @param func 回调函数指针
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int krpc_set_decrypt_cb(krpc_t* rpc, krpc_decrypt_t func);
+
 #endif /* RPC_API_H */

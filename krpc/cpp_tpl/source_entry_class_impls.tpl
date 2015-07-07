@@ -19,3 +19,7 @@ int {{@name}}_t::rpc_proc(stream_t* stream) {
 	return krpc_proc(_rpc, stream);
 }
 
+krpc_t* {{@name}}_t::get_rpc() {
+	return _rpc;
+}
+

@@ -55,6 +55,55 @@ extern void krpc_object_destroy(krpc_object_t* o);
 extern int krpc_object_check_type(krpc_object_t* o, krpc_type_e type);
 
 /**
+ * 取得序列化后的长度
+ * @param o krpc_object_t实例
+ * @return 取得序列化后的长度
+ */
+extern uint16_t krpc_object_get_marshal_size(krpc_object_t* o);
+
+/**
+ * 序列化到数据流
+ * @param o krpc_object_t实例
+ * @param stream stream_t实例
+ * @param bytes 写入流的数据字节数
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int krpc_object_marshal(krpc_object_t* o, stream_t* stream, uint16_t* bytes);
+
+/**
+ * 序列化到缓冲区
+ * @param o krpc_object_t实例
+ * @param buffer 缓冲区指针
+ * @param length 缓冲区长度
+ * @param bytes 写入流的数据字节数
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int krpc_object_marshal_buffer(krpc_object_t* o, char* buffer, uint16_t length, uint16_t* bytes);
+
+/**
+ * 从数据流反序列化对象
+ * @param stream stream_t实例
+ * @param o 存储得到的对象指针
+ * @param bytes 读取的流数据字节数
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int krpc_object_unmarshal(stream_t* stream, krpc_object_t** o, uint16_t* bytes);
+
+/**
+ * 从缓冲区反序列化对象
+ * @param buffer 缓冲区指针
+ * @param size 缓冲区长度
+ * @param o 存储得到的对象指针
+ * @param bytes 消耗的字节数
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int krpc_object_unmarshal_buffer(char* buffer, uint16_t size, krpc_object_t** o, uint16_t* bytes);
+
+/**
  * 设置数字
  * @param o krpc_object_t实例
  * @param i8 有符号8位

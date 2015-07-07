@@ -280,6 +280,10 @@ typedef void (*channel_ref_cb_t)(channel_ref_t*, channel_cb_event_e);
 typedef void (*ktimer_cb_t)(ktimer_t*, void*);
 /* RPC回调函数 */
 typedef int (*krpc_cb_t)(krpc_object_t*);
+/* RPC加密回调函数, 返回 非零 加密后长度, 0 失败 */
+typedef uint16_t (*krpc_encrypt_t)(void*, uint16_t, void*, uint16_t);
+/* RPC解密回调函数, 返回 非零 解密后长度, 0 失败 */
+typedef uint16_t (*krpc_decrypt_t)(void*, uint16_t, void*, uint16_t);
 /* 哈希表元素销毁函数 */
 typedef void (*hash_dtor_t)(void*);
 

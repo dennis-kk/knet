@@ -213,3 +213,35 @@ CASE(Test_Rpc_Map) {
 
     krpc_object_destroy(m);
 }
+
+CASE(Test_Rpc_Marshal_Unmarshal_Buffer) {
+    // 构造一个数组
+    krpc_object_t* v = krpc_object_create();
+
+    // 添加10个数字
+    for (int i = 0; i < 10; i++) {
+        krpc_object_t* o = krpc_object_create();
+        krpc_number_set_i32(o, 123);
+        krpc_vector_push_back(v, o);
+    }
+
+    // 添加10个字符串
+    for (int i = 0; i < 10; i++) {
+        krpc_object_t* o = krpc_object_create();
+        krpc_string_set(o, "abc");
+        krpc_vector_push_back(v, o);
+    }
+
+    char     buffer[1024] = {0};
+    uint16_t bytes        = 0;
+
+    // marshal
+    EXPECT_TRUE(error_ok == krpc_object_marshal_buffer(v, buffer, sizeof(buffer), &bytes));
+
+    // unmarshal
+    krpc_object_t* v1 = 0;
+    EXPECT_TRUE(error_ok == krpc_object_unmarshal_buffer(buffer, bytes, &v1, &bytes));
+
+    krpc_object_destroy(v);
+    krpc_object_destroy(v1);
+}

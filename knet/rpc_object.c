@@ -203,6 +203,7 @@ int krpc_object_marshal(krpc_object_t* o, stream_t* stream, uint16_t* bytes) {
     krpc_object_header_t header;
     verify(o);
     verify(stream);
+    verify(bytes);
     memset(&header, 0, sizeof(krpc_object_header_t));
     header.type   = o->type;
     header.length += krpc_object_get_marshal_size(o);
@@ -243,24 +244,105 @@ int krpc_object_marshal(krpc_object_t* o, stream_t* stream, uint16_t* bytes) {
     } else if (o->type & krpc_type_number) {
         /* 数字 */
         if (krpc_object_check_type(o, krpc_type_i16) || krpc_object_check_type(o, krpc_type_ui16)) {
-            o->number.ui16 = htons(o->number.ui16);
-            if (error_ok != stream_push(stream, &o->number, krpc_number_get_marshal_size(o))) {
+            uint16_t ui16 = htons(o->number.ui16);
+            if (error_ok != stream_push(stream, &ui16, krpc_number_get_marshal_size(o))) {
                 return error_rpc_marshal_fail;
             }
         } else if (krpc_object_check_type(o, krpc_type_i32) || krpc_object_check_type(o, krpc_type_ui32)) {
-            o->number.ui32 = htonl(o->number.ui32);
-            if (error_ok != stream_push(stream, &o->number, krpc_number_get_marshal_size(o))) {
+            uint32_t ui32 = htonl(o->number.ui32);
+            if (error_ok != stream_push(stream, &ui32, krpc_number_get_marshal_size(o))) {
                 return error_rpc_marshal_fail;
             }
         } else if (krpc_object_check_type(o, krpc_type_i64) || krpc_object_check_type(o, krpc_type_ui64)) {
-            o->number.ui64 = htonll(o->number.ui64);
-            if (error_ok != stream_push(stream, &o->number, krpc_number_get_marshal_size(o))) {
+            uint64_t ui64 = htonll(o->number.ui64);
+            if (error_ok != stream_push(stream, &ui64, krpc_number_get_marshal_size(o))) {
                 return error_rpc_marshal_fail;
             }
         } else {
             if (error_ok != stream_push(stream, &o->number, krpc_number_get_marshal_size(o))) {
                 return error_rpc_marshal_fail;
             }
+        }
+    } else {
+        return error_rpc_marshal_fail;
+    }
+    if (bytes) {
+        *bytes = header.length;
+    }
+    return error_ok;
+}
+
+int krpc_object_marshal_buffer(krpc_object_t* o, char* buffer, uint16_t length, uint16_t* bytes) {
+    uint16_t       size = 0;
+    uint16_t       pos  = 0;
+    int            i    = 0;
+    krpc_object_t* k    = 0;
+    krpc_object_t* v    = 0;
+    krpc_object_header_t header;
+    verify(o);
+    verify(buffer);
+    verify(length);
+    verify(bytes);
+    memset(&header, 0, sizeof(krpc_object_header_t));
+    header.type   = o->type;
+    header.length += krpc_object_get_marshal_size(o);
+    if (length < header.length + sizeof(krpc_object_header_t)) {
+        return error_rpc_marshal_fail;
+    }
+    memcpy(buffer, &header, sizeof(header));
+    pos += sizeof(header);
+    if (o->type & krpc_type_string) {
+        /* 字符串 */
+        memcpy(buffer + pos, o->string.str, o->string.size);
+        pos += o->string.size;
+    } else if (o->type & krpc_type_vector) {
+        /* 数组 */
+        for (; i < o->vector.size; i++) {
+            /* 递归调用 */
+            if (error_ok != krpc_object_marshal_buffer(o->vector.objects[i], buffer + pos, length - pos, &size)) {
+                return error_rpc_marshal_fail;
+            }
+            pos += krpc_object_get_marshal_size(o->vector.objects[i]);
+        }
+    } else if (o->type & krpc_type_map) {
+        /* 表 */
+        if (krpc_map_get_first(o, &k, &v)) {
+            if (error_ok != krpc_object_marshal_buffer(k, buffer + pos, length - pos, &size)) {
+                return error_rpc_marshal_fail;
+            }
+            pos += krpc_object_get_marshal_size(k);
+            if (error_ok != krpc_object_marshal_buffer(v, buffer + pos, length - pos, &size)) {
+                return error_rpc_marshal_fail;
+            }
+            pos += krpc_object_get_marshal_size(v);
+            while (krpc_map_next(o, &k, &v)) {
+                if (error_ok != krpc_object_marshal_buffer(k, buffer + pos, length - pos, &size)) {
+                    return error_rpc_marshal_fail;
+                }
+                pos += krpc_object_get_marshal_size(k);
+                if (error_ok != krpc_object_marshal_buffer(v, buffer + pos, length - pos, &size)) {
+                    return error_rpc_marshal_fail;
+                }
+                pos += krpc_object_get_marshal_size(v);
+            }
+        }
+    } else if (o->type & krpc_type_number) {
+        /* 数字 */
+        if (krpc_object_check_type(o, krpc_type_i16) || krpc_object_check_type(o, krpc_type_ui16)) {
+            uint16_t ui16 = htons(o->number.ui16);
+            memcpy(buffer + pos, &ui16, sizeof(ui16));
+            pos += sizeof(uint16_t);
+        } else if (krpc_object_check_type(o, krpc_type_i32) || krpc_object_check_type(o, krpc_type_ui32)) {
+            uint32_t ui32 = htonl(o->number.ui32);
+            memcpy(buffer + pos, &ui32, sizeof(ui32));
+            pos += sizeof(uint32_t);
+        } else if (krpc_object_check_type(o, krpc_type_i64) || krpc_object_check_type(o, krpc_type_ui64)) {
+            uint64_t ui64 = htonll(o->number.ui64);
+            memcpy(buffer + pos, &ui64, sizeof(ui64));
+            pos += sizeof(uint64_t);
+        } else {
+            memcpy(buffer + pos, &o->number, krpc_number_get_marshal_size(o));
+            pos += krpc_number_get_marshal_size(o);
         }
     } else {
         return error_rpc_marshal_fail;
@@ -351,6 +433,110 @@ int krpc_object_unmarshal(stream_t* stream, krpc_object_t** o, uint16_t* bytes) 
             /* 插入表 */
             krpc_map_insert(*o, k, v);
             length -= consume;
+            k = 0; /* 已经插入表 */
+            v = 0; /* 已经插入表 */
+        }
+    } else {
+        /* 未知类型 */
+        goto error_return;
+    }
+    (*o)->type = (krpc_type_e)header.type; /* 类型 */
+    *bytes     = header.length;            /* 消耗字节数 */
+    return error_ok;
+error_return:
+    /* 错误处理 */
+    if (*o) {
+        krpc_object_destroy(*o);
+        *o = 0;
+    }
+    if (k) { /* 还未插入表 */
+        krpc_object_destroy(k);
+    }
+    if (v) { /* 还未插入表 */
+        krpc_object_destroy(v);
+    }
+    /* 告诉调用者失败，外部应关闭本连接 */
+    return error_rpc_unmarshal_fail;
+}
+
+int krpc_object_unmarshal_buffer(char* buffer, uint16_t size, krpc_object_t** o, uint16_t* bytes) {
+    uint16_t       length    = 0; /* 临时变量 */
+    uint16_t       consume   = 0; /* 单次unmarshal消耗字节数 */
+    uint16_t       pos       = 0; /* 当前缓冲区位置 */
+    krpc_object_t* vo        = 0; /* 数组内对象指针 */
+    krpc_object_t* k         = 0; /* key - 表 */
+    krpc_object_t* v         = 0; /* value - 表 */
+    krpc_object_header_t header;  /* 对象协议头 */
+    verify(buffer);
+    verify(size);
+    verify(o);
+    verify(bytes);
+    if (size < sizeof(krpc_object_header_t)) {
+        /* 字节数不够 */
+        return error_rpc_not_enough_bytes;
+    }
+    memcpy(&header, buffer, sizeof(header));
+    pos += sizeof(header);
+    if (header.length > size) {
+        /* 字节数不够 */
+        return error_rpc_not_enough_bytes;
+    }
+    /* 建立一个对象 */
+    *o = krpc_object_create();
+    verify(*o);
+    if (header.type & krpc_type_number) {
+        /* 数字 */
+        memcpy(&(*o)->number, buffer + pos, header.length - sizeof(krpc_object_header_t));
+        pos += header.length - sizeof(krpc_object_header_t);
+        /* 数字 */
+        if ((header.type & krpc_type_i16) || (header.type & krpc_type_ui16)) {
+            (*o)->number.ui16 = ntohs((*o)->number.ui16);
+        } else if ((header.type & krpc_type_i32) || (header.type & krpc_type_ui32)) {
+            (*o)->number.ui32 = ntohl((*o)->number.ui32);
+        } else if ((header.type & krpc_type_i64) || (header.type & krpc_type_ui64)) {
+            (*o)->number.ui64 = ntohll((*o)->number.ui64);
+        }
+    } else if (header.type & krpc_type_string) {
+        /* 字符串 */
+        if (error_ok != krpc_string_set_size(*o, header.length - sizeof(krpc_object_header_t))) {
+            goto error_return;
+        }
+        memcpy(buffer + pos, (*o)->string.str, header.length - sizeof(krpc_object_header_t));
+        pos += header.length - sizeof(krpc_object_header_t);
+        (*o)->string.size = header.length - sizeof(krpc_object_header_t);
+    } else if (header.type & krpc_type_vector) {
+        /* 数组 */
+        length = header.length - sizeof(krpc_object_header_t);
+        for (; length;) {
+            /* 递归调用 */
+            if (error_ok != krpc_object_unmarshal_buffer(buffer + pos, size - pos, &vo, &consume)) {
+                goto error_return;
+            }
+            if (error_ok != krpc_vector_push_back(*o, vo)) {
+                goto error_return;
+            }
+            pos    += consume;
+            length -= consume;
+        }
+    } else if (header.type & krpc_type_map) {
+        /* 表 */
+        length = header.length - sizeof(krpc_object_header_t);
+        pos += header.length - sizeof(krpc_object_header_t);
+        for (; length; ) {
+            /* 递归调用 - key*/
+            if (error_ok != krpc_object_unmarshal_buffer(buffer + pos, size - pos, &k, &consume)) {
+                goto error_return;
+            }
+            length -= consume;
+            pos += consume;
+            /* 递归调用 - value */
+            if (error_ok != krpc_object_unmarshal_buffer(buffer + pos, size - pos, &v, &consume)) {
+                goto error_return;
+            }
+            /* 插入表 */
+            krpc_map_insert(*o, k, v);
+            length -= consume;
+            pos += consume;
             k = 0; /* 已经插入表 */
             v = 0; /* 已经插入表 */
         }

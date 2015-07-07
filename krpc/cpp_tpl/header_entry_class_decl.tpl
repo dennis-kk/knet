@@ -32,4 +32,10 @@ public:
      * \retval error_rpc_unknown_type RPC类型错误
      */
     int rpc_proc(stream_t* stream);
+	
+	/**
+	 * 获取krpc_t实例
+	 * @return krpc_t实例
+	 */
+	 krpc_t* get_rpc();
 
