@@ -76,7 +76,7 @@ extern int krpc_object_marshal(krpc_object_t* o, stream_t* stream, uint16_t* byt
  * @param o krpc_object_t实例
  * @param buffer 缓冲区指针
  * @param length 缓冲区长度
- * @param bytes 写入流的数据字节数
+ * @param bytes 写入缓冲区的数据字节数
  * @retval error_ok 成功
  * @retval 其他 失败
  */
