@@ -112,6 +112,11 @@ int channel_send_buffer(channel_t* channel, buffer_t* send_buffer) {
     verify(channel);
     verify(send_buffer);
     verify(channel->send_buffer_list);
+    /* 始终无法发送 */
+    if (channel_ref_send_list_reach_max(channel)) {
+        buffer_destroy(send_buffer);
+        return error_send_fail;
+    }
     /* 将发送缓冲区加到链表尾部 */
     dlist_add_tail_node(channel->send_buffer_list, send_buffer);
     /* 让调用者重新设置写事件 */
@@ -125,6 +130,10 @@ int channel_send(channel_t* channel, const char* data, int size) {
     verify(data);
     verify(size);
     verify(channel->send_buffer_list);
+    /* 始终无法发送 */
+    if (channel_ref_send_list_reach_max(channel)) {
+        return error_send_fail;
+    }
     if (dlist_empty(channel->send_buffer_list)) {
         /* 尝试直接发送 */
         bytes = socket_send(channel->socket_fd, data, size);
@@ -230,4 +239,9 @@ uint32_t channel_get_max_send_list_len(channel_t* channel) {
 uint64_t channel_get_uuid(channel_t* channel) {
     verify(channel);
     return channel->uuid;
+}
+
+int channel_ref_send_list_reach_max(channel_t* channel) {
+    verify(channel);
+    return (dlist_get_count(channel->send_buffer_list) > (int)channel->max_send_list_len);
 }

@@ -143,4 +143,12 @@ uint32_t channel_get_max_send_list_len(channel_t* channel);
  */
 uint64_t channel_get_uuid(channel_t* channel);
 
+/**
+ * 发送链表内缓冲区数量是否达到最大
+ * @param channel channel_t实例
+ * @retval 0 不是
+ * @retval 非零 是
+ */
+int channel_ref_send_list_reach_max(channel_t* channel);
+
 #endif /* CHANNEL_H */

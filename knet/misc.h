@@ -204,4 +204,11 @@ uint64_t ntohll(uint64_t ui64);
  */
 const char* get_channel_cb_event_string(channel_cb_event_e e);
 
+/**
+ * 取得管道回调事件名字
+ * @param e 管道回调事件ID
+ * @return 管道回调事件名字
+ */
+const char* get_channel_cb_event_name(channel_cb_event_e e);
+
 #endif /* MISC_H */

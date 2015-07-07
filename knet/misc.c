@@ -963,3 +963,23 @@ const char* get_channel_cb_event_string(channel_cb_event_e e) {
     }
     return "unknown channel callback event";
 }
+
+const char* get_channel_cb_event_name(channel_cb_event_e e) {
+    switch (e) {
+    case channel_cb_event_connect:
+        return "channel_cb_event_connect";
+    case channel_cb_event_accept:
+        return "channel_cb_event_accept";
+    case channel_cb_event_recv:
+        return "channel_cb_event_recv";
+    case channel_cb_event_send:
+        return "channel_cb_event_send";
+    case channel_cb_event_close:
+        return "channel_cb_event_close";
+    case channel_cb_event_timeout:
+        return "channel_cb_event_timeout";
+    case channel_cb_event_connect_timeout:
+        return "channel_cb_event_connect_timeout";
+    }
+    return "unknown channel callback event";
+}
