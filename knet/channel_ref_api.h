@@ -147,4 +147,13 @@ extern address_t* channel_ref_get_local_address(channel_ref_t* channel_ref);
  */
 extern uint64_t channel_ref_get_uuid(channel_ref_t* channel_ref);
 
+/**
+ * 测试两个管道引用是否指向同一个管道
+ * @param a channel_t实例
+ * @param b channel_t实例
+ * @retval 0 不同
+ * @retval 非零 相同 
+ */
+extern int channel_ref_equal(channel_ref_t* a, channel_ref_t* b);
+
 #endif /* CHANNEL_REF_API_H */

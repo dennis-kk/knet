@@ -638,3 +638,8 @@ uint64_t channel_ref_get_uuid(channel_ref_t* channel_ref) {
     verify(channel_ref);
     return channel_get_uuid(channel_ref->ref_info->channel);
 }
+
+int channel_ref_equal(channel_ref_t* a, channel_ref_t* b) {
+    return ((channel_ref_get_uuid(a) == channel_ref_get_uuid(b)) &&
+        (a->ref_info == b->ref_info));
+}

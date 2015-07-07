@@ -153,3 +153,56 @@ CASE(Test_Channel_Idle_Timeout) {
     loop_run(loop);
     loop_destroy(loop);
 }
+
+// C++函数体内类静态成员作用域的问题，只有放这里了
+channel_ref_t* case_Test_Channel_Share_Leave_channel = 0;
+
+CASE(Test_Channel_Share_Leave) {
+    // 本实例测试功能是否达到要求，通常channel_ref_share/channel_ref_leave
+    // 在多线程环境内使用，在只有一个线程的情况下也可以用于管道引用被多处使用但又不想统一管理
+    // 管道生命周期的情况
+
+    struct holder {
+        static void connector_cb(channel_ref_t* channel, channel_cb_event_e e) {
+            if (e & channel_cb_event_connect) {
+                // 建立一个新引用
+                case_Test_Channel_Share_Leave_channel = channel_ref_share(channel);
+                // 关闭管道
+                channel_ref_close(channel);
+            } else if (e & channel_cb_event_close) {
+                // 收到关闭事件, 但是因为有多一个引用，管道不能被销毁
+                // 销毁整个引用
+                channel_ref_leave(case_Test_Channel_Share_Leave_channel);
+                loop_exit(channel_ref_get_loop(channel));
+                // loop_exit调用后管道的状态最终还是会被扫描一次
+                // 这次扫描中管道将被销毁
+            }
+        }
+    };
+
+    loop_t* loop = loop_create();
+    channel_ref_t* connector = loop_create_channel(loop, 1, 1024);
+    channel_ref_t* acceptor = loop_create_channel(loop, 1, 1024);
+    channel_ref_accept(acceptor, 0, 80, 1);
+    channel_ref_connect(connector, "127.0.0.1", 80, 1);
+    channel_ref_set_cb(connector, &holder::connector_cb);
+    EXPECT_TRUE(channel_ref_check_state(connector, channel_state_connect));
+    EXPECT_TRUE(channel_ref_check_state(acceptor, channel_state_accept));
+
+    loop_run(loop);
+
+    // 4条管道分别为：
+    // 1. loop事件读管道
+    // 2. loop事件写管道
+    // 3. acceptor管道
+    // 4. 新建立的连接
+    // connector管道已经被销毁
+    // 因为在connector_cb内调用了loop_exit(), 新建立的连接还未被关闭
+    EXPECT_TRUE(4 == loop_get_active_channel_count(loop));
+
+    // 检查是否还有未销毁的管道
+    EXPECT_TRUE(0 == loop_get_close_channel_count(loop));
+
+    // 剩余的4条管道在这里被销毁
+    loop_destroy(loop);
+}
