@@ -299,6 +299,49 @@ int hash_delete(hash_t* hash, uint32_t key) {
     return error_ok;
 }
 
+int hash_replace(hash_t* hash, uint32_t key, void* value) {
+    uint32_t      hash_key   = 0;
+    dlist_node_t* node       = 0;
+    hash_value_t* hash_value = 0;
+    verify(hash);
+    verify(value);
+    hash_key = key % hash->size;
+    /* 遍历链表查找 */
+    dlist_for_each(hash->buckets[hash_key], node) {
+        hash_value = (hash_value_t*)dlist_node_get_data(node);
+        if (hash_value_equal(hash_value, key)) {
+            if (hash->dtor) {
+                hash->dtor(hash_value->value);
+            }
+            hash_value->value = value;
+            return error_ok;
+        }
+    }
+    return hash_add(hash, key, value);
+}
+
+int hash_replace_string_key(hash_t* hash, const char* key, void* value) {
+    uint32_t      hash_key   = 0;
+    dlist_node_t* node       = 0;
+    hash_value_t* hash_value = 0;
+    verify(hash);
+    verify(key);
+    verify(value);
+    hash_key = _hash_string(key) % hash->size;
+    /* 遍历链表查找 */
+    dlist_for_each(hash->buckets[hash_key], node) {
+        hash_value = (hash_value_t*)dlist_node_get_data(node);
+        if (hash_value_equal_string_key(hash_value, key)) {
+            if (hash->dtor) {
+                hash->dtor(hash_value->value);
+            }
+            hash_value->value = value;
+            return error_ok;
+        }
+    }
+    return hash_add_string_key(hash, key, value);
+}
+
 int hash_delete_string_key(hash_t* hash, const char* key) {
     void* value = 0;
     verify(hash);

@@ -313,7 +313,7 @@ extern int krpc_vector_set(krpc_object_t* v, krpc_object_t* o, int index);
 extern void krpc_vector_clear(krpc_object_t* v);
 
 /**
- * 添加<key, value>
+ * 添加<k, v>
  * @param m krpc_object_t实例
  * @param k key
  * @param v value
@@ -321,6 +321,16 @@ extern void krpc_vector_clear(krpc_object_t* v);
  * @retval 其他 失败
  */
 extern int krpc_map_insert(krpc_object_t* m, krpc_object_t* k, krpc_object_t* v);
+
+/**
+ * 更新<k, v>，如果k不存在则插入
+ * @param m krpc_object_t实例
+ * @param k key
+ * @param v value
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int krpc_map_update(krpc_object_t* m, krpc_object_t* k, krpc_object_t* v);
 
 /**
  * 查找

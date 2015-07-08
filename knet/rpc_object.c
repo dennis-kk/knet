@@ -970,6 +970,22 @@ error_return:
     return error;
 }
 
+int krpc_map_update(krpc_object_t* m, krpc_object_t* k, krpc_object_t* v) {
+    verify(m);
+    verify(k);
+    verify(v);
+    if (!m->map.hash) {
+        m->map.hash = hash_create(0, hash_value_dtor);
+    }
+    m->type = krpc_type_map;
+    if (krpc_object_check_type(k, krpc_type_number)) {
+        return hash_replace(m->map.hash, krpc_number_get_ui32(k), v);
+    } else if (krpc_object_check_type(k, krpc_type_string)) {
+        return hash_replace_string_key(m->map.hash, krpc_string_get(k), v);
+    }
+    return error_rpc_map_error_key_or_value;
+}
+
 krpc_object_t* krpc_map_get(krpc_object_t* m, krpc_object_t* k) {
     krpc_value_t* kvalue = 0;
     verify(m);

@@ -739,6 +739,10 @@ void thread_runner_join(thread_runner_t* runner) {
     void* retval = 0;
 #endif /* defined(WIN32) || defined(WIN64) */
     verify(runner);
+    /* 建立但未启动 */
+    if (!runner->thread_id) {
+        return;
+    }
 #if defined(WIN32)
     error = WaitForSingleObject((HANDLE)runner->thread_id, INFINITE);
     if ((error != WAIT_OBJECT_0) && (error != WAIT_ABANDONED)) {

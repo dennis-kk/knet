@@ -134,6 +134,7 @@ typedef struct _krpc_map_t krpc_map_t;
 typedef struct _krpc_value_t krpc_value_t;
 typedef struct _hash_t hash_t;
 typedef struct _hash_value_t hash_value_t;
+typedef struct _store_t store_t;
 
 /* 管道可投递事件 */
 typedef enum _channel_event_e {

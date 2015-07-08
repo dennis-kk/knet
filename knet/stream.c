@@ -130,7 +130,7 @@ int stream_copy_stream(stream_t* stream, stream_t* target) {
     }
     rb = channel_ref_get_ringbuffer(stream->channel_ref);
     verify(rb);
-    /* 从ringbuffer内取数据写入另一个stream， 使用虚拟窗口，不清除数据 */
+    /* 从ringbuffer内取数据写入另一个stream，使用虚拟窗口，不清除数据 */
     for (size = ringbuffer_window_read_lock_size(rb);
         (size);
         ringbuffer_window_read_commit(rb, size), size = ringbuffer_window_read_lock_size(rb)) {

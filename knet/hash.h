@@ -114,6 +114,26 @@ void* hash_remove_string_key(hash_t* hash, const char* key);
 int hash_delete(hash_t* hash, uint32_t key);
 
 /**
+ * 替换
+ * @param hash hash_t实例
+ * @param key 键
+ * @param value 值
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int hash_replace(hash_t* hash, uint32_t key, void* value);
+
+/**
+ * 替换
+ * @param hash hash_t实例
+ * @param key 字符串键
+ * @param value 值
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int hash_replace_string_key(hash_t* hash, const char* key, void* value);
+
+/**
  * 销毁元素
  * @param hash hash_t实例
  * @param key 字符串键

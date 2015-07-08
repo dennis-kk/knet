@@ -25,9 +25,10 @@
 #ifndef ALL_TEST_CASE_H
 #define ALL_TEST_CASE_H
 
-#include "rpc_object_case.h"
-#include "address_case.h"
-#include "channel_ref_case.h"
-#include "stream_case.h"
+//#include "rpc_object_case.h"
+//#include "address_case.h"
+//#include "channel_ref_case.h"
+//#include "stream_case.h"
+#include "thread_case.h"
 
 #endif // ALL_TEST_CASE_H
