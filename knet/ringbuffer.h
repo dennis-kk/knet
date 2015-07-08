@@ -104,6 +104,27 @@ char* ringbuffer_read_lock_ptr(ringbuffer_t* rb);
 void ringbuffer_read_commit(ringbuffer_t* rb, uint32_t size);
 
 /**
+ * 虚拟窗口 - 取得非绕回连续地址的最大可读字节数
+ * @param rb ringbuffer_t实例
+ * @return 非绕回连续地址的最大可读字节数
+ */
+uint32_t ringbuffer_window_read_lock_size(ringbuffer_t* rb);
+
+/**
+ * 虚拟窗口 - 取得可读数据起止指针
+ * @param rb ringbuffer_t实例
+ * @return 可读数据起止指针
+ */
+char* ringbuffer_window_read_lock_ptr(ringbuffer_t* rb);
+
+/**
+ * 虚拟窗口 - 提交已经读到的字节，但不清除
+ * @param rb ringbuffer_t实例
+ * @param size 已经读出的字节数
+ */
+void ringbuffer_window_read_commit(ringbuffer_t* rb, uint32_t size);
+
+/**
  * 取得非绕回可连续写入的最大长度
  * @param rb ringbuffer_t实例
  * @return 非绕回可连续写入的最大长度

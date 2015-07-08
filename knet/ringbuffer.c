@@ -27,18 +27,21 @@
 
 
 struct _ringbuffer_t {
-    char*    ptr;       /* 缓冲区指针 */
-    uint32_t read_pos;  /* 读索引 */
-    uint32_t write_pos; /* 写索引 */
-    uint32_t max_size;  /* 最大长度 */
-    uint32_t lock_size; /* 锁定长度 */
-    uint32_t lock_type; /* 锁定类型， 1： 读锁定  2： 写锁定 */
-    uint32_t count;     /* 可读数据长度 */
+    char*    ptr;                   /* 缓冲区指针 */
+    uint32_t read_pos;              /* 读索引 */
+    uint32_t write_pos;             /* 写索引 */
+    uint32_t max_size;              /* 最大长度 */
+    uint32_t lock_size;             /* 锁定长度 */
+    uint32_t lock_type;             /* 锁定类型， 1： 读锁定  2： 写锁定 */
+    uint32_t count;                 /* 可读数据长度 */
+    uint32_t window_read_lock_size; /* 窗口读锁定长度 */
+    uint32_t window_read_pos;       /* 窗口读位置 */
 };
 
 ringbuffer_t* ringbuffer_create(uint32_t size) {
     ringbuffer_t* rb = create(ringbuffer_t);
     verify(rb);
+    memset(rb, 0, sizeof(ringbuffer_t));
     rb->lock_type = 0;
     rb->max_size  = size;
     rb->ptr       = create_raw(size);
@@ -150,6 +153,41 @@ void ringbuffer_read_commit(ringbuffer_t* rb, uint32_t size) {
     rb->lock_size = 0;
     rb->lock_type = 0;
     rb->count -= size;
+}
+
+uint32_t ringbuffer_window_read_lock_size(ringbuffer_t* rb) {
+    verify(rb);
+    if (ringbuffer_empty(rb)) {
+        return 0;
+    }
+    if (rb->window_read_pos == rb->write_pos) {
+        rb->window_read_pos = 0;
+        return 0;
+    }
+    if (!rb->window_read_pos) {
+        rb->window_read_pos = rb->read_pos;
+    }
+    rb->window_read_lock_size = 0;
+    if (rb->write_pos > rb->window_read_pos) {
+        rb->window_read_lock_size = rb->write_pos - rb->window_read_pos;
+    } else {
+        rb->window_read_lock_size = rb->max_size - rb->window_read_pos;
+    }
+    return rb->window_read_lock_size;
+}
+
+char* ringbuffer_window_read_lock_ptr(ringbuffer_t* rb) {
+    verify(rb);
+    return rb->ptr + rb->window_read_pos;
+}
+
+void ringbuffer_window_read_commit(ringbuffer_t* rb, uint32_t size) {
+    verify(rb);
+    verify(size);
+    if (rb->window_read_lock_size < size) {
+        return;
+    }
+    rb->window_read_pos = (rb->window_read_pos + size) % rb->max_size;
 }
 
 uint32_t ringbuffer_write_lock_size(ringbuffer_t* rb) {

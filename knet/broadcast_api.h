@@ -31,13 +31,13 @@
  * 创建广播域
  * @return broadcast_t实例
  */
-broadcast_t* broadcast_create();
+extern broadcast_t* broadcast_create();
 
 /**
  * 销毁广播域
  * @param broadcast broadcast_t实例
  */
-void broadcast_destroy(broadcast_t* broadcast);
+extern void broadcast_destroy(broadcast_t* broadcast);
 
 /**
  * 加入广播域
@@ -46,7 +46,7 @@ void broadcast_destroy(broadcast_t* broadcast);
  * @param channel_ref channel_ref_t
  * @return channel_ref_t实例，新的在广播域内的引用
  */
-channel_ref_t* broadcast_join(broadcast_t* broadcast, channel_ref_t* channel_ref);
+extern channel_ref_t* broadcast_join(broadcast_t* broadcast, channel_ref_t* channel_ref);
 
 /**
  * 离开广播域
@@ -55,14 +55,14 @@ channel_ref_t* broadcast_join(broadcast_t* broadcast, channel_ref_t* channel_ref
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int broadcast_leave(broadcast_t* broadcast, channel_ref_t* channel_ref);
+extern int broadcast_leave(broadcast_t* broadcast, channel_ref_t* channel_ref);
 
 /**
  * 取得广播域内管道数量
  * @param broadcast broadcast_t实例
  * @return 管道数量
  */
-int broadcast_get_count(broadcast_t* broadcast);
+extern int broadcast_get_count(broadcast_t* broadcast);
 
 /**
  * 广播
@@ -71,6 +71,6 @@ int broadcast_get_count(broadcast_t* broadcast);
  * @param size 缓冲区长度
  * @return 发送成功管道的数量
  */
-int broadcast_write(broadcast_t* broadcast, char* buffer, uint32_t size);
+extern int broadcast_write(broadcast_t* broadcast, char* buffer, uint32_t size);
 
 #endif /* BROADCAST_API_H */

@@ -197,8 +197,8 @@ CASE(Test_Channel_Share_Leave) {
     // 3. acceptor管道
     // 4. 新建立的连接
     // connector管道已经被销毁
-    // 因为在connector_cb内调用了loop_exit(), 新建立的连接还未被关闭
-    EXPECT_TRUE(4 == loop_get_active_channel_count(loop));
+    // 因为在connector_cb内调用了loop_exit(), 新建立的连接有可能还未被关闭
+    EXPECT_TRUE(3 <= loop_get_active_channel_count(loop));
 
     // 检查是否还有未销毁的管道
     EXPECT_TRUE(0 == loop_get_close_channel_count(loop));

@@ -100,6 +100,9 @@ int stream_push_stream(stream_t* stream, stream_t* target) {
     char*         ptr  = 0;
     verify(stream);
     verify(target);
+    if (stream == target) {
+        return error_send_fail;
+    }
     rb = channel_ref_get_ringbuffer(stream->channel_ref);
     verify(rb);
     /* 从ringbuffer内取数据写入另一个stream */
@@ -110,6 +113,31 @@ int stream_push_stream(stream_t* stream, stream_t* target) {
         verify(ptr);
         if (error_ok != stream_push(target, ptr, size)) {
             ringbuffer_read_commit(rb, size);
+            return error_send_fail;
+        }
+    }
+    return error_ok;
+}
+
+int stream_copy_stream(stream_t* stream, stream_t* target) {
+    uint32_t      size = 0;
+    ringbuffer_t* rb   = 0;
+    char*         ptr  = 0;
+    verify(stream);
+    verify(target);
+    if (stream == target) {
+        return error_send_fail;
+    }
+    rb = channel_ref_get_ringbuffer(stream->channel_ref);
+    verify(rb);
+    /* 从ringbuffer内取数据写入另一个stream， 使用虚拟窗口，不清除数据 */
+    for (size = ringbuffer_window_read_lock_size(rb);
+        (size);
+        ringbuffer_window_read_commit(rb, size), size = ringbuffer_window_read_lock_size(rb)) {
+        ptr = ringbuffer_window_read_lock_ptr(rb);
+        verify(ptr);
+        if (error_ok != stream_push(target, ptr, size)) {
+            ringbuffer_window_read_commit(rb, size);
             return error_send_fail;
         }
     }
