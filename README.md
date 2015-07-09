@@ -4,7 +4,7 @@
 **knet** is cross-platform multi-threading light-weight TCP transport library, for now, knet support **IOCP**, **select**, **epoll** model on **Windows** and **CentOS**. it will testing under more Linux and Unix OS version, more model will be implemented like: kqueue(kevent) etc.   
 **knet** is not a event loop like **libevent**, **knet** focus on transport only.
 
-### loop ###
+### Loop ###
 ##
 
 `loop_t` is the wrapper of different implemented model, it's easy to use `loop_t` to build a loop.    
@@ -71,7 +71,7 @@ In header file `knet/config.h`, change the macro value to tell compiler choose s
 
 `LOGGER_ON` is the switch of **knet** internal logger, the macro `LOGGER_MODE` and `LOGGER_LEVEL` can change the mode and the level of logger. Internal logger may help developer find the problom ASAP, `LOGGER_ON` should be set to 0 in release version.
 
-### balancer ###
+### Balancer ###
 ##
 
 `loop_t` runs at the thread which calling `loop_run` or `loop_run_once`, each `loop_t` knows nothing
@@ -81,14 +81,14 @@ about others. `loop_balancer_t` coordinates all attached `loop_t`(`loop_balance_
 
 For more detail, see `examples/multi_loop.c`
 
-### rpc ###
+### RPC ###
 ##
 
 **knet** offers a low level **RPC** object framework for developer. `krpc_t` is the base for the next version(1.5.x), developers may develop handwriting code by `krpc_t`, but its not a good way to maintain code for future development.
 
 For more detail, see `examples/rpc.c`
 
-### rpc code generating ###
+### RPC code generating ###
 ##
 
 **krpc** is a command line tool to generate RPC code for developes. The generated code utilizes RPC object framework to marshal/unmarshal the RPC method parameters, and a simple singleton RPC entry class.
@@ -105,7 +105,13 @@ For more detail, see
 - `krpc/examples/rpc_sample.h`
 - `krpc/examples/rpc_sample.cpp`
 
-### build ###
+### Document ###
+##
+
+see `doc/knet.pptx` for big picture of **knet**   
+see `doc/html/index.html` for dev doc.
+
+### Build ###
 ##
 
 1. Windows   
@@ -117,7 +123,7 @@ For more detail, see
 
 The build result in folder `knet/bin`.
 
-### test ###
+### Test ###
 
 see `knet/bin`.
 
