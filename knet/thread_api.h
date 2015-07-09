@@ -28,6 +28,26 @@
 #include "config.h"
 
 /**
+ * @defgroup thread 线程
+ * 线程相关
+ *
+ * <pre>
+ * 线程
+ *
+ * 线程API提供了基本的线程相关操作:
+ *
+ * 1. 线程建立销毁
+ * 2. TLS
+ * 3. 原子操作
+ *
+ * thread_runner_start_loop可以直接以loop_t作为参数在线程内运行loop_run
+ * thread_runner_start_timer_loop可以直接以ktimer_loop_t作为参数在线程内运行ktimer_loop_run
+ *
+ * </pre>
+ * @{
+ */
+
+/**
  * 创建一个线程
  * @param func 线程函数
  * @param params 参数
@@ -147,5 +167,7 @@ extern atomic_counter_t atomic_counter_dec(atomic_counter_t* counter);
  * @retval 其他 零
  */
 extern int atomic_counter_zero(atomic_counter_t* counter);
+
+/** @} */
 
 #endif /* THREAD_API_H */

@@ -1,32 +1,4 @@
 var searchData=
 [
-  ['_5fargc',['_argc',['../classkrpc__gen__t.html#a038ff3ebc8f1b3be674bdf24e178140c',1,'krpc_gen_t']]],
-  ['_5fargv',['_argv',['../classkrpc__gen__t.html#aff61fe53bf74f31923195e008ce82193',1,'krpc_gen_t']]],
-  ['_5fattribute',['_attribute',['../classkrpc__rpc__call__t.html#adb625ed5a77fc43b54d6f2ab132a9ca7',1,'krpc_rpc_call_t']]],
-  ['_5fcol',['_col',['../classkrpc__token__t.html#a01ae7de0d6a18d91fa340cfa16a3e29e',1,'krpc_token_t::_col()'],['../classkrpc__lexer__t.html#a01ae7de0d6a18d91fa340cfa16a3e29e',1,'krpc_lexer_t::_col()']]],
-  ['_5fcomment',['_comment',['../classkrpc__attribute__t.html#a8023a5250068c80d006205154d89046f',1,'krpc_attribute_t::_comment()'],['../classkrpc__field__t.html#a8023a5250068c80d006205154d89046f',1,'krpc_field_t::_comment()'],['../classkrpc__rpc__call__t.html#a8023a5250068c80d006205154d89046f',1,'krpc_rpc_call_t::_comment()']]],
-  ['_5fcurrent_5fparser',['_current_parser',['../classkrpc__parser__t.html#a9a1689a590c34f978bc63be9b7dc3d1d',1,'krpc_parser_t']]],
-  ['_5fdir',['_dir',['../classkrpc__parser__t.html#a2c2f62a9907553e5feb1ecef65c6c386',1,'krpc_parser_t']]],
-  ['_5ffield_5fname',['_field_name',['../classkrpc__field__t.html#a5fd738aa14d661565e9ca10e5981e23c',1,'krpc_field_t']]],
-  ['_5ffield_5ftype',['_field_type',['../classkrpc__field__t.html#a0ced688ec8ac2ed6189f88fe56a88df4',1,'krpc_field_t']]],
-  ['_5ffields',['_fields',['../classkrpc__attribute__t.html#a062184377b756132b4cbfb218bf2f67b',1,'krpc_attribute_t']]],
-  ['_5ffile_5fname',['_file_name',['../classkrpc__parser__t.html#aabe9a05e7efc4b887c62ffd6cfd61fa8',1,'krpc_parser_t']]],
-  ['_5ficomment',['_icomment',['../classkrpc__lexer__t.html#a1dff5704d4f4cf03e612b387f2e0e8f3',1,'krpc_lexer_t']]],
-  ['_5finstance',['_instance',['../classrpc__sample_1_1rpc__sample__t.html#ab21a57379ad2184d3f228b9dfca29ad9',1,'rpc_sample::rpc_sample_t']]],
-  ['_5flexer',['_lexer',['../classkrpc__parser__t.html#a7b21e509d9c4629900830ab5a2a69064',1,'krpc_parser_t']]],
-  ['_5fliteral',['_literal',['../classkrpc__token__t.html#a323b4c2f2454957cf0d968a6520a84d4',1,'krpc_token_t']]],
-  ['_5fname',['_name',['../classkrpc__attribute__t.html#aaf2ed934b37cbbd236fdd1b01a5f5005',1,'krpc_attribute_t::_name()'],['../classkrpc__rpc__call__t.html#aaf2ed934b37cbbd236fdd1b01a5f5005',1,'krpc_rpc_call_t::_name()']]],
-  ['_5fobjects',['_objects',['../classkrpc__parser__t.html#a1e6d4b7ed08d14795824c111ce052943',1,'krpc_parser_t']]],
-  ['_5fofs',['_ofs',['../classkrpc__ostream__t.html#a916a42aaa2e3915ad854b406e27a51bb',1,'krpc_ostream_t']]],
-  ['_5foptions',['_options',['../classkrpc__gen__t.html#a96849ab73e3d8d5a1537258893161e81',1,'krpc_gen_t']]],
-  ['_5fparent',['_parent',['../classkrpc__parser__t.html#a76215a2f96b4cacaf59f61bcd2217849',1,'krpc_parser_t']]],
-  ['_5fparser',['_parser',['../classkrpc__gen__t.html#a36ddbcdd9990ef301e009c81dfb703e3',1,'krpc_gen_t']]],
-  ['_5frow',['_row',['../classkrpc__token__t.html#a2c788815cbc67c3734ad77878c81dda8',1,'krpc_token_t::_row()'],['../classkrpc__lexer__t.html#a2c788815cbc67c3734ad77878c81dda8',1,'krpc_lexer_t::_row()']]],
-  ['_5frpc',['_rpc',['../classrpc__sample_1_1rpc__sample__t.html#a9e1768d7a6a84aa321a1e51a4b622c2d',1,'rpc_sample::rpc_sample_t']]],
-  ['_5frpc_5fcalls',['_rpc_calls',['../classkrpc__parser__t.html#a384832cb4d7e8e7dd7fbc4e51e5ccf12',1,'krpc_parser_t']]],
-  ['_5frpc_5fgen',['_rpc_gen',['../classkrpc__gen__cpp__t.html#a73dc8dc1479626650b9f7912cf1e2834',1,'krpc_gen_cpp_t']]],
-  ['_5frpc_5fid',['_rpc_id',['../classkrpc__gen__cpp__t.html#a2dfc4f71eefa61cdff3acda3ed786d08',1,'krpc_gen_cpp_t']]],
-  ['_5fstream',['_stream',['../classkrpc__lexer__t.html#a20b4eb27ad7e1ff727fdb2e25d7fd04a',1,'krpc_lexer_t']]],
-  ['_5ftokens',['_tokens',['../classkrpc__lexer__t.html#aaf4e19b186e6ebcb707160ec088ac91c',1,'krpc_lexer_t']]],
-  ['_5ftype',['_type',['../classkrpc__token__t.html#a4a8a31fad0e6b95531e63101dea58c4b',1,'krpc_token_t::_type()'],['../classkrpc__field__t.html#a4a8a31fad0e6b95531e63101dea58c4b',1,'krpc_field_t::_type()']]]
+  ['active_5fchannel_5flist',['active_channel_list',['../a00025_a1d4033884e087124aff750c2fa3dd940.html#a1d4033884e087124aff750c2fa3dd940',1,'_loop_t']]]
 ];

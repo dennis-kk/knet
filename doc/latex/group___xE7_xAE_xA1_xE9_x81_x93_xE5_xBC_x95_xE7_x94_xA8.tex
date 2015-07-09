@@ -1,0 +1,370 @@
+\hypertarget{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8}{}\section{管道引用}
+\label{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8}\index{管道引用@{管道引用}}
+\subsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{struct__channel__ref__t}{channel\+\_\+ref\+\_\+t} $\ast$ \hyperlink{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_ga7b76c4078bbe8272206a5d7467ccd4ed}{channel\+\_\+ref\+\_\+share} (\hyperlink{struct__channel__ref__t}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\item 
+void \hyperlink{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_gab4248c6e10ac538b5d37b927bbe39ef1}{channel\+\_\+ref\+\_\+leave} (\hyperlink{struct__channel__ref__t}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\item 
+int \hyperlink{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_ga1a8d1f5550cf26313cbb6575e8b2a32c}{channel\+\_\+ref\+\_\+connect} (\hyperlink{struct__channel__ref__t}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref, const char $\ast$ip, int port, int timeout)
+\item 
+int \hyperlink{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_gae9ae0ae2a42eabf6a544ce4e0f001c9e}{channel\+\_\+ref\+\_\+accept} (\hyperlink{struct__channel__ref__t}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref, const char $\ast$ip, int port, int backlog)
+\item 
+int \hyperlink{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_gae003fde214ddbf4feec22ddb89b8257c}{channel\+\_\+ref\+\_\+check\+\_\+balance} (\hyperlink{struct__channel__ref__t}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\item 
+int \hyperlink{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_gadddbdc58824b567334d46493decc90f8}{channel\+\_\+ref\+\_\+check\+\_\+state} (\hyperlink{struct__channel__ref__t}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref, channel\+\_\+state\+\_\+e state)
+\item 
+void \hyperlink{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_ga49d6ba5f0b9aad95ae5c5710dca392a1}{channel\+\_\+ref\+\_\+close} (\hyperlink{struct__channel__ref__t}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\item 
+socket\+\_\+t \hyperlink{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_gaf0c977ef05b7e767a8ef166a8037ec8b}{channel\+\_\+ref\+\_\+get\+\_\+socket\+\_\+fd} (\hyperlink{struct__channel__ref__t}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\item 
+\hyperlink{struct__stream__t}{stream\+\_\+t} $\ast$ \hyperlink{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_gaf8d2758e1e063e04512049c9a9869d5e}{channel\+\_\+ref\+\_\+get\+\_\+stream} (\hyperlink{struct__channel__ref__t}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\item 
+\hyperlink{struct__loop__t}{loop\+\_\+t} $\ast$ \hyperlink{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_gad840fd786ca7092d528a8fc45c2e2a76}{channel\+\_\+ref\+\_\+get\+\_\+loop} (\hyperlink{struct__channel__ref__t}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\item 
+void \hyperlink{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_ga7627dbcdb87269ef2fae5bcbbb210720}{channel\+\_\+ref\+\_\+set\+\_\+cb} (\hyperlink{struct__channel__ref__t}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref, channel\+\_\+ref\+\_\+cb\+\_\+t cb)
+\item 
+void \hyperlink{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_ga4e46196f7ac40bdd14a1407167e88b7b}{channel\+\_\+ref\+\_\+set\+\_\+timeout} (\hyperlink{struct__channel__ref__t}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref, int timeout)
+\item 
+\hyperlink{struct__address__t}{address\+\_\+t} $\ast$ \hyperlink{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_ga7bcafd2461a1edfde9c581cb946dcd44}{channel\+\_\+ref\+\_\+get\+\_\+peer\+\_\+address} (\hyperlink{struct__channel__ref__t}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\item 
+\hyperlink{struct__address__t}{address\+\_\+t} $\ast$ \hyperlink{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_ga1dcf6af0c992fa21f9dcd03c8f763ec4}{channel\+\_\+ref\+\_\+get\+\_\+local\+\_\+address} (\hyperlink{struct__channel__ref__t}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\item 
+uint64\+\_\+t \hyperlink{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_ga3fd39b821fef38abd518db6240e79068}{channel\+\_\+ref\+\_\+get\+\_\+uuid} (\hyperlink{struct__channel__ref__t}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\item 
+int \hyperlink{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_gad44fcb68845cb3ebb582a9de6db9abd0}{channel\+\_\+ref\+\_\+equal} (\hyperlink{struct__channel__ref__t}{channel\+\_\+ref\+\_\+t} $\ast$a, \hyperlink{struct__channel__ref__t}{channel\+\_\+ref\+\_\+t} $\ast$b)
+\end{DoxyCompactItemize}
+
+
+\subsection{详细描述}
+管道引用
+
+
+\begin{DoxyPre}
+channel\_ref\_t作为channel\_t的包装器，对于用户透明化了管道的内部实现，同时提供了引用计数用于
+管道的生命周期管理.\end{DoxyPre}
+
+
+
+\begin{DoxyPre}管道有3种类型：
+1. 连接器
+2. 监听器
+3. 由监听器接受的新管道\end{DoxyPre}
+
+
+
+\begin{DoxyPre}管道有3种状态:
+1. 新建立 刚建立但不确定是作为连接器或者监听器存在
+2. 活跃   已经确定了自己的角色
+3. 关闭   已经关闭，但还未销毁，引用计数不为零\end{DoxyPre}
+
+
+
+\begin{DoxyPre}在没有负载均衡器存在的情况下(loop\_t没有通过loop\_balancer\_attach关联到loop\_balancer\_t),
+所有连接器管道都会在当前loop\_t内运行，所有由监听器接受的管道也会在loop\_t内运行.
+如果loop\_t已经关联到负载均衡器，这对连接器管道没有影响，但监听器接受的管道可能不在当前loop\_t内
+运行，负载均衡器会根据活跃管道的数量将这个管道分配到其他loop\_t运行，或者仍然在当前loop\_t内运行，
+结果取决于当前所有loop\_t负载的情况（活跃管道的数量）.
+可以调用函数channel\_ref\_check\_balance确定管道是否被负载均衡调配，调用channel\_ref\_check\_state
+检查管道当前所处的状态，channel\_ref\_close关闭管道，无论此时管道的引用计数是否为零，管道的套接字都会
+被关闭，当管道引用计数为零时，loop\_t才会真正销毁它.调用channel\_ref\_equal可以判断两个管道引用是否
+指向同一个管道.\end{DoxyPre}
+
+
+
+\begin{DoxyPre}可以通过调用channel\_ref\_set\_timeout设置管道的读空闲超时（秒），这可以用做心跳包的处理，调用
+channel\_ref\_connect时最后一个参数传递一个非零值可以设置连接器的连接超时（秒），这可以用于重连.
+调用channel\_ref\_get\_socket\_fd得到管道套接字，调用channel\_ref\_get\_uuid的到管道UUID.
+\end{DoxyPre}
+ 
+
+\subsection{函数说明}
+\hypertarget{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_gae9ae0ae2a42eabf6a544ce4e0f001c9e}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+accept@{channel\+\_\+ref\+\_\+accept}}
+\index{channel\+\_\+ref\+\_\+accept@{channel\+\_\+ref\+\_\+accept}!管道引用@{管道引用}}
+\subsubsection[{channel\+\_\+ref\+\_\+accept}]{\setlength{\rightskip}{0pt plus 5cm}int channel\+\_\+ref\+\_\+accept (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref, }
+\item[{const char $\ast$}]{ip, }
+\item[{int}]{port, }
+\item[{int}]{backlog}
+\end{DoxyParamCaption}
+)}\label{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_gae9ae0ae2a42eabf6a544ce4e0f001c9e}
+将管道转换为监听管道
+
+由这个监听管道接受的新连接将使用与监听管道相同的发送缓冲区最大数量限制和接受缓冲区长度限制, channel\+\_\+ref\+\_\+accept所接受的新连接将被负载均衡，实际运行在哪个loop\+\_\+t内依赖于实际运行的情况 
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+{\em ip} & I\+P \\
+\hline
+{\em port} & 端口 \\
+\hline
+{\em backlog} & 等待队列上限（listen()) \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_gae003fde214ddbf4feec22ddb89b8257c}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+check\+\_\+balance@{channel\+\_\+ref\+\_\+check\+\_\+balance}}
+\index{channel\+\_\+ref\+\_\+check\+\_\+balance@{channel\+\_\+ref\+\_\+check\+\_\+balance}!管道引用@{管道引用}}
+\subsubsection[{channel\+\_\+ref\+\_\+check\+\_\+balance}]{\setlength{\rightskip}{0pt plus 5cm}int channel\+\_\+ref\+\_\+check\+\_\+balance (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\end{DoxyParamCaption}
+)}\label{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_gae003fde214ddbf4feec22ddb89b8257c}
+检测管道是否是通过负载均衡关联到当前的loop\+\_\+t 
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em 0} & 不是 \\
+\hline
+{\em 非0} & 是 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_gadddbdc58824b567334d46493decc90f8}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+check\+\_\+state@{channel\+\_\+ref\+\_\+check\+\_\+state}}
+\index{channel\+\_\+ref\+\_\+check\+\_\+state@{channel\+\_\+ref\+\_\+check\+\_\+state}!管道引用@{管道引用}}
+\subsubsection[{channel\+\_\+ref\+\_\+check\+\_\+state}]{\setlength{\rightskip}{0pt plus 5cm}int channel\+\_\+ref\+\_\+check\+\_\+state (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref, }
+\item[{channel\+\_\+state\+\_\+e}]{state}
+\end{DoxyParamCaption}
+)}\label{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_gadddbdc58824b567334d46493decc90f8}
+检测管道当前状态 
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+{\em state} & 需要测试的状态 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em 1} & 是 \\
+\hline
+{\em 0} & 不是 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_ga49d6ba5f0b9aad95ae5c5710dca392a1}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+close@{channel\+\_\+ref\+\_\+close}}
+\index{channel\+\_\+ref\+\_\+close@{channel\+\_\+ref\+\_\+close}!管道引用@{管道引用}}
+\subsubsection[{channel\+\_\+ref\+\_\+close}]{\setlength{\rightskip}{0pt plus 5cm}void channel\+\_\+ref\+\_\+close (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\end{DoxyParamCaption}
+)}\label{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_ga49d6ba5f0b9aad95ae5c5710dca392a1}
+关闭管道 
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_ga1a8d1f5550cf26313cbb6575e8b2a32c}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+connect@{channel\+\_\+ref\+\_\+connect}}
+\index{channel\+\_\+ref\+\_\+connect@{channel\+\_\+ref\+\_\+connect}!管道引用@{管道引用}}
+\subsubsection[{channel\+\_\+ref\+\_\+connect}]{\setlength{\rightskip}{0pt plus 5cm}int channel\+\_\+ref\+\_\+connect (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref, }
+\item[{const char $\ast$}]{ip, }
+\item[{int}]{port, }
+\item[{int}]{timeout}
+\end{DoxyParamCaption}
+)}\label{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_ga1a8d1f5550cf26313cbb6575e8b2a32c}
+主动连接
+
+调用channel\+\_\+ref\+\_\+connect的管道不会被负载均衡，将在当前loop\+\_\+t所运行的线程运行 
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+{\em ip} & I\+P \\
+\hline
+{\em port} & 端口 \\
+\hline
+{\em timeout} & 连接超时（秒） \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_gad44fcb68845cb3ebb582a9de6db9abd0}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+equal@{channel\+\_\+ref\+\_\+equal}}
+\index{channel\+\_\+ref\+\_\+equal@{channel\+\_\+ref\+\_\+equal}!管道引用@{管道引用}}
+\subsubsection[{channel\+\_\+ref\+\_\+equal}]{\setlength{\rightskip}{0pt plus 5cm}int channel\+\_\+ref\+\_\+equal (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{a, }
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{b}
+\end{DoxyParamCaption}
+)}\label{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_gad44fcb68845cb3ebb582a9de6db9abd0}
+测试两个管道引用是否指向同一个管道 
+\begin{DoxyParams}{参数}
+{\em a} & channel\+\_\+t实例 \\
+\hline
+{\em b} & channel\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em 0} & 不同 \\
+\hline
+{\em 非零} & 相同 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_ga1dcf6af0c992fa21f9dcd03c8f763ec4}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+get\+\_\+local\+\_\+address@{channel\+\_\+ref\+\_\+get\+\_\+local\+\_\+address}}
+\index{channel\+\_\+ref\+\_\+get\+\_\+local\+\_\+address@{channel\+\_\+ref\+\_\+get\+\_\+local\+\_\+address}!管道引用@{管道引用}}
+\subsubsection[{channel\+\_\+ref\+\_\+get\+\_\+local\+\_\+address}]{\setlength{\rightskip}{0pt plus 5cm}{\bf address\+\_\+t}$\ast$ channel\+\_\+ref\+\_\+get\+\_\+local\+\_\+address (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\end{DoxyParamCaption}
+)}\label{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_ga1dcf6af0c992fa21f9dcd03c8f763ec4}
+取得本地地址 
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+address\+\_\+t实例 
+\end{DoxyReturn}
+\hypertarget{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_gad840fd786ca7092d528a8fc45c2e2a76}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+get\+\_\+loop@{channel\+\_\+ref\+\_\+get\+\_\+loop}}
+\index{channel\+\_\+ref\+\_\+get\+\_\+loop@{channel\+\_\+ref\+\_\+get\+\_\+loop}!管道引用@{管道引用}}
+\subsubsection[{channel\+\_\+ref\+\_\+get\+\_\+loop}]{\setlength{\rightskip}{0pt plus 5cm}{\bf loop\+\_\+t}$\ast$ channel\+\_\+ref\+\_\+get\+\_\+loop (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\end{DoxyParamCaption}
+)}\label{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_gad840fd786ca7092d528a8fc45c2e2a76}
+取得管道所关联的事件循环 
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+loop\+\_\+t实例 
+\end{DoxyReturn}
+\hypertarget{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_ga7bcafd2461a1edfde9c581cb946dcd44}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+get\+\_\+peer\+\_\+address@{channel\+\_\+ref\+\_\+get\+\_\+peer\+\_\+address}}
+\index{channel\+\_\+ref\+\_\+get\+\_\+peer\+\_\+address@{channel\+\_\+ref\+\_\+get\+\_\+peer\+\_\+address}!管道引用@{管道引用}}
+\subsubsection[{channel\+\_\+ref\+\_\+get\+\_\+peer\+\_\+address}]{\setlength{\rightskip}{0pt plus 5cm}{\bf address\+\_\+t}$\ast$ channel\+\_\+ref\+\_\+get\+\_\+peer\+\_\+address (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\end{DoxyParamCaption}
+)}\label{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_ga7bcafd2461a1edfde9c581cb946dcd44}
+取得对端地址 
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+address\+\_\+t实例 
+\end{DoxyReturn}
+\hypertarget{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_gaf0c977ef05b7e767a8ef166a8037ec8b}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+get\+\_\+socket\+\_\+fd@{channel\+\_\+ref\+\_\+get\+\_\+socket\+\_\+fd}}
+\index{channel\+\_\+ref\+\_\+get\+\_\+socket\+\_\+fd@{channel\+\_\+ref\+\_\+get\+\_\+socket\+\_\+fd}!管道引用@{管道引用}}
+\subsubsection[{channel\+\_\+ref\+\_\+get\+\_\+socket\+\_\+fd}]{\setlength{\rightskip}{0pt plus 5cm}socket\+\_\+t channel\+\_\+ref\+\_\+get\+\_\+socket\+\_\+fd (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\end{DoxyParamCaption}
+)}\label{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_gaf0c977ef05b7e767a8ef166a8037ec8b}
+取得管道套接字 
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+套接字 
+\end{DoxyReturn}
+\hypertarget{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_gaf8d2758e1e063e04512049c9a9869d5e}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+get\+\_\+stream@{channel\+\_\+ref\+\_\+get\+\_\+stream}}
+\index{channel\+\_\+ref\+\_\+get\+\_\+stream@{channel\+\_\+ref\+\_\+get\+\_\+stream}!管道引用@{管道引用}}
+\subsubsection[{channel\+\_\+ref\+\_\+get\+\_\+stream}]{\setlength{\rightskip}{0pt plus 5cm}{\bf stream\+\_\+t}$\ast$ channel\+\_\+ref\+\_\+get\+\_\+stream (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\end{DoxyParamCaption}
+)}\label{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_gaf8d2758e1e063e04512049c9a9869d5e}
+取得管道数据流 
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+stream\+\_\+t实例 
+\end{DoxyReturn}
+\hypertarget{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_ga3fd39b821fef38abd518db6240e79068}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+get\+\_\+uuid@{channel\+\_\+ref\+\_\+get\+\_\+uuid}}
+\index{channel\+\_\+ref\+\_\+get\+\_\+uuid@{channel\+\_\+ref\+\_\+get\+\_\+uuid}!管道引用@{管道引用}}
+\subsubsection[{channel\+\_\+ref\+\_\+get\+\_\+uuid}]{\setlength{\rightskip}{0pt plus 5cm}uint64\+\_\+t channel\+\_\+ref\+\_\+get\+\_\+uuid (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\end{DoxyParamCaption}
+)}\label{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_ga3fd39b821fef38abd518db6240e79068}
+获取管道\+U\+U\+I\+D 
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & channel\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+管道\+U\+U\+I\+D 
+\end{DoxyReturn}
+\hypertarget{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_gab4248c6e10ac538b5d37b927bbe39ef1}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+leave@{channel\+\_\+ref\+\_\+leave}}
+\index{channel\+\_\+ref\+\_\+leave@{channel\+\_\+ref\+\_\+leave}!管道引用@{管道引用}}
+\subsubsection[{channel\+\_\+ref\+\_\+leave}]{\setlength{\rightskip}{0pt plus 5cm}void channel\+\_\+ref\+\_\+leave (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\end{DoxyParamCaption}
+)}\label{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_gab4248c6e10ac538b5d37b927bbe39ef1}
+减少管道引用计数，并销毁channel\+\_\+ref\+\_\+t实例 
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_ga7627dbcdb87269ef2fae5bcbbb210720}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+set\+\_\+cb@{channel\+\_\+ref\+\_\+set\+\_\+cb}}
+\index{channel\+\_\+ref\+\_\+set\+\_\+cb@{channel\+\_\+ref\+\_\+set\+\_\+cb}!管道引用@{管道引用}}
+\subsubsection[{channel\+\_\+ref\+\_\+set\+\_\+cb}]{\setlength{\rightskip}{0pt plus 5cm}void channel\+\_\+ref\+\_\+set\+\_\+cb (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref, }
+\item[{channel\+\_\+ref\+\_\+cb\+\_\+t}]{cb}
+\end{DoxyParamCaption}
+)}\label{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_ga7627dbcdb87269ef2fae5bcbbb210720}
+设置管道事件回调
+
+事件回调将在关联的loop\+\_\+t实例所在线程内被回调 
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+{\em cb} & 回调函数 \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_ga4e46196f7ac40bdd14a1407167e88b7b}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+set\+\_\+timeout@{channel\+\_\+ref\+\_\+set\+\_\+timeout}}
+\index{channel\+\_\+ref\+\_\+set\+\_\+timeout@{channel\+\_\+ref\+\_\+set\+\_\+timeout}!管道引用@{管道引用}}
+\subsubsection[{channel\+\_\+ref\+\_\+set\+\_\+timeout}]{\setlength{\rightskip}{0pt plus 5cm}void channel\+\_\+ref\+\_\+set\+\_\+timeout (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref, }
+\item[{int}]{timeout}
+\end{DoxyParamCaption}
+)}\label{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_ga4e46196f7ac40bdd14a1407167e88b7b}
+设置管道空闲超时
+
+管道空闲超时依赖读操作作为判断，在timeout间隔内未有可读数据既触发超时 
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+{\em timeout} & 超时（秒） \\
+\hline
+\end{DoxyParams}
+\hypertarget{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_ga7b76c4078bbe8272206a5d7467ccd4ed}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+share@{channel\+\_\+ref\+\_\+share}}
+\index{channel\+\_\+ref\+\_\+share@{channel\+\_\+ref\+\_\+share}!管道引用@{管道引用}}
+\subsubsection[{channel\+\_\+ref\+\_\+share}]{\setlength{\rightskip}{0pt plus 5cm}{\bf channel\+\_\+ref\+\_\+t}$\ast$ channel\+\_\+ref\+\_\+share (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\end{DoxyParamCaption}
+)}\label{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_ga7b76c4078bbe8272206a5d7467ccd4ed}
+增加管道引用计数，并创建与管道关联的新的channel\+\_\+ref\+\_\+t实例
+
+channel\+\_\+ref\+\_\+share调用完成后，可以在当前线程内访问其他线程(loop\+\_\+t)内运行的管道 
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+channel\+\_\+ref\+\_\+t实例 
+\end{DoxyReturn}

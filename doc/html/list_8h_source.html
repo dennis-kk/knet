@@ -24,9 +24,8 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">knet
-   &#160;<span id="projectnumber">1.4.1</span>
+   &#160;<span id="projectnumber">1.4.3</span>
    </div>
-   <div id="projectbrief">cross platform, light-weight, multithreading net library</div>
   </td>
  </tr>
  </tbody>
@@ -40,9 +39,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>首页</span></a></li>
-      <li><a href="pages.html"><span>相关页面</span></a></li>
-      <li><a href="namespaces.html"><span>命名空间</span></a></li>
-      <li><a href="annotated.html"><span>结构体</span></a></li>
+      <li><a href="modules.html"><span>模块</span></a></li>
+      <li><a href="annotated.html"><span>类</span></a></li>
       <li class="current"><a href="files.html"><span>文件</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -65,7 +63,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>文件列表</span></a></li>
-      <li><a href="globals.html"><span>全局定义</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -92,7 +89,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="title">list.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="list_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2014-2015, dennis wang</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * All rights reserved.</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * </span></div>
@@ -119,81 +116,61 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef LIST_H</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define LIST_H</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="config_8h.html">config.h</a>&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;config.h&quot;</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* <a class="code" href="list_8h.html#a507b885acfdb76fa25d867631c907a47">dlist_node_create</a>();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* dlist_node_create();</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* <a class="code" href="list_8h.html#af029e27336becef9644d54abda80e783">dlist_node_init</a>(<a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* node);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* dlist_node_init(<a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* node);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">void</span> <a class="code" href="list_8h.html#a7f6a123c7b002e9a7b5612d24d59cc2b">dlist_node_destroy</a>(<a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* node);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">void</span> dlist_node_destroy(<a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* node);</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* <a class="code" href="list_8h.html#a74edf062cf7c178b99cbfbac71368632">dlist_node_set_data</a>(<a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* node, <span class="keywordtype">void</span>* data);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* dlist_node_set_data(<a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* node, <span class="keywordtype">void</span>* data);</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keywordtype">void</span>* <a class="code" href="list_8h.html#a8a84722d067652fd9347f0a59732ec80">dlist_node_get_data</a>(<a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* node);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keywordtype">void</span>* dlist_node_get_data(<a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* node);</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<a class="code" href="struct__dlist__t.html">dlist_t</a>* <a class="code" href="list_8h.html#ac1229375358b81e2ae8fdf7a1e7dfee1">dlist_create</a>();</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<a class="code" href="struct__dlist__t.html">dlist_t</a>* dlist_create();</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<a class="code" href="struct__dlist__t.html">dlist_t</a>* <a class="code" href="list_8h.html#a18753d353840e714698af3dafe57e9b2">dlist_init</a>(<a class="code" href="struct__dlist__t.html">dlist_t</a>* dlist);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<a class="code" href="struct__dlist__t.html">dlist_t</a>* dlist_init(<a class="code" href="struct__dlist__t.html">dlist_t</a>* dlist);</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keywordtype">void</span> <a class="code" href="list_8h.html#a1808c7551ebb6dcbae569f7e784456ce">dlist_destroy</a>(<a class="code" href="struct__dlist__t.html">dlist_t</a>* dlist);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keywordtype">void</span> dlist_destroy(<a class="code" href="struct__dlist__t.html">dlist_t</a>* dlist);</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keywordtype">void</span> <a class="code" href="list_8h.html#a419689054005a74cabe8c51932505580">dlist_add_front</a>(<a class="code" href="struct__dlist__t.html">dlist_t</a>* dlist, <a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* node);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keywordtype">void</span> dlist_add_front(<a class="code" href="struct__dlist__t.html">dlist_t</a>* dlist, <a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* node);</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keywordtype">void</span> <a class="code" href="list_8h.html#a2786bda01e956f3ecb544184d01b6402">dlist_add_tail</a>(<a class="code" href="struct__dlist__t.html">dlist_t</a>* dlist, <a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* node);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keywordtype">void</span> dlist_add_tail(<a class="code" href="struct__dlist__t.html">dlist_t</a>* dlist, <a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* node);</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* <a class="code" href="list_8h.html#ad9f16c04ff5534a96e7585226effba4d">dlist_add_front_node</a>(<a class="code" href="struct__dlist__t.html">dlist_t</a>* dlist, <span class="keywordtype">void</span>* data);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* dlist_add_front_node(<a class="code" href="struct__dlist__t.html">dlist_t</a>* dlist, <span class="keywordtype">void</span>* data);</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* <a class="code" href="list_8h.html#aadf245848d5b31e84c73a6755b78b23c">dlist_add_tail_node</a>(<a class="code" href="struct__dlist__t.html">dlist_t</a>* dlist, <span class="keywordtype">void</span>* data);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* dlist_add_tail_node(<a class="code" href="struct__dlist__t.html">dlist_t</a>* dlist, <span class="keywordtype">void</span>* data);</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="keywordtype">int</span> <a class="code" href="list_8h.html#a35f789c294262cce6fb4f1e7be0feb40">dlist_get_count</a>(<a class="code" href="struct__dlist__t.html">dlist_t</a>* dlist);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="keywordtype">int</span> dlist_get_count(<a class="code" href="struct__dlist__t.html">dlist_t</a>* dlist);</div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="keywordtype">int</span> <a class="code" href="list_8h.html#a4d1d1bf9d77cf74db890b5525c9ac3da">dlist_empty</a>(<a class="code" href="struct__dlist__t.html">dlist_t</a>* dlist);</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="keywordtype">int</span> dlist_empty(<a class="code" href="struct__dlist__t.html">dlist_t</a>* dlist);</div>
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* <a class="code" href="list_8h.html#a81811e5aa6e78ba8bbfad6b065c2c06b">dlist_remove</a>(<a class="code" href="struct__dlist__t.html">dlist_t</a>* dlist, <a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* node);</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* dlist_remove(<a class="code" href="struct__dlist__t.html">dlist_t</a>* dlist, <a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* node);</div>
 <div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="keywordtype">void</span> <a class="code" href="list_8h.html#a865e84612f96509282eb9735761b1106">dlist_delete</a>(<a class="code" href="struct__dlist__t.html">dlist_t</a>* dlist, <a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* node);</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="keywordtype">void</span> dlist_delete(<a class="code" href="struct__dlist__t.html">dlist_t</a>* dlist, <a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* node);</div>
 <div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* <a class="code" href="list_8h.html#a2a1c0e5ec8521d7be962798680e283fc">dlist_next</a>(<a class="code" href="struct__dlist__t.html">dlist_t</a>* dlist, <a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* node);</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* dlist_next(<a class="code" href="struct__dlist__t.html">dlist_t</a>* dlist, <a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* node);</div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* <a class="code" href="list_8h.html#aa5e2f24e1971b89ac20f3f1258a41597">dlist_get_front</a>(<a class="code" href="struct__dlist__t.html">dlist_t</a>* dlist);</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* dlist_get_front(<a class="code" href="struct__dlist__t.html">dlist_t</a>* dlist);</div>
 <div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* <a class="code" href="list_8h.html#abd596a321f0d697c741a9005f558b7bc">dlist_get_back</a>(<a class="code" href="struct__dlist__t.html">dlist_t</a>* dlist);</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<a class="code" href="struct__dlist__node__t.html">dlist_node_t</a>* dlist_get_back(<a class="code" href="struct__dlist__t.html">dlist_t</a>* dlist);</div>
 <div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
 <div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="comment">/* 遍历链表，在遍历的同时不能删除或销毁链表节点 */</span></div>
-<div class="line"><a name="l00169"></a><span class="lineno"><a class="line" href="list_8h.html#a74abc436128d57c9cce4bb6cb4514a30">  169</a></span>&#160;<span class="preprocessor">#define dlist_for_each(list, node) \</span></div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="preprocessor">#define dlist_for_each(list, node) \</span></div>
 <div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="preprocessor">    for (node = dlist_get_front(list); (node); node = dlist_next(list, node))</span></div>
 <div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;</div>
 <div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="comment">/* 遍历链表，可以在遍历同时进行删除或销毁链表节点 */</span></div>
-<div class="line"><a name="l00173"></a><span class="lineno"><a class="line" href="list_8h.html#a06e8f967efba4722dce2899baaa5c155">  173</a></span>&#160;<span class="preprocessor">#define dlist_for_each_safe(list, node, temp) \</span></div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="preprocessor">#define dlist_for_each_safe(list, node, temp) \</span></div>
 <div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="preprocessor">    for (node = dlist_get_front(list), temp = dlist_next(list, node); (node); node = temp, temp = dlist_next(list, node))</span></div>
 <div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;</div>
 <div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* LIST_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="list_8h_html_ad9f16c04ff5534a96e7585226effba4d"><div class="ttname"><a href="list_8h.html#ad9f16c04ff5534a96e7585226effba4d">dlist_add_front_node</a></div><div class="ttdeci">dlist_node_t * dlist_add_front_node(dlist_t *dlist, void *data)</div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00140">list.c:140</a></div></div>
-<div class="ttc" id="list_8h_html_a7f6a123c7b002e9a7b5612d24d59cc2b"><div class="ttname"><a href="list_8h.html#a7f6a123c7b002e9a7b5612d24d59cc2b">dlist_node_destroy</a></div><div class="ttdeci">void dlist_node_destroy(dlist_node_t *node)</div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00064">list.c:64</a></div></div>
-<div class="ttc" id="config_8h_html"><div class="ttname"><a href="config_8h.html">config.h</a></div></div>
-<div class="ttc" id="list_8h_html_a419689054005a74cabe8c51932505580"><div class="ttname"><a href="list_8h.html#a419689054005a74cabe8c51932505580">dlist_add_front</a></div><div class="ttdeci">void dlist_add_front(dlist_t *dlist, dlist_node_t *node)</div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00120">list.c:120</a></div></div>
-<div class="ttc" id="struct__dlist__node__t_html"><div class="ttname"><a href="struct__dlist__node__t.html">_dlist_node_t</a></div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00031">list.c:31</a></div></div>
-<div class="ttc" id="list_8h_html_a507b885acfdb76fa25d867631c907a47"><div class="ttname"><a href="list_8h.html#a507b885acfdb76fa25d867631c907a47">dlist_node_create</a></div><div class="ttdeci">dlist_node_t * dlist_node_create()</div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00045">list.c:45</a></div></div>
-<div class="ttc" id="list_8h_html_aadf245848d5b31e84c73a6755b78b23c"><div class="ttname"><a href="list_8h.html#aadf245848d5b31e84c73a6755b78b23c">dlist_add_tail_node</a></div><div class="ttdeci">dlist_node_t * dlist_add_tail_node(dlist_t *dlist, void *data)</div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00150">list.c:150</a></div></div>
-<div class="ttc" id="list_8h_html_a865e84612f96509282eb9735761b1106"><div class="ttname"><a href="list_8h.html#a865e84612f96509282eb9735761b1106">dlist_delete</a></div><div class="ttdeci">void dlist_delete(dlist_t *dlist, dlist_node_t *node)</div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00182">list.c:182</a></div></div>
-<div class="ttc" id="list_8h_html_a74edf062cf7c178b99cbfbac71368632"><div class="ttname"><a href="list_8h.html#a74edf062cf7c178b99cbfbac71368632">dlist_node_set_data</a></div><div class="ttdeci">dlist_node_t * dlist_node_set_data(dlist_node_t *node, void *data)</div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00072">list.c:72</a></div></div>
-<div class="ttc" id="list_8h_html_a2786bda01e956f3ecb544184d01b6402"><div class="ttname"><a href="list_8h.html#a2786bda01e956f3ecb544184d01b6402">dlist_add_tail</a></div><div class="ttdeci">void dlist_add_tail(dlist_t *dlist, dlist_node_t *node)</div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00130">list.c:130</a></div></div>
-<div class="ttc" id="list_8h_html_a35f789c294262cce6fb4f1e7be0feb40"><div class="ttname"><a href="list_8h.html#a35f789c294262cce6fb4f1e7be0feb40">dlist_get_count</a></div><div class="ttdeci">int dlist_get_count(dlist_t *dlist)</div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00160">list.c:160</a></div></div>
-<div class="ttc" id="list_8h_html_a4d1d1bf9d77cf74db890b5525c9ac3da"><div class="ttname"><a href="list_8h.html#a4d1d1bf9d77cf74db890b5525c9ac3da">dlist_empty</a></div><div class="ttdeci">int dlist_empty(dlist_t *dlist)</div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00165">list.c:165</a></div></div>
-<div class="ttc" id="list_8h_html_abd596a321f0d697c741a9005f558b7bc"><div class="ttname"><a href="list_8h.html#abd596a321f0d697c741a9005f558b7bc">dlist_get_back</a></div><div class="ttdeci">dlist_node_t * dlist_get_back(dlist_t *dlist)</div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00207">list.c:207</a></div></div>
-<div class="ttc" id="list_8h_html_a2a1c0e5ec8521d7be962798680e283fc"><div class="ttname"><a href="list_8h.html#a2a1c0e5ec8521d7be962798680e283fc">dlist_next</a></div><div class="ttdeci">dlist_node_t * dlist_next(dlist_t *dlist, dlist_node_t *node)</div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00188">list.c:188</a></div></div>
-<div class="ttc" id="list_8h_html_a81811e5aa6e78ba8bbfad6b065c2c06b"><div class="ttname"><a href="list_8h.html#a81811e5aa6e78ba8bbfad6b065c2c06b">dlist_remove</a></div><div class="ttdeci">dlist_node_t * dlist_remove(dlist_t *dlist, dlist_node_t *node)</div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00170">list.c:170</a></div></div>
-<div class="ttc" id="list_8h_html_aa5e2f24e1971b89ac20f3f1258a41597"><div class="ttname"><a href="list_8h.html#aa5e2f24e1971b89ac20f3f1258a41597">dlist_get_front</a></div><div class="ttdeci">dlist_node_t * dlist_get_front(dlist_t *dlist)</div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00199">list.c:199</a></div></div>
-<div class="ttc" id="list_8h_html_a18753d353840e714698af3dafe57e9b2"><div class="ttname"><a href="list_8h.html#a18753d353840e714698af3dafe57e9b2">dlist_init</a></div><div class="ttdeci">dlist_t * dlist_init(dlist_t *dlist)</div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00096">list.c:96</a></div></div>
-<div class="ttc" id="list_8h_html_a8a84722d067652fd9347f0a59732ec80"><div class="ttname"><a href="list_8h.html#a8a84722d067652fd9347f0a59732ec80">dlist_node_get_data</a></div><div class="ttdeci">void * dlist_node_get_data(dlist_node_t *node)</div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00078">list.c:78</a></div></div>
-<div class="ttc" id="list_8h_html_ac1229375358b81e2ae8fdf7a1e7dfee1"><div class="ttname"><a href="list_8h.html#ac1229375358b81e2ae8fdf7a1e7dfee1">dlist_create</a></div><div class="ttdeci">dlist_t * dlist_create()</div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00083">list.c:83</a></div></div>
-<div class="ttc" id="list_8h_html_af029e27336becef9644d54abda80e783"><div class="ttname"><a href="list_8h.html#af029e27336becef9644d54abda80e783">dlist_node_init</a></div><div class="ttdeci">dlist_node_t * dlist_node_init(dlist_node_t *node)</div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00055">list.c:55</a></div></div>
-<div class="ttc" id="struct__dlist__t_html"><div class="ttname"><a href="struct__dlist__t.html">_dlist_t</a></div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00039">list.c:39</a></div></div>
-<div class="ttc" id="list_8h_html_a1808c7551ebb6dcbae569f7e784456ce"><div class="ttname"><a href="list_8h.html#a1808c7551ebb6dcbae569f7e784456ce">dlist_destroy</a></div><div class="ttdeci">void dlist_destroy(dlist_t *dlist)</div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00107">list.c:107</a></div></div>
+<div class="ttc" id="struct__dlist__node__t_html"><div class="ttname"><a href="struct__dlist__node__t.html">_dlist_node_t</a></div><div class="ttdef"><b>Definition:</b> list.c:31</div></div>
+<div class="ttc" id="struct__dlist__t_html"><div class="ttname"><a href="struct__dlist__t.html">_dlist_t</a></div><div class="ttdef"><b>Definition:</b> list.c:39</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 六月 29日 星期一 16:51:00 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 9日 星期四 14:59:53 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

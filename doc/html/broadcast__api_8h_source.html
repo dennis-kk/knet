@@ -24,9 +24,8 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">knet
-   &#160;<span id="projectnumber">1.4.1</span>
+   &#160;<span id="projectnumber">1.4.3</span>
    </div>
-   <div id="projectbrief">cross platform, light-weight, multithreading net library</div>
   </td>
  </tr>
  </tbody>
@@ -40,9 +39,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>首页</span></a></li>
-      <li><a href="pages.html"><span>相关页面</span></a></li>
-      <li><a href="namespaces.html"><span>命名空间</span></a></li>
-      <li><a href="annotated.html"><span>结构体</span></a></li>
+      <li><a href="modules.html"><span>模块</span></a></li>
+      <li><a href="annotated.html"><span>类</span></a></li>
       <li class="current"><a href="files.html"><span>文件</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -65,7 +63,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>文件列表</span></a></li>
-      <li><a href="globals.html"><span>全局定义</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -92,7 +89,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="title">broadcast_api.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="broadcast__api_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2014-2015, dennis wang</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * All rights reserved.</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * </span></div>
@@ -119,34 +116,33 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef BROADCAST_API_H</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define BROADCAST_API_H</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="config_8h.html">config.h</a>&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;config.h&quot;</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<a class="code" href="struct__broadcast__t.html">broadcast_t</a>* <a class="code" href="broadcast__api_8h.html#aa3b09fb6ff3281cb10736c0aabac18fc">broadcast_create</a>();</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keywordtype">void</span> <a class="code" href="broadcast__api_8h.html#aa28451fa4656633ded0c7b966ff159c3">broadcast_destroy</a>(<a class="code" href="struct__broadcast__t.html">broadcast_t</a>* broadcast);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<a class="code" href="struct__channel__ref__t.html">channel_ref_t</a>* <a class="code" href="broadcast__api_8h.html#a1c736809a1d0e4b7c77b617ac8ce590d">broadcast_join</a>(<a class="code" href="struct__broadcast__t.html">broadcast_t</a>* broadcast, <a class="code" href="struct__channel__ref__t.html">channel_ref_t</a>* channel_ref);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keywordtype">int</span> <a class="code" href="broadcast__api_8h.html#ad846ced37d33b750f61a88565eaed9a4">broadcast_leave</a>(<a class="code" href="struct__broadcast__t.html">broadcast_t</a>* broadcast, <a class="code" href="struct__channel__ref__t.html">channel_ref_t</a>* channel_ref);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keywordtype">int</span> <a class="code" href="broadcast__api_8h.html#acd045b1ca8be7fa8fac6e337934acc97">broadcast_get_count</a>(<a class="code" href="struct__broadcast__t.html">broadcast_t</a>* broadcast);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keywordtype">int</span> <a class="code" href="broadcast__api_8h.html#a0e8a8826a84c9c93a96e0fda1ca846aa">broadcast_write</a>(<a class="code" href="struct__broadcast__t.html">broadcast_t</a>* broadcast, <span class="keywordtype">char</span>* buffer, uint32_t size);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* BROADCAST_API_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="broadcast__api_8h_html_aa3b09fb6ff3281cb10736c0aabac18fc"><div class="ttname"><a href="broadcast__api_8h.html#aa3b09fb6ff3281cb10736c0aabac18fc">broadcast_create</a></div><div class="ttdeci">broadcast_t * broadcast_create()</div><div class="ttdef"><b>Definition:</b> <a href="knet_2broadcast_8c_source.html#l00037">broadcast.c:37</a></div></div>
-<div class="ttc" id="broadcast__api_8h_html_a1c736809a1d0e4b7c77b617ac8ce590d"><div class="ttname"><a href="broadcast__api_8h.html#a1c736809a1d0e4b7c77b617ac8ce590d">broadcast_join</a></div><div class="ttdeci">channel_ref_t * broadcast_join(broadcast_t *broadcast, channel_ref_t *channel_ref)</div><div class="ttdef"><b>Definition:</b> <a href="knet_2broadcast_8c_source.html#l00062">broadcast.c:62</a></div></div>
-<div class="ttc" id="config_8h_html"><div class="ttname"><a href="config_8h.html">config.h</a></div></div>
-<div class="ttc" id="struct__broadcast__t_html"><div class="ttname"><a href="struct__broadcast__t.html">_broadcast_t</a></div><div class="ttdef"><b>Definition:</b> <a href="knet_2broadcast_8c_source.html#l00031">broadcast.c:31</a></div></div>
-<div class="ttc" id="broadcast__api_8h_html_ad846ced37d33b750f61a88565eaed9a4"><div class="ttname"><a href="broadcast__api_8h.html#ad846ced37d33b750f61a88565eaed9a4">broadcast_leave</a></div><div class="ttdeci">int broadcast_leave(broadcast_t *broadcast, channel_ref_t *channel_ref)</div><div class="ttdef"><b>Definition:</b> <a href="knet_2broadcast_8c_source.html#l00076">broadcast.c:76</a></div></div>
-<div class="ttc" id="broadcast__api_8h_html_acd045b1ca8be7fa8fac6e337934acc97"><div class="ttname"><a href="broadcast__api_8h.html#acd045b1ca8be7fa8fac6e337934acc97">broadcast_get_count</a></div><div class="ttdeci">int broadcast_get_count(broadcast_t *broadcast)</div><div class="ttdef"><b>Definition:</b> <a href="knet_2broadcast_8c_source.html#l00094">broadcast.c:94</a></div></div>
-<div class="ttc" id="struct__channel__ref__t_html"><div class="ttname"><a href="struct__channel__ref__t.html">_channel_ref_t</a></div><div class="ttdef"><b>Definition:</b> <a href="channel__ref_8c_source.html#l00057">channel_ref.c:57</a></div></div>
-<div class="ttc" id="broadcast__api_8h_html_a0e8a8826a84c9c93a96e0fda1ca846aa"><div class="ttname"><a href="broadcast__api_8h.html#a0e8a8826a84c9c93a96e0fda1ca846aa">broadcast_write</a></div><div class="ttdeci">int broadcast_write(broadcast_t *broadcast, char *buffer, uint32_t size)</div><div class="ttdef"><b>Definition:</b> <a href="knet_2broadcast_8c_source.html#l00104">broadcast.c:104</a></div></div>
-<div class="ttc" id="broadcast__api_8h_html_aa28451fa4656633ded0c7b966ff159c3"><div class="ttname"><a href="broadcast__api_8h.html#aa28451fa4656633ded0c7b966ff159c3">broadcast_destroy</a></div><div class="ttdeci">void broadcast_destroy(broadcast_t *broadcast)</div><div class="ttdef"><b>Definition:</b> <a href="knet_2broadcast_8c_source.html#l00048">broadcast.c:48</a></div></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">extern</span> <a class="code" href="struct__broadcast__t.html">broadcast_t</a>* <a class="code" href="group__broadcast.html#gaa3b09fb6ff3281cb10736c0aabac18fc">broadcast_create</a>();</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="group__broadcast.html#gaa28451fa4656633ded0c7b966ff159c3">broadcast_destroy</a>(<a class="code" href="struct__broadcast__t.html">broadcast_t</a>* broadcast);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keyword">extern</span> <a class="code" href="struct__channel__ref__t.html">channel_ref_t</a>* <a class="code" href="group__broadcast.html#ga1c736809a1d0e4b7c77b617ac8ce590d">broadcast_join</a>(<a class="code" href="struct__broadcast__t.html">broadcast_t</a>* broadcast, <a class="code" href="struct__channel__ref__t.html">channel_ref_t</a>* channel_ref);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="group__broadcast.html#gad846ced37d33b750f61a88565eaed9a4">broadcast_leave</a>(<a class="code" href="struct__broadcast__t.html">broadcast_t</a>* broadcast, <a class="code" href="struct__channel__ref__t.html">channel_ref_t</a>* channel_ref);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="group__broadcast.html#gacd045b1ca8be7fa8fac6e337934acc97">broadcast_get_count</a>(<a class="code" href="struct__broadcast__t.html">broadcast_t</a>* broadcast);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="group__broadcast.html#ga0e8a8826a84c9c93a96e0fda1ca846aa">broadcast_write</a>(<a class="code" href="struct__broadcast__t.html">broadcast_t</a>* broadcast, <span class="keywordtype">char</span>* buffer, uint32_t size);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* BROADCAST_API_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="group__broadcast_html_gaa28451fa4656633ded0c7b966ff159c3"><div class="ttname"><a href="group__broadcast.html#gaa28451fa4656633ded0c7b966ff159c3">broadcast_destroy</a></div><div class="ttdeci">void broadcast_destroy(broadcast_t *broadcast)</div><div class="ttdef"><b>Definition:</b> broadcast.c:55</div></div>
+<div class="ttc" id="group__broadcast_html_gad846ced37d33b750f61a88565eaed9a4"><div class="ttname"><a href="group__broadcast.html#gad846ced37d33b750f61a88565eaed9a4">broadcast_leave</a></div><div class="ttdeci">int broadcast_leave(broadcast_t *broadcast, channel_ref_t *channel_ref)</div><div class="ttdef"><b>Definition:</b> broadcast.c:91</div></div>
+<div class="ttc" id="group__broadcast_html_gacd045b1ca8be7fa8fac6e337934acc97"><div class="ttname"><a href="group__broadcast.html#gacd045b1ca8be7fa8fac6e337934acc97">broadcast_get_count</a></div><div class="ttdeci">int broadcast_get_count(broadcast_t *broadcast)</div><div class="ttdef"><b>Definition:</b> broadcast.c:109</div></div>
+<div class="ttc" id="struct__broadcast__t_html"><div class="ttname"><a href="struct__broadcast__t.html">_broadcast_t</a></div><div class="ttdef"><b>Definition:</b> broadcast.c:30</div></div>
+<div class="ttc" id="group__broadcast_html_ga1c736809a1d0e4b7c77b617ac8ce590d"><div class="ttname"><a href="group__broadcast.html#ga1c736809a1d0e4b7c77b617ac8ce590d">broadcast_join</a></div><div class="ttdeci">channel_ref_t * broadcast_join(broadcast_t *broadcast, channel_ref_t *channel_ref)</div><div class="ttdef"><b>Definition:</b> broadcast.c:74</div></div>
+<div class="ttc" id="group__broadcast_html_ga0e8a8826a84c9c93a96e0fda1ca846aa"><div class="ttname"><a href="group__broadcast.html#ga0e8a8826a84c9c93a96e0fda1ca846aa">broadcast_write</a></div><div class="ttdeci">int broadcast_write(broadcast_t *broadcast, char *buffer, uint32_t size)</div><div class="ttdef"><b>Definition:</b> broadcast.c:120</div></div>
+<div class="ttc" id="group__broadcast_html_gaa3b09fb6ff3281cb10736c0aabac18fc"><div class="ttname"><a href="group__broadcast.html#gaa3b09fb6ff3281cb10736c0aabac18fc">broadcast_create</a></div><div class="ttdeci">broadcast_t * broadcast_create()</div><div class="ttdef"><b>Definition:</b> broadcast.c:36</div></div>
+<div class="ttc" id="struct__channel__ref__t_html"><div class="ttname"><a href="struct__channel__ref__t.html">_channel_ref_t</a></div><div class="ttdef"><b>Definition:</b> channel_ref.c:57</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 六月 29日 星期一 16:51:00 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 9日 星期四 14:59:53 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

@@ -28,6 +28,21 @@
 #include "config.h"
 
 /**
+ * @defgroup balancer 负载均衡器
+ * 负载均衡器
+ *
+ * <pre>
+ * 负载均衡器可以与任意数量的loop_t关联，关联后的loop_t内监听器接受到的新管道
+ * 将参与负载均衡，负载均衡的策略是loop_t内活跃管道数量，loop_balancer_t选择
+ * 活跃管道最少的loop_t负载新接受的管道.
+ *
+ * 调用loop_balancer_attach让loop_balancer_t与loop_t关联，调用loop_balancer_detach
+ * 取消关联.
+ * </pre>
+ * @{
+ */
+
+/**
  * 创建负载均衡器
  * @return loop_balancer_t实例
  */
@@ -56,5 +71,7 @@ extern int loop_balancer_attach(loop_balancer_t* balancer, loop_t* loop);
  * @retval 其他 失败
  */
 extern int loop_balancer_detach(loop_balancer_t* balancer, loop_t* loop);
+
+/** @} */
 
 #endif /* LOOP_BALANCER_API_H */

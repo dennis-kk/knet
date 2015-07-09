@@ -24,9 +24,8 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">knet
-   &#160;<span id="projectnumber">1.4.1</span>
+   &#160;<span id="projectnumber">1.4.3</span>
    </div>
-   <div id="projectbrief">cross platform, light-weight, multithreading net library</div>
   </td>
  </tr>
  </tbody>
@@ -40,9 +39,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>首页</span></a></li>
-      <li><a href="pages.html"><span>相关页面</span></a></li>
-      <li><a href="namespaces.html"><span>命名空间</span></a></li>
-      <li><a href="annotated.html"><span>结构体</span></a></li>
+      <li><a href="modules.html"><span>模块</span></a></li>
+      <li><a href="annotated.html"><span>类</span></a></li>
       <li class="current"><a href="files.html"><span>文件</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -65,7 +63,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>文件列表</span></a></li>
-      <li><a href="globals.html"><span>全局定义</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -92,7 +89,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="title">buffer.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="buffer_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2014-2015, dennis wang</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * All rights reserved.</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * </span></div>
@@ -119,42 +116,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef BUFFER_H</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define BUFFER_H</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="config_8h.html">config.h</a>&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;config.h&quot;</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<a class="code" href="struct__buffer__t.html">buffer_t</a>* <a class="code" href="buffer_8h.html#aa5059c5ab47dd3f98ce1d208831dfb88">buffer_create</a>(uint32_t size);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<a class="code" href="struct__buffer__t.html">buffer_t</a>* buffer_create(uint32_t size);</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keywordtype">void</span> <a class="code" href="buffer_8h.html#a75b1ca3205331cdaf7a9f4e6f28c03d9">buffer_destroy</a>(<a class="code" href="struct__buffer__t.html">buffer_t</a>* sb);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keywordtype">void</span> buffer_destroy(<a class="code" href="struct__buffer__t.html">buffer_t</a>* sb);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;uint32_t <a class="code" href="buffer_8h.html#ab3e5b8fef4f96fbba03bcd2a55d5c4e2">buffer_put</a>(<a class="code" href="struct__buffer__t.html">buffer_t</a>* sb, <span class="keyword">const</span> <span class="keywordtype">char</span>* temp, uint32_t size);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;uint32_t buffer_put(<a class="code" href="struct__buffer__t.html">buffer_t</a>* sb, <span class="keyword">const</span> <span class="keywordtype">char</span>* temp, uint32_t size);</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;uint32_t <a class="code" href="buffer_8h.html#a521aa1247c7e0ce15f48da2b3f87ede5">buffer_get_length</a>(<a class="code" href="struct__buffer__t.html">buffer_t</a>* sb);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;uint32_t buffer_get_length(<a class="code" href="struct__buffer__t.html">buffer_t</a>* sb);</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;uint32_t <a class="code" href="buffer_8h.html#a13dfff4814bad92a4f5c263b68ddf475">buffer_get_max_size</a>(<a class="code" href="struct__buffer__t.html">buffer_t</a>* sb);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;uint32_t buffer_get_max_size(<a class="code" href="struct__buffer__t.html">buffer_t</a>* sb);</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keywordtype">int</span> <a class="code" href="buffer_8h.html#ae5cb663b693f41f93952c34cdd7f1f14">buffer_enough</a>(<a class="code" href="struct__buffer__t.html">buffer_t</a>* sb, uint32_t size);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keywordtype">int</span> buffer_enough(<a class="code" href="struct__buffer__t.html">buffer_t</a>* sb, uint32_t size);</div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keywordtype">char</span>* <a class="code" href="buffer_8h.html#ab54cc02c921fa0034efe6fbd146de96c">buffer_get_ptr</a>(<a class="code" href="struct__buffer__t.html">buffer_t</a>* sb);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keywordtype">char</span>* buffer_get_ptr(<a class="code" href="struct__buffer__t.html">buffer_t</a>* sb);</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keywordtype">void</span> <a class="code" href="buffer_8h.html#a1e574a50d7d434434bc466978601b703">buffer_adjust</a>(<a class="code" href="struct__buffer__t.html">buffer_t</a>* sb, uint32_t gap);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keywordtype">void</span> buffer_adjust(<a class="code" href="struct__buffer__t.html">buffer_t</a>* sb, uint32_t gap);</div>
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="keywordtype">void</span> <a class="code" href="buffer_8h.html#a0f64078ea08b7269039ea6694f009729">buffer_clear</a>(<a class="code" href="struct__buffer__t.html">buffer_t</a>* sb);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="keywordtype">void</span> buffer_clear(<a class="code" href="struct__buffer__t.html">buffer_t</a>* sb);</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* BUFFER_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="buffer_8h_html_ae5cb663b693f41f93952c34cdd7f1f14"><div class="ttname"><a href="buffer_8h.html#ae5cb663b693f41f93952c34cdd7f1f14">buffer_enough</a></div><div class="ttdeci">int buffer_enough(buffer_t *sb, uint32_t size)</div><div class="ttdef"><b>Definition:</b> <a href="buffer_8c_source.html#l00072">buffer.c:72</a></div></div>
-<div class="ttc" id="struct__buffer__t_html"><div class="ttname"><a href="struct__buffer__t.html">_buffer_t</a></div><div class="ttdef"><b>Definition:</b> <a href="buffer_8c_source.html#l00028">buffer.c:28</a></div></div>
-<div class="ttc" id="buffer_8h_html_aa5059c5ab47dd3f98ce1d208831dfb88"><div class="ttname"><a href="buffer_8h.html#aa5059c5ab47dd3f98ce1d208831dfb88">buffer_create</a></div><div class="ttdeci">buffer_t * buffer_create(uint32_t size)</div><div class="ttdef"><b>Definition:</b> <a href="buffer_8c_source.html#l00034">buffer.c:34</a></div></div>
-<div class="ttc" id="buffer_8h_html_a521aa1247c7e0ce15f48da2b3f87ede5"><div class="ttname"><a href="buffer_8h.html#a521aa1247c7e0ce15f48da2b3f87ede5">buffer_get_length</a></div><div class="ttdeci">uint32_t buffer_get_length(buffer_t *sb)</div><div class="ttdef"><b>Definition:</b> <a href="buffer_8c_source.html#l00062">buffer.c:62</a></div></div>
-<div class="ttc" id="buffer_8h_html_a0f64078ea08b7269039ea6694f009729"><div class="ttname"><a href="buffer_8h.html#a0f64078ea08b7269039ea6694f009729">buffer_clear</a></div><div class="ttdeci">void buffer_clear(buffer_t *sb)</div><div class="ttdef"><b>Definition:</b> <a href="buffer_8c_source.html#l00087">buffer.c:87</a></div></div>
-<div class="ttc" id="config_8h_html"><div class="ttname"><a href="config_8h.html">config.h</a></div></div>
-<div class="ttc" id="buffer_8h_html_a13dfff4814bad92a4f5c263b68ddf475"><div class="ttname"><a href="buffer_8h.html#a13dfff4814bad92a4f5c263b68ddf475">buffer_get_max_size</a></div><div class="ttdeci">uint32_t buffer_get_max_size(buffer_t *sb)</div><div class="ttdef"><b>Definition:</b> <a href="buffer_8c_source.html#l00067">buffer.c:67</a></div></div>
-<div class="ttc" id="buffer_8h_html_ab54cc02c921fa0034efe6fbd146de96c"><div class="ttname"><a href="buffer_8h.html#ab54cc02c921fa0034efe6fbd146de96c">buffer_get_ptr</a></div><div class="ttdeci">char * buffer_get_ptr(buffer_t *sb)</div><div class="ttdef"><b>Definition:</b> <a href="buffer_8c_source.html#l00077">buffer.c:77</a></div></div>
-<div class="ttc" id="buffer_8h_html_a75b1ca3205331cdaf7a9f4e6f28c03d9"><div class="ttname"><a href="buffer_8h.html#a75b1ca3205331cdaf7a9f4e6f28c03d9">buffer_destroy</a></div><div class="ttdeci">void buffer_destroy(buffer_t *sb)</div><div class="ttdef"><b>Definition:</b> <a href="buffer_8c_source.html#l00044">buffer.c:44</a></div></div>
-<div class="ttc" id="buffer_8h_html_ab3e5b8fef4f96fbba03bcd2a55d5c4e2"><div class="ttname"><a href="buffer_8h.html#ab3e5b8fef4f96fbba03bcd2a55d5c4e2">buffer_put</a></div><div class="ttdeci">uint32_t buffer_put(buffer_t *sb, const char *temp, uint32_t size)</div><div class="ttdef"><b>Definition:</b> <a href="buffer_8c_source.html#l00050">buffer.c:50</a></div></div>
-<div class="ttc" id="buffer_8h_html_a1e574a50d7d434434bc466978601b703"><div class="ttname"><a href="buffer_8h.html#a1e574a50d7d434434bc466978601b703">buffer_adjust</a></div><div class="ttdeci">void buffer_adjust(buffer_t *sb, uint32_t gap)</div><div class="ttdef"><b>Definition:</b> <a href="buffer_8c_source.html#l00082">buffer.c:82</a></div></div>
+<div class="ttc" id="struct__buffer__t_html"><div class="ttname"><a href="struct__buffer__t.html">_buffer_t</a></div><div class="ttdef"><b>Definition:</b> buffer.c:28</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 六月 29日 星期一 16:51:00 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 9日 星期四 14:59:53 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

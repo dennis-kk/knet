@@ -142,26 +142,26 @@ typedef enum _channel_event_e {
     channel_event_send = 2,
 } channel_event_e;
 
-/* 管道状态 */
+/*! 管道状态 */
 typedef enum _channel_state_e {
-    channel_state_connect = 1, /* 主动发起连接，连接未完成 */
-    channel_state_accept = 2,  /* 监听 */
-    channel_state_close = 4,   /* 管道已关闭 */
-    channel_state_active = 8,  /* 管道已激活，可以收发数据 */
-    channel_state_init = 16,   /* 管道已建立，但未连接 */
+    channel_state_connect = 1, /*! 主动发起连接，连接未完成 */
+    channel_state_accept = 2,  /*! 监听 */
+    channel_state_close = 4,   /*! 管道已关闭 */
+    channel_state_active = 8,  /*! 管道已激活，可以收发数据 */
+    channel_state_init = 16,   /*! 管道已建立，但未连接 */
 } channel_state_e;
 
-/* 定时器类型 */
+/*! 定时器类型 */
 typedef enum _ktimer_type_e {
-    ktimer_type_once   = 1, /* 运行一次 */
-    ktimer_type_period = 2, /* 无限 */
-    ktimer_type_times  = 3, /* 多次运行 */
+    ktimer_type_once   = 1, /*! 运行一次 */
+    ktimer_type_period = 2, /*! 无限 */
+    ktimer_type_times  = 3, /*! 多次运行 */
 } ktimer_type_e;
 
-/* 负载均衡配置 */
+/*! 负载均衡配置 */
 typedef enum _loop_balance_option_e {
-    loop_balancer_in  = 1, /* 开启其他loop_t的管道在当前loop_t负载 */
-    loop_balancer_out = 2, /* 开启当前loop_t的管道到其他loop_t内负载 */
+    loop_balancer_in  = 1, /*! 开启其他loop_t的管道在当前loop_t负载 */
+    loop_balancer_out = 2, /*! 开启当前loop_t的管道到其他loop_t内负载 */
 } loop_balance_option_e;
 
 /* 错误码 */
@@ -219,15 +219,15 @@ typedef enum _error_e {
     error_stream_buffer_overflow,
 } error_e;
 
-/* 管道回调事件 */
+/*! 管道回调事件 */
 typedef enum _channel_cb_event_e {
-    channel_cb_event_connect = 1,          /* 连接完成 */
-    channel_cb_event_accept = 2,           /* 管道监听到了新连接请求 */ 
-    channel_cb_event_recv = 4,             /* 管道有数据可以读 */
-    channel_cb_event_send = 8,             /* 管道发送了字节，保留 */
-    channel_cb_event_close = 16,           /* 管道关闭 */
-    channel_cb_event_timeout = 32,         /* 管道读空闲 */
-    channel_cb_event_connect_timeout = 64, /* 主动发起连接，但连接超时 */
+    channel_cb_event_connect = 1,          /*! 连接完成 */
+    channel_cb_event_accept = 2,           /*! 管道监听到了新连接请求 */ 
+    channel_cb_event_recv = 4,             /*! 管道有数据可以读 */
+    channel_cb_event_send = 8,             /*! 管道发送了字节，保留 */
+    channel_cb_event_close = 16,           /*! 管道关闭 */
+    channel_cb_event_timeout = 32,         /*! 管道读空闲 */
+    channel_cb_event_connect_timeout = 64, /*! 主动发起连接，但连接超时 */
 } channel_cb_event_e;
 
 /* 日志等级 */
@@ -247,45 +247,45 @@ typedef enum _logger_mode_e {
     logger_mode_override = 8, /* 覆盖已存在的日志文件 */
 } logger_mode_e;
 
-/* RPC错误码 */
+/*! RPC错误码 */
 typedef enum _rpc_error_e {
-    rpc_ok = 0,      /* 成功 */
-    rpc_close,       /* 忽略错误，关闭 */
-    rpc_error,       /* 错误，但不关闭 */
-    rpc_error_close, /* 错误且关闭 */
+    rpc_ok = 0,      /*! 成功 */
+    rpc_close,       /*! 忽略错误，关闭 */
+    rpc_error,       /*! 错误，但不关闭 */
+    rpc_error_close, /*! 错误且关闭 */
 } rpc_error_e;
 
-/* RPC类型 */
+/*! RPC类型 */
 typedef enum _krpc_type_e {
-    krpc_type_i8     = 1,    /* 有符号8位 */
-    krpc_type_ui8    = 2,    /* 无符号8位 */
-    krpc_type_i16    = 4,    /* 有符号16位 */
-    krpc_type_ui16   = 8,    /* 无符号16位 */
-    krpc_type_i32    = 16,   /* 有符号32位 */
-    krpc_type_ui32   = 32,   /* 无符号32位 */
-    krpc_type_i64    = 64,   /* 有符号64位 */
-    krpc_type_ui64   = 128,  /* 无符号64位 */
-    krpc_type_f32    = 256,  /* 32位浮点 */
-    krpc_type_f64    = 512,  /* 64位浮点 */
-    krpc_type_number = 1024, /* 数字 */
-    krpc_type_string = 2048, /* 字符串 */
-    krpc_type_vector = 4096, /* 数组 */
-    krpc_type_map    = 8192, /* 表 */
+    krpc_type_i8     = 1,    /*! 有符号8位 */
+    krpc_type_ui8    = 2,    /*! 无符号8位 */
+    krpc_type_i16    = 4,    /*! 有符号16位 */
+    krpc_type_ui16   = 8,    /*! 无符号16位 */
+    krpc_type_i32    = 16,   /*! 有符号32位 */
+    krpc_type_ui32   = 32,   /*! 无符号32位 */
+    krpc_type_i64    = 64,   /*! 有符号64位 */
+    krpc_type_ui64   = 128,  /*! 无符号64位 */
+    krpc_type_f32    = 256,  /*! 32位浮点 */
+    krpc_type_f64    = 512,  /*! 64位浮点 */
+    krpc_type_number = 1024, /*! 数字 */
+    krpc_type_string = 2048, /*! 字符串 */
+    krpc_type_vector = 4096, /*! 数组 */
+    krpc_type_map    = 8192, /*! 表 */
 } krpc_type_e;
 
-/* 线程函数 */
+/*! 线程函数 */
 typedef void (*thread_func_t)(thread_runner_t*);
-/* 管道事件回调函数 */
+/*! 管道事件回调函数 */
 typedef void (*channel_ref_cb_t)(channel_ref_t*, channel_cb_event_e);
-/* 定时器回调函数 */
+/*! 定时器回调函数 */
 typedef void (*ktimer_cb_t)(ktimer_t*, void*);
-/* RPC回调函数 */
+/*! RPC回调函数 */
 typedef int (*krpc_cb_t)(krpc_object_t*);
-/* RPC加密回调函数, 返回 非零 加密后长度, 0 失败 */
+/*! RPC加密回调函数, 返回 非零 加密后长度, 0 失败 */
 typedef uint16_t (*krpc_encrypt_t)(void*, uint16_t, void*, uint16_t);
-/* RPC解密回调函数, 返回 非零 解密后长度, 0 失败 */
+/*! RPC解密回调函数, 返回 非零 解密后长度, 0 失败 */
 typedef uint16_t (*krpc_decrypt_t)(void*, uint16_t, void*, uint16_t);
-/* 哈希表元素销毁函数 */
+/*! 哈希表元素销毁函数 */
 typedef void (*hash_dtor_t)(void*);
 
 /* 根据需要， 开启不同选取器 */

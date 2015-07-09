@@ -25,6 +25,47 @@
 #ifndef RPC_OBJECT_API_H
 #define RPC_OBJECT_API_H
 
+/**
+ * @defgroup rpc 远程调用
+ * 远程调用
+ *
+ * <pre>
+ * 轻量级RPC框架
+ *
+ * krpc_object_t作为一个泛型的对象抽象接口，可以作为对象系统内任何类型的对象存在，
+ * 在设置方法调用后会确定对象的类型，但一旦确定是不能更改，krpc_object_t提供了统一的
+ * 接口来进行marshal/unmarshal(列集/散集)操作：
+ *
+ * 1. krpc_object_marshal          marshal并发送到管道流
+ * 2. krpc_object_marshal_buffer   marshal到缓冲区
+ * 3. krpc_object_unmarshal        从管道流接收并unmarshal
+ * 4. krpc_object_unmarshal_buffer 从缓冲区unmarshal
+ *
+ * 以上两类方法实现了从数据流到对象及对象到数据流的操作，作为RPC框架的基础.
+ *
+ * 对象类型系统包含如下类型：
+ *
+ * 1. 数字       整数，浮点数
+ * 2. 字符串     字符串
+ * 3. 数组(向量) 数组类容器
+ * 4. 表(字典)   字典类容器
+ *
+ * 操作以上类型的方法都明确的使用了前缀：
+ * 
+ * 1. krpc_number_ 数字
+ * 2. krpc_string_ 字符串
+ * 3. krpc_vector_ 数组
+ * 4. krpc_map_    表
+ *
+ * 容器类对象(数组，表)内可以容纳其他任意类型的对象(包含和自己相同类型对象),
+ * 一旦使用set类或clear类方法后，对象的类型就确定，譬如：调用krpc_set_number_i8
+ * 后， 对象的类型为数字，8位有符号整数. 类型操作函数没有提供非常丰富的方法来操作对象，
+ * 因为整套框架本身是用于RPC并非通用的容器库，使用的定位与传统的容器库有本质的不同.
+ *
+ * </pre>
+ * @{
+ */
+
 /* TODO 待测试 */
 
 #include "config.h"
@@ -373,5 +414,7 @@ extern int krpc_map_next(krpc_object_t* m, krpc_object_t** k, krpc_object_t** v)
  * @param m krpc_object_t实例
  */
 extern void krpc_map_clear(krpc_object_t* m);
+
+/** @} */
 
 #endif /* RPC_OBJECT_API_H */

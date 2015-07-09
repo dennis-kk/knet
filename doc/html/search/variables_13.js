@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['ui16',['ui16',['../struct__krpc__number__t.html#a231ad60c817fdbd5e4bc821518c9f45a',1,'_krpc_number_t']]],
-  ['ui32',['ui32',['../struct__krpc__number__t.html#afff306e5acf0ea66d28aa5fba332dd51',1,'_krpc_number_t']]],
-  ['ui64',['ui64',['../struct__krpc__number__t.html#a484c3360d4ca13775ab9560ac9e1484c',1,'_krpc_number_t']]],
-  ['ui8',['ui8',['../struct__krpc__number__t.html#ab85917650ffc409eede015fc3b83a054',1,'_krpc_number_t']]],
-  ['uuid',['uuid',['../struct__channel__t.html#a39dd6627d886e64fade4f193f5839759',1,'_channel_t']]]
+  ['value',['value',['../a00010_a2137cdf6c18ab110ebe2a6b0edce5017.html#a2137cdf6c18ab110ebe2a6b0edce5017',1,'_hash_value_t::value()'],['../a00016_a9944413a85a2590641cdc91b3d298ee8.html#a9944413a85a2590641cdc91b3d298ee8',1,'_krpc_value_t::value()']]],
+  ['value_5ftype',['value_type',['../a00011_acc4c0879bedc13cb9b4e2f3695905810.html#acc4c0879bedc13cb9b4e2f3695905810',1,'_krpc_map_t']]],
+  ['vector',['vector',['../a00013_a232e828a89184fb97cc3fd017a3d36c4.html#a232e828a89184fb97cc3fd017a3d36c4',1,'_krpc_object_t']]]
 ];

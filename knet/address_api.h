@@ -26,17 +26,34 @@
 #define ADDRESS_API_H
 
 /**
+ * @defgroup address 地址
+ * 地址
+ *
+ * <pre>
+ * 地址接口通过channel_ref_get_local_address或channel_ref_get_peer_address
+ * 获取本地或对端的地址
+ * </pre>
+ * @sa channel_ref_get_local_address
+ * @sa channel_ref_get_peer_address
+ * @{
+ */
+
+/**
  * 取得IP
  * @param address address_t实例
- * @return IP字符串
+ * @retval 有效的指针 IP字符串
+ * @retval 0 管道连接未建立
  */
 extern const char* address_get_ip(address_t* address);
 
 /**
  * 取得port
  * @param address address_t实例
- * @return 端口
+ * @retval 有效的端口号 端口号
+ * @retval 0 管道连接未建立
  */
 extern int address_get_port(address_t* address);
+
+/** @} */
 
 #endif /* ADDRESS_API_H */

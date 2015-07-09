@@ -28,6 +28,31 @@
 #include "config.h"
 
 /**
+ * @defgroup stream 流
+ * 管道流
+ *
+ * <pre>
+ * 管道流
+ *
+ * stream_t通过调用函数channel_ref_get_stream取得. 管道流提供了基于流的数据操作
+ * 以及特殊的针对性的方法用于提高操作效率.
+ * 
+ * 1. stream_available   获取流内可读字节数
+ * 2. stream_eat_all     丢弃流内所有可读字节
+ * 3. stream_eat         丢弃流内指定数量的字节
+ * 4. stream_pop         从流内读取数据
+ * 5. stream_push        向流内写数据
+ * 6. stream_copy        从流内拷贝指定数量的可读字节，但不清除这些字节，通常用于协议检测
+ * 7. stream_push_stream 将流内所有可读字节写入另一个流，不需要额外拷贝, 可用于网关的数据中转
+ * 8. stream_copy_stream 将流内所有可读字节写入另一个流，不需要额外拷贝, 但不清除这些字节，可用于广播
+ *
+ * 以上这些函数的设计除了基础的流本身的功能以外，还考虑了特定领域的应用，同时兼顾了效率.
+ *
+ * </pre>
+ * @{
+ */
+
+/**
  * 取得数据流内可读字节数
  * @param stream stream_t实例
  * @return 可读字节数
@@ -98,5 +123,7 @@ extern int stream_push_stream(stream_t* stream, stream_t* target);
  * @retval 其他 失败
  */
 extern int stream_copy_stream(stream_t* stream, stream_t* target);
+
+/** @} */
 
 #endif /* STREAM_API_H */

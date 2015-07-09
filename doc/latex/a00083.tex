@@ -1,0 +1,172 @@
+\hypertarget{a00083}{}\section{广播}
+\label{a00083}\index{广播@{广播}}
+
+
+广播域  
+
+
+\subsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00044_ac970c5deaf6417a866aabed01cd57b1b_ac970c5deaf6417a866aabed01cd57b1b}{broadcast\+\_\+t} $\ast$ \hyperlink{a00083_gaa3b09fb6ff3281cb10736c0aabac18fc_gaa3b09fb6ff3281cb10736c0aabac18fc}{broadcast\+\_\+create} ()
+\begin{DoxyCompactList}\small\item\em 创建广播域 \end{DoxyCompactList}\item 
+void \hyperlink{a00083_gaa28451fa4656633ded0c7b966ff159c3_gaa28451fa4656633ded0c7b966ff159c3}{broadcast\+\_\+destroy} (\hyperlink{a00044_ac970c5deaf6417a866aabed01cd57b1b_ac970c5deaf6417a866aabed01cd57b1b}{broadcast\+\_\+t} $\ast$broadcast)
+\begin{DoxyCompactList}\small\item\em 销毁广播域 \end{DoxyCompactList}\item 
+\hyperlink{a00044_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$ \hyperlink{a00083_ga1c736809a1d0e4b7c77b617ac8ce590d_ga1c736809a1d0e4b7c77b617ac8ce590d}{broadcast\+\_\+join} (\hyperlink{a00044_ac970c5deaf6417a866aabed01cd57b1b_ac970c5deaf6417a866aabed01cd57b1b}{broadcast\+\_\+t} $\ast$broadcast, \hyperlink{a00044_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\begin{DoxyCompactList}\small\item\em 加入广播域 \end{DoxyCompactList}\item 
+int \hyperlink{a00083_gad846ced37d33b750f61a88565eaed9a4_gad846ced37d33b750f61a88565eaed9a4}{broadcast\+\_\+leave} (\hyperlink{a00044_ac970c5deaf6417a866aabed01cd57b1b_ac970c5deaf6417a866aabed01cd57b1b}{broadcast\+\_\+t} $\ast$broadcast, \hyperlink{a00044_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\begin{DoxyCompactList}\small\item\em 离开广播域 \end{DoxyCompactList}\item 
+int \hyperlink{a00083_gacd045b1ca8be7fa8fac6e337934acc97_gacd045b1ca8be7fa8fac6e337934acc97}{broadcast\+\_\+get\+\_\+count} (\hyperlink{a00044_ac970c5deaf6417a866aabed01cd57b1b_ac970c5deaf6417a866aabed01cd57b1b}{broadcast\+\_\+t} $\ast$broadcast)
+\begin{DoxyCompactList}\small\item\em 取得广播域内管道数量 \end{DoxyCompactList}\item 
+int \hyperlink{a00083_ga0e8a8826a84c9c93a96e0fda1ca846aa_ga0e8a8826a84c9c93a96e0fda1ca846aa}{broadcast\+\_\+write} (\hyperlink{a00044_ac970c5deaf6417a866aabed01cd57b1b_ac970c5deaf6417a866aabed01cd57b1b}{broadcast\+\_\+t} $\ast$broadcast, char $\ast$buffer, uint32\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em 广播 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{详细描述}
+广播域 
+
+
+\begin{DoxyPre}
+管道可以加入广播域，加入后通过broadcast\_write方法可以发送数据到所有已经加入域内的管道.
+调用broadcast\_create创建一个广播域，broadcast\_destroy销毁广播域.\end{DoxyPre}
+
+
+
+\begin{DoxyPre}broadcast\_join加入一个广播域，broadcast\_join函数返回时创建了一个新的管道引用.\end{DoxyPre}
+
+
+
+\begin{DoxyPre}调用broadcast\_leave时应该使用这个返回值而不是使用broadcast\_join的第二个参数，新创建
+的管道引用会提升管道的引用计数，如果你关闭了这个管道你可以通过调用broadcast\_leave减少管
+道的引用计数，从而可以让loop\_t真正销毁管道，或者在调用broadcast\_write时自动销毁.\end{DoxyPre}
+
+
+
+\begin{DoxyPre}调用broadcast\_get\_count可以得知广播域内的管道引用数量，调用broadcast\_write发起一个
+广播操作，所有域内管道都会收到你广播的数据.
+\end{DoxyPre}
+ 
+
+\subsection{函数说明}
+\hypertarget{a00083_gaa3b09fb6ff3281cb10736c0aabac18fc_gaa3b09fb6ff3281cb10736c0aabac18fc}{}\index{广播@{广播}!broadcast\+\_\+create@{broadcast\+\_\+create}}
+\index{broadcast\+\_\+create@{broadcast\+\_\+create}!广播@{广播}}
+\subsubsection[{broadcast\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf broadcast\+\_\+t}$\ast$ broadcast\+\_\+create (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{a00083_gaa3b09fb6ff3281cb10736c0aabac18fc_gaa3b09fb6ff3281cb10736c0aabac18fc}
+
+
+创建广播域 
+
+\begin{DoxyReturn}{返回}
+broadcast\+\_\+t实例 
+\end{DoxyReturn}
+\hypertarget{a00083_gaa28451fa4656633ded0c7b966ff159c3_gaa28451fa4656633ded0c7b966ff159c3}{}\index{广播@{广播}!broadcast\+\_\+destroy@{broadcast\+\_\+destroy}}
+\index{broadcast\+\_\+destroy@{broadcast\+\_\+destroy}!广播@{广播}}
+\subsubsection[{broadcast\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void broadcast\+\_\+destroy (
+\begin{DoxyParamCaption}
+\item[{{\bf broadcast\+\_\+t} $\ast$}]{broadcast}
+\end{DoxyParamCaption}
+)}\label{a00083_gaa28451fa4656633ded0c7b966ff159c3_gaa28451fa4656633ded0c7b966ff159c3}
+
+
+销毁广播域 
+
+销毁的同时会将所有还在域内的管道引用销毁 
+\begin{DoxyParams}{参数}
+{\em broadcast} & broadcast\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00083_gacd045b1ca8be7fa8fac6e337934acc97_gacd045b1ca8be7fa8fac6e337934acc97}{}\index{广播@{广播}!broadcast\+\_\+get\+\_\+count@{broadcast\+\_\+get\+\_\+count}}
+\index{broadcast\+\_\+get\+\_\+count@{broadcast\+\_\+get\+\_\+count}!广播@{广播}}
+\subsubsection[{broadcast\+\_\+get\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}int broadcast\+\_\+get\+\_\+count (
+\begin{DoxyParamCaption}
+\item[{{\bf broadcast\+\_\+t} $\ast$}]{broadcast}
+\end{DoxyParamCaption}
+)}\label{a00083_gacd045b1ca8be7fa8fac6e337934acc97_gacd045b1ca8be7fa8fac6e337934acc97}
+
+
+取得广播域内管道数量 
+
+
+\begin{DoxyParams}{参数}
+{\em broadcast} & broadcast\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+管道数量 
+\end{DoxyReturn}
+\hypertarget{a00083_ga1c736809a1d0e4b7c77b617ac8ce590d_ga1c736809a1d0e4b7c77b617ac8ce590d}{}\index{广播@{广播}!broadcast\+\_\+join@{broadcast\+\_\+join}}
+\index{broadcast\+\_\+join@{broadcast\+\_\+join}!广播@{广播}}
+\subsubsection[{broadcast\+\_\+join}]{\setlength{\rightskip}{0pt plus 5cm}{\bf channel\+\_\+ref\+\_\+t}$\ast$ broadcast\+\_\+join (
+\begin{DoxyParamCaption}
+\item[{{\bf broadcast\+\_\+t} $\ast$}]{broadcast, }
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\end{DoxyParamCaption}
+)}\label{a00083_ga1c736809a1d0e4b7c77b617ac8ce590d_ga1c736809a1d0e4b7c77b617ac8ce590d}
+
+
+加入广播域 
+
+加入成功会生成一个新的引用 
+\begin{DoxyParams}{参数}
+{\em broadcast} & broadcast\+\_\+t实例 \\
+\hline
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+channel\+\_\+ref\+\_\+t实例，新的在广播域内的引用 
+\end{DoxyReturn}
+\hypertarget{a00083_gad846ced37d33b750f61a88565eaed9a4_gad846ced37d33b750f61a88565eaed9a4}{}\index{广播@{广播}!broadcast\+\_\+leave@{broadcast\+\_\+leave}}
+\index{broadcast\+\_\+leave@{broadcast\+\_\+leave}!广播@{广播}}
+\subsubsection[{broadcast\+\_\+leave}]{\setlength{\rightskip}{0pt plus 5cm}int broadcast\+\_\+leave (
+\begin{DoxyParamCaption}
+\item[{{\bf broadcast\+\_\+t} $\ast$}]{broadcast, }
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\end{DoxyParamCaption}
+)}\label{a00083_gad846ced37d33b750f61a88565eaed9a4_gad846ced37d33b750f61a88565eaed9a4}
+
+
+离开广播域 
+
+函数返回后管道引用已经被销毁，不要尝试再次访问这个引用 
+\begin{DoxyParams}{参数}
+{\em broadcast} & broadcast\+\_\+t实例 \\
+\hline
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例，由broadcast\+\_\+join()返回 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{a00083_ga0e8a8826a84c9c93a96e0fda1ca846aa_ga0e8a8826a84c9c93a96e0fda1ca846aa}{}\index{广播@{广播}!broadcast\+\_\+write@{broadcast\+\_\+write}}
+\index{broadcast\+\_\+write@{broadcast\+\_\+write}!广播@{广播}}
+\subsubsection[{broadcast\+\_\+write}]{\setlength{\rightskip}{0pt plus 5cm}int broadcast\+\_\+write (
+\begin{DoxyParamCaption}
+\item[{{\bf broadcast\+\_\+t} $\ast$}]{broadcast, }
+\item[{char $\ast$}]{buffer, }
+\item[{uint32\+\_\+t}]{size}
+\end{DoxyParamCaption}
+)}\label{a00083_ga0e8a8826a84c9c93a96e0fda1ca846aa_ga0e8a8826a84c9c93a96e0fda1ca846aa}
+
+
+广播 
+
+所有已经被关闭的管道在本函数调用时会被自动销毁 
+\begin{DoxyParams}{参数}
+{\em broadcast} & broadcast\+\_\+t实例 \\
+\hline
+{\em buffer} & 缓冲区指针 \\
+\hline
+{\em size} & 缓冲区长度 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+发送成功管道的数量 
+\end{DoxyReturn}

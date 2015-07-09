@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.9.1"/>
+<title>knet: ringbuffer_create</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">knet
+   &#160;<span id="projectnumber">1.4.3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.9.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="modules.html"><span>模块</span></a></li>
+      <li><a href="annotated.html"><span>结构体</span></a></li>
+      <li><a href="files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_885cc87fac2d91e269af0a5a959fa5f6.html">E:</a></li><li class="navelem"><a class="el" href="dir_4e74998c9a9305a116abc25fcf9a1edb.html">knet-git</a></li><li class="navelem"><a class="el" href="dir_a1c045b39f32066568ae964b52db514f.html">knet</a></li><li class="navelem"><a class="el" href="dir_f76d03789f0b12416cfffea59e2ed47d.html">knet</a></li><li class="navelem"><a class="el" href="a00064.html">ringbuffer.c</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="contents">
+<table cellspacing="0" cellpadding="0" border="0">
+  <tr>
+   <td valign="top">
+      <div class="navtab">
+        <table>
+          <tr><td class="navtab"><a class="qindex" href="a00064_a4fca0cda42cddc178da4ab3abd92ae3a.html#a4fca0cda42cddc178da4ab3abd92ae3a">ringbuffer_available</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00064_a0b57361c8632557fc144c7f7b853a33e.html#a0b57361c8632557fc144c7f7b853a33e">ringbuffer_copy</a></td></tr>
+          <tr><td class="navtab"><a class="qindexHL" href="a00064_a535c5ed96efcd2415e6cad1cfcf44228.html#a535c5ed96efcd2415e6cad1cfcf44228">ringbuffer_create</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00064_a968f7b808cc3085482292c1f31d92740.html#a968f7b808cc3085482292c1f31d92740">ringbuffer_destroy</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00064_aaab3eabc3d26998d7ec5458e89781b1d.html#aaab3eabc3d26998d7ec5458e89781b1d">ringbuffer_eat</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00064_a9af8341a5cc83cc1d6acbb868c498a03.html#a9af8341a5cc83cc1d6acbb868c498a03">ringbuffer_eat_all</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00064_aa11ec2026dde62682aa1583f2505afb9.html#aa11ec2026dde62682aa1583f2505afb9">ringbuffer_empty</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00064_ae0a8267d340411191b1c666914e17628.html#ae0a8267d340411191b1c666914e17628">ringbuffer_full</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00064_adb01000b575c0696d466c93819c4aeff.html#adb01000b575c0696d466c93819c4aeff">ringbuffer_get_max_size</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00064_a93296c953b97b465aa6d878d7ddaff87.html#a93296c953b97b465aa6d878d7ddaff87">ringbuffer_read</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00064_aea7ff5a3bd3ede77f076abaefad3fcb1.html#aea7ff5a3bd3ede77f076abaefad3fcb1">ringbuffer_read_commit</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00064_a7611ebce8ddc6637724794195ad6c035.html#a7611ebce8ddc6637724794195ad6c035">ringbuffer_read_lock_ptr</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00064_a17f80ee6eedc285a3086107f10d0605b.html#a17f80ee6eedc285a3086107f10d0605b">ringbuffer_read_lock_size</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00064_a5bccc516abce64ee739ed00bf055d42e.html#a5bccc516abce64ee739ed00bf055d42e">ringbuffer_window_read_commit</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00064_a2fc4c4b70a7f3959c0c82c99432ed04d.html#a2fc4c4b70a7f3959c0c82c99432ed04d">ringbuffer_window_read_lock_ptr</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00064_a0c3a46a4cfef551f1117b178748f718e.html#a0c3a46a4cfef551f1117b178748f718e">ringbuffer_window_read_lock_size</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00064_a88804c221b00561ac45b12b6e54bb8d1.html#a88804c221b00561ac45b12b6e54bb8d1">ringbuffer_write_commit</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00064_a67c7cbb3e39d70fc9ef3e4938fbc6d1d.html#a67c7cbb3e39d70fc9ef3e4938fbc6d1d">ringbuffer_write_lock_ptr</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00064_ada2b3f0cea4e372229709a5cb1f54725.html#ada2b3f0cea4e372229709a5cb1f54725">ringbuffer_write_lock_size</a></td></tr>
+        </table>
+      </div>
+   </td>
+   <td valign="top" class="mempage">
+<a class="anchor" id="a535c5ed96efcd2415e6cad1cfcf44228"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="a00044_af929c5cf86b6a0f64dde407dfe60482e.html#af929c5cf86b6a0f64dde407dfe60482e">ringbuffer_t</a>* ringbuffer_create </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>size</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>建立一个ringbuffer </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>最大长度 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>ringbuffer_t实例 </dd></dl>
+
+</div>
+</div>
+    </td>
+  </tr>
+</table>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+生成于 2015年 七月 9日 星期四 15:26:51 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.9.1
+</small></address>
+</body>
+</html>

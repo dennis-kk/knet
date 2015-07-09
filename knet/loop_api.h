@@ -28,6 +28,35 @@
 #include "config.h"
 
 /**
+ * @defgroup loop 事件循环
+ * 网络事件循环
+ *
+ * <pre>
+ * 网络事件API，作为各个不同操作系统网络选取器的包装，屏蔽了不同平台的具体实现，
+ * 为你提供统一的调用接口.
+ *
+ * 管道引用channel_ref_t通过调用loop_create_channel和loop_create_channel_exist_socket_fd
+ * 创建，loop_run将启动事件循环并等待调用loop_exit退出，你可以手动调用loop_run_once运行一次事件
+ * 循环自己控制循环的调用频率.
+ *
+ * 每个loop_t内都维护了活跃管道和已关闭(未销毁)管道的双向链表，可以通过loop_get_active_channel_count
+ * 和loop_get_close_channel_count来取得具体数量.
+ *
+ * 在创建管道时，要注意两个重要的配置参数：
+ *
+ * 1. max_send_list_len 发送链表最大元素个数
+ * 2. recv_ring_len     接受缓冲区最大长度
+ *
+ * 通常向管道内发送数据(stream_push_系列)，管道会尝试直接发送，并不缓存要发送的数据，如果因为某种原因
+ * 导致不能直接发送，数据会被缓存在发送链表内等待合适的时机发送，如果发送链表的长度达到上限，管道会被关闭.
+ * 同样，接受缓冲区会从套接字内将数据读取出来，如果你一直不从stream_t内取数据，那么早晚会被写满，管道也
+ * 会被关闭.
+ *
+ * </pre>
+ * @{
+ */
+
+/**
  * 创建一个事件循环
  * @return loop_t实例
  */
@@ -97,5 +126,7 @@ extern int loop_get_active_channel_count(loop_t* loop);
  * @return 关闭管道数量
  */
 extern int loop_get_close_channel_count(loop_t* loop);
+
+/** @} */
 
 #endif /* LOOP_API_H */

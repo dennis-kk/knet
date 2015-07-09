@@ -24,9 +24,8 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">knet
-   &#160;<span id="projectnumber">1.4.1</span>
+   &#160;<span id="projectnumber">1.4.3</span>
    </div>
-   <div id="projectbrief">cross platform, light-weight, multithreading net library</div>
   </td>
  </tr>
  </tbody>
@@ -40,9 +39,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>首页</span></a></li>
-      <li><a href="pages.html"><span>相关页面</span></a></li>
-      <li><a href="namespaces.html"><span>命名空间</span></a></li>
-      <li><a href="annotated.html"><span>结构体</span></a></li>
+      <li><a href="modules.html"><span>模块</span></a></li>
+      <li><a href="annotated.html"><span>类</span></a></li>
       <li class="current"><a href="files.html"><span>文件</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -65,7 +63,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>文件列表</span></a></li>
-      <li><a href="globals.html"><span>全局定义</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -92,7 +89,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="title">logger.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="logger_8h.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2014-2015, dennis wang</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * All rights reserved.</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * </span></div>
@@ -119,19 +116,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef LOGGER_H</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define LOGGER_H</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="config_8h.html">config.h</a>&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;config.h&quot;</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<a class="code" href="struct__logger__t.html">logger_t</a>* <a class="code" href="logger_8h.html#a99170db05ea3c90f8799e90d23032562">logger_create</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* path, <a class="code" href="config_8h.html#afe883c56a5fd8d7794a3dd36780ed9d0">logger_level_e</a> level, <a class="code" href="config_8h.html#aa72cd8c306f50bee7c64e1daa1c1f3f4">logger_mode_e</a> mode);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<a class="code" href="struct__logger__t.html">logger_t</a>* logger_create(<span class="keyword">const</span> <span class="keywordtype">char</span>* path, logger_level_e level, logger_mode_e mode);</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">void</span> <a class="code" href="logger_8h.html#a45bc781df24f677451bcc079de530585">logger_destroy</a>(<a class="code" href="struct__logger__t.html">logger_t</a>* logger);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">void</span> logger_destroy(<a class="code" href="struct__logger__t.html">logger_t</a>* logger);</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keywordtype">int</span> <a class="code" href="logger_8h.html#aad3695a5b5df8331b3c0f3e069f037f5">logger_write</a>(<a class="code" href="struct__logger__t.html">logger_t</a>* logger, <a class="code" href="config_8h.html#afe883c56a5fd8d7794a3dd36780ed9d0">logger_level_e</a> level, <span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keywordtype">int</span> logger_write(<a class="code" href="struct__logger__t.html">logger_t</a>* logger, logger_level_e level, <span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...);</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">/* 全局日志 */</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">extern</span> <a class="code" href="struct__logger__t.html">logger_t</a>* <a class="code" href="logger_8h.html#a390c05c7cb68b8334d6418733f330945">global_logger</a>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">extern</span> <a class="code" href="struct__logger__t.html">logger_t</a>* global_logger;</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">/* 建立全局日志实例 */</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="logger_8h.html#a652b2c371e63a4e5c83bfd4ccffdb5f6">   59</a></span>&#160;<span class="preprocessor">#define GLOBAL_LOGGER_INITIALIZE() \</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#define GLOBAL_LOGGER_INITIALIZE() \</span></div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">    do { \</span></div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">        if (!global_logger) global_logger = logger_create(0, LOGGER_LEVEL, LOGGER_MODE); \</span></div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">    } while(0);</span></div>
@@ -164,27 +161,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">                logger_write(global_logger, logger_level_fatal, format, ##__VA_ARGS__); \</span></div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">            } while(0);</span></div>
 <div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">    #else</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="logger_8h.html#a14cc328dca10f700057b63ef38b9b6d6">   92</a></span>&#160;<span class="preprocessor">        #define log_verb(format, args...) \</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="preprocessor">        #define log_verb(format, args...) \</span></div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor">            do { \</span></div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">                GLOBAL_LOGGER_INITIALIZE(); \</span></div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor">                logger_write(global_logger, logger_level_verbose, format, ##args); \</span></div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">            } while(0);</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="logger_8h.html#a315f98393b739fe47d2cf94ef0ffea0e">   97</a></span>&#160;<span class="preprocessor">        #define log_info(format, args...) \</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">        #define log_info(format, args...) \</span></div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">            do { \</span></div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor">                GLOBAL_LOGGER_INITIALIZE(); \</span></div>
 <div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">                logger_write(global_logger, logger_level_information, format, ##args); \</span></div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">            } while(0);</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="logger_8h.html#a360bf0dfa3997b4f866d190f7051fd5e">  102</a></span>&#160;<span class="preprocessor">        #define log_warn(format, args...) \</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="preprocessor">        #define log_warn(format, args...) \</span></div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="preprocessor">            do { \</span></div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">                GLOBAL_LOGGER_INITIALIZE(); \</span></div>
 <div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">                logger_write(global_logger, logger_level_warning, format, ##args); \</span></div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">            } while(0);</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="logger_8h.html#a2c8ee5a5093780a8501b01381981e413">  107</a></span>&#160;<span class="preprocessor">        #define log_error(format, args...) \</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">        #define log_error(format, args...) \</span></div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="preprocessor">            do { \</span></div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="preprocessor">                GLOBAL_LOGGER_INITIALIZE(); \</span></div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="preprocessor">                logger_write(global_logger, logger_level_error, format, ##args); \</span></div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="preprocessor">            } while(0);</span></div>
-<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="logger_8h.html#a2c5b6f385060b9e82d7aa34ccb8d7546">  112</a></span>&#160;<span class="preprocessor">        #define log_fatal(format, args...) \</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="preprocessor">        #define log_fatal(format, args...) \</span></div>
 <div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor">            do { \</span></div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="preprocessor">                GLOBAL_LOGGER_INITIALIZE(); \</span></div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="preprocessor">                logger_write(global_logger, logger_level_fatal, format, ##args); \</span></div>
@@ -207,18 +204,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* LOGGER_ON */</span><span class="preprocessor"></span></div>
 <div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
 <div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* LOGGER_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="logger_8h_html_a99170db05ea3c90f8799e90d23032562"><div class="ttname"><a href="logger_8h.html#a99170db05ea3c90f8799e90d23032562">logger_create</a></div><div class="ttdeci">logger_t * logger_create(const char *path, logger_level_e level, logger_mode_e mode)</div><div class="ttdef"><b>Definition:</b> <a href="logger_8c_source.html#l00038">logger.c:38</a></div></div>
-<div class="ttc" id="struct__logger__t_html"><div class="ttname"><a href="struct__logger__t.html">_logger_t</a></div><div class="ttdef"><b>Definition:</b> <a href="logger_8c_source.html#l00031">logger.c:31</a></div></div>
-<div class="ttc" id="logger_8h_html_aad3695a5b5df8331b3c0f3e069f037f5"><div class="ttname"><a href="logger_8h.html#aad3695a5b5df8331b3c0f3e069f037f5">logger_write</a></div><div class="ttdeci">int logger_write(logger_t *logger, logger_level_e level, const char *format,...)</div><div class="ttdef"><b>Definition:</b> <a href="logger_8c_source.html#l00079">logger.c:79</a></div></div>
-<div class="ttc" id="config_8h_html_afe883c56a5fd8d7794a3dd36780ed9d0"><div class="ttname"><a href="config_8h.html#afe883c56a5fd8d7794a3dd36780ed9d0">logger_level_e</a></div><div class="ttdeci">enum _logger_level_e logger_level_e</div></div>
-<div class="ttc" id="config_8h_html"><div class="ttname"><a href="config_8h.html">config.h</a></div></div>
-<div class="ttc" id="config_8h_html_aa72cd8c306f50bee7c64e1daa1c1f3f4"><div class="ttname"><a href="config_8h.html#aa72cd8c306f50bee7c64e1daa1c1f3f4">logger_mode_e</a></div><div class="ttdeci">enum _logger_mode_e logger_mode_e</div></div>
-<div class="ttc" id="logger_8h_html_a390c05c7cb68b8334d6418733f330945"><div class="ttname"><a href="logger_8h.html#a390c05c7cb68b8334d6418733f330945">global_logger</a></div><div class="ttdeci">logger_t * global_logger</div><div class="ttdef"><b>Definition:</b> <a href="logger_8c_source.html#l00029">logger.c:29</a></div></div>
-<div class="ttc" id="logger_8h_html_a45bc781df24f677451bcc079de530585"><div class="ttname"><a href="logger_8h.html#a45bc781df24f677451bcc079de530585">logger_destroy</a></div><div class="ttdeci">void logger_destroy(logger_t *logger)</div><div class="ttdef"><b>Definition:</b> <a href="logger_8c_source.html#l00070">logger.c:70</a></div></div>
+<div class="ttc" id="struct__logger__t_html"><div class="ttname"><a href="struct__logger__t.html">_logger_t</a></div><div class="ttdef"><b>Definition:</b> logger.c:31</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 六月 29日 星期一 16:51:00 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 9日 星期四 14:59:53 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

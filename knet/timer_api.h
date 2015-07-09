@@ -28,6 +28,34 @@
 #include "config.h"
 
 /**
+ * @defgroup timer 定时器
+ * 定时器
+ *
+ * <pre>
+ * 定时器
+ *
+ * 定时器并没有放在loop_t内处理，而是提供了独立的ktimer_loop_t来处理定时器.
+ * 有3种定时器类型:
+ *
+ * 1. 周期性定时器     ktimer_start启动
+ * 2. 运行一次的定时器  ktimer_start_once启动
+ * 3. 运行多次的定时器  ktimer_start_times启动
+ *
+ * 定时器的处理方式通过回调函数，与传统的定时器激发方式相同，内部实现采纳了
+ * 时间轮的概念(不完全是传统意义的时间轮)，定时器的加入和删除的时间复杂度都是O(1)，
+ * 如果调用ktimer_loop_run_once来自己手动触发，定时器的激发不能保证完全准确，
+ * 这取决于你的调用周期是否<=时间轮的转动频率.
+ *
+ * ktimer_loop_run内部使用操作系统提供的毫秒级睡眠函数来模拟间隔，防止CPU空转，
+ * 但操作系统提供的睡眠函数通常是不准确的，如果睡眠>=调度时间片，通常误差为百分之2以内,
+ * 这对于非毫秒级精确度通常是够用的，但是低于10毫秒分辨率的定时器会有非常大的误差，如果需要
+ * 精确的定时器，需要调用操作系统高分辨率时间函数来自行处理.
+ *
+ * </pre>
+ * @{
+ */
+
+/**
  * 创建定时器循环
  * @param freq 最小分辨率（毫秒）
  * @param slot 时间轮槽位数量
@@ -130,5 +158,7 @@ extern int ktimer_check_dead(ktimer_t* timer);
  * @return 滴答间隔
  */
 extern time_t ktimer_loop_get_tick_intval(ktimer_loop_t* ktimer_loop);
+
+/** @} */
 
 #endif /* TIMER_API_H */

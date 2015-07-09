@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.9.1"/>
+<title>knet: E:/knet-git/knet/knet/misc.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">knet
+   &#160;<span id="projectnumber">1.4.3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.9.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="modules.html"><span>模块</span></a></li>
+      <li><a href="annotated.html"><span>结构体</span></a></li>
+      <li class="current"><a href="files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>文件列表</span></a></li>
+      <li><a href="globals.html"><span>全局定义</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_885cc87fac2d91e269af0a5a959fa5f6.html">E:</a></li><li class="navelem"><a class="el" href="dir_4e74998c9a9305a116abc25fcf9a1edb.html">knet-git</a></li><li class="navelem"><a class="el" href="dir_a1c045b39f32066568ae964b52db514f.html">knet</a></li><li class="navelem"><a class="el" href="dir_f76d03789f0b12416cfffea59e2ed47d.html">knet</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">misc.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="a00063.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2014-2015, dennis wang</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * All rights reserved.</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * </span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Redistribution and use in source and binary forms, with or without</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * modification, are permitted provided that the following conditions are met:</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> *     * Redistributions of source code must retain the above copyright</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *       notice, this list of conditions and the following disclaimer.</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> *     * Redistributions in binary form must reproduce the above copyright</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> *       notice, this list of conditions and the following disclaimer in the</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> *       documentation and/or other materials provided with the distribution.</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> * </span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> * DISCLAIMED. IN NO EVENT SHALL dennis wang BE LIABLE FOR ANY</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment"> * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"> * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef MISC_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define MISC_H</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00044.html">config.h</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00076.html">thread_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<a class="code" href="a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> <a class="code" href="a00063_a71cc84510563a2981ed5a47f86ccb7f6.html#a71cc84510563a2981ed5a47f86ccb7f6">socket_create</a>();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00063_a1ec48de5c316491b068fbb3c76b21c91.html#a1ec48de5c316491b068fbb3c76b21c91">socket_connect</a>(<a class="code" href="a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd, <span class="keyword">const</span> <span class="keywordtype">char</span>* ip, <span class="keywordtype">int</span> port);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00063_a5ab6846ac2d5706e2357ee17a0178bc3.html#a5ab6846ac2d5706e2357ee17a0178bc3">socket_bind_and_listen</a>(<a class="code" href="a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd, <span class="keyword">const</span> <span class="keywordtype">char</span>* ip, <span class="keywordtype">int</span> port, <span class="keywordtype">int</span> backlog);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<a class="code" href="a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> <a class="code" href="a00063_a3db4aef68a8961e075d700673594f9d3.html#a3db4aef68a8961e075d700673594f9d3">socket_accept</a>(<a class="code" href="a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00063_a3972a34b212a86a683834f05ed37034f.html#a3972a34b212a86a683834f05ed37034f">socket_close</a>(<a class="code" href="a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00063_a10039d2f0e29d4b0d3b0cab3c7a1b63c.html#a10039d2f0e29d4b0d3b0cab3c7a1b63c">socket_set_reuse_addr_on</a>(<a class="code" href="a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00063_afd473c5857939c252deb9bfa30da8366.html#afd473c5857939c252deb9bfa30da8366">socket_set_non_blocking_on</a>(<a class="code" href="a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00063_ac38b97ead3e51bdc95124910f3657c8a.html#ac38b97ead3e51bdc95124910f3657c8a">socket_set_nagle_off</a>(<a class="code" href="a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00063_ae3f2774813f23e084f5268d51e6c4983.html#ae3f2774813f23e084f5268d51e6c4983">socket_set_linger_off</a>(<a class="code" href="a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00063_aeaa8128921474edb7c47efb40c8383ff.html#aeaa8128921474edb7c47efb40c8383ff">socket_set_keepalive_off</a>(<a class="code" href="a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00063_a1d090d32a5cdf8b76b9e8eb650dfab60.html#a1d090d32a5cdf8b76b9e8eb650dfab60">socket_set_donot_route_on</a>(<a class="code" href="a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00063_ae2d51397a3f343ea4daaf96b4d203f73.html#ae2d51397a3f343ea4daaf96b4d203f73">socket_set_recv_buffer_size</a>(<a class="code" href="a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd, <span class="keywordtype">int</span> size);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00063_a8489cd06398f759fff9660006dc8c10d.html#a8489cd06398f759fff9660006dc8c10d">socket_set_send_buffer_size</a>(<a class="code" href="a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd, <span class="keywordtype">int</span> size);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00063_a1acbefba637d7c0c3fd77355f84d4c22.html#a1acbefba637d7c0c3fd77355f84d4c22">socket_send</a>(<a class="code" href="a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd, <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="a00027_a160fc7e322a3146e8c7e6b48bec09400.html#a160fc7e322a3146e8c7e6b48bec09400">data</a>, uint32_t size);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00063_a8a4b901f1586de59d1d0a88d3326c934.html#a8a4b901f1586de59d1d0a88d3326c934">socket_recv</a>(<a class="code" href="a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd, <span class="keywordtype">char</span>* <a class="code" href="a00027_a160fc7e322a3146e8c7e6b48bec09400.html#a160fc7e322a3146e8c7e6b48bec09400">data</a>, uint32_t size);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00063_a64d681185ca861b010c81db7479e9e08.html#a64d681185ca861b010c81db7479e9e08">socket_pair</a>(<a class="code" href="a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> pair[2]);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00063_af9dec30d9e18787252fecc0de537843f.html#af9dec30d9e18787252fecc0de537843f">socket_getpeername</a>(<a class="code" href="a00005.html">channel_ref_t</a>* channel_ref, <a class="code" href="a00001.html">address_t</a>* address);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00063_ad427473485df55e150741186f3ef2879.html#ad427473485df55e150741186f3ef2879">socket_getsockname</a>(<a class="code" href="a00005.html">channel_ref_t</a>* channel_ref, <a class="code" href="a00001.html">address_t</a>* address);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00063_a8afd26cc26824e35f1ec942d2c367c2b.html#a8afd26cc26824e35f1ec942d2c367c2b">socket_check_send_ready</a>(<a class="code" href="a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<a class="code" href="a00020.html">lock_t</a>* <a class="code" href="a00063_a0e47279c8c752d22446932673be52e38.html#a0e47279c8c752d22446932673be52e38">lock_create</a>();</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00063_aba61c8c4b8ee5ec7e337ed950d680702.html#aba61c8c4b8ee5ec7e337ed950d680702">lock_destroy</a>(<a class="code" href="a00020.html">lock_t</a>* lock);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00063_ad8e04f3d702d3f15868c064947d396b3.html#ad8e04f3d702d3f15868c064947d396b3">lock_lock</a>(<a class="code" href="a00020.html">lock_t</a>* lock);</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00063_a2caa15f5d1698c623c1861bd02184d0e.html#a2caa15f5d1698c623c1861bd02184d0e">lock_trylock</a>(<a class="code" href="a00020.html">lock_t</a>* lock);</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00063_a99cf1d42527f5715b798064281e918ed.html#a99cf1d42527f5715b798064281e918ed">lock_unlock</a>(<a class="code" href="a00020.html">lock_t</a>* lock);</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;uint32_t <a class="code" href="a00063_a528d27a7218cb2fdabf81ca343e24fc9.html#a528d27a7218cb2fdabf81ca343e24fc9">time_get_milliseconds</a>();</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;uint64_t <a class="code" href="a00063_a5eb6de730bc28be3fbc402b9841c1819.html#a5eb6de730bc28be3fbc402b9841c1819">time_get_microseconds</a>();</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00063_a3cab12b4908938ca999206a67c8ee032.html#a3cab12b4908938ca999206a67c8ee032">time_gettimeofday</a>(<span class="keyword">struct</span> timeval *tp, <span class="keywordtype">void</span> *tzp);</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;<span class="keywordtype">char</span>* <a class="code" href="a00063_a6d3f7fda67a3c61f767f7b2dbfcbe4ee.html#a6d3f7fda67a3c61f767f7b2dbfcbe4ee">time_get_string</a>(<span class="keywordtype">char</span>* buffer, <span class="keywordtype">int</span> size);</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;uint64_t <a class="code" href="a00063_a2b1df51bc127460a3bf25949068bfe92.html#a2b1df51bc127460a3bf25949068bfe92">uuid_create</a>();</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;<span class="keywordtype">char</span>* <a class="code" href="a00063_a6c98a04f00772c05a1f51afc185f7513.html#a6c98a04f00772c05a1f51afc185f7513">path_getcwd</a>(<span class="keywordtype">char</span>* buffer, <span class="keywordtype">int</span> size);</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<a class="code" href="a00044_aeaea39e7ef5adeec1efaee3eee6b12ff.html#aeaea39e7ef5adeec1efaee3eee6b12ff">sys_error_t</a> <a class="code" href="a00063_a2e3ede072c59452900afcb1334611dac.html#a2e3ede072c59452900afcb1334611dac">sys_get_errno</a>();</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;uint64_t <a class="code" href="a00063_ab1f59aa518d342661072356abbbb5e85.html#ab1f59aa518d342661072356abbbb5e85">htonll</a>(uint64_t ui64);</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;uint64_t <a class="code" href="a00063_aebdeac120dd80e9450e54e6f18151f45.html#aebdeac120dd80e9450e54e6f18151f45">ntohll</a>(uint64_t ui64);</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="a00063_a09544f6ae0ab9ff277146fb25ae2354c.html#a09544f6ae0ab9ff277146fb25ae2354c">get_channel_cb_event_string</a>(<a class="code" href="a00044_aaf2cba5d4035f3d56350b59342ebf65c.html#aaf2cba5d4035f3d56350b59342ebf65c">channel_cb_event_e</a> e);</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="a00063_a83ecacb2855b2a9c324de5ffb5300e15.html#a83ecacb2855b2a9c324de5ffb5300e15">get_channel_cb_event_name</a>(<a class="code" href="a00044_aaf2cba5d4035f3d56350b59342ebf65c.html#aaf2cba5d4035f3d56350b59342ebf65c">channel_cb_event_e</a> e);</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* MISC_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a00063_a0e47279c8c752d22446932673be52e38_html_a0e47279c8c752d22446932673be52e38"><div class="ttname"><a href="a00063_a0e47279c8c752d22446932673be52e38.html#a0e47279c8c752d22446932673be52e38">lock_create</a></div><div class="ttdeci">lock_t * lock_create()</div><div class="ttdoc">建立互斥锁实例 </div><div class="ttdef"><b>Definition:</b> misc.c:495</div></div>
+<div class="ttc" id="a00044_html"><div class="ttname"><a href="a00044.html">config.h</a></div></div>
+<div class="ttc" id="a00063_a3db4aef68a8961e075d700673594f9d3_html_a3db4aef68a8961e075d700673594f9d3"><div class="ttname"><a href="a00063_a3db4aef68a8961e075d700673594f9d3.html#a3db4aef68a8961e075d700673594f9d3">socket_accept</a></div><div class="ttdeci">socket_t socket_accept(socket_t socket_fd)</div><div class="ttdoc">accept </div><div class="ttdef"><b>Definition:</b> misc.c:141</div></div>
+<div class="ttc" id="a00063_a8afd26cc26824e35f1ec942d2c367c2b_html_a8afd26cc26824e35f1ec942d2c367c2b"><div class="ttname"><a href="a00063_a8afd26cc26824e35f1ec942d2c367c2b.html#a8afd26cc26824e35f1ec942d2c367c2b">socket_check_send_ready</a></div><div class="ttdeci">int socket_check_send_ready(socket_t socket_fd)</div><div class="ttdoc">检查套接字是否可写 </div><div class="ttdef"><b>Definition:</b> misc.c:223</div></div>
+<div class="ttc" id="a00001_html"><div class="ttname"><a href="a00001.html">_address_t</a></div><div class="ttdef"><b>Definition:</b> address.c:27</div></div>
+<div class="ttc" id="a00063_a2caa15f5d1698c623c1861bd02184d0e_html_a2caa15f5d1698c623c1861bd02184d0e"><div class="ttname"><a href="a00063_a2caa15f5d1698c623c1861bd02184d0e.html#a2caa15f5d1698c623c1861bd02184d0e">lock_trylock</a></div><div class="ttdeci">int lock_trylock(lock_t *lock)</div><div class="ttdoc">测试锁 </div><div class="ttdef"><b>Definition:</b> misc.c:521</div></div>
+<div class="ttc" id="a00063_a8a4b901f1586de59d1d0a88d3326c934_html_a8a4b901f1586de59d1d0a88d3326c934"><div class="ttname"><a href="a00063_a8a4b901f1586de59d1d0a88d3326c934.html#a8a4b901f1586de59d1d0a88d3326c934">socket_recv</a></div><div class="ttdeci">int socket_recv(socket_t socket_fd, char *data, uint32_t size)</div><div class="ttdef"><b>Definition:</b> misc.c:273</div></div>
+<div class="ttc" id="a00076_html"><div class="ttname"><a href="a00076.html">thread_api.h</a></div></div>
+<div class="ttc" id="a00063_a1acbefba637d7c0c3fd77355f84d4c22_html_a1acbefba637d7c0c3fd77355f84d4c22"><div class="ttname"><a href="a00063_a1acbefba637d7c0c3fd77355f84d4c22.html#a1acbefba637d7c0c3fd77355f84d4c22">socket_send</a></div><div class="ttdeci">int socket_send(socket_t socket_fd, const char *data, uint32_t size)</div><div class="ttdef"><b>Definition:</b> misc.c:241</div></div>
+<div class="ttc" id="a00063_a528d27a7218cb2fdabf81ca343e24fc9_html_a528d27a7218cb2fdabf81ca343e24fc9"><div class="ttname"><a href="a00063_a528d27a7218cb2fdabf81ca343e24fc9.html#a528d27a7218cb2fdabf81ca343e24fc9">time_get_milliseconds</a></div><div class="ttdeci">uint32_t time_get_milliseconds()</div><div class="ttdoc">获取当前毫秒 </div><div class="ttdef"><b>Definition:</b> misc.c:826</div></div>
+<div class="ttc" id="a00063_a71cc84510563a2981ed5a47f86ccb7f6_html_a71cc84510563a2981ed5a47f86ccb7f6"><div class="ttname"><a href="a00063_a71cc84510563a2981ed5a47f86ccb7f6.html#a71cc84510563a2981ed5a47f86ccb7f6">socket_create</a></div><div class="ttdeci">socket_t socket_create()</div><div class="ttdoc">建立一个套接字 </div><div class="ttdef"><b>Definition:</b> misc.c:48</div></div>
+<div class="ttc" id="a00027_a160fc7e322a3146e8c7e6b48bec09400_html_a160fc7e322a3146e8c7e6b48bec09400"><div class="ttname"><a href="a00027_a160fc7e322a3146e8c7e6b48bec09400.html#a160fc7e322a3146e8c7e6b48bec09400">_store_t::data</a></div><div class="ttdeci">hash_t * data</div><div class="ttdef"><b>Definition:</b> store.c:32</div></div>
+<div class="ttc" id="a00063_a99cf1d42527f5715b798064281e918ed_html_a99cf1d42527f5715b798064281e918ed"><div class="ttname"><a href="a00063_a99cf1d42527f5715b798064281e918ed.html#a99cf1d42527f5715b798064281e918ed">lock_unlock</a></div><div class="ttdeci">void lock_unlock(lock_t *lock)</div><div class="ttdoc">解锁 </div><div class="ttdef"><b>Definition:</b> misc.c:530</div></div>
+<div class="ttc" id="a00063_afd473c5857939c252deb9bfa30da8366_html_afd473c5857939c252deb9bfa30da8366"><div class="ttname"><a href="a00063_afd473c5857939c252deb9bfa30da8366.html#afd473c5857939c252deb9bfa30da8366">socket_set_non_blocking_on</a></div><div class="ttdeci">int socket_set_non_blocking_on(socket_t socket_fd)</div><div class="ttdef"><b>Definition:</b> misc.c:160</div></div>
+<div class="ttc" id="a00063_ab1f59aa518d342661072356abbbb5e85_html_ab1f59aa518d342661072356abbbb5e85"><div class="ttname"><a href="a00063_ab1f59aa518d342661072356abbbb5e85.html#ab1f59aa518d342661072356abbbb5e85">htonll</a></div><div class="ttdeci">uint64_t htonll(uint64_t ui64)</div><div class="ttdoc">字节序转换 - 主机序到网络序 </div><div class="ttdef"><b>Definition:</b> misc.c:943</div></div>
+<div class="ttc" id="a00063_a6c98a04f00772c05a1f51afc185f7513_html_a6c98a04f00772c05a1f51afc185f7513"><div class="ttname"><a href="a00063_a6c98a04f00772c05a1f51afc185f7513.html#a6c98a04f00772c05a1f51afc185f7513">path_getcwd</a></div><div class="ttdeci">char * path_getcwd(char *buffer, int size)</div><div class="ttdoc">取得当前工作目录 </div><div class="ttdef"><b>Definition:</b> misc.c:920</div></div>
+<div class="ttc" id="a00063_a3cab12b4908938ca999206a67c8ee032_html_a3cab12b4908938ca999206a67c8ee032"><div class="ttname"><a href="a00063_a3cab12b4908938ca999206a67c8ee032.html#a3cab12b4908938ca999206a67c8ee032">time_gettimeofday</a></div><div class="ttdeci">int time_gettimeofday(struct timeval *tp, void *tzp)</div><div class="ttdoc">gettimeofday </div><div class="ttdef"><b>Definition:</b> misc.c:839</div></div>
+<div class="ttc" id="a00063_aebdeac120dd80e9450e54e6f18151f45_html_aebdeac120dd80e9450e54e6f18151f45"><div class="ttname"><a href="a00063_aebdeac120dd80e9450e54e6f18151f45.html#aebdeac120dd80e9450e54e6f18151f45">ntohll</a></div><div class="ttdeci">uint64_t ntohll(uint64_t ui64)</div><div class="ttdoc">字节序转换 - 网络序到主机序 </div><div class="ttdef"><b>Definition:</b> misc.c:947</div></div>
+<div class="ttc" id="a00063_ad427473485df55e150741186f3ef2879_html_ad427473485df55e150741186f3ef2879"><div class="ttname"><a href="a00063_ad427473485df55e150741186f3ef2879.html#ad427473485df55e150741186f3ef2879">socket_getsockname</a></div><div class="ttdeci">int socket_getsockname(channel_ref_t *channel_ref, address_t *address)</div><div class="ttdoc">getsockname </div><div class="ttdef"><b>Definition:</b> misc.c:435</div></div>
+<div class="ttc" id="a00063_a09544f6ae0ab9ff277146fb25ae2354c_html_a09544f6ae0ab9ff277146fb25ae2354c"><div class="ttname"><a href="a00063_a09544f6ae0ab9ff277146fb25ae2354c.html#a09544f6ae0ab9ff277146fb25ae2354c">get_channel_cb_event_string</a></div><div class="ttdeci">const char * get_channel_cb_event_string(channel_cb_event_e e)</div><div class="ttdoc">取得管道回调事件描述 </div><div class="ttdef"><b>Definition:</b> misc.c:951</div></div>
+<div class="ttc" id="a00063_aba61c8c4b8ee5ec7e337ed950d680702_html_aba61c8c4b8ee5ec7e337ed950d680702"><div class="ttname"><a href="a00063_aba61c8c4b8ee5ec7e337ed950d680702.html#aba61c8c4b8ee5ec7e337ed950d680702">lock_destroy</a></div><div class="ttdeci">void lock_destroy(lock_t *lock)</div><div class="ttdoc">销毁互斥锁 </div><div class="ttdef"><b>Definition:</b> misc.c:502</div></div>
+<div class="ttc" id="a00063_ae2d51397a3f343ea4daaf96b4d203f73_html_ae2d51397a3f343ea4daaf96b4d203f73"><div class="ttname"><a href="a00063_ae2d51397a3f343ea4daaf96b4d203f73.html#ae2d51397a3f343ea4daaf96b4d203f73">socket_set_recv_buffer_size</a></div><div class="ttdeci">int socket_set_recv_buffer_size(socket_t socket_fd, int size)</div><div class="ttdef"><b>Definition:</b> misc.c:215</div></div>
+<div class="ttc" id="a00063_ae3f2774813f23e084f5268d51e6c4983_html_ae3f2774813f23e084f5268d51e6c4983"><div class="ttname"><a href="a00063_ae3f2774813f23e084f5268d51e6c4983.html#ae3f2774813f23e084f5268d51e6c4983">socket_set_linger_off</a></div><div class="ttdeci">int socket_set_linger_off(socket_t socket_fd)</div><div class="ttdef"><b>Definition:</b> misc.c:199</div></div>
+<div class="ttc" id="a00005_html"><div class="ttname"><a href="a00005.html">_channel_ref_t</a></div><div class="ttdef"><b>Definition:</b> channel_ref.c:57</div></div>
+<div class="ttc" id="a00063_aeaa8128921474edb7c47efb40c8383ff_html_aeaa8128921474edb7c47efb40c8383ff"><div class="ttname"><a href="a00063_aeaa8128921474edb7c47efb40c8383ff.html#aeaa8128921474edb7c47efb40c8383ff">socket_set_keepalive_off</a></div><div class="ttdeci">int socket_set_keepalive_off(socket_t socket_fd)</div><div class="ttdef"><b>Definition:</b> misc.c:205</div></div>
+<div class="ttc" id="a00063_a10039d2f0e29d4b0d3b0cab3c7a1b63c_html_a10039d2f0e29d4b0d3b0cab3c7a1b63c"><div class="ttname"><a href="a00063_a10039d2f0e29d4b0d3b0cab3c7a1b63c.html#a10039d2f0e29d4b0d3b0cab3c7a1b63c">socket_set_reuse_addr_on</a></div><div class="ttdeci">int socket_set_reuse_addr_on(socket_t socket_fd)</div><div class="ttdef"><b>Definition:</b> misc.c:155</div></div>
+<div class="ttc" id="a00020_html"><div class="ttname"><a href="a00020.html">_lock_t</a></div><div class="ttdef"><b>Definition:</b> misc.c:479</div></div>
+<div class="ttc" id="a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05_html_a0d9e0afbf02fb6ed6c5b1415dce51b05"><div class="ttname"><a href="a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a></div><div class="ttdeci">#define socket_t</div><div class="ttdef"><b>Definition:</b> config.h:88</div></div>
+<div class="ttc" id="a00063_a5eb6de730bc28be3fbc402b9841c1819_html_a5eb6de730bc28be3fbc402b9841c1819"><div class="ttname"><a href="a00063_a5eb6de730bc28be3fbc402b9841c1819.html#a5eb6de730bc28be3fbc402b9841c1819">time_get_microseconds</a></div><div class="ttdeci">uint64_t time_get_microseconds()</div><div class="ttdoc">获取当前微秒 </div><div class="ttdef"><b>Definition:</b> misc.c:885</div></div>
+<div class="ttc" id="a00063_a2e3ede072c59452900afcb1334611dac_html_a2e3ede072c59452900afcb1334611dac"><div class="ttname"><a href="a00063_a2e3ede072c59452900afcb1334611dac.html#a2e3ede072c59452900afcb1334611dac">sys_get_errno</a></div><div class="ttdeci">sys_error_t sys_get_errno()</div><div class="ttdoc">获取最新的系统错误码 </div><div class="ttdef"><b>Definition:</b> misc.c:935</div></div>
+<div class="ttc" id="a00063_a2b1df51bc127460a3bf25949068bfe92_html_a2b1df51bc127460a3bf25949068bfe92"><div class="ttname"><a href="a00063_a2b1df51bc127460a3bf25949068bfe92.html#a2b1df51bc127460a3bf25949068bfe92">uuid_create</a></div><div class="ttdeci">uint64_t uuid_create()</div><div class="ttdoc">产生一个伪UUID，只保证本进程内不重复 </div><div class="ttdef"><b>Definition:</b> misc.c:906</div></div>
+<div class="ttc" id="a00063_a1ec48de5c316491b068fbb3c76b21c91_html_a1ec48de5c316491b068fbb3c76b21c91"><div class="ttname"><a href="a00063_a1ec48de5c316491b068fbb3c76b21c91.html#a1ec48de5c316491b068fbb3c76b21c91">socket_connect</a></div><div class="ttdeci">int socket_connect(socket_t socket_fd, const char *ip, int port)</div><div class="ttdoc">发起异步connect </div><div class="ttdef"><b>Definition:</b> misc.c:68</div></div>
+<div class="ttc" id="a00063_a64d681185ca861b010c81db7479e9e08_html_a64d681185ca861b010c81db7479e9e08"><div class="ttname"><a href="a00063_a64d681185ca861b010c81db7479e9e08.html#a64d681185ca861b010c81db7479e9e08">socket_pair</a></div><div class="ttdeci">int socket_pair(socket_t pair[2])</div><div class="ttdoc">socketpair </div><div class="ttdef"><b>Definition:</b> misc.c:312</div></div>
+<div class="ttc" id="a00063_af9dec30d9e18787252fecc0de537843f_html_af9dec30d9e18787252fecc0de537843f"><div class="ttname"><a href="a00063_af9dec30d9e18787252fecc0de537843f.html#af9dec30d9e18787252fecc0de537843f">socket_getpeername</a></div><div class="ttdeci">int socket_getpeername(channel_ref_t *channel_ref, address_t *address)</div><div class="ttdoc">getpeername </div><div class="ttdef"><b>Definition:</b> misc.c:411</div></div>
+<div class="ttc" id="a00063_a3972a34b212a86a683834f05ed37034f_html_a3972a34b212a86a683834f05ed37034f"><div class="ttname"><a href="a00063_a3972a34b212a86a683834f05ed37034f.html#a3972a34b212a86a683834f05ed37034f">socket_close</a></div><div class="ttdeci">int socket_close(socket_t socket_fd)</div><div class="ttdoc">关闭套接字（强制关闭） </div><div class="ttdef"><b>Definition:</b> misc.c:183</div></div>
+<div class="ttc" id="a00044_aeaea39e7ef5adeec1efaee3eee6b12ff_html_aeaea39e7ef5adeec1efaee3eee6b12ff"><div class="ttname"><a href="a00044_aeaea39e7ef5adeec1efaee3eee6b12ff.html#aeaea39e7ef5adeec1efaee3eee6b12ff">sys_error_t</a></div><div class="ttdeci">#define sys_error_t</div><div class="ttdef"><b>Definition:</b> config.h:89</div></div>
+<div class="ttc" id="a00063_ad8e04f3d702d3f15868c064947d396b3_html_ad8e04f3d702d3f15868c064947d396b3"><div class="ttname"><a href="a00063_ad8e04f3d702d3f15868c064947d396b3.html#ad8e04f3d702d3f15868c064947d396b3">lock_lock</a></div><div class="ttdeci">void lock_lock(lock_t *lock)</div><div class="ttdoc">锁 </div><div class="ttdef"><b>Definition:</b> misc.c:512</div></div>
+<div class="ttc" id="a00063_a6d3f7fda67a3c61f767f7b2dbfcbe4ee_html_a6d3f7fda67a3c61f767f7b2dbfcbe4ee"><div class="ttname"><a href="a00063_a6d3f7fda67a3c61f767f7b2dbfcbe4ee.html#a6d3f7fda67a3c61f767f7b2dbfcbe4ee">time_get_string</a></div><div class="ttdeci">char * time_get_string(char *buffer, int size)</div><div class="ttdoc">取得当前可阅读时间字符串 </div><div class="ttdef"><b>Definition:</b> misc.c:862</div></div>
+<div class="ttc" id="a00063_a83ecacb2855b2a9c324de5ffb5300e15_html_a83ecacb2855b2a9c324de5ffb5300e15"><div class="ttname"><a href="a00063_a83ecacb2855b2a9c324de5ffb5300e15.html#a83ecacb2855b2a9c324de5ffb5300e15">get_channel_cb_event_name</a></div><div class="ttdeci">const char * get_channel_cb_event_name(channel_cb_event_e e)</div><div class="ttdoc">取得管道回调事件名字 </div><div class="ttdef"><b>Definition:</b> misc.c:971</div></div>
+<div class="ttc" id="a00063_a5ab6846ac2d5706e2357ee17a0178bc3_html_a5ab6846ac2d5706e2357ee17a0178bc3"><div class="ttname"><a href="a00063_a5ab6846ac2d5706e2357ee17a0178bc3.html#a5ab6846ac2d5706e2357ee17a0178bc3">socket_bind_and_listen</a></div><div class="ttdeci">int socket_bind_and_listen(socket_t socket_fd, const char *ip, int port, int backlog)</div><div class="ttdoc">bind & listen </div><div class="ttdef"><b>Definition:</b> misc.c:108</div></div>
+<div class="ttc" id="a00063_a1d090d32a5cdf8b76b9e8eb650dfab60_html_a1d090d32a5cdf8b76b9e8eb650dfab60"><div class="ttname"><a href="a00063_a1d090d32a5cdf8b76b9e8eb650dfab60.html#a1d090d32a5cdf8b76b9e8eb650dfab60">socket_set_donot_route_on</a></div><div class="ttdeci">int socket_set_donot_route_on(socket_t socket_fd)</div><div class="ttdef"><b>Definition:</b> misc.c:210</div></div>
+<div class="ttc" id="a00063_ac38b97ead3e51bdc95124910f3657c8a_html_ac38b97ead3e51bdc95124910f3657c8a"><div class="ttname"><a href="a00063_ac38b97ead3e51bdc95124910f3657c8a.html#ac38b97ead3e51bdc95124910f3657c8a">socket_set_nagle_off</a></div><div class="ttdeci">int socket_set_nagle_off(socket_t socket_fd)</div><div class="ttdef"><b>Definition:</b> misc.c:194</div></div>
+<div class="ttc" id="a00063_a8489cd06398f759fff9660006dc8c10d_html_a8489cd06398f759fff9660006dc8c10d"><div class="ttname"><a href="a00063_a8489cd06398f759fff9660006dc8c10d.html#a8489cd06398f759fff9660006dc8c10d">socket_set_send_buffer_size</a></div><div class="ttdeci">int socket_set_send_buffer_size(socket_t socket_fd, int size)</div><div class="ttdef"><b>Definition:</b> misc.c:219</div></div>
+<div class="ttc" id="a00044_aaf2cba5d4035f3d56350b59342ebf65c_html_aaf2cba5d4035f3d56350b59342ebf65c"><div class="ttname"><a href="a00044_aaf2cba5d4035f3d56350b59342ebf65c.html#aaf2cba5d4035f3d56350b59342ebf65c">channel_cb_event_e</a></div><div class="ttdeci">enum _channel_cb_event_e channel_cb_event_e</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+生成于 2015年 七月 9日 星期四 15:26:51 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.9.1
+</small></address>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.9.1"/>
+<title>knet: E:/knet-git/knet/knet/timer.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">knet
+   &#160;<span id="projectnumber">1.4.3</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.9.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="modules.html"><span>模块</span></a></li>
+      <li><a href="annotated.html"><span>结构体</span></a></li>
+      <li class="current"><a href="files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>文件列表</span></a></li>
+      <li><a href="globals.html"><span>全局定义</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_885cc87fac2d91e269af0a5a959fa5f6.html">E:</a></li><li class="navelem"><a class="el" href="dir_4e74998c9a9305a116abc25fcf9a1edb.html">knet-git</a></li><li class="navelem"><a class="el" href="dir_a1c045b39f32066568ae964b52db514f.html">knet</a></li><li class="navelem"><a class="el" href="dir_f76d03789f0b12416cfffea59e2ed47d.html">knet</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">timer.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="a00078.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2014-2015, dennis wang</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * All rights reserved.</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * </span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Redistribution and use in source and binary forms, with or without</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * modification, are permitted provided that the following conditions are met:</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> *     * Redistributions of source code must retain the above copyright</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *       notice, this list of conditions and the following disclaimer.</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> *     * Redistributions in binary form must reproduce the above copyright</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> *       notice, this list of conditions and the following disclaimer in the</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> *       documentation and/or other materials provided with the distribution.</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> * </span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> * DISCLAIMED. IN NO EVENT SHALL dennis wang BE LIABLE FOR ANY</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment"> * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"> * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef TIMER_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define TIMER_H</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00044.html">config.h</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00079.html">timer_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00078_af64f93b32c31cd222c02f0ad40bb642c.html#af64f93b32c31cd222c02f0ad40bb642c">ktimer_destroy</a>(<a class="code" href="a00019.html">ktimer_t</a>* timer);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00078_a6e263963404ff40c8d7865ba117d3446.html#a6e263963404ff40c8d7865ba117d3446">ktimer_check_timeout</a>(<a class="code" href="a00019.html">ktimer_t</a>* timer, time_t ms);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00078_a7c448e677f3022e5e7d910d3961dda61.html#a7c448e677f3022e5e7d910d3961dda61">ktimer_set_current_list</a>(<a class="code" href="a00019.html">ktimer_t</a>* timer, <a class="code" href="a00008.html">dlist_t</a>* list);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<a class="code" href="a00008.html">dlist_t</a>* <a class="code" href="a00078_ad43b4e56bb273f1559d13143a783c974.html#ad43b4e56bb273f1559d13143a783c974">ktimer_get_current_list</a>(<a class="code" href="a00019.html">ktimer_t</a>* timer);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00078_a9d06164f71d9a170962ba64e2cb7b79f.html#a9d06164f71d9a170962ba64e2cb7b79f">ktimer_set_current_list_node</a>(<a class="code" href="a00019.html">ktimer_t</a>* timer, <a class="code" href="a00007.html">dlist_node_t</a>* node);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<a class="code" href="a00007.html">dlist_node_t</a>* <a class="code" href="a00078_afdfb2aec56b4e94af90f3befcef9b223.html#afdfb2aec56b4e94af90f3befcef9b223">ktimer_get_current_list_node</a>(<a class="code" href="a00019.html">ktimer_t</a>* timer);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* TIMER_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a00078_a7c448e677f3022e5e7d910d3961dda61_html_a7c448e677f3022e5e7d910d3961dda61"><div class="ttname"><a href="a00078_a7c448e677f3022e5e7d910d3961dda61.html#a7c448e677f3022e5e7d910d3961dda61">ktimer_set_current_list</a></div><div class="ttdeci">void ktimer_set_current_list(ktimer_t *timer, dlist_t *list)</div><div class="ttdoc">设置定时器所在的当前链表 </div><div class="ttdef"><b>Definition:</b> timer.c:174</div></div>
+<div class="ttc" id="a00044_html"><div class="ttname"><a href="a00044.html">config.h</a></div></div>
+<div class="ttc" id="a00079_html"><div class="ttname"><a href="a00079.html">timer_api.h</a></div></div>
+<div class="ttc" id="a00078_afdfb2aec56b4e94af90f3befcef9b223_html_afdfb2aec56b4e94af90f3befcef9b223"><div class="ttname"><a href="a00078_afdfb2aec56b4e94af90f3befcef9b223.html#afdfb2aec56b4e94af90f3befcef9b223">ktimer_get_current_list_node</a></div><div class="ttdeci">dlist_node_t * ktimer_get_current_list_node(ktimer_t *timer)</div><div class="ttdoc">取得当前链表节点 </div><div class="ttdef"><b>Definition:</b> timer.c:190</div></div>
+<div class="ttc" id="a00078_af64f93b32c31cd222c02f0ad40bb642c_html_af64f93b32c31cd222c02f0ad40bb642c"><div class="ttname"><a href="a00078_af64f93b32c31cd222c02f0ad40bb642c.html#af64f93b32c31cd222c02f0ad40bb642c">ktimer_destroy</a></div><div class="ttdeci">void ktimer_destroy(ktimer_t *timer)</div><div class="ttdoc">销毁定时器 </div><div class="ttdef"><b>Definition:</b> timer.c:205</div></div>
+<div class="ttc" id="a00078_a6e263963404ff40c8d7865ba117d3446_html_a6e263963404ff40c8d7865ba117d3446"><div class="ttname"><a href="a00078_a6e263963404ff40c8d7865ba117d3446.html#a6e263963404ff40c8d7865ba117d3446">ktimer_check_timeout</a></div><div class="ttdeci">int ktimer_check_timeout(ktimer_t *timer, time_t ms)</div><div class="ttdoc">检查定时器是否超时 </div><div class="ttdef"><b>Definition:</b> timer.c:228</div></div>
+<div class="ttc" id="a00008_html"><div class="ttname"><a href="a00008.html">_dlist_t</a></div><div class="ttdef"><b>Definition:</b> list.c:39</div></div>
+<div class="ttc" id="a00078_ad43b4e56bb273f1559d13143a783c974_html_ad43b4e56bb273f1559d13143a783c974"><div class="ttname"><a href="a00078_ad43b4e56bb273f1559d13143a783c974.html#ad43b4e56bb273f1559d13143a783c974">ktimer_get_current_list</a></div><div class="ttdeci">dlist_t * ktimer_get_current_list(ktimer_t *timer)</div><div class="ttdoc">取得当前所属链表 </div><div class="ttdef"><b>Definition:</b> timer.c:185</div></div>
+<div class="ttc" id="a00078_a9d06164f71d9a170962ba64e2cb7b79f_html_a9d06164f71d9a170962ba64e2cb7b79f"><div class="ttname"><a href="a00078_a9d06164f71d9a170962ba64e2cb7b79f.html#a9d06164f71d9a170962ba64e2cb7b79f">ktimer_set_current_list_node</a></div><div class="ttdeci">void ktimer_set_current_list_node(ktimer_t *timer, dlist_node_t *node)</div><div class="ttdoc">设置定时器所在的当前链表的链表节点 </div><div class="ttdef"><b>Definition:</b> timer.c:179</div></div>
+<div class="ttc" id="a00019_html"><div class="ttname"><a href="a00019.html">_ktimer_t</a></div><div class="ttdef"><b>Definition:</b> timer.c:30</div></div>
+<div class="ttc" id="a00007_html"><div class="ttname"><a href="a00007.html">_dlist_node_t</a></div><div class="ttdef"><b>Definition:</b> list.c:31</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+生成于 2015年 七月 9日 星期四 15:26:51 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.9.1
+</small></address>
+</body>
+</html>

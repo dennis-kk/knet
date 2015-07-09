@@ -28,7 +28,46 @@
 #include "config.h"
 
 /**
+ * @defgroup 管道引用 管道引用
+ * 管道引用
+ *
+ * <pre>
+ * channel_ref_t作为channel_t的包装器，对于用户透明化了管道的内部实现，同时提供了引用计数用于
+ * 管道的生命周期管理.
+ *
+ * 管道有3种类型：
+ * 
+ * 1. 连接器
+ * 2. 监听器
+ * 3. 由监听器接受的新管道
+ *
+ * 管道有3种状态:
+ * 
+ * 1. 新建立 刚建立但不确定是作为连接器或者监听器存在
+ * 2. 活跃   已经确定了自己的角色
+ * 3. 关闭   已经关闭，但还未销毁，引用计数不为零
+ *
+ * 在没有负载均衡器存在的情况下(loop_t没有通过loop_balancer_attach关联到loop_balancer_t),
+ * 所有连接器管道都会在当前loop_t内运行，所有由监听器接受的管道也会在loop_t内运行.
+ * 如果loop_t已经关联到负载均衡器，这对连接器管道没有影响，但监听器接受的管道可能不在当前loop_t内
+ * 运行，负载均衡器会根据活跃管道的数量将这个管道分配到其他loop_t运行，或者仍然在当前loop_t内运行，
+ * 结果取决于当前所有loop_t负载的情况（活跃管道的数量）.
+ *
+ * 可以调用函数channel_ref_check_balance确定管道是否被负载均衡调配，调用channel_ref_check_state
+ * 检查管道当前所处的状态，channel_ref_close关闭管道，无论此时管道的引用计数是否为零，管道的套接字都会
+ * 被关闭，当管道引用计数为零时，loop_t才会真正销毁它.调用channel_ref_equal可以判断两个管道引用是否
+ * 指向同一个管道.
+ * 
+ * 可以通过调用channel_ref_set_timeout设置管道的读空闲超时（秒），这可以用做心跳包的处理，调用
+ * channel_ref_connect时最后一个参数传递一个非零值可以设置连接器的连接超时（秒），这可以用于重连.
+ * 调用channel_ref_get_socket_fd得到管道套接字，调用channel_ref_get_uuid的到管道UUID.
+ * </pre>
+ * @{
+ */
+
+/**
  * 增加管道引用计数，并创建与管道关联的新的channel_ref_t实例
+ *
  * channel_ref_share调用完成后，可以在当前线程内访问其他线程(loop_t)内运行的管道
  * @param channel_ref channel_ref_t实例
  * @return channel_ref_t实例
@@ -43,6 +82,7 @@ extern void channel_ref_leave(channel_ref_t* channel_ref);
 
 /**
  * 主动连接
+ *
  * 调用channel_ref_connect的管道不会被负载均衡，将在当前loop_t所运行的线程运行
  * @param channel_ref channel_ref_t实例
  * @param ip IP
@@ -55,6 +95,7 @@ extern int channel_ref_connect(channel_ref_t* channel_ref, const char* ip, int p
 
 /**
  * 将管道转换为监听管道
+ *
  * 由这个监听管道接受的新连接将使用与监听管道相同的发送缓冲区最大数量限制和接受缓冲区长度限制,
  * channel_ref_accept所接受的新连接将被负载均衡，实际运行在哪个loop_t内依赖于实际运行的情况
  * @param channel_ref channel_ref_t实例
@@ -112,6 +153,7 @@ extern loop_t* channel_ref_get_loop(channel_ref_t* channel_ref);
 
 /**
  * 设置管道事件回调
+ *
  * 事件回调将在关联的loop_t实例所在线程内被回调
  * @param channel_ref channel_ref_t实例
  * @param cb 回调函数
@@ -120,6 +162,7 @@ extern void channel_ref_set_cb(channel_ref_t* channel_ref, channel_ref_cb_t cb);
 
 /**
  * 设置管道空闲超时
+ *
  * 管道空闲超时依赖读操作作为判断，在timeout间隔内未有可读数据既触发超时
  * @param channel_ref channel_ref_t实例
  * @param timeout 超时（秒）
@@ -155,5 +198,7 @@ extern uint64_t channel_ref_get_uuid(channel_ref_t* channel_ref);
  * @retval 非零 相同 
  */
 extern int channel_ref_equal(channel_ref_t* a, channel_ref_t* b);
+
+/** @} */
 
 #endif /* CHANNEL_REF_API_H */

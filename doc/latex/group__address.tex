@@ -1,0 +1,63 @@
+\hypertarget{group__address}{}\section{地址}
+\label{group__address}\index{地址@{地址}}
+\subsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \hyperlink{group__address_gac1cb1b6031c4a8a724d42e3ed01d1ba6}{address\+\_\+get\+\_\+ip} (\hyperlink{struct__address__t}{address\+\_\+t} $\ast$address)
+\item 
+int \hyperlink{group__address_ga223a2192ce38fc5e79a73b5030a42e0e}{address\+\_\+get\+\_\+port} (\hyperlink{struct__address__t}{address\+\_\+t} $\ast$address)
+\end{DoxyCompactItemize}
+
+
+\subsection{详细描述}
+
+\begin{DoxyPre}
+地址接口通过channel\_ref\_get\_local\_address或channel\_ref\_get\_peer\_address
+获取本地或对端的地址
+\end{DoxyPre}
+ \begin{DoxySeeAlso}{参见}
+\hyperlink{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_ga1dcf6af0c992fa21f9dcd03c8f763ec4}{channel\+\_\+ref\+\_\+get\+\_\+local\+\_\+address} 
+
+\hyperlink{group___xE7_xAE_xA1_xE9_x81_x93_xE5_xBC_x95_xE7_x94_xA8_ga7bcafd2461a1edfde9c581cb946dcd44}{channel\+\_\+ref\+\_\+get\+\_\+peer\+\_\+address} 
+\end{DoxySeeAlso}
+
+
+\subsection{函数说明}
+\hypertarget{group__address_gac1cb1b6031c4a8a724d42e3ed01d1ba6}{}\index{地址@{地址}!address\+\_\+get\+\_\+ip@{address\+\_\+get\+\_\+ip}}
+\index{address\+\_\+get\+\_\+ip@{address\+\_\+get\+\_\+ip}!地址@{地址}}
+\subsubsection[{address\+\_\+get\+\_\+ip}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ address\+\_\+get\+\_\+ip (
+\begin{DoxyParamCaption}
+\item[{{\bf address\+\_\+t} $\ast$}]{address}
+\end{DoxyParamCaption}
+)}\label{group__address_gac1cb1b6031c4a8a724d42e3ed01d1ba6}
+取得\+I\+P 
+\begin{DoxyParams}{参数}
+{\em address} & address\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em 有效的指针} & I\+P字符串 \\
+\hline
+{\em 0} & 管道连接未建立 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{group__address_ga223a2192ce38fc5e79a73b5030a42e0e}{}\index{地址@{地址}!address\+\_\+get\+\_\+port@{address\+\_\+get\+\_\+port}}
+\index{address\+\_\+get\+\_\+port@{address\+\_\+get\+\_\+port}!地址@{地址}}
+\subsubsection[{address\+\_\+get\+\_\+port}]{\setlength{\rightskip}{0pt plus 5cm}int address\+\_\+get\+\_\+port (
+\begin{DoxyParamCaption}
+\item[{{\bf address\+\_\+t} $\ast$}]{address}
+\end{DoxyParamCaption}
+)}\label{group__address_ga223a2192ce38fc5e79a73b5030a42e0e}
+取得port 
+\begin{DoxyParams}{参数}
+{\em address} & address\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em 有效的端口号} & 端口号 \\
+\hline
+{\em 0} & 管道连接未建立 \\
+\hline
+\end{DoxyRetVals}

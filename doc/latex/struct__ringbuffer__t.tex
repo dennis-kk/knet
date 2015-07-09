@@ -1,83 +1,37 @@
-\hypertarget{struct__ringbuffer__t}{}\section{\+\_\+ringbuffer\+\_\+t}
+\hypertarget{struct__ringbuffer__t}{}\section{\+\_\+ringbuffer\+\_\+t结构体 参考}
 \label{struct__ringbuffer__t}\index{\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}}
-\subsection*{成员变量}
+\subsection*{Public 属性}
 \begin{DoxyCompactItemize}
 \item 
-uint32\+\_\+t \hyperlink{struct__ringbuffer__t_a86988a65e0d3ece7990c032c159786d6}{count}
+\hypertarget{struct__ringbuffer__t_a06a2abc3a4b83285ace3109f8690bef7}{}char $\ast$ {\bfseries ptr}\label{struct__ringbuffer__t_a06a2abc3a4b83285ace3109f8690bef7}
+
 \item 
-uint32\+\_\+t \hyperlink{struct__ringbuffer__t_a84b7e6afd7b5057f5069b5757814d48c}{lock\+\_\+size}
+\hypertarget{struct__ringbuffer__t_a9054d048beeafd2337feef06197269be}{}uint32\+\_\+t {\bfseries read\+\_\+pos}\label{struct__ringbuffer__t_a9054d048beeafd2337feef06197269be}
+
 \item 
-uint32\+\_\+t \hyperlink{struct__ringbuffer__t_ac857cf0a05d19ede280166517461fde3}{lock\+\_\+type}
+\hypertarget{struct__ringbuffer__t_a65f65d9246e9d1addb77cebb3a1398e4}{}uint32\+\_\+t {\bfseries write\+\_\+pos}\label{struct__ringbuffer__t_a65f65d9246e9d1addb77cebb3a1398e4}
+
 \item 
-uint32\+\_\+t \hyperlink{struct__ringbuffer__t_a5d749e86bf9e5299c1a5af7bcce2397c}{max\+\_\+size}
+\hypertarget{struct__ringbuffer__t_ae27f1d62fc60a30ae440679a45005478}{}uint32\+\_\+t {\bfseries max\+\_\+size}\label{struct__ringbuffer__t_ae27f1d62fc60a30ae440679a45005478}
+
 \item 
-char $\ast$ \hyperlink{struct__ringbuffer__t_a935adc2e417a61d7eb6f04efb18ba031}{ptr}
+\hypertarget{struct__ringbuffer__t_a1604d2edfd6cb16b1b1222e10f041f98}{}uint32\+\_\+t {\bfseries lock\+\_\+size}\label{struct__ringbuffer__t_a1604d2edfd6cb16b1b1222e10f041f98}
+
 \item 
-uint32\+\_\+t \hyperlink{struct__ringbuffer__t_a7a7c296c9063d85aeecac846c73c2775}{read\+\_\+pos}
+\hypertarget{struct__ringbuffer__t_a6d8161c12ec7e82f48e29a2f0704ed7b}{}uint32\+\_\+t {\bfseries lock\+\_\+type}\label{struct__ringbuffer__t_a6d8161c12ec7e82f48e29a2f0704ed7b}
+
 \item 
-uint32\+\_\+t \hyperlink{struct__ringbuffer__t_ab1cb0fa55deec8b7cfec28fac1f81700}{write\+\_\+pos}
+\hypertarget{struct__ringbuffer__t_a9230ba7c7afce7f234ebefa2c5fdc0bd}{}uint32\+\_\+t {\bfseries count}\label{struct__ringbuffer__t_a9230ba7c7afce7f234ebefa2c5fdc0bd}
+
+\item 
+\hypertarget{struct__ringbuffer__t_a8e6c75c56d0758af10593a6887813677}{}uint32\+\_\+t {\bfseries window\+\_\+read\+\_\+lock\+\_\+size}\label{struct__ringbuffer__t_a8e6c75c56d0758af10593a6887813677}
+
+\item 
+\hypertarget{struct__ringbuffer__t_ac1922e150f751ca3d7698837e820065d}{}uint32\+\_\+t {\bfseries window\+\_\+read\+\_\+pos}\label{struct__ringbuffer__t_ac1922e150f751ca3d7698837e820065d}
+
 \end{DoxyCompactItemize}
-
-
-\subsection{详细描述}
-
-
-在文件 ringbuffer.\+c 第 29 行定义.
-
-
-
-\subsection{结构体成员变量说明}
-\hypertarget{struct__ringbuffer__t_a86988a65e0d3ece7990c032c159786d6}{}\index{\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}!count@{count}}
-\index{count@{count}!\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}}
-\subsubsection[{count}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t count}\label{struct__ringbuffer__t_a86988a65e0d3ece7990c032c159786d6}
-
-
-在文件 ringbuffer.\+c 第 36 行定义.
-
-\hypertarget{struct__ringbuffer__t_a84b7e6afd7b5057f5069b5757814d48c}{}\index{\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}!lock\+\_\+size@{lock\+\_\+size}}
-\index{lock\+\_\+size@{lock\+\_\+size}!\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}}
-\subsubsection[{lock\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t lock\+\_\+size}\label{struct__ringbuffer__t_a84b7e6afd7b5057f5069b5757814d48c}
-
-
-在文件 ringbuffer.\+c 第 34 行定义.
-
-\hypertarget{struct__ringbuffer__t_ac857cf0a05d19ede280166517461fde3}{}\index{\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}!lock\+\_\+type@{lock\+\_\+type}}
-\index{lock\+\_\+type@{lock\+\_\+type}!\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}}
-\subsubsection[{lock\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t lock\+\_\+type}\label{struct__ringbuffer__t_ac857cf0a05d19ede280166517461fde3}
-
-
-在文件 ringbuffer.\+c 第 35 行定义.
-
-\hypertarget{struct__ringbuffer__t_a5d749e86bf9e5299c1a5af7bcce2397c}{}\index{\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}!max\+\_\+size@{max\+\_\+size}}
-\index{max\+\_\+size@{max\+\_\+size}!\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}}
-\subsubsection[{max\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t max\+\_\+size}\label{struct__ringbuffer__t_a5d749e86bf9e5299c1a5af7bcce2397c}
-
-
-在文件 ringbuffer.\+c 第 33 行定义.
-
-\hypertarget{struct__ringbuffer__t_a935adc2e417a61d7eb6f04efb18ba031}{}\index{\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}!ptr@{ptr}}
-\index{ptr@{ptr}!\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}}
-\subsubsection[{ptr}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ ptr}\label{struct__ringbuffer__t_a935adc2e417a61d7eb6f04efb18ba031}
-
-
-在文件 ringbuffer.\+c 第 30 行定义.
-
-\hypertarget{struct__ringbuffer__t_a7a7c296c9063d85aeecac846c73c2775}{}\index{\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}!read\+\_\+pos@{read\+\_\+pos}}
-\index{read\+\_\+pos@{read\+\_\+pos}!\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}}
-\subsubsection[{read\+\_\+pos}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t read\+\_\+pos}\label{struct__ringbuffer__t_a7a7c296c9063d85aeecac846c73c2775}
-
-
-在文件 ringbuffer.\+c 第 31 行定义.
-
-\hypertarget{struct__ringbuffer__t_ab1cb0fa55deec8b7cfec28fac1f81700}{}\index{\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}!write\+\_\+pos@{write\+\_\+pos}}
-\index{write\+\_\+pos@{write\+\_\+pos}!\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}}
-\subsubsection[{write\+\_\+pos}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t write\+\_\+pos}\label{struct__ringbuffer__t_ab1cb0fa55deec8b7cfec28fac1f81700}
-
-
-在文件 ringbuffer.\+c 第 32 行定义.
-
 
 
 该结构体的文档由以下文件生成\+:\begin{DoxyCompactItemize}
 \item 
-E\+:/knet-\/git/knet/knet/\hyperlink{ringbuffer_8c}{ringbuffer.\+c}\end{DoxyCompactItemize}
+E\+:/knet-\/git/knet/knet/ringbuffer.\+c\end{DoxyCompactItemize}

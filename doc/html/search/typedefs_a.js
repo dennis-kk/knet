@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['object_5fmap_5ft',['object_map_t',['../classkrpc__parser__t.html#a2e43854d69b1505000c452feb196e4a6',1,'krpc_parser_t']]],
-  ['option_5fmap_5ft',['option_map_t',['../classkrpc__gen__t.html#a196bb243e2043de12bc0b0563c1e0e7c',1,'krpc_gen_t']]]
+  ['thread_5ffunc_5ft',['thread_func_t',['../a00044_a46bcd8005e5d86fdbc6be5af0a77156c.html#a46bcd8005e5d86fdbc6be5af0a77156c',1,'config.h']]],
+  ['thread_5frunner_5ft',['thread_runner_t',['../a00044_a9054159cde2f926ef61c28ce1e555199.html#a9054159cde2f926ef61c28ce1e555199',1,'config.h']]]
 ];
