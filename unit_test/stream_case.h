@@ -115,7 +115,7 @@ CASE(Test_Stream_Copy_Stream) {
             if (e & channel_cb_event_recv) {
                 if (channel == Test_Stream_Copy_Stream_Client2) {
                     stream_t* stream = channel_ref_get_stream(channel);
-                    // 收到由stream_push_stream发来的数据
+                    // 收到由stream_copy_stream发来的数据
                     EXPECT_TRUE(error_ok == stream_eat(stream, 4));
                     EXPECT_FALSE(stream_available(stream));
                     loop_exit(channel_ref_get_loop(channel));

@@ -22,14 +22,13 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef ALL_TEST_CASE_H
-#define ALL_TEST_CASE_H
+#include "helper.h"
+#include "knet.h"
 
-#include "rpc_object_case.h"
-#include "address_case.h"
-#include "channel_ref_case.h"
-#include "stream_case.h"
-#include "thread_case.h"
-#include "timer_case.h"
-
-#endif // ALL_TEST_CASE_H
+CASE(Test_Thread_Set_Get_Tls_Data) {
+    thread_runner_t* r = thread_runner_create(0, 0);
+    int i = 0;
+    EXPECT_TRUE(error_ok == thread_set_tls_data(r, &i));
+    EXPECT_TRUE(&i == thread_get_tls_data(r));
+    thread_runner_destroy(r);
+}
