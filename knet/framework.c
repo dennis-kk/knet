@@ -49,7 +49,7 @@ struct _framework_t {
     int                   start;    /* Æô¶¯±êÖ¾ */
 };
 
-void _stop_and_cleanup_threads(framework_t* f) {
+void _cleanup_threads(framework_t* f) {
     int i = 0;
     if (f->acceptor) {
         framework_acceptor_stop(f->acceptor);
@@ -83,7 +83,7 @@ void framework_destroy(framework_t* f) {
     if (f->start) { /* Î´¹Ø±Õ */
         framework_stop(f);
     }
-    _stop_and_cleanup_threads(f);
+    _cleanup_threads(f);
     /* Ïú»Ù¸ºÔØ¾ùºâÆ÷ */
     if (f->balancer) {
         loop_balancer_destroy(f->balancer);
@@ -130,7 +130,7 @@ int framework_start(framework_t* f, channel_ref_cb_t cb) {
     return error_ok;
 error_return:
     /* Ïú»Ù¼àÌıÆ÷ */
-    _stop_and_cleanup_threads(f);
+    _cleanup_threads(f);
     f->start = 0;
     return error;
 }
@@ -151,7 +151,7 @@ int framework_start_wait_destroy(framework_t* f, channel_ref_cb_t cb) {
 
 void framework_wait_for_stop(framework_t* f) {
     verify(f);
-    _stop_and_cleanup_threads(f);
+    _cleanup_threads(f);
     f->start = 0;
 }
 
