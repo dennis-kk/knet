@@ -95,7 +95,7 @@ int framework_start(framework_t* f, channel_ref_cb_t cb) {
     verify(f->c);
     worker_count = framework_config_get_worker_thread_count(f->c);
     f->cb       = cb;
-    f->balancer = loop_balancer_create(); /* 建立负载June和更年期 */
+    f->balancer = loop_balancer_create(); /* 建立负载均衡器 */
     verify(f->balancer);
     loop_balancer_set_data(f->balancer, f);
     f->workers = create_type(framework_worker_t*, worker_count * sizeof(framework_worker_t*));
@@ -134,7 +134,9 @@ int framework_start_wait(framework_t* f, channel_ref_cb_t cb) {
 
 int framework_start_wait_destroy(framework_t* f, channel_ref_cb_t cb) {
     int error = framework_start_wait(f, cb);
-    framework_destroy(f);
+    if (error_ok == error) {
+        framework_destroy(f);
+    }
     return error;
 }
 
