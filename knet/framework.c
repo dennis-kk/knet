@@ -112,15 +112,22 @@ error_return:
 void framework_wait_for_stop(framework_t* f) {
     int i = 0;
     verify(f);
+    /* 销毁监听器 */
     framework_acceptor_wait_for_stop(f->acceptor);
+    framework_acceptor_destroy(f->acceptor);
+    f->acceptor = 0;
+    /* 销毁工作线程 */
     for (; i < framework_config_get_worker_thread_count(f->c); i++) {
         if (f->workers[i]) {
             framework_worker_wait_for_stop(f->workers[i]);
+            framework_worker_destroy(f->workers[i]);
+            f->workers[i] = 0;
         }
     }
     /* 销毁负载均衡器 */
     if (f->balancer) {
         loop_balancer_destroy(f->balancer);
+        f->balancer = 0;
     }
     f->start = 0;
 }
