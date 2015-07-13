@@ -134,7 +134,10 @@ typedef struct _krpc_map_t krpc_map_t;
 typedef struct _krpc_value_t krpc_value_t;
 typedef struct _hash_t hash_t;
 typedef struct _hash_value_t hash_value_t;
-typedef struct _store_t store_t;
+typedef struct _framework_t framework_t;
+typedef struct _framework_config_t framework_config_t;
+typedef struct _framework_acceptor_t framework_acceptor_t;
+typedef struct _framework_worker_t framework_worker_t;
 
 /* 管道可投递事件 */
 typedef enum _channel_event_e {
@@ -287,6 +290,8 @@ typedef uint16_t (*krpc_encrypt_t)(void*, uint16_t, void*, uint16_t);
 typedef uint16_t (*krpc_decrypt_t)(void*, uint16_t, void*, uint16_t);
 /*! 哈希表元素销毁函数 */
 typedef void (*hash_dtor_t)(void*);
+/*! 存储回调 */
+typedef void (*framework_cb_t)(stream_t* s);
 
 /* 根据需要， 开启不同选取器 */
 #if defined(WIN32)

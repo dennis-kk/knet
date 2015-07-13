@@ -35,6 +35,7 @@
 #include "address_api.h"
 #include "loop_balancer_api.h"
 #include "broadcast_api.h"
+#include "framework_api.h"
 #include "timer_api.h"
 #include "thread_api.h"
 #include "rpc_api.h"

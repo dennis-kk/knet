@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.9.1"/>
+<title>knet: E:/knet-git/knet/knet/rpc_api.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">knet
+   &#160;<span id="projectnumber">1.4.4</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.9.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="modules.html"><span>模块</span></a></li>
+      <li><a href="annotated.html"><span>结构体</span></a></li>
+      <li class="current"><a href="files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>文件列表</span></a></li>
+      <li><a href="globals.html"><span>全局定义</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_885cc87fac2d91e269af0a5a959fa5f6.html">E:</a></li><li class="navelem"><a class="el" href="dir_4e74998c9a9305a116abc25fcf9a1edb.html">knet-git</a></li><li class="navelem"><a class="el" href="dir_a1c045b39f32066568ae964b52db514f.html">knet</a></li><li class="navelem"><a class="el" href="dir_f76d03789f0b12416cfffea59e2ed47d.html">knet</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">rpc_api.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="a00077.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2014-2015, dennis wang</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * All rights reserved.</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * </span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Redistribution and use in source and binary forms, with or without</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * modification, are permitted provided that the following conditions are met:</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> *     * Redistributions of source code must retain the above copyright</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *       notice, this list of conditions and the following disclaimer.</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> *     * Redistributions in binary form must reproduce the above copyright</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> *       notice, this list of conditions and the following disclaimer in the</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> *       documentation and/or other materials provided with the distribution.</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> * </span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> * DISCLAIMED. IN NO EVENT SHALL dennis wang BE LIABLE FOR ANY</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment"> * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"> * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef RPC_API_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define RPC_API_H</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">/* TODO 待测试 */</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00047.html">config.h</a>&quot;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00019.html">krpc_t</a>* <a class="code" href="a00077_a5d55f838d222f44965d99eac9a0381c1.html#a5d55f838d222f44965d99eac9a0381c1">krpc_create</a>();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00077_ab07c8ccf1abc99b85f455a2f4280ac76.html#ab07c8ccf1abc99b85f455a2f4280ac76">krpc_destroy</a>(<a class="code" href="a00019.html">krpc_t</a>* rpc);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00077_aa12a9874d2b0308994c3fa651cdbbd61.html#aa12a9874d2b0308994c3fa651cdbbd61">krpc_add_cb</a>(<a class="code" href="a00019.html">krpc_t</a>* rpc, uint16_t rpcid, <a class="code" href="a00047_a06bb708c1b97445d3a5d0c1b32ad2ab6.html#a06bb708c1b97445d3a5d0c1b32ad2ab6">krpc_cb_t</a> cb);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00077_a76529ccab5c6f0ada79cac791e299ef9.html#a76529ccab5c6f0ada79cac791e299ef9">krpc_del_cb</a>(<a class="code" href="a00019.html">krpc_t</a>* rpc, uint16_t rpcid);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00047_a06bb708c1b97445d3a5d0c1b32ad2ab6.html#a06bb708c1b97445d3a5d0c1b32ad2ab6">krpc_cb_t</a> <a class="code" href="a00077_a7841a0b4c828efcb607a51bbdd9c9ab1.html#a7841a0b4c828efcb607a51bbdd9c9ab1">krpc_get_cb</a>(<a class="code" href="a00019.html">krpc_t</a>* rpc, uint16_t rpcid);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00077_a9c94cce18fdcbb5e184af7f2ea20cceb.html#a9c94cce18fdcbb5e184af7f2ea20cceb">krpc_proc</a>(<a class="code" href="a00019.html">krpc_t</a>* rpc, <a class="code" href="a00031.html">stream_t</a>* stream);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00077_a51bbf2caf4916c0c08d8c8d8d86e562e.html#a51bbf2caf4916c0c08d8c8d8d86e562e">krpc_call</a>(<a class="code" href="a00019.html">krpc_t</a>* rpc, <a class="code" href="a00031.html">stream_t</a>* stream, uint16_t rpcid, <a class="code" href="a00017.html">krpc_object_t</a>* o);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00077_a5317bb571cb4d94bc56b83989c1b10c2.html#a5317bb571cb4d94bc56b83989c1b10c2">krpc_set_encrypt_cb</a>(<a class="code" href="a00019.html">krpc_t</a>* rpc, <a class="code" href="a00047_ae41a67cc07f8dff897ca978e03b1f2d7.html#ae41a67cc07f8dff897ca978e03b1f2d7">krpc_encrypt_t</a> func);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00077_aa75ec66092e77639ca2cf2b5ad04c5db.html#aa75ec66092e77639ca2cf2b5ad04c5db">krpc_set_decrypt_cb</a>(<a class="code" href="a00019.html">krpc_t</a>* rpc, <a class="code" href="a00047_a5cf750f151c90f0589f68fe8c4421f1d.html#a5cf750f151c90f0589f68fe8c4421f1d">krpc_decrypt_t</a> func);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* RPC_API_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a00047_html"><div class="ttname"><a href="a00047.html">config.h</a></div></div>
+<div class="ttc" id="a00077_a9c94cce18fdcbb5e184af7f2ea20cceb_html_a9c94cce18fdcbb5e184af7f2ea20cceb"><div class="ttname"><a href="a00077_a9c94cce18fdcbb5e184af7f2ea20cceb.html#a9c94cce18fdcbb5e184af7f2ea20cceb">krpc_proc</a></div><div class="ttdeci">int krpc_proc(krpc_t *rpc, stream_t *stream)</div><div class="ttdoc">处理RPC调用，从数据流反序列化RPC调用，并调用回调函数 </div><div class="ttdef"><b>Definition:</b> rpc.c:265</div></div>
+<div class="ttc" id="a00077_a5d55f838d222f44965d99eac9a0381c1_html_a5d55f838d222f44965d99eac9a0381c1"><div class="ttname"><a href="a00077_a5d55f838d222f44965d99eac9a0381c1.html#a5d55f838d222f44965d99eac9a0381c1">krpc_create</a></div><div class="ttdeci">krpc_t * krpc_create()</div><div class="ttdoc">RPC框架提供了一套底层RPC序列化及反序列化的基础，开发者不应该直接调用这些API，应使用代码生成工具 提供�...</div><div class="ttdef"><b>Definition:</b> rpc.c:68</div></div>
+<div class="ttc" id="a00077_ab07c8ccf1abc99b85f455a2f4280ac76_html_ab07c8ccf1abc99b85f455a2f4280ac76"><div class="ttname"><a href="a00077_ab07c8ccf1abc99b85f455a2f4280ac76.html#ab07c8ccf1abc99b85f455a2f4280ac76">krpc_destroy</a></div><div class="ttdeci">void krpc_destroy(krpc_t *rpc)</div><div class="ttdoc">销毁RPC </div><div class="ttdef"><b>Definition:</b> rpc.c:77</div></div>
+<div class="ttc" id="a00047_ae41a67cc07f8dff897ca978e03b1f2d7_html_ae41a67cc07f8dff897ca978e03b1f2d7"><div class="ttname"><a href="a00047_ae41a67cc07f8dff897ca978e03b1f2d7.html#ae41a67cc07f8dff897ca978e03b1f2d7">krpc_encrypt_t</a></div><div class="ttdeci">uint16_t(* krpc_encrypt_t)(void *, uint16_t, void *, uint16_t)</div><div class="ttdef"><b>Definition:</b> config.h:288</div></div>
+<div class="ttc" id="a00017_html"><div class="ttname"><a href="a00017.html">_krpc_object_t</a></div><div class="ttdef"><b>Definition:</b> rpc_object.c:88</div></div>
+<div class="ttc" id="a00047_a5cf750f151c90f0589f68fe8c4421f1d_html_a5cf750f151c90f0589f68fe8c4421f1d"><div class="ttname"><a href="a00047_a5cf750f151c90f0589f68fe8c4421f1d.html#a5cf750f151c90f0589f68fe8c4421f1d">krpc_decrypt_t</a></div><div class="ttdeci">uint16_t(* krpc_decrypt_t)(void *, uint16_t, void *, uint16_t)</div><div class="ttdef"><b>Definition:</b> config.h:290</div></div>
+<div class="ttc" id="a00077_a51bbf2caf4916c0c08d8c8d8d86e562e_html_a51bbf2caf4916c0c08d8c8d8d86e562e"><div class="ttname"><a href="a00077_a51bbf2caf4916c0c08d8c8d8d86e562e.html#a51bbf2caf4916c0c08d8c8d8d86e562e">krpc_call</a></div><div class="ttdeci">int krpc_call(krpc_t *rpc, stream_t *stream, uint16_t rpcid, krpc_object_t *o)</div><div class="ttdoc">发起RPC调用 </div><div class="ttdef"><b>Definition:</b> rpc.c:328</div></div>
+<div class="ttc" id="a00047_a06bb708c1b97445d3a5d0c1b32ad2ab6_html_a06bb708c1b97445d3a5d0c1b32ad2ab6"><div class="ttname"><a href="a00047_a06bb708c1b97445d3a5d0c1b32ad2ab6.html#a06bb708c1b97445d3a5d0c1b32ad2ab6">krpc_cb_t</a></div><div class="ttdeci">int(* krpc_cb_t)(krpc_object_t *)</div><div class="ttdef"><b>Definition:</b> config.h:286</div></div>
+<div class="ttc" id="a00077_a7841a0b4c828efcb607a51bbdd9c9ab1_html_a7841a0b4c828efcb607a51bbdd9c9ab1"><div class="ttname"><a href="a00077_a7841a0b4c828efcb607a51bbdd9c9ab1.html#a7841a0b4c828efcb607a51bbdd9c9ab1">krpc_get_cb</a></div><div class="ttdeci">krpc_cb_t krpc_get_cb(krpc_t *rpc, uint16_t rpcid)</div><div class="ttdoc">取得注册过的RPC调用回调函数 </div><div class="ttdef"><b>Definition:</b> rpc.c:99</div></div>
+<div class="ttc" id="a00031_html"><div class="ttname"><a href="a00031.html">_stream_t</a></div><div class="ttdef"><b>Definition:</b> stream.c:33</div></div>
+<div class="ttc" id="a00077_a76529ccab5c6f0ada79cac791e299ef9_html_a76529ccab5c6f0ada79cac791e299ef9"><div class="ttname"><a href="a00077_a76529ccab5c6f0ada79cac791e299ef9.html#a76529ccab5c6f0ada79cac791e299ef9">krpc_del_cb</a></div><div class="ttdeci">int krpc_del_cb(krpc_t *rpc, uint16_t rpcid)</div><div class="ttdoc">删除注册过的RPC调用回调函数 </div><div class="ttdef"><b>Definition:</b> rpc.c:93</div></div>
+<div class="ttc" id="a00077_a5317bb571cb4d94bc56b83989c1b10c2_html_a5317bb571cb4d94bc56b83989c1b10c2"><div class="ttname"><a href="a00077_a5317bb571cb4d94bc56b83989c1b10c2.html#a5317bb571cb4d94bc56b83989c1b10c2">krpc_set_encrypt_cb</a></div><div class="ttdeci">int krpc_set_encrypt_cb(krpc_t *rpc, krpc_encrypt_t func)</div><div class="ttdoc">设置签名加密回调 </div><div class="ttdef"><b>Definition:</b> rpc.c:333</div></div>
+<div class="ttc" id="a00077_aa12a9874d2b0308994c3fa651cdbbd61_html_aa12a9874d2b0308994c3fa651cdbbd61"><div class="ttname"><a href="a00077_aa12a9874d2b0308994c3fa651cdbbd61.html#aa12a9874d2b0308994c3fa651cdbbd61">krpc_add_cb</a></div><div class="ttdeci">int krpc_add_cb(krpc_t *rpc, uint16_t rpcid, krpc_cb_t cb)</div><div class="ttdoc">注册RPC调用回调函数 </div><div class="ttdef"><b>Definition:</b> rpc.c:83</div></div>
+<div class="ttc" id="a00077_aa75ec66092e77639ca2cf2b5ad04c5db_html_aa75ec66092e77639ca2cf2b5ad04c5db"><div class="ttname"><a href="a00077_aa75ec66092e77639ca2cf2b5ad04c5db.html#aa75ec66092e77639ca2cf2b5ad04c5db">krpc_set_decrypt_cb</a></div><div class="ttdeci">int krpc_set_decrypt_cb(krpc_t *rpc, krpc_decrypt_t func)</div><div class="ttdoc">设置签名解密回调 </div><div class="ttdef"><b>Definition:</b> rpc.c:339</div></div>
+<div class="ttc" id="a00019_html"><div class="ttname"><a href="a00019.html">_krpc_t</a></div><div class="ttdef"><b>Definition:</b> rpc.c:59</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+生成于 2015年 七月 13日 星期一 14:43:37 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.9.1
+</small></address>
+</body>
+</html>

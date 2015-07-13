@@ -44,6 +44,7 @@ struct _loop_t {
     volatile int          running;             /* 事件循环运行标志 */
     thread_id_t           thread_id;           /* 事件选取器当前运行线程ID */
     loop_balance_option_e balance_options;     /* 负载均衡配置 */
+    void*                 data;                /* 用户数据指针 */
 };
 
 typedef enum _loop_event_e {
@@ -397,7 +398,7 @@ int loop_get_close_channel_count(loop_t* loop) {
 
 void loop_set_balance_options(loop_t* loop, loop_balance_option_e options) {
     verify(loop);
-    loop->balance_options |= options;
+    loop->balance_options = options;
 }
 
 loop_balance_option_e loop_get_balance_options(loop_t* loop) {
@@ -408,4 +409,14 @@ loop_balance_option_e loop_get_balance_options(loop_t* loop) {
 int loop_check_balance_options(loop_t* loop, loop_balance_option_e options) {
     verify(loop);
     return (loop->balance_options & options);
+}
+
+void loop_set_data(loop_t* loop, void* data) {
+    verify(loop);
+    loop->data = data;
+}
+
+void* loop_get_data(loop_t* loop) {
+    verify(loop);
+    return loop->data;
 }

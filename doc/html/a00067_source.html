@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/rpc_api.h 源文件</title>
+<title>knet: E:/knet-git/knet/knet/loop_balancer_api.h 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">knet
-   &#160;<span id="projectnumber">1.4.3</span>
+   &#160;<span id="projectnumber">1.4.4</span>
    </div>
   </td>
  </tr>
@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">rpc_api.h</div>  </div>
+<div class="title">loop_balancer_api.h</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00067.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
@@ -114,52 +114,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef RPC_API_H</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define RPC_API_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef LOOP_BALANCER_API_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define LOOP_BALANCER_API_H</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">/* TODO 待测试 */</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00047.html">config.h</a>&quot;</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00044.html">config.h</a>&quot;</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00015.html">krpc_t</a>* <a class="code" href="a00067_a5d55f838d222f44965d99eac9a0381c1.html#a5d55f838d222f44965d99eac9a0381c1">krpc_create</a>();</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00067_ab07c8ccf1abc99b85f455a2f4280ac76.html#ab07c8ccf1abc99b85f455a2f4280ac76">krpc_destroy</a>(<a class="code" href="a00015.html">krpc_t</a>* rpc);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00067_aa12a9874d2b0308994c3fa651cdbbd61.html#aa12a9874d2b0308994c3fa651cdbbd61">krpc_add_cb</a>(<a class="code" href="a00015.html">krpc_t</a>* rpc, uint16_t rpcid, <a class="code" href="a00044_a06bb708c1b97445d3a5d0c1b32ad2ab6.html#a06bb708c1b97445d3a5d0c1b32ad2ab6">krpc_cb_t</a> cb);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00067_a76529ccab5c6f0ada79cac791e299ef9.html#a76529ccab5c6f0ada79cac791e299ef9">krpc_del_cb</a>(<a class="code" href="a00015.html">krpc_t</a>* rpc, uint16_t rpcid);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00044_a06bb708c1b97445d3a5d0c1b32ad2ab6.html#a06bb708c1b97445d3a5d0c1b32ad2ab6">krpc_cb_t</a> <a class="code" href="a00067_a7841a0b4c828efcb607a51bbdd9c9ab1.html#a7841a0b4c828efcb607a51bbdd9c9ab1">krpc_get_cb</a>(<a class="code" href="a00015.html">krpc_t</a>* rpc, uint16_t rpcid);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00067_a9c94cce18fdcbb5e184af7f2ea20cceb.html#a9c94cce18fdcbb5e184af7f2ea20cceb">krpc_proc</a>(<a class="code" href="a00015.html">krpc_t</a>* rpc, <a class="code" href="a00028.html">stream_t</a>* stream);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00067_a51bbf2caf4916c0c08d8c8d8d86e562e.html#a51bbf2caf4916c0c08d8c8d8d86e562e">krpc_call</a>(<a class="code" href="a00015.html">krpc_t</a>* rpc, <a class="code" href="a00028.html">stream_t</a>* stream, uint16_t rpcid, <a class="code" href="a00013.html">krpc_object_t</a>* o);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00067_a5317bb571cb4d94bc56b83989c1b10c2.html#a5317bb571cb4d94bc56b83989c1b10c2">krpc_set_encrypt_cb</a>(<a class="code" href="a00015.html">krpc_t</a>* rpc, <a class="code" href="a00044_ae41a67cc07f8dff897ca978e03b1f2d7.html#ae41a67cc07f8dff897ca978e03b1f2d7">krpc_encrypt_t</a> func);</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00067_aa75ec66092e77639ca2cf2b5ad04c5db.html#aa75ec66092e77639ca2cf2b5ad04c5db">krpc_set_decrypt_cb</a>(<a class="code" href="a00015.html">krpc_t</a>* rpc, <a class="code" href="a00044_a5cf750f151c90f0589f68fe8c4421f1d.html#a5cf750f151c90f0589f68fe8c4421f1d">krpc_decrypt_t</a> func);</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* RPC_API_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="a00067_aa75ec66092e77639ca2cf2b5ad04c5db_html_aa75ec66092e77639ca2cf2b5ad04c5db"><div class="ttname"><a href="a00067_aa75ec66092e77639ca2cf2b5ad04c5db.html#aa75ec66092e77639ca2cf2b5ad04c5db">krpc_set_decrypt_cb</a></div><div class="ttdeci">int krpc_set_decrypt_cb(krpc_t *rpc, krpc_decrypt_t func)</div><div class="ttdoc">设置签名解密回调 </div><div class="ttdef"><b>Definition:</b> rpc.c:339</div></div>
-<div class="ttc" id="a00044_html"><div class="ttname"><a href="a00044.html">config.h</a></div></div>
-<div class="ttc" id="a00015_html"><div class="ttname"><a href="a00015.html">_krpc_t</a></div><div class="ttdef"><b>Definition:</b> rpc.c:59</div></div>
-<div class="ttc" id="a00044_ae41a67cc07f8dff897ca978e03b1f2d7_html_ae41a67cc07f8dff897ca978e03b1f2d7"><div class="ttname"><a href="a00044_ae41a67cc07f8dff897ca978e03b1f2d7.html#ae41a67cc07f8dff897ca978e03b1f2d7">krpc_encrypt_t</a></div><div class="ttdeci">uint16_t(* krpc_encrypt_t)(void *, uint16_t, void *, uint16_t)</div><div class="ttdef"><b>Definition:</b> config.h:285</div></div>
-<div class="ttc" id="a00044_a5cf750f151c90f0589f68fe8c4421f1d_html_a5cf750f151c90f0589f68fe8c4421f1d"><div class="ttname"><a href="a00044_a5cf750f151c90f0589f68fe8c4421f1d.html#a5cf750f151c90f0589f68fe8c4421f1d">krpc_decrypt_t</a></div><div class="ttdeci">uint16_t(* krpc_decrypt_t)(void *, uint16_t, void *, uint16_t)</div><div class="ttdef"><b>Definition:</b> config.h:287</div></div>
-<div class="ttc" id="a00067_a5d55f838d222f44965d99eac9a0381c1_html_a5d55f838d222f44965d99eac9a0381c1"><div class="ttname"><a href="a00067_a5d55f838d222f44965d99eac9a0381c1.html#a5d55f838d222f44965d99eac9a0381c1">krpc_create</a></div><div class="ttdeci">krpc_t * krpc_create()</div><div class="ttdoc">RPC框架提供了一套底层RPC序列化及反序列化的基础，开发者不应该直接调用这些API，应使用代码生成工具 提供�...</div><div class="ttdef"><b>Definition:</b> rpc.c:68</div></div>
-<div class="ttc" id="a00067_a9c94cce18fdcbb5e184af7f2ea20cceb_html_a9c94cce18fdcbb5e184af7f2ea20cceb"><div class="ttname"><a href="a00067_a9c94cce18fdcbb5e184af7f2ea20cceb.html#a9c94cce18fdcbb5e184af7f2ea20cceb">krpc_proc</a></div><div class="ttdeci">int krpc_proc(krpc_t *rpc, stream_t *stream)</div><div class="ttdoc">处理RPC调用，从数据流反序列化RPC调用，并调用回调函数 </div><div class="ttdef"><b>Definition:</b> rpc.c:265</div></div>
-<div class="ttc" id="a00044_a06bb708c1b97445d3a5d0c1b32ad2ab6_html_a06bb708c1b97445d3a5d0c1b32ad2ab6"><div class="ttname"><a href="a00044_a06bb708c1b97445d3a5d0c1b32ad2ab6.html#a06bb708c1b97445d3a5d0c1b32ad2ab6">krpc_cb_t</a></div><div class="ttdeci">int(* krpc_cb_t)(krpc_object_t *)</div><div class="ttdef"><b>Definition:</b> config.h:283</div></div>
-<div class="ttc" id="a00067_ab07c8ccf1abc99b85f455a2f4280ac76_html_ab07c8ccf1abc99b85f455a2f4280ac76"><div class="ttname"><a href="a00067_ab07c8ccf1abc99b85f455a2f4280ac76.html#ab07c8ccf1abc99b85f455a2f4280ac76">krpc_destroy</a></div><div class="ttdeci">void krpc_destroy(krpc_t *rpc)</div><div class="ttdoc">销毁RPC </div><div class="ttdef"><b>Definition:</b> rpc.c:77</div></div>
-<div class="ttc" id="a00067_a51bbf2caf4916c0c08d8c8d8d86e562e_html_a51bbf2caf4916c0c08d8c8d8d86e562e"><div class="ttname"><a href="a00067_a51bbf2caf4916c0c08d8c8d8d86e562e.html#a51bbf2caf4916c0c08d8c8d8d86e562e">krpc_call</a></div><div class="ttdeci">int krpc_call(krpc_t *rpc, stream_t *stream, uint16_t rpcid, krpc_object_t *o)</div><div class="ttdoc">发起RPC调用 </div><div class="ttdef"><b>Definition:</b> rpc.c:328</div></div>
-<div class="ttc" id="a00013_html"><div class="ttname"><a href="a00013.html">_krpc_object_t</a></div><div class="ttdef"><b>Definition:</b> rpc_object.c:88</div></div>
-<div class="ttc" id="a00067_a7841a0b4c828efcb607a51bbdd9c9ab1_html_a7841a0b4c828efcb607a51bbdd9c9ab1"><div class="ttname"><a href="a00067_a7841a0b4c828efcb607a51bbdd9c9ab1.html#a7841a0b4c828efcb607a51bbdd9c9ab1">krpc_get_cb</a></div><div class="ttdeci">krpc_cb_t krpc_get_cb(krpc_t *rpc, uint16_t rpcid)</div><div class="ttdoc">取得注册过的RPC调用回调函数 </div><div class="ttdef"><b>Definition:</b> rpc.c:99</div></div>
-<div class="ttc" id="a00067_a76529ccab5c6f0ada79cac791e299ef9_html_a76529ccab5c6f0ada79cac791e299ef9"><div class="ttname"><a href="a00067_a76529ccab5c6f0ada79cac791e299ef9.html#a76529ccab5c6f0ada79cac791e299ef9">krpc_del_cb</a></div><div class="ttdeci">int krpc_del_cb(krpc_t *rpc, uint16_t rpcid)</div><div class="ttdoc">删除注册过的RPC调用回调函数 </div><div class="ttdef"><b>Definition:</b> rpc.c:93</div></div>
-<div class="ttc" id="a00067_aa12a9874d2b0308994c3fa651cdbbd61_html_aa12a9874d2b0308994c3fa651cdbbd61"><div class="ttname"><a href="a00067_aa12a9874d2b0308994c3fa651cdbbd61.html#aa12a9874d2b0308994c3fa651cdbbd61">krpc_add_cb</a></div><div class="ttdeci">int krpc_add_cb(krpc_t *rpc, uint16_t rpcid, krpc_cb_t cb)</div><div class="ttdoc">注册RPC调用回调函数 </div><div class="ttdef"><b>Definition:</b> rpc.c:83</div></div>
-<div class="ttc" id="a00028_html"><div class="ttname"><a href="a00028.html">_stream_t</a></div><div class="ttdef"><b>Definition:</b> stream.c:33</div></div>
-<div class="ttc" id="a00067_a5317bb571cb4d94bc56b83989c1b10c2_html_a5317bb571cb4d94bc56b83989c1b10c2"><div class="ttname"><a href="a00067_a5317bb571cb4d94bc56b83989c1b10c2.html#a5317bb571cb4d94bc56b83989c1b10c2">krpc_set_encrypt_cb</a></div><div class="ttdeci">int krpc_set_encrypt_cb(krpc_t *rpc, krpc_encrypt_t func)</div><div class="ttdoc">设置签名加密回调 </div><div class="ttdef"><b>Definition:</b> rpc.c:333</div></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00026.html">loop_balancer_t</a>* <a class="code" href="a00095_ga9992a50e96839282c678e51bc11158d1.html#ga9992a50e96839282c678e51bc11158d1">loop_balancer_create</a>();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00095_ga2d702b5f965fe587fdaea3f5f9e2400c.html#ga2d702b5f965fe587fdaea3f5f9e2400c">loop_balancer_destroy</a>(<a class="code" href="a00026.html">loop_balancer_t</a>* balancer);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00095_ga2b3cf2cb63d914efe226e901a50d8b0a.html#ga2b3cf2cb63d914efe226e901a50d8b0a">loop_balancer_attach</a>(<a class="code" href="a00026.html">loop_balancer_t</a>* balancer, <a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00095_ga548ce0c2c624c4f4731a0f963d2ca42a.html#ga548ce0c2c624c4f4731a0f963d2ca42a">loop_balancer_detach</a>(<a class="code" href="a00026.html">loop_balancer_t</a>* balancer, <a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00095_gae10d6df162c0c43fbfb2bb68cca09e8b.html#gae10d6df162c0c43fbfb2bb68cca09e8b">loop_balancer_set_data</a>(<a class="code" href="a00026.html">loop_balancer_t</a>* balancer, <span class="keywordtype">void</span>* data);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span>* <a class="code" href="a00095_ga0f686f513ccb9026c58ab4675e5f87e2.html#ga0f686f513ccb9026c58ab4675e5f87e2">loop_balancer_get_data</a>(<a class="code" href="a00026.html">loop_balancer_t</a>* balancer);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* LOOP_BALANCER_API_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a00095_ga2b3cf2cb63d914efe226e901a50d8b0a_html_ga2b3cf2cb63d914efe226e901a50d8b0a"><div class="ttname"><a href="a00095_ga2b3cf2cb63d914efe226e901a50d8b0a.html#ga2b3cf2cb63d914efe226e901a50d8b0a">loop_balancer_attach</a></div><div class="ttdeci">int loop_balancer_attach(loop_balancer_t *balancer, loop_t *loop)</div><div class="ttdoc">添加事件循环到负载均衡器 </div><div class="ttdef"><b>Definition:</b> loop_balancer.c:65</div></div>
+<div class="ttc" id="a00047_html"><div class="ttname"><a href="a00047.html">config.h</a></div></div>
+<div class="ttc" id="a00095_ga9992a50e96839282c678e51bc11158d1_html_ga9992a50e96839282c678e51bc11158d1"><div class="ttname"><a href="a00095_ga9992a50e96839282c678e51bc11158d1.html#ga9992a50e96839282c678e51bc11158d1">loop_balancer_create</a></div><div class="ttdeci">loop_balancer_t * loop_balancer_create()</div><div class="ttdoc">创建负载均衡器 </div><div class="ttdef"><b>Definition:</b> loop_balancer.c:42</div></div>
+<div class="ttc" id="a00095_gae10d6df162c0c43fbfb2bb68cca09e8b_html_gae10d6df162c0c43fbfb2bb68cca09e8b"><div class="ttname"><a href="a00095_gae10d6df162c0c43fbfb2bb68cca09e8b.html#gae10d6df162c0c43fbfb2bb68cca09e8b">loop_balancer_set_data</a></div><div class="ttdeci">void loop_balancer_set_data(loop_balancer_t *balancer, void *data)</div><div class="ttdoc">设置用户数据 </div><div class="ttdef"><b>Definition:</b> loop_balancer.c:152</div></div>
+<div class="ttc" id="a00026_html"><div class="ttname"><a href="a00026.html">_loop_balancer_t</a></div><div class="ttdef"><b>Definition:</b> loop_balancer.c:36</div></div>
+<div class="ttc" id="a00012_ab4522a69094d41136b14e382ef3fcb8a_html_ab4522a69094d41136b14e382ef3fcb8a"><div class="ttname"><a href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">_framework_worker_t::loop</a></div><div class="ttdeci">loop_t * loop</div><div class="ttdef"><b>Definition:</b> framework_worker.c:8</div></div>
+<div class="ttc" id="a00029_html"><div class="ttname"><a href="a00029.html">_loop_t</a></div><div class="ttdef"><b>Definition:</b> loop.c:35</div></div>
+<div class="ttc" id="a00095_ga2d702b5f965fe587fdaea3f5f9e2400c_html_ga2d702b5f965fe587fdaea3f5f9e2400c"><div class="ttname"><a href="a00095_ga2d702b5f965fe587fdaea3f5f9e2400c.html#ga2d702b5f965fe587fdaea3f5f9e2400c">loop_balancer_destroy</a></div><div class="ttdeci">void loop_balancer_destroy(loop_balancer_t *balancer)</div><div class="ttdoc">销毁负载均衡器 </div><div class="ttdef"><b>Definition:</b> loop_balancer.c:53</div></div>
+<div class="ttc" id="a00095_ga548ce0c2c624c4f4731a0f963d2ca42a_html_ga548ce0c2c624c4f4731a0f963d2ca42a"><div class="ttname"><a href="a00095_ga548ce0c2c624c4f4731a0f963d2ca42a.html#ga548ce0c2c624c4f4731a0f963d2ca42a">loop_balancer_detach</a></div><div class="ttdeci">int loop_balancer_detach(loop_balancer_t *balancer, loop_t *loop)</div><div class="ttdoc">从负载均衡器内删除事件循环 </div><div class="ttdef"><b>Definition:</b> loop_balancer.c:91</div></div>
+<div class="ttc" id="a00095_ga0f686f513ccb9026c58ab4675e5f87e2_html_ga0f686f513ccb9026c58ab4675e5f87e2"><div class="ttname"><a href="a00095_ga0f686f513ccb9026c58ab4675e5f87e2.html#ga0f686f513ccb9026c58ab4675e5f87e2">loop_balancer_get_data</a></div><div class="ttdeci">void * loop_balancer_get_data(loop_balancer_t *balancer)</div><div class="ttdoc">取得用户数据 </div><div class="ttdef"><b>Definition:</b> loop_balancer.c:158</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 9日 星期四 15:26:51 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 13日 星期一 14:43:37 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

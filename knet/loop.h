@@ -247,4 +247,11 @@ int impl_remove_channel_ref(loop_t* loop, channel_ref_t* channel_ref);
  */
 socket_t impl_channel_accept(channel_ref_t* channel_ref);
 
+/**
+ * 取得用户数据指针
+ * @param loop loop_t实例
+ * @return 用户数据指针
+ */
+void* loop_get_data(loop_t* loop);
+
 #endif /* LOOP_H */

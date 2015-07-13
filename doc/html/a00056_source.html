@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/loop_balancer.h 源文件</title>
+<title>knet: E:/knet-git/knet/knet/hash.h 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">knet
-   &#160;<span id="projectnumber">1.4.3</span>
+   &#160;<span id="projectnumber">1.4.4</span>
    </div>
   </td>
  </tr>
@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">loop_balancer.h</div>  </div>
+<div class="title">hash.h</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00056.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
@@ -114,24 +114,78 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef LOOP_BALANCER_H</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define LOOP_BALANCER_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef HASH_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define HASH_H</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00044.html">config.h</a>&quot;</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00057.html">loop_balancer_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<a class="code" href="a00025.html">loop_t</a>* <a class="code" href="a00056_ac025f218f22410cf0e60980bbd93c5e3.html#ac025f218f22410cf0e60980bbd93c5e3">loop_balancer_choose</a>(<a class="code" href="a00022.html">loop_balancer_t</a>* balancer);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* LOOP_BALANCER_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="a00022_html"><div class="ttname"><a href="a00022.html">_loop_balancer_t</a></div><div class="ttdef"><b>Definition:</b> loop_balancer.c:36</div></div>
-<div class="ttc" id="a00044_html"><div class="ttname"><a href="a00044.html">config.h</a></div></div>
-<div class="ttc" id="a00056_ac025f218f22410cf0e60980bbd93c5e3_html_ac025f218f22410cf0e60980bbd93c5e3"><div class="ttname"><a href="a00056_ac025f218f22410cf0e60980bbd93c5e3.html#ac025f218f22410cf0e60980bbd93c5e3">loop_balancer_choose</a></div><div class="ttdeci">loop_t * loop_balancer_choose(loop_balancer_t *balancer)</div><div class="ttdoc">负载均衡 - 选取一个loop_t实例 </div><div class="ttdef"><b>Definition:</b> loop_balancer.c:116</div></div>
-<div class="ttc" id="a00025_html"><div class="ttname"><a href="a00025.html">_loop_t</a></div><div class="ttdef"><b>Definition:</b> loop.c:35</div></div>
-<div class="ttc" id="a00057_html"><div class="ttname"><a href="a00057.html">loop_balancer_api.h</a></div></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00047.html">config.h</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">void</span>* <a class="code" href="a00056_ad0be61da4760c7d8dedbe56a81a688bb.html#ad0be61da4760c7d8dedbe56a81a688bb">hash_value_get_value</a>(<a class="code" href="a00014.html">hash_value_t</a>* hash_value);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;uint32_t <a class="code" href="a00056_ab631c6680928561445077645be20aa76.html#ab631c6680928561445077645be20aa76">hash_value_get_key</a>(<a class="code" href="a00014.html">hash_value_t</a>* hash_value);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="a00056_ac50440f30c8359bbcf04c00297910b7f.html#ac50440f30c8359bbcf04c00297910b7f">hash_value_get_string_key</a>(<a class="code" href="a00014.html">hash_value_t</a>* hash_value);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<a class="code" href="a00013.html">hash_t</a>* <a class="code" href="a00056_accead380199ce99795d29e9d178e849b.html#accead380199ce99795d29e9d178e849b">hash_create</a>(uint32_t size, <a class="code" href="a00047_a5dcd1ed9242185e4448352748e58573d.html#a5dcd1ed9242185e4448352748e58573d">hash_dtor_t</a> dtor);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00056_a4073889d36e8fb6d2b2fcdea9d890db9.html#a4073889d36e8fb6d2b2fcdea9d890db9">hash_destroy</a>(<a class="code" href="a00013.html">hash_t</a>* hash);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00056_aa74d5b564965d7d3f162eb5308bc9b3f.html#aa74d5b564965d7d3f162eb5308bc9b3f">hash_add</a>(<a class="code" href="a00013.html">hash_t</a>* hash, uint32_t key, <span class="keywordtype">void</span>* value);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00056_ad5b36fd89c94138d38be050314d922ed.html#ad5b36fd89c94138d38be050314d922ed">hash_add_string_key</a>(<a class="code" href="a00013.html">hash_t</a>* hash, <span class="keyword">const</span> <span class="keywordtype">char</span>* key, <span class="keywordtype">void</span>* value);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keywordtype">void</span>* <a class="code" href="a00056_acef10836aec4eab1b2197ecaad759b34.html#acef10836aec4eab1b2197ecaad759b34">hash_remove</a>(<a class="code" href="a00013.html">hash_t</a>* hash, uint32_t key);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="keywordtype">void</span>* <a class="code" href="a00056_a054f507d00a4f813455dafffe29202d1.html#a054f507d00a4f813455dafffe29202d1">hash_remove_string_key</a>(<a class="code" href="a00013.html">hash_t</a>* hash, <span class="keyword">const</span> <span class="keywordtype">char</span>* key);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00056_ac5915f1a7177380272fbb014080217c8.html#ac5915f1a7177380272fbb014080217c8">hash_delete</a>(<a class="code" href="a00013.html">hash_t</a>* hash, uint32_t key);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00056_a8a53c52f3e2efedc73073989a69aaa7f.html#a8a53c52f3e2efedc73073989a69aaa7f">hash_replace</a>(<a class="code" href="a00013.html">hash_t</a>* hash, uint32_t key, <span class="keywordtype">void</span>* value);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00056_a204a56cd4efe339f71796a44830e8162.html#a204a56cd4efe339f71796a44830e8162">hash_replace_string_key</a>(<a class="code" href="a00013.html">hash_t</a>* hash, <span class="keyword">const</span> <span class="keywordtype">char</span>* key, <span class="keywordtype">void</span>* value);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00056_af31ceed9b3d6675a240da0b952492a0c.html#af31ceed9b3d6675a240da0b952492a0c">hash_delete_string_key</a>(<a class="code" href="a00013.html">hash_t</a>* hash, <span class="keyword">const</span> <span class="keywordtype">char</span>* key);</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="keywordtype">void</span>* <a class="code" href="a00056_a8f5065a1ac13afbbec3e2c61355effe3.html#a8f5065a1ac13afbbec3e2c61355effe3">hash_get</a>(<a class="code" href="a00013.html">hash_t</a>* hash, uint32_t key);</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="keywordtype">void</span>* <a class="code" href="a00056_a34b1caad9530537c6049ba7090d105a7.html#a34b1caad9530537c6049ba7090d105a7">hash_get_string_key</a>(<a class="code" href="a00013.html">hash_t</a>* hash, <span class="keyword">const</span> <span class="keywordtype">char</span>* key);</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;uint32_t <a class="code" href="a00056_a161be6f6ab6de6db3a3a0c3f82ce1607.html#a161be6f6ab6de6db3a3a0c3f82ce1607">hash_get_size</a>(<a class="code" href="a00013.html">hash_t</a>* hash);</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;<a class="code" href="a00014.html">hash_value_t</a>* <a class="code" href="a00056_a0be817a0ad58df448b3a339b01fef058.html#a0be817a0ad58df448b3a339b01fef058">hash_get_first</a>(<a class="code" href="a00013.html">hash_t</a>* hash);</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<a class="code" href="a00014.html">hash_value_t</a>* <a class="code" href="a00056_aa9239dd7173dc2847f153a70dbb6e15c.html#aa9239dd7173dc2847f153a70dbb6e15c">hash_next</a>(<a class="code" href="a00013.html">hash_t</a>* hash);</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="comment">/* 遍历哈希表，可以在遍历过程中删除或销毁当前元素 */</span></div>
+<div class="line"><a name="l00187"></a><span class="lineno"><a class="line" href="a00056_a1ad9a5e3743668c94c9fc4ccfd83dc78.html#a1ad9a5e3743668c94c9fc4ccfd83dc78">  187</a></span>&#160;<span class="preprocessor">#define hash_for_each_safe(hash, value) \</span></div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="preprocessor">    for (value = hash_get_first(hash); (value); value = hash_next(hash))</span></div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HASH_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a00056_af31ceed9b3d6675a240da0b952492a0c_html_af31ceed9b3d6675a240da0b952492a0c"><div class="ttname"><a href="a00056_af31ceed9b3d6675a240da0b952492a0c.html#af31ceed9b3d6675a240da0b952492a0c">hash_delete_string_key</a></div><div class="ttdeci">int hash_delete_string_key(hash_t *hash, const char *key)</div><div class="ttdoc">销毁元素 </div><div class="ttdef"><b>Definition:</b> hash.c:345</div></div>
+<div class="ttc" id="a00056_a8f5065a1ac13afbbec3e2c61355effe3_html_a8f5065a1ac13afbbec3e2c61355effe3"><div class="ttname"><a href="a00056_a8f5065a1ac13afbbec3e2c61355effe3.html#a8f5065a1ac13afbbec3e2c61355effe3">hash_get</a></div><div class="ttdeci">void * hash_get(hash_t *hash, uint32_t key)</div><div class="ttdoc">获取元素 </div><div class="ttdef"><b>Definition:</b> hash.c:360</div></div>
+<div class="ttc" id="a00056_a161be6f6ab6de6db3a3a0c3f82ce1607_html_a161be6f6ab6de6db3a3a0c3f82ce1607"><div class="ttname"><a href="a00056_a161be6f6ab6de6db3a3a0c3f82ce1607.html#a161be6f6ab6de6db3a3a0c3f82ce1607">hash_get_size</a></div><div class="ttdeci">uint32_t hash_get_size(hash_t *hash)</div><div class="ttdoc">取得元素数量 </div><div class="ttdef"><b>Definition:</b> hash.c:393</div></div>
+<div class="ttc" id="a00047_html"><div class="ttname"><a href="a00047.html">config.h</a></div></div>
+<div class="ttc" id="a00056_a8a53c52f3e2efedc73073989a69aaa7f_html_a8a53c52f3e2efedc73073989a69aaa7f"><div class="ttname"><a href="a00056_a8a53c52f3e2efedc73073989a69aaa7f.html#a8a53c52f3e2efedc73073989a69aaa7f">hash_replace</a></div><div class="ttdeci">int hash_replace(hash_t *hash, uint32_t key, void *value)</div><div class="ttdoc">替换 </div><div class="ttdef"><b>Definition:</b> hash.c:302</div></div>
+<div class="ttc" id="a00056_ad5b36fd89c94138d38be050314d922ed_html_ad5b36fd89c94138d38be050314d922ed"><div class="ttname"><a href="a00056_ad5b36fd89c94138d38be050314d922ed.html#ad5b36fd89c94138d38be050314d922ed">hash_add_string_key</a></div><div class="ttdeci">int hash_add_string_key(hash_t *hash, const char *key, void *value)</div><div class="ttdoc">添加元素 </div><div class="ttdef"><b>Definition:</b> hash.c:214</div></div>
+<div class="ttc" id="a00056_a054f507d00a4f813455dafffe29202d1_html_a054f507d00a4f813455dafffe29202d1"><div class="ttname"><a href="a00056_a054f507d00a4f813455dafffe29202d1.html#a054f507d00a4f813455dafffe29202d1">hash_remove_string_key</a></div><div class="ttdeci">void * hash_remove_string_key(hash_t *hash, const char *key)</div><div class="ttdoc">移除元素 </div><div class="ttdef"><b>Definition:</b> hash.c:260</div></div>
+<div class="ttc" id="a00056_a0be817a0ad58df448b3a339b01fef058_html_a0be817a0ad58df448b3a339b01fef058"><div class="ttname"><a href="a00056_a0be817a0ad58df448b3a339b01fef058.html#a0be817a0ad58df448b3a339b01fef058">hash_get_first</a></div><div class="ttdeci">hash_value_t * hash_get_first(hash_t *hash)</div><div class="ttdoc">重置遍历器，取第一个元素 </div><div class="ttdef"><b>Definition:</b> hash.c:407</div></div>
+<div class="ttc" id="a00056_acef10836aec4eab1b2197ecaad759b34_html_acef10836aec4eab1b2197ecaad759b34"><div class="ttname"><a href="a00056_acef10836aec4eab1b2197ecaad759b34.html#acef10836aec4eab1b2197ecaad759b34">hash_remove</a></div><div class="ttdeci">void * hash_remove(hash_t *hash, uint32_t key)</div><div class="ttdoc">移除元素 </div><div class="ttdef"><b>Definition:</b> hash.c:233</div></div>
+<div class="ttc" id="a00056_ab631c6680928561445077645be20aa76_html_ab631c6680928561445077645be20aa76"><div class="ttname"><a href="a00056_ab631c6680928561445077645be20aa76.html#ab631c6680928561445077645be20aa76">hash_value_get_key</a></div><div class="ttdeci">uint32_t hash_value_get_key(hash_value_t *hash_value)</div><div class="ttdoc">取得数字键 </div><div class="ttdef"><b>Definition:</b> hash.c:116</div></div>
+<div class="ttc" id="a00014_html"><div class="ttname"><a href="a00014.html">_hash_value_t</a></div><div class="ttdef"><b>Definition:</b> hash.c:39</div></div>
+<div class="ttc" id="a00056_accead380199ce99795d29e9d178e849b_html_accead380199ce99795d29e9d178e849b"><div class="ttname"><a href="a00056_accead380199ce99795d29e9d178e849b.html#accead380199ce99795d29e9d178e849b">hash_create</a></div><div class="ttdeci">hash_t * hash_create(uint32_t size, hash_dtor_t dtor)</div><div class="ttdoc">建立哈希表 </div><div class="ttdef"><b>Definition:</b> hash.c:142</div></div>
+<div class="ttc" id="a00047_a5dcd1ed9242185e4448352748e58573d_html_a5dcd1ed9242185e4448352748e58573d"><div class="ttname"><a href="a00047_a5dcd1ed9242185e4448352748e58573d.html#a5dcd1ed9242185e4448352748e58573d">hash_dtor_t</a></div><div class="ttdeci">void(* hash_dtor_t)(void *)</div><div class="ttdef"><b>Definition:</b> config.h:292</div></div>
+<div class="ttc" id="a00056_ad0be61da4760c7d8dedbe56a81a688bb_html_ad0be61da4760c7d8dedbe56a81a688bb"><div class="ttname"><a href="a00056_ad0be61da4760c7d8dedbe56a81a688bb.html#ad0be61da4760c7d8dedbe56a81a688bb">hash_value_get_value</a></div><div class="ttdeci">void * hash_value_get_value(hash_value_t *hash_value)</div><div class="ttdoc">内部使用，哈希表，同时支持数字或字符串作为key </div><div class="ttdef"><b>Definition:</b> hash.c:111</div></div>
+<div class="ttc" id="a00056_a4073889d36e8fb6d2b2fcdea9d890db9_html_a4073889d36e8fb6d2b2fcdea9d890db9"><div class="ttname"><a href="a00056_a4073889d36e8fb6d2b2fcdea9d890db9.html#a4073889d36e8fb6d2b2fcdea9d890db9">hash_destroy</a></div><div class="ttdeci">void hash_destroy(hash_t *hash)</div><div class="ttdoc">销毁哈希表 </div><div class="ttdef"><b>Definition:</b> hash.c:166</div></div>
+<div class="ttc" id="a00013_html"><div class="ttname"><a href="a00013.html">_hash_t</a></div><div class="ttdef"><b>Definition:</b> hash.c:29</div></div>
+<div class="ttc" id="a00056_aa74d5b564965d7d3f162eb5308bc9b3f_html_aa74d5b564965d7d3f162eb5308bc9b3f"><div class="ttname"><a href="a00056_aa74d5b564965d7d3f162eb5308bc9b3f.html#aa74d5b564965d7d3f162eb5308bc9b3f">hash_add</a></div><div class="ttdeci">int hash_add(hash_t *hash, uint32_t key, void *value)</div><div class="ttdoc">添加元素 </div><div class="ttdef"><b>Definition:</b> hash.c:194</div></div>
+<div class="ttc" id="a00056_a204a56cd4efe339f71796a44830e8162_html_a204a56cd4efe339f71796a44830e8162"><div class="ttname"><a href="a00056_a204a56cd4efe339f71796a44830e8162.html#a204a56cd4efe339f71796a44830e8162">hash_replace_string_key</a></div><div class="ttdeci">int hash_replace_string_key(hash_t *hash, const char *key, void *value)</div><div class="ttdoc">替换 </div><div class="ttdef"><b>Definition:</b> hash.c:323</div></div>
+<div class="ttc" id="a00056_ac5915f1a7177380272fbb014080217c8_html_ac5915f1a7177380272fbb014080217c8"><div class="ttname"><a href="a00056_ac5915f1a7177380272fbb014080217c8.html#ac5915f1a7177380272fbb014080217c8">hash_delete</a></div><div class="ttdeci">int hash_delete(hash_t *hash, uint32_t key)</div><div class="ttdoc">销毁元素 </div><div class="ttdef"><b>Definition:</b> hash.c:287</div></div>
+<div class="ttc" id="a00056_aa9239dd7173dc2847f153a70dbb6e15c_html_aa9239dd7173dc2847f153a70dbb6e15c"><div class="ttname"><a href="a00056_aa9239dd7173dc2847f153a70dbb6e15c.html#aa9239dd7173dc2847f153a70dbb6e15c">hash_next</a></div><div class="ttdeci">hash_value_t * hash_next(hash_t *hash)</div><div class="ttdoc">哈希表遍历器的下一个元素 </div><div class="ttdef"><b>Definition:</b> hash.c:440</div></div>
+<div class="ttc" id="a00056_a34b1caad9530537c6049ba7090d105a7_html_a34b1caad9530537c6049ba7090d105a7"><div class="ttname"><a href="a00056_a34b1caad9530537c6049ba7090d105a7.html#a34b1caad9530537c6049ba7090d105a7">hash_get_string_key</a></div><div class="ttdeci">void * hash_get_string_key(hash_t *hash, const char *key)</div><div class="ttdoc">获取元素 </div><div class="ttdef"><b>Definition:</b> hash.c:376</div></div>
+<div class="ttc" id="a00056_ac50440f30c8359bbcf04c00297910b7f_html_ac50440f30c8359bbcf04c00297910b7f"><div class="ttname"><a href="a00056_ac50440f30c8359bbcf04c00297910b7f.html#ac50440f30c8359bbcf04c00297910b7f">hash_value_get_string_key</a></div><div class="ttdeci">const char * hash_value_get_string_key(hash_value_t *hash_value)</div><div class="ttdoc">取得字符串键 </div><div class="ttdef"><b>Definition:</b> hash.c:121</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 9日 星期四 15:26:51 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 13日 星期一 14:43:37 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

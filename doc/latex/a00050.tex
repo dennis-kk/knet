@@ -1,91 +1,100 @@
-\hypertarget{a00050}{}\section{E\+:/knet-\/git/knet/knet/logger.c 文件参考}
-\label{a00050}\index{E\+:/knet-\/git/knet/knet/logger.\+c@{E\+:/knet-\/git/knet/knet/logger.\+c}}
-{\ttfamily \#include $<$stdarg.\+h$>$}\\*
+\hypertarget{a00050}{}\section{E\+:/knet-\/git/knet/knet/framework\+\_\+acceptor.c 文件参考}
+\label{a00050}\index{E\+:/knet-\/git/knet/knet/framework\+\_\+acceptor.\+c@{E\+:/knet-\/git/knet/knet/framework\+\_\+acceptor.\+c}}
+{\ttfamily \#include \char`\"{}framework\+\_\+acceptor.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}loop.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}loop\+\_\+balancer.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}framework.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}channel\+\_\+ref.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}misc.\+h\char`\"{}}\\*
 \subsection*{结构体}
 \begin{DoxyCompactItemize}
 \item 
-struct \hyperlink{a00021}{\+\_\+logger\+\_\+t}
+struct \hyperlink{a00009}{\+\_\+framework\+\_\+acceptor\+\_\+t}
 \end{DoxyCompactItemize}
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00044_a0468bf19eb27c2a3035789901b262671_a0468bf19eb27c2a3035789901b262671}{logger\+\_\+t} $\ast$ \hyperlink{a00050_a99170db05ea3c90f8799e90d23032562_a99170db05ea3c90f8799e90d23032562}{logger\+\_\+create} (const char $\ast$path, \hyperlink{a00044_afe883c56a5fd8d7794a3dd36780ed9d0_afe883c56a5fd8d7794a3dd36780ed9d0}{logger\+\_\+level\+\_\+e} level, \hyperlink{a00044_aa72cd8c306f50bee7c64e1daa1c1f3f4_aa72cd8c306f50bee7c64e1daa1c1f3f4}{logger\+\_\+mode\+\_\+e} mode)
-\begin{DoxyCompactList}\small\item\em 建立日志 \end{DoxyCompactList}\item 
-void \hyperlink{a00050_a45bc781df24f677451bcc079de530585_a45bc781df24f677451bcc079de530585}{logger\+\_\+destroy} (\hyperlink{a00044_a0468bf19eb27c2a3035789901b262671_a0468bf19eb27c2a3035789901b262671}{logger\+\_\+t} $\ast$logger)
-\begin{DoxyCompactList}\small\item\em 销毁日志 \end{DoxyCompactList}\item 
-int \hyperlink{a00050_aad3695a5b5df8331b3c0f3e069f037f5_aad3695a5b5df8331b3c0f3e069f037f5}{logger\+\_\+write} (\hyperlink{a00044_a0468bf19eb27c2a3035789901b262671_a0468bf19eb27c2a3035789901b262671}{logger\+\_\+t} $\ast$logger, \hyperlink{a00044_afe883c56a5fd8d7794a3dd36780ed9d0_afe883c56a5fd8d7794a3dd36780ed9d0}{logger\+\_\+level\+\_\+e} level, const char $\ast$format,...)
-\begin{DoxyCompactList}\small\item\em 写日志 \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{变量}
-\begin{DoxyCompactItemize}
-\item 
-\hyperlink{a00044_a0468bf19eb27c2a3035789901b262671_a0468bf19eb27c2a3035789901b262671}{logger\+\_\+t} $\ast$ \hyperlink{a00050_a390c05c7cb68b8334d6418733f330945_a390c05c7cb68b8334d6418733f330945}{global\+\_\+logger} = 0
-\end{DoxyCompactItemize}
+\hyperlink{a00047_ab0952db3c97c4760192720875e69d040_ab0952db3c97c4760192720875e69d040}{framework\+\_\+acceptor\+\_\+t} $\ast$ \hyperlink{a00050_a09f38093fc07ac67eb32a2d73d01ac00_a09f38093fc07ac67eb32a2d73d01ac00}{framework\+\_\+acceptor\+\_\+create} (\hyperlink{a00047_a6149d769f6f07ed14a40a271c95d8463_a6149d769f6f07ed14a40a271c95d8463}{framework\+\_\+t} $\ast$f)
+\begin{DoxyCompactList}\small\item\em 建立框架网络监听器 \end{DoxyCompactList}\item 
+void \hyperlink{a00050_a8547ef8ed59bf8fc10ce491cbc2e0e7d_a8547ef8ed59bf8fc10ce491cbc2e0e7d}{framework\+\_\+acceptor\+\_\+destroy} (\hyperlink{a00047_ab0952db3c97c4760192720875e69d040_ab0952db3c97c4760192720875e69d040}{framework\+\_\+acceptor\+\_\+t} $\ast$a)
+\begin{DoxyCompactList}\small\item\em 销毁框架网络监听器 \end{DoxyCompactList}\item 
+int \hyperlink{a00050_ae7af7233800a87f2719ba257be3fe738_ae7af7233800a87f2719ba257be3fe738}{framework\+\_\+acceptor\+\_\+start} (\hyperlink{a00047_ab0952db3c97c4760192720875e69d040_ab0952db3c97c4760192720875e69d040}{framework\+\_\+acceptor\+\_\+t} $\ast$a)
+\begin{DoxyCompactList}\small\item\em 启动框架网络监听器 \end{DoxyCompactList}\item 
+void \hyperlink{a00050_a53e38c44cdc8c84a57728a7f8e41dc27_a53e38c44cdc8c84a57728a7f8e41dc27}{framework\+\_\+acceptor\+\_\+stop} (\hyperlink{a00047_ab0952db3c97c4760192720875e69d040_ab0952db3c97c4760192720875e69d040}{framework\+\_\+acceptor\+\_\+t} $\ast$a)
+\begin{DoxyCompactList}\small\item\em 关闭框架网络监听器 \end{DoxyCompactList}\item 
+void \hyperlink{a00050_a4ef7d97742bc9410f486ebc4e0b75e82_a4ef7d97742bc9410f486ebc4e0b75e82}{acceptor\+\_\+cb} (\hyperlink{a00047_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel, \hyperlink{a00047_aaf2cba5d4035f3d56350b59342ebf65c_aaf2cba5d4035f3d56350b59342ebf65c}{channel\+\_\+cb\+\_\+event\+\_\+e} e)
+\begin{DoxyCompactList}\small\item\em 事件channel\+\_\+cb\+\_\+event\+\_\+accept处理函数 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{函数说明}
-\hypertarget{a00050_a99170db05ea3c90f8799e90d23032562_a99170db05ea3c90f8799e90d23032562}{}\index{logger.\+c@{logger.\+c}!logger\+\_\+create@{logger\+\_\+create}}
-\index{logger\+\_\+create@{logger\+\_\+create}!logger.\+c@{logger.\+c}}
-\subsubsection[{logger\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf logger\+\_\+t}$\ast$ logger\+\_\+create (
+\hypertarget{a00050_a4ef7d97742bc9410f486ebc4e0b75e82_a4ef7d97742bc9410f486ebc4e0b75e82}{}\index{framework\+\_\+acceptor.\+c@{framework\+\_\+acceptor.\+c}!acceptor\+\_\+cb@{acceptor\+\_\+cb}}
+\index{acceptor\+\_\+cb@{acceptor\+\_\+cb}!framework\+\_\+acceptor.\+c@{framework\+\_\+acceptor.\+c}}
+\subsubsection[{acceptor\+\_\+cb}]{\setlength{\rightskip}{0pt plus 5cm}void acceptor\+\_\+cb (
 \begin{DoxyParamCaption}
-\item[{const char $\ast$}]{path, }
-\item[{{\bf logger\+\_\+level\+\_\+e}}]{level, }
-\item[{{\bf logger\+\_\+mode\+\_\+e}}]{mode}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel, }
+\item[{{\bf channel\+\_\+cb\+\_\+event\+\_\+e}}]{e}
 \end{DoxyParamCaption}
-)}\label{a00050_a99170db05ea3c90f8799e90d23032562_a99170db05ea3c90f8799e90d23032562}
+)}\label{a00050_a4ef7d97742bc9410f486ebc4e0b75e82_a4ef7d97742bc9410f486ebc4e0b75e82}
 
 
-建立日志 
+事件channel\+\_\+cb\+\_\+event\+\_\+accept处理函数 
 
 
 \begin{DoxyParams}{参数}
-{\em path} & 日志文件路径, 如果为0将使用当前目录 \\
+{\em channel} & 监听管道，channel\+\_\+ref\+\_\+t实例 \\
 \hline
-{\em level} & 日志等级 \\
+{\em e} & 管道事件 \\
 \hline
-{\em mode} & 日志模式 \\
+\end{DoxyParams}
+\hypertarget{a00050_a09f38093fc07ac67eb32a2d73d01ac00_a09f38093fc07ac67eb32a2d73d01ac00}{}\index{framework\+\_\+acceptor.\+c@{framework\+\_\+acceptor.\+c}!framework\+\_\+acceptor\+\_\+create@{framework\+\_\+acceptor\+\_\+create}}
+\index{framework\+\_\+acceptor\+\_\+create@{framework\+\_\+acceptor\+\_\+create}!framework\+\_\+acceptor.\+c@{framework\+\_\+acceptor.\+c}}
+\subsubsection[{framework\+\_\+acceptor\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf framework\+\_\+acceptor\+\_\+t}$\ast$ framework\+\_\+acceptor\+\_\+create (
+\begin{DoxyParamCaption}
+\item[{{\bf framework\+\_\+t} $\ast$}]{f}
+\end{DoxyParamCaption}
+)}\label{a00050_a09f38093fc07ac67eb32a2d73d01ac00_a09f38093fc07ac67eb32a2d73d01ac00}
+
+
+建立框架网络监听器 
+
+
+\begin{DoxyParams}{参数}
+{\em f} & framework\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-logger\+\_\+t实例 
+framework\+\_\+acceptor\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00050_a45bc781df24f677451bcc079de530585_a45bc781df24f677451bcc079de530585}{}\index{logger.\+c@{logger.\+c}!logger\+\_\+destroy@{logger\+\_\+destroy}}
-\index{logger\+\_\+destroy@{logger\+\_\+destroy}!logger.\+c@{logger.\+c}}
-\subsubsection[{logger\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void logger\+\_\+destroy (
+\hypertarget{a00050_a8547ef8ed59bf8fc10ce491cbc2e0e7d_a8547ef8ed59bf8fc10ce491cbc2e0e7d}{}\index{framework\+\_\+acceptor.\+c@{framework\+\_\+acceptor.\+c}!framework\+\_\+acceptor\+\_\+destroy@{framework\+\_\+acceptor\+\_\+destroy}}
+\index{framework\+\_\+acceptor\+\_\+destroy@{framework\+\_\+acceptor\+\_\+destroy}!framework\+\_\+acceptor.\+c@{framework\+\_\+acceptor.\+c}}
+\subsubsection[{framework\+\_\+acceptor\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+acceptor\+\_\+destroy (
 \begin{DoxyParamCaption}
-\item[{{\bf logger\+\_\+t} $\ast$}]{logger}
+\item[{{\bf framework\+\_\+acceptor\+\_\+t} $\ast$}]{a}
 \end{DoxyParamCaption}
-)}\label{a00050_a45bc781df24f677451bcc079de530585_a45bc781df24f677451bcc079de530585}
+)}\label{a00050_a8547ef8ed59bf8fc10ce491cbc2e0e7d_a8547ef8ed59bf8fc10ce491cbc2e0e7d}
 
 
-销毁日志 
+销毁框架网络监听器 
 
 
 \begin{DoxyParams}{参数}
-{\em logger} & logger\+\_\+t实例 \\
+{\em a} & framework\+\_\+acceptor\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
-\hypertarget{a00050_aad3695a5b5df8331b3c0f3e069f037f5_aad3695a5b5df8331b3c0f3e069f037f5}{}\index{logger.\+c@{logger.\+c}!logger\+\_\+write@{logger\+\_\+write}}
-\index{logger\+\_\+write@{logger\+\_\+write}!logger.\+c@{logger.\+c}}
-\subsubsection[{logger\+\_\+write}]{\setlength{\rightskip}{0pt plus 5cm}int logger\+\_\+write (
+\hypertarget{a00050_ae7af7233800a87f2719ba257be3fe738_ae7af7233800a87f2719ba257be3fe738}{}\index{framework\+\_\+acceptor.\+c@{framework\+\_\+acceptor.\+c}!framework\+\_\+acceptor\+\_\+start@{framework\+\_\+acceptor\+\_\+start}}
+\index{framework\+\_\+acceptor\+\_\+start@{framework\+\_\+acceptor\+\_\+start}!framework\+\_\+acceptor.\+c@{framework\+\_\+acceptor.\+c}}
+\subsubsection[{framework\+\_\+acceptor\+\_\+start}]{\setlength{\rightskip}{0pt plus 5cm}int framework\+\_\+acceptor\+\_\+start (
 \begin{DoxyParamCaption}
-\item[{{\bf logger\+\_\+t} $\ast$}]{logger, }
-\item[{{\bf logger\+\_\+level\+\_\+e}}]{level, }
-\item[{const char $\ast$}]{format, }
-\item[{}]{...}
+\item[{{\bf framework\+\_\+acceptor\+\_\+t} $\ast$}]{a}
 \end{DoxyParamCaption}
-)}\label{a00050_aad3695a5b5df8331b3c0f3e069f037f5_aad3695a5b5df8331b3c0f3e069f037f5}
+)}\label{a00050_ae7af7233800a87f2719ba257be3fe738_ae7af7233800a87f2719ba257be3fe738}
 
 
-写日志 
+启动框架网络监听器 
 
 
 \begin{DoxyParams}{参数}
-{\em logger} & logger\+\_\+t实例 \\
-\hline
-{\em level} & 日志等级 \\
-\hline
-{\em format} & 日志格式 \\
+{\em a} & framework\+\_\+acceptor\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 
@@ -95,9 +104,19 @@ logger\+\_\+t实例
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
+\hypertarget{a00050_a53e38c44cdc8c84a57728a7f8e41dc27_a53e38c44cdc8c84a57728a7f8e41dc27}{}\index{framework\+\_\+acceptor.\+c@{framework\+\_\+acceptor.\+c}!framework\+\_\+acceptor\+\_\+stop@{framework\+\_\+acceptor\+\_\+stop}}
+\index{framework\+\_\+acceptor\+\_\+stop@{framework\+\_\+acceptor\+\_\+stop}!framework\+\_\+acceptor.\+c@{framework\+\_\+acceptor.\+c}}
+\subsubsection[{framework\+\_\+acceptor\+\_\+stop}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+acceptor\+\_\+stop (
+\begin{DoxyParamCaption}
+\item[{{\bf framework\+\_\+acceptor\+\_\+t} $\ast$}]{a}
+\end{DoxyParamCaption}
+)}\label{a00050_a53e38c44cdc8c84a57728a7f8e41dc27_a53e38c44cdc8c84a57728a7f8e41dc27}
 
 
-\subsection{变量说明}
-\hypertarget{a00050_a390c05c7cb68b8334d6418733f330945_a390c05c7cb68b8334d6418733f330945}{}\index{logger.\+c@{logger.\+c}!global\+\_\+logger@{global\+\_\+logger}}
-\index{global\+\_\+logger@{global\+\_\+logger}!logger.\+c@{logger.\+c}}
-\subsubsection[{global\+\_\+logger}]{\setlength{\rightskip}{0pt plus 5cm}{\bf logger\+\_\+t}$\ast$ global\+\_\+logger = 0}\label{a00050_a390c05c7cb68b8334d6418733f330945_a390c05c7cb68b8334d6418733f330945}
+关闭框架网络监听器 
+
+
+\begin{DoxyParams}{参数}
+{\em a} & framework\+\_\+acceptor\+\_\+t实例 \\
+\hline
+\end{DoxyParams}

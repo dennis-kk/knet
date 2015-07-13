@@ -31,5 +31,6 @@
 #include "stream_case.h"
 #include "thread_case.h"
 #include "timer_case.h"
+#include "framework_case.h"
 
 #endif // ALL_TEST_CASE_H

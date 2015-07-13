@@ -747,7 +747,6 @@ void thread_runner_join(thread_runner_t* runner) {
     error = WaitForSingleObject((HANDLE)runner->thread_id, INFINITE);
     if ((error != WAIT_OBJECT_0) && (error != WAIT_ABANDONED)) {
         log_error("WaitForSingleObject() failed, system error: %d", sys_get_errno());
-        verify(0);
     }
 #else
     pthread_join(runner->thread_id, &retval);

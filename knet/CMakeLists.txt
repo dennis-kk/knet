@@ -23,6 +23,9 @@ add_library(knet
 	hash.c
 	rpc.c
 	rpc_object.c
+	framework.c
+	framework_acceptor.c
+	framework_worker.c
 )
 
 target_link_libraries(knet -lpthread)

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/loop_api.h 文件参考</title>
+<title>knet: E:/knet-git/knet/knet/framework_worker.h 文件参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">knet
-   &#160;<span id="projectnumber">1.4.3</span>
+   &#160;<span id="projectnumber">1.4.4</span>
    </div>
   </td>
  </tr>
@@ -89,47 +89,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
   <div class="summary">
 <a href="#func-members">函数</a>  </div>
   <div class="headertitle">
-<div class="title">loop_api.h 文件参考</div>  </div>
+<div class="title">framework_worker.h 文件参考</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="a00044_source.html">config.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="a00047_source.html">config.h</a>&quot;</code><br />
 </div>
 <p><a href="a00054_source.html">浏览源代码.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 函数</h2></td></tr>
-<tr class="memitem:ga878bf0cd280e0bd183144bb95ca4a7b1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00044_a9c3ad1cd2de83e09f3a7b59fa82c94ee.html#a9c3ad1cd2de83e09f3a7b59fa82c94ee">loop_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00085_ga878bf0cd280e0bd183144bb95ca4a7b1.html#ga878bf0cd280e0bd183144bb95ca4a7b1">loop_create</a> ()</td></tr>
-<tr class="memdesc:ga878bf0cd280e0bd183144bb95ca4a7b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个事件循环  <a href="a00085_ga878bf0cd280e0bd183144bb95ca4a7b1.html#ga878bf0cd280e0bd183144bb95ca4a7b1">更多...</a><br /></td></tr>
-<tr class="separator:ga878bf0cd280e0bd183144bb95ca4a7b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga921fd5e5e16a73de123e81baab187a0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00085_ga921fd5e5e16a73de123e81baab187a0a.html#ga921fd5e5e16a73de123e81baab187a0a">loop_destroy</a> (<a class="el" href="a00044_a9c3ad1cd2de83e09f3a7b59fa82c94ee.html#a9c3ad1cd2de83e09f3a7b59fa82c94ee">loop_t</a> *loop)</td></tr>
-<tr class="memdesc:ga921fd5e5e16a73de123e81baab187a0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁事件循环 事件循环内的所有管道也会被销毁  <a href="a00085_ga921fd5e5e16a73de123e81baab187a0a.html#ga921fd5e5e16a73de123e81baab187a0a">更多...</a><br /></td></tr>
-<tr class="separator:ga921fd5e5e16a73de123e81baab187a0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab5b73ea9a0347b431f93ebf30ecd05b5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00044_a151271c9d188ef28d4d24bb81dcc1263.html#a151271c9d188ef28d4d24bb81dcc1263">channel_ref_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00085_gab5b73ea9a0347b431f93ebf30ecd05b5.html#gab5b73ea9a0347b431f93ebf30ecd05b5">loop_create_channel</a> (<a class="el" href="a00044_a9c3ad1cd2de83e09f3a7b59fa82c94ee.html#a9c3ad1cd2de83e09f3a7b59fa82c94ee">loop_t</a> *loop, uint32_t max_send_list_len, uint32_t recv_ring_len)</td></tr>
-<tr class="memdesc:gab5b73ea9a0347b431f93ebf30ecd05b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建管道  <a href="a00085_gab5b73ea9a0347b431f93ebf30ecd05b5.html#gab5b73ea9a0347b431f93ebf30ecd05b5">更多...</a><br /></td></tr>
-<tr class="separator:gab5b73ea9a0347b431f93ebf30ecd05b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6879ac453ef83768ce8f8ef43a474409"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00044_a151271c9d188ef28d4d24bb81dcc1263.html#a151271c9d188ef28d4d24bb81dcc1263">channel_ref_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00085_ga6879ac453ef83768ce8f8ef43a474409.html#ga6879ac453ef83768ce8f8ef43a474409">loop_create_channel_exist_socket_fd</a> (<a class="el" href="a00044_a9c3ad1cd2de83e09f3a7b59fa82c94ee.html#a9c3ad1cd2de83e09f3a7b59fa82c94ee">loop_t</a> *loop, <a class="el" href="a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd, uint32_t max_send_list_len, uint32_t recv_ring_len)</td></tr>
-<tr class="memdesc:ga6879ac453ef83768ce8f8ef43a474409"><td class="mdescLeft">&#160;</td><td class="mdescRight">使用已存在的套接字创建管道  <a href="a00085_ga6879ac453ef83768ce8f8ef43a474409.html#ga6879ac453ef83768ce8f8ef43a474409">更多...</a><br /></td></tr>
-<tr class="separator:ga6879ac453ef83768ce8f8ef43a474409"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2f1994d76e46cf4855ac955ccd41d9ef"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00085_ga2f1994d76e46cf4855ac955ccd41d9ef.html#ga2f1994d76e46cf4855ac955ccd41d9ef">loop_run_once</a> (<a class="el" href="a00044_a9c3ad1cd2de83e09f3a7b59fa82c94ee.html#a9c3ad1cd2de83e09f3a7b59fa82c94ee">loop_t</a> *loop)</td></tr>
-<tr class="memdesc:ga2f1994d76e46cf4855ac955ccd41d9ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">运行一次事件循环 loop_t不是线程安全的，不能在多个线程内同时对同一个loop_t实例调用loop_run_once  <a href="a00085_ga2f1994d76e46cf4855ac955ccd41d9ef.html#ga2f1994d76e46cf4855ac955ccd41d9ef">更多...</a><br /></td></tr>
-<tr class="separator:ga2f1994d76e46cf4855ac955ccd41d9ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8eb0f6c8d398c70fc5ca2292664a1187"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00085_ga8eb0f6c8d398c70fc5ca2292664a1187.html#ga8eb0f6c8d398c70fc5ca2292664a1187">loop_run</a> (<a class="el" href="a00044_a9c3ad1cd2de83e09f3a7b59fa82c94ee.html#a9c3ad1cd2de83e09f3a7b59fa82c94ee">loop_t</a> *loop)</td></tr>
-<tr class="memdesc:ga8eb0f6c8d398c70fc5ca2292664a1187"><td class="mdescLeft">&#160;</td><td class="mdescRight">运行事件循环直到调用loop_exit() loop_t不是线程安全的，不能在多个线程内同时对同一个loop_t实例调用loop_run  <a href="a00085_ga8eb0f6c8d398c70fc5ca2292664a1187.html#ga8eb0f6c8d398c70fc5ca2292664a1187">更多...</a><br /></td></tr>
-<tr class="separator:ga8eb0f6c8d398c70fc5ca2292664a1187"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga898c7e8ef4ff2f360a32454b2b1013de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00085_ga898c7e8ef4ff2f360a32454b2b1013de.html#ga898c7e8ef4ff2f360a32454b2b1013de">loop_exit</a> (<a class="el" href="a00044_a9c3ad1cd2de83e09f3a7b59fa82c94ee.html#a9c3ad1cd2de83e09f3a7b59fa82c94ee">loop_t</a> *loop)</td></tr>
-<tr class="memdesc:ga898c7e8ef4ff2f360a32454b2b1013de"><td class="mdescLeft">&#160;</td><td class="mdescRight">退出函数loop_run()  <a href="a00085_ga898c7e8ef4ff2f360a32454b2b1013de.html#ga898c7e8ef4ff2f360a32454b2b1013de">更多...</a><br /></td></tr>
-<tr class="separator:ga898c7e8ef4ff2f360a32454b2b1013de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6fa8f99fdc7a036fea6ca91971885e52"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00085_ga6fa8f99fdc7a036fea6ca91971885e52.html#ga6fa8f99fdc7a036fea6ca91971885e52">loop_get_active_channel_count</a> (<a class="el" href="a00044_a9c3ad1cd2de83e09f3a7b59fa82c94ee.html#a9c3ad1cd2de83e09f3a7b59fa82c94ee">loop_t</a> *loop)</td></tr>
-<tr class="memdesc:ga6fa8f99fdc7a036fea6ca91971885e52"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取活跃管道数量  <a href="a00085_ga6fa8f99fdc7a036fea6ca91971885e52.html#ga6fa8f99fdc7a036fea6ca91971885e52">更多...</a><br /></td></tr>
-<tr class="separator:ga6fa8f99fdc7a036fea6ca91971885e52"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga604184ddcd3e06bc7bfd4f1722778029"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00085_ga604184ddcd3e06bc7bfd4f1722778029.html#ga604184ddcd3e06bc7bfd4f1722778029">loop_get_close_channel_count</a> (<a class="el" href="a00044_a9c3ad1cd2de83e09f3a7b59fa82c94ee.html#a9c3ad1cd2de83e09f3a7b59fa82c94ee">loop_t</a> *loop)</td></tr>
-<tr class="memdesc:ga604184ddcd3e06bc7bfd4f1722778029"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取已关闭管道数量  <a href="a00085_ga604184ddcd3e06bc7bfd4f1722778029.html#ga604184ddcd3e06bc7bfd4f1722778029">更多...</a><br /></td></tr>
-<tr class="separator:ga604184ddcd3e06bc7bfd4f1722778029"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0617a9e873aa183a3bb0cc33a542a8a1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00047_aeb7a44e6b579659a8aae81f3ab819af3.html#aeb7a44e6b579659a8aae81f3ab819af3">framework_worker_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00054_a0617a9e873aa183a3bb0cc33a542a8a1.html#a0617a9e873aa183a3bb0cc33a542a8a1">framework_worker_create</a> (<a class="el" href="a00047_a6149d769f6f07ed14a40a271c95d8463.html#a6149d769f6f07ed14a40a271c95d8463">framework_t</a> *f)</td></tr>
+<tr class="memdesc:a0617a9e873aa183a3bb0cc33a542a8a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">建立框架工作线程  <a href="a00054_a0617a9e873aa183a3bb0cc33a542a8a1.html#a0617a9e873aa183a3bb0cc33a542a8a1">更多...</a><br /></td></tr>
+<tr class="separator:a0617a9e873aa183a3bb0cc33a542a8a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f5d04499db3c8137c840c8c87cdba5e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00054_a1f5d04499db3c8137c840c8c87cdba5e.html#a1f5d04499db3c8137c840c8c87cdba5e">framework_worker_destroy</a> (<a class="el" href="a00047_aeb7a44e6b579659a8aae81f3ab819af3.html#aeb7a44e6b579659a8aae81f3ab819af3">framework_worker_t</a> *w)</td></tr>
+<tr class="memdesc:a1f5d04499db3c8137c840c8c87cdba5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁框架工作线程  <a href="a00054_a1f5d04499db3c8137c840c8c87cdba5e.html#a1f5d04499db3c8137c840c8c87cdba5e">更多...</a><br /></td></tr>
+<tr class="separator:a1f5d04499db3c8137c840c8c87cdba5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8030b85e272bfe80459bbecbca5cd9c0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00054_a8030b85e272bfe80459bbecbca5cd9c0.html#a8030b85e272bfe80459bbecbca5cd9c0">framework_worker_start</a> (<a class="el" href="a00047_aeb7a44e6b579659a8aae81f3ab819af3.html#aeb7a44e6b579659a8aae81f3ab819af3">framework_worker_t</a> *w)</td></tr>
+<tr class="memdesc:a8030b85e272bfe80459bbecbca5cd9c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">启动框架工作线程  <a href="a00054_a8030b85e272bfe80459bbecbca5cd9c0.html#a8030b85e272bfe80459bbecbca5cd9c0">更多...</a><br /></td></tr>
+<tr class="separator:a8030b85e272bfe80459bbecbca5cd9c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52ecf94ed22881622a06600042ab1bb1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00054_a52ecf94ed22881622a06600042ab1bb1.html#a52ecf94ed22881622a06600042ab1bb1">framework_worker_stop</a> (<a class="el" href="a00047_aeb7a44e6b579659a8aae81f3ab819af3.html#aeb7a44e6b579659a8aae81f3ab819af3">framework_worker_t</a> *w)</td></tr>
+<tr class="memdesc:a52ecf94ed22881622a06600042ab1bb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">关闭框架工作线程  <a href="a00054_a52ecf94ed22881622a06600042ab1bb1.html#a52ecf94ed22881622a06600042ab1bb1">更多...</a><br /></td></tr>
+<tr class="separator:a52ecf94ed22881622a06600042ab1bb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 9日 星期四 15:26:51 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 13日 星期一 14:43:37 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

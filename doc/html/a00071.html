@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/store.c 文件参考</title>
+<title>knet: E:/knet-git/knet/knet/loop_select.c 文件参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">knet
-   &#160;<span id="projectnumber">1.4.3</span>
+   &#160;<span id="projectnumber">1.4.4</span>
    </div>
   </td>
  </tr>
@@ -86,40 +86,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div>
 </div><!-- top -->
 <div class="header">
-  <div class="summary">
-<a href="#nested-classes">结构体</a> &#124;
-<a href="#func-members">函数</a>  </div>
   <div class="headertitle">
-<div class="title">store.c 文件参考</div>  </div>
+<div class="title">loop_select.c 文件参考</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="a00072_source.html">store.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00046_source.html">hash.h</a>&quot;</code><br />
-</div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-结构体</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00027.html">_store_t</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-函数</h2></td></tr>
-<tr class="memitem:a1af7550aea3890ee5b11b7a63d9ab515"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00044_ac5e23aa8669eede04d771010dbd201b4.html#ac5e23aa8669eede04d771010dbd201b4">store_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00071_a1af7550aea3890ee5b11b7a63d9ab515.html#a1af7550aea3890ee5b11b7a63d9ab515">store_create</a> ()</td></tr>
-<tr class="separator:a1af7550aea3890ee5b11b7a63d9ab515"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e0eefdf8c2410878667f0c535909cf8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00071_a8e0eefdf8c2410878667f0c535909cf8.html#a8e0eefdf8c2410878667f0c535909cf8">store_destroy</a> (<a class="el" href="a00044_ac5e23aa8669eede04d771010dbd201b4.html#ac5e23aa8669eede04d771010dbd201b4">store_t</a> *store)</td></tr>
-<tr class="separator:a8e0eefdf8c2410878667f0c535909cf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a679dfe593c799419037e5d200386ecc7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00071_a679dfe593c799419037e5d200386ecc7.html#a679dfe593c799419037e5d200386ecc7">store_start</a> (<a class="el" href="a00044_ac5e23aa8669eede04d771010dbd201b4.html#ac5e23aa8669eede04d771010dbd201b4">store_t</a> *store, const char *ip, int port)</td></tr>
-<tr class="separator:a679dfe593c799419037e5d200386ecc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac18172cdd31b0f5ec3f3be7750a1d49c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00071_ac18172cdd31b0f5ec3f3be7750a1d49c.html#ac18172cdd31b0f5ec3f3be7750a1d49c">store_stop</a> (<a class="el" href="a00044_ac5e23aa8669eede04d771010dbd201b4.html#ac5e23aa8669eede04d771010dbd201b4">store_t</a> *store)</td></tr>
-<tr class="separator:ac18172cdd31b0f5ec3f3be7750a1d49c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a02e291e9e967e22a66b0907d776f139f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00071_a02e291e9e967e22a66b0907d776f139f.html#a02e291e9e967e22a66b0907d776f139f">store_set_worker_count</a> (<a class="el" href="a00044_ac5e23aa8669eede04d771010dbd201b4.html#ac5e23aa8669eede04d771010dbd201b4">store_t</a> *store, int worker_count)</td></tr>
-<tr class="separator:a02e291e9e967e22a66b0907d776f139f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a869ae551132a316c05015e9855e9ff68"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00071_a869ae551132a316c05015e9855e9ff68.html#a869ae551132a316c05015e9855e9ff68">store_set_bucket_count</a> (<a class="el" href="a00044_ac5e23aa8669eede04d771010dbd201b4.html#ac5e23aa8669eede04d771010dbd201b4">store_t</a> *store, int bucket_count)</td></tr>
-<tr class="separator:a869ae551132a316c05015e9855e9ff68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 9日 星期四 15:26:52 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 13日 星期一 14:43:37 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

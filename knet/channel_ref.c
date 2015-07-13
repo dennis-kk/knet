@@ -110,8 +110,10 @@ int channel_ref_destroy(channel_ref_t* channel_ref) {
 
 int channel_ref_connect(channel_ref_t* channel_ref, const char* ip, int port, int timeout) {
     verify(channel_ref);
-    verify(ip);
     verify(port);
+    if (!ip) {
+        ip = "127.0.0.1";
+    }
     if (channel_ref_check_state(channel_ref, channel_state_connect)) {
         /* 已经处于连接状态 */
         return error_connect_in_progress;

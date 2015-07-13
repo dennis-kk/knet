@@ -72,6 +72,20 @@ extern int loop_balancer_attach(loop_balancer_t* balancer, loop_t* loop);
  */
 extern int loop_balancer_detach(loop_balancer_t* balancer, loop_t* loop);
 
+/**
+ * 设置用户数据
+ * @param balancer loop_balancer_t实例
+ * @param data 用户数据指针
+ */
+extern void loop_balancer_set_data(loop_balancer_t* balancer, void* data);
+
+/**
+ * 取得用户数据
+ * @param balancer loop_balancer_t实例
+ * @return 用户数据指针
+ */
+extern void* loop_balancer_get_data(loop_balancer_t* balancer);
+
 /** @} */
 
 #endif /* LOOP_BALANCER_API_H */

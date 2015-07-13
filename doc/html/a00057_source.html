@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/loop_balancer_api.h 源文件</title>
+<title>knet: E:/knet-git/knet/knet/knet.h 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">knet
-   &#160;<span id="projectnumber">1.4.3</span>
+   &#160;<span id="projectnumber">1.4.4</span>
    </div>
   </td>
  </tr>
@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">loop_balancer_api.h</div>  </div>
+<div class="title">knet.h</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00057.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
@@ -114,31 +114,47 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef LOOP_BALANCER_API_H</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define LOOP_BALANCER_API_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef KNET_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define KNET_H</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00044.html">config.h</a>&quot;</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00022.html">loop_balancer_t</a>* <a class="code" href="a00086_ga9992a50e96839282c678e51bc11158d1.html#ga9992a50e96839282c678e51bc11158d1">loop_balancer_create</a>();</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00086_ga2d702b5f965fe587fdaea3f5f9e2400c.html#ga2d702b5f965fe587fdaea3f5f9e2400c">loop_balancer_destroy</a>(<a class="code" href="a00022.html">loop_balancer_t</a>* balancer);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00086_ga2b3cf2cb63d914efe226e901a50d8b0a.html#ga2b3cf2cb63d914efe226e901a50d8b0a">loop_balancer_attach</a>(<a class="code" href="a00022.html">loop_balancer_t</a>* balancer, <a class="code" href="a00025.html">loop_t</a>* loop);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00086_ga548ce0c2c624c4f4731a0f963d2ca42a.html#ga548ce0c2c624c4f4731a0f963d2ca42a">loop_balancer_detach</a>(<a class="code" href="a00022.html">loop_balancer_t</a>* balancer, <a class="code" href="a00025.html">loop_t</a>* loop);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* LOOP_BALANCER_API_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="a00022_html"><div class="ttname"><a href="a00022.html">_loop_balancer_t</a></div><div class="ttdef"><b>Definition:</b> loop_balancer.c:36</div></div>
-<div class="ttc" id="a00044_html"><div class="ttname"><a href="a00044.html">config.h</a></div></div>
-<div class="ttc" id="a00086_ga9992a50e96839282c678e51bc11158d1_html_ga9992a50e96839282c678e51bc11158d1"><div class="ttname"><a href="a00086_ga9992a50e96839282c678e51bc11158d1.html#ga9992a50e96839282c678e51bc11158d1">loop_balancer_create</a></div><div class="ttdeci">loop_balancer_t * loop_balancer_create()</div><div class="ttdoc">创建负载均衡器 </div><div class="ttdef"><b>Definition:</b> loop_balancer.c:41</div></div>
-<div class="ttc" id="a00086_ga2b3cf2cb63d914efe226e901a50d8b0a_html_ga2b3cf2cb63d914efe226e901a50d8b0a"><div class="ttname"><a href="a00086_ga2b3cf2cb63d914efe226e901a50d8b0a.html#ga2b3cf2cb63d914efe226e901a50d8b0a">loop_balancer_attach</a></div><div class="ttdeci">int loop_balancer_attach(loop_balancer_t *balancer, loop_t *loop)</div><div class="ttdoc">添加事件循环到负载均衡器 </div><div class="ttdef"><b>Definition:</b> loop_balancer.c:63</div></div>
-<div class="ttc" id="a00025_html"><div class="ttname"><a href="a00025.html">_loop_t</a></div><div class="ttdef"><b>Definition:</b> loop.c:35</div></div>
-<div class="ttc" id="a00086_ga2d702b5f965fe587fdaea3f5f9e2400c_html_ga2d702b5f965fe587fdaea3f5f9e2400c"><div class="ttname"><a href="a00086_ga2d702b5f965fe587fdaea3f5f9e2400c.html#ga2d702b5f965fe587fdaea3f5f9e2400c">loop_balancer_destroy</a></div><div class="ttdeci">void loop_balancer_destroy(loop_balancer_t *balancer)</div><div class="ttdoc">销毁负载均衡器 </div><div class="ttdef"><b>Definition:</b> loop_balancer.c:51</div></div>
-<div class="ttc" id="a00086_ga548ce0c2c624c4f4731a0f963d2ca42a_html_ga548ce0c2c624c4f4731a0f963d2ca42a"><div class="ttname"><a href="a00086_ga548ce0c2c624c4f4731a0f963d2ca42a.html#ga548ce0c2c624c4f4731a0f963d2ca42a">loop_balancer_detach</a></div><div class="ttdeci">int loop_balancer_detach(loop_balancer_t *balancer, loop_t *loop)</div><div class="ttdoc">从负载均衡器内删除事件循环 </div><div class="ttdef"><b>Definition:</b> loop_balancer.c:89</div></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __cplusplus */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00064.html">loop_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00083.html">stream_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00046.html">channel_ref_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00037.html">address_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00067.html">loop_balancer_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00039.html">broadcast_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00052.html">framework_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00087.html">timer_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00084.html">thread_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00077.html">rpc_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00080.html">rpc_object_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00089.html">version.h</a>&quot;</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __cplusplus */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* KNET_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a00039_html"><div class="ttname"><a href="a00039.html">broadcast_api.h</a></div></div>
+<div class="ttc" id="a00064_html"><div class="ttname"><a href="a00064.html">loop_api.h</a></div></div>
+<div class="ttc" id="a00067_html"><div class="ttname"><a href="a00067.html">loop_balancer_api.h</a></div></div>
+<div class="ttc" id="a00084_html"><div class="ttname"><a href="a00084.html">thread_api.h</a></div></div>
+<div class="ttc" id="a00087_html"><div class="ttname"><a href="a00087.html">timer_api.h</a></div></div>
+<div class="ttc" id="a00083_html"><div class="ttname"><a href="a00083.html">stream_api.h</a></div></div>
+<div class="ttc" id="a00046_html"><div class="ttname"><a href="a00046.html">channel_ref_api.h</a></div></div>
+<div class="ttc" id="a00037_html"><div class="ttname"><a href="a00037.html">address_api.h</a></div></div>
+<div class="ttc" id="a00052_html"><div class="ttname"><a href="a00052.html">framework_api.h</a></div></div>
+<div class="ttc" id="a00089_html"><div class="ttname"><a href="a00089.html">version.h</a></div></div>
+<div class="ttc" id="a00077_html"><div class="ttname"><a href="a00077.html">rpc_api.h</a></div></div>
+<div class="ttc" id="a00080_html"><div class="ttname"><a href="a00080.html">rpc_object_api.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 9日 星期四 15:26:51 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 13日 星期一 14:43:37 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

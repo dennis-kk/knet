@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.9.1"/>
+<title>knet: E:/knet-git/knet/knet/loop_api.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">knet
+   &#160;<span id="projectnumber">1.4.4</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.9.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="modules.html"><span>模块</span></a></li>
+      <li><a href="annotated.html"><span>结构体</span></a></li>
+      <li class="current"><a href="files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>文件列表</span></a></li>
+      <li><a href="globals.html"><span>全局定义</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_885cc87fac2d91e269af0a5a959fa5f6.html">E:</a></li><li class="navelem"><a class="el" href="dir_4e74998c9a9305a116abc25fcf9a1edb.html">knet-git</a></li><li class="navelem"><a class="el" href="dir_a1c045b39f32066568ae964b52db514f.html">knet</a></li><li class="navelem"><a class="el" href="dir_f76d03789f0b12416cfffea59e2ed47d.html">knet</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">loop_api.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="a00064.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2014-2015, dennis wang</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * All rights reserved.</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * </span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Redistribution and use in source and binary forms, with or without</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * modification, are permitted provided that the following conditions are met:</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> *     * Redistributions of source code must retain the above copyright</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *       notice, this list of conditions and the following disclaimer.</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> *     * Redistributions in binary form must reproduce the above copyright</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> *       notice, this list of conditions and the following disclaimer in the</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> *       documentation and/or other materials provided with the distribution.</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> * </span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> * DISCLAIMED. IN NO EVENT SHALL dennis wang BE LIABLE FOR ANY</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment"> * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"> * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef LOOP_API_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define LOOP_API_H</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00047.html">config.h</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00094_ga878bf0cd280e0bd183144bb95ca4a7b1.html#ga878bf0cd280e0bd183144bb95ca4a7b1">loop_create</a>();</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00094_ga921fd5e5e16a73de123e81baab187a0a.html#ga921fd5e5e16a73de123e81baab187a0a">loop_destroy</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00005.html">channel_ref_t</a>* <a class="code" href="a00094_gab5b73ea9a0347b431f93ebf30ecd05b5.html#gab5b73ea9a0347b431f93ebf30ecd05b5">loop_create_channel</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>, uint32_t max_send_list_len, uint32_t recv_ring_len);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00005.html">channel_ref_t</a>* <a class="code" href="a00094_ga6879ac453ef83768ce8f8ef43a474409.html#ga6879ac453ef83768ce8f8ef43a474409">loop_create_channel_exist_socket_fd</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>, <a class="code" href="a00047_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd,</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    uint32_t max_send_list_len, uint32_t recv_ring_len);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00094_ga2f1994d76e46cf4855ac955ccd41d9ef.html#ga2f1994d76e46cf4855ac955ccd41d9ef">loop_run_once</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00094_ga8eb0f6c8d398c70fc5ca2292664a1187.html#ga8eb0f6c8d398c70fc5ca2292664a1187">loop_run</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00094_ga898c7e8ef4ff2f360a32454b2b1013de.html#ga898c7e8ef4ff2f360a32454b2b1013de">loop_exit</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00094_ga6fa8f99fdc7a036fea6ca91971885e52.html#ga6fa8f99fdc7a036fea6ca91971885e52">loop_get_active_channel_count</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>);</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00094_ga604184ddcd3e06bc7bfd4f1722778029.html#ga604184ddcd3e06bc7bfd4f1722778029">loop_get_close_channel_count</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00094_ga480fadf19a49cb27354866e06500a03c.html#ga480fadf19a49cb27354866e06500a03c">loop_set_data</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>, <span class="keywordtype">void</span>* data);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* LOOP_API_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a00094_ga2f1994d76e46cf4855ac955ccd41d9ef_html_ga2f1994d76e46cf4855ac955ccd41d9ef"><div class="ttname"><a href="a00094_ga2f1994d76e46cf4855ac955ccd41d9ef.html#ga2f1994d76e46cf4855ac955ccd41d9ef">loop_run_once</a></div><div class="ttdeci">int loop_run_once(loop_t *loop)</div><div class="ttdoc">运行一次事件循环 loop_t不是线程安全的，不能在多个线程内同时对同一个loop_t实例调用loop_run_once ...</div><div class="ttdef"><b>Definition:</b> loop.c:254</div></div>
+<div class="ttc" id="a00094_ga898c7e8ef4ff2f360a32454b2b1013de_html_ga898c7e8ef4ff2f360a32454b2b1013de"><div class="ttname"><a href="a00094_ga898c7e8ef4ff2f360a32454b2b1013de.html#ga898c7e8ef4ff2f360a32454b2b1013de">loop_exit</a></div><div class="ttdeci">void loop_exit(loop_t *loop)</div><div class="ttdoc">退出函数loop_run() </div><div class="ttdef"><b>Definition:</b> loop.c:273</div></div>
+<div class="ttc" id="a00094_gab5b73ea9a0347b431f93ebf30ecd05b5_html_gab5b73ea9a0347b431f93ebf30ecd05b5"><div class="ttname"><a href="a00094_gab5b73ea9a0347b431f93ebf30ecd05b5.html#gab5b73ea9a0347b431f93ebf30ecd05b5">loop_create_channel</a></div><div class="ttdeci">channel_ref_t * loop_create_channel(loop_t *loop, uint32_t max_send_list_len, uint32_t recv_ring_len)</div><div class="ttdoc">创建管道 </div><div class="ttdef"><b>Definition:</b> loop.c:244</div></div>
+<div class="ttc" id="a00047_html"><div class="ttname"><a href="a00047.html">config.h</a></div></div>
+<div class="ttc" id="a00094_ga878bf0cd280e0bd183144bb95ca4a7b1_html_ga878bf0cd280e0bd183144bb95ca4a7b1"><div class="ttname"><a href="a00094_ga878bf0cd280e0bd183144bb95ca4a7b1.html#ga878bf0cd280e0bd183144bb95ca4a7b1">loop_create</a></div><div class="ttdeci">loop_t * loop_create()</div><div class="ttdoc">创建一个事件循环 </div><div class="ttdef"><b>Definition:</b> loop.c:93</div></div>
+<div class="ttc" id="a00012_ab4522a69094d41136b14e382ef3fcb8a_html_ab4522a69094d41136b14e382ef3fcb8a"><div class="ttname"><a href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">_framework_worker_t::loop</a></div><div class="ttdeci">loop_t * loop</div><div class="ttdef"><b>Definition:</b> framework_worker.c:8</div></div>
+<div class="ttc" id="a00047_a0d9e0afbf02fb6ed6c5b1415dce51b05_html_a0d9e0afbf02fb6ed6c5b1415dce51b05"><div class="ttname"><a href="a00047_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a></div><div class="ttdeci">#define socket_t</div><div class="ttdef"><b>Definition:</b> config.h:88</div></div>
+<div class="ttc" id="a00029_html"><div class="ttname"><a href="a00029.html">_loop_t</a></div><div class="ttdef"><b>Definition:</b> loop.c:35</div></div>
+<div class="ttc" id="a00005_html"><div class="ttname"><a href="a00005.html">_channel_ref_t</a></div><div class="ttdef"><b>Definition:</b> channel_ref.c:57</div></div>
+<div class="ttc" id="a00094_ga6fa8f99fdc7a036fea6ca91971885e52_html_ga6fa8f99fdc7a036fea6ca91971885e52"><div class="ttname"><a href="a00094_ga6fa8f99fdc7a036fea6ca91971885e52.html#ga6fa8f99fdc7a036fea6ca91971885e52">loop_get_active_channel_count</a></div><div class="ttdeci">int loop_get_active_channel_count(loop_t *loop)</div><div class="ttdoc">获取活跃管道数量 </div><div class="ttdef"><b>Definition:</b> loop.c:389</div></div>
+<div class="ttc" id="a00094_ga480fadf19a49cb27354866e06500a03c_html_ga480fadf19a49cb27354866e06500a03c"><div class="ttname"><a href="a00094_ga480fadf19a49cb27354866e06500a03c.html#ga480fadf19a49cb27354866e06500a03c">loop_set_data</a></div><div class="ttdeci">void loop_set_data(loop_t *loop, void *data)</div><div class="ttdoc">设置用户数据指针 </div><div class="ttdef"><b>Definition:</b> loop.c:414</div></div>
+<div class="ttc" id="a00094_ga8eb0f6c8d398c70fc5ca2292664a1187_html_ga8eb0f6c8d398c70fc5ca2292664a1187"><div class="ttname"><a href="a00094_ga8eb0f6c8d398c70fc5ca2292664a1187.html#ga8eb0f6c8d398c70fc5ca2292664a1187">loop_run</a></div><div class="ttdeci">int loop_run(loop_t *loop)</div><div class="ttdoc">运行事件循环直到调用loop_exit() loop_t不是线程安全的，不能在多个线程内同时对同一个loop_t实例调用loop_...</div><div class="ttdef"><b>Definition:</b> loop.c:260</div></div>
+<div class="ttc" id="a00094_ga921fd5e5e16a73de123e81baab187a0a_html_ga921fd5e5e16a73de123e81baab187a0a"><div class="ttname"><a href="a00094_ga921fd5e5e16a73de123e81baab187a0a.html#ga921fd5e5e16a73de123e81baab187a0a">loop_destroy</a></div><div class="ttdeci">void loop_destroy(loop_t *loop)</div><div class="ttdoc">销毁事件循环 事件循环内的所有管道也会被销毁 </div><div class="ttdef"><b>Definition:</b> loop.c:130</div></div>
+<div class="ttc" id="a00094_ga604184ddcd3e06bc7bfd4f1722778029_html_ga604184ddcd3e06bc7bfd4f1722778029"><div class="ttname"><a href="a00094_ga604184ddcd3e06bc7bfd4f1722778029.html#ga604184ddcd3e06bc7bfd4f1722778029">loop_get_close_channel_count</a></div><div class="ttdeci">int loop_get_close_channel_count(loop_t *loop)</div><div class="ttdoc">获取已关闭管道数量 </div><div class="ttdef"><b>Definition:</b> loop.c:394</div></div>
+<div class="ttc" id="a00094_ga6879ac453ef83768ce8f8ef43a474409_html_ga6879ac453ef83768ce8f8ef43a474409"><div class="ttname"><a href="a00094_ga6879ac453ef83768ce8f8ef43a474409.html#ga6879ac453ef83768ce8f8ef43a474409">loop_create_channel_exist_socket_fd</a></div><div class="ttdeci">channel_ref_t * loop_create_channel_exist_socket_fd(loop_t *loop, socket_t socket_fd, uint32_t max_send_list_len, uint32_t recv_ring_len)</div><div class="ttdoc">使用已存在的套接字创建管道 </div><div class="ttdef"><b>Definition:</b> loop.c:239</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+生成于 2015年 七月 13日 星期一 14:43:37 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.9.1
+</small></address>
+</body>
+</html>

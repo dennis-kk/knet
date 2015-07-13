@@ -36,11 +36,13 @@ typedef struct _loop_info_t {
 struct _loop_balancer_t {
     dlist_t* loop_info_list; /* loop_t实例链表 */
     lock_t*  lock;           /* 锁 - 链表访问, loop_t实例的添加删除 */
+    void*    data;           /* 用户数据 */
 };
 
 loop_balancer_t* loop_balancer_create() {
     loop_balancer_t* balancer = create(loop_balancer_t);
     verify(balancer);
+    memset(balancer, 0, sizeof(loop_balancer_t));
     balancer->loop_info_list = dlist_create();
     verify(balancer->loop_info_list);
     balancer->lock = lock_create();
@@ -145,4 +147,15 @@ loop_t* loop_balancer_choose(loop_balancer_t* balancer) {
         return found->loop;
     }
     return 0;
+}
+
+void loop_balancer_set_data(loop_balancer_t* balancer, void* data) {
+    verify(balancer);
+    verify(data);
+    balancer->data = data;
+}
+
+void* loop_balancer_get_data(loop_balancer_t* balancer) {
+    verify(balancer);
+    return balancer->data;
 }

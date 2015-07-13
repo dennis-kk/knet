@@ -127,6 +127,13 @@ extern int loop_get_active_channel_count(loop_t* loop);
  */
 extern int loop_get_close_channel_count(loop_t* loop);
 
+/**
+ * 设置用户数据指针
+ * @param loop loop_t实例
+ * @param data 用户数据指针
+ */
+extern void loop_set_data(loop_t* loop, void* data);
+
 /** @} */
 
 #endif /* LOOP_API_H */

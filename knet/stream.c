@@ -143,3 +143,8 @@ int stream_copy_stream(stream_t* stream, stream_t* target) {
     }
     return error_ok;
 }
+
+channel_ref_t* stream_get_channel_ref(stream_t* stream) {
+    verify(stream);
+    return stream->channel_ref;
+}

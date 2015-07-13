@@ -124,6 +124,13 @@ extern int stream_push_stream(stream_t* stream, stream_t* target);
  */
 extern int stream_copy_stream(stream_t* stream, stream_t* target);
 
+/**
+ * 获取流所属的管道引用
+ * @param stream stream_t实例
+ * @return channel_ref_t实例
+ */
+extern channel_ref_t* stream_get_channel_ref(stream_t* stream);
+
 /** @} */
 
 #endif /* STREAM_API_H */

@@ -1,814 +1,228 @@
-\hypertarget{a00087}{}\section{远程调用}
-\label{a00087}\index{远程调用@{远程调用}}
-
-
-远程调用  
-
-
+\hypertarget{a00087}{}\section{E\+:/knet-\/git/knet/knet/timer\+\_\+api.h 文件参考}
+\label{a00087}\index{E\+:/knet-\/git/knet/knet/timer\+\_\+api.\+h@{E\+:/knet-\/git/knet/knet/timer\+\_\+api.\+h}}
+{\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\\*
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$ \hyperlink{a00087_ga6aad58d8460944596e39822181bf4848_ga6aad58d8460944596e39822181bf4848}{krpc\+\_\+object\+\_\+create} ()
-\begin{DoxyCompactList}\small\item\em 所有set类方法调用时确定krpc\+\_\+object\+\_\+t实际类型，类型一旦确定不能再次更改 \end{DoxyCompactList}\item 
-void \hyperlink{a00087_ga8bb578f8ba5a8de682a1fe2a4c8a20f6_ga8bb578f8ba5a8de682a1fe2a4c8a20f6}{krpc\+\_\+object\+\_\+destroy} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
-\begin{DoxyCompactList}\small\item\em 销毁\+R\+P\+C对象 \end{DoxyCompactList}\item 
-int \hyperlink{a00087_ga207aac182f9f86e96ddea230ee9c8f61_ga207aac182f9f86e96ddea230ee9c8f61}{krpc\+\_\+object\+\_\+check\+\_\+type} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, \hyperlink{a00044_a6bca3ecacad337637254bb43ab58a0b6_a6bca3ecacad337637254bb43ab58a0b6}{krpc\+\_\+type\+\_\+e} type)
-\begin{DoxyCompactList}\small\item\em 测试\+R\+P\+C对象类型 \end{DoxyCompactList}\item 
-uint16\+\_\+t \hyperlink{a00087_gad51ebf7392be0ee1fd9597aa22a43015_gad51ebf7392be0ee1fd9597aa22a43015}{krpc\+\_\+object\+\_\+get\+\_\+marshal\+\_\+size} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
-\begin{DoxyCompactList}\small\item\em 取得序列化后的长度 \end{DoxyCompactList}\item 
-int \hyperlink{a00087_ga88e197e67ba6e7dc4b6fa361db77376b_ga88e197e67ba6e7dc4b6fa361db77376b}{krpc\+\_\+object\+\_\+marshal} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, \hyperlink{a00044_a261dba04f46f5c59a68a05f69f5a65a8_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$stream, uint16\+\_\+t $\ast$bytes)
-\begin{DoxyCompactList}\small\item\em 序列化到数据流 \end{DoxyCompactList}\item 
-int \hyperlink{a00087_ga32ed12c4faa68e258582b239b46fd180_ga32ed12c4faa68e258582b239b46fd180}{krpc\+\_\+object\+\_\+marshal\+\_\+buffer} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, char $\ast$buffer, uint16\+\_\+t length, uint16\+\_\+t $\ast$bytes)
-\begin{DoxyCompactList}\small\item\em 序列化到缓冲区 \end{DoxyCompactList}\item 
-int \hyperlink{a00087_gaff1ec30de69047da0315283957d877ca_gaff1ec30de69047da0315283957d877ca}{krpc\+\_\+object\+\_\+unmarshal} (\hyperlink{a00044_a261dba04f46f5c59a68a05f69f5a65a8_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$stream, \hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$$\ast$o, uint16\+\_\+t $\ast$bytes)
-\begin{DoxyCompactList}\small\item\em 从数据流反序列化对象 \end{DoxyCompactList}\item 
-int \hyperlink{a00087_ga0f2289e356949bc9ae0e8e0a151e42f4_ga0f2289e356949bc9ae0e8e0a151e42f4}{krpc\+\_\+object\+\_\+unmarshal\+\_\+buffer} (char $\ast$buffer, uint16\+\_\+t size, \hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$$\ast$o, uint16\+\_\+t $\ast$bytes)
-\begin{DoxyCompactList}\small\item\em 从缓冲区反序列化对象 \end{DoxyCompactList}\item 
-void \hyperlink{a00087_gac97afef390289879f19cda9149beb684_gac97afef390289879f19cda9149beb684}{krpc\+\_\+number\+\_\+set\+\_\+i8} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, int8\+\_\+t i8)
-\begin{DoxyCompactList}\small\item\em 设置数字 \end{DoxyCompactList}\item 
-int8\+\_\+t \hyperlink{a00087_ga5f14e2a44d3dd64fc1bc54e28b431587_ga5f14e2a44d3dd64fc1bc54e28b431587}{krpc\+\_\+number\+\_\+get\+\_\+i8} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
-\begin{DoxyCompactList}\small\item\em 获取有符号8位 \end{DoxyCompactList}\item 
-void \hyperlink{a00087_ga1b6cbaa51e2171bec6e5b2f97fe6223c_ga1b6cbaa51e2171bec6e5b2f97fe6223c}{krpc\+\_\+number\+\_\+set\+\_\+i16} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, int16\+\_\+t i16)
-\begin{DoxyCompactList}\small\item\em 设置数字 \end{DoxyCompactList}\item 
-int16\+\_\+t \hyperlink{a00087_ga090dd58301d21979a05fe6fc249e3a80_ga090dd58301d21979a05fe6fc249e3a80}{krpc\+\_\+number\+\_\+get\+\_\+i16} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
-\begin{DoxyCompactList}\small\item\em 获取有符号16位 \end{DoxyCompactList}\item 
-void \hyperlink{a00087_gaf70d32f6fb59d76e67e596d0feeee14b_gaf70d32f6fb59d76e67e596d0feeee14b}{krpc\+\_\+number\+\_\+set\+\_\+i32} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, int32\+\_\+t i32)
-\begin{DoxyCompactList}\small\item\em 设置数字 \end{DoxyCompactList}\item 
-int32\+\_\+t \hyperlink{a00087_gad287178bafa8b9495016ee747db8e090_gad287178bafa8b9495016ee747db8e090}{krpc\+\_\+number\+\_\+get\+\_\+i32} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
-\begin{DoxyCompactList}\small\item\em 获取有符号32位 \end{DoxyCompactList}\item 
-void \hyperlink{a00087_gabf92e2dab46131d75789812059214724_gabf92e2dab46131d75789812059214724}{krpc\+\_\+number\+\_\+set\+\_\+i64} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, int64\+\_\+t i64)
-\begin{DoxyCompactList}\small\item\em 设置数字 \end{DoxyCompactList}\item 
-int64\+\_\+t \hyperlink{a00087_ga41bb57b2a053c9aeb22c98e0cbfbc2e4_ga41bb57b2a053c9aeb22c98e0cbfbc2e4}{krpc\+\_\+number\+\_\+get\+\_\+i64} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
-\begin{DoxyCompactList}\small\item\em 获取有符号64位 \end{DoxyCompactList}\item 
-void \hyperlink{a00087_ga0abbc84b15e73781209485cbfa4d2a56_ga0abbc84b15e73781209485cbfa4d2a56}{krpc\+\_\+number\+\_\+set\+\_\+ui8} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, uint8\+\_\+t ui8)
-\begin{DoxyCompactList}\small\item\em 设置数字 \end{DoxyCompactList}\item 
-uint8\+\_\+t \hyperlink{a00087_ga921ba1649bda27068e3d048b854ed708_ga921ba1649bda27068e3d048b854ed708}{krpc\+\_\+number\+\_\+get\+\_\+ui8} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
-\begin{DoxyCompactList}\small\item\em 获取无符号8位 \end{DoxyCompactList}\item 
-void \hyperlink{a00087_ga7990cb68203c5ab0d1534ef616fd1aad_ga7990cb68203c5ab0d1534ef616fd1aad}{krpc\+\_\+number\+\_\+set\+\_\+ui16} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, uint16\+\_\+t ui16)
-\begin{DoxyCompactList}\small\item\em 设置数字 \end{DoxyCompactList}\item 
-uint16\+\_\+t \hyperlink{a00087_gaa2f3b1c450f36d181e585924ff7954a5_gaa2f3b1c450f36d181e585924ff7954a5}{krpc\+\_\+number\+\_\+get\+\_\+ui16} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
-\begin{DoxyCompactList}\small\item\em 获取无符号16位 \end{DoxyCompactList}\item 
-void \hyperlink{a00087_gaf864070d7b20a77c9191acbe49f9382f_gaf864070d7b20a77c9191acbe49f9382f}{krpc\+\_\+number\+\_\+set\+\_\+ui32} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, uint32\+\_\+t ui32)
-\begin{DoxyCompactList}\small\item\em 设置数字 \end{DoxyCompactList}\item 
-uint32\+\_\+t \hyperlink{a00087_gabc1d9560a6f2baf606c4a232488ee76a_gabc1d9560a6f2baf606c4a232488ee76a}{krpc\+\_\+number\+\_\+get\+\_\+ui32} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
-\begin{DoxyCompactList}\small\item\em 获取无符号32位 \end{DoxyCompactList}\item 
-void \hyperlink{a00087_gafd0da43f7cb46188c6d2f1657b39c3ba_gafd0da43f7cb46188c6d2f1657b39c3ba}{krpc\+\_\+number\+\_\+set\+\_\+ui64} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, int64\+\_\+t ui64)
-\begin{DoxyCompactList}\small\item\em 设置数字 \end{DoxyCompactList}\item 
-uint64\+\_\+t \hyperlink{a00087_ga951b99916dd94a6d8c5ad335578c35d7_ga951b99916dd94a6d8c5ad335578c35d7}{krpc\+\_\+number\+\_\+get\+\_\+ui64} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
-\begin{DoxyCompactList}\small\item\em 获取无符号64位 \end{DoxyCompactList}\item 
-void \hyperlink{a00087_ga0e16d4b0c82cb88b148e82bc076a840c_ga0e16d4b0c82cb88b148e82bc076a840c}{krpc\+\_\+number\+\_\+set\+\_\+f32} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, \hyperlink{a00044_a24938fa843048398799e12d52d3e3693_a24938fa843048398799e12d52d3e3693}{float32\+\_\+t} f32)
-\begin{DoxyCompactList}\small\item\em 设置数字 \end{DoxyCompactList}\item 
-\hyperlink{a00044_a24938fa843048398799e12d52d3e3693_a24938fa843048398799e12d52d3e3693}{float32\+\_\+t} \hyperlink{a00087_gaa646cc26fc434789e5d4a58ec39a99fa_gaa646cc26fc434789e5d4a58ec39a99fa}{krpc\+\_\+number\+\_\+get\+\_\+f32} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
-\begin{DoxyCompactList}\small\item\em 获取浮点数32位 \end{DoxyCompactList}\item 
-void \hyperlink{a00087_ga8aeb77dbdf5aaab4bb75f57ee0ddd8b9_ga8aeb77dbdf5aaab4bb75f57ee0ddd8b9}{krpc\+\_\+number\+\_\+set\+\_\+f64} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, \hyperlink{a00044_a584460dce5c6f292dfffb0e7fbca0842_a584460dce5c6f292dfffb0e7fbca0842}{float64\+\_\+t} f64)
-\begin{DoxyCompactList}\small\item\em 设置数字 \end{DoxyCompactList}\item 
-\hyperlink{a00044_a584460dce5c6f292dfffb0e7fbca0842_a584460dce5c6f292dfffb0e7fbca0842}{float64\+\_\+t} \hyperlink{a00087_ga000db715b85193d0b6750b46bfc590b5_ga000db715b85193d0b6750b46bfc590b5}{krpc\+\_\+number\+\_\+get\+\_\+f64} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
-\begin{DoxyCompactList}\small\item\em 获取浮点数64位 \end{DoxyCompactList}\item 
-void \hyperlink{a00087_ga6985230e52d14d9e6d1f0de75a7c2f93_ga6985230e52d14d9e6d1f0de75a7c2f93}{krpc\+\_\+string\+\_\+set} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, const char $\ast$s)
-\begin{DoxyCompactList}\small\item\em 设置字符串 \end{DoxyCompactList}\item 
-void \hyperlink{a00087_ga478faec6f30727235d29aaeb8d54f22f_ga478faec6f30727235d29aaeb8d54f22f}{krpc\+\_\+string\+\_\+set\+\_\+s} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, const char $\ast$s, uint16\+\_\+t size)
-\begin{DoxyCompactList}\small\item\em 设置字符串 \end{DoxyCompactList}\item 
-const char $\ast$ \hyperlink{a00087_ga4cbbacb71688aa9ee2c5811076132bce_ga4cbbacb71688aa9ee2c5811076132bce}{krpc\+\_\+string\+\_\+get} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
-\begin{DoxyCompactList}\small\item\em 获取字符串指针 \end{DoxyCompactList}\item 
-uint16\+\_\+t \hyperlink{a00087_ga1de7973df219a3f8d3f466d27ba8c080_ga1de7973df219a3f8d3f466d27ba8c080}{krpc\+\_\+string\+\_\+get\+\_\+size} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
-\begin{DoxyCompactList}\small\item\em 获取字符串长度，包含结尾符 \end{DoxyCompactList}\item 
-int \hyperlink{a00087_gac870fa910b5e155c9f566ead4fac2b54_gac870fa910b5e155c9f566ead4fac2b54}{krpc\+\_\+vector\+\_\+push\+\_\+back} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$v, \hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
-\begin{DoxyCompactList}\small\item\em 添加到数组尾，数组默认长度为8，每次递增8 \end{DoxyCompactList}\item 
-uint32\+\_\+t \hyperlink{a00087_gac86bb807e52193aaa69ce6fe36cd59c8_gac86bb807e52193aaa69ce6fe36cd59c8}{krpc\+\_\+vector\+\_\+get\+\_\+size} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$v)
-\begin{DoxyCompactList}\small\item\em 取得数组元素个数 \end{DoxyCompactList}\item 
-\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$ \hyperlink{a00087_ga0291a0548378269354fc614712f4c31e_ga0291a0548378269354fc614712f4c31e}{krpc\+\_\+vector\+\_\+get} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$v, int index)
-\begin{DoxyCompactList}\small\item\em 按索引取得数组元素 \end{DoxyCompactList}\item 
-int \hyperlink{a00087_gaf08956a35d983893f382974abcfca177_gaf08956a35d983893f382974abcfca177}{krpc\+\_\+vector\+\_\+set} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$v, \hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, int index)
-\begin{DoxyCompactList}\small\item\em 按索引设置数组元素，若已存在元素则销毁旧元素 \end{DoxyCompactList}\item 
-void \hyperlink{a00087_ga02d5eeffe865f129911f42ffbfa0d119_ga02d5eeffe865f129911f42ffbfa0d119}{krpc\+\_\+vector\+\_\+clear} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$v)
-\begin{DoxyCompactList}\small\item\em 清空数组 \end{DoxyCompactList}\item 
-int \hyperlink{a00087_ga252615bf3ff115656c3c155a7c9fafaf_ga252615bf3ff115656c3c155a7c9fafaf}{krpc\+\_\+map\+\_\+insert} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$m, \hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$k, \hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$v)
-\begin{DoxyCompactList}\small\item\em 添加$<$k, v$>$ \end{DoxyCompactList}\item 
-int \hyperlink{a00087_gace78d56aa68df141f3cfa90ecf012b81_gace78d56aa68df141f3cfa90ecf012b81}{krpc\+\_\+map\+\_\+update} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$m, \hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$k, \hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$v)
-\begin{DoxyCompactList}\small\item\em 更新$<$k, v$>$，如果k不存在则插入 \end{DoxyCompactList}\item 
-\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$ \hyperlink{a00087_ga87ce3d17030c66e3264fa2e026bfaf33_ga87ce3d17030c66e3264fa2e026bfaf33}{krpc\+\_\+map\+\_\+get} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$m, \hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$k)
-\begin{DoxyCompactList}\small\item\em 查找 \end{DoxyCompactList}\item 
-uint32\+\_\+t \hyperlink{a00087_gad760f8fec813dab474ac011d7aab1e7e_gad760f8fec813dab474ac011d7aab1e7e}{krpc\+\_\+map\+\_\+get\+\_\+size} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$m)
-\begin{DoxyCompactList}\small\item\em 取得表$<$kev, value$>$个数 \end{DoxyCompactList}\item 
-int \hyperlink{a00087_gad894af3d72e3ae9629ebd724534dae7f_gad894af3d72e3ae9629ebd724534dae7f}{krpc\+\_\+map\+\_\+get\+\_\+first} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$m, \hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$$\ast$k, \hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$$\ast$v)
-\begin{DoxyCompactList}\small\item\em 重置遍历器并取第一个$<$key, value$>$ \end{DoxyCompactList}\item 
-int \hyperlink{a00087_gaa818187b224d2ec13b5b1a25badc3fe3_gaa818187b224d2ec13b5b1a25badc3fe3}{krpc\+\_\+map\+\_\+next} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$m, \hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$$\ast$k, \hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$$\ast$v)
-\begin{DoxyCompactList}\small\item\em 取下一个未遍历的$<$key, value$>$ \end{DoxyCompactList}\item 
-void \hyperlink{a00087_ga76c5ca67a568d6e6634a57c3be742b2c_ga76c5ca67a568d6e6634a57c3be742b2c}{krpc\+\_\+map\+\_\+clear} (\hyperlink{a00044_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$m)
-\begin{DoxyCompactList}\small\item\em 清空表 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{a00047_a024af2aa29615e7a811ea6c45438157d_a024af2aa29615e7a811ea6c45438157d}{ktimer\+\_\+loop\+\_\+t} $\ast$ \hyperlink{a00099_gaef96e7c368db456236a2121e3d75c49c_gaef96e7c368db456236a2121e3d75c49c}{ktimer\+\_\+loop\+\_\+create} (time\+\_\+t freq, int slot)
+\begin{DoxyCompactList}\small\item\em 创建定时器循环 \end{DoxyCompactList}\item 
+void \hyperlink{a00099_gad3dafe93f5b45424bd5983ef0c163687_gad3dafe93f5b45424bd5983ef0c163687}{ktimer\+\_\+loop\+\_\+destroy} (\hyperlink{a00047_a024af2aa29615e7a811ea6c45438157d_a024af2aa29615e7a811ea6c45438157d}{ktimer\+\_\+loop\+\_\+t} $\ast$ktimer\+\_\+loop)
+\begin{DoxyCompactList}\small\item\em 销毁定时器循环 \end{DoxyCompactList}\item 
+int \hyperlink{a00099_gaf195cf4006bced494e99242c36ad36c0_gaf195cf4006bced494e99242c36ad36c0}{ktimer\+\_\+loop\+\_\+run\+\_\+once} (\hyperlink{a00047_a024af2aa29615e7a811ea6c45438157d_a024af2aa29615e7a811ea6c45438157d}{ktimer\+\_\+loop\+\_\+t} $\ast$ktimer\+\_\+loop)
+\begin{DoxyCompactList}\small\item\em 检查定时器超时，如果超时调用定时器回调 \end{DoxyCompactList}\item 
+void \hyperlink{a00099_ga5e31b2fc26af005e97b09804c5a98099_ga5e31b2fc26af005e97b09804c5a98099}{ktimer\+\_\+loop\+\_\+run} (\hyperlink{a00047_a024af2aa29615e7a811ea6c45438157d_a024af2aa29615e7a811ea6c45438157d}{ktimer\+\_\+loop\+\_\+t} $\ast$ktimer\+\_\+loop)
+\begin{DoxyCompactList}\small\item\em 循环检查定时器超时，调用ktimer\+\_\+loop\+\_\+exit()退出 \end{DoxyCompactList}\item 
+void \hyperlink{a00099_ga9d51f5fa5d9609d783eb4b0e05101079_ga9d51f5fa5d9609d783eb4b0e05101079}{ktimer\+\_\+loop\+\_\+exit} (\hyperlink{a00047_a024af2aa29615e7a811ea6c45438157d_a024af2aa29615e7a811ea6c45438157d}{ktimer\+\_\+loop\+\_\+t} $\ast$ktimer\+\_\+loop)
+\begin{DoxyCompactList}\small\item\em 退出ktimer\+\_\+loop\+\_\+run() \end{DoxyCompactList}\item 
+\hyperlink{a00047_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$ \hyperlink{a00099_ga37901569361ae2a726a1973d7da2d6e5_ga37901569361ae2a726a1973d7da2d6e5}{ktimer\+\_\+create} (\hyperlink{a00047_a024af2aa29615e7a811ea6c45438157d_a024af2aa29615e7a811ea6c45438157d}{ktimer\+\_\+loop\+\_\+t} $\ast$ktimer\+\_\+loop)
+\begin{DoxyCompactList}\small\item\em 创建一个定时器 \end{DoxyCompactList}\item 
+int \hyperlink{a00099_ga1465f5ddec41fa81c429d1647dc5e7a9_ga1465f5ddec41fa81c429d1647dc5e7a9}{ktimer\+\_\+stop} (\hyperlink{a00047_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer)
+\begin{DoxyCompactList}\small\item\em 停止并销毁定时器 \end{DoxyCompactList}\item 
+\hyperlink{a00047_a024af2aa29615e7a811ea6c45438157d_a024af2aa29615e7a811ea6c45438157d}{ktimer\+\_\+loop\+\_\+t} $\ast$ \hyperlink{a00099_gad2c8d1024db56a0bef97ea47fb07a920_gad2c8d1024db56a0bef97ea47fb07a920}{ktimer\+\_\+get\+\_\+loop} (\hyperlink{a00047_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer)
+\begin{DoxyCompactList}\small\item\em 取得ktimer\+\_\+loop\+\_\+t实例 \end{DoxyCompactList}\item 
+int \hyperlink{a00099_ga8c5900fb62a63dc71cc9f38ac6427ad1_ga8c5900fb62a63dc71cc9f38ac6427ad1}{ktimer\+\_\+start} (\hyperlink{a00047_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer, \hyperlink{a00047_a2333fd0f2c3a85faf586300ca40deed4_a2333fd0f2c3a85faf586300ca40deed4}{ktimer\+\_\+cb\+\_\+t} cb, void $\ast$data, time\+\_\+t ms)
+\begin{DoxyCompactList}\small\item\em 启动一个无限次数的定时器 \end{DoxyCompactList}\item 
+int \hyperlink{a00099_ga9c37409260a72e3218ae4fcaf44d79bc_ga9c37409260a72e3218ae4fcaf44d79bc}{ktimer\+\_\+start\+\_\+once} (\hyperlink{a00047_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer, \hyperlink{a00047_a2333fd0f2c3a85faf586300ca40deed4_a2333fd0f2c3a85faf586300ca40deed4}{ktimer\+\_\+cb\+\_\+t} cb, void $\ast$data, time\+\_\+t ms)
+\begin{DoxyCompactList}\small\item\em 启动一个只超时一次的定时器，超时后将自动销毁 \end{DoxyCompactList}\item 
+int \hyperlink{a00099_ga285936846760d9f325e588d2e2105fe5_ga285936846760d9f325e588d2e2105fe5}{ktimer\+\_\+start\+\_\+times} (\hyperlink{a00047_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer, \hyperlink{a00047_a2333fd0f2c3a85faf586300ca40deed4_a2333fd0f2c3a85faf586300ca40deed4}{ktimer\+\_\+cb\+\_\+t} cb, void $\ast$data, time\+\_\+t ms, int times)
+\begin{DoxyCompactList}\small\item\em 启动一个有限次数的定时器，达到times次数后将自动销毁 \end{DoxyCompactList}\item 
+int \hyperlink{a00099_ga9387b99ff760183fe8b61c8c46d6efc8_ga9387b99ff760183fe8b61c8c46d6efc8}{ktimer\+\_\+check\+\_\+dead} (\hyperlink{a00047_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer)
+\begin{DoxyCompactList}\small\item\em 检查定时器是否在回调函数返回即将被销毁 \end{DoxyCompactList}\item 
+time\+\_\+t \hyperlink{a00099_ga71282c2dc8bac0935617b1271f4066e6_ga71282c2dc8bac0935617b1271f4066e6}{ktimer\+\_\+loop\+\_\+get\+\_\+tick\+\_\+intval} (\hyperlink{a00047_a024af2aa29615e7a811ea6c45438157d_a024af2aa29615e7a811ea6c45438157d}{ktimer\+\_\+loop\+\_\+t} $\ast$ktimer\+\_\+loop)
+\begin{DoxyCompactList}\small\item\em 取得滴答间隔 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
-
-\subsection{详细描述}
-远程调用 
-
-
-\begin{DoxyPre}
-轻量级RPC框架\end{DoxyPre}
-
-
-
-\begin{DoxyPre}krpc\_object\_t作为一个泛型的对象抽象接口，可以作为对象系统内任何类型的对象存在，
-在设置方法调用后会确定对象的类型，但一旦确定是不能更改，krpc\_object\_t提供了统一的
-接口来进行marshal/unmarshal(列集/散集)操作：\end{DoxyPre}
-
-
-
-\begin{DoxyPre}1. krpc\_object\_marshal          marshal并发送到管道流
-2. krpc\_object\_marshal\_buffer   marshal到缓冲区
-3. krpc\_object\_unmarshal        从管道流接收并unmarshal
-4. krpc\_object\_unmarshal\_buffer 从缓冲区unmarshal\end{DoxyPre}
-
-
-
-\begin{DoxyPre}以上两类方法实现了从数据流到对象及对象到数据流的操作，作为RPC框架的基础.\end{DoxyPre}
-
-
-
-\begin{DoxyPre}对象类型系统包含如下类型：\end{DoxyPre}
-
-
-
-\begin{DoxyPre}1. 数字       整数，浮点数
-2. 字符串     字符串
-3. 数组(向量) 数组类容器
-4. 表(字典)   字典类容器\end{DoxyPre}
-
-
-
-\begin{DoxyPre}操作以上类型的方法都明确的使用了前缀：\end{DoxyPre}
-
-
-
-\begin{DoxyPre}1. krpc\_number\_ 数字
-2. krpc\_string\_ 字符串
-3. krpc\_vector\_ 数组
-4. krpc\_map\_    表\end{DoxyPre}
-
-
-
-\begin{DoxyPre}容器类对象(数组，表)内可以容纳其他任意类型的对象(包含和自己相同类型对象),
-一旦使用set类或clear类方法后，对象的类型就确定，譬如：调用krpc\_set\_number\_i8
-后， 对象的类型为数字，8位有符号整数. 类型操作函数没有提供非常丰富的方法来操作对象，
-因为整套框架本身是用于RPC并非通用的容器库，使用的定位与传统的容器库有本质的不同.\end{DoxyPre}
-
-
-
-\begin{DoxyPre}\end{DoxyPre}
- 
 
 \subsection{函数说明}
-\hypertarget{a00087_ga76c5ca67a568d6e6634a57c3be742b2c_ga76c5ca67a568d6e6634a57c3be742b2c}{}\index{远程调用@{远程调用}!krpc\+\_\+map\+\_\+clear@{krpc\+\_\+map\+\_\+clear}}
-\index{krpc\+\_\+map\+\_\+clear@{krpc\+\_\+map\+\_\+clear}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+map\+\_\+clear}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+map\+\_\+clear (
+\hypertarget{a00099_ga9387b99ff760183fe8b61c8c46d6efc8_ga9387b99ff760183fe8b61c8c46d6efc8}{}\index{timer\+\_\+api.\+h@{timer\+\_\+api.\+h}!ktimer\+\_\+check\+\_\+dead@{ktimer\+\_\+check\+\_\+dead}}
+\index{ktimer\+\_\+check\+\_\+dead@{ktimer\+\_\+check\+\_\+dead}!timer\+\_\+api.\+h@{timer\+\_\+api.\+h}}
+\subsubsection[{ktimer\+\_\+check\+\_\+dead}]{\setlength{\rightskip}{0pt plus 5cm}int ktimer\+\_\+check\+\_\+dead (
 \begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{m}
+\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer}
 \end{DoxyParamCaption}
-)}\label{a00087_ga76c5ca67a568d6e6634a57c3be742b2c_ga76c5ca67a568d6e6634a57c3be742b2c}
+)}\label{a00099_ga9387b99ff760183fe8b61c8c46d6efc8_ga9387b99ff760183fe8b61c8c46d6efc8}
 
 
-清空表 
+检查定时器是否在回调函数返回即将被销毁 
 
 
 \begin{DoxyParams}{参数}
-{\em m} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00087_ga87ce3d17030c66e3264fa2e026bfaf33_ga87ce3d17030c66e3264fa2e026bfaf33}{}\index{远程调用@{远程调用}!krpc\+\_\+map\+\_\+get@{krpc\+\_\+map\+\_\+get}}
-\index{krpc\+\_\+map\+\_\+get@{krpc\+\_\+map\+\_\+get}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+map\+\_\+get}]{\setlength{\rightskip}{0pt plus 5cm}{\bf krpc\+\_\+object\+\_\+t}$\ast$ krpc\+\_\+map\+\_\+get (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{m, }
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{k}
-\end{DoxyParamCaption}
-)}\label{a00087_ga87ce3d17030c66e3264fa2e026bfaf33_ga87ce3d17030c66e3264fa2e026bfaf33}
-
-
-查找 
-
-
-\begin{DoxyParams}{参数}
-{\em m} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em k} & key \\
+{\em timer} & ktimer\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 
 \begin{DoxyRetVals}{返回值}
-{\em krpc\+\_\+object\+\_\+t实例} & \\
+{\em 0} & 不是 \\
 \hline
-{\em 0} & 未找到 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00087_gad894af3d72e3ae9629ebd724534dae7f_gad894af3d72e3ae9629ebd724534dae7f}{}\index{远程调用@{远程调用}!krpc\+\_\+map\+\_\+get\+\_\+first@{krpc\+\_\+map\+\_\+get\+\_\+first}}
-\index{krpc\+\_\+map\+\_\+get\+\_\+first@{krpc\+\_\+map\+\_\+get\+\_\+first}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+map\+\_\+get\+\_\+first}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+map\+\_\+get\+\_\+first (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{m, }
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$$\ast$}]{k, }
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$$\ast$}]{v}
-\end{DoxyParamCaption}
-)}\label{a00087_gad894af3d72e3ae9629ebd724534dae7f_gad894af3d72e3ae9629ebd724534dae7f}
-
-
-重置遍历器并取第一个$<$key, value$>$ 
-
-
-\begin{DoxyParams}{参数}
-{\em m} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em k} & key \\
-\hline
-{\em v} & value \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em 0} & 没有 \\
-\hline
-{\em 非零} & 有 \\
+{\em 非零} & 是 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00087_gad760f8fec813dab474ac011d7aab1e7e_gad760f8fec813dab474ac011d7aab1e7e}{}\index{远程调用@{远程调用}!krpc\+\_\+map\+\_\+get\+\_\+size@{krpc\+\_\+map\+\_\+get\+\_\+size}}
-\index{krpc\+\_\+map\+\_\+get\+\_\+size@{krpc\+\_\+map\+\_\+get\+\_\+size}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+map\+\_\+get\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t krpc\+\_\+map\+\_\+get\+\_\+size (
+\hypertarget{a00099_ga37901569361ae2a726a1973d7da2d6e5_ga37901569361ae2a726a1973d7da2d6e5}{}\index{timer\+\_\+api.\+h@{timer\+\_\+api.\+h}!ktimer\+\_\+create@{ktimer\+\_\+create}}
+\index{ktimer\+\_\+create@{ktimer\+\_\+create}!timer\+\_\+api.\+h@{timer\+\_\+api.\+h}}
+\subsubsection[{ktimer\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ktimer\+\_\+t}$\ast$ ktimer\+\_\+create (
 \begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{m}
+\item[{{\bf ktimer\+\_\+loop\+\_\+t} $\ast$}]{ktimer\+\_\+loop}
 \end{DoxyParamCaption}
-)}\label{a00087_gad760f8fec813dab474ac011d7aab1e7e_gad760f8fec813dab474ac011d7aab1e7e}
+)}\label{a00099_ga37901569361ae2a726a1973d7da2d6e5_ga37901569361ae2a726a1973d7da2d6e5}
 
 
-取得表$<$kev, value$>$个数 
+创建一个定时器 
 
 
 \begin{DoxyParams}{参数}
-{\em m} & krpc\+\_\+object\+\_\+t实例 \\
+{\em ktimer\+\_\+loop} & ktimer\+\_\+loop\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-$<$kev, value$>$个数 
+ktimer\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00087_ga252615bf3ff115656c3c155a7c9fafaf_ga252615bf3ff115656c3c155a7c9fafaf}{}\index{远程调用@{远程调用}!krpc\+\_\+map\+\_\+insert@{krpc\+\_\+map\+\_\+insert}}
-\index{krpc\+\_\+map\+\_\+insert@{krpc\+\_\+map\+\_\+insert}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+map\+\_\+insert}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+map\+\_\+insert (
+\hypertarget{a00099_gad2c8d1024db56a0bef97ea47fb07a920_gad2c8d1024db56a0bef97ea47fb07a920}{}\index{timer\+\_\+api.\+h@{timer\+\_\+api.\+h}!ktimer\+\_\+get\+\_\+loop@{ktimer\+\_\+get\+\_\+loop}}
+\index{ktimer\+\_\+get\+\_\+loop@{ktimer\+\_\+get\+\_\+loop}!timer\+\_\+api.\+h@{timer\+\_\+api.\+h}}
+\subsubsection[{ktimer\+\_\+get\+\_\+loop}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ktimer\+\_\+loop\+\_\+t}$\ast$ ktimer\+\_\+get\+\_\+loop (
 \begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{m, }
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{k, }
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{v}
+\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer}
 \end{DoxyParamCaption}
-)}\label{a00087_ga252615bf3ff115656c3c155a7c9fafaf_ga252615bf3ff115656c3c155a7c9fafaf}
+)}\label{a00099_gad2c8d1024db56a0bef97ea47fb07a920_gad2c8d1024db56a0bef97ea47fb07a920}
 
 
-添加$<$k, v$>$ 
+取得ktimer\+\_\+loop\+\_\+t实例 
 
 
 \begin{DoxyParams}{参数}
-{\em m} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em k} & key \\
-\hline
-{\em v} & value \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00087_gaa818187b224d2ec13b5b1a25badc3fe3_gaa818187b224d2ec13b5b1a25badc3fe3}{}\index{远程调用@{远程调用}!krpc\+\_\+map\+\_\+next@{krpc\+\_\+map\+\_\+next}}
-\index{krpc\+\_\+map\+\_\+next@{krpc\+\_\+map\+\_\+next}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+map\+\_\+next}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+map\+\_\+next (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{m, }
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$$\ast$}]{k, }
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$$\ast$}]{v}
-\end{DoxyParamCaption}
-)}\label{a00087_gaa818187b224d2ec13b5b1a25badc3fe3_gaa818187b224d2ec13b5b1a25badc3fe3}
-
-
-取下一个未遍历的$<$key, value$>$ 
-
-
-\begin{DoxyParams}{参数}
-{\em m} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em k} & key \\
-\hline
-{\em v} & value \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em 0} & 没有 \\
-\hline
-{\em 非零} & 有 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00087_gace78d56aa68df141f3cfa90ecf012b81_gace78d56aa68df141f3cfa90ecf012b81}{}\index{远程调用@{远程调用}!krpc\+\_\+map\+\_\+update@{krpc\+\_\+map\+\_\+update}}
-\index{krpc\+\_\+map\+\_\+update@{krpc\+\_\+map\+\_\+update}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+map\+\_\+update}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+map\+\_\+update (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{m, }
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{k, }
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{v}
-\end{DoxyParamCaption}
-)}\label{a00087_gace78d56aa68df141f3cfa90ecf012b81_gace78d56aa68df141f3cfa90ecf012b81}
-
-
-更新$<$k, v$>$，如果k不存在则插入 
-
-
-\begin{DoxyParams}{参数}
-{\em m} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em k} & key \\
-\hline
-{\em v} & value \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00087_gaa646cc26fc434789e5d4a58ec39a99fa_gaa646cc26fc434789e5d4a58ec39a99fa}{}\index{远程调用@{远程调用}!krpc\+\_\+number\+\_\+get\+\_\+f32@{krpc\+\_\+number\+\_\+get\+\_\+f32}}
-\index{krpc\+\_\+number\+\_\+get\+\_\+f32@{krpc\+\_\+number\+\_\+get\+\_\+f32}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+f32}]{\setlength{\rightskip}{0pt plus 5cm}{\bf float32\+\_\+t} krpc\+\_\+number\+\_\+get\+\_\+f32 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
-\end{DoxyParamCaption}
-)}\label{a00087_gaa646cc26fc434789e5d4a58ec39a99fa_gaa646cc26fc434789e5d4a58ec39a99fa}
-
-
-获取浮点数32位 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+{\em timer} & ktimer\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-浮点数32位 
+ktimer\+\_\+loop\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00087_ga000db715b85193d0b6750b46bfc590b5_ga000db715b85193d0b6750b46bfc590b5}{}\index{远程调用@{远程调用}!krpc\+\_\+number\+\_\+get\+\_\+f64@{krpc\+\_\+number\+\_\+get\+\_\+f64}}
-\index{krpc\+\_\+number\+\_\+get\+\_\+f64@{krpc\+\_\+number\+\_\+get\+\_\+f64}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+f64}]{\setlength{\rightskip}{0pt plus 5cm}{\bf float64\+\_\+t} krpc\+\_\+number\+\_\+get\+\_\+f64 (
+\hypertarget{a00099_gaef96e7c368db456236a2121e3d75c49c_gaef96e7c368db456236a2121e3d75c49c}{}\index{timer\+\_\+api.\+h@{timer\+\_\+api.\+h}!ktimer\+\_\+loop\+\_\+create@{ktimer\+\_\+loop\+\_\+create}}
+\index{ktimer\+\_\+loop\+\_\+create@{ktimer\+\_\+loop\+\_\+create}!timer\+\_\+api.\+h@{timer\+\_\+api.\+h}}
+\subsubsection[{ktimer\+\_\+loop\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ktimer\+\_\+loop\+\_\+t}$\ast$ ktimer\+\_\+loop\+\_\+create (
 \begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
+\item[{time\+\_\+t}]{freq, }
+\item[{int}]{slot}
 \end{DoxyParamCaption}
-)}\label{a00087_ga000db715b85193d0b6750b46bfc590b5_ga000db715b85193d0b6750b46bfc590b5}
+)}\label{a00099_gaef96e7c368db456236a2121e3d75c49c_gaef96e7c368db456236a2121e3d75c49c}
 
 
-获取浮点数64位 
+创建定时器循环 
 
 
 \begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+{\em freq} & 最小分辨率（毫秒） \\
+\hline
+{\em slot} & 时间轮槽位数量 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-浮点数64位 
+ktimer\+\_\+loop\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00087_ga090dd58301d21979a05fe6fc249e3a80_ga090dd58301d21979a05fe6fc249e3a80}{}\index{远程调用@{远程调用}!krpc\+\_\+number\+\_\+get\+\_\+i16@{krpc\+\_\+number\+\_\+get\+\_\+i16}}
-\index{krpc\+\_\+number\+\_\+get\+\_\+i16@{krpc\+\_\+number\+\_\+get\+\_\+i16}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+i16}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t krpc\+\_\+number\+\_\+get\+\_\+i16 (
+\hypertarget{a00099_gad3dafe93f5b45424bd5983ef0c163687_gad3dafe93f5b45424bd5983ef0c163687}{}\index{timer\+\_\+api.\+h@{timer\+\_\+api.\+h}!ktimer\+\_\+loop\+\_\+destroy@{ktimer\+\_\+loop\+\_\+destroy}}
+\index{ktimer\+\_\+loop\+\_\+destroy@{ktimer\+\_\+loop\+\_\+destroy}!timer\+\_\+api.\+h@{timer\+\_\+api.\+h}}
+\subsubsection[{ktimer\+\_\+loop\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void ktimer\+\_\+loop\+\_\+destroy (
 \begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
+\item[{{\bf ktimer\+\_\+loop\+\_\+t} $\ast$}]{ktimer\+\_\+loop}
 \end{DoxyParamCaption}
-)}\label{a00087_ga090dd58301d21979a05fe6fc249e3a80_ga090dd58301d21979a05fe6fc249e3a80}
+)}\label{a00099_gad3dafe93f5b45424bd5983ef0c163687_gad3dafe93f5b45424bd5983ef0c163687}
 
 
-获取有符号16位 
+销毁定时器循环 
+
+\begin{DoxyReturn}{返回}
+ktimer\+\_\+loop\+\_\+t实例 
+\end{DoxyReturn}
+\hypertarget{a00099_ga9d51f5fa5d9609d783eb4b0e05101079_ga9d51f5fa5d9609d783eb4b0e05101079}{}\index{timer\+\_\+api.\+h@{timer\+\_\+api.\+h}!ktimer\+\_\+loop\+\_\+exit@{ktimer\+\_\+loop\+\_\+exit}}
+\index{ktimer\+\_\+loop\+\_\+exit@{ktimer\+\_\+loop\+\_\+exit}!timer\+\_\+api.\+h@{timer\+\_\+api.\+h}}
+\subsubsection[{ktimer\+\_\+loop\+\_\+exit}]{\setlength{\rightskip}{0pt plus 5cm}void ktimer\+\_\+loop\+\_\+exit (
+\begin{DoxyParamCaption}
+\item[{{\bf ktimer\+\_\+loop\+\_\+t} $\ast$}]{ktimer\+\_\+loop}
+\end{DoxyParamCaption}
+)}\label{a00099_ga9d51f5fa5d9609d783eb4b0e05101079_ga9d51f5fa5d9609d783eb4b0e05101079}
+
+
+退出ktimer\+\_\+loop\+\_\+run() 
 
 
 \begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+{\em ktimer\+\_\+loop} & ktimer\+\_\+loop\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00099_ga71282c2dc8bac0935617b1271f4066e6_ga71282c2dc8bac0935617b1271f4066e6}{}\index{timer\+\_\+api.\+h@{timer\+\_\+api.\+h}!ktimer\+\_\+loop\+\_\+get\+\_\+tick\+\_\+intval@{ktimer\+\_\+loop\+\_\+get\+\_\+tick\+\_\+intval}}
+\index{ktimer\+\_\+loop\+\_\+get\+\_\+tick\+\_\+intval@{ktimer\+\_\+loop\+\_\+get\+\_\+tick\+\_\+intval}!timer\+\_\+api.\+h@{timer\+\_\+api.\+h}}
+\subsubsection[{ktimer\+\_\+loop\+\_\+get\+\_\+tick\+\_\+intval}]{\setlength{\rightskip}{0pt plus 5cm}time\+\_\+t ktimer\+\_\+loop\+\_\+get\+\_\+tick\+\_\+intval (
+\begin{DoxyParamCaption}
+\item[{{\bf ktimer\+\_\+loop\+\_\+t} $\ast$}]{ktimer\+\_\+loop}
+\end{DoxyParamCaption}
+)}\label{a00099_ga71282c2dc8bac0935617b1271f4066e6_ga71282c2dc8bac0935617b1271f4066e6}
+
+
+取得滴答间隔 
+
+
+\begin{DoxyParams}{参数}
+{\em ktimer\+\_\+loop} & ktimer\+\_\+loop\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-有符号16位 
+滴答间隔 
 \end{DoxyReturn}
-\hypertarget{a00087_gad287178bafa8b9495016ee747db8e090_gad287178bafa8b9495016ee747db8e090}{}\index{远程调用@{远程调用}!krpc\+\_\+number\+\_\+get\+\_\+i32@{krpc\+\_\+number\+\_\+get\+\_\+i32}}
-\index{krpc\+\_\+number\+\_\+get\+\_\+i32@{krpc\+\_\+number\+\_\+get\+\_\+i32}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+i32}]{\setlength{\rightskip}{0pt plus 5cm}int32\+\_\+t krpc\+\_\+number\+\_\+get\+\_\+i32 (
+\hypertarget{a00099_ga5e31b2fc26af005e97b09804c5a98099_ga5e31b2fc26af005e97b09804c5a98099}{}\index{timer\+\_\+api.\+h@{timer\+\_\+api.\+h}!ktimer\+\_\+loop\+\_\+run@{ktimer\+\_\+loop\+\_\+run}}
+\index{ktimer\+\_\+loop\+\_\+run@{ktimer\+\_\+loop\+\_\+run}!timer\+\_\+api.\+h@{timer\+\_\+api.\+h}}
+\subsubsection[{ktimer\+\_\+loop\+\_\+run}]{\setlength{\rightskip}{0pt plus 5cm}void ktimer\+\_\+loop\+\_\+run (
 \begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
+\item[{{\bf ktimer\+\_\+loop\+\_\+t} $\ast$}]{ktimer\+\_\+loop}
 \end{DoxyParamCaption}
-)}\label{a00087_gad287178bafa8b9495016ee747db8e090_gad287178bafa8b9495016ee747db8e090}
+)}\label{a00099_ga5e31b2fc26af005e97b09804c5a98099_ga5e31b2fc26af005e97b09804c5a98099}
 
 
-获取有符号32位 
+循环检查定时器超时，调用ktimer\+\_\+loop\+\_\+exit()退出 
 
 
 \begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+{\em ktimer\+\_\+loop} & ktimer\+\_\+loop\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00099_gaf195cf4006bced494e99242c36ad36c0_gaf195cf4006bced494e99242c36ad36c0}{}\index{timer\+\_\+api.\+h@{timer\+\_\+api.\+h}!ktimer\+\_\+loop\+\_\+run\+\_\+once@{ktimer\+\_\+loop\+\_\+run\+\_\+once}}
+\index{ktimer\+\_\+loop\+\_\+run\+\_\+once@{ktimer\+\_\+loop\+\_\+run\+\_\+once}!timer\+\_\+api.\+h@{timer\+\_\+api.\+h}}
+\subsubsection[{ktimer\+\_\+loop\+\_\+run\+\_\+once}]{\setlength{\rightskip}{0pt plus 5cm}int ktimer\+\_\+loop\+\_\+run\+\_\+once (
+\begin{DoxyParamCaption}
+\item[{{\bf ktimer\+\_\+loop\+\_\+t} $\ast$}]{ktimer\+\_\+loop}
+\end{DoxyParamCaption}
+)}\label{a00099_gaf195cf4006bced494e99242c36ad36c0_gaf195cf4006bced494e99242c36ad36c0}
+
+
+检查定时器超时，如果超时调用定时器回调 
+
+
+\begin{DoxyParams}{参数}
+{\em ktimer\+\_\+loop} & ktimer\+\_\+loop\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-有符号32位 
+定时器超时的数量 
 \end{DoxyReturn}
-\hypertarget{a00087_ga41bb57b2a053c9aeb22c98e0cbfbc2e4_ga41bb57b2a053c9aeb22c98e0cbfbc2e4}{}\index{远程调用@{远程调用}!krpc\+\_\+number\+\_\+get\+\_\+i64@{krpc\+\_\+number\+\_\+get\+\_\+i64}}
-\index{krpc\+\_\+number\+\_\+get\+\_\+i64@{krpc\+\_\+number\+\_\+get\+\_\+i64}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+i64}]{\setlength{\rightskip}{0pt plus 5cm}int64\+\_\+t krpc\+\_\+number\+\_\+get\+\_\+i64 (
+\hypertarget{a00099_ga8c5900fb62a63dc71cc9f38ac6427ad1_ga8c5900fb62a63dc71cc9f38ac6427ad1}{}\index{timer\+\_\+api.\+h@{timer\+\_\+api.\+h}!ktimer\+\_\+start@{ktimer\+\_\+start}}
+\index{ktimer\+\_\+start@{ktimer\+\_\+start}!timer\+\_\+api.\+h@{timer\+\_\+api.\+h}}
+\subsubsection[{ktimer\+\_\+start}]{\setlength{\rightskip}{0pt plus 5cm}int ktimer\+\_\+start (
 \begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
+\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer, }
+\item[{{\bf ktimer\+\_\+cb\+\_\+t}}]{cb, }
+\item[{void $\ast$}]{data, }
+\item[{time\+\_\+t}]{ms}
 \end{DoxyParamCaption}
-)}\label{a00087_ga41bb57b2a053c9aeb22c98e0cbfbc2e4_ga41bb57b2a053c9aeb22c98e0cbfbc2e4}
+)}\label{a00099_ga8c5900fb62a63dc71cc9f38ac6427ad1_ga8c5900fb62a63dc71cc9f38ac6427ad1}
 
 
-获取有符号64位 
+启动一个无限次数的定时器 
 
 
 \begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+{\em timer} & ktimer\+\_\+t实例 \\
 \hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-有符号64位 
-\end{DoxyReturn}
-\hypertarget{a00087_ga5f14e2a44d3dd64fc1bc54e28b431587_ga5f14e2a44d3dd64fc1bc54e28b431587}{}\index{远程调用@{远程调用}!krpc\+\_\+number\+\_\+get\+\_\+i8@{krpc\+\_\+number\+\_\+get\+\_\+i8}}
-\index{krpc\+\_\+number\+\_\+get\+\_\+i8@{krpc\+\_\+number\+\_\+get\+\_\+i8}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+i8}]{\setlength{\rightskip}{0pt plus 5cm}int8\+\_\+t krpc\+\_\+number\+\_\+get\+\_\+i8 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
-\end{DoxyParamCaption}
-)}\label{a00087_ga5f14e2a44d3dd64fc1bc54e28b431587_ga5f14e2a44d3dd64fc1bc54e28b431587}
-
-
-获取有符号8位 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+{\em cb} & 超时回调函数 \\
 \hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-有符号8位 
-\end{DoxyReturn}
-\hypertarget{a00087_gaa2f3b1c450f36d181e585924ff7954a5_gaa2f3b1c450f36d181e585924ff7954a5}{}\index{远程调用@{远程调用}!krpc\+\_\+number\+\_\+get\+\_\+ui16@{krpc\+\_\+number\+\_\+get\+\_\+ui16}}
-\index{krpc\+\_\+number\+\_\+get\+\_\+ui16@{krpc\+\_\+number\+\_\+get\+\_\+ui16}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+ui16}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t krpc\+\_\+number\+\_\+get\+\_\+ui16 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
-\end{DoxyParamCaption}
-)}\label{a00087_gaa2f3b1c450f36d181e585924ff7954a5_gaa2f3b1c450f36d181e585924ff7954a5}
-
-
-获取无符号16位 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+{\em data} & 回调函数参数 \\
 \hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-无符号16位 
-\end{DoxyReturn}
-\hypertarget{a00087_gabc1d9560a6f2baf606c4a232488ee76a_gabc1d9560a6f2baf606c4a232488ee76a}{}\index{远程调用@{远程调用}!krpc\+\_\+number\+\_\+get\+\_\+ui32@{krpc\+\_\+number\+\_\+get\+\_\+ui32}}
-\index{krpc\+\_\+number\+\_\+get\+\_\+ui32@{krpc\+\_\+number\+\_\+get\+\_\+ui32}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+ui32}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t krpc\+\_\+number\+\_\+get\+\_\+ui32 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
-\end{DoxyParamCaption}
-)}\label{a00087_gabc1d9560a6f2baf606c4a232488ee76a_gabc1d9560a6f2baf606c4a232488ee76a}
-
-
-获取无符号32位 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-无符号32位 
-\end{DoxyReturn}
-\hypertarget{a00087_ga951b99916dd94a6d8c5ad335578c35d7_ga951b99916dd94a6d8c5ad335578c35d7}{}\index{远程调用@{远程调用}!krpc\+\_\+number\+\_\+get\+\_\+ui64@{krpc\+\_\+number\+\_\+get\+\_\+ui64}}
-\index{krpc\+\_\+number\+\_\+get\+\_\+ui64@{krpc\+\_\+number\+\_\+get\+\_\+ui64}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+ui64}]{\setlength{\rightskip}{0pt plus 5cm}uint64\+\_\+t krpc\+\_\+number\+\_\+get\+\_\+ui64 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
-\end{DoxyParamCaption}
-)}\label{a00087_ga951b99916dd94a6d8c5ad335578c35d7_ga951b99916dd94a6d8c5ad335578c35d7}
-
-
-获取无符号64位 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-无符号64位 
-\end{DoxyReturn}
-\hypertarget{a00087_ga921ba1649bda27068e3d048b854ed708_ga921ba1649bda27068e3d048b854ed708}{}\index{远程调用@{远程调用}!krpc\+\_\+number\+\_\+get\+\_\+ui8@{krpc\+\_\+number\+\_\+get\+\_\+ui8}}
-\index{krpc\+\_\+number\+\_\+get\+\_\+ui8@{krpc\+\_\+number\+\_\+get\+\_\+ui8}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+ui8}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t krpc\+\_\+number\+\_\+get\+\_\+ui8 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
-\end{DoxyParamCaption}
-)}\label{a00087_ga921ba1649bda27068e3d048b854ed708_ga921ba1649bda27068e3d048b854ed708}
-
-
-获取无符号8位 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-无符号8位 
-\end{DoxyReturn}
-\hypertarget{a00087_ga0e16d4b0c82cb88b148e82bc076a840c_ga0e16d4b0c82cb88b148e82bc076a840c}{}\index{远程调用@{远程调用}!krpc\+\_\+number\+\_\+set\+\_\+f32@{krpc\+\_\+number\+\_\+set\+\_\+f32}}
-\index{krpc\+\_\+number\+\_\+set\+\_\+f32@{krpc\+\_\+number\+\_\+set\+\_\+f32}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+number\+\_\+set\+\_\+f32}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+number\+\_\+set\+\_\+f32 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{{\bf float32\+\_\+t}}]{f32}
-\end{DoxyParamCaption}
-)}\label{a00087_ga0e16d4b0c82cb88b148e82bc076a840c_ga0e16d4b0c82cb88b148e82bc076a840c}
-
-
-设置数字 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em f32} & 浮点数32位 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00087_ga8aeb77dbdf5aaab4bb75f57ee0ddd8b9_ga8aeb77dbdf5aaab4bb75f57ee0ddd8b9}{}\index{远程调用@{远程调用}!krpc\+\_\+number\+\_\+set\+\_\+f64@{krpc\+\_\+number\+\_\+set\+\_\+f64}}
-\index{krpc\+\_\+number\+\_\+set\+\_\+f64@{krpc\+\_\+number\+\_\+set\+\_\+f64}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+number\+\_\+set\+\_\+f64}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+number\+\_\+set\+\_\+f64 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{{\bf float64\+\_\+t}}]{f64}
-\end{DoxyParamCaption}
-)}\label{a00087_ga8aeb77dbdf5aaab4bb75f57ee0ddd8b9_ga8aeb77dbdf5aaab4bb75f57ee0ddd8b9}
-
-
-设置数字 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em f64} & 浮点数64位 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00087_ga1b6cbaa51e2171bec6e5b2f97fe6223c_ga1b6cbaa51e2171bec6e5b2f97fe6223c}{}\index{远程调用@{远程调用}!krpc\+\_\+number\+\_\+set\+\_\+i16@{krpc\+\_\+number\+\_\+set\+\_\+i16}}
-\index{krpc\+\_\+number\+\_\+set\+\_\+i16@{krpc\+\_\+number\+\_\+set\+\_\+i16}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+number\+\_\+set\+\_\+i16}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+number\+\_\+set\+\_\+i16 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{int16\+\_\+t}]{i16}
-\end{DoxyParamCaption}
-)}\label{a00087_ga1b6cbaa51e2171bec6e5b2f97fe6223c_ga1b6cbaa51e2171bec6e5b2f97fe6223c}
-
-
-设置数字 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em i16} & 有符号16位 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00087_gaf70d32f6fb59d76e67e596d0feeee14b_gaf70d32f6fb59d76e67e596d0feeee14b}{}\index{远程调用@{远程调用}!krpc\+\_\+number\+\_\+set\+\_\+i32@{krpc\+\_\+number\+\_\+set\+\_\+i32}}
-\index{krpc\+\_\+number\+\_\+set\+\_\+i32@{krpc\+\_\+number\+\_\+set\+\_\+i32}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+number\+\_\+set\+\_\+i32}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+number\+\_\+set\+\_\+i32 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{int32\+\_\+t}]{i32}
-\end{DoxyParamCaption}
-)}\label{a00087_gaf70d32f6fb59d76e67e596d0feeee14b_gaf70d32f6fb59d76e67e596d0feeee14b}
-
-
-设置数字 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em i32} & 有符号32位 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00087_gabf92e2dab46131d75789812059214724_gabf92e2dab46131d75789812059214724}{}\index{远程调用@{远程调用}!krpc\+\_\+number\+\_\+set\+\_\+i64@{krpc\+\_\+number\+\_\+set\+\_\+i64}}
-\index{krpc\+\_\+number\+\_\+set\+\_\+i64@{krpc\+\_\+number\+\_\+set\+\_\+i64}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+number\+\_\+set\+\_\+i64}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+number\+\_\+set\+\_\+i64 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{int64\+\_\+t}]{i64}
-\end{DoxyParamCaption}
-)}\label{a00087_gabf92e2dab46131d75789812059214724_gabf92e2dab46131d75789812059214724}
-
-
-设置数字 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em i64} & 有符号64位 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00087_gac97afef390289879f19cda9149beb684_gac97afef390289879f19cda9149beb684}{}\index{远程调用@{远程调用}!krpc\+\_\+number\+\_\+set\+\_\+i8@{krpc\+\_\+number\+\_\+set\+\_\+i8}}
-\index{krpc\+\_\+number\+\_\+set\+\_\+i8@{krpc\+\_\+number\+\_\+set\+\_\+i8}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+number\+\_\+set\+\_\+i8}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+number\+\_\+set\+\_\+i8 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{int8\+\_\+t}]{i8}
-\end{DoxyParamCaption}
-)}\label{a00087_gac97afef390289879f19cda9149beb684_gac97afef390289879f19cda9149beb684}
-
-
-设置数字 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em i8} & 有符号8位 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00087_ga7990cb68203c5ab0d1534ef616fd1aad_ga7990cb68203c5ab0d1534ef616fd1aad}{}\index{远程调用@{远程调用}!krpc\+\_\+number\+\_\+set\+\_\+ui16@{krpc\+\_\+number\+\_\+set\+\_\+ui16}}
-\index{krpc\+\_\+number\+\_\+set\+\_\+ui16@{krpc\+\_\+number\+\_\+set\+\_\+ui16}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+number\+\_\+set\+\_\+ui16}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+number\+\_\+set\+\_\+ui16 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{uint16\+\_\+t}]{ui16}
-\end{DoxyParamCaption}
-)}\label{a00087_ga7990cb68203c5ab0d1534ef616fd1aad_ga7990cb68203c5ab0d1534ef616fd1aad}
-
-
-设置数字 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em ui16} & 无符号16位 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00087_gaf864070d7b20a77c9191acbe49f9382f_gaf864070d7b20a77c9191acbe49f9382f}{}\index{远程调用@{远程调用}!krpc\+\_\+number\+\_\+set\+\_\+ui32@{krpc\+\_\+number\+\_\+set\+\_\+ui32}}
-\index{krpc\+\_\+number\+\_\+set\+\_\+ui32@{krpc\+\_\+number\+\_\+set\+\_\+ui32}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+number\+\_\+set\+\_\+ui32}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+number\+\_\+set\+\_\+ui32 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{uint32\+\_\+t}]{ui32}
-\end{DoxyParamCaption}
-)}\label{a00087_gaf864070d7b20a77c9191acbe49f9382f_gaf864070d7b20a77c9191acbe49f9382f}
-
-
-设置数字 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em ui32} & 无符号32位 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00087_gafd0da43f7cb46188c6d2f1657b39c3ba_gafd0da43f7cb46188c6d2f1657b39c3ba}{}\index{远程调用@{远程调用}!krpc\+\_\+number\+\_\+set\+\_\+ui64@{krpc\+\_\+number\+\_\+set\+\_\+ui64}}
-\index{krpc\+\_\+number\+\_\+set\+\_\+ui64@{krpc\+\_\+number\+\_\+set\+\_\+ui64}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+number\+\_\+set\+\_\+ui64}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+number\+\_\+set\+\_\+ui64 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{int64\+\_\+t}]{ui64}
-\end{DoxyParamCaption}
-)}\label{a00087_gafd0da43f7cb46188c6d2f1657b39c3ba_gafd0da43f7cb46188c6d2f1657b39c3ba}
-
-
-设置数字 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em ui64} & 无符号64位 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00087_ga0abbc84b15e73781209485cbfa4d2a56_ga0abbc84b15e73781209485cbfa4d2a56}{}\index{远程调用@{远程调用}!krpc\+\_\+number\+\_\+set\+\_\+ui8@{krpc\+\_\+number\+\_\+set\+\_\+ui8}}
-\index{krpc\+\_\+number\+\_\+set\+\_\+ui8@{krpc\+\_\+number\+\_\+set\+\_\+ui8}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+number\+\_\+set\+\_\+ui8}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+number\+\_\+set\+\_\+ui8 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{uint8\+\_\+t}]{ui8}
-\end{DoxyParamCaption}
-)}\label{a00087_ga0abbc84b15e73781209485cbfa4d2a56_ga0abbc84b15e73781209485cbfa4d2a56}
-
-
-设置数字 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em ui8} & 无符号8位 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00087_ga207aac182f9f86e96ddea230ee9c8f61_ga207aac182f9f86e96ddea230ee9c8f61}{}\index{远程调用@{远程调用}!krpc\+\_\+object\+\_\+check\+\_\+type@{krpc\+\_\+object\+\_\+check\+\_\+type}}
-\index{krpc\+\_\+object\+\_\+check\+\_\+type@{krpc\+\_\+object\+\_\+check\+\_\+type}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+object\+\_\+check\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+object\+\_\+check\+\_\+type (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{{\bf krpc\+\_\+type\+\_\+e}}]{type}
-\end{DoxyParamCaption}
-)}\label{a00087_ga207aac182f9f86e96ddea230ee9c8f61_ga207aac182f9f86e96ddea230ee9c8f61}
-
-
-测试\+R\+P\+C对象类型 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em type} & 类型 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em 0} & 不是type类型 \\
-\hline
-{\em 非零} & 是type类型 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00087_ga6aad58d8460944596e39822181bf4848_ga6aad58d8460944596e39822181bf4848}{}\index{远程调用@{远程调用}!krpc\+\_\+object\+\_\+create@{krpc\+\_\+object\+\_\+create}}
-\index{krpc\+\_\+object\+\_\+create@{krpc\+\_\+object\+\_\+create}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+object\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf krpc\+\_\+object\+\_\+t}$\ast$ krpc\+\_\+object\+\_\+create (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\label{a00087_ga6aad58d8460944596e39822181bf4848_ga6aad58d8460944596e39822181bf4848}
-
-
-所有set类方法调用时确定krpc\+\_\+object\+\_\+t实际类型，类型一旦确定不能再次更改 
-
-建立\+R\+P\+C对象 \begin{DoxyReturn}{返回}
-krpc\+\_\+object\+\_\+t实例 
-\end{DoxyReturn}
-\hypertarget{a00087_ga8bb578f8ba5a8de682a1fe2a4c8a20f6_ga8bb578f8ba5a8de682a1fe2a4c8a20f6}{}\index{远程调用@{远程调用}!krpc\+\_\+object\+\_\+destroy@{krpc\+\_\+object\+\_\+destroy}}
-\index{krpc\+\_\+object\+\_\+destroy@{krpc\+\_\+object\+\_\+destroy}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+object\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+object\+\_\+destroy (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
-\end{DoxyParamCaption}
-)}\label{a00087_ga8bb578f8ba5a8de682a1fe2a4c8a20f6_ga8bb578f8ba5a8de682a1fe2a4c8a20f6}
-
-
-销毁\+R\+P\+C对象 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00087_gad51ebf7392be0ee1fd9597aa22a43015_gad51ebf7392be0ee1fd9597aa22a43015}{}\index{远程调用@{远程调用}!krpc\+\_\+object\+\_\+get\+\_\+marshal\+\_\+size@{krpc\+\_\+object\+\_\+get\+\_\+marshal\+\_\+size}}
-\index{krpc\+\_\+object\+\_\+get\+\_\+marshal\+\_\+size@{krpc\+\_\+object\+\_\+get\+\_\+marshal\+\_\+size}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+object\+\_\+get\+\_\+marshal\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t krpc\+\_\+object\+\_\+get\+\_\+marshal\+\_\+size (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
-\end{DoxyParamCaption}
-)}\label{a00087_gad51ebf7392be0ee1fd9597aa22a43015_gad51ebf7392be0ee1fd9597aa22a43015}
-
-
-取得序列化后的长度 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-取得序列化后的长度 
-\end{DoxyReturn}
-\hypertarget{a00087_ga88e197e67ba6e7dc4b6fa361db77376b_ga88e197e67ba6e7dc4b6fa361db77376b}{}\index{远程调用@{远程调用}!krpc\+\_\+object\+\_\+marshal@{krpc\+\_\+object\+\_\+marshal}}
-\index{krpc\+\_\+object\+\_\+marshal@{krpc\+\_\+object\+\_\+marshal}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+object\+\_\+marshal}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+object\+\_\+marshal (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{{\bf stream\+\_\+t} $\ast$}]{stream, }
-\item[{uint16\+\_\+t $\ast$}]{bytes}
-\end{DoxyParamCaption}
-)}\label{a00087_ga88e197e67ba6e7dc4b6fa361db77376b_ga88e197e67ba6e7dc4b6fa361db77376b}
-
-
-序列化到数据流 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em stream} & stream\+\_\+t实例 \\
-\hline
-{\em bytes} & 写入流的数据字节数 \\
+{\em ms} & 定时器超时间隔 \\
 \hline
 \end{DoxyParams}
 
@@ -818,29 +232,29 @@ krpc\+\_\+object\+\_\+t实例
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00087_ga32ed12c4faa68e258582b239b46fd180_ga32ed12c4faa68e258582b239b46fd180}{}\index{远程调用@{远程调用}!krpc\+\_\+object\+\_\+marshal\+\_\+buffer@{krpc\+\_\+object\+\_\+marshal\+\_\+buffer}}
-\index{krpc\+\_\+object\+\_\+marshal\+\_\+buffer@{krpc\+\_\+object\+\_\+marshal\+\_\+buffer}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+object\+\_\+marshal\+\_\+buffer}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+object\+\_\+marshal\+\_\+buffer (
+\hypertarget{a00099_ga9c37409260a72e3218ae4fcaf44d79bc_ga9c37409260a72e3218ae4fcaf44d79bc}{}\index{timer\+\_\+api.\+h@{timer\+\_\+api.\+h}!ktimer\+\_\+start\+\_\+once@{ktimer\+\_\+start\+\_\+once}}
+\index{ktimer\+\_\+start\+\_\+once@{ktimer\+\_\+start\+\_\+once}!timer\+\_\+api.\+h@{timer\+\_\+api.\+h}}
+\subsubsection[{ktimer\+\_\+start\+\_\+once}]{\setlength{\rightskip}{0pt plus 5cm}int ktimer\+\_\+start\+\_\+once (
 \begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{char $\ast$}]{buffer, }
-\item[{uint16\+\_\+t}]{length, }
-\item[{uint16\+\_\+t $\ast$}]{bytes}
+\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer, }
+\item[{{\bf ktimer\+\_\+cb\+\_\+t}}]{cb, }
+\item[{void $\ast$}]{data, }
+\item[{time\+\_\+t}]{ms}
 \end{DoxyParamCaption}
-)}\label{a00087_ga32ed12c4faa68e258582b239b46fd180_ga32ed12c4faa68e258582b239b46fd180}
+)}\label{a00099_ga9c37409260a72e3218ae4fcaf44d79bc_ga9c37409260a72e3218ae4fcaf44d79bc}
 
 
-序列化到缓冲区 
+启动一个只超时一次的定时器，超时后将自动销毁 
 
 
 \begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+{\em timer} & ktimer\+\_\+t实例 \\
 \hline
-{\em buffer} & 缓冲区指针 \\
+{\em cb} & 超时回调函数 \\
 \hline
-{\em length} & 缓冲区长度 \\
+{\em data} & 回调函数参数 \\
 \hline
-{\em bytes} & 写入缓冲区的数据字节数 \\
+{\em ms} & 定时器超时间隔 \\
 \hline
 \end{DoxyParams}
 
@@ -850,26 +264,32 @@ krpc\+\_\+object\+\_\+t实例
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00087_gaff1ec30de69047da0315283957d877ca_gaff1ec30de69047da0315283957d877ca}{}\index{远程调用@{远程调用}!krpc\+\_\+object\+\_\+unmarshal@{krpc\+\_\+object\+\_\+unmarshal}}
-\index{krpc\+\_\+object\+\_\+unmarshal@{krpc\+\_\+object\+\_\+unmarshal}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+object\+\_\+unmarshal}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+object\+\_\+unmarshal (
+\hypertarget{a00099_ga285936846760d9f325e588d2e2105fe5_ga285936846760d9f325e588d2e2105fe5}{}\index{timer\+\_\+api.\+h@{timer\+\_\+api.\+h}!ktimer\+\_\+start\+\_\+times@{ktimer\+\_\+start\+\_\+times}}
+\index{ktimer\+\_\+start\+\_\+times@{ktimer\+\_\+start\+\_\+times}!timer\+\_\+api.\+h@{timer\+\_\+api.\+h}}
+\subsubsection[{ktimer\+\_\+start\+\_\+times}]{\setlength{\rightskip}{0pt plus 5cm}int ktimer\+\_\+start\+\_\+times (
 \begin{DoxyParamCaption}
-\item[{{\bf stream\+\_\+t} $\ast$}]{stream, }
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$$\ast$}]{o, }
-\item[{uint16\+\_\+t $\ast$}]{bytes}
+\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer, }
+\item[{{\bf ktimer\+\_\+cb\+\_\+t}}]{cb, }
+\item[{void $\ast$}]{data, }
+\item[{time\+\_\+t}]{ms, }
+\item[{int}]{times}
 \end{DoxyParamCaption}
-)}\label{a00087_gaff1ec30de69047da0315283957d877ca_gaff1ec30de69047da0315283957d877ca}
+)}\label{a00099_ga285936846760d9f325e588d2e2105fe5_ga285936846760d9f325e588d2e2105fe5}
 
 
-从数据流反序列化对象 
+启动一个有限次数的定时器，达到times次数后将自动销毁 
 
 
 \begin{DoxyParams}{参数}
-{\em stream} & stream\+\_\+t实例 \\
+{\em timer} & ktimer\+\_\+t实例 \\
 \hline
-{\em o} & 存储得到的对象指针 \\
+{\em cb} & 超时回调函数 \\
 \hline
-{\em bytes} & 读取的流数据字节数 \\
+{\em data} & 回调函数参数 \\
+\hline
+{\em ms} & 定时器超时间隔 \\
+\hline
+{\em times} & 次数 \\
 \hline
 \end{DoxyParams}
 
@@ -879,220 +299,20 @@ krpc\+\_\+object\+\_\+t实例
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00087_ga0f2289e356949bc9ae0e8e0a151e42f4_ga0f2289e356949bc9ae0e8e0a151e42f4}{}\index{远程调用@{远程调用}!krpc\+\_\+object\+\_\+unmarshal\+\_\+buffer@{krpc\+\_\+object\+\_\+unmarshal\+\_\+buffer}}
-\index{krpc\+\_\+object\+\_\+unmarshal\+\_\+buffer@{krpc\+\_\+object\+\_\+unmarshal\+\_\+buffer}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+object\+\_\+unmarshal\+\_\+buffer}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+object\+\_\+unmarshal\+\_\+buffer (
+\hypertarget{a00099_ga1465f5ddec41fa81c429d1647dc5e7a9_ga1465f5ddec41fa81c429d1647dc5e7a9}{}\index{timer\+\_\+api.\+h@{timer\+\_\+api.\+h}!ktimer\+\_\+stop@{ktimer\+\_\+stop}}
+\index{ktimer\+\_\+stop@{ktimer\+\_\+stop}!timer\+\_\+api.\+h@{timer\+\_\+api.\+h}}
+\subsubsection[{ktimer\+\_\+stop}]{\setlength{\rightskip}{0pt plus 5cm}int ktimer\+\_\+stop (
 \begin{DoxyParamCaption}
-\item[{char $\ast$}]{buffer, }
-\item[{uint16\+\_\+t}]{size, }
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$$\ast$}]{o, }
-\item[{uint16\+\_\+t $\ast$}]{bytes}
+\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer}
 \end{DoxyParamCaption}
-)}\label{a00087_ga0f2289e356949bc9ae0e8e0a151e42f4_ga0f2289e356949bc9ae0e8e0a151e42f4}
+)}\label{a00099_ga1465f5ddec41fa81c429d1647dc5e7a9_ga1465f5ddec41fa81c429d1647dc5e7a9}
 
 
-从缓冲区反序列化对象 
+停止并销毁定时器 
 
 
 \begin{DoxyParams}{参数}
-{\em buffer} & 缓冲区指针 \\
-\hline
-{\em size} & 缓冲区长度 \\
-\hline
-{\em o} & 存储得到的对象指针 \\
-\hline
-{\em bytes} & 消耗的字节数 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00087_ga4cbbacb71688aa9ee2c5811076132bce_ga4cbbacb71688aa9ee2c5811076132bce}{}\index{远程调用@{远程调用}!krpc\+\_\+string\+\_\+get@{krpc\+\_\+string\+\_\+get}}
-\index{krpc\+\_\+string\+\_\+get@{krpc\+\_\+string\+\_\+get}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+string\+\_\+get}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ krpc\+\_\+string\+\_\+get (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
-\end{DoxyParamCaption}
-)}\label{a00087_ga4cbbacb71688aa9ee2c5811076132bce_ga4cbbacb71688aa9ee2c5811076132bce}
-
-
-获取字符串指针 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-字符串指针 
-\end{DoxyReturn}
-\hypertarget{a00087_ga1de7973df219a3f8d3f466d27ba8c080_ga1de7973df219a3f8d3f466d27ba8c080}{}\index{远程调用@{远程调用}!krpc\+\_\+string\+\_\+get\+\_\+size@{krpc\+\_\+string\+\_\+get\+\_\+size}}
-\index{krpc\+\_\+string\+\_\+get\+\_\+size@{krpc\+\_\+string\+\_\+get\+\_\+size}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+string\+\_\+get\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t krpc\+\_\+string\+\_\+get\+\_\+size (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
-\end{DoxyParamCaption}
-)}\label{a00087_ga1de7973df219a3f8d3f466d27ba8c080_ga1de7973df219a3f8d3f466d27ba8c080}
-
-
-获取字符串长度，包含结尾符 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-字符串长度 
-\end{DoxyReturn}
-\hypertarget{a00087_ga6985230e52d14d9e6d1f0de75a7c2f93_ga6985230e52d14d9e6d1f0de75a7c2f93}{}\index{远程调用@{远程调用}!krpc\+\_\+string\+\_\+set@{krpc\+\_\+string\+\_\+set}}
-\index{krpc\+\_\+string\+\_\+set@{krpc\+\_\+string\+\_\+set}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+string\+\_\+set}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+string\+\_\+set (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{const char $\ast$}]{s}
-\end{DoxyParamCaption}
-)}\label{a00087_ga6985230e52d14d9e6d1f0de75a7c2f93_ga6985230e52d14d9e6d1f0de75a7c2f93}
-
-
-设置字符串 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em s} & 字符串指针 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00087_ga478faec6f30727235d29aaeb8d54f22f_ga478faec6f30727235d29aaeb8d54f22f}{}\index{远程调用@{远程调用}!krpc\+\_\+string\+\_\+set\+\_\+s@{krpc\+\_\+string\+\_\+set\+\_\+s}}
-\index{krpc\+\_\+string\+\_\+set\+\_\+s@{krpc\+\_\+string\+\_\+set\+\_\+s}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+string\+\_\+set\+\_\+s}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+string\+\_\+set\+\_\+s (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{const char $\ast$}]{s, }
-\item[{uint16\+\_\+t}]{size}
-\end{DoxyParamCaption}
-)}\label{a00087_ga478faec6f30727235d29aaeb8d54f22f_ga478faec6f30727235d29aaeb8d54f22f}
-
-
-设置字符串 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em size} & 字符串长度，包含结尾符 \\
-\hline
-{\em s} & 字符串指针 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00087_ga02d5eeffe865f129911f42ffbfa0d119_ga02d5eeffe865f129911f42ffbfa0d119}{}\index{远程调用@{远程调用}!krpc\+\_\+vector\+\_\+clear@{krpc\+\_\+vector\+\_\+clear}}
-\index{krpc\+\_\+vector\+\_\+clear@{krpc\+\_\+vector\+\_\+clear}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+vector\+\_\+clear}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+vector\+\_\+clear (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{v}
-\end{DoxyParamCaption}
-)}\label{a00087_ga02d5eeffe865f129911f42ffbfa0d119_ga02d5eeffe865f129911f42ffbfa0d119}
-
-
-清空数组 
-
-
-\begin{DoxyParams}{参数}
-{\em v} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00087_ga0291a0548378269354fc614712f4c31e_ga0291a0548378269354fc614712f4c31e}{}\index{远程调用@{远程调用}!krpc\+\_\+vector\+\_\+get@{krpc\+\_\+vector\+\_\+get}}
-\index{krpc\+\_\+vector\+\_\+get@{krpc\+\_\+vector\+\_\+get}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+vector\+\_\+get}]{\setlength{\rightskip}{0pt plus 5cm}{\bf krpc\+\_\+object\+\_\+t}$\ast$ krpc\+\_\+vector\+\_\+get (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{v, }
-\item[{int}]{index}
-\end{DoxyParamCaption}
-)}\label{a00087_ga0291a0548378269354fc614712f4c31e_ga0291a0548378269354fc614712f4c31e}
-
-
-按索引取得数组元素 
-
-
-\begin{DoxyParams}{参数}
-{\em v} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em index} & 下标索引 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-数组元素 
-\end{DoxyReturn}
-\hypertarget{a00087_gac86bb807e52193aaa69ce6fe36cd59c8_gac86bb807e52193aaa69ce6fe36cd59c8}{}\index{远程调用@{远程调用}!krpc\+\_\+vector\+\_\+get\+\_\+size@{krpc\+\_\+vector\+\_\+get\+\_\+size}}
-\index{krpc\+\_\+vector\+\_\+get\+\_\+size@{krpc\+\_\+vector\+\_\+get\+\_\+size}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+vector\+\_\+get\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t krpc\+\_\+vector\+\_\+get\+\_\+size (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{v}
-\end{DoxyParamCaption}
-)}\label{a00087_gac86bb807e52193aaa69ce6fe36cd59c8_gac86bb807e52193aaa69ce6fe36cd59c8}
-
-
-取得数组元素个数 
-
-
-\begin{DoxyParams}{参数}
-{\em v} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-数组元素个数 
-\end{DoxyReturn}
-\hypertarget{a00087_gac870fa910b5e155c9f566ead4fac2b54_gac870fa910b5e155c9f566ead4fac2b54}{}\index{远程调用@{远程调用}!krpc\+\_\+vector\+\_\+push\+\_\+back@{krpc\+\_\+vector\+\_\+push\+\_\+back}}
-\index{krpc\+\_\+vector\+\_\+push\+\_\+back@{krpc\+\_\+vector\+\_\+push\+\_\+back}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+vector\+\_\+push\+\_\+back}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+vector\+\_\+push\+\_\+back (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{v, }
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
-\end{DoxyParamCaption}
-)}\label{a00087_gac870fa910b5e155c9f566ead4fac2b54_gac870fa910b5e155c9f566ead4fac2b54}
-
-
-添加到数组尾，数组默认长度为8，每次递增8 
-
-
-\begin{DoxyParams}{参数}
-{\em v} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em o} & 新增的数组元素 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00087_gaf08956a35d983893f382974abcfca177_gaf08956a35d983893f382974abcfca177}{}\index{远程调用@{远程调用}!krpc\+\_\+vector\+\_\+set@{krpc\+\_\+vector\+\_\+set}}
-\index{krpc\+\_\+vector\+\_\+set@{krpc\+\_\+vector\+\_\+set}!远程调用@{远程调用}}
-\subsubsection[{krpc\+\_\+vector\+\_\+set}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+vector\+\_\+set (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{v, }
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{int}]{index}
-\end{DoxyParamCaption}
-)}\label{a00087_gaf08956a35d983893f382974abcfca177_gaf08956a35d983893f382974abcfca177}
-
-
-按索引设置数组元素，若已存在元素则销毁旧元素 
-
-
-\begin{DoxyParams}{参数}
-{\em v} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em o} & 新元素 \\
-\hline
-{\em index} & 下标索引 \\
+{\em timer} & ktimer\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 

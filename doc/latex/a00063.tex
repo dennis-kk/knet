@@ -1,609 +1,567 @@
-\hypertarget{a00063}{}\section{E\+:/knet-\/git/knet/knet/misc.h 文件参考}
-\label{a00063}\index{E\+:/knet-\/git/knet/knet/misc.\+h@{E\+:/knet-\/git/knet/knet/misc.\+h}}
+\hypertarget{a00063}{}\section{E\+:/knet-\/git/knet/knet/loop.h 文件参考}
+\label{a00063}\index{E\+:/knet-\/git/knet/knet/loop.\+h@{E\+:/knet-\/git/knet/knet/loop.\+h}}
 {\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}thread\+\_\+api.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}loop\+\_\+api.\+h\char`\"{}}\\*
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05_a0d9e0afbf02fb6ed6c5b1415dce51b05}{socket\+\_\+t} \hyperlink{a00063_a71cc84510563a2981ed5a47f86ccb7f6_a71cc84510563a2981ed5a47f86ccb7f6}{socket\+\_\+create} ()
-\begin{DoxyCompactList}\small\item\em 建立一个套接字 \end{DoxyCompactList}\item 
-int \hyperlink{a00063_a1ec48de5c316491b068fbb3c76b21c91_a1ec48de5c316491b068fbb3c76b21c91}{socket\+\_\+connect} (\hyperlink{a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05_a0d9e0afbf02fb6ed6c5b1415dce51b05}{socket\+\_\+t} socket\+\_\+fd, const char $\ast$ip, int port)
-\begin{DoxyCompactList}\small\item\em 发起异步connect \end{DoxyCompactList}\item 
-int \hyperlink{a00063_a5ab6846ac2d5706e2357ee17a0178bc3_a5ab6846ac2d5706e2357ee17a0178bc3}{socket\+\_\+bind\+\_\+and\+\_\+listen} (\hyperlink{a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05_a0d9e0afbf02fb6ed6c5b1415dce51b05}{socket\+\_\+t} socket\+\_\+fd, const char $\ast$ip, int port, int backlog)
-\begin{DoxyCompactList}\small\item\em bind \& listen \end{DoxyCompactList}\item 
-\hyperlink{a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05_a0d9e0afbf02fb6ed6c5b1415dce51b05}{socket\+\_\+t} \hyperlink{a00063_a3db4aef68a8961e075d700673594f9d3_a3db4aef68a8961e075d700673594f9d3}{socket\+\_\+accept} (\hyperlink{a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05_a0d9e0afbf02fb6ed6c5b1415dce51b05}{socket\+\_\+t} socket\+\_\+fd)
-\begin{DoxyCompactList}\small\item\em accept \end{DoxyCompactList}\item 
-int \hyperlink{a00063_a3972a34b212a86a683834f05ed37034f_a3972a34b212a86a683834f05ed37034f}{socket\+\_\+close} (\hyperlink{a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05_a0d9e0afbf02fb6ed6c5b1415dce51b05}{socket\+\_\+t} socket\+\_\+fd)
-\begin{DoxyCompactList}\small\item\em 关闭套接字（强制关闭） \end{DoxyCompactList}\item 
-int \hyperlink{a00063_a10039d2f0e29d4b0d3b0cab3c7a1b63c_a10039d2f0e29d4b0d3b0cab3c7a1b63c}{socket\+\_\+set\+\_\+reuse\+\_\+addr\+\_\+on} (\hyperlink{a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05_a0d9e0afbf02fb6ed6c5b1415dce51b05}{socket\+\_\+t} socket\+\_\+fd)
+void \hyperlink{a00063_ab4f4cfdde0b598a3e8267a5ff60775ec_ab4f4cfdde0b598a3e8267a5ff60775ec}{loop\+\_\+add\+\_\+channel\+\_\+ref} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop, \hyperlink{a00047_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\begin{DoxyCompactList}\small\item\em 添加channel\+\_\+ref\+\_\+t实例到活跃链表 \end{DoxyCompactList}\item 
+void \hyperlink{a00063_a074c9c3a80a8a5c57b831e41395d4ef5_a074c9c3a80a8a5c57b831e41395d4ef5}{loop\+\_\+remove\+\_\+channel\+\_\+ref} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop, \hyperlink{a00047_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\begin{DoxyCompactList}\small\item\em 从到活跃链表删除channel\+\_\+ref\+\_\+t实例 \end{DoxyCompactList}\item 
+void \hyperlink{a00063_a9328cf8ba2faccbf363b41e524631b75_a9328cf8ba2faccbf363b41e524631b75}{loop\+\_\+close\+\_\+channel\+\_\+ref} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop, \hyperlink{a00047_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\begin{DoxyCompactList}\small\item\em 从到活跃链表删除channel\+\_\+ref\+\_\+t实例，并放入关闭链表 \end{DoxyCompactList}\item 
+\hyperlink{a00047_ad6644d67df4b4e3596c1eb12977d1d16_ad6644d67df4b4e3596c1eb12977d1d16}{dlist\+\_\+t} $\ast$ \hyperlink{a00063_a7c1a2360919bfff72d665f2651a8d080_a7c1a2360919bfff72d665f2651a8d080}{loop\+\_\+get\+\_\+active\+\_\+list} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
+\begin{DoxyCompactList}\small\item\em 取得活跃链表 \end{DoxyCompactList}\item 
+\hyperlink{a00047_ad6644d67df4b4e3596c1eb12977d1d16_ad6644d67df4b4e3596c1eb12977d1d16}{dlist\+\_\+t} $\ast$ \hyperlink{a00063_a282fa587372c0abd536f46a396cd41d4_a282fa587372c0abd536f46a396cd41d4}{loop\+\_\+get\+\_\+close\+\_\+list} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
+\begin{DoxyCompactList}\small\item\em 取得关闭链表 \end{DoxyCompactList}\item 
+void \hyperlink{a00063_aa9654f1b872059f74665506fd67c9bc5_aa9654f1b872059f74665506fd67c9bc5}{loop\+\_\+set\+\_\+impl} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop, void $\ast$impl)
+\begin{DoxyCompactList}\small\item\em 设置选取器实现 \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{a00063_a0f78295541723911955dd41b71ceece1_a0f78295541723911955dd41b71ceece1}{loop\+\_\+get\+\_\+impl} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
+\begin{DoxyCompactList}\small\item\em 取得选取器实现 \end{DoxyCompactList}\item 
+\hyperlink{a00047_ad0ada5642d10ce71bdd90816182f9b79_ad0ada5642d10ce71bdd90816182f9b79}{thread\+\_\+id\+\_\+t} \hyperlink{a00063_a1a9b3ef7cb2655dbabeabeeae2f8f299_a1a9b3ef7cb2655dbabeabeeae2f8f299}{loop\+\_\+get\+\_\+thread\+\_\+id} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
+\begin{DoxyCompactList}\small\item\em 取得选取器当前线程\+I\+D \end{DoxyCompactList}\item 
+void \hyperlink{a00063_abedbb538c1cc8ef805dbfc0f58d80f9e_abedbb538c1cc8ef805dbfc0f58d80f9e}{loop\+\_\+set\+\_\+balancer} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop, \hyperlink{a00047_a649c7e850ab247b5f70ad27e335a129d_a649c7e850ab247b5f70ad27e335a129d}{loop\+\_\+balancer\+\_\+t} $\ast$balancer)
+\begin{DoxyCompactList}\small\item\em 设置负载均衡器(loop\+\_\+balancer\+\_\+t实例） \end{DoxyCompactList}\item 
+\hyperlink{a00047_a649c7e850ab247b5f70ad27e335a129d_a649c7e850ab247b5f70ad27e335a129d}{loop\+\_\+balancer\+\_\+t} $\ast$ \hyperlink{a00063_a1f9df6866c80e91a620320298d199315_a1f9df6866c80e91a620320298d199315}{loop\+\_\+get\+\_\+balancer} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
+\begin{DoxyCompactList}\small\item\em 取得负载均衡器(loop\+\_\+balancer\+\_\+t实例） \end{DoxyCompactList}\item 
+void \hyperlink{a00063_a61e9eb6eeaaad4d1d655beba05bb8440_a61e9eb6eeaaad4d1d655beba05bb8440}{loop\+\_\+notify\+\_\+accept} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop, \hyperlink{a00047_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\begin{DoxyCompactList}\small\item\em 发送事件通知 -\/ 监听到新连接 \end{DoxyCompactList}\item 
+void \hyperlink{a00063_ad023112870f736a601137129420a94b9_ad023112870f736a601137129420a94b9}{loop\+\_\+notify\+\_\+send} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop, \hyperlink{a00047_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref, \hyperlink{a00047_aad99a77d28bd81d3d36d0ea569c9482d_aad99a77d28bd81d3d36d0ea569c9482d}{buffer\+\_\+t} $\ast$send\+\_\+buffer)
+\begin{DoxyCompactList}\small\item\em 发送事件通知 -\/ 跨线程发送 \end{DoxyCompactList}\item 
+void \hyperlink{a00063_a6c9f3ec8e93c6e7b10ebb4dcaca562d4_a6c9f3ec8e93c6e7b10ebb4dcaca562d4}{loop\+\_\+notify\+\_\+close} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop, \hyperlink{a00047_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\begin{DoxyCompactList}\small\item\em 发送事件通知 -\/ 关闭管道 \end{DoxyCompactList}\item 
+void \hyperlink{a00063_a970d2bf2e65270fe3d93de1e22a4d34c_a970d2bf2e65270fe3d93de1e22a4d34c}{loop\+\_\+queue\+\_\+cb} (\hyperlink{a00047_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel, \hyperlink{a00047_aaf2cba5d4035f3d56350b59342ebf65c_aaf2cba5d4035f3d56350b59342ebf65c}{channel\+\_\+cb\+\_\+event\+\_\+e} e)
+\begin{DoxyCompactList}\small\item\em 通知管道回调函数 \end{DoxyCompactList}\item 
+void \hyperlink{a00063_a3857990b0f1f9e27e000b5924b88a958_a3857990b0f1f9e27e000b5924b88a958}{loop\+\_\+notify} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
+\begin{DoxyCompactList}\small\item\em 触发读事件回调loop\+\_\+queue\+\_\+cb \end{DoxyCompactList}\item 
+void \hyperlink{a00063_a94a2dfa4ba7723d7face3f76ebf31e54_a94a2dfa4ba7723d7face3f76ebf31e54}{loop\+\_\+event\+\_\+process} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
+\begin{DoxyCompactList}\small\item\em 处理事件 \end{DoxyCompactList}\item 
+void \hyperlink{a00063_a7a6972b39402a670659621e9fa7204ce_a7a6972b39402a670659621e9fa7204ce}{loop\+\_\+check\+\_\+timeout} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop, time\+\_\+t ts)
+\begin{DoxyCompactList}\small\item\em 检查活跃管道空闲超时 \end{DoxyCompactList}\item 
+void \hyperlink{a00063_a5f61cefa251961e82fbf82b1c7dc0b6b_a5f61cefa251961e82fbf82b1c7dc0b6b}{loop\+\_\+check\+\_\+close} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
+\begin{DoxyCompactList}\small\item\em 检查关闭管道是否可以销毁 \end{DoxyCompactList}\item 
+int \hyperlink{a00063_a841de68dad67aba3b98d2c55d2891521_a841de68dad67aba3b98d2c55d2891521}{loop\+\_\+check\+\_\+running} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
+\begin{DoxyCompactList}\small\item\em 检查是否正在运行 \end{DoxyCompactList}\item 
+void \hyperlink{a00063_a20964027b5a498c7f206d6a04568fa11_a20964027b5a498c7f206d6a04568fa11}{loop\+\_\+set\+\_\+balance\+\_\+options} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop, \hyperlink{a00047_a6c87150c8f33855c3427c783480fd8ba_a6c87150c8f33855c3427c783480fd8ba}{loop\+\_\+balance\+\_\+option\+\_\+e} options)
+\begin{DoxyCompactList}\small\item\em 设置负载均衡配置 \end{DoxyCompactList}\item 
+\hyperlink{a00047_a6c87150c8f33855c3427c783480fd8ba_a6c87150c8f33855c3427c783480fd8ba}{loop\+\_\+balance\+\_\+option\+\_\+e} \hyperlink{a00063_a5098c33527e18f4a0bd9bc1856ce17f1_a5098c33527e18f4a0bd9bc1856ce17f1}{loop\+\_\+get\+\_\+balance\+\_\+options} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
+\begin{DoxyCompactList}\small\item\em 取得负载均衡配置 \end{DoxyCompactList}\item 
+int \hyperlink{a00063_aff034d62b761d4ebad97180fb55a4582_aff034d62b761d4ebad97180fb55a4582}{loop\+\_\+check\+\_\+balance\+\_\+options} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop, \hyperlink{a00047_a6c87150c8f33855c3427c783480fd8ba_a6c87150c8f33855c3427c783480fd8ba}{loop\+\_\+balance\+\_\+option\+\_\+e} options)
+\begin{DoxyCompactList}\small\item\em 检查负载均衡配置是否开启 \end{DoxyCompactList}\item 
+int \hyperlink{a00063_a182ab27e7200de7cea5aa0a4aa71a519_a182ab27e7200de7cea5aa0a4aa71a519}{impl\+\_\+create} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
 \item 
-int \hyperlink{a00063_afd473c5857939c252deb9bfa30da8366_afd473c5857939c252deb9bfa30da8366}{socket\+\_\+set\+\_\+non\+\_\+blocking\+\_\+on} (\hyperlink{a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05_a0d9e0afbf02fb6ed6c5b1415dce51b05}{socket\+\_\+t} socket\+\_\+fd)
+void \hyperlink{a00063_ae6a6b7adc5e89d55352e0d54aa603915_ae6a6b7adc5e89d55352e0d54aa603915}{impl\+\_\+destroy} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
 \item 
-int \hyperlink{a00063_ac38b97ead3e51bdc95124910f3657c8a_ac38b97ead3e51bdc95124910f3657c8a}{socket\+\_\+set\+\_\+nagle\+\_\+off} (\hyperlink{a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05_a0d9e0afbf02fb6ed6c5b1415dce51b05}{socket\+\_\+t} socket\+\_\+fd)
+int \hyperlink{a00063_af6be25e4d8b08e68ad1730611fc7f15c_af6be25e4d8b08e68ad1730611fc7f15c}{impl\+\_\+run\+\_\+once} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
 \item 
-int \hyperlink{a00063_ae3f2774813f23e084f5268d51e6c4983_ae3f2774813f23e084f5268d51e6c4983}{socket\+\_\+set\+\_\+linger\+\_\+off} (\hyperlink{a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05_a0d9e0afbf02fb6ed6c5b1415dce51b05}{socket\+\_\+t} socket\+\_\+fd)
+int \hyperlink{a00063_ae6d969c43313283fd7490201d637e29f_ae6d969c43313283fd7490201d637e29f}{impl\+\_\+event\+\_\+add} (\hyperlink{a00047_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref, \hyperlink{a00047_a5ad43ab162fdf9ad53cde10ed3d87d99_a5ad43ab162fdf9ad53cde10ed3d87d99}{channel\+\_\+event\+\_\+e} e)
 \item 
-int \hyperlink{a00063_aeaa8128921474edb7c47efb40c8383ff_aeaa8128921474edb7c47efb40c8383ff}{socket\+\_\+set\+\_\+keepalive\+\_\+off} (\hyperlink{a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05_a0d9e0afbf02fb6ed6c5b1415dce51b05}{socket\+\_\+t} socket\+\_\+fd)
+int \hyperlink{a00063_a687cfc12a5dba8228bb411d4cf81df26_a687cfc12a5dba8228bb411d4cf81df26}{impl\+\_\+event\+\_\+remove} (\hyperlink{a00047_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref, \hyperlink{a00047_a5ad43ab162fdf9ad53cde10ed3d87d99_a5ad43ab162fdf9ad53cde10ed3d87d99}{channel\+\_\+event\+\_\+e} e)
 \item 
-int \hyperlink{a00063_a1d090d32a5cdf8b76b9e8eb650dfab60_a1d090d32a5cdf8b76b9e8eb650dfab60}{socket\+\_\+set\+\_\+donot\+\_\+route\+\_\+on} (\hyperlink{a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05_a0d9e0afbf02fb6ed6c5b1415dce51b05}{socket\+\_\+t} socket\+\_\+fd)
+int \hyperlink{a00063_a27621a2037d9d1ad2f04e1b45bb63c6c_a27621a2037d9d1ad2f04e1b45bb63c6c}{impl\+\_\+add\+\_\+channel\+\_\+ref} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop, \hyperlink{a00047_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
 \item 
-int \hyperlink{a00063_ae2d51397a3f343ea4daaf96b4d203f73_ae2d51397a3f343ea4daaf96b4d203f73}{socket\+\_\+set\+\_\+recv\+\_\+buffer\+\_\+size} (\hyperlink{a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05_a0d9e0afbf02fb6ed6c5b1415dce51b05}{socket\+\_\+t} socket\+\_\+fd, int size)
+int \hyperlink{a00063_af253b520c9f5107bf3b4384c6e54e1ea_af253b520c9f5107bf3b4384c6e54e1ea}{impl\+\_\+remove\+\_\+channel\+\_\+ref} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop, \hyperlink{a00047_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
 \item 
-int \hyperlink{a00063_a8489cd06398f759fff9660006dc8c10d_a8489cd06398f759fff9660006dc8c10d}{socket\+\_\+set\+\_\+send\+\_\+buffer\+\_\+size} (\hyperlink{a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05_a0d9e0afbf02fb6ed6c5b1415dce51b05}{socket\+\_\+t} socket\+\_\+fd, int size)
+\hyperlink{a00047_a0d9e0afbf02fb6ed6c5b1415dce51b05_a0d9e0afbf02fb6ed6c5b1415dce51b05}{socket\+\_\+t} \hyperlink{a00063_a866d92a429bf2e1262bbd248036960c1_a866d92a429bf2e1262bbd248036960c1}{impl\+\_\+channel\+\_\+accept} (\hyperlink{a00047_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
 \item 
-int \hyperlink{a00063_a1acbefba637d7c0c3fd77355f84d4c22_a1acbefba637d7c0c3fd77355f84d4c22}{socket\+\_\+send} (\hyperlink{a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05_a0d9e0afbf02fb6ed6c5b1415dce51b05}{socket\+\_\+t} socket\+\_\+fd, const char $\ast$data, uint32\+\_\+t size)
-\item 
-int \hyperlink{a00063_a8a4b901f1586de59d1d0a88d3326c934_a8a4b901f1586de59d1d0a88d3326c934}{socket\+\_\+recv} (\hyperlink{a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05_a0d9e0afbf02fb6ed6c5b1415dce51b05}{socket\+\_\+t} socket\+\_\+fd, char $\ast$data, uint32\+\_\+t size)
-\item 
-int \hyperlink{a00063_a64d681185ca861b010c81db7479e9e08_a64d681185ca861b010c81db7479e9e08}{socket\+\_\+pair} (\hyperlink{a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05_a0d9e0afbf02fb6ed6c5b1415dce51b05}{socket\+\_\+t} pair\mbox{[}2\mbox{]})
-\begin{DoxyCompactList}\small\item\em socketpair \end{DoxyCompactList}\item 
-int \hyperlink{a00063_af9dec30d9e18787252fecc0de537843f_af9dec30d9e18787252fecc0de537843f}{socket\+\_\+getpeername} (\hyperlink{a00044_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref, \hyperlink{a00044_a7a6e75b85c8b441f843bd40004a7d9d5_a7a6e75b85c8b441f843bd40004a7d9d5}{address\+\_\+t} $\ast$address)
-\begin{DoxyCompactList}\small\item\em getpeername \end{DoxyCompactList}\item 
-int \hyperlink{a00063_ad427473485df55e150741186f3ef2879_ad427473485df55e150741186f3ef2879}{socket\+\_\+getsockname} (\hyperlink{a00044_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref, \hyperlink{a00044_a7a6e75b85c8b441f843bd40004a7d9d5_a7a6e75b85c8b441f843bd40004a7d9d5}{address\+\_\+t} $\ast$address)
-\begin{DoxyCompactList}\small\item\em getsockname \end{DoxyCompactList}\item 
-int \hyperlink{a00063_a8afd26cc26824e35f1ec942d2c367c2b_a8afd26cc26824e35f1ec942d2c367c2b}{socket\+\_\+check\+\_\+send\+\_\+ready} (\hyperlink{a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05_a0d9e0afbf02fb6ed6c5b1415dce51b05}{socket\+\_\+t} socket\+\_\+fd)
-\begin{DoxyCompactList}\small\item\em 检查套接字是否可写 \end{DoxyCompactList}\item 
-\hyperlink{a00044_ad3e00e0eb0c79dfd77ff2ff833f49c7d_ad3e00e0eb0c79dfd77ff2ff833f49c7d}{lock\+\_\+t} $\ast$ \hyperlink{a00063_a0e47279c8c752d22446932673be52e38_a0e47279c8c752d22446932673be52e38}{lock\+\_\+create} ()
-\begin{DoxyCompactList}\small\item\em 建立互斥锁实例 \end{DoxyCompactList}\item 
-void \hyperlink{a00063_aba61c8c4b8ee5ec7e337ed950d680702_aba61c8c4b8ee5ec7e337ed950d680702}{lock\+\_\+destroy} (\hyperlink{a00044_ad3e00e0eb0c79dfd77ff2ff833f49c7d_ad3e00e0eb0c79dfd77ff2ff833f49c7d}{lock\+\_\+t} $\ast$lock)
-\begin{DoxyCompactList}\small\item\em 销毁互斥锁 \end{DoxyCompactList}\item 
-void \hyperlink{a00063_ad8e04f3d702d3f15868c064947d396b3_ad8e04f3d702d3f15868c064947d396b3}{lock\+\_\+lock} (\hyperlink{a00044_ad3e00e0eb0c79dfd77ff2ff833f49c7d_ad3e00e0eb0c79dfd77ff2ff833f49c7d}{lock\+\_\+t} $\ast$lock)
-\begin{DoxyCompactList}\small\item\em 锁 \end{DoxyCompactList}\item 
-int \hyperlink{a00063_a2caa15f5d1698c623c1861bd02184d0e_a2caa15f5d1698c623c1861bd02184d0e}{lock\+\_\+trylock} (\hyperlink{a00044_ad3e00e0eb0c79dfd77ff2ff833f49c7d_ad3e00e0eb0c79dfd77ff2ff833f49c7d}{lock\+\_\+t} $\ast$lock)
-\begin{DoxyCompactList}\small\item\em 测试锁 \end{DoxyCompactList}\item 
-void \hyperlink{a00063_a99cf1d42527f5715b798064281e918ed_a99cf1d42527f5715b798064281e918ed}{lock\+\_\+unlock} (\hyperlink{a00044_ad3e00e0eb0c79dfd77ff2ff833f49c7d_ad3e00e0eb0c79dfd77ff2ff833f49c7d}{lock\+\_\+t} $\ast$lock)
-\begin{DoxyCompactList}\small\item\em 解锁 \end{DoxyCompactList}\item 
-uint32\+\_\+t \hyperlink{a00063_a528d27a7218cb2fdabf81ca343e24fc9_a528d27a7218cb2fdabf81ca343e24fc9}{time\+\_\+get\+\_\+milliseconds} ()
-\begin{DoxyCompactList}\small\item\em 获取当前毫秒 \end{DoxyCompactList}\item 
-uint64\+\_\+t \hyperlink{a00063_a5eb6de730bc28be3fbc402b9841c1819_a5eb6de730bc28be3fbc402b9841c1819}{time\+\_\+get\+\_\+microseconds} ()
-\begin{DoxyCompactList}\small\item\em 获取当前微秒 \end{DoxyCompactList}\item 
-int \hyperlink{a00063_a3cab12b4908938ca999206a67c8ee032_a3cab12b4908938ca999206a67c8ee032}{time\+\_\+gettimeofday} (struct timeval $\ast$tp, void $\ast$tzp)
-\begin{DoxyCompactList}\small\item\em gettimeofday \end{DoxyCompactList}\item 
-char $\ast$ \hyperlink{a00063_a6d3f7fda67a3c61f767f7b2dbfcbe4ee_a6d3f7fda67a3c61f767f7b2dbfcbe4ee}{time\+\_\+get\+\_\+string} (char $\ast$buffer, int size)
-\begin{DoxyCompactList}\small\item\em 取得当前可阅读时间字符串 \end{DoxyCompactList}\item 
-uint64\+\_\+t \hyperlink{a00063_a2b1df51bc127460a3bf25949068bfe92_a2b1df51bc127460a3bf25949068bfe92}{uuid\+\_\+create} ()
-\begin{DoxyCompactList}\small\item\em 产生一个伪\+U\+U\+I\+D，只保证本进程内不重复 \end{DoxyCompactList}\item 
-char $\ast$ \hyperlink{a00063_a6c98a04f00772c05a1f51afc185f7513_a6c98a04f00772c05a1f51afc185f7513}{path\+\_\+getcwd} (char $\ast$buffer, int size)
-\begin{DoxyCompactList}\small\item\em 取得当前工作目录 \end{DoxyCompactList}\item 
-\hyperlink{a00044_aeaea39e7ef5adeec1efaee3eee6b12ff_aeaea39e7ef5adeec1efaee3eee6b12ff}{sys\+\_\+error\+\_\+t} \hyperlink{a00063_a2e3ede072c59452900afcb1334611dac_a2e3ede072c59452900afcb1334611dac}{sys\+\_\+get\+\_\+errno} ()
-\begin{DoxyCompactList}\small\item\em 获取最新的系统错误码 \end{DoxyCompactList}\item 
-uint64\+\_\+t \hyperlink{a00063_ab1f59aa518d342661072356abbbb5e85_ab1f59aa518d342661072356abbbb5e85}{htonll} (uint64\+\_\+t ui64)
-\begin{DoxyCompactList}\small\item\em 字节序转换 -\/ 主机序到网络序 \end{DoxyCompactList}\item 
-uint64\+\_\+t \hyperlink{a00063_aebdeac120dd80e9450e54e6f18151f45_aebdeac120dd80e9450e54e6f18151f45}{ntohll} (uint64\+\_\+t ui64)
-\begin{DoxyCompactList}\small\item\em 字节序转换 -\/ 网络序到主机序 \end{DoxyCompactList}\item 
-const char $\ast$ \hyperlink{a00063_a09544f6ae0ab9ff277146fb25ae2354c_a09544f6ae0ab9ff277146fb25ae2354c}{get\+\_\+channel\+\_\+cb\+\_\+event\+\_\+string} (\hyperlink{a00044_aaf2cba5d4035f3d56350b59342ebf65c_aaf2cba5d4035f3d56350b59342ebf65c}{channel\+\_\+cb\+\_\+event\+\_\+e} e)
-\begin{DoxyCompactList}\small\item\em 取得管道回调事件描述 \end{DoxyCompactList}\item 
-const char $\ast$ \hyperlink{a00063_a83ecacb2855b2a9c324de5ffb5300e15_a83ecacb2855b2a9c324de5ffb5300e15}{get\+\_\+channel\+\_\+cb\+\_\+event\+\_\+name} (\hyperlink{a00044_aaf2cba5d4035f3d56350b59342ebf65c_aaf2cba5d4035f3d56350b59342ebf65c}{channel\+\_\+cb\+\_\+event\+\_\+e} e)
-\begin{DoxyCompactList}\small\item\em 取得管道回调事件名字 \end{DoxyCompactList}\end{DoxyCompactItemize}
+void $\ast$ \hyperlink{a00063_aaec184f54f4ccb89ab5fa003345cd338_aaec184f54f4ccb89ab5fa003345cd338}{loop\+\_\+get\+\_\+data} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
+\begin{DoxyCompactList}\small\item\em 取得用户数据指针 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{函数说明}
-\hypertarget{a00063_a83ecacb2855b2a9c324de5ffb5300e15_a83ecacb2855b2a9c324de5ffb5300e15}{}\index{misc.\+h@{misc.\+h}!get\+\_\+channel\+\_\+cb\+\_\+event\+\_\+name@{get\+\_\+channel\+\_\+cb\+\_\+event\+\_\+name}}
-\index{get\+\_\+channel\+\_\+cb\+\_\+event\+\_\+name@{get\+\_\+channel\+\_\+cb\+\_\+event\+\_\+name}!misc.\+h@{misc.\+h}}
-\subsubsection[{get\+\_\+channel\+\_\+cb\+\_\+event\+\_\+name}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ get\+\_\+channel\+\_\+cb\+\_\+event\+\_\+name (
+\hypertarget{a00063_a27621a2037d9d1ad2f04e1b45bb63c6c_a27621a2037d9d1ad2f04e1b45bb63c6c}{}\index{loop.\+h@{loop.\+h}!impl\+\_\+add\+\_\+channel\+\_\+ref@{impl\+\_\+add\+\_\+channel\+\_\+ref}}
+\index{impl\+\_\+add\+\_\+channel\+\_\+ref@{impl\+\_\+add\+\_\+channel\+\_\+ref}!loop.\+h@{loop.\+h}}
+\subsubsection[{impl\+\_\+add\+\_\+channel\+\_\+ref}]{\setlength{\rightskip}{0pt plus 5cm}int impl\+\_\+add\+\_\+channel\+\_\+ref (
 \begin{DoxyParamCaption}
-\item[{{\bf channel\+\_\+cb\+\_\+event\+\_\+e}}]{e}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop, }
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
 \end{DoxyParamCaption}
-)}\label{a00063_a83ecacb2855b2a9c324de5ffb5300e15_a83ecacb2855b2a9c324de5ffb5300e15}
-
-
-取得管道回调事件名字 
-
-
-\begin{DoxyParams}{参数}
-{\em e} & 管道回调事件\+I\+D \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-管道回调事件名字 
-\end{DoxyReturn}
-\hypertarget{a00063_a09544f6ae0ab9ff277146fb25ae2354c_a09544f6ae0ab9ff277146fb25ae2354c}{}\index{misc.\+h@{misc.\+h}!get\+\_\+channel\+\_\+cb\+\_\+event\+\_\+string@{get\+\_\+channel\+\_\+cb\+\_\+event\+\_\+string}}
-\index{get\+\_\+channel\+\_\+cb\+\_\+event\+\_\+string@{get\+\_\+channel\+\_\+cb\+\_\+event\+\_\+string}!misc.\+h@{misc.\+h}}
-\subsubsection[{get\+\_\+channel\+\_\+cb\+\_\+event\+\_\+string}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ get\+\_\+channel\+\_\+cb\+\_\+event\+\_\+string (
+)}\label{a00063_a27621a2037d9d1ad2f04e1b45bb63c6c_a27621a2037d9d1ad2f04e1b45bb63c6c}
+\hypertarget{a00063_a866d92a429bf2e1262bbd248036960c1_a866d92a429bf2e1262bbd248036960c1}{}\index{loop.\+h@{loop.\+h}!impl\+\_\+channel\+\_\+accept@{impl\+\_\+channel\+\_\+accept}}
+\index{impl\+\_\+channel\+\_\+accept@{impl\+\_\+channel\+\_\+accept}!loop.\+h@{loop.\+h}}
+\subsubsection[{impl\+\_\+channel\+\_\+accept}]{\setlength{\rightskip}{0pt plus 5cm}{\bf socket\+\_\+t} impl\+\_\+channel\+\_\+accept (
 \begin{DoxyParamCaption}
-\item[{{\bf channel\+\_\+cb\+\_\+event\+\_\+e}}]{e}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
 \end{DoxyParamCaption}
-)}\label{a00063_a09544f6ae0ab9ff277146fb25ae2354c_a09544f6ae0ab9ff277146fb25ae2354c}
-
-
-取得管道回调事件描述 
-
-
-\begin{DoxyParams}{参数}
-{\em e} & 管道回调事件\+I\+D \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-管道回调事件描述 
-\end{DoxyReturn}
-\hypertarget{a00063_ab1f59aa518d342661072356abbbb5e85_ab1f59aa518d342661072356abbbb5e85}{}\index{misc.\+h@{misc.\+h}!htonll@{htonll}}
-\index{htonll@{htonll}!misc.\+h@{misc.\+h}}
-\subsubsection[{htonll}]{\setlength{\rightskip}{0pt plus 5cm}uint64\+\_\+t htonll (
+)}\label{a00063_a866d92a429bf2e1262bbd248036960c1_a866d92a429bf2e1262bbd248036960c1}
+\hypertarget{a00063_a182ab27e7200de7cea5aa0a4aa71a519_a182ab27e7200de7cea5aa0a4aa71a519}{}\index{loop.\+h@{loop.\+h}!impl\+\_\+create@{impl\+\_\+create}}
+\index{impl\+\_\+create@{impl\+\_\+create}!loop.\+h@{loop.\+h}}
+\subsubsection[{impl\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}int impl\+\_\+create (
 \begin{DoxyParamCaption}
-\item[{uint64\+\_\+t}]{ui64}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
 \end{DoxyParamCaption}
-)}\label{a00063_ab1f59aa518d342661072356abbbb5e85_ab1f59aa518d342661072356abbbb5e85}
-
-
-字节序转换 -\/ 主机序到网络序 
-
-
-\begin{DoxyParams}{参数}
-{\em ui64} & 64位无符号整数 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-64位无符号整数 
-\end{DoxyReturn}
-\hypertarget{a00063_a0e47279c8c752d22446932673be52e38_a0e47279c8c752d22446932673be52e38}{}\index{misc.\+h@{misc.\+h}!lock\+\_\+create@{lock\+\_\+create}}
-\index{lock\+\_\+create@{lock\+\_\+create}!misc.\+h@{misc.\+h}}
-\subsubsection[{lock\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lock\+\_\+t}$\ast$ lock\+\_\+create (
+)}\label{a00063_a182ab27e7200de7cea5aa0a4aa71a519_a182ab27e7200de7cea5aa0a4aa71a519}
+\hypertarget{a00063_ae6a6b7adc5e89d55352e0d54aa603915_ae6a6b7adc5e89d55352e0d54aa603915}{}\index{loop.\+h@{loop.\+h}!impl\+\_\+destroy@{impl\+\_\+destroy}}
+\index{impl\+\_\+destroy@{impl\+\_\+destroy}!loop.\+h@{loop.\+h}}
+\subsubsection[{impl\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void impl\+\_\+destroy (
 \begin{DoxyParamCaption}
-{}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
 \end{DoxyParamCaption}
-)}\label{a00063_a0e47279c8c752d22446932673be52e38_a0e47279c8c752d22446932673be52e38}
-
-
-建立互斥锁实例 
-
-\begin{DoxyReturn}{返回}
-lock\+\_\+t实例 
-\end{DoxyReturn}
-\hypertarget{a00063_aba61c8c4b8ee5ec7e337ed950d680702_aba61c8c4b8ee5ec7e337ed950d680702}{}\index{misc.\+h@{misc.\+h}!lock\+\_\+destroy@{lock\+\_\+destroy}}
-\index{lock\+\_\+destroy@{lock\+\_\+destroy}!misc.\+h@{misc.\+h}}
-\subsubsection[{lock\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void lock\+\_\+destroy (
-\begin{DoxyParamCaption}
-\item[{{\bf lock\+\_\+t} $\ast$}]{lock}
-\end{DoxyParamCaption}
-)}\label{a00063_aba61c8c4b8ee5ec7e337ed950d680702_aba61c8c4b8ee5ec7e337ed950d680702}
-
-
-销毁互斥锁 
-
-
-\begin{DoxyParams}{参数}
-{\em lock} & lock\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00063_ad8e04f3d702d3f15868c064947d396b3_ad8e04f3d702d3f15868c064947d396b3}{}\index{misc.\+h@{misc.\+h}!lock\+\_\+lock@{lock\+\_\+lock}}
-\index{lock\+\_\+lock@{lock\+\_\+lock}!misc.\+h@{misc.\+h}}
-\subsubsection[{lock\+\_\+lock}]{\setlength{\rightskip}{0pt plus 5cm}void lock\+\_\+lock (
-\begin{DoxyParamCaption}
-\item[{{\bf lock\+\_\+t} $\ast$}]{lock}
-\end{DoxyParamCaption}
-)}\label{a00063_ad8e04f3d702d3f15868c064947d396b3_ad8e04f3d702d3f15868c064947d396b3}
-
-
-锁 
-
-
-\begin{DoxyParams}{参数}
-{\em lock} & lock\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00063_a2caa15f5d1698c623c1861bd02184d0e_a2caa15f5d1698c623c1861bd02184d0e}{}\index{misc.\+h@{misc.\+h}!lock\+\_\+trylock@{lock\+\_\+trylock}}
-\index{lock\+\_\+trylock@{lock\+\_\+trylock}!misc.\+h@{misc.\+h}}
-\subsubsection[{lock\+\_\+trylock}]{\setlength{\rightskip}{0pt plus 5cm}int lock\+\_\+trylock (
-\begin{DoxyParamCaption}
-\item[{{\bf lock\+\_\+t} $\ast$}]{lock}
-\end{DoxyParamCaption}
-)}\label{a00063_a2caa15f5d1698c623c1861bd02184d0e_a2caa15f5d1698c623c1861bd02184d0e}
-
-
-测试锁 
-
-
-\begin{DoxyParams}{参数}
-{\em lock} & lock\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxySeeAlso}{参见}
-pthread\+\_\+mutex\+\_\+trylock 
-\end{DoxySeeAlso}
-\hypertarget{a00063_a99cf1d42527f5715b798064281e918ed_a99cf1d42527f5715b798064281e918ed}{}\index{misc.\+h@{misc.\+h}!lock\+\_\+unlock@{lock\+\_\+unlock}}
-\index{lock\+\_\+unlock@{lock\+\_\+unlock}!misc.\+h@{misc.\+h}}
-\subsubsection[{lock\+\_\+unlock}]{\setlength{\rightskip}{0pt plus 5cm}void lock\+\_\+unlock (
-\begin{DoxyParamCaption}
-\item[{{\bf lock\+\_\+t} $\ast$}]{lock}
-\end{DoxyParamCaption}
-)}\label{a00063_a99cf1d42527f5715b798064281e918ed_a99cf1d42527f5715b798064281e918ed}
-
-
-解锁 
-
-
-\begin{DoxyParams}{参数}
-{\em lock} & lock\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00063_aebdeac120dd80e9450e54e6f18151f45_aebdeac120dd80e9450e54e6f18151f45}{}\index{misc.\+h@{misc.\+h}!ntohll@{ntohll}}
-\index{ntohll@{ntohll}!misc.\+h@{misc.\+h}}
-\subsubsection[{ntohll}]{\setlength{\rightskip}{0pt plus 5cm}uint64\+\_\+t ntohll (
-\begin{DoxyParamCaption}
-\item[{uint64\+\_\+t}]{ui64}
-\end{DoxyParamCaption}
-)}\label{a00063_aebdeac120dd80e9450e54e6f18151f45_aebdeac120dd80e9450e54e6f18151f45}
-
-
-字节序转换 -\/ 网络序到主机序 
-
-
-\begin{DoxyParams}{参数}
-{\em ui64} & 64位无符号整数 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-64位无符号整数 
-\end{DoxyReturn}
-\hypertarget{a00063_a6c98a04f00772c05a1f51afc185f7513_a6c98a04f00772c05a1f51afc185f7513}{}\index{misc.\+h@{misc.\+h}!path\+\_\+getcwd@{path\+\_\+getcwd}}
-\index{path\+\_\+getcwd@{path\+\_\+getcwd}!misc.\+h@{misc.\+h}}
-\subsubsection[{path\+\_\+getcwd}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ path\+\_\+getcwd (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{buffer, }
-\item[{int}]{size}
-\end{DoxyParamCaption}
-)}\label{a00063_a6c98a04f00772c05a1f51afc185f7513_a6c98a04f00772c05a1f51afc185f7513}
-
-
-取得当前工作目录 
-
-
-\begin{DoxyParams}{参数}
-{\em buffer} & 路径缓冲区指针 \\
-\hline
-{\em size} & 缓冲区大小 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em 0} & 失败 \\
-\hline
-{\em 路径缓冲区指针} & \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00063_a3db4aef68a8961e075d700673594f9d3_a3db4aef68a8961e075d700673594f9d3}{}\index{misc.\+h@{misc.\+h}!socket\+\_\+accept@{socket\+\_\+accept}}
-\index{socket\+\_\+accept@{socket\+\_\+accept}!misc.\+h@{misc.\+h}}
-\subsubsection[{socket\+\_\+accept}]{\setlength{\rightskip}{0pt plus 5cm}{\bf socket\+\_\+t} socket\+\_\+accept (
-\begin{DoxyParamCaption}
-\item[{{\bf socket\+\_\+t}}]{socket\+\_\+fd}
-\end{DoxyParamCaption}
-)}\label{a00063_a3db4aef68a8961e075d700673594f9d3_a3db4aef68a8961e075d700673594f9d3}
-
-
-accept 
-
-
-\begin{DoxyParams}{参数}
-{\em socket\+\_\+fd} & 套接字 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em 0} & 失败 \\
-\hline
-{\em 有效的套接字} & \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00063_a5ab6846ac2d5706e2357ee17a0178bc3_a5ab6846ac2d5706e2357ee17a0178bc3}{}\index{misc.\+h@{misc.\+h}!socket\+\_\+bind\+\_\+and\+\_\+listen@{socket\+\_\+bind\+\_\+and\+\_\+listen}}
-\index{socket\+\_\+bind\+\_\+and\+\_\+listen@{socket\+\_\+bind\+\_\+and\+\_\+listen}!misc.\+h@{misc.\+h}}
-\subsubsection[{socket\+\_\+bind\+\_\+and\+\_\+listen}]{\setlength{\rightskip}{0pt plus 5cm}int socket\+\_\+bind\+\_\+and\+\_\+listen (
-\begin{DoxyParamCaption}
-\item[{{\bf socket\+\_\+t}}]{socket\+\_\+fd, }
-\item[{const char $\ast$}]{ip, }
-\item[{int}]{port, }
-\item[{int}]{backlog}
-\end{DoxyParamCaption}
-)}\label{a00063_a5ab6846ac2d5706e2357ee17a0178bc3_a5ab6846ac2d5706e2357ee17a0178bc3}
-
-
-bind \& listen 
-
-
-\begin{DoxyParams}{参数}
-{\em socket\+\_\+fd} & 套接字 \\
-\hline
-{\em ip} & I\+P \\
-\hline
-{\em port} & 端口 \\
-\hline
-{\em backlog} & 函数listen()参数 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00063_a8afd26cc26824e35f1ec942d2c367c2b_a8afd26cc26824e35f1ec942d2c367c2b}{}\index{misc.\+h@{misc.\+h}!socket\+\_\+check\+\_\+send\+\_\+ready@{socket\+\_\+check\+\_\+send\+\_\+ready}}
-\index{socket\+\_\+check\+\_\+send\+\_\+ready@{socket\+\_\+check\+\_\+send\+\_\+ready}!misc.\+h@{misc.\+h}}
-\subsubsection[{socket\+\_\+check\+\_\+send\+\_\+ready}]{\setlength{\rightskip}{0pt plus 5cm}int socket\+\_\+check\+\_\+send\+\_\+ready (
-\begin{DoxyParamCaption}
-\item[{{\bf socket\+\_\+t}}]{socket\+\_\+fd}
-\end{DoxyParamCaption}
-)}\label{a00063_a8afd26cc26824e35f1ec942d2c367c2b_a8afd26cc26824e35f1ec942d2c367c2b}
-
-
-检查套接字是否可写 
-
-
-\begin{DoxyRetVals}{返回值}
-{\em 0} & 不可写 \\
-\hline
-{\em 1} & 可写 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00063_a3972a34b212a86a683834f05ed37034f_a3972a34b212a86a683834f05ed37034f}{}\index{misc.\+h@{misc.\+h}!socket\+\_\+close@{socket\+\_\+close}}
-\index{socket\+\_\+close@{socket\+\_\+close}!misc.\+h@{misc.\+h}}
-\subsubsection[{socket\+\_\+close}]{\setlength{\rightskip}{0pt plus 5cm}int socket\+\_\+close (
-\begin{DoxyParamCaption}
-\item[{{\bf socket\+\_\+t}}]{socket\+\_\+fd}
-\end{DoxyParamCaption}
-)}\label{a00063_a3972a34b212a86a683834f05ed37034f_a3972a34b212a86a683834f05ed37034f}
-
-
-关闭套接字（强制关闭） 
-
-
-\begin{DoxyParams}{参数}
-{\em socket\+\_\+fd} & 套接字 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em 0} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00063_a1ec48de5c316491b068fbb3c76b21c91_a1ec48de5c316491b068fbb3c76b21c91}{}\index{misc.\+h@{misc.\+h}!socket\+\_\+connect@{socket\+\_\+connect}}
-\index{socket\+\_\+connect@{socket\+\_\+connect}!misc.\+h@{misc.\+h}}
-\subsubsection[{socket\+\_\+connect}]{\setlength{\rightskip}{0pt plus 5cm}int socket\+\_\+connect (
-\begin{DoxyParamCaption}
-\item[{{\bf socket\+\_\+t}}]{socket\+\_\+fd, }
-\item[{const char $\ast$}]{ip, }
-\item[{int}]{port}
-\end{DoxyParamCaption}
-)}\label{a00063_a1ec48de5c316491b068fbb3c76b21c91_a1ec48de5c316491b068fbb3c76b21c91}
-
-
-发起异步connect 
-
-
-\begin{DoxyParams}{参数}
-{\em socket\+\_\+fd} & 套接字 \\
-\hline
-{\em ip} & I\+P \\
-\hline
-{\em port} & 端口 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00063_a71cc84510563a2981ed5a47f86ccb7f6_a71cc84510563a2981ed5a47f86ccb7f6}{}\index{misc.\+h@{misc.\+h}!socket\+\_\+create@{socket\+\_\+create}}
-\index{socket\+\_\+create@{socket\+\_\+create}!misc.\+h@{misc.\+h}}
-\subsubsection[{socket\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf socket\+\_\+t} socket\+\_\+create (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\label{a00063_a71cc84510563a2981ed5a47f86ccb7f6_a71cc84510563a2981ed5a47f86ccb7f6}
-
-
-建立一个套接字 
-
-\begin{DoxyReturn}{返回}
-套接字 
-\end{DoxyReturn}
-\hypertarget{a00063_af9dec30d9e18787252fecc0de537843f_af9dec30d9e18787252fecc0de537843f}{}\index{misc.\+h@{misc.\+h}!socket\+\_\+getpeername@{socket\+\_\+getpeername}}
-\index{socket\+\_\+getpeername@{socket\+\_\+getpeername}!misc.\+h@{misc.\+h}}
-\subsubsection[{socket\+\_\+getpeername}]{\setlength{\rightskip}{0pt plus 5cm}int socket\+\_\+getpeername (
+)}\label{a00063_ae6a6b7adc5e89d55352e0d54aa603915_ae6a6b7adc5e89d55352e0d54aa603915}
+\hypertarget{a00063_ae6d969c43313283fd7490201d637e29f_ae6d969c43313283fd7490201d637e29f}{}\index{loop.\+h@{loop.\+h}!impl\+\_\+event\+\_\+add@{impl\+\_\+event\+\_\+add}}
+\index{impl\+\_\+event\+\_\+add@{impl\+\_\+event\+\_\+add}!loop.\+h@{loop.\+h}}
+\subsubsection[{impl\+\_\+event\+\_\+add}]{\setlength{\rightskip}{0pt plus 5cm}int impl\+\_\+event\+\_\+add (
 \begin{DoxyParamCaption}
 \item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref, }
-\item[{{\bf address\+\_\+t} $\ast$}]{address}
+\item[{{\bf channel\+\_\+event\+\_\+e}}]{e}
 \end{DoxyParamCaption}
-)}\label{a00063_af9dec30d9e18787252fecc0de537843f_af9dec30d9e18787252fecc0de537843f}
-
-
-getpeername 
-
-\begin{DoxySeeAlso}{参见}
-getpeername 
-\end{DoxySeeAlso}
-\hypertarget{a00063_ad427473485df55e150741186f3ef2879_ad427473485df55e150741186f3ef2879}{}\index{misc.\+h@{misc.\+h}!socket\+\_\+getsockname@{socket\+\_\+getsockname}}
-\index{socket\+\_\+getsockname@{socket\+\_\+getsockname}!misc.\+h@{misc.\+h}}
-\subsubsection[{socket\+\_\+getsockname}]{\setlength{\rightskip}{0pt plus 5cm}int socket\+\_\+getsockname (
+)}\label{a00063_ae6d969c43313283fd7490201d637e29f_ae6d969c43313283fd7490201d637e29f}
+\hypertarget{a00063_a687cfc12a5dba8228bb411d4cf81df26_a687cfc12a5dba8228bb411d4cf81df26}{}\index{loop.\+h@{loop.\+h}!impl\+\_\+event\+\_\+remove@{impl\+\_\+event\+\_\+remove}}
+\index{impl\+\_\+event\+\_\+remove@{impl\+\_\+event\+\_\+remove}!loop.\+h@{loop.\+h}}
+\subsubsection[{impl\+\_\+event\+\_\+remove}]{\setlength{\rightskip}{0pt plus 5cm}int impl\+\_\+event\+\_\+remove (
 \begin{DoxyParamCaption}
 \item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref, }
-\item[{{\bf address\+\_\+t} $\ast$}]{address}
+\item[{{\bf channel\+\_\+event\+\_\+e}}]{e}
 \end{DoxyParamCaption}
-)}\label{a00063_ad427473485df55e150741186f3ef2879_ad427473485df55e150741186f3ef2879}
-
-
-getsockname 
-
-\begin{DoxySeeAlso}{参见}
-getsockname 
-\end{DoxySeeAlso}
-\hypertarget{a00063_a64d681185ca861b010c81db7479e9e08_a64d681185ca861b010c81db7479e9e08}{}\index{misc.\+h@{misc.\+h}!socket\+\_\+pair@{socket\+\_\+pair}}
-\index{socket\+\_\+pair@{socket\+\_\+pair}!misc.\+h@{misc.\+h}}
-\subsubsection[{socket\+\_\+pair}]{\setlength{\rightskip}{0pt plus 5cm}int socket\+\_\+pair (
+)}\label{a00063_a687cfc12a5dba8228bb411d4cf81df26_a687cfc12a5dba8228bb411d4cf81df26}
+\hypertarget{a00063_af253b520c9f5107bf3b4384c6e54e1ea_af253b520c9f5107bf3b4384c6e54e1ea}{}\index{loop.\+h@{loop.\+h}!impl\+\_\+remove\+\_\+channel\+\_\+ref@{impl\+\_\+remove\+\_\+channel\+\_\+ref}}
+\index{impl\+\_\+remove\+\_\+channel\+\_\+ref@{impl\+\_\+remove\+\_\+channel\+\_\+ref}!loop.\+h@{loop.\+h}}
+\subsubsection[{impl\+\_\+remove\+\_\+channel\+\_\+ref}]{\setlength{\rightskip}{0pt plus 5cm}int impl\+\_\+remove\+\_\+channel\+\_\+ref (
 \begin{DoxyParamCaption}
-\item[{{\bf socket\+\_\+t}}]{pair\mbox{[}2\mbox{]}}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop, }
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
 \end{DoxyParamCaption}
-)}\label{a00063_a64d681185ca861b010c81db7479e9e08_a64d681185ca861b010c81db7479e9e08}
+)}\label{a00063_af253b520c9f5107bf3b4384c6e54e1ea_af253b520c9f5107bf3b4384c6e54e1ea}
+\hypertarget{a00063_af6be25e4d8b08e68ad1730611fc7f15c_af6be25e4d8b08e68ad1730611fc7f15c}{}\index{loop.\+h@{loop.\+h}!impl\+\_\+run\+\_\+once@{impl\+\_\+run\+\_\+once}}
+\index{impl\+\_\+run\+\_\+once@{impl\+\_\+run\+\_\+once}!loop.\+h@{loop.\+h}}
+\subsubsection[{impl\+\_\+run\+\_\+once}]{\setlength{\rightskip}{0pt plus 5cm}int impl\+\_\+run\+\_\+once (
+\begin{DoxyParamCaption}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
+\end{DoxyParamCaption}
+)}\label{a00063_af6be25e4d8b08e68ad1730611fc7f15c_af6be25e4d8b08e68ad1730611fc7f15c}
+\hypertarget{a00063_ab4f4cfdde0b598a3e8267a5ff60775ec_ab4f4cfdde0b598a3e8267a5ff60775ec}{}\index{loop.\+h@{loop.\+h}!loop\+\_\+add\+\_\+channel\+\_\+ref@{loop\+\_\+add\+\_\+channel\+\_\+ref}}
+\index{loop\+\_\+add\+\_\+channel\+\_\+ref@{loop\+\_\+add\+\_\+channel\+\_\+ref}!loop.\+h@{loop.\+h}}
+\subsubsection[{loop\+\_\+add\+\_\+channel\+\_\+ref}]{\setlength{\rightskip}{0pt plus 5cm}void loop\+\_\+add\+\_\+channel\+\_\+ref (
+\begin{DoxyParamCaption}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop, }
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\end{DoxyParamCaption}
+)}\label{a00063_ab4f4cfdde0b598a3e8267a5ff60775ec_ab4f4cfdde0b598a3e8267a5ff60775ec}
 
 
-socketpair 
-
-\begin{DoxySeeAlso}{参见}
-socketpair 
-\end{DoxySeeAlso}
-\hypertarget{a00063_a8a4b901f1586de59d1d0a88d3326c934_a8a4b901f1586de59d1d0a88d3326c934}{}\index{misc.\+h@{misc.\+h}!socket\+\_\+recv@{socket\+\_\+recv}}
-\index{socket\+\_\+recv@{socket\+\_\+recv}!misc.\+h@{misc.\+h}}
-\subsubsection[{socket\+\_\+recv}]{\setlength{\rightskip}{0pt plus 5cm}int socket\+\_\+recv (
-\begin{DoxyParamCaption}
-\item[{{\bf socket\+\_\+t}}]{socket\+\_\+fd, }
-\item[{char $\ast$}]{data, }
-\item[{uint32\+\_\+t}]{size}
-\end{DoxyParamCaption}
-)}\label{a00063_a8a4b901f1586de59d1d0a88d3326c934_a8a4b901f1586de59d1d0a88d3326c934}
-\hypertarget{a00063_a1acbefba637d7c0c3fd77355f84d4c22_a1acbefba637d7c0c3fd77355f84d4c22}{}\index{misc.\+h@{misc.\+h}!socket\+\_\+send@{socket\+\_\+send}}
-\index{socket\+\_\+send@{socket\+\_\+send}!misc.\+h@{misc.\+h}}
-\subsubsection[{socket\+\_\+send}]{\setlength{\rightskip}{0pt plus 5cm}int socket\+\_\+send (
-\begin{DoxyParamCaption}
-\item[{{\bf socket\+\_\+t}}]{socket\+\_\+fd, }
-\item[{const char $\ast$}]{data, }
-\item[{uint32\+\_\+t}]{size}
-\end{DoxyParamCaption}
-)}\label{a00063_a1acbefba637d7c0c3fd77355f84d4c22_a1acbefba637d7c0c3fd77355f84d4c22}
-\hypertarget{a00063_a1d090d32a5cdf8b76b9e8eb650dfab60_a1d090d32a5cdf8b76b9e8eb650dfab60}{}\index{misc.\+h@{misc.\+h}!socket\+\_\+set\+\_\+donot\+\_\+route\+\_\+on@{socket\+\_\+set\+\_\+donot\+\_\+route\+\_\+on}}
-\index{socket\+\_\+set\+\_\+donot\+\_\+route\+\_\+on@{socket\+\_\+set\+\_\+donot\+\_\+route\+\_\+on}!misc.\+h@{misc.\+h}}
-\subsubsection[{socket\+\_\+set\+\_\+donot\+\_\+route\+\_\+on}]{\setlength{\rightskip}{0pt plus 5cm}int socket\+\_\+set\+\_\+donot\+\_\+route\+\_\+on (
-\begin{DoxyParamCaption}
-\item[{{\bf socket\+\_\+t}}]{socket\+\_\+fd}
-\end{DoxyParamCaption}
-)}\label{a00063_a1d090d32a5cdf8b76b9e8eb650dfab60_a1d090d32a5cdf8b76b9e8eb650dfab60}
-\hypertarget{a00063_aeaa8128921474edb7c47efb40c8383ff_aeaa8128921474edb7c47efb40c8383ff}{}\index{misc.\+h@{misc.\+h}!socket\+\_\+set\+\_\+keepalive\+\_\+off@{socket\+\_\+set\+\_\+keepalive\+\_\+off}}
-\index{socket\+\_\+set\+\_\+keepalive\+\_\+off@{socket\+\_\+set\+\_\+keepalive\+\_\+off}!misc.\+h@{misc.\+h}}
-\subsubsection[{socket\+\_\+set\+\_\+keepalive\+\_\+off}]{\setlength{\rightskip}{0pt plus 5cm}int socket\+\_\+set\+\_\+keepalive\+\_\+off (
-\begin{DoxyParamCaption}
-\item[{{\bf socket\+\_\+t}}]{socket\+\_\+fd}
-\end{DoxyParamCaption}
-)}\label{a00063_aeaa8128921474edb7c47efb40c8383ff_aeaa8128921474edb7c47efb40c8383ff}
-\hypertarget{a00063_ae3f2774813f23e084f5268d51e6c4983_ae3f2774813f23e084f5268d51e6c4983}{}\index{misc.\+h@{misc.\+h}!socket\+\_\+set\+\_\+linger\+\_\+off@{socket\+\_\+set\+\_\+linger\+\_\+off}}
-\index{socket\+\_\+set\+\_\+linger\+\_\+off@{socket\+\_\+set\+\_\+linger\+\_\+off}!misc.\+h@{misc.\+h}}
-\subsubsection[{socket\+\_\+set\+\_\+linger\+\_\+off}]{\setlength{\rightskip}{0pt plus 5cm}int socket\+\_\+set\+\_\+linger\+\_\+off (
-\begin{DoxyParamCaption}
-\item[{{\bf socket\+\_\+t}}]{socket\+\_\+fd}
-\end{DoxyParamCaption}
-)}\label{a00063_ae3f2774813f23e084f5268d51e6c4983_ae3f2774813f23e084f5268d51e6c4983}
-\hypertarget{a00063_ac38b97ead3e51bdc95124910f3657c8a_ac38b97ead3e51bdc95124910f3657c8a}{}\index{misc.\+h@{misc.\+h}!socket\+\_\+set\+\_\+nagle\+\_\+off@{socket\+\_\+set\+\_\+nagle\+\_\+off}}
-\index{socket\+\_\+set\+\_\+nagle\+\_\+off@{socket\+\_\+set\+\_\+nagle\+\_\+off}!misc.\+h@{misc.\+h}}
-\subsubsection[{socket\+\_\+set\+\_\+nagle\+\_\+off}]{\setlength{\rightskip}{0pt plus 5cm}int socket\+\_\+set\+\_\+nagle\+\_\+off (
-\begin{DoxyParamCaption}
-\item[{{\bf socket\+\_\+t}}]{socket\+\_\+fd}
-\end{DoxyParamCaption}
-)}\label{a00063_ac38b97ead3e51bdc95124910f3657c8a_ac38b97ead3e51bdc95124910f3657c8a}
-\hypertarget{a00063_afd473c5857939c252deb9bfa30da8366_afd473c5857939c252deb9bfa30da8366}{}\index{misc.\+h@{misc.\+h}!socket\+\_\+set\+\_\+non\+\_\+blocking\+\_\+on@{socket\+\_\+set\+\_\+non\+\_\+blocking\+\_\+on}}
-\index{socket\+\_\+set\+\_\+non\+\_\+blocking\+\_\+on@{socket\+\_\+set\+\_\+non\+\_\+blocking\+\_\+on}!misc.\+h@{misc.\+h}}
-\subsubsection[{socket\+\_\+set\+\_\+non\+\_\+blocking\+\_\+on}]{\setlength{\rightskip}{0pt plus 5cm}int socket\+\_\+set\+\_\+non\+\_\+blocking\+\_\+on (
-\begin{DoxyParamCaption}
-\item[{{\bf socket\+\_\+t}}]{socket\+\_\+fd}
-\end{DoxyParamCaption}
-)}\label{a00063_afd473c5857939c252deb9bfa30da8366_afd473c5857939c252deb9bfa30da8366}
-\hypertarget{a00063_ae2d51397a3f343ea4daaf96b4d203f73_ae2d51397a3f343ea4daaf96b4d203f73}{}\index{misc.\+h@{misc.\+h}!socket\+\_\+set\+\_\+recv\+\_\+buffer\+\_\+size@{socket\+\_\+set\+\_\+recv\+\_\+buffer\+\_\+size}}
-\index{socket\+\_\+set\+\_\+recv\+\_\+buffer\+\_\+size@{socket\+\_\+set\+\_\+recv\+\_\+buffer\+\_\+size}!misc.\+h@{misc.\+h}}
-\subsubsection[{socket\+\_\+set\+\_\+recv\+\_\+buffer\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}int socket\+\_\+set\+\_\+recv\+\_\+buffer\+\_\+size (
-\begin{DoxyParamCaption}
-\item[{{\bf socket\+\_\+t}}]{socket\+\_\+fd, }
-\item[{int}]{size}
-\end{DoxyParamCaption}
-)}\label{a00063_ae2d51397a3f343ea4daaf96b4d203f73_ae2d51397a3f343ea4daaf96b4d203f73}
-\hypertarget{a00063_a10039d2f0e29d4b0d3b0cab3c7a1b63c_a10039d2f0e29d4b0d3b0cab3c7a1b63c}{}\index{misc.\+h@{misc.\+h}!socket\+\_\+set\+\_\+reuse\+\_\+addr\+\_\+on@{socket\+\_\+set\+\_\+reuse\+\_\+addr\+\_\+on}}
-\index{socket\+\_\+set\+\_\+reuse\+\_\+addr\+\_\+on@{socket\+\_\+set\+\_\+reuse\+\_\+addr\+\_\+on}!misc.\+h@{misc.\+h}}
-\subsubsection[{socket\+\_\+set\+\_\+reuse\+\_\+addr\+\_\+on}]{\setlength{\rightskip}{0pt plus 5cm}int socket\+\_\+set\+\_\+reuse\+\_\+addr\+\_\+on (
-\begin{DoxyParamCaption}
-\item[{{\bf socket\+\_\+t}}]{socket\+\_\+fd}
-\end{DoxyParamCaption}
-)}\label{a00063_a10039d2f0e29d4b0d3b0cab3c7a1b63c_a10039d2f0e29d4b0d3b0cab3c7a1b63c}
-\hypertarget{a00063_a8489cd06398f759fff9660006dc8c10d_a8489cd06398f759fff9660006dc8c10d}{}\index{misc.\+h@{misc.\+h}!socket\+\_\+set\+\_\+send\+\_\+buffer\+\_\+size@{socket\+\_\+set\+\_\+send\+\_\+buffer\+\_\+size}}
-\index{socket\+\_\+set\+\_\+send\+\_\+buffer\+\_\+size@{socket\+\_\+set\+\_\+send\+\_\+buffer\+\_\+size}!misc.\+h@{misc.\+h}}
-\subsubsection[{socket\+\_\+set\+\_\+send\+\_\+buffer\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}int socket\+\_\+set\+\_\+send\+\_\+buffer\+\_\+size (
-\begin{DoxyParamCaption}
-\item[{{\bf socket\+\_\+t}}]{socket\+\_\+fd, }
-\item[{int}]{size}
-\end{DoxyParamCaption}
-)}\label{a00063_a8489cd06398f759fff9660006dc8c10d_a8489cd06398f759fff9660006dc8c10d}
-\hypertarget{a00063_a2e3ede072c59452900afcb1334611dac_a2e3ede072c59452900afcb1334611dac}{}\index{misc.\+h@{misc.\+h}!sys\+\_\+get\+\_\+errno@{sys\+\_\+get\+\_\+errno}}
-\index{sys\+\_\+get\+\_\+errno@{sys\+\_\+get\+\_\+errno}!misc.\+h@{misc.\+h}}
-\subsubsection[{sys\+\_\+get\+\_\+errno}]{\setlength{\rightskip}{0pt plus 5cm}{\bf sys\+\_\+error\+\_\+t} sys\+\_\+get\+\_\+errno (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\label{a00063_a2e3ede072c59452900afcb1334611dac_a2e3ede072c59452900afcb1334611dac}
-
-
-获取最新的系统错误码 
-
-\begin{DoxyReturn}{返回}
-系统错误码 
-\end{DoxyReturn}
-\hypertarget{a00063_a5eb6de730bc28be3fbc402b9841c1819_a5eb6de730bc28be3fbc402b9841c1819}{}\index{misc.\+h@{misc.\+h}!time\+\_\+get\+\_\+microseconds@{time\+\_\+get\+\_\+microseconds}}
-\index{time\+\_\+get\+\_\+microseconds@{time\+\_\+get\+\_\+microseconds}!misc.\+h@{misc.\+h}}
-\subsubsection[{time\+\_\+get\+\_\+microseconds}]{\setlength{\rightskip}{0pt plus 5cm}uint64\+\_\+t time\+\_\+get\+\_\+microseconds (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\label{a00063_a5eb6de730bc28be3fbc402b9841c1819_a5eb6de730bc28be3fbc402b9841c1819}
-
-
-获取当前微秒 
-
-\hypertarget{a00063_a528d27a7218cb2fdabf81ca343e24fc9_a528d27a7218cb2fdabf81ca343e24fc9}{}\index{misc.\+h@{misc.\+h}!time\+\_\+get\+\_\+milliseconds@{time\+\_\+get\+\_\+milliseconds}}
-\index{time\+\_\+get\+\_\+milliseconds@{time\+\_\+get\+\_\+milliseconds}!misc.\+h@{misc.\+h}}
-\subsubsection[{time\+\_\+get\+\_\+milliseconds}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t time\+\_\+get\+\_\+milliseconds (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\label{a00063_a528d27a7218cb2fdabf81ca343e24fc9_a528d27a7218cb2fdabf81ca343e24fc9}
-
-
-获取当前毫秒 
-
-\hypertarget{a00063_a6d3f7fda67a3c61f767f7b2dbfcbe4ee_a6d3f7fda67a3c61f767f7b2dbfcbe4ee}{}\index{misc.\+h@{misc.\+h}!time\+\_\+get\+\_\+string@{time\+\_\+get\+\_\+string}}
-\index{time\+\_\+get\+\_\+string@{time\+\_\+get\+\_\+string}!misc.\+h@{misc.\+h}}
-\subsubsection[{time\+\_\+get\+\_\+string}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ time\+\_\+get\+\_\+string (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{buffer, }
-\item[{int}]{size}
-\end{DoxyParamCaption}
-)}\label{a00063_a6d3f7fda67a3c61f767f7b2dbfcbe4ee_a6d3f7fda67a3c61f767f7b2dbfcbe4ee}
-
-
-取得当前可阅读时间字符串 
+添加channel\+\_\+ref\+\_\+t实例到活跃链表 
 
 
 \begin{DoxyParams}{参数}
-{\em buffer} & 输出缓冲区 \\
+{\em loop} & loop\+\_\+t实例 \\
 \hline
-{\em size} & 缓冲区大小 \\
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00063_aff034d62b761d4ebad97180fb55a4582_aff034d62b761d4ebad97180fb55a4582}{}\index{loop.\+h@{loop.\+h}!loop\+\_\+check\+\_\+balance\+\_\+options@{loop\+\_\+check\+\_\+balance\+\_\+options}}
+\index{loop\+\_\+check\+\_\+balance\+\_\+options@{loop\+\_\+check\+\_\+balance\+\_\+options}!loop.\+h@{loop.\+h}}
+\subsubsection[{loop\+\_\+check\+\_\+balance\+\_\+options}]{\setlength{\rightskip}{0pt plus 5cm}int loop\+\_\+check\+\_\+balance\+\_\+options (
+\begin{DoxyParamCaption}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop, }
+\item[{{\bf loop\+\_\+balance\+\_\+option\+\_\+e}}]{options}
+\end{DoxyParamCaption}
+)}\label{a00063_aff034d62b761d4ebad97180fb55a4582_aff034d62b761d4ebad97180fb55a4582}
+
+
+检查负载均衡配置是否开启 
+
+
+\begin{DoxyParams}{参数}
+{\em loop} & loop\+\_\+t实例 \\
+\hline
+{\em options} & 负载均衡配置 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em 0} & 未开启 \\
+\hline
+{\em 非零} & 开启 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{a00063_a5f61cefa251961e82fbf82b1c7dc0b6b_a5f61cefa251961e82fbf82b1c7dc0b6b}{}\index{loop.\+h@{loop.\+h}!loop\+\_\+check\+\_\+close@{loop\+\_\+check\+\_\+close}}
+\index{loop\+\_\+check\+\_\+close@{loop\+\_\+check\+\_\+close}!loop.\+h@{loop.\+h}}
+\subsubsection[{loop\+\_\+check\+\_\+close}]{\setlength{\rightskip}{0pt plus 5cm}void loop\+\_\+check\+\_\+close (
+\begin{DoxyParamCaption}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
+\end{DoxyParamCaption}
+)}\label{a00063_a5f61cefa251961e82fbf82b1c7dc0b6b_a5f61cefa251961e82fbf82b1c7dc0b6b}
+
+
+检查关闭管道是否可以销毁 
+
+
+\begin{DoxyParams}{参数}
+{\em loop} & loop\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00063_a841de68dad67aba3b98d2c55d2891521_a841de68dad67aba3b98d2c55d2891521}{}\index{loop.\+h@{loop.\+h}!loop\+\_\+check\+\_\+running@{loop\+\_\+check\+\_\+running}}
+\index{loop\+\_\+check\+\_\+running@{loop\+\_\+check\+\_\+running}!loop.\+h@{loop.\+h}}
+\subsubsection[{loop\+\_\+check\+\_\+running}]{\setlength{\rightskip}{0pt plus 5cm}int loop\+\_\+check\+\_\+running (
+\begin{DoxyParamCaption}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
+\end{DoxyParamCaption}
+)}\label{a00063_a841de68dad67aba3b98d2c55d2891521_a841de68dad67aba3b98d2c55d2891521}
+
+
+检查是否正在运行 
+
+
+\begin{DoxyParams}{参数}
+{\em loop} & loop\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00063_a7a6972b39402a670659621e9fa7204ce_a7a6972b39402a670659621e9fa7204ce}{}\index{loop.\+h@{loop.\+h}!loop\+\_\+check\+\_\+timeout@{loop\+\_\+check\+\_\+timeout}}
+\index{loop\+\_\+check\+\_\+timeout@{loop\+\_\+check\+\_\+timeout}!loop.\+h@{loop.\+h}}
+\subsubsection[{loop\+\_\+check\+\_\+timeout}]{\setlength{\rightskip}{0pt plus 5cm}void loop\+\_\+check\+\_\+timeout (
+\begin{DoxyParamCaption}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop, }
+\item[{time\+\_\+t}]{ts}
+\end{DoxyParamCaption}
+)}\label{a00063_a7a6972b39402a670659621e9fa7204ce_a7a6972b39402a670659621e9fa7204ce}
+
+
+检查活跃管道空闲超时 
+
+
+\begin{DoxyParams}{参数}
+{\em loop} & loop\+\_\+t实例 \\
+\hline
+{\em ts} & 当前时间戳（秒） \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00063_a9328cf8ba2faccbf363b41e524631b75_a9328cf8ba2faccbf363b41e524631b75}{}\index{loop.\+h@{loop.\+h}!loop\+\_\+close\+\_\+channel\+\_\+ref@{loop\+\_\+close\+\_\+channel\+\_\+ref}}
+\index{loop\+\_\+close\+\_\+channel\+\_\+ref@{loop\+\_\+close\+\_\+channel\+\_\+ref}!loop.\+h@{loop.\+h}}
+\subsubsection[{loop\+\_\+close\+\_\+channel\+\_\+ref}]{\setlength{\rightskip}{0pt plus 5cm}void loop\+\_\+close\+\_\+channel\+\_\+ref (
+\begin{DoxyParamCaption}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop, }
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\end{DoxyParamCaption}
+)}\label{a00063_a9328cf8ba2faccbf363b41e524631b75_a9328cf8ba2faccbf363b41e524631b75}
+
+
+从到活跃链表删除channel\+\_\+ref\+\_\+t实例，并放入关闭链表 
+
+
+\begin{DoxyParams}{参数}
+{\em loop} & loop\+\_\+t实例 \\
+\hline
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00063_a94a2dfa4ba7723d7face3f76ebf31e54_a94a2dfa4ba7723d7face3f76ebf31e54}{}\index{loop.\+h@{loop.\+h}!loop\+\_\+event\+\_\+process@{loop\+\_\+event\+\_\+process}}
+\index{loop\+\_\+event\+\_\+process@{loop\+\_\+event\+\_\+process}!loop.\+h@{loop.\+h}}
+\subsubsection[{loop\+\_\+event\+\_\+process}]{\setlength{\rightskip}{0pt plus 5cm}void loop\+\_\+event\+\_\+process (
+\begin{DoxyParamCaption}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
+\end{DoxyParamCaption}
+)}\label{a00063_a94a2dfa4ba7723d7face3f76ebf31e54_a94a2dfa4ba7723d7face3f76ebf31e54}
+
+
+处理事件 
+
+
+\begin{DoxyParams}{参数}
+{\em loop} & loop\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00063_a7c1a2360919bfff72d665f2651a8d080_a7c1a2360919bfff72d665f2651a8d080}{}\index{loop.\+h@{loop.\+h}!loop\+\_\+get\+\_\+active\+\_\+list@{loop\+\_\+get\+\_\+active\+\_\+list}}
+\index{loop\+\_\+get\+\_\+active\+\_\+list@{loop\+\_\+get\+\_\+active\+\_\+list}!loop.\+h@{loop.\+h}}
+\subsubsection[{loop\+\_\+get\+\_\+active\+\_\+list}]{\setlength{\rightskip}{0pt plus 5cm}{\bf dlist\+\_\+t}$\ast$ loop\+\_\+get\+\_\+active\+\_\+list (
+\begin{DoxyParamCaption}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
+\end{DoxyParamCaption}
+)}\label{a00063_a7c1a2360919bfff72d665f2651a8d080_a7c1a2360919bfff72d665f2651a8d080}
+
+
+取得活跃链表 
+
+
+\begin{DoxyParams}{参数}
+{\em loop} & loop\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-格式为\+Y\+Y\+Y\+Y-\/\+M\+M-\/\+D\+D H\+H\+:mm\+:\+S\+S\+:M\+S 
+dlist\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00063_a3cab12b4908938ca999206a67c8ee032_a3cab12b4908938ca999206a67c8ee032}{}\index{misc.\+h@{misc.\+h}!time\+\_\+gettimeofday@{time\+\_\+gettimeofday}}
-\index{time\+\_\+gettimeofday@{time\+\_\+gettimeofday}!misc.\+h@{misc.\+h}}
-\subsubsection[{time\+\_\+gettimeofday}]{\setlength{\rightskip}{0pt plus 5cm}int time\+\_\+gettimeofday (
+\hypertarget{a00063_a5098c33527e18f4a0bd9bc1856ce17f1_a5098c33527e18f4a0bd9bc1856ce17f1}{}\index{loop.\+h@{loop.\+h}!loop\+\_\+get\+\_\+balance\+\_\+options@{loop\+\_\+get\+\_\+balance\+\_\+options}}
+\index{loop\+\_\+get\+\_\+balance\+\_\+options@{loop\+\_\+get\+\_\+balance\+\_\+options}!loop.\+h@{loop.\+h}}
+\subsubsection[{loop\+\_\+get\+\_\+balance\+\_\+options}]{\setlength{\rightskip}{0pt plus 5cm}{\bf loop\+\_\+balance\+\_\+option\+\_\+e} loop\+\_\+get\+\_\+balance\+\_\+options (
 \begin{DoxyParamCaption}
-\item[{struct timeval $\ast$}]{tp, }
-\item[{void $\ast$}]{tzp}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
 \end{DoxyParamCaption}
-)}\label{a00063_a3cab12b4908938ca999206a67c8ee032_a3cab12b4908938ca999206a67c8ee032}
+)}\label{a00063_a5098c33527e18f4a0bd9bc1856ce17f1_a5098c33527e18f4a0bd9bc1856ce17f1}
 
 
-gettimeofday 
-
-\begin{DoxySeeAlso}{参见}
-gettimeofday 
-\end{DoxySeeAlso}
-\hypertarget{a00063_a2b1df51bc127460a3bf25949068bfe92_a2b1df51bc127460a3bf25949068bfe92}{}\index{misc.\+h@{misc.\+h}!uuid\+\_\+create@{uuid\+\_\+create}}
-\index{uuid\+\_\+create@{uuid\+\_\+create}!misc.\+h@{misc.\+h}}
-\subsubsection[{uuid\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}uint64\+\_\+t uuid\+\_\+create (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\label{a00063_a2b1df51bc127460a3bf25949068bfe92_a2b1df51bc127460a3bf25949068bfe92}
+取得负载均衡配置 
 
 
-产生一个伪\+U\+U\+I\+D，只保证本进程内不重复 
-
+\begin{DoxyParams}{参数}
+{\em loop} & loop\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{返回}
-伪\+U\+U\+I\+D 
+负载均衡配置 
 \end{DoxyReturn}
+\hypertarget{a00063_a1f9df6866c80e91a620320298d199315_a1f9df6866c80e91a620320298d199315}{}\index{loop.\+h@{loop.\+h}!loop\+\_\+get\+\_\+balancer@{loop\+\_\+get\+\_\+balancer}}
+\index{loop\+\_\+get\+\_\+balancer@{loop\+\_\+get\+\_\+balancer}!loop.\+h@{loop.\+h}}
+\subsubsection[{loop\+\_\+get\+\_\+balancer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf loop\+\_\+balancer\+\_\+t}$\ast$ loop\+\_\+get\+\_\+balancer (
+\begin{DoxyParamCaption}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
+\end{DoxyParamCaption}
+)}\label{a00063_a1f9df6866c80e91a620320298d199315_a1f9df6866c80e91a620320298d199315}
+
+
+取得负载均衡器(loop\+\_\+balancer\+\_\+t实例） 
+
+
+\begin{DoxyParams}{参数}
+{\em loop} & loop\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+loop\+\_\+balancer\+\_\+t实例 
+\end{DoxyReturn}
+\hypertarget{a00063_a282fa587372c0abd536f46a396cd41d4_a282fa587372c0abd536f46a396cd41d4}{}\index{loop.\+h@{loop.\+h}!loop\+\_\+get\+\_\+close\+\_\+list@{loop\+\_\+get\+\_\+close\+\_\+list}}
+\index{loop\+\_\+get\+\_\+close\+\_\+list@{loop\+\_\+get\+\_\+close\+\_\+list}!loop.\+h@{loop.\+h}}
+\subsubsection[{loop\+\_\+get\+\_\+close\+\_\+list}]{\setlength{\rightskip}{0pt plus 5cm}{\bf dlist\+\_\+t}$\ast$ loop\+\_\+get\+\_\+close\+\_\+list (
+\begin{DoxyParamCaption}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
+\end{DoxyParamCaption}
+)}\label{a00063_a282fa587372c0abd536f46a396cd41d4_a282fa587372c0abd536f46a396cd41d4}
+
+
+取得关闭链表 
+
+
+\begin{DoxyParams}{参数}
+{\em loop} & loop\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+dlist\+\_\+t实例 
+\end{DoxyReturn}
+\hypertarget{a00063_aaec184f54f4ccb89ab5fa003345cd338_aaec184f54f4ccb89ab5fa003345cd338}{}\index{loop.\+h@{loop.\+h}!loop\+\_\+get\+\_\+data@{loop\+\_\+get\+\_\+data}}
+\index{loop\+\_\+get\+\_\+data@{loop\+\_\+get\+\_\+data}!loop.\+h@{loop.\+h}}
+\subsubsection[{loop\+\_\+get\+\_\+data}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ loop\+\_\+get\+\_\+data (
+\begin{DoxyParamCaption}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
+\end{DoxyParamCaption}
+)}\label{a00063_aaec184f54f4ccb89ab5fa003345cd338_aaec184f54f4ccb89ab5fa003345cd338}
+
+
+取得用户数据指针 
+
+
+\begin{DoxyParams}{参数}
+{\em loop} & loop\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+用户数据指针 
+\end{DoxyReturn}
+\hypertarget{a00063_a0f78295541723911955dd41b71ceece1_a0f78295541723911955dd41b71ceece1}{}\index{loop.\+h@{loop.\+h}!loop\+\_\+get\+\_\+impl@{loop\+\_\+get\+\_\+impl}}
+\index{loop\+\_\+get\+\_\+impl@{loop\+\_\+get\+\_\+impl}!loop.\+h@{loop.\+h}}
+\subsubsection[{loop\+\_\+get\+\_\+impl}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ loop\+\_\+get\+\_\+impl (
+\begin{DoxyParamCaption}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
+\end{DoxyParamCaption}
+)}\label{a00063_a0f78295541723911955dd41b71ceece1_a0f78295541723911955dd41b71ceece1}
+
+
+取得选取器实现 
+
+
+\begin{DoxyParams}{参数}
+{\em loop} & loop\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+选取器实现 
+\end{DoxyReturn}
+\hypertarget{a00063_a1a9b3ef7cb2655dbabeabeeae2f8f299_a1a9b3ef7cb2655dbabeabeeae2f8f299}{}\index{loop.\+h@{loop.\+h}!loop\+\_\+get\+\_\+thread\+\_\+id@{loop\+\_\+get\+\_\+thread\+\_\+id}}
+\index{loop\+\_\+get\+\_\+thread\+\_\+id@{loop\+\_\+get\+\_\+thread\+\_\+id}!loop.\+h@{loop.\+h}}
+\subsubsection[{loop\+\_\+get\+\_\+thread\+\_\+id}]{\setlength{\rightskip}{0pt plus 5cm}{\bf thread\+\_\+id\+\_\+t} loop\+\_\+get\+\_\+thread\+\_\+id (
+\begin{DoxyParamCaption}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
+\end{DoxyParamCaption}
+)}\label{a00063_a1a9b3ef7cb2655dbabeabeeae2f8f299_a1a9b3ef7cb2655dbabeabeeae2f8f299}
+
+
+取得选取器当前线程\+I\+D 
+
+
+\begin{DoxyParams}{参数}
+{\em loop} & loop\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+线程\+I\+D 
+\end{DoxyReturn}
+\hypertarget{a00063_a3857990b0f1f9e27e000b5924b88a958_a3857990b0f1f9e27e000b5924b88a958}{}\index{loop.\+h@{loop.\+h}!loop\+\_\+notify@{loop\+\_\+notify}}
+\index{loop\+\_\+notify@{loop\+\_\+notify}!loop.\+h@{loop.\+h}}
+\subsubsection[{loop\+\_\+notify}]{\setlength{\rightskip}{0pt plus 5cm}void loop\+\_\+notify (
+\begin{DoxyParamCaption}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
+\end{DoxyParamCaption}
+)}\label{a00063_a3857990b0f1f9e27e000b5924b88a958_a3857990b0f1f9e27e000b5924b88a958}
+
+
+触发读事件回调loop\+\_\+queue\+\_\+cb 
+
+
+\begin{DoxyParams}{参数}
+{\em loop} & loop\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00063_a61e9eb6eeaaad4d1d655beba05bb8440_a61e9eb6eeaaad4d1d655beba05bb8440}{}\index{loop.\+h@{loop.\+h}!loop\+\_\+notify\+\_\+accept@{loop\+\_\+notify\+\_\+accept}}
+\index{loop\+\_\+notify\+\_\+accept@{loop\+\_\+notify\+\_\+accept}!loop.\+h@{loop.\+h}}
+\subsubsection[{loop\+\_\+notify\+\_\+accept}]{\setlength{\rightskip}{0pt plus 5cm}void loop\+\_\+notify\+\_\+accept (
+\begin{DoxyParamCaption}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop, }
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\end{DoxyParamCaption}
+)}\label{a00063_a61e9eb6eeaaad4d1d655beba05bb8440_a61e9eb6eeaaad4d1d655beba05bb8440}
+
+
+发送事件通知 -\/ 监听到新连接 
+
+
+\begin{DoxyParams}{参数}
+{\em loop} & loop\+\_\+t实例 \\
+\hline
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00063_a6c9f3ec8e93c6e7b10ebb4dcaca562d4_a6c9f3ec8e93c6e7b10ebb4dcaca562d4}{}\index{loop.\+h@{loop.\+h}!loop\+\_\+notify\+\_\+close@{loop\+\_\+notify\+\_\+close}}
+\index{loop\+\_\+notify\+\_\+close@{loop\+\_\+notify\+\_\+close}!loop.\+h@{loop.\+h}}
+\subsubsection[{loop\+\_\+notify\+\_\+close}]{\setlength{\rightskip}{0pt plus 5cm}void loop\+\_\+notify\+\_\+close (
+\begin{DoxyParamCaption}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop, }
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\end{DoxyParamCaption}
+)}\label{a00063_a6c9f3ec8e93c6e7b10ebb4dcaca562d4_a6c9f3ec8e93c6e7b10ebb4dcaca562d4}
+
+
+发送事件通知 -\/ 关闭管道 
+
+
+\begin{DoxyParams}{参数}
+{\em loop} & loop\+\_\+t实例 \\
+\hline
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00063_ad023112870f736a601137129420a94b9_ad023112870f736a601137129420a94b9}{}\index{loop.\+h@{loop.\+h}!loop\+\_\+notify\+\_\+send@{loop\+\_\+notify\+\_\+send}}
+\index{loop\+\_\+notify\+\_\+send@{loop\+\_\+notify\+\_\+send}!loop.\+h@{loop.\+h}}
+\subsubsection[{loop\+\_\+notify\+\_\+send}]{\setlength{\rightskip}{0pt plus 5cm}void loop\+\_\+notify\+\_\+send (
+\begin{DoxyParamCaption}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop, }
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref, }
+\item[{{\bf buffer\+\_\+t} $\ast$}]{send\+\_\+buffer}
+\end{DoxyParamCaption}
+)}\label{a00063_ad023112870f736a601137129420a94b9_ad023112870f736a601137129420a94b9}
+
+
+发送事件通知 -\/ 跨线程发送 
+
+
+\begin{DoxyParams}{参数}
+{\em loop} & loop\+\_\+t实例 \\
+\hline
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+{\em send\+\_\+buffer} & buffer\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00063_a970d2bf2e65270fe3d93de1e22a4d34c_a970d2bf2e65270fe3d93de1e22a4d34c}{}\index{loop.\+h@{loop.\+h}!loop\+\_\+queue\+\_\+cb@{loop\+\_\+queue\+\_\+cb}}
+\index{loop\+\_\+queue\+\_\+cb@{loop\+\_\+queue\+\_\+cb}!loop.\+h@{loop.\+h}}
+\subsubsection[{loop\+\_\+queue\+\_\+cb}]{\setlength{\rightskip}{0pt plus 5cm}void loop\+\_\+queue\+\_\+cb (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel, }
+\item[{{\bf channel\+\_\+cb\+\_\+event\+\_\+e}}]{e}
+\end{DoxyParamCaption}
+)}\label{a00063_a970d2bf2e65270fe3d93de1e22a4d34c_a970d2bf2e65270fe3d93de1e22a4d34c}
+
+
+通知管道回调函数 
+
+
+\begin{DoxyParams}{参数}
+{\em channel} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+{\em e} & 管道事件 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00063_a074c9c3a80a8a5c57b831e41395d4ef5_a074c9c3a80a8a5c57b831e41395d4ef5}{}\index{loop.\+h@{loop.\+h}!loop\+\_\+remove\+\_\+channel\+\_\+ref@{loop\+\_\+remove\+\_\+channel\+\_\+ref}}
+\index{loop\+\_\+remove\+\_\+channel\+\_\+ref@{loop\+\_\+remove\+\_\+channel\+\_\+ref}!loop.\+h@{loop.\+h}}
+\subsubsection[{loop\+\_\+remove\+\_\+channel\+\_\+ref}]{\setlength{\rightskip}{0pt plus 5cm}void loop\+\_\+remove\+\_\+channel\+\_\+ref (
+\begin{DoxyParamCaption}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop, }
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\end{DoxyParamCaption}
+)}\label{a00063_a074c9c3a80a8a5c57b831e41395d4ef5_a074c9c3a80a8a5c57b831e41395d4ef5}
+
+
+从到活跃链表删除channel\+\_\+ref\+\_\+t实例 
+
+
+\begin{DoxyParams}{参数}
+{\em loop} & loop\+\_\+t实例 \\
+\hline
+{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00063_a20964027b5a498c7f206d6a04568fa11_a20964027b5a498c7f206d6a04568fa11}{}\index{loop.\+h@{loop.\+h}!loop\+\_\+set\+\_\+balance\+\_\+options@{loop\+\_\+set\+\_\+balance\+\_\+options}}
+\index{loop\+\_\+set\+\_\+balance\+\_\+options@{loop\+\_\+set\+\_\+balance\+\_\+options}!loop.\+h@{loop.\+h}}
+\subsubsection[{loop\+\_\+set\+\_\+balance\+\_\+options}]{\setlength{\rightskip}{0pt plus 5cm}void loop\+\_\+set\+\_\+balance\+\_\+options (
+\begin{DoxyParamCaption}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop, }
+\item[{{\bf loop\+\_\+balance\+\_\+option\+\_\+e}}]{options}
+\end{DoxyParamCaption}
+)}\label{a00063_a20964027b5a498c7f206d6a04568fa11_a20964027b5a498c7f206d6a04568fa11}
+
+
+设置负载均衡配置 
+
+
+\begin{DoxyParams}{参数}
+{\em loop} & loop\+\_\+t实例 \\
+\hline
+{\em options} & 选项（loop\+\_\+balancer\+\_\+in， loop\+\_\+balancer\+\_\+out） \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00063_abedbb538c1cc8ef805dbfc0f58d80f9e_abedbb538c1cc8ef805dbfc0f58d80f9e}{}\index{loop.\+h@{loop.\+h}!loop\+\_\+set\+\_\+balancer@{loop\+\_\+set\+\_\+balancer}}
+\index{loop\+\_\+set\+\_\+balancer@{loop\+\_\+set\+\_\+balancer}!loop.\+h@{loop.\+h}}
+\subsubsection[{loop\+\_\+set\+\_\+balancer}]{\setlength{\rightskip}{0pt plus 5cm}void loop\+\_\+set\+\_\+balancer (
+\begin{DoxyParamCaption}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop, }
+\item[{{\bf loop\+\_\+balancer\+\_\+t} $\ast$}]{balancer}
+\end{DoxyParamCaption}
+)}\label{a00063_abedbb538c1cc8ef805dbfc0f58d80f9e_abedbb538c1cc8ef805dbfc0f58d80f9e}
+
+
+设置负载均衡器(loop\+\_\+balancer\+\_\+t实例） 
+
+
+\begin{DoxyParams}{参数}
+{\em loop} & loop\+\_\+t实例 \\
+\hline
+{\em balancer} & loop\+\_\+balancer\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00063_aa9654f1b872059f74665506fd67c9bc5_aa9654f1b872059f74665506fd67c9bc5}{}\index{loop.\+h@{loop.\+h}!loop\+\_\+set\+\_\+impl@{loop\+\_\+set\+\_\+impl}}
+\index{loop\+\_\+set\+\_\+impl@{loop\+\_\+set\+\_\+impl}!loop.\+h@{loop.\+h}}
+\subsubsection[{loop\+\_\+set\+\_\+impl}]{\setlength{\rightskip}{0pt plus 5cm}void loop\+\_\+set\+\_\+impl (
+\begin{DoxyParamCaption}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop, }
+\item[{void $\ast$}]{impl}
+\end{DoxyParamCaption}
+)}\label{a00063_aa9654f1b872059f74665506fd67c9bc5_aa9654f1b872059f74665506fd67c9bc5}
+
+
+设置选取器实现 
+
+
+\begin{DoxyParams}{参数}
+{\em loop} & loop\+\_\+t实例 \\
+\hline
+{\em impl} & 选取器实现 \\
+\hline
+\end{DoxyParams}

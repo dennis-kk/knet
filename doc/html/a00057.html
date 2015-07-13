@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/loop_balancer_api.h 文件参考</title>
+<title>knet: E:/knet-git/knet/knet/knet.h 文件参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">knet
-   &#160;<span id="projectnumber">1.4.3</span>
+   &#160;<span id="projectnumber">1.4.4</span>
    </div>
   </td>
  </tr>
@@ -86,35 +86,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div>
 </div><!-- top -->
 <div class="header">
-  <div class="summary">
-<a href="#func-members">函数</a>  </div>
   <div class="headertitle">
-<div class="title">loop_balancer_api.h 文件参考</div>  </div>
+<div class="title">knet.h 文件参考</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="a00044_source.html">config.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="a00064_source.html">loop_api.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00083_source.html">stream_api.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00046_source.html">channel_ref_api.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00037_source.html">address_api.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00067_source.html">loop_balancer_api.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00039_source.html">broadcast_api.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00052_source.html">framework_api.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00087_source.html">timer_api.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00084_source.html">thread_api.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00077_source.html">rpc_api.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00080_source.html">rpc_object_api.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00089_source.html">version.h</a>&quot;</code><br />
 </div>
 <p><a href="a00057_source.html">浏览源代码.</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-函数</h2></td></tr>
-<tr class="memitem:ga9992a50e96839282c678e51bc11158d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00044_a649c7e850ab247b5f70ad27e335a129d.html#a649c7e850ab247b5f70ad27e335a129d">loop_balancer_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00086_ga9992a50e96839282c678e51bc11158d1.html#ga9992a50e96839282c678e51bc11158d1">loop_balancer_create</a> ()</td></tr>
-<tr class="memdesc:ga9992a50e96839282c678e51bc11158d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建负载均衡器  <a href="a00086_ga9992a50e96839282c678e51bc11158d1.html#ga9992a50e96839282c678e51bc11158d1">更多...</a><br /></td></tr>
-<tr class="separator:ga9992a50e96839282c678e51bc11158d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2d702b5f965fe587fdaea3f5f9e2400c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00086_ga2d702b5f965fe587fdaea3f5f9e2400c.html#ga2d702b5f965fe587fdaea3f5f9e2400c">loop_balancer_destroy</a> (<a class="el" href="a00044_a649c7e850ab247b5f70ad27e335a129d.html#a649c7e850ab247b5f70ad27e335a129d">loop_balancer_t</a> *balancer)</td></tr>
-<tr class="memdesc:ga2d702b5f965fe587fdaea3f5f9e2400c"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁负载均衡器  <a href="a00086_ga2d702b5f965fe587fdaea3f5f9e2400c.html#ga2d702b5f965fe587fdaea3f5f9e2400c">更多...</a><br /></td></tr>
-<tr class="separator:ga2d702b5f965fe587fdaea3f5f9e2400c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2b3cf2cb63d914efe226e901a50d8b0a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00086_ga2b3cf2cb63d914efe226e901a50d8b0a.html#ga2b3cf2cb63d914efe226e901a50d8b0a">loop_balancer_attach</a> (<a class="el" href="a00044_a649c7e850ab247b5f70ad27e335a129d.html#a649c7e850ab247b5f70ad27e335a129d">loop_balancer_t</a> *balancer, <a class="el" href="a00044_a9c3ad1cd2de83e09f3a7b59fa82c94ee.html#a9c3ad1cd2de83e09f3a7b59fa82c94ee">loop_t</a> *loop)</td></tr>
-<tr class="memdesc:ga2b3cf2cb63d914efe226e901a50d8b0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">添加事件循环到负载均衡器  <a href="a00086_ga2b3cf2cb63d914efe226e901a50d8b0a.html#ga2b3cf2cb63d914efe226e901a50d8b0a">更多...</a><br /></td></tr>
-<tr class="separator:ga2b3cf2cb63d914efe226e901a50d8b0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga548ce0c2c624c4f4731a0f963d2ca42a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00086_ga548ce0c2c624c4f4731a0f963d2ca42a.html#ga548ce0c2c624c4f4731a0f963d2ca42a">loop_balancer_detach</a> (<a class="el" href="a00044_a649c7e850ab247b5f70ad27e335a129d.html#a649c7e850ab247b5f70ad27e335a129d">loop_balancer_t</a> *balancer, <a class="el" href="a00044_a9c3ad1cd2de83e09f3a7b59fa82c94ee.html#a9c3ad1cd2de83e09f3a7b59fa82c94ee">loop_t</a> *loop)</td></tr>
-<tr class="memdesc:ga548ce0c2c624c4f4731a0f963d2ca42a"><td class="mdescLeft">&#160;</td><td class="mdescRight">从负载均衡器内删除事件循环  <a href="a00086_ga548ce0c2c624c4f4731a0f963d2ca42a.html#ga548ce0c2c624c4f4731a0f963d2ca42a">更多...</a><br /></td></tr>
-<tr class="separator:ga548ce0c2c624c4f4731a0f963d2ca42a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 9日 星期四 15:26:51 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 13日 星期一 14:43:37 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

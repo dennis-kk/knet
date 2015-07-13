@@ -1,58 +1,28 @@
-\hypertarget{a00026}{}\section{\+\_\+ringbuffer\+\_\+t结构体 参考}
-\label{a00026}\index{\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}}
+\hypertarget{a00026}{}\section{\+\_\+loop\+\_\+balancer\+\_\+t结构体 参考}
+\label{a00026}\index{\+\_\+loop\+\_\+balancer\+\_\+t@{\+\_\+loop\+\_\+balancer\+\_\+t}}
 \subsection*{成员变量}
 \begin{DoxyCompactItemize}
 \item 
-char $\ast$ \hyperlink{a00026_a06a2abc3a4b83285ace3109f8690bef7_a06a2abc3a4b83285ace3109f8690bef7}{ptr}
+\hyperlink{a00047_ad6644d67df4b4e3596c1eb12977d1d16_ad6644d67df4b4e3596c1eb12977d1d16}{dlist\+\_\+t} $\ast$ \hyperlink{a00026_a31f3e441c9d044bab51586436d64ec2c_a31f3e441c9d044bab51586436d64ec2c}{loop\+\_\+info\+\_\+list}
 \item 
-uint32\+\_\+t \hyperlink{a00026_a9054d048beeafd2337feef06197269be_a9054d048beeafd2337feef06197269be}{read\+\_\+pos}
+\hyperlink{a00047_ad3e00e0eb0c79dfd77ff2ff833f49c7d_ad3e00e0eb0c79dfd77ff2ff833f49c7d}{lock\+\_\+t} $\ast$ \hyperlink{a00026_ac373919d2691e1c10a452f3ef68d124c_ac373919d2691e1c10a452f3ef68d124c}{lock}
 \item 
-uint32\+\_\+t \hyperlink{a00026_a65f65d9246e9d1addb77cebb3a1398e4_a65f65d9246e9d1addb77cebb3a1398e4}{write\+\_\+pos}
-\item 
-uint32\+\_\+t \hyperlink{a00026_ae27f1d62fc60a30ae440679a45005478_ae27f1d62fc60a30ae440679a45005478}{max\+\_\+size}
-\item 
-uint32\+\_\+t \hyperlink{a00026_a1604d2edfd6cb16b1b1222e10f041f98_a1604d2edfd6cb16b1b1222e10f041f98}{lock\+\_\+size}
-\item 
-uint32\+\_\+t \hyperlink{a00026_a6d8161c12ec7e82f48e29a2f0704ed7b_a6d8161c12ec7e82f48e29a2f0704ed7b}{lock\+\_\+type}
-\item 
-uint32\+\_\+t \hyperlink{a00026_a9230ba7c7afce7f234ebefa2c5fdc0bd_a9230ba7c7afce7f234ebefa2c5fdc0bd}{count}
-\item 
-uint32\+\_\+t \hyperlink{a00026_a8e6c75c56d0758af10593a6887813677_a8e6c75c56d0758af10593a6887813677}{window\+\_\+read\+\_\+lock\+\_\+size}
-\item 
-uint32\+\_\+t \hyperlink{a00026_ac1922e150f751ca3d7698837e820065d_ac1922e150f751ca3d7698837e820065d}{window\+\_\+read\+\_\+pos}
+void $\ast$ \hyperlink{a00026_adf9607bc30dbe281c9cb2f5d1b9aa992_adf9607bc30dbe281c9cb2f5d1b9aa992}{data}
 \end{DoxyCompactItemize}
 
 
 \subsection{结构体成员变量说明}
-\hypertarget{a00026_a9230ba7c7afce7f234ebefa2c5fdc0bd_a9230ba7c7afce7f234ebefa2c5fdc0bd}{}\index{\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}!count@{count}}
-\index{count@{count}!\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}}
-\subsubsection[{count}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t \+\_\+ringbuffer\+\_\+t\+::count}\label{a00026_a9230ba7c7afce7f234ebefa2c5fdc0bd_a9230ba7c7afce7f234ebefa2c5fdc0bd}
-\hypertarget{a00026_a1604d2edfd6cb16b1b1222e10f041f98_a1604d2edfd6cb16b1b1222e10f041f98}{}\index{\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}!lock\+\_\+size@{lock\+\_\+size}}
-\index{lock\+\_\+size@{lock\+\_\+size}!\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}}
-\subsubsection[{lock\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t \+\_\+ringbuffer\+\_\+t\+::lock\+\_\+size}\label{a00026_a1604d2edfd6cb16b1b1222e10f041f98_a1604d2edfd6cb16b1b1222e10f041f98}
-\hypertarget{a00026_a6d8161c12ec7e82f48e29a2f0704ed7b_a6d8161c12ec7e82f48e29a2f0704ed7b}{}\index{\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}!lock\+\_\+type@{lock\+\_\+type}}
-\index{lock\+\_\+type@{lock\+\_\+type}!\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}}
-\subsubsection[{lock\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t \+\_\+ringbuffer\+\_\+t\+::lock\+\_\+type}\label{a00026_a6d8161c12ec7e82f48e29a2f0704ed7b_a6d8161c12ec7e82f48e29a2f0704ed7b}
-\hypertarget{a00026_ae27f1d62fc60a30ae440679a45005478_ae27f1d62fc60a30ae440679a45005478}{}\index{\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}!max\+\_\+size@{max\+\_\+size}}
-\index{max\+\_\+size@{max\+\_\+size}!\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}}
-\subsubsection[{max\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t \+\_\+ringbuffer\+\_\+t\+::max\+\_\+size}\label{a00026_ae27f1d62fc60a30ae440679a45005478_ae27f1d62fc60a30ae440679a45005478}
-\hypertarget{a00026_a06a2abc3a4b83285ace3109f8690bef7_a06a2abc3a4b83285ace3109f8690bef7}{}\index{\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}!ptr@{ptr}}
-\index{ptr@{ptr}!\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}}
-\subsubsection[{ptr}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ \+\_\+ringbuffer\+\_\+t\+::ptr}\label{a00026_a06a2abc3a4b83285ace3109f8690bef7_a06a2abc3a4b83285ace3109f8690bef7}
-\hypertarget{a00026_a9054d048beeafd2337feef06197269be_a9054d048beeafd2337feef06197269be}{}\index{\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}!read\+\_\+pos@{read\+\_\+pos}}
-\index{read\+\_\+pos@{read\+\_\+pos}!\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}}
-\subsubsection[{read\+\_\+pos}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t \+\_\+ringbuffer\+\_\+t\+::read\+\_\+pos}\label{a00026_a9054d048beeafd2337feef06197269be_a9054d048beeafd2337feef06197269be}
-\hypertarget{a00026_a8e6c75c56d0758af10593a6887813677_a8e6c75c56d0758af10593a6887813677}{}\index{\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}!window\+\_\+read\+\_\+lock\+\_\+size@{window\+\_\+read\+\_\+lock\+\_\+size}}
-\index{window\+\_\+read\+\_\+lock\+\_\+size@{window\+\_\+read\+\_\+lock\+\_\+size}!\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}}
-\subsubsection[{window\+\_\+read\+\_\+lock\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t \+\_\+ringbuffer\+\_\+t\+::window\+\_\+read\+\_\+lock\+\_\+size}\label{a00026_a8e6c75c56d0758af10593a6887813677_a8e6c75c56d0758af10593a6887813677}
-\hypertarget{a00026_ac1922e150f751ca3d7698837e820065d_ac1922e150f751ca3d7698837e820065d}{}\index{\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}!window\+\_\+read\+\_\+pos@{window\+\_\+read\+\_\+pos}}
-\index{window\+\_\+read\+\_\+pos@{window\+\_\+read\+\_\+pos}!\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}}
-\subsubsection[{window\+\_\+read\+\_\+pos}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t \+\_\+ringbuffer\+\_\+t\+::window\+\_\+read\+\_\+pos}\label{a00026_ac1922e150f751ca3d7698837e820065d_ac1922e150f751ca3d7698837e820065d}
-\hypertarget{a00026_a65f65d9246e9d1addb77cebb3a1398e4_a65f65d9246e9d1addb77cebb3a1398e4}{}\index{\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}!write\+\_\+pos@{write\+\_\+pos}}
-\index{write\+\_\+pos@{write\+\_\+pos}!\+\_\+ringbuffer\+\_\+t@{\+\_\+ringbuffer\+\_\+t}}
-\subsubsection[{write\+\_\+pos}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t \+\_\+ringbuffer\+\_\+t\+::write\+\_\+pos}\label{a00026_a65f65d9246e9d1addb77cebb3a1398e4_a65f65d9246e9d1addb77cebb3a1398e4}
+\hypertarget{a00026_adf9607bc30dbe281c9cb2f5d1b9aa992_adf9607bc30dbe281c9cb2f5d1b9aa992}{}\index{\+\_\+loop\+\_\+balancer\+\_\+t@{\+\_\+loop\+\_\+balancer\+\_\+t}!data@{data}}
+\index{data@{data}!\+\_\+loop\+\_\+balancer\+\_\+t@{\+\_\+loop\+\_\+balancer\+\_\+t}}
+\subsubsection[{data}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ \+\_\+loop\+\_\+balancer\+\_\+t\+::data}\label{a00026_adf9607bc30dbe281c9cb2f5d1b9aa992_adf9607bc30dbe281c9cb2f5d1b9aa992}
+\hypertarget{a00026_ac373919d2691e1c10a452f3ef68d124c_ac373919d2691e1c10a452f3ef68d124c}{}\index{\+\_\+loop\+\_\+balancer\+\_\+t@{\+\_\+loop\+\_\+balancer\+\_\+t}!lock@{lock}}
+\index{lock@{lock}!\+\_\+loop\+\_\+balancer\+\_\+t@{\+\_\+loop\+\_\+balancer\+\_\+t}}
+\subsubsection[{lock}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lock\+\_\+t}$\ast$ \+\_\+loop\+\_\+balancer\+\_\+t\+::lock}\label{a00026_ac373919d2691e1c10a452f3ef68d124c_ac373919d2691e1c10a452f3ef68d124c}
+\hypertarget{a00026_a31f3e441c9d044bab51586436d64ec2c_a31f3e441c9d044bab51586436d64ec2c}{}\index{\+\_\+loop\+\_\+balancer\+\_\+t@{\+\_\+loop\+\_\+balancer\+\_\+t}!loop\+\_\+info\+\_\+list@{loop\+\_\+info\+\_\+list}}
+\index{loop\+\_\+info\+\_\+list@{loop\+\_\+info\+\_\+list}!\+\_\+loop\+\_\+balancer\+\_\+t@{\+\_\+loop\+\_\+balancer\+\_\+t}}
+\subsubsection[{loop\+\_\+info\+\_\+list}]{\setlength{\rightskip}{0pt plus 5cm}{\bf dlist\+\_\+t}$\ast$ \+\_\+loop\+\_\+balancer\+\_\+t\+::loop\+\_\+info\+\_\+list}\label{a00026_a31f3e441c9d044bab51586436d64ec2c_a31f3e441c9d044bab51586436d64ec2c}
 
 
 该结构体的文档由以下文件生成\+:\begin{DoxyCompactItemize}
 \item 
-E\+:/knet-\/git/knet/knet/\hyperlink{a00064}{ringbuffer.\+c}\end{DoxyCompactItemize}
+E\+:/knet-\/git/knet/knet/\hyperlink{a00065}{loop\+\_\+balancer.\+c}\end{DoxyCompactItemize}

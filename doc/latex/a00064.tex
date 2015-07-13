@@ -1,152 +1,183 @@
-\hypertarget{a00064}{}\section{E\+:/knet-\/git/knet/knet/ringbuffer.c 文件参考}
-\label{a00064}\index{E\+:/knet-\/git/knet/knet/ringbuffer.\+c@{E\+:/knet-\/git/knet/knet/ringbuffer.\+c}}
-{\ttfamily \#include $<$stdlib.\+h$>$}\\*
-{\ttfamily \#include \char`\"{}ringbuffer.\+h\char`\"{}}\\*
-\subsection*{结构体}
-\begin{DoxyCompactItemize}
-\item 
-struct \hyperlink{a00026}{\+\_\+ringbuffer\+\_\+t}
-\end{DoxyCompactItemize}
+\hypertarget{a00064}{}\section{E\+:/knet-\/git/knet/knet/loop\+\_\+api.h 文件参考}
+\label{a00064}\index{E\+:/knet-\/git/knet/knet/loop\+\_\+api.\+h@{E\+:/knet-\/git/knet/knet/loop\+\_\+api.\+h}}
+{\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\\*
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00044_af929c5cf86b6a0f64dde407dfe60482e_af929c5cf86b6a0f64dde407dfe60482e}{ringbuffer\+\_\+t} $\ast$ \hyperlink{a00064_a535c5ed96efcd2415e6cad1cfcf44228_a535c5ed96efcd2415e6cad1cfcf44228}{ringbuffer\+\_\+create} (uint32\+\_\+t size)
-\begin{DoxyCompactList}\small\item\em 建立一个ringbuffer \end{DoxyCompactList}\item 
-int \hyperlink{a00064_a9af8341a5cc83cc1d6acbb868c498a03_a9af8341a5cc83cc1d6acbb868c498a03}{ringbuffer\+\_\+eat\+\_\+all} (\hyperlink{a00044_af929c5cf86b6a0f64dde407dfe60482e_af929c5cf86b6a0f64dde407dfe60482e}{ringbuffer\+\_\+t} $\ast$rb)
-\begin{DoxyCompactList}\small\item\em 清除所有可读字节 \end{DoxyCompactList}\item 
-int \hyperlink{a00064_aaab3eabc3d26998d7ec5458e89781b1d_aaab3eabc3d26998d7ec5458e89781b1d}{ringbuffer\+\_\+eat} (\hyperlink{a00044_af929c5cf86b6a0f64dde407dfe60482e_af929c5cf86b6a0f64dde407dfe60482e}{ringbuffer\+\_\+t} $\ast$rb, uint32\+\_\+t size)
-\begin{DoxyCompactList}\small\item\em 清除指定长度的可读字节 \end{DoxyCompactList}\item 
-uint32\+\_\+t \hyperlink{a00064_a93296c953b97b465aa6d878d7ddaff87_a93296c953b97b465aa6d878d7ddaff87}{ringbuffer\+\_\+read} (\hyperlink{a00044_af929c5cf86b6a0f64dde407dfe60482e_af929c5cf86b6a0f64dde407dfe60482e}{ringbuffer\+\_\+t} $\ast$rb, char $\ast$buffer, uint32\+\_\+t size)
-\begin{DoxyCompactList}\small\item\em 读取并清除 \end{DoxyCompactList}\item 
-uint32\+\_\+t \hyperlink{a00064_a0b57361c8632557fc144c7f7b853a33e_a0b57361c8632557fc144c7f7b853a33e}{ringbuffer\+\_\+copy} (\hyperlink{a00044_af929c5cf86b6a0f64dde407dfe60482e_af929c5cf86b6a0f64dde407dfe60482e}{ringbuffer\+\_\+t} $\ast$rb, char $\ast$buffer, uint32\+\_\+t size)
-\begin{DoxyCompactList}\small\item\em 读取但不清除 \end{DoxyCompactList}\item 
-uint32\+\_\+t \hyperlink{a00064_a4fca0cda42cddc178da4ab3abd92ae3a_a4fca0cda42cddc178da4ab3abd92ae3a}{ringbuffer\+\_\+available} (\hyperlink{a00044_af929c5cf86b6a0f64dde407dfe60482e_af929c5cf86b6a0f64dde407dfe60482e}{ringbuffer\+\_\+t} $\ast$rb)
-\begin{DoxyCompactList}\small\item\em 取得可读字节数 \end{DoxyCompactList}\item 
-void \hyperlink{a00064_a968f7b808cc3085482292c1f31d92740_a968f7b808cc3085482292c1f31d92740}{ringbuffer\+\_\+destroy} (\hyperlink{a00044_af929c5cf86b6a0f64dde407dfe60482e_af929c5cf86b6a0f64dde407dfe60482e}{ringbuffer\+\_\+t} $\ast$rb)
-\begin{DoxyCompactList}\small\item\em 销毁ringbuffer \end{DoxyCompactList}\item 
-uint32\+\_\+t \hyperlink{a00064_a17f80ee6eedc285a3086107f10d0605b_a17f80ee6eedc285a3086107f10d0605b}{ringbuffer\+\_\+read\+\_\+lock\+\_\+size} (\hyperlink{a00044_af929c5cf86b6a0f64dde407dfe60482e_af929c5cf86b6a0f64dde407dfe60482e}{ringbuffer\+\_\+t} $\ast$rb)
-\begin{DoxyCompactList}\small\item\em 取得非绕回连续地址的最大可读字节数 \end{DoxyCompactList}\item 
-char $\ast$ \hyperlink{a00064_a7611ebce8ddc6637724794195ad6c035_a7611ebce8ddc6637724794195ad6c035}{ringbuffer\+\_\+read\+\_\+lock\+\_\+ptr} (\hyperlink{a00044_af929c5cf86b6a0f64dde407dfe60482e_af929c5cf86b6a0f64dde407dfe60482e}{ringbuffer\+\_\+t} $\ast$rb)
-\begin{DoxyCompactList}\small\item\em 取得可读数据起止指针 \end{DoxyCompactList}\item 
-void \hyperlink{a00064_aea7ff5a3bd3ede77f076abaefad3fcb1_aea7ff5a3bd3ede77f076abaefad3fcb1}{ringbuffer\+\_\+read\+\_\+commit} (\hyperlink{a00044_af929c5cf86b6a0f64dde407dfe60482e_af929c5cf86b6a0f64dde407dfe60482e}{ringbuffer\+\_\+t} $\ast$rb, uint32\+\_\+t size)
-\begin{DoxyCompactList}\small\item\em 提交并清除已经读到的字节 \end{DoxyCompactList}\item 
-uint32\+\_\+t \hyperlink{a00064_a0c3a46a4cfef551f1117b178748f718e_a0c3a46a4cfef551f1117b178748f718e}{ringbuffer\+\_\+window\+\_\+read\+\_\+lock\+\_\+size} (\hyperlink{a00044_af929c5cf86b6a0f64dde407dfe60482e_af929c5cf86b6a0f64dde407dfe60482e}{ringbuffer\+\_\+t} $\ast$rb)
-\begin{DoxyCompactList}\small\item\em 虚拟窗口 -\/ 取得非绕回连续地址的最大可读字节数 \end{DoxyCompactList}\item 
-char $\ast$ \hyperlink{a00064_a2fc4c4b70a7f3959c0c82c99432ed04d_a2fc4c4b70a7f3959c0c82c99432ed04d}{ringbuffer\+\_\+window\+\_\+read\+\_\+lock\+\_\+ptr} (\hyperlink{a00044_af929c5cf86b6a0f64dde407dfe60482e_af929c5cf86b6a0f64dde407dfe60482e}{ringbuffer\+\_\+t} $\ast$rb)
-\begin{DoxyCompactList}\small\item\em 虚拟窗口 -\/ 取得可读数据起止指针 \end{DoxyCompactList}\item 
-void \hyperlink{a00064_a5bccc516abce64ee739ed00bf055d42e_a5bccc516abce64ee739ed00bf055d42e}{ringbuffer\+\_\+window\+\_\+read\+\_\+commit} (\hyperlink{a00044_af929c5cf86b6a0f64dde407dfe60482e_af929c5cf86b6a0f64dde407dfe60482e}{ringbuffer\+\_\+t} $\ast$rb, uint32\+\_\+t size)
-\begin{DoxyCompactList}\small\item\em 虚拟窗口 -\/ 提交已经读到的字节，但不清除 \end{DoxyCompactList}\item 
-uint32\+\_\+t \hyperlink{a00064_ada2b3f0cea4e372229709a5cb1f54725_ada2b3f0cea4e372229709a5cb1f54725}{ringbuffer\+\_\+write\+\_\+lock\+\_\+size} (\hyperlink{a00044_af929c5cf86b6a0f64dde407dfe60482e_af929c5cf86b6a0f64dde407dfe60482e}{ringbuffer\+\_\+t} $\ast$rb)
-\begin{DoxyCompactList}\small\item\em 取得非绕回可连续写入的最大长度 \end{DoxyCompactList}\item 
-char $\ast$ \hyperlink{a00064_a67c7cbb3e39d70fc9ef3e4938fbc6d1d_a67c7cbb3e39d70fc9ef3e4938fbc6d1d}{ringbuffer\+\_\+write\+\_\+lock\+\_\+ptr} (\hyperlink{a00044_af929c5cf86b6a0f64dde407dfe60482e_af929c5cf86b6a0f64dde407dfe60482e}{ringbuffer\+\_\+t} $\ast$rb)
-\begin{DoxyCompactList}\small\item\em 取得可写起始指针 \end{DoxyCompactList}\item 
-void \hyperlink{a00064_a88804c221b00561ac45b12b6e54bb8d1_a88804c221b00561ac45b12b6e54bb8d1}{ringbuffer\+\_\+write\+\_\+commit} (\hyperlink{a00044_af929c5cf86b6a0f64dde407dfe60482e_af929c5cf86b6a0f64dde407dfe60482e}{ringbuffer\+\_\+t} $\ast$rb, uint32\+\_\+t size)
-\begin{DoxyCompactList}\small\item\em 提交成功写入的字节数 \end{DoxyCompactList}\item 
-int \hyperlink{a00064_ae0a8267d340411191b1c666914e17628_ae0a8267d340411191b1c666914e17628}{ringbuffer\+\_\+full} (\hyperlink{a00044_af929c5cf86b6a0f64dde407dfe60482e_af929c5cf86b6a0f64dde407dfe60482e}{ringbuffer\+\_\+t} $\ast$rb)
-\begin{DoxyCompactList}\small\item\em 满 \end{DoxyCompactList}\item 
-int \hyperlink{a00064_aa11ec2026dde62682aa1583f2505afb9_aa11ec2026dde62682aa1583f2505afb9}{ringbuffer\+\_\+empty} (\hyperlink{a00044_af929c5cf86b6a0f64dde407dfe60482e_af929c5cf86b6a0f64dde407dfe60482e}{ringbuffer\+\_\+t} $\ast$rb)
-\begin{DoxyCompactList}\small\item\em 空 \end{DoxyCompactList}\item 
-uint32\+\_\+t \hyperlink{a00064_adb01000b575c0696d466c93819c4aeff_adb01000b575c0696d466c93819c4aeff}{ringbuffer\+\_\+get\+\_\+max\+\_\+size} (\hyperlink{a00044_af929c5cf86b6a0f64dde407dfe60482e_af929c5cf86b6a0f64dde407dfe60482e}{ringbuffer\+\_\+t} $\ast$rb)
-\begin{DoxyCompactList}\small\item\em 取得最大长度 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$ \hyperlink{a00094_ga878bf0cd280e0bd183144bb95ca4a7b1_ga878bf0cd280e0bd183144bb95ca4a7b1}{loop\+\_\+create} ()
+\begin{DoxyCompactList}\small\item\em 创建一个事件循环 \end{DoxyCompactList}\item 
+void \hyperlink{a00094_ga921fd5e5e16a73de123e81baab187a0a_ga921fd5e5e16a73de123e81baab187a0a}{loop\+\_\+destroy} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
+\begin{DoxyCompactList}\small\item\em 销毁事件循环 事件循环内的所有管道也会被销毁 \end{DoxyCompactList}\item 
+\hyperlink{a00047_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$ \hyperlink{a00094_gab5b73ea9a0347b431f93ebf30ecd05b5_gab5b73ea9a0347b431f93ebf30ecd05b5}{loop\+\_\+create\+\_\+channel} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop, uint32\+\_\+t max\+\_\+send\+\_\+list\+\_\+len, uint32\+\_\+t recv\+\_\+ring\+\_\+len)
+\begin{DoxyCompactList}\small\item\em 创建管道 \end{DoxyCompactList}\item 
+\hyperlink{a00047_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$ \hyperlink{a00094_ga6879ac453ef83768ce8f8ef43a474409_ga6879ac453ef83768ce8f8ef43a474409}{loop\+\_\+create\+\_\+channel\+\_\+exist\+\_\+socket\+\_\+fd} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop, \hyperlink{a00047_a0d9e0afbf02fb6ed6c5b1415dce51b05_a0d9e0afbf02fb6ed6c5b1415dce51b05}{socket\+\_\+t} socket\+\_\+fd, uint32\+\_\+t max\+\_\+send\+\_\+list\+\_\+len, uint32\+\_\+t recv\+\_\+ring\+\_\+len)
+\begin{DoxyCompactList}\small\item\em 使用已存在的套接字创建管道 \end{DoxyCompactList}\item 
+int \hyperlink{a00094_ga2f1994d76e46cf4855ac955ccd41d9ef_ga2f1994d76e46cf4855ac955ccd41d9ef}{loop\+\_\+run\+\_\+once} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
+\begin{DoxyCompactList}\small\item\em 运行一次事件循环 loop\+\_\+t不是线程安全的，不能在多个线程内同时对同一个loop\+\_\+t实例调用loop\+\_\+run\+\_\+once \end{DoxyCompactList}\item 
+int \hyperlink{a00094_ga8eb0f6c8d398c70fc5ca2292664a1187_ga8eb0f6c8d398c70fc5ca2292664a1187}{loop\+\_\+run} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
+\begin{DoxyCompactList}\small\item\em 运行事件循环直到调用loop\+\_\+exit() loop\+\_\+t不是线程安全的，不能在多个线程内同时对同一个loop\+\_\+t实例调用loop\+\_\+run \end{DoxyCompactList}\item 
+void \hyperlink{a00094_ga898c7e8ef4ff2f360a32454b2b1013de_ga898c7e8ef4ff2f360a32454b2b1013de}{loop\+\_\+exit} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
+\begin{DoxyCompactList}\small\item\em 退出函数loop\+\_\+run() \end{DoxyCompactList}\item 
+int \hyperlink{a00094_ga6fa8f99fdc7a036fea6ca91971885e52_ga6fa8f99fdc7a036fea6ca91971885e52}{loop\+\_\+get\+\_\+active\+\_\+channel\+\_\+count} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
+\begin{DoxyCompactList}\small\item\em 获取活跃管道数量 \end{DoxyCompactList}\item 
+int \hyperlink{a00094_ga604184ddcd3e06bc7bfd4f1722778029_ga604184ddcd3e06bc7bfd4f1722778029}{loop\+\_\+get\+\_\+close\+\_\+channel\+\_\+count} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
+\begin{DoxyCompactList}\small\item\em 获取已关闭管道数量 \end{DoxyCompactList}\item 
+void \hyperlink{a00094_ga480fadf19a49cb27354866e06500a03c_ga480fadf19a49cb27354866e06500a03c}{loop\+\_\+set\+\_\+data} (\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop, void $\ast$data)
+\begin{DoxyCompactList}\small\item\em 设置用户数据指针 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{函数说明}
-\hypertarget{a00064_a4fca0cda42cddc178da4ab3abd92ae3a_a4fca0cda42cddc178da4ab3abd92ae3a}{}\index{ringbuffer.\+c@{ringbuffer.\+c}!ringbuffer\+\_\+available@{ringbuffer\+\_\+available}}
-\index{ringbuffer\+\_\+available@{ringbuffer\+\_\+available}!ringbuffer.\+c@{ringbuffer.\+c}}
-\subsubsection[{ringbuffer\+\_\+available}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t ringbuffer\+\_\+available (
+\hypertarget{a00094_ga878bf0cd280e0bd183144bb95ca4a7b1_ga878bf0cd280e0bd183144bb95ca4a7b1}{}\index{loop\+\_\+api.\+h@{loop\+\_\+api.\+h}!loop\+\_\+create@{loop\+\_\+create}}
+\index{loop\+\_\+create@{loop\+\_\+create}!loop\+\_\+api.\+h@{loop\+\_\+api.\+h}}
+\subsubsection[{loop\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf loop\+\_\+t}$\ast$ loop\+\_\+create (
 \begin{DoxyParamCaption}
-\item[{{\bf ringbuffer\+\_\+t} $\ast$}]{rb}
+{}
 \end{DoxyParamCaption}
-)}\label{a00064_a4fca0cda42cddc178da4ab3abd92ae3a_a4fca0cda42cddc178da4ab3abd92ae3a}
+)}\label{a00094_ga878bf0cd280e0bd183144bb95ca4a7b1_ga878bf0cd280e0bd183144bb95ca4a7b1}
 
 
-取得可读字节数 
+创建一个事件循环 
+
+\begin{DoxyReturn}{返回}
+loop\+\_\+t实例 
+\end{DoxyReturn}
+\hypertarget{a00094_gab5b73ea9a0347b431f93ebf30ecd05b5_gab5b73ea9a0347b431f93ebf30ecd05b5}{}\index{loop\+\_\+api.\+h@{loop\+\_\+api.\+h}!loop\+\_\+create\+\_\+channel@{loop\+\_\+create\+\_\+channel}}
+\index{loop\+\_\+create\+\_\+channel@{loop\+\_\+create\+\_\+channel}!loop\+\_\+api.\+h@{loop\+\_\+api.\+h}}
+\subsubsection[{loop\+\_\+create\+\_\+channel}]{\setlength{\rightskip}{0pt plus 5cm}{\bf channel\+\_\+ref\+\_\+t}$\ast$ loop\+\_\+create\+\_\+channel (
+\begin{DoxyParamCaption}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop, }
+\item[{uint32\+\_\+t}]{max\+\_\+send\+\_\+list\+\_\+len, }
+\item[{uint32\+\_\+t}]{recv\+\_\+ring\+\_\+len}
+\end{DoxyParamCaption}
+)}\label{a00094_gab5b73ea9a0347b431f93ebf30ecd05b5_gab5b73ea9a0347b431f93ebf30ecd05b5}
+
+
+创建管道 
 
 
 \begin{DoxyParams}{参数}
-{\em rb} & ringbuffer\+\_\+t实例 \\
+{\em loop} & loop\+\_\+t实例 \\
+\hline
+{\em max\+\_\+send\+\_\+list\+\_\+len} & 发送缓冲区链最大长度 \\
+\hline
+{\em recv\+\_\+ring\+\_\+len} & 接受环形缓冲区最大长度 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-可读字节数 
+channel\+\_\+ref\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00064_a0b57361c8632557fc144c7f7b853a33e_a0b57361c8632557fc144c7f7b853a33e}{}\index{ringbuffer.\+c@{ringbuffer.\+c}!ringbuffer\+\_\+copy@{ringbuffer\+\_\+copy}}
-\index{ringbuffer\+\_\+copy@{ringbuffer\+\_\+copy}!ringbuffer.\+c@{ringbuffer.\+c}}
-\subsubsection[{ringbuffer\+\_\+copy}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t ringbuffer\+\_\+copy (
+\hypertarget{a00094_ga6879ac453ef83768ce8f8ef43a474409_ga6879ac453ef83768ce8f8ef43a474409}{}\index{loop\+\_\+api.\+h@{loop\+\_\+api.\+h}!loop\+\_\+create\+\_\+channel\+\_\+exist\+\_\+socket\+\_\+fd@{loop\+\_\+create\+\_\+channel\+\_\+exist\+\_\+socket\+\_\+fd}}
+\index{loop\+\_\+create\+\_\+channel\+\_\+exist\+\_\+socket\+\_\+fd@{loop\+\_\+create\+\_\+channel\+\_\+exist\+\_\+socket\+\_\+fd}!loop\+\_\+api.\+h@{loop\+\_\+api.\+h}}
+\subsubsection[{loop\+\_\+create\+\_\+channel\+\_\+exist\+\_\+socket\+\_\+fd}]{\setlength{\rightskip}{0pt plus 5cm}{\bf channel\+\_\+ref\+\_\+t}$\ast$ loop\+\_\+create\+\_\+channel\+\_\+exist\+\_\+socket\+\_\+fd (
 \begin{DoxyParamCaption}
-\item[{{\bf ringbuffer\+\_\+t} $\ast$}]{rb, }
-\item[{char $\ast$}]{buffer, }
-\item[{uint32\+\_\+t}]{size}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop, }
+\item[{{\bf socket\+\_\+t}}]{socket\+\_\+fd, }
+\item[{uint32\+\_\+t}]{max\+\_\+send\+\_\+list\+\_\+len, }
+\item[{uint32\+\_\+t}]{recv\+\_\+ring\+\_\+len}
 \end{DoxyParamCaption}
-)}\label{a00064_a0b57361c8632557fc144c7f7b853a33e_a0b57361c8632557fc144c7f7b853a33e}
+)}\label{a00094_ga6879ac453ef83768ce8f8ef43a474409_ga6879ac453ef83768ce8f8ef43a474409}
 
 
-读取但不清除 
+使用已存在的套接字创建管道 
 
 
 \begin{DoxyParams}{参数}
-{\em rb} & ringbuffer\+\_\+t实例 \\
+{\em loop} & loop\+\_\+t实例 \\
 \hline
-{\em buffer} & 写入缓冲区指针 \\
+{\em socket\+\_\+fd} & 套接字 \\
 \hline
-{\em size} & 写入缓冲区长度 \\
+{\em max\+\_\+send\+\_\+list\+\_\+len} & 发送缓冲区链最大长度 \\
+\hline
+{\em recv\+\_\+ring\+\_\+len} & 接受环形缓冲区最大长度 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-实际读出字节数 
+channel\+\_\+ref\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00064_a535c5ed96efcd2415e6cad1cfcf44228_a535c5ed96efcd2415e6cad1cfcf44228}{}\index{ringbuffer.\+c@{ringbuffer.\+c}!ringbuffer\+\_\+create@{ringbuffer\+\_\+create}}
-\index{ringbuffer\+\_\+create@{ringbuffer\+\_\+create}!ringbuffer.\+c@{ringbuffer.\+c}}
-\subsubsection[{ringbuffer\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ringbuffer\+\_\+t}$\ast$ ringbuffer\+\_\+create (
+\hypertarget{a00094_ga921fd5e5e16a73de123e81baab187a0a_ga921fd5e5e16a73de123e81baab187a0a}{}\index{loop\+\_\+api.\+h@{loop\+\_\+api.\+h}!loop\+\_\+destroy@{loop\+\_\+destroy}}
+\index{loop\+\_\+destroy@{loop\+\_\+destroy}!loop\+\_\+api.\+h@{loop\+\_\+api.\+h}}
+\subsubsection[{loop\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void loop\+\_\+destroy (
 \begin{DoxyParamCaption}
-\item[{uint32\+\_\+t}]{size}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
 \end{DoxyParamCaption}
-)}\label{a00064_a535c5ed96efcd2415e6cad1cfcf44228_a535c5ed96efcd2415e6cad1cfcf44228}
+)}\label{a00094_ga921fd5e5e16a73de123e81baab187a0a_ga921fd5e5e16a73de123e81baab187a0a}
 
 
-建立一个ringbuffer 
+销毁事件循环 事件循环内的所有管道也会被销毁 
 
 
 \begin{DoxyParams}{参数}
-{\em size} & 最大长度 \\
+{\em loop} & loop\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00094_ga898c7e8ef4ff2f360a32454b2b1013de_ga898c7e8ef4ff2f360a32454b2b1013de}{}\index{loop\+\_\+api.\+h@{loop\+\_\+api.\+h}!loop\+\_\+exit@{loop\+\_\+exit}}
+\index{loop\+\_\+exit@{loop\+\_\+exit}!loop\+\_\+api.\+h@{loop\+\_\+api.\+h}}
+\subsubsection[{loop\+\_\+exit}]{\setlength{\rightskip}{0pt plus 5cm}void loop\+\_\+exit (
+\begin{DoxyParamCaption}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
+\end{DoxyParamCaption}
+)}\label{a00094_ga898c7e8ef4ff2f360a32454b2b1013de_ga898c7e8ef4ff2f360a32454b2b1013de}
+
+
+退出函数loop\+\_\+run() 
+
+
+\begin{DoxyParams}{参数}
+{\em loop} & loop\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00094_ga6fa8f99fdc7a036fea6ca91971885e52_ga6fa8f99fdc7a036fea6ca91971885e52}{}\index{loop\+\_\+api.\+h@{loop\+\_\+api.\+h}!loop\+\_\+get\+\_\+active\+\_\+channel\+\_\+count@{loop\+\_\+get\+\_\+active\+\_\+channel\+\_\+count}}
+\index{loop\+\_\+get\+\_\+active\+\_\+channel\+\_\+count@{loop\+\_\+get\+\_\+active\+\_\+channel\+\_\+count}!loop\+\_\+api.\+h@{loop\+\_\+api.\+h}}
+\subsubsection[{loop\+\_\+get\+\_\+active\+\_\+channel\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}int loop\+\_\+get\+\_\+active\+\_\+channel\+\_\+count (
+\begin{DoxyParamCaption}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
+\end{DoxyParamCaption}
+)}\label{a00094_ga6fa8f99fdc7a036fea6ca91971885e52_ga6fa8f99fdc7a036fea6ca91971885e52}
+
+
+获取活跃管道数量 
+
+
+\begin{DoxyParams}{参数}
+{\em loop} & loop\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-ringbuffer\+\_\+t实例 
+活跃管道数量 
 \end{DoxyReturn}
-\hypertarget{a00064_a968f7b808cc3085482292c1f31d92740_a968f7b808cc3085482292c1f31d92740}{}\index{ringbuffer.\+c@{ringbuffer.\+c}!ringbuffer\+\_\+destroy@{ringbuffer\+\_\+destroy}}
-\index{ringbuffer\+\_\+destroy@{ringbuffer\+\_\+destroy}!ringbuffer.\+c@{ringbuffer.\+c}}
-\subsubsection[{ringbuffer\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void ringbuffer\+\_\+destroy (
+\hypertarget{a00094_ga604184ddcd3e06bc7bfd4f1722778029_ga604184ddcd3e06bc7bfd4f1722778029}{}\index{loop\+\_\+api.\+h@{loop\+\_\+api.\+h}!loop\+\_\+get\+\_\+close\+\_\+channel\+\_\+count@{loop\+\_\+get\+\_\+close\+\_\+channel\+\_\+count}}
+\index{loop\+\_\+get\+\_\+close\+\_\+channel\+\_\+count@{loop\+\_\+get\+\_\+close\+\_\+channel\+\_\+count}!loop\+\_\+api.\+h@{loop\+\_\+api.\+h}}
+\subsubsection[{loop\+\_\+get\+\_\+close\+\_\+channel\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}int loop\+\_\+get\+\_\+close\+\_\+channel\+\_\+count (
 \begin{DoxyParamCaption}
-\item[{{\bf ringbuffer\+\_\+t} $\ast$}]{rb}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
 \end{DoxyParamCaption}
-)}\label{a00064_a968f7b808cc3085482292c1f31d92740_a968f7b808cc3085482292c1f31d92740}
+)}\label{a00094_ga604184ddcd3e06bc7bfd4f1722778029_ga604184ddcd3e06bc7bfd4f1722778029}
 
 
-销毁ringbuffer 
+获取已关闭管道数量 
 
 
 \begin{DoxyParams}{参数}
-{\em rb} & ringbuffer\+\_\+t实例 \\
+{\em loop} & loop\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
-\hypertarget{a00064_aaab3eabc3d26998d7ec5458e89781b1d_aaab3eabc3d26998d7ec5458e89781b1d}{}\index{ringbuffer.\+c@{ringbuffer.\+c}!ringbuffer\+\_\+eat@{ringbuffer\+\_\+eat}}
-\index{ringbuffer\+\_\+eat@{ringbuffer\+\_\+eat}!ringbuffer.\+c@{ringbuffer.\+c}}
-\subsubsection[{ringbuffer\+\_\+eat}]{\setlength{\rightskip}{0pt plus 5cm}int ringbuffer\+\_\+eat (
+\begin{DoxyReturn}{返回}
+关闭管道数量 
+\end{DoxyReturn}
+\hypertarget{a00094_ga8eb0f6c8d398c70fc5ca2292664a1187_ga8eb0f6c8d398c70fc5ca2292664a1187}{}\index{loop\+\_\+api.\+h@{loop\+\_\+api.\+h}!loop\+\_\+run@{loop\+\_\+run}}
+\index{loop\+\_\+run@{loop\+\_\+run}!loop\+\_\+api.\+h@{loop\+\_\+api.\+h}}
+\subsubsection[{loop\+\_\+run}]{\setlength{\rightskip}{0pt plus 5cm}int loop\+\_\+run (
 \begin{DoxyParamCaption}
-\item[{{\bf ringbuffer\+\_\+t} $\ast$}]{rb, }
-\item[{uint32\+\_\+t}]{size}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
 \end{DoxyParamCaption}
-)}\label{a00064_aaab3eabc3d26998d7ec5458e89781b1d_aaab3eabc3d26998d7ec5458e89781b1d}
+)}\label{a00094_ga8eb0f6c8d398c70fc5ca2292664a1187_ga8eb0f6c8d398c70fc5ca2292664a1187}
 
 
-清除指定长度的可读字节 
+运行事件循环直到调用loop\+\_\+exit() loop\+\_\+t不是线程安全的，不能在多个线程内同时对同一个loop\+\_\+t实例调用loop\+\_\+run 
 
 
 \begin{DoxyParams}{参数}
-{\em rb} & ringbuffer\+\_\+t实例 \\
-\hline
-{\em size} & 需要清除的长度 \\
+{\em loop} & loop\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 
@@ -156,20 +187,20 @@ ringbuffer\+\_\+t实例
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00064_a9af8341a5cc83cc1d6acbb868c498a03_a9af8341a5cc83cc1d6acbb868c498a03}{}\index{ringbuffer.\+c@{ringbuffer.\+c}!ringbuffer\+\_\+eat\+\_\+all@{ringbuffer\+\_\+eat\+\_\+all}}
-\index{ringbuffer\+\_\+eat\+\_\+all@{ringbuffer\+\_\+eat\+\_\+all}!ringbuffer.\+c@{ringbuffer.\+c}}
-\subsubsection[{ringbuffer\+\_\+eat\+\_\+all}]{\setlength{\rightskip}{0pt plus 5cm}int ringbuffer\+\_\+eat\+\_\+all (
+\hypertarget{a00094_ga2f1994d76e46cf4855ac955ccd41d9ef_ga2f1994d76e46cf4855ac955ccd41d9ef}{}\index{loop\+\_\+api.\+h@{loop\+\_\+api.\+h}!loop\+\_\+run\+\_\+once@{loop\+\_\+run\+\_\+once}}
+\index{loop\+\_\+run\+\_\+once@{loop\+\_\+run\+\_\+once}!loop\+\_\+api.\+h@{loop\+\_\+api.\+h}}
+\subsubsection[{loop\+\_\+run\+\_\+once}]{\setlength{\rightskip}{0pt plus 5cm}int loop\+\_\+run\+\_\+once (
 \begin{DoxyParamCaption}
-\item[{{\bf ringbuffer\+\_\+t} $\ast$}]{rb}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
 \end{DoxyParamCaption}
-)}\label{a00064_a9af8341a5cc83cc1d6acbb868c498a03_a9af8341a5cc83cc1d6acbb868c498a03}
+)}\label{a00094_ga2f1994d76e46cf4855ac955ccd41d9ef_ga2f1994d76e46cf4855ac955ccd41d9ef}
 
 
-清除所有可读字节 
+运行一次事件循环 loop\+\_\+t不是线程安全的，不能在多个线程内同时对同一个loop\+\_\+t实例调用loop\+\_\+run\+\_\+once 
 
 
 \begin{DoxyParams}{参数}
-{\em rb} & ringbuffer\+\_\+t实例 \\
+{\em loop} & loop\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 
@@ -179,264 +210,22 @@ ringbuffer\+\_\+t实例
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00064_aa11ec2026dde62682aa1583f2505afb9_aa11ec2026dde62682aa1583f2505afb9}{}\index{ringbuffer.\+c@{ringbuffer.\+c}!ringbuffer\+\_\+empty@{ringbuffer\+\_\+empty}}
-\index{ringbuffer\+\_\+empty@{ringbuffer\+\_\+empty}!ringbuffer.\+c@{ringbuffer.\+c}}
-\subsubsection[{ringbuffer\+\_\+empty}]{\setlength{\rightskip}{0pt plus 5cm}int ringbuffer\+\_\+empty (
+\hypertarget{a00094_ga480fadf19a49cb27354866e06500a03c_ga480fadf19a49cb27354866e06500a03c}{}\index{loop\+\_\+api.\+h@{loop\+\_\+api.\+h}!loop\+\_\+set\+\_\+data@{loop\+\_\+set\+\_\+data}}
+\index{loop\+\_\+set\+\_\+data@{loop\+\_\+set\+\_\+data}!loop\+\_\+api.\+h@{loop\+\_\+api.\+h}}
+\subsubsection[{loop\+\_\+set\+\_\+data}]{\setlength{\rightskip}{0pt plus 5cm}void loop\+\_\+set\+\_\+data (
 \begin{DoxyParamCaption}
-\item[{{\bf ringbuffer\+\_\+t} $\ast$}]{rb}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop, }
+\item[{void $\ast$}]{data}
 \end{DoxyParamCaption}
-)}\label{a00064_aa11ec2026dde62682aa1583f2505afb9_aa11ec2026dde62682aa1583f2505afb9}
+)}\label{a00094_ga480fadf19a49cb27354866e06500a03c_ga480fadf19a49cb27354866e06500a03c}
 
 
-空 
+设置用户数据指针 
 
 
 \begin{DoxyParams}{参数}
-{\em rb} & ringbuffer\+\_\+t实例 \\
+{\em loop} & loop\+\_\+t实例 \\
+\hline
+{\em data} & 用户数据指针 \\
 \hline
 \end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em 0} & 非空 \\
-\hline
-{\em 非零} & 空 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00064_ae0a8267d340411191b1c666914e17628_ae0a8267d340411191b1c666914e17628}{}\index{ringbuffer.\+c@{ringbuffer.\+c}!ringbuffer\+\_\+full@{ringbuffer\+\_\+full}}
-\index{ringbuffer\+\_\+full@{ringbuffer\+\_\+full}!ringbuffer.\+c@{ringbuffer.\+c}}
-\subsubsection[{ringbuffer\+\_\+full}]{\setlength{\rightskip}{0pt plus 5cm}int ringbuffer\+\_\+full (
-\begin{DoxyParamCaption}
-\item[{{\bf ringbuffer\+\_\+t} $\ast$}]{rb}
-\end{DoxyParamCaption}
-)}\label{a00064_ae0a8267d340411191b1c666914e17628_ae0a8267d340411191b1c666914e17628}
-
-
-满 
-
-
-\begin{DoxyParams}{参数}
-{\em rb} & ringbuffer\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em 0} & 未满 \\
-\hline
-{\em 非零} & 满 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00064_adb01000b575c0696d466c93819c4aeff_adb01000b575c0696d466c93819c4aeff}{}\index{ringbuffer.\+c@{ringbuffer.\+c}!ringbuffer\+\_\+get\+\_\+max\+\_\+size@{ringbuffer\+\_\+get\+\_\+max\+\_\+size}}
-\index{ringbuffer\+\_\+get\+\_\+max\+\_\+size@{ringbuffer\+\_\+get\+\_\+max\+\_\+size}!ringbuffer.\+c@{ringbuffer.\+c}}
-\subsubsection[{ringbuffer\+\_\+get\+\_\+max\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t ringbuffer\+\_\+get\+\_\+max\+\_\+size (
-\begin{DoxyParamCaption}
-\item[{{\bf ringbuffer\+\_\+t} $\ast$}]{rb}
-\end{DoxyParamCaption}
-)}\label{a00064_adb01000b575c0696d466c93819c4aeff_adb01000b575c0696d466c93819c4aeff}
-
-
-取得最大长度 
-
-
-\begin{DoxyParams}{参数}
-{\em rb} & ringbuffer\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-最大长度 
-\end{DoxyReturn}
-\hypertarget{a00064_a93296c953b97b465aa6d878d7ddaff87_a93296c953b97b465aa6d878d7ddaff87}{}\index{ringbuffer.\+c@{ringbuffer.\+c}!ringbuffer\+\_\+read@{ringbuffer\+\_\+read}}
-\index{ringbuffer\+\_\+read@{ringbuffer\+\_\+read}!ringbuffer.\+c@{ringbuffer.\+c}}
-\subsubsection[{ringbuffer\+\_\+read}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t ringbuffer\+\_\+read (
-\begin{DoxyParamCaption}
-\item[{{\bf ringbuffer\+\_\+t} $\ast$}]{rb, }
-\item[{char $\ast$}]{buffer, }
-\item[{uint32\+\_\+t}]{size}
-\end{DoxyParamCaption}
-)}\label{a00064_a93296c953b97b465aa6d878d7ddaff87_a93296c953b97b465aa6d878d7ddaff87}
-
-
-读取并清除 
-
-
-\begin{DoxyParams}{参数}
-{\em rb} & ringbuffer\+\_\+t实例 \\
-\hline
-{\em buffer} & 写入缓冲区指针 \\
-\hline
-{\em size} & 写入缓冲区长度 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-实际读出字节数 
-\end{DoxyReturn}
-\hypertarget{a00064_aea7ff5a3bd3ede77f076abaefad3fcb1_aea7ff5a3bd3ede77f076abaefad3fcb1}{}\index{ringbuffer.\+c@{ringbuffer.\+c}!ringbuffer\+\_\+read\+\_\+commit@{ringbuffer\+\_\+read\+\_\+commit}}
-\index{ringbuffer\+\_\+read\+\_\+commit@{ringbuffer\+\_\+read\+\_\+commit}!ringbuffer.\+c@{ringbuffer.\+c}}
-\subsubsection[{ringbuffer\+\_\+read\+\_\+commit}]{\setlength{\rightskip}{0pt plus 5cm}void ringbuffer\+\_\+read\+\_\+commit (
-\begin{DoxyParamCaption}
-\item[{{\bf ringbuffer\+\_\+t} $\ast$}]{rb, }
-\item[{uint32\+\_\+t}]{size}
-\end{DoxyParamCaption}
-)}\label{a00064_aea7ff5a3bd3ede77f076abaefad3fcb1_aea7ff5a3bd3ede77f076abaefad3fcb1}
-
-
-提交并清除已经读到的字节 
-
-
-\begin{DoxyParams}{参数}
-{\em rb} & ringbuffer\+\_\+t实例 \\
-\hline
-{\em size} & 已经读出的字节数 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00064_a7611ebce8ddc6637724794195ad6c035_a7611ebce8ddc6637724794195ad6c035}{}\index{ringbuffer.\+c@{ringbuffer.\+c}!ringbuffer\+\_\+read\+\_\+lock\+\_\+ptr@{ringbuffer\+\_\+read\+\_\+lock\+\_\+ptr}}
-\index{ringbuffer\+\_\+read\+\_\+lock\+\_\+ptr@{ringbuffer\+\_\+read\+\_\+lock\+\_\+ptr}!ringbuffer.\+c@{ringbuffer.\+c}}
-\subsubsection[{ringbuffer\+\_\+read\+\_\+lock\+\_\+ptr}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ ringbuffer\+\_\+read\+\_\+lock\+\_\+ptr (
-\begin{DoxyParamCaption}
-\item[{{\bf ringbuffer\+\_\+t} $\ast$}]{rb}
-\end{DoxyParamCaption}
-)}\label{a00064_a7611ebce8ddc6637724794195ad6c035_a7611ebce8ddc6637724794195ad6c035}
-
-
-取得可读数据起止指针 
-
-
-\begin{DoxyParams}{参数}
-{\em rb} & ringbuffer\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-可读数据起止指针 
-\end{DoxyReturn}
-\hypertarget{a00064_a17f80ee6eedc285a3086107f10d0605b_a17f80ee6eedc285a3086107f10d0605b}{}\index{ringbuffer.\+c@{ringbuffer.\+c}!ringbuffer\+\_\+read\+\_\+lock\+\_\+size@{ringbuffer\+\_\+read\+\_\+lock\+\_\+size}}
-\index{ringbuffer\+\_\+read\+\_\+lock\+\_\+size@{ringbuffer\+\_\+read\+\_\+lock\+\_\+size}!ringbuffer.\+c@{ringbuffer.\+c}}
-\subsubsection[{ringbuffer\+\_\+read\+\_\+lock\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t ringbuffer\+\_\+read\+\_\+lock\+\_\+size (
-\begin{DoxyParamCaption}
-\item[{{\bf ringbuffer\+\_\+t} $\ast$}]{rb}
-\end{DoxyParamCaption}
-)}\label{a00064_a17f80ee6eedc285a3086107f10d0605b_a17f80ee6eedc285a3086107f10d0605b}
-
-
-取得非绕回连续地址的最大可读字节数 
-
-
-\begin{DoxyParams}{参数}
-{\em rb} & ringbuffer\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-非绕回连续地址的最大可读字节数 
-\end{DoxyReturn}
-\hypertarget{a00064_a5bccc516abce64ee739ed00bf055d42e_a5bccc516abce64ee739ed00bf055d42e}{}\index{ringbuffer.\+c@{ringbuffer.\+c}!ringbuffer\+\_\+window\+\_\+read\+\_\+commit@{ringbuffer\+\_\+window\+\_\+read\+\_\+commit}}
-\index{ringbuffer\+\_\+window\+\_\+read\+\_\+commit@{ringbuffer\+\_\+window\+\_\+read\+\_\+commit}!ringbuffer.\+c@{ringbuffer.\+c}}
-\subsubsection[{ringbuffer\+\_\+window\+\_\+read\+\_\+commit}]{\setlength{\rightskip}{0pt plus 5cm}void ringbuffer\+\_\+window\+\_\+read\+\_\+commit (
-\begin{DoxyParamCaption}
-\item[{{\bf ringbuffer\+\_\+t} $\ast$}]{rb, }
-\item[{uint32\+\_\+t}]{size}
-\end{DoxyParamCaption}
-)}\label{a00064_a5bccc516abce64ee739ed00bf055d42e_a5bccc516abce64ee739ed00bf055d42e}
-
-
-虚拟窗口 -\/ 提交已经读到的字节，但不清除 
-
-
-\begin{DoxyParams}{参数}
-{\em rb} & ringbuffer\+\_\+t实例 \\
-\hline
-{\em size} & 已经读出的字节数 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00064_a2fc4c4b70a7f3959c0c82c99432ed04d_a2fc4c4b70a7f3959c0c82c99432ed04d}{}\index{ringbuffer.\+c@{ringbuffer.\+c}!ringbuffer\+\_\+window\+\_\+read\+\_\+lock\+\_\+ptr@{ringbuffer\+\_\+window\+\_\+read\+\_\+lock\+\_\+ptr}}
-\index{ringbuffer\+\_\+window\+\_\+read\+\_\+lock\+\_\+ptr@{ringbuffer\+\_\+window\+\_\+read\+\_\+lock\+\_\+ptr}!ringbuffer.\+c@{ringbuffer.\+c}}
-\subsubsection[{ringbuffer\+\_\+window\+\_\+read\+\_\+lock\+\_\+ptr}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ ringbuffer\+\_\+window\+\_\+read\+\_\+lock\+\_\+ptr (
-\begin{DoxyParamCaption}
-\item[{{\bf ringbuffer\+\_\+t} $\ast$}]{rb}
-\end{DoxyParamCaption}
-)}\label{a00064_a2fc4c4b70a7f3959c0c82c99432ed04d_a2fc4c4b70a7f3959c0c82c99432ed04d}
-
-
-虚拟窗口 -\/ 取得可读数据起止指针 
-
-
-\begin{DoxyParams}{参数}
-{\em rb} & ringbuffer\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-可读数据起止指针 
-\end{DoxyReturn}
-\hypertarget{a00064_a0c3a46a4cfef551f1117b178748f718e_a0c3a46a4cfef551f1117b178748f718e}{}\index{ringbuffer.\+c@{ringbuffer.\+c}!ringbuffer\+\_\+window\+\_\+read\+\_\+lock\+\_\+size@{ringbuffer\+\_\+window\+\_\+read\+\_\+lock\+\_\+size}}
-\index{ringbuffer\+\_\+window\+\_\+read\+\_\+lock\+\_\+size@{ringbuffer\+\_\+window\+\_\+read\+\_\+lock\+\_\+size}!ringbuffer.\+c@{ringbuffer.\+c}}
-\subsubsection[{ringbuffer\+\_\+window\+\_\+read\+\_\+lock\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t ringbuffer\+\_\+window\+\_\+read\+\_\+lock\+\_\+size (
-\begin{DoxyParamCaption}
-\item[{{\bf ringbuffer\+\_\+t} $\ast$}]{rb}
-\end{DoxyParamCaption}
-)}\label{a00064_a0c3a46a4cfef551f1117b178748f718e_a0c3a46a4cfef551f1117b178748f718e}
-
-
-虚拟窗口 -\/ 取得非绕回连续地址的最大可读字节数 
-
-
-\begin{DoxyParams}{参数}
-{\em rb} & ringbuffer\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-非绕回连续地址的最大可读字节数 
-\end{DoxyReturn}
-\hypertarget{a00064_a88804c221b00561ac45b12b6e54bb8d1_a88804c221b00561ac45b12b6e54bb8d1}{}\index{ringbuffer.\+c@{ringbuffer.\+c}!ringbuffer\+\_\+write\+\_\+commit@{ringbuffer\+\_\+write\+\_\+commit}}
-\index{ringbuffer\+\_\+write\+\_\+commit@{ringbuffer\+\_\+write\+\_\+commit}!ringbuffer.\+c@{ringbuffer.\+c}}
-\subsubsection[{ringbuffer\+\_\+write\+\_\+commit}]{\setlength{\rightskip}{0pt plus 5cm}void ringbuffer\+\_\+write\+\_\+commit (
-\begin{DoxyParamCaption}
-\item[{{\bf ringbuffer\+\_\+t} $\ast$}]{rb, }
-\item[{uint32\+\_\+t}]{size}
-\end{DoxyParamCaption}
-)}\label{a00064_a88804c221b00561ac45b12b6e54bb8d1_a88804c221b00561ac45b12b6e54bb8d1}
-
-
-提交成功写入的字节数 
-
-
-\begin{DoxyParams}{参数}
-{\em rb} & ringbuffer\+\_\+t实例 \\
-\hline
-{\em size} & 成功写入的字节数 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00064_a67c7cbb3e39d70fc9ef3e4938fbc6d1d_a67c7cbb3e39d70fc9ef3e4938fbc6d1d}{}\index{ringbuffer.\+c@{ringbuffer.\+c}!ringbuffer\+\_\+write\+\_\+lock\+\_\+ptr@{ringbuffer\+\_\+write\+\_\+lock\+\_\+ptr}}
-\index{ringbuffer\+\_\+write\+\_\+lock\+\_\+ptr@{ringbuffer\+\_\+write\+\_\+lock\+\_\+ptr}!ringbuffer.\+c@{ringbuffer.\+c}}
-\subsubsection[{ringbuffer\+\_\+write\+\_\+lock\+\_\+ptr}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ ringbuffer\+\_\+write\+\_\+lock\+\_\+ptr (
-\begin{DoxyParamCaption}
-\item[{{\bf ringbuffer\+\_\+t} $\ast$}]{rb}
-\end{DoxyParamCaption}
-)}\label{a00064_a67c7cbb3e39d70fc9ef3e4938fbc6d1d_a67c7cbb3e39d70fc9ef3e4938fbc6d1d}
-
-
-取得可写起始指针 
-
-
-\begin{DoxyParams}{参数}
-{\em rb} & ringbuffer\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-可写起止指针 
-\end{DoxyReturn}
-\hypertarget{a00064_ada2b3f0cea4e372229709a5cb1f54725_ada2b3f0cea4e372229709a5cb1f54725}{}\index{ringbuffer.\+c@{ringbuffer.\+c}!ringbuffer\+\_\+write\+\_\+lock\+\_\+size@{ringbuffer\+\_\+write\+\_\+lock\+\_\+size}}
-\index{ringbuffer\+\_\+write\+\_\+lock\+\_\+size@{ringbuffer\+\_\+write\+\_\+lock\+\_\+size}!ringbuffer.\+c@{ringbuffer.\+c}}
-\subsubsection[{ringbuffer\+\_\+write\+\_\+lock\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t ringbuffer\+\_\+write\+\_\+lock\+\_\+size (
-\begin{DoxyParamCaption}
-\item[{{\bf ringbuffer\+\_\+t} $\ast$}]{rb}
-\end{DoxyParamCaption}
-)}\label{a00064_ada2b3f0cea4e372229709a5cb1f54725_ada2b3f0cea4e372229709a5cb1f54725}
-
-
-取得非绕回可连续写入的最大长度 
-
-
-\begin{DoxyParams}{参数}
-{\em rb} & ringbuffer\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-非绕回可连续写入的最大长度 
-\end{DoxyReturn}

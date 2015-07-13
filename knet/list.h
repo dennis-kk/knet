@@ -173,4 +173,7 @@ dlist_node_t* dlist_get_back(dlist_t* dlist);
 #define dlist_for_each_safe(list, node, temp) \
     for (node = dlist_get_front(list), temp = dlist_next(list, node); (node); node = temp, temp = dlist_next(list, node))
 
+#define dlist_for_each_break() \
+    break
+
 #endif /* LIST_H */

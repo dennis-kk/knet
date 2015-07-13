@@ -1,119 +1,140 @@
-\hypertarget{a00086}{}\section{负载均衡器}
-\label{a00086}\index{负载均衡器@{负载均衡器}}
-
-
-负载均衡器  
-
-
+\hypertarget{a00086}{}\section{E\+:/knet-\/git/knet/knet/timer.h 文件参考}
+\label{a00086}\index{E\+:/knet-\/git/knet/knet/timer.\+h@{E\+:/knet-\/git/knet/knet/timer.\+h}}
+{\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}timer\+\_\+api.\+h\char`\"{}}\\*
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00044_a649c7e850ab247b5f70ad27e335a129d_a649c7e850ab247b5f70ad27e335a129d}{loop\+\_\+balancer\+\_\+t} $\ast$ \hyperlink{a00086_ga9992a50e96839282c678e51bc11158d1_ga9992a50e96839282c678e51bc11158d1}{loop\+\_\+balancer\+\_\+create} ()
-\begin{DoxyCompactList}\small\item\em 创建负载均衡器 \end{DoxyCompactList}\item 
-void \hyperlink{a00086_ga2d702b5f965fe587fdaea3f5f9e2400c_ga2d702b5f965fe587fdaea3f5f9e2400c}{loop\+\_\+balancer\+\_\+destroy} (\hyperlink{a00044_a649c7e850ab247b5f70ad27e335a129d_a649c7e850ab247b5f70ad27e335a129d}{loop\+\_\+balancer\+\_\+t} $\ast$balancer)
-\begin{DoxyCompactList}\small\item\em 销毁负载均衡器 \end{DoxyCompactList}\item 
-int \hyperlink{a00086_ga2b3cf2cb63d914efe226e901a50d8b0a_ga2b3cf2cb63d914efe226e901a50d8b0a}{loop\+\_\+balancer\+\_\+attach} (\hyperlink{a00044_a649c7e850ab247b5f70ad27e335a129d_a649c7e850ab247b5f70ad27e335a129d}{loop\+\_\+balancer\+\_\+t} $\ast$balancer, \hyperlink{a00044_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
-\begin{DoxyCompactList}\small\item\em 添加事件循环到负载均衡器 \end{DoxyCompactList}\item 
-int \hyperlink{a00086_ga548ce0c2c624c4f4731a0f963d2ca42a_ga548ce0c2c624c4f4731a0f963d2ca42a}{loop\+\_\+balancer\+\_\+detach} (\hyperlink{a00044_a649c7e850ab247b5f70ad27e335a129d_a649c7e850ab247b5f70ad27e335a129d}{loop\+\_\+balancer\+\_\+t} $\ast$balancer, \hyperlink{a00044_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
-\begin{DoxyCompactList}\small\item\em 从负载均衡器内删除事件循环 \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \hyperlink{a00086_af64f93b32c31cd222c02f0ad40bb642c_af64f93b32c31cd222c02f0ad40bb642c}{ktimer\+\_\+destroy} (\hyperlink{a00047_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer)
+\begin{DoxyCompactList}\small\item\em 销毁定时器 \end{DoxyCompactList}\item 
+int \hyperlink{a00086_a6e263963404ff40c8d7865ba117d3446_a6e263963404ff40c8d7865ba117d3446}{ktimer\+\_\+check\+\_\+timeout} (\hyperlink{a00047_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer, time\+\_\+t ms)
+\begin{DoxyCompactList}\small\item\em 检查定时器是否超时 \end{DoxyCompactList}\item 
+void \hyperlink{a00086_a7c448e677f3022e5e7d910d3961dda61_a7c448e677f3022e5e7d910d3961dda61}{ktimer\+\_\+set\+\_\+current\+\_\+list} (\hyperlink{a00047_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer, \hyperlink{a00047_ad6644d67df4b4e3596c1eb12977d1d16_ad6644d67df4b4e3596c1eb12977d1d16}{dlist\+\_\+t} $\ast$list)
+\begin{DoxyCompactList}\small\item\em 设置定时器所在的当前链表 \end{DoxyCompactList}\item 
+\hyperlink{a00047_ad6644d67df4b4e3596c1eb12977d1d16_ad6644d67df4b4e3596c1eb12977d1d16}{dlist\+\_\+t} $\ast$ \hyperlink{a00086_ad43b4e56bb273f1559d13143a783c974_ad43b4e56bb273f1559d13143a783c974}{ktimer\+\_\+get\+\_\+current\+\_\+list} (\hyperlink{a00047_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer)
+\begin{DoxyCompactList}\small\item\em 取得当前所属链表 \end{DoxyCompactList}\item 
+void \hyperlink{a00086_a9d06164f71d9a170962ba64e2cb7b79f_a9d06164f71d9a170962ba64e2cb7b79f}{ktimer\+\_\+set\+\_\+current\+\_\+list\+\_\+node} (\hyperlink{a00047_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer, \hyperlink{a00047_a62053232bcf3566010ef98a7d77c3cc8_a62053232bcf3566010ef98a7d77c3cc8}{dlist\+\_\+node\+\_\+t} $\ast$node)
+\begin{DoxyCompactList}\small\item\em 设置定时器所在的当前链表的链表节点 \end{DoxyCompactList}\item 
+\hyperlink{a00047_a62053232bcf3566010ef98a7d77c3cc8_a62053232bcf3566010ef98a7d77c3cc8}{dlist\+\_\+node\+\_\+t} $\ast$ \hyperlink{a00086_afdfb2aec56b4e94af90f3befcef9b223_afdfb2aec56b4e94af90f3befcef9b223}{ktimer\+\_\+get\+\_\+current\+\_\+list\+\_\+node} (\hyperlink{a00047_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer)
+\begin{DoxyCompactList}\small\item\em 取得当前链表节点 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
-
-\subsection{详细描述}
-负载均衡器 
-
-
-\begin{DoxyPre}
-负载均衡器可以与任意数量的loop\_t关联，关联后的loop\_t内监听器接受到的新管道
-将参与负载均衡，负载均衡的策略是loop\_t内活跃管道数量，loop\_balancer\_t选择
-活跃管道最少的loop\_t负载新接受的管道.\end{DoxyPre}
-
-
-
-\begin{DoxyPre}调用loop\_balancer\_attach让loop\_balancer\_t与loop\_t关联，调用loop\_balancer\_detach
-取消关联.
-\end{DoxyPre}
- 
 
 \subsection{函数说明}
-\hypertarget{a00086_ga2b3cf2cb63d914efe226e901a50d8b0a_ga2b3cf2cb63d914efe226e901a50d8b0a}{}\index{负载均衡器@{负载均衡器}!loop\+\_\+balancer\+\_\+attach@{loop\+\_\+balancer\+\_\+attach}}
-\index{loop\+\_\+balancer\+\_\+attach@{loop\+\_\+balancer\+\_\+attach}!负载均衡器@{负载均衡器}}
-\subsubsection[{loop\+\_\+balancer\+\_\+attach}]{\setlength{\rightskip}{0pt plus 5cm}int loop\+\_\+balancer\+\_\+attach (
+\hypertarget{a00086_a6e263963404ff40c8d7865ba117d3446_a6e263963404ff40c8d7865ba117d3446}{}\index{timer.\+h@{timer.\+h}!ktimer\+\_\+check\+\_\+timeout@{ktimer\+\_\+check\+\_\+timeout}}
+\index{ktimer\+\_\+check\+\_\+timeout@{ktimer\+\_\+check\+\_\+timeout}!timer.\+h@{timer.\+h}}
+\subsubsection[{ktimer\+\_\+check\+\_\+timeout}]{\setlength{\rightskip}{0pt plus 5cm}int ktimer\+\_\+check\+\_\+timeout (
 \begin{DoxyParamCaption}
-\item[{{\bf loop\+\_\+balancer\+\_\+t} $\ast$}]{balancer, }
-\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
+\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer, }
+\item[{time\+\_\+t}]{ms}
 \end{DoxyParamCaption}
-)}\label{a00086_ga2b3cf2cb63d914efe226e901a50d8b0a_ga2b3cf2cb63d914efe226e901a50d8b0a}
+)}\label{a00086_a6e263963404ff40c8d7865ba117d3446_a6e263963404ff40c8d7865ba117d3446}
 
 
-添加事件循环到负载均衡器 
+检查定时器是否超时 
 
 
 \begin{DoxyParams}{参数}
-{\em balancer} & loop\+\_\+balancer\+\_\+t实例 \\
+{\em timer} & ktimer\+\_\+t实例 \\
 \hline
-{\em loop} & loop\+\_\+t实例 \\
+{\em ms} & 当前时间戳 \\
 \hline
 \end{DoxyParams}
 
 \begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
+{\em 0} & 没有超时 \\
 \hline
-{\em 其他} & 失败 \\
+{\em 非零} & 超时 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00086_ga9992a50e96839282c678e51bc11158d1_ga9992a50e96839282c678e51bc11158d1}{}\index{负载均衡器@{负载均衡器}!loop\+\_\+balancer\+\_\+create@{loop\+\_\+balancer\+\_\+create}}
-\index{loop\+\_\+balancer\+\_\+create@{loop\+\_\+balancer\+\_\+create}!负载均衡器@{负载均衡器}}
-\subsubsection[{loop\+\_\+balancer\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf loop\+\_\+balancer\+\_\+t}$\ast$ loop\+\_\+balancer\+\_\+create (
+\hypertarget{a00086_af64f93b32c31cd222c02f0ad40bb642c_af64f93b32c31cd222c02f0ad40bb642c}{}\index{timer.\+h@{timer.\+h}!ktimer\+\_\+destroy@{ktimer\+\_\+destroy}}
+\index{ktimer\+\_\+destroy@{ktimer\+\_\+destroy}!timer.\+h@{timer.\+h}}
+\subsubsection[{ktimer\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void ktimer\+\_\+destroy (
 \begin{DoxyParamCaption}
-{}
+\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer}
 \end{DoxyParamCaption}
-)}\label{a00086_ga9992a50e96839282c678e51bc11158d1_ga9992a50e96839282c678e51bc11158d1}
+)}\label{a00086_af64f93b32c31cd222c02f0ad40bb642c_af64f93b32c31cd222c02f0ad40bb642c}
 
 
-创建负载均衡器 
+销毁定时器 
 
+
+\begin{DoxyParams}{参数}
+{\em timer} & ktimer\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00086_ad43b4e56bb273f1559d13143a783c974_ad43b4e56bb273f1559d13143a783c974}{}\index{timer.\+h@{timer.\+h}!ktimer\+\_\+get\+\_\+current\+\_\+list@{ktimer\+\_\+get\+\_\+current\+\_\+list}}
+\index{ktimer\+\_\+get\+\_\+current\+\_\+list@{ktimer\+\_\+get\+\_\+current\+\_\+list}!timer.\+h@{timer.\+h}}
+\subsubsection[{ktimer\+\_\+get\+\_\+current\+\_\+list}]{\setlength{\rightskip}{0pt plus 5cm}{\bf dlist\+\_\+t}$\ast$ ktimer\+\_\+get\+\_\+current\+\_\+list (
+\begin{DoxyParamCaption}
+\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer}
+\end{DoxyParamCaption}
+)}\label{a00086_ad43b4e56bb273f1559d13143a783c974_ad43b4e56bb273f1559d13143a783c974}
+
+
+取得当前所属链表 
+
+
+\begin{DoxyParams}{参数}
+{\em timer} & ktimer\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{返回}
-loop\+\_\+balancer\+\_\+t实例 
+dlist\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00086_ga2d702b5f965fe587fdaea3f5f9e2400c_ga2d702b5f965fe587fdaea3f5f9e2400c}{}\index{负载均衡器@{负载均衡器}!loop\+\_\+balancer\+\_\+destroy@{loop\+\_\+balancer\+\_\+destroy}}
-\index{loop\+\_\+balancer\+\_\+destroy@{loop\+\_\+balancer\+\_\+destroy}!负载均衡器@{负载均衡器}}
-\subsubsection[{loop\+\_\+balancer\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void loop\+\_\+balancer\+\_\+destroy (
+\hypertarget{a00086_afdfb2aec56b4e94af90f3befcef9b223_afdfb2aec56b4e94af90f3befcef9b223}{}\index{timer.\+h@{timer.\+h}!ktimer\+\_\+get\+\_\+current\+\_\+list\+\_\+node@{ktimer\+\_\+get\+\_\+current\+\_\+list\+\_\+node}}
+\index{ktimer\+\_\+get\+\_\+current\+\_\+list\+\_\+node@{ktimer\+\_\+get\+\_\+current\+\_\+list\+\_\+node}!timer.\+h@{timer.\+h}}
+\subsubsection[{ktimer\+\_\+get\+\_\+current\+\_\+list\+\_\+node}]{\setlength{\rightskip}{0pt plus 5cm}{\bf dlist\+\_\+node\+\_\+t}$\ast$ ktimer\+\_\+get\+\_\+current\+\_\+list\+\_\+node (
 \begin{DoxyParamCaption}
-\item[{{\bf loop\+\_\+balancer\+\_\+t} $\ast$}]{balancer}
+\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer}
 \end{DoxyParamCaption}
-)}\label{a00086_ga2d702b5f965fe587fdaea3f5f9e2400c_ga2d702b5f965fe587fdaea3f5f9e2400c}
+)}\label{a00086_afdfb2aec56b4e94af90f3befcef9b223_afdfb2aec56b4e94af90f3befcef9b223}
 
 
-销毁负载均衡器 
+取得当前链表节点 
 
 
 \begin{DoxyParams}{参数}
-{\em balancer} & loop\+\_\+balancer\+\_\+t实例 \\
+{\em timer} & ktimer\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
-\hypertarget{a00086_ga548ce0c2c624c4f4731a0f963d2ca42a_ga548ce0c2c624c4f4731a0f963d2ca42a}{}\index{负载均衡器@{负载均衡器}!loop\+\_\+balancer\+\_\+detach@{loop\+\_\+balancer\+\_\+detach}}
-\index{loop\+\_\+balancer\+\_\+detach@{loop\+\_\+balancer\+\_\+detach}!负载均衡器@{负载均衡器}}
-\subsubsection[{loop\+\_\+balancer\+\_\+detach}]{\setlength{\rightskip}{0pt plus 5cm}int loop\+\_\+balancer\+\_\+detach (
+\begin{DoxyReturn}{返回}
+dlist\+\_\+node\+\_\+t实例 
+\end{DoxyReturn}
+\hypertarget{a00086_a7c448e677f3022e5e7d910d3961dda61_a7c448e677f3022e5e7d910d3961dda61}{}\index{timer.\+h@{timer.\+h}!ktimer\+\_\+set\+\_\+current\+\_\+list@{ktimer\+\_\+set\+\_\+current\+\_\+list}}
+\index{ktimer\+\_\+set\+\_\+current\+\_\+list@{ktimer\+\_\+set\+\_\+current\+\_\+list}!timer.\+h@{timer.\+h}}
+\subsubsection[{ktimer\+\_\+set\+\_\+current\+\_\+list}]{\setlength{\rightskip}{0pt plus 5cm}void ktimer\+\_\+set\+\_\+current\+\_\+list (
 \begin{DoxyParamCaption}
-\item[{{\bf loop\+\_\+balancer\+\_\+t} $\ast$}]{balancer, }
-\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
+\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer, }
+\item[{{\bf dlist\+\_\+t} $\ast$}]{list}
 \end{DoxyParamCaption}
-)}\label{a00086_ga548ce0c2c624c4f4731a0f963d2ca42a_ga548ce0c2c624c4f4731a0f963d2ca42a}
+)}\label{a00086_a7c448e677f3022e5e7d910d3961dda61_a7c448e677f3022e5e7d910d3961dda61}
 
 
-从负载均衡器内删除事件循环 
+设置定时器所在的当前链表 
 
 
 \begin{DoxyParams}{参数}
-{\em balancer} & loop\+\_\+balancer\+\_\+t实例 \\
+{\em timer} & ktimer\+\_\+t实例 \\
 \hline
-{\em loop} & loop\+\_\+t实例 \\
+{\em list} & 链表 \\
 \hline
 \end{DoxyParams}
+\hypertarget{a00086_a9d06164f71d9a170962ba64e2cb7b79f_a9d06164f71d9a170962ba64e2cb7b79f}{}\index{timer.\+h@{timer.\+h}!ktimer\+\_\+set\+\_\+current\+\_\+list\+\_\+node@{ktimer\+\_\+set\+\_\+current\+\_\+list\+\_\+node}}
+\index{ktimer\+\_\+set\+\_\+current\+\_\+list\+\_\+node@{ktimer\+\_\+set\+\_\+current\+\_\+list\+\_\+node}!timer.\+h@{timer.\+h}}
+\subsubsection[{ktimer\+\_\+set\+\_\+current\+\_\+list\+\_\+node}]{\setlength{\rightskip}{0pt plus 5cm}void ktimer\+\_\+set\+\_\+current\+\_\+list\+\_\+node (
+\begin{DoxyParamCaption}
+\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer, }
+\item[{{\bf dlist\+\_\+node\+\_\+t} $\ast$}]{node}
+\end{DoxyParamCaption}
+)}\label{a00086_a9d06164f71d9a170962ba64e2cb7b79f_a9d06164f71d9a170962ba64e2cb7b79f}
 
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
+
+设置定时器所在的当前链表的链表节点 
+
+
+\begin{DoxyParams}{参数}
+{\em timer} & ktimer\+\_\+t实例 \\
 \hline
-{\em 其他} & 失败 \\
+{\em node} & 链表节点 \\
 \hline
-\end{DoxyRetVals}
+\end{DoxyParams}

@@ -1,202 +1,69 @@
-\hypertarget{a00051}{}\section{E\+:/knet-\/git/knet/knet/logger.h 文件参考}
-\label{a00051}\index{E\+:/knet-\/git/knet/knet/logger.\+h@{E\+:/knet-\/git/knet/knet/logger.\+h}}
+\hypertarget{a00051}{}\section{E\+:/knet-\/git/knet/knet/framework\+\_\+acceptor.h 文件参考}
+\label{a00051}\index{E\+:/knet-\/git/knet/knet/framework\+\_\+acceptor.\+h@{E\+:/knet-\/git/knet/knet/framework\+\_\+acceptor.\+h}}
 {\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\\*
-\subsection*{宏定义}
-\begin{DoxyCompactItemize}
-\item 
-\#define \hyperlink{a00051_a652b2c371e63a4e5c83bfd4ccffdb5f6_a652b2c371e63a4e5c83bfd4ccffdb5f6}{G\+L\+O\+B\+A\+L\+\_\+\+L\+O\+G\+G\+E\+R\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+E}()
-\item 
-\#define \hyperlink{a00051_a14cc328dca10f700057b63ef38b9b6d6_a14cc328dca10f700057b63ef38b9b6d6}{log\+\_\+verb}(format,  args...)
-\item 
-\#define \hyperlink{a00051_a315f98393b739fe47d2cf94ef0ffea0e_a315f98393b739fe47d2cf94ef0ffea0e}{log\+\_\+info}(format,  args...)
-\item 
-\#define \hyperlink{a00051_a360bf0dfa3997b4f866d190f7051fd5e_a360bf0dfa3997b4f866d190f7051fd5e}{log\+\_\+warn}(format,  args...)
-\item 
-\#define \hyperlink{a00051_a2c8ee5a5093780a8501b01381981e413_a2c8ee5a5093780a8501b01381981e413}{log\+\_\+error}(format,  args...)
-\item 
-\#define \hyperlink{a00051_a2c5b6f385060b9e82d7aa34ccb8d7546_a2c5b6f385060b9e82d7aa34ccb8d7546}{log\+\_\+fatal}(format,  args...)
-\end{DoxyCompactItemize}
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00044_a0468bf19eb27c2a3035789901b262671_a0468bf19eb27c2a3035789901b262671}{logger\+\_\+t} $\ast$ \hyperlink{a00051_a99170db05ea3c90f8799e90d23032562_a99170db05ea3c90f8799e90d23032562}{logger\+\_\+create} (const char $\ast$path, \hyperlink{a00044_afe883c56a5fd8d7794a3dd36780ed9d0_afe883c56a5fd8d7794a3dd36780ed9d0}{logger\+\_\+level\+\_\+e} level, \hyperlink{a00044_aa72cd8c306f50bee7c64e1daa1c1f3f4_aa72cd8c306f50bee7c64e1daa1c1f3f4}{logger\+\_\+mode\+\_\+e} mode)
-\begin{DoxyCompactList}\small\item\em 建立日志 \end{DoxyCompactList}\item 
-void \hyperlink{a00051_a45bc781df24f677451bcc079de530585_a45bc781df24f677451bcc079de530585}{logger\+\_\+destroy} (\hyperlink{a00044_a0468bf19eb27c2a3035789901b262671_a0468bf19eb27c2a3035789901b262671}{logger\+\_\+t} $\ast$logger)
-\begin{DoxyCompactList}\small\item\em 销毁日志 \end{DoxyCompactList}\item 
-int \hyperlink{a00051_aad3695a5b5df8331b3c0f3e069f037f5_aad3695a5b5df8331b3c0f3e069f037f5}{logger\+\_\+write} (\hyperlink{a00044_a0468bf19eb27c2a3035789901b262671_a0468bf19eb27c2a3035789901b262671}{logger\+\_\+t} $\ast$logger, \hyperlink{a00044_afe883c56a5fd8d7794a3dd36780ed9d0_afe883c56a5fd8d7794a3dd36780ed9d0}{logger\+\_\+level\+\_\+e} level, const char $\ast$format,...)
-\begin{DoxyCompactList}\small\item\em 写日志 \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{变量}
-\begin{DoxyCompactItemize}
-\item 
-\hyperlink{a00044_a0468bf19eb27c2a3035789901b262671_a0468bf19eb27c2a3035789901b262671}{logger\+\_\+t} $\ast$ \hyperlink{a00051_a390c05c7cb68b8334d6418733f330945_a390c05c7cb68b8334d6418733f330945}{global\+\_\+logger}
-\end{DoxyCompactItemize}
-
-
-\subsection{宏定义说明}
-\hypertarget{a00051_a652b2c371e63a4e5c83bfd4ccffdb5f6_a652b2c371e63a4e5c83bfd4ccffdb5f6}{}\index{logger.\+h@{logger.\+h}!G\+L\+O\+B\+A\+L\+\_\+\+L\+O\+G\+G\+E\+R\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+E@{G\+L\+O\+B\+A\+L\+\_\+\+L\+O\+G\+G\+E\+R\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+E}}
-\index{G\+L\+O\+B\+A\+L\+\_\+\+L\+O\+G\+G\+E\+R\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+E@{G\+L\+O\+B\+A\+L\+\_\+\+L\+O\+G\+G\+E\+R\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+E}!logger.\+h@{logger.\+h}}
-\subsubsection[{G\+L\+O\+B\+A\+L\+\_\+\+L\+O\+G\+G\+E\+R\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+E}]{\setlength{\rightskip}{0pt plus 5cm}\#define G\+L\+O\+B\+A\+L\+\_\+\+L\+O\+G\+G\+E\+R\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+Z\+E(
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\label{a00051_a652b2c371e63a4e5c83bfd4ccffdb5f6_a652b2c371e63a4e5c83bfd4ccffdb5f6}
-{\bfseries 值\+:}
-\begin{DoxyCode}
-\textcolor{keywordflow}{do} \{ \(\backslash\)
-        if (!\hyperlink{a00051_a390c05c7cb68b8334d6418733f330945_a390c05c7cb68b8334d6418733f330945}{global\_logger}) \hyperlink{a00051_a390c05c7cb68b8334d6418733f330945_a390c05c7cb68b8334d6418733f330945}{global\_logger} = 
-      \hyperlink{a00051_a99170db05ea3c90f8799e90d23032562_a99170db05ea3c90f8799e90d23032562}{logger\_create}(0, \hyperlink{a00044_ab89b260e9cc223630b78193c8fb31cea_ab89b260e9cc223630b78193c8fb31cea}{LOGGER\_LEVEL}, \hyperlink{a00044_ad3df826d09b6b84228245d9f4ba52b21_ad3df826d09b6b84228245d9f4ba52b21}{LOGGER\_MODE}); \(\backslash\)
-    \} while(0);
-\end{DoxyCode}
-\hypertarget{a00051_a2c8ee5a5093780a8501b01381981e413_a2c8ee5a5093780a8501b01381981e413}{}\index{logger.\+h@{logger.\+h}!log\+\_\+error@{log\+\_\+error}}
-\index{log\+\_\+error@{log\+\_\+error}!logger.\+h@{logger.\+h}}
-\subsubsection[{log\+\_\+error}]{\setlength{\rightskip}{0pt plus 5cm}\#define log\+\_\+error(
-\begin{DoxyParamCaption}
-\item[{}]{format, }
-\item[{}]{args...}
-\end{DoxyParamCaption}
-)}\label{a00051_a2c8ee5a5093780a8501b01381981e413_a2c8ee5a5093780a8501b01381981e413}
-{\bfseries 值\+:}
-\begin{DoxyCode}
-\textcolor{keywordflow}{do} \{ \hyperlink{a00051_a652b2c371e63a4e5c83bfd4ccffdb5f6_a652b2c371e63a4e5c83bfd4ccffdb5f6}{\(\backslash\)}
-\hyperlink{a00051_a652b2c371e63a4e5c83bfd4ccffdb5f6_a652b2c371e63a4e5c83bfd4ccffdb5f6}{                GLOBAL\_LOGGER\_INITIALIZE}(); 
-      \hyperlink{a00051_aad3695a5b5df8331b3c0f3e069f037f5_aad3695a5b5df8331b3c0f3e069f037f5}{\(\backslash\)}
-\hyperlink{a00051_aad3695a5b5df8331b3c0f3e069f037f5_aad3695a5b5df8331b3c0f3e069f037f5}{                logger\_write}(\hyperlink{a00051_a390c05c7cb68b8334d6418733f330945_a390c05c7cb68b8334d6418733f330945}{global\_logger}, 
-      \hyperlink{a00044_a4e764c733cf98ee587ca17412fca9148_a4e764c733cf98ee587ca17412fca9148a25ea4a675b2ac8ca563d9d99e8f664de}{logger\_level\_error}, format, ##args); \(\backslash\)
-            \} \textcolor{keywordflow}{while}(0);
-\end{DoxyCode}
-\hypertarget{a00051_a2c5b6f385060b9e82d7aa34ccb8d7546_a2c5b6f385060b9e82d7aa34ccb8d7546}{}\index{logger.\+h@{logger.\+h}!log\+\_\+fatal@{log\+\_\+fatal}}
-\index{log\+\_\+fatal@{log\+\_\+fatal}!logger.\+h@{logger.\+h}}
-\subsubsection[{log\+\_\+fatal}]{\setlength{\rightskip}{0pt plus 5cm}\#define log\+\_\+fatal(
-\begin{DoxyParamCaption}
-\item[{}]{format, }
-\item[{}]{args...}
-\end{DoxyParamCaption}
-)}\label{a00051_a2c5b6f385060b9e82d7aa34ccb8d7546_a2c5b6f385060b9e82d7aa34ccb8d7546}
-{\bfseries 值\+:}
-\begin{DoxyCode}
-\textcolor{keywordflow}{do} \{ \hyperlink{a00051_a652b2c371e63a4e5c83bfd4ccffdb5f6_a652b2c371e63a4e5c83bfd4ccffdb5f6}{\(\backslash\)}
-\hyperlink{a00051_a652b2c371e63a4e5c83bfd4ccffdb5f6_a652b2c371e63a4e5c83bfd4ccffdb5f6}{                GLOBAL\_LOGGER\_INITIALIZE}(); 
-      \hyperlink{a00051_aad3695a5b5df8331b3c0f3e069f037f5_aad3695a5b5df8331b3c0f3e069f037f5}{\(\backslash\)}
-\hyperlink{a00051_aad3695a5b5df8331b3c0f3e069f037f5_aad3695a5b5df8331b3c0f3e069f037f5}{                logger\_write}(\hyperlink{a00051_a390c05c7cb68b8334d6418733f330945_a390c05c7cb68b8334d6418733f330945}{global\_logger}, 
-      \hyperlink{a00044_a4e764c733cf98ee587ca17412fca9148_a4e764c733cf98ee587ca17412fca9148acb38841901d30a0cd9349b9596c78d15}{logger\_level\_fatal}, format, ##args); \(\backslash\)
-            \} \textcolor{keywordflow}{while}(0);
-\end{DoxyCode}
-\hypertarget{a00051_a315f98393b739fe47d2cf94ef0ffea0e_a315f98393b739fe47d2cf94ef0ffea0e}{}\index{logger.\+h@{logger.\+h}!log\+\_\+info@{log\+\_\+info}}
-\index{log\+\_\+info@{log\+\_\+info}!logger.\+h@{logger.\+h}}
-\subsubsection[{log\+\_\+info}]{\setlength{\rightskip}{0pt plus 5cm}\#define log\+\_\+info(
-\begin{DoxyParamCaption}
-\item[{}]{format, }
-\item[{}]{args...}
-\end{DoxyParamCaption}
-)}\label{a00051_a315f98393b739fe47d2cf94ef0ffea0e_a315f98393b739fe47d2cf94ef0ffea0e}
-{\bfseries 值\+:}
-\begin{DoxyCode}
-\textcolor{keywordflow}{do} \{ \hyperlink{a00051_a652b2c371e63a4e5c83bfd4ccffdb5f6_a652b2c371e63a4e5c83bfd4ccffdb5f6}{\(\backslash\)}
-\hyperlink{a00051_a652b2c371e63a4e5c83bfd4ccffdb5f6_a652b2c371e63a4e5c83bfd4ccffdb5f6}{                GLOBAL\_LOGGER\_INITIALIZE}(); 
-      \hyperlink{a00051_aad3695a5b5df8331b3c0f3e069f037f5_aad3695a5b5df8331b3c0f3e069f037f5}{\(\backslash\)}
-\hyperlink{a00051_aad3695a5b5df8331b3c0f3e069f037f5_aad3695a5b5df8331b3c0f3e069f037f5}{                logger\_write}(\hyperlink{a00051_a390c05c7cb68b8334d6418733f330945_a390c05c7cb68b8334d6418733f330945}{global\_logger}, 
-      \hyperlink{a00044_a4e764c733cf98ee587ca17412fca9148_a4e764c733cf98ee587ca17412fca9148a40b6269b621931272a4da1c6af91477f}{logger\_level\_information}, format, ##args); \(\backslash\)
-            \} \textcolor{keywordflow}{while}(0);
-\end{DoxyCode}
-\hypertarget{a00051_a14cc328dca10f700057b63ef38b9b6d6_a14cc328dca10f700057b63ef38b9b6d6}{}\index{logger.\+h@{logger.\+h}!log\+\_\+verb@{log\+\_\+verb}}
-\index{log\+\_\+verb@{log\+\_\+verb}!logger.\+h@{logger.\+h}}
-\subsubsection[{log\+\_\+verb}]{\setlength{\rightskip}{0pt plus 5cm}\#define log\+\_\+verb(
-\begin{DoxyParamCaption}
-\item[{}]{format, }
-\item[{}]{args...}
-\end{DoxyParamCaption}
-)}\label{a00051_a14cc328dca10f700057b63ef38b9b6d6_a14cc328dca10f700057b63ef38b9b6d6}
-{\bfseries 值\+:}
-\begin{DoxyCode}
-\textcolor{keywordflow}{do} \{ \hyperlink{a00051_a652b2c371e63a4e5c83bfd4ccffdb5f6_a652b2c371e63a4e5c83bfd4ccffdb5f6}{\(\backslash\)}
-\hyperlink{a00051_a652b2c371e63a4e5c83bfd4ccffdb5f6_a652b2c371e63a4e5c83bfd4ccffdb5f6}{                GLOBAL\_LOGGER\_INITIALIZE}(); 
-      \hyperlink{a00051_aad3695a5b5df8331b3c0f3e069f037f5_aad3695a5b5df8331b3c0f3e069f037f5}{\(\backslash\)}
-\hyperlink{a00051_aad3695a5b5df8331b3c0f3e069f037f5_aad3695a5b5df8331b3c0f3e069f037f5}{                logger\_write}(\hyperlink{a00051_a390c05c7cb68b8334d6418733f330945_a390c05c7cb68b8334d6418733f330945}{global\_logger}, 
-      \hyperlink{a00044_a4e764c733cf98ee587ca17412fca9148_a4e764c733cf98ee587ca17412fca9148a20b7712a6e03c1820c297b36add74593}{logger\_level\_verbose}, format, ##args); \(\backslash\)
-            \} \textcolor{keywordflow}{while}(0);
-\end{DoxyCode}
-\hypertarget{a00051_a360bf0dfa3997b4f866d190f7051fd5e_a360bf0dfa3997b4f866d190f7051fd5e}{}\index{logger.\+h@{logger.\+h}!log\+\_\+warn@{log\+\_\+warn}}
-\index{log\+\_\+warn@{log\+\_\+warn}!logger.\+h@{logger.\+h}}
-\subsubsection[{log\+\_\+warn}]{\setlength{\rightskip}{0pt plus 5cm}\#define log\+\_\+warn(
-\begin{DoxyParamCaption}
-\item[{}]{format, }
-\item[{}]{args...}
-\end{DoxyParamCaption}
-)}\label{a00051_a360bf0dfa3997b4f866d190f7051fd5e_a360bf0dfa3997b4f866d190f7051fd5e}
-{\bfseries 值\+:}
-\begin{DoxyCode}
-\textcolor{keywordflow}{do} \{ \hyperlink{a00051_a652b2c371e63a4e5c83bfd4ccffdb5f6_a652b2c371e63a4e5c83bfd4ccffdb5f6}{\(\backslash\)}
-\hyperlink{a00051_a652b2c371e63a4e5c83bfd4ccffdb5f6_a652b2c371e63a4e5c83bfd4ccffdb5f6}{                GLOBAL\_LOGGER\_INITIALIZE}(); 
-      \hyperlink{a00051_aad3695a5b5df8331b3c0f3e069f037f5_aad3695a5b5df8331b3c0f3e069f037f5}{\(\backslash\)}
-\hyperlink{a00051_aad3695a5b5df8331b3c0f3e069f037f5_aad3695a5b5df8331b3c0f3e069f037f5}{                logger\_write}(\hyperlink{a00051_a390c05c7cb68b8334d6418733f330945_a390c05c7cb68b8334d6418733f330945}{global\_logger}, 
-      \hyperlink{a00044_a4e764c733cf98ee587ca17412fca9148_a4e764c733cf98ee587ca17412fca9148a6471d2c7c9d1ff538f9a897924a7b0f0}{logger\_level\_warning}, format, ##args); \(\backslash\)
-            \} \textcolor{keywordflow}{while}(0);
-\end{DoxyCode}
+\hyperlink{a00047_ab0952db3c97c4760192720875e69d040_ab0952db3c97c4760192720875e69d040}{framework\+\_\+acceptor\+\_\+t} $\ast$ \hyperlink{a00051_a09f38093fc07ac67eb32a2d73d01ac00_a09f38093fc07ac67eb32a2d73d01ac00}{framework\+\_\+acceptor\+\_\+create} (\hyperlink{a00047_a6149d769f6f07ed14a40a271c95d8463_a6149d769f6f07ed14a40a271c95d8463}{framework\+\_\+t} $\ast$f)
+\begin{DoxyCompactList}\small\item\em 建立框架网络监听器 \end{DoxyCompactList}\item 
+void \hyperlink{a00051_a8547ef8ed59bf8fc10ce491cbc2e0e7d_a8547ef8ed59bf8fc10ce491cbc2e0e7d}{framework\+\_\+acceptor\+\_\+destroy} (\hyperlink{a00047_ab0952db3c97c4760192720875e69d040_ab0952db3c97c4760192720875e69d040}{framework\+\_\+acceptor\+\_\+t} $\ast$a)
+\begin{DoxyCompactList}\small\item\em 销毁框架网络监听器 \end{DoxyCompactList}\item 
+int \hyperlink{a00051_ae7af7233800a87f2719ba257be3fe738_ae7af7233800a87f2719ba257be3fe738}{framework\+\_\+acceptor\+\_\+start} (\hyperlink{a00047_ab0952db3c97c4760192720875e69d040_ab0952db3c97c4760192720875e69d040}{framework\+\_\+acceptor\+\_\+t} $\ast$a)
+\begin{DoxyCompactList}\small\item\em 启动框架网络监听器 \end{DoxyCompactList}\item 
+void \hyperlink{a00051_a53e38c44cdc8c84a57728a7f8e41dc27_a53e38c44cdc8c84a57728a7f8e41dc27}{framework\+\_\+acceptor\+\_\+stop} (\hyperlink{a00047_ab0952db3c97c4760192720875e69d040_ab0952db3c97c4760192720875e69d040}{framework\+\_\+acceptor\+\_\+t} $\ast$a)
+\begin{DoxyCompactList}\small\item\em 关闭框架网络监听器 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{函数说明}
-\hypertarget{a00051_a99170db05ea3c90f8799e90d23032562_a99170db05ea3c90f8799e90d23032562}{}\index{logger.\+h@{logger.\+h}!logger\+\_\+create@{logger\+\_\+create}}
-\index{logger\+\_\+create@{logger\+\_\+create}!logger.\+h@{logger.\+h}}
-\subsubsection[{logger\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf logger\+\_\+t}$\ast$ logger\+\_\+create (
+\hypertarget{a00051_a09f38093fc07ac67eb32a2d73d01ac00_a09f38093fc07ac67eb32a2d73d01ac00}{}\index{framework\+\_\+acceptor.\+h@{framework\+\_\+acceptor.\+h}!framework\+\_\+acceptor\+\_\+create@{framework\+\_\+acceptor\+\_\+create}}
+\index{framework\+\_\+acceptor\+\_\+create@{framework\+\_\+acceptor\+\_\+create}!framework\+\_\+acceptor.\+h@{framework\+\_\+acceptor.\+h}}
+\subsubsection[{framework\+\_\+acceptor\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf framework\+\_\+acceptor\+\_\+t}$\ast$ framework\+\_\+acceptor\+\_\+create (
 \begin{DoxyParamCaption}
-\item[{const char $\ast$}]{path, }
-\item[{{\bf logger\+\_\+level\+\_\+e}}]{level, }
-\item[{{\bf logger\+\_\+mode\+\_\+e}}]{mode}
+\item[{{\bf framework\+\_\+t} $\ast$}]{f}
 \end{DoxyParamCaption}
-)}\label{a00051_a99170db05ea3c90f8799e90d23032562_a99170db05ea3c90f8799e90d23032562}
+)}\label{a00051_a09f38093fc07ac67eb32a2d73d01ac00_a09f38093fc07ac67eb32a2d73d01ac00}
 
 
-建立日志 
+建立框架网络监听器 
 
 
 \begin{DoxyParams}{参数}
-{\em path} & 日志文件路径, 如果为0将使用当前目录 \\
-\hline
-{\em level} & 日志等级 \\
-\hline
-{\em mode} & 日志模式 \\
+{\em f} & framework\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-logger\+\_\+t实例 
+framework\+\_\+acceptor\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00051_a45bc781df24f677451bcc079de530585_a45bc781df24f677451bcc079de530585}{}\index{logger.\+h@{logger.\+h}!logger\+\_\+destroy@{logger\+\_\+destroy}}
-\index{logger\+\_\+destroy@{logger\+\_\+destroy}!logger.\+h@{logger.\+h}}
-\subsubsection[{logger\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void logger\+\_\+destroy (
+\hypertarget{a00051_a8547ef8ed59bf8fc10ce491cbc2e0e7d_a8547ef8ed59bf8fc10ce491cbc2e0e7d}{}\index{framework\+\_\+acceptor.\+h@{framework\+\_\+acceptor.\+h}!framework\+\_\+acceptor\+\_\+destroy@{framework\+\_\+acceptor\+\_\+destroy}}
+\index{framework\+\_\+acceptor\+\_\+destroy@{framework\+\_\+acceptor\+\_\+destroy}!framework\+\_\+acceptor.\+h@{framework\+\_\+acceptor.\+h}}
+\subsubsection[{framework\+\_\+acceptor\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+acceptor\+\_\+destroy (
 \begin{DoxyParamCaption}
-\item[{{\bf logger\+\_\+t} $\ast$}]{logger}
+\item[{{\bf framework\+\_\+acceptor\+\_\+t} $\ast$}]{a}
 \end{DoxyParamCaption}
-)}\label{a00051_a45bc781df24f677451bcc079de530585_a45bc781df24f677451bcc079de530585}
+)}\label{a00051_a8547ef8ed59bf8fc10ce491cbc2e0e7d_a8547ef8ed59bf8fc10ce491cbc2e0e7d}
 
 
-销毁日志 
+销毁框架网络监听器 
 
 
 \begin{DoxyParams}{参数}
-{\em logger} & logger\+\_\+t实例 \\
+{\em a} & framework\+\_\+acceptor\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
-\hypertarget{a00051_aad3695a5b5df8331b3c0f3e069f037f5_aad3695a5b5df8331b3c0f3e069f037f5}{}\index{logger.\+h@{logger.\+h}!logger\+\_\+write@{logger\+\_\+write}}
-\index{logger\+\_\+write@{logger\+\_\+write}!logger.\+h@{logger.\+h}}
-\subsubsection[{logger\+\_\+write}]{\setlength{\rightskip}{0pt plus 5cm}int logger\+\_\+write (
+\hypertarget{a00051_ae7af7233800a87f2719ba257be3fe738_ae7af7233800a87f2719ba257be3fe738}{}\index{framework\+\_\+acceptor.\+h@{framework\+\_\+acceptor.\+h}!framework\+\_\+acceptor\+\_\+start@{framework\+\_\+acceptor\+\_\+start}}
+\index{framework\+\_\+acceptor\+\_\+start@{framework\+\_\+acceptor\+\_\+start}!framework\+\_\+acceptor.\+h@{framework\+\_\+acceptor.\+h}}
+\subsubsection[{framework\+\_\+acceptor\+\_\+start}]{\setlength{\rightskip}{0pt plus 5cm}int framework\+\_\+acceptor\+\_\+start (
 \begin{DoxyParamCaption}
-\item[{{\bf logger\+\_\+t} $\ast$}]{logger, }
-\item[{{\bf logger\+\_\+level\+\_\+e}}]{level, }
-\item[{const char $\ast$}]{format, }
-\item[{}]{...}
+\item[{{\bf framework\+\_\+acceptor\+\_\+t} $\ast$}]{a}
 \end{DoxyParamCaption}
-)}\label{a00051_aad3695a5b5df8331b3c0f3e069f037f5_aad3695a5b5df8331b3c0f3e069f037f5}
+)}\label{a00051_ae7af7233800a87f2719ba257be3fe738_ae7af7233800a87f2719ba257be3fe738}
 
 
-写日志 
+启动框架网络监听器 
 
 
 \begin{DoxyParams}{参数}
-{\em logger} & logger\+\_\+t实例 \\
-\hline
-{\em level} & 日志等级 \\
-\hline
-{\em format} & 日志格式 \\
+{\em a} & framework\+\_\+acceptor\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 
@@ -206,9 +73,19 @@ logger\+\_\+t实例
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
+\hypertarget{a00051_a53e38c44cdc8c84a57728a7f8e41dc27_a53e38c44cdc8c84a57728a7f8e41dc27}{}\index{framework\+\_\+acceptor.\+h@{framework\+\_\+acceptor.\+h}!framework\+\_\+acceptor\+\_\+stop@{framework\+\_\+acceptor\+\_\+stop}}
+\index{framework\+\_\+acceptor\+\_\+stop@{framework\+\_\+acceptor\+\_\+stop}!framework\+\_\+acceptor.\+h@{framework\+\_\+acceptor.\+h}}
+\subsubsection[{framework\+\_\+acceptor\+\_\+stop}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+acceptor\+\_\+stop (
+\begin{DoxyParamCaption}
+\item[{{\bf framework\+\_\+acceptor\+\_\+t} $\ast$}]{a}
+\end{DoxyParamCaption}
+)}\label{a00051_a53e38c44cdc8c84a57728a7f8e41dc27_a53e38c44cdc8c84a57728a7f8e41dc27}
 
 
-\subsection{变量说明}
-\hypertarget{a00051_a390c05c7cb68b8334d6418733f330945_a390c05c7cb68b8334d6418733f330945}{}\index{logger.\+h@{logger.\+h}!global\+\_\+logger@{global\+\_\+logger}}
-\index{global\+\_\+logger@{global\+\_\+logger}!logger.\+h@{logger.\+h}}
-\subsubsection[{global\+\_\+logger}]{\setlength{\rightskip}{0pt plus 5cm}{\bf logger\+\_\+t}$\ast$ global\+\_\+logger}\label{a00051_a390c05c7cb68b8334d6418733f330945_a390c05c7cb68b8334d6418733f330945}
+关闭框架网络监听器 
+
+
+\begin{DoxyParams}{参数}
+{\em a} & framework\+\_\+acceptor\+\_\+t实例 \\
+\hline
+\end{DoxyParams}

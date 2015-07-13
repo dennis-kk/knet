@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/thread_api.h 文件参考</title>
+<title>knet: E:/knet-git/knet/knet/rpc.c 文件参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">knet
-   &#160;<span id="projectnumber">1.4.3</span>
+   &#160;<span id="projectnumber">1.4.4</span>
    </div>
   </td>
  </tr>
@@ -87,70 +87,83 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">结构体</a> &#124;
+<a href="#typedef-members">类型定义</a> &#124;
+<a href="#enum-members">枚举</a> &#124;
 <a href="#func-members">函数</a>  </div>
   <div class="headertitle">
-<div class="title">thread_api.h 文件参考</div>  </div>
+<div class="title">rpc.c 文件参考</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="a00044_source.html">config.h</a>&quot;</code><br />
-</div>
-<p><a href="a00076_source.html">浏览源代码.</a></p>
-<table class="memberdecls">
+<div class="textblock"><code>#include &quot;<a class="el" href="a00077_source.html">rpc_api.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00056_source.html">hash.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00045_source.html">channel_ref.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00082_source.html">stream.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00079_source.html">rpc_object.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+结构体</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00033.html">krpc_header_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00019.html">_krpc_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+类型定义</h2></td></tr>
+<tr class="memitem:aaadecef3a6bd120b41aee1916b5854d0"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00033.html">krpc_header_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00076_aaadecef3a6bd120b41aee1916b5854d0.html#aaadecef3a6bd120b41aee1916b5854d0">krpc_header_t</a></td></tr>
+<tr class="separator:aaadecef3a6bd120b41aee1916b5854d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7109e23eab2e74945868adf0b60132b"><td class="memItemLeft" align="right" valign="top">typedef enum <a class="el" href="a00076_a4045ccaf4758dcf838a88a58c73e462b.html#a4045ccaf4758dcf838a88a58c73e462b">_krpc_call_type_e</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00076_aa7109e23eab2e74945868adf0b60132b.html#aa7109e23eab2e74945868adf0b60132b">krpc_call_type_e</a></td></tr>
+<tr class="separator:aa7109e23eab2e74945868adf0b60132b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+枚举</h2></td></tr>
+<tr class="memitem:a4045ccaf4758dcf838a88a58c73e462b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00076_a4045ccaf4758dcf838a88a58c73e462b.html#a4045ccaf4758dcf838a88a58c73e462b">_krpc_call_type_e</a> { <a class="el" href="a00076_a4045ccaf4758dcf838a88a58c73e462b.html#a4045ccaf4758dcf838a88a58c73e462ba831d2f31c2f7281a9b54c6816df54c61">krpc_call_type_result</a> = 1, 
+<a class="el" href="a00076_a4045ccaf4758dcf838a88a58c73e462b.html#a4045ccaf4758dcf838a88a58c73e462baff220c476768b4bf6b308fa257e12c4b">krpc_call_type_call</a> = 2
+ }</td></tr>
+<tr class="separator:a4045ccaf4758dcf838a88a58c73e462b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 函数</h2></td></tr>
-<tr class="memitem:gac20d7726e152e0b49209ce228893c25d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00044_a9054159cde2f926ef61c28ce1e555199.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00089_gac20d7726e152e0b49209ce228893c25d.html#gac20d7726e152e0b49209ce228893c25d">thread_runner_create</a> (<a class="el" href="a00044_a46bcd8005e5d86fdbc6be5af0a77156c.html#a46bcd8005e5d86fdbc6be5af0a77156c">thread_func_t</a> func, void *params)</td></tr>
-<tr class="memdesc:gac20d7726e152e0b49209ce228893c25d"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个线程  <a href="a00089_gac20d7726e152e0b49209ce228893c25d.html#gac20d7726e152e0b49209ce228893c25d">更多...</a><br /></td></tr>
-<tr class="separator:gac20d7726e152e0b49209ce228893c25d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8b9d3d45b6055971fc40f24ec6572cf6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00089_ga8b9d3d45b6055971fc40f24ec6572cf6.html#ga8b9d3d45b6055971fc40f24ec6572cf6">thread_runner_destroy</a> (<a class="el" href="a00044_a9054159cde2f926ef61c28ce1e555199.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *runner)</td></tr>
-<tr class="memdesc:ga8b9d3d45b6055971fc40f24ec6572cf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁一个线程  <a href="a00089_ga8b9d3d45b6055971fc40f24ec6572cf6.html#ga8b9d3d45b6055971fc40f24ec6572cf6">更多...</a><br /></td></tr>
-<tr class="separator:ga8b9d3d45b6055971fc40f24ec6572cf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1114fd962e310f9d31ed4e83d8a21897"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00089_ga1114fd962e310f9d31ed4e83d8a21897.html#ga1114fd962e310f9d31ed4e83d8a21897">thread_runner_start</a> (<a class="el" href="a00044_a9054159cde2f926ef61c28ce1e555199.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *runner, int stack_size)</td></tr>
-<tr class="memdesc:ga1114fd962e310f9d31ed4e83d8a21897"><td class="mdescLeft">&#160;</td><td class="mdescRight">启动线程  <a href="a00089_ga1114fd962e310f9d31ed4e83d8a21897.html#ga1114fd962e310f9d31ed4e83d8a21897">更多...</a><br /></td></tr>
-<tr class="separator:ga1114fd962e310f9d31ed4e83d8a21897"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa035f190ffd3d7f117b8fbb58716f042"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00089_gaa035f190ffd3d7f117b8fbb58716f042.html#gaa035f190ffd3d7f117b8fbb58716f042">thread_runner_stop</a> (<a class="el" href="a00044_a9054159cde2f926ef61c28ce1e555199.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *runner)</td></tr>
-<tr class="memdesc:gaa035f190ffd3d7f117b8fbb58716f042"><td class="mdescLeft">&#160;</td><td class="mdescRight">停止线程  <a href="a00089_gaa035f190ffd3d7f117b8fbb58716f042.html#gaa035f190ffd3d7f117b8fbb58716f042">更多...</a><br /></td></tr>
-<tr class="separator:gaa035f190ffd3d7f117b8fbb58716f042"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga93f88ba77e7eab786da6fe7d1f681a2e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00089_ga93f88ba77e7eab786da6fe7d1f681a2e.html#ga93f88ba77e7eab786da6fe7d1f681a2e">thread_runner_start_loop</a> (<a class="el" href="a00044_a9054159cde2f926ef61c28ce1e555199.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *runner, <a class="el" href="a00044_a9c3ad1cd2de83e09f3a7b59fa82c94ee.html#a9c3ad1cd2de83e09f3a7b59fa82c94ee">loop_t</a> *loop, int stack_size)</td></tr>
-<tr class="memdesc:ga93f88ba77e7eab786da6fe7d1f681a2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">在线程内运行loop_run()  <a href="a00089_ga93f88ba77e7eab786da6fe7d1f681a2e.html#ga93f88ba77e7eab786da6fe7d1f681a2e">更多...</a><br /></td></tr>
-<tr class="separator:ga93f88ba77e7eab786da6fe7d1f681a2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9191991e2bd7f91fe68324c2855d581d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00089_ga9191991e2bd7f91fe68324c2855d581d.html#ga9191991e2bd7f91fe68324c2855d581d">thread_runner_start_timer_loop</a> (<a class="el" href="a00044_a9054159cde2f926ef61c28ce1e555199.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *runner, <a class="el" href="a00044_a024af2aa29615e7a811ea6c45438157d.html#a024af2aa29615e7a811ea6c45438157d">ktimer_loop_t</a> *timer_loop, int stack_size)</td></tr>
-<tr class="memdesc:ga9191991e2bd7f91fe68324c2855d581d"><td class="mdescLeft">&#160;</td><td class="mdescRight">在线程内运行timer_loop_run()  <a href="a00089_ga9191991e2bd7f91fe68324c2855d581d.html#ga9191991e2bd7f91fe68324c2855d581d">更多...</a><br /></td></tr>
-<tr class="separator:ga9191991e2bd7f91fe68324c2855d581d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga813a718c56e0923be9396630c8460794"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00089_ga813a718c56e0923be9396630c8460794.html#ga813a718c56e0923be9396630c8460794">thread_runner_join</a> (<a class="el" href="a00044_a9054159cde2f926ef61c28ce1e555199.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *runner)</td></tr>
-<tr class="memdesc:ga813a718c56e0923be9396630c8460794"><td class="mdescLeft">&#160;</td><td class="mdescRight">等待线程终止  <a href="a00089_ga813a718c56e0923be9396630c8460794.html#ga813a718c56e0923be9396630c8460794">更多...</a><br /></td></tr>
-<tr class="separator:ga813a718c56e0923be9396630c8460794"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga95c00ec3d6ef1710cc8d8bb8cb7e585d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00089_ga95c00ec3d6ef1710cc8d8bb8cb7e585d.html#ga95c00ec3d6ef1710cc8d8bb8cb7e585d">thread_runner_check_start</a> (<a class="el" href="a00044_a9054159cde2f926ef61c28ce1e555199.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *runner)</td></tr>
-<tr class="memdesc:ga95c00ec3d6ef1710cc8d8bb8cb7e585d"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查线程是否正在运行  <a href="a00089_ga95c00ec3d6ef1710cc8d8bb8cb7e585d.html#ga95c00ec3d6ef1710cc8d8bb8cb7e585d">更多...</a><br /></td></tr>
-<tr class="separator:ga95c00ec3d6ef1710cc8d8bb8cb7e585d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf67fa2b2cfefc2de422a31b9dfad2bca"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00089_gaf67fa2b2cfefc2de422a31b9dfad2bca.html#gaf67fa2b2cfefc2de422a31b9dfad2bca">thread_runner_get_params</a> (<a class="el" href="a00044_a9054159cde2f926ef61c28ce1e555199.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *runner)</td></tr>
-<tr class="memdesc:gaf67fa2b2cfefc2de422a31b9dfad2bca"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得线程运行参数，thread_runner_create()第二个参数  <a href="a00089_gaf67fa2b2cfefc2de422a31b9dfad2bca.html#gaf67fa2b2cfefc2de422a31b9dfad2bca">更多...</a><br /></td></tr>
-<tr class="separator:gaf67fa2b2cfefc2de422a31b9dfad2bca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaecf10907eee00ec0e807271c906a6645"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00044_ad0ada5642d10ce71bdd90816182f9b79.html#ad0ada5642d10ce71bdd90816182f9b79">thread_id_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00089_gaecf10907eee00ec0e807271c906a6645.html#gaecf10907eee00ec0e807271c906a6645">thread_get_self_id</a> ()</td></tr>
-<tr class="memdesc:gaecf10907eee00ec0e807271c906a6645"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得线程ID  <a href="a00089_gaecf10907eee00ec0e807271c906a6645.html#gaecf10907eee00ec0e807271c906a6645">更多...</a><br /></td></tr>
-<tr class="separator:gaecf10907eee00ec0e807271c906a6645"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gabddf3ac30aac3f22f8c53b7517e6eb35"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00089_gabddf3ac30aac3f22f8c53b7517e6eb35.html#gabddf3ac30aac3f22f8c53b7517e6eb35">thread_sleep_ms</a> (int ms)</td></tr>
-<tr class="memdesc:gabddf3ac30aac3f22f8c53b7517e6eb35"><td class="mdescLeft">&#160;</td><td class="mdescRight">睡眠  <a href="a00089_gabddf3ac30aac3f22f8c53b7517e6eb35.html#gabddf3ac30aac3f22f8c53b7517e6eb35">更多...</a><br /></td></tr>
-<tr class="separator:gabddf3ac30aac3f22f8c53b7517e6eb35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa187b2cd2c906680890fb4ea2833d665"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00089_gaa187b2cd2c906680890fb4ea2833d665.html#gaa187b2cd2c906680890fb4ea2833d665">thread_set_tls_data</a> (<a class="el" href="a00044_a9054159cde2f926ef61c28ce1e555199.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *runner, void *data)</td></tr>
-<tr class="memdesc:gaa187b2cd2c906680890fb4ea2833d665"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置线程本地存储  <a href="a00089_gaa187b2cd2c906680890fb4ea2833d665.html#gaa187b2cd2c906680890fb4ea2833d665">更多...</a><br /></td></tr>
-<tr class="separator:gaa187b2cd2c906680890fb4ea2833d665"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga63c9be5b8fb04c0b26382f51b7bdf237"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00089_ga63c9be5b8fb04c0b26382f51b7bdf237.html#ga63c9be5b8fb04c0b26382f51b7bdf237">thread_get_tls_data</a> (<a class="el" href="a00044_a9054159cde2f926ef61c28ce1e555199.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *runner)</td></tr>
-<tr class="memdesc:ga63c9be5b8fb04c0b26382f51b7bdf237"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得线程本地存储  <a href="a00089_ga63c9be5b8fb04c0b26382f51b7bdf237.html#ga63c9be5b8fb04c0b26382f51b7bdf237">更多...</a><br /></td></tr>
-<tr class="separator:ga63c9be5b8fb04c0b26382f51b7bdf237"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gade4f41f1cd519f2719b5114ce7801232"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00044_a0d043bbb6b8db19fea54ab9271d352b6.html#a0d043bbb6b8db19fea54ab9271d352b6">atomic_counter_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00089_gade4f41f1cd519f2719b5114ce7801232.html#gade4f41f1cd519f2719b5114ce7801232">atomic_counter_inc</a> (<a class="el" href="a00044_a0d043bbb6b8db19fea54ab9271d352b6.html#a0d043bbb6b8db19fea54ab9271d352b6">atomic_counter_t</a> *counter)</td></tr>
-<tr class="memdesc:gade4f41f1cd519f2719b5114ce7801232"><td class="mdescLeft">&#160;</td><td class="mdescRight">原子操作 - 递增  <a href="a00089_gade4f41f1cd519f2719b5114ce7801232.html#gade4f41f1cd519f2719b5114ce7801232">更多...</a><br /></td></tr>
-<tr class="separator:gade4f41f1cd519f2719b5114ce7801232"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gafc2df03d75cf9168b72e8c5e11953437"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00044_a0d043bbb6b8db19fea54ab9271d352b6.html#a0d043bbb6b8db19fea54ab9271d352b6">atomic_counter_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00089_gafc2df03d75cf9168b72e8c5e11953437.html#gafc2df03d75cf9168b72e8c5e11953437">atomic_counter_dec</a> (<a class="el" href="a00044_a0d043bbb6b8db19fea54ab9271d352b6.html#a0d043bbb6b8db19fea54ab9271d352b6">atomic_counter_t</a> *counter)</td></tr>
-<tr class="memdesc:gafc2df03d75cf9168b72e8c5e11953437"><td class="mdescLeft">&#160;</td><td class="mdescRight">原子操作 - 递减  <a href="a00089_gafc2df03d75cf9168b72e8c5e11953437.html#gafc2df03d75cf9168b72e8c5e11953437">更多...</a><br /></td></tr>
-<tr class="separator:gafc2df03d75cf9168b72e8c5e11953437"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga141897cac9743394a99ff7780daa6a80"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00089_ga141897cac9743394a99ff7780daa6a80.html#ga141897cac9743394a99ff7780daa6a80">atomic_counter_zero</a> (<a class="el" href="a00044_a0d043bbb6b8db19fea54ab9271d352b6.html#a0d043bbb6b8db19fea54ab9271d352b6">atomic_counter_t</a> *counter)</td></tr>
-<tr class="memdesc:ga141897cac9743394a99ff7780daa6a80"><td class="mdescLeft">&#160;</td><td class="mdescRight">原子操作 - 是否为零  <a href="a00089_ga141897cac9743394a99ff7780daa6a80.html#ga141897cac9743394a99ff7780daa6a80">更多...</a><br /></td></tr>
-<tr class="separator:ga141897cac9743394a99ff7780daa6a80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a481fc218a988b1d8a3736ae17dd0f99f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00076_a481fc218a988b1d8a3736ae17dd0f99f.html#a481fc218a988b1d8a3736ae17dd0f99f">_krpc_call_encrypt</a> (<a class="el" href="a00047_a1e414ac6f6de24462ccf81e10f63428d.html#a1e414ac6f6de24462ccf81e10f63428d">krpc_t</a> *rpc, <a class="el" href="a00047_a261dba04f46f5c59a68a05f69f5a65a8.html#a261dba04f46f5c59a68a05f69f5a65a8">stream_t</a> *stream, uint16_t rpcid, <a class="el" href="a00047_a9c07dfc8c3b965f75b09f82fdb1bbb1e.html#a9c07dfc8c3b965f75b09f82fdb1bbb1e">krpc_object_t</a> *o)</td></tr>
+<tr class="separator:a481fc218a988b1d8a3736ae17dd0f99f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a962a9e0f2aa7e697177cd59af327729a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00076_a962a9e0f2aa7e697177cd59af327729a.html#a962a9e0f2aa7e697177cd59af327729a">_krpc_call</a> (<a class="el" href="a00047_a1e414ac6f6de24462ccf81e10f63428d.html#a1e414ac6f6de24462ccf81e10f63428d">krpc_t</a> *rpc, <a class="el" href="a00047_a261dba04f46f5c59a68a05f69f5a65a8.html#a261dba04f46f5c59a68a05f69f5a65a8">stream_t</a> *stream, uint16_t rpcid, <a class="el" href="a00047_a9c07dfc8c3b965f75b09f82fdb1bbb1e.html#a9c07dfc8c3b965f75b09f82fdb1bbb1e">krpc_object_t</a> *o)</td></tr>
+<tr class="separator:a962a9e0f2aa7e697177cd59af327729a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d55f838d222f44965d99eac9a0381c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00047_a1e414ac6f6de24462ccf81e10f63428d.html#a1e414ac6f6de24462ccf81e10f63428d">krpc_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00076_a5d55f838d222f44965d99eac9a0381c1.html#a5d55f838d222f44965d99eac9a0381c1">krpc_create</a> ()</td></tr>
+<tr class="memdesc:a5d55f838d222f44965d99eac9a0381c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">RPC框架提供了一套底层RPC序列化及反序列化的基础，开发者不应该直接调用这些API，应使用代码生成工具 提供的代码框架来进行RPC操作，生成的代码框架屏蔽了所有烦人的细节，使用起来也会比直接调用这些API更 方便.  <a href="a00076_a5d55f838d222f44965d99eac9a0381c1.html#a5d55f838d222f44965d99eac9a0381c1">更多...</a><br /></td></tr>
+<tr class="separator:a5d55f838d222f44965d99eac9a0381c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab07c8ccf1abc99b85f455a2f4280ac76"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00076_ab07c8ccf1abc99b85f455a2f4280ac76.html#ab07c8ccf1abc99b85f455a2f4280ac76">krpc_destroy</a> (<a class="el" href="a00047_a1e414ac6f6de24462ccf81e10f63428d.html#a1e414ac6f6de24462ccf81e10f63428d">krpc_t</a> *rpc)</td></tr>
+<tr class="memdesc:ab07c8ccf1abc99b85f455a2f4280ac76"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁RPC  <a href="a00076_ab07c8ccf1abc99b85f455a2f4280ac76.html#ab07c8ccf1abc99b85f455a2f4280ac76">更多...</a><br /></td></tr>
+<tr class="separator:ab07c8ccf1abc99b85f455a2f4280ac76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa12a9874d2b0308994c3fa651cdbbd61"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00076_aa12a9874d2b0308994c3fa651cdbbd61.html#aa12a9874d2b0308994c3fa651cdbbd61">krpc_add_cb</a> (<a class="el" href="a00047_a1e414ac6f6de24462ccf81e10f63428d.html#a1e414ac6f6de24462ccf81e10f63428d">krpc_t</a> *rpc, uint16_t rpcid, <a class="el" href="a00047_a06bb708c1b97445d3a5d0c1b32ad2ab6.html#a06bb708c1b97445d3a5d0c1b32ad2ab6">krpc_cb_t</a> cb)</td></tr>
+<tr class="memdesc:aa12a9874d2b0308994c3fa651cdbbd61"><td class="mdescLeft">&#160;</td><td class="mdescRight">注册RPC调用回调函数  <a href="a00076_aa12a9874d2b0308994c3fa651cdbbd61.html#aa12a9874d2b0308994c3fa651cdbbd61">更多...</a><br /></td></tr>
+<tr class="separator:aa12a9874d2b0308994c3fa651cdbbd61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76529ccab5c6f0ada79cac791e299ef9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00076_a76529ccab5c6f0ada79cac791e299ef9.html#a76529ccab5c6f0ada79cac791e299ef9">krpc_del_cb</a> (<a class="el" href="a00047_a1e414ac6f6de24462ccf81e10f63428d.html#a1e414ac6f6de24462ccf81e10f63428d">krpc_t</a> *rpc, uint16_t rpcid)</td></tr>
+<tr class="memdesc:a76529ccab5c6f0ada79cac791e299ef9"><td class="mdescLeft">&#160;</td><td class="mdescRight">删除注册过的RPC调用回调函数  <a href="a00076_a76529ccab5c6f0ada79cac791e299ef9.html#a76529ccab5c6f0ada79cac791e299ef9">更多...</a><br /></td></tr>
+<tr class="separator:a76529ccab5c6f0ada79cac791e299ef9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7841a0b4c828efcb607a51bbdd9c9ab1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00047_a06bb708c1b97445d3a5d0c1b32ad2ab6.html#a06bb708c1b97445d3a5d0c1b32ad2ab6">krpc_cb_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00076_a7841a0b4c828efcb607a51bbdd9c9ab1.html#a7841a0b4c828efcb607a51bbdd9c9ab1">krpc_get_cb</a> (<a class="el" href="a00047_a1e414ac6f6de24462ccf81e10f63428d.html#a1e414ac6f6de24462ccf81e10f63428d">krpc_t</a> *rpc, uint16_t rpcid)</td></tr>
+<tr class="memdesc:a7841a0b4c828efcb607a51bbdd9c9ab1"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得注册过的RPC调用回调函数  <a href="a00076_a7841a0b4c828efcb607a51bbdd9c9ab1.html#a7841a0b4c828efcb607a51bbdd9c9ab1">更多...</a><br /></td></tr>
+<tr class="separator:a7841a0b4c828efcb607a51bbdd9c9ab1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8570b46c2568409656f216a5af1bd287"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00076_a8570b46c2568409656f216a5af1bd287.html#a8570b46c2568409656f216a5af1bd287">_krpc_proc_decrypt</a> (<a class="el" href="a00047_a1e414ac6f6de24462ccf81e10f63428d.html#a1e414ac6f6de24462ccf81e10f63428d">krpc_t</a> *rpc, <a class="el" href="a00047_a261dba04f46f5c59a68a05f69f5a65a8.html#a261dba04f46f5c59a68a05f69f5a65a8">stream_t</a> *stream)</td></tr>
+<tr class="separator:a8570b46c2568409656f216a5af1bd287"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab51c5d23d5a897a8f1fdb97f5b6c79c2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00076_ab51c5d23d5a897a8f1fdb97f5b6c79c2.html#ab51c5d23d5a897a8f1fdb97f5b6c79c2">_krpc_proc</a> (<a class="el" href="a00047_a1e414ac6f6de24462ccf81e10f63428d.html#a1e414ac6f6de24462ccf81e10f63428d">krpc_t</a> *rpc, <a class="el" href="a00047_a261dba04f46f5c59a68a05f69f5a65a8.html#a261dba04f46f5c59a68a05f69f5a65a8">stream_t</a> *stream)</td></tr>
+<tr class="separator:ab51c5d23d5a897a8f1fdb97f5b6c79c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c94cce18fdcbb5e184af7f2ea20cceb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00076_a9c94cce18fdcbb5e184af7f2ea20cceb.html#a9c94cce18fdcbb5e184af7f2ea20cceb">krpc_proc</a> (<a class="el" href="a00047_a1e414ac6f6de24462ccf81e10f63428d.html#a1e414ac6f6de24462ccf81e10f63428d">krpc_t</a> *rpc, <a class="el" href="a00047_a261dba04f46f5c59a68a05f69f5a65a8.html#a261dba04f46f5c59a68a05f69f5a65a8">stream_t</a> *stream)</td></tr>
+<tr class="memdesc:a9c94cce18fdcbb5e184af7f2ea20cceb"><td class="mdescLeft">&#160;</td><td class="mdescRight">处理RPC调用，从数据流反序列化RPC调用，并调用回调函数  <a href="a00076_a9c94cce18fdcbb5e184af7f2ea20cceb.html#a9c94cce18fdcbb5e184af7f2ea20cceb">更多...</a><br /></td></tr>
+<tr class="separator:a9c94cce18fdcbb5e184af7f2ea20cceb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51bbf2caf4916c0c08d8c8d8d86e562e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00076_a51bbf2caf4916c0c08d8c8d8d86e562e.html#a51bbf2caf4916c0c08d8c8d8d86e562e">krpc_call</a> (<a class="el" href="a00047_a1e414ac6f6de24462ccf81e10f63428d.html#a1e414ac6f6de24462ccf81e10f63428d">krpc_t</a> *rpc, <a class="el" href="a00047_a261dba04f46f5c59a68a05f69f5a65a8.html#a261dba04f46f5c59a68a05f69f5a65a8">stream_t</a> *stream, uint16_t rpcid, <a class="el" href="a00047_a9c07dfc8c3b965f75b09f82fdb1bbb1e.html#a9c07dfc8c3b965f75b09f82fdb1bbb1e">krpc_object_t</a> *o)</td></tr>
+<tr class="memdesc:a51bbf2caf4916c0c08d8c8d8d86e562e"><td class="mdescLeft">&#160;</td><td class="mdescRight">发起RPC调用  <a href="a00076_a51bbf2caf4916c0c08d8c8d8d86e562e.html#a51bbf2caf4916c0c08d8c8d8d86e562e">更多...</a><br /></td></tr>
+<tr class="separator:a51bbf2caf4916c0c08d8c8d8d86e562e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5317bb571cb4d94bc56b83989c1b10c2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00076_a5317bb571cb4d94bc56b83989c1b10c2.html#a5317bb571cb4d94bc56b83989c1b10c2">krpc_set_encrypt_cb</a> (<a class="el" href="a00047_a1e414ac6f6de24462ccf81e10f63428d.html#a1e414ac6f6de24462ccf81e10f63428d">krpc_t</a> *rpc, <a class="el" href="a00047_ae41a67cc07f8dff897ca978e03b1f2d7.html#ae41a67cc07f8dff897ca978e03b1f2d7">krpc_encrypt_t</a> func)</td></tr>
+<tr class="memdesc:a5317bb571cb4d94bc56b83989c1b10c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置签名加密回调  <a href="a00076_a5317bb571cb4d94bc56b83989c1b10c2.html#a5317bb571cb4d94bc56b83989c1b10c2">更多...</a><br /></td></tr>
+<tr class="separator:a5317bb571cb4d94bc56b83989c1b10c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa75ec66092e77639ca2cf2b5ad04c5db"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00076_aa75ec66092e77639ca2cf2b5ad04c5db.html#aa75ec66092e77639ca2cf2b5ad04c5db">krpc_set_decrypt_cb</a> (<a class="el" href="a00047_a1e414ac6f6de24462ccf81e10f63428d.html#a1e414ac6f6de24462ccf81e10f63428d">krpc_t</a> *rpc, <a class="el" href="a00047_a5cf750f151c90f0589f68fe8c4421f1d.html#a5cf750f151c90f0589f68fe8c4421f1d">krpc_decrypt_t</a> func)</td></tr>
+<tr class="memdesc:aa75ec66092e77639ca2cf2b5ad04c5db"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置签名解密回调  <a href="a00076_aa75ec66092e77639ca2cf2b5ad04c5db.html#aa75ec66092e77639ca2cf2b5ad04c5db">更多...</a><br /></td></tr>
+<tr class="separator:aa75ec66092e77639ca2cf2b5ad04c5db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 9日 星期四 15:26:52 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 13日 星期一 14:43:37 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
