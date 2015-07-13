@@ -9,6 +9,7 @@ var searchData=
   ['_5fchannel_5fref_5ft',['_channel_ref_t',['../a00005.html',1,'']]],
   ['_5fchannel_5fstate_5fe',['_channel_state_e',['../a00047_a18bbc160902cdba0f52f5a3cd879b47f.html#a18bbc160902cdba0f52f5a3cd879b47f',1,'config.h']]],
   ['_5fchannel_5ft',['_channel_t',['../a00006.html',1,'']]],
+  ['_5fcleanup_5fthreads',['_cleanup_threads',['../a00048_a4f0e9b4ae9c3310e14e109d04f2978f5.html#a4f0e9b4ae9c3310e14e109d04f2978f5',1,'framework.c']]],
   ['_5fdlist_5fnode_5ft',['_dlist_node_t',['../a00007.html',1,'']]],
   ['_5fdlist_5ft',['_dlist_t',['../a00008.html',1,'']]],
   ['_5ferror_5fe',['_error_e',['../a00047_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5',1,'config.h']]],

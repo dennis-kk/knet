@@ -58,6 +58,13 @@ int framework_config_get_max_send_list(framework_config_t* c);
 int framework_config_get_max_recv_buffer(framework_config_t* c);
 
 /**
+ * 获取接受到连接的心跳超时时间
+ * @param c framework_config_t实例
+ * @return 接受到连接的心跳超时时间
+ */
+int framework_config_get_max_idle_timeout(framework_config_t* c);
+
+/**
  * 事件channel_cb_event_accept处理函数
  * @param channel 监听管道，channel_ref_t实例
  * @param e 管道事件

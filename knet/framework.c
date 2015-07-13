@@ -231,6 +231,11 @@ int framework_config_get_max_recv_buffer(framework_config_t* c) {
     return c->max_recv_buffer;
 }
 
+int framework_config_get_max_idle_timeout(framework_config_t* c) {
+    verify(c);
+    return c->max_idle_timeout;
+}
+
 void framework_config_set_max_idle_timeout(framework_config_t* c, int max_idle_timeout) {
     verify(c);
     c->max_idle_timeout = max_idle_timeout;

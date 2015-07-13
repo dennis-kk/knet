@@ -530,8 +530,7 @@ int channel_ref_check_balance(channel_ref_t* channel_ref) {
 }
 
 void channel_ref_set_timeout(channel_ref_t* channel_ref, int timeout) {
-    verify(channel_ref);
-    verify(timeout);
+    verify(channel_ref); /* timeout¿ÉÒÔÎª0 */
     channel_ref->ref_info->timeout = (time_t)timeout;
 }
 

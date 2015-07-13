@@ -20,7 +20,9 @@ void \hyperlink{a00053_a1f5d04499db3c8137c840c8c87cdba5e_a1f5d04499db3c8137c840c
 int \hyperlink{a00053_a8030b85e272bfe80459bbecbca5cd9c0_a8030b85e272bfe80459bbecbca5cd9c0}{framework\+\_\+worker\+\_\+start} (\hyperlink{a00047_aeb7a44e6b579659a8aae81f3ab819af3_aeb7a44e6b579659a8aae81f3ab819af3}{framework\+\_\+worker\+\_\+t} $\ast$w)
 \begin{DoxyCompactList}\small\item\em 启动框架工作线程 \end{DoxyCompactList}\item 
 void \hyperlink{a00053_a52ecf94ed22881622a06600042ab1bb1_a52ecf94ed22881622a06600042ab1bb1}{framework\+\_\+worker\+\_\+stop} (\hyperlink{a00047_aeb7a44e6b579659a8aae81f3ab819af3_aeb7a44e6b579659a8aae81f3ab819af3}{framework\+\_\+worker\+\_\+t} $\ast$w)
-\begin{DoxyCompactList}\small\item\em 关闭框架工作线程 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em 关闭框架工作线程 \end{DoxyCompactList}\item 
+void \hyperlink{a00053_a5af1821ad3a53ce7a9bd675a49c252e6_a5af1821ad3a53ce7a9bd675a49c252e6}{framework\+\_\+worker\+\_\+wait\+\_\+for\+\_\+stop} (\hyperlink{a00047_aeb7a44e6b579659a8aae81f3ab819af3_aeb7a44e6b579659a8aae81f3ab819af3}{framework\+\_\+worker\+\_\+t} $\ast$w)
+\begin{DoxyCompactList}\small\item\em 等待框架工作线程关闭 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{函数说明}
@@ -92,6 +94,22 @@ framework\+\_\+worker\+\_\+t实例
 
 
 关闭框架工作线程 
+
+
+\begin{DoxyParams}{参数}
+{\em w} & framework\+\_\+worker\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00053_a5af1821ad3a53ce7a9bd675a49c252e6_a5af1821ad3a53ce7a9bd675a49c252e6}{}\index{framework\+\_\+worker.\+c@{framework\+\_\+worker.\+c}!framework\+\_\+worker\+\_\+wait\+\_\+for\+\_\+stop@{framework\+\_\+worker\+\_\+wait\+\_\+for\+\_\+stop}}
+\index{framework\+\_\+worker\+\_\+wait\+\_\+for\+\_\+stop@{framework\+\_\+worker\+\_\+wait\+\_\+for\+\_\+stop}!framework\+\_\+worker.\+c@{framework\+\_\+worker.\+c}}
+\subsubsection[{framework\+\_\+worker\+\_\+wait\+\_\+for\+\_\+stop}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+worker\+\_\+wait\+\_\+for\+\_\+stop (
+\begin{DoxyParamCaption}
+\item[{{\bf framework\+\_\+worker\+\_\+t} $\ast$}]{w}
+\end{DoxyParamCaption}
+)}\label{a00053_a5af1821ad3a53ce7a9bd675a49c252e6_a5af1821ad3a53ce7a9bd675a49c252e6}
+
+
+等待框架工作线程关闭 
 
 
 \begin{DoxyParams}{参数}

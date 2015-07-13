@@ -6,6 +6,7 @@
 {\ttfamily \#include \char`\"{}channel\+\_\+ref.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}framework\+\_\+acceptor.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}framework\+\_\+worker.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}misc.\+h\char`\"{}}\\*
 \subsection*{结构体}
 \begin{DoxyCompactItemize}
 \item 
@@ -16,12 +17,20 @@ struct \hyperlink{a00011}{\+\_\+framework\+\_\+t}
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
+void \hyperlink{a00048_a4f0e9b4ae9c3310e14e109d04f2978f5_a4f0e9b4ae9c3310e14e109d04f2978f5}{\+\_\+cleanup\+\_\+threads} (\hyperlink{a00047_a6149d769f6f07ed14a40a271c95d8463_a6149d769f6f07ed14a40a271c95d8463}{framework\+\_\+t} $\ast$f)
+\item 
 \hyperlink{a00047_a6149d769f6f07ed14a40a271c95d8463_a6149d769f6f07ed14a40a271c95d8463}{framework\+\_\+t} $\ast$ \hyperlink{a00093_ga90b29a0c500209cb9b37437a32188a40_ga90b29a0c500209cb9b37437a32188a40}{framework\+\_\+create} ()
 \begin{DoxyCompactList}\small\item\em 建立框架 \end{DoxyCompactList}\item 
 void \hyperlink{a00093_gad1b6cb17014bfc515f8861bad3198e22_gad1b6cb17014bfc515f8861bad3198e22}{framework\+\_\+destroy} (\hyperlink{a00047_a6149d769f6f07ed14a40a271c95d8463_a6149d769f6f07ed14a40a271c95d8463}{framework\+\_\+t} $\ast$f)
 \begin{DoxyCompactList}\small\item\em 销毁框架 \end{DoxyCompactList}\item 
 int \hyperlink{a00093_ga7579f69fe8d0ec6887e4594f52cbb883_ga7579f69fe8d0ec6887e4594f52cbb883}{framework\+\_\+start} (\hyperlink{a00047_a6149d769f6f07ed14a40a271c95d8463_a6149d769f6f07ed14a40a271c95d8463}{framework\+\_\+t} $\ast$f, \hyperlink{a00047_ae296ec4d1ce108960de8dcc423956a1d_ae296ec4d1ce108960de8dcc423956a1d}{channel\+\_\+ref\+\_\+cb\+\_\+t} cb)
 \begin{DoxyCompactList}\small\item\em 启动框架 \end{DoxyCompactList}\item 
+int \hyperlink{a00093_gadd2b49ff4ff090a4490bd0128d00efba_gadd2b49ff4ff090a4490bd0128d00efba}{framework\+\_\+start\+\_\+wait} (\hyperlink{a00047_a6149d769f6f07ed14a40a271c95d8463_a6149d769f6f07ed14a40a271c95d8463}{framework\+\_\+t} $\ast$f, \hyperlink{a00047_ae296ec4d1ce108960de8dcc423956a1d_ae296ec4d1ce108960de8dcc423956a1d}{channel\+\_\+ref\+\_\+cb\+\_\+t} cb)
+\begin{DoxyCompactList}\small\item\em 启动框架并等待框架关闭 \end{DoxyCompactList}\item 
+int \hyperlink{a00093_ga0593beee9da9b0858ad53c4f81671622_ga0593beee9da9b0858ad53c4f81671622}{framework\+\_\+start\+\_\+wait\+\_\+destroy} (\hyperlink{a00047_a6149d769f6f07ed14a40a271c95d8463_a6149d769f6f07ed14a40a271c95d8463}{framework\+\_\+t} $\ast$f, \hyperlink{a00047_ae296ec4d1ce108960de8dcc423956a1d_ae296ec4d1ce108960de8dcc423956a1d}{channel\+\_\+ref\+\_\+cb\+\_\+t} cb)
+\begin{DoxyCompactList}\small\item\em 启动框架并等待框架关闭，如果启动失败或者框架关闭则销毁 \end{DoxyCompactList}\item 
+void \hyperlink{a00093_gaefec7da1b548ddb97c73c8924ba17069_gaefec7da1b548ddb97c73c8924ba17069}{framework\+\_\+wait\+\_\+for\+\_\+stop} (\hyperlink{a00047_a6149d769f6f07ed14a40a271c95d8463_a6149d769f6f07ed14a40a271c95d8463}{framework\+\_\+t} $\ast$f)
+\begin{DoxyCompactList}\small\item\em 等待框架停止 \end{DoxyCompactList}\item 
 int \hyperlink{a00093_ga429be76d09278d6170f1b519f4dbb689_ga429be76d09278d6170f1b519f4dbb689}{framework\+\_\+stop} (\hyperlink{a00047_a6149d769f6f07ed14a40a271c95d8463_a6149d769f6f07ed14a40a271c95d8463}{framework\+\_\+t} $\ast$f)
 \begin{DoxyCompactList}\small\item\em 关闭框架 \end{DoxyCompactList}\item 
 \hyperlink{a00047_a55b26efa9e6ee05514d087ba2593a54b_a55b26efa9e6ee05514d087ba2593a54b}{framework\+\_\+config\+\_\+t} $\ast$ \hyperlink{a00093_gaf0524cc257c8e57ba11d676dcca6bf64_gaf0524cc257c8e57ba11d676dcca6bf64}{framework\+\_\+get\+\_\+config} (\hyperlink{a00047_a6149d769f6f07ed14a40a271c95d8463_a6149d769f6f07ed14a40a271c95d8463}{framework\+\_\+t} $\ast$f)
@@ -61,6 +70,13 @@ void \hyperlink{a00048_a4a798f64988a0fe651e2f247acae55b2_a4a798f64988a0fe651e2f2
 
 
 \subsection{函数说明}
+\hypertarget{a00048_a4f0e9b4ae9c3310e14e109d04f2978f5_a4f0e9b4ae9c3310e14e109d04f2978f5}{}\index{framework.\+c@{framework.\+c}!\+\_\+cleanup\+\_\+threads@{\+\_\+cleanup\+\_\+threads}}
+\index{\+\_\+cleanup\+\_\+threads@{\+\_\+cleanup\+\_\+threads}!framework.\+c@{framework.\+c}}
+\subsubsection[{\+\_\+cleanup\+\_\+threads}]{\setlength{\rightskip}{0pt plus 5cm}void \+\_\+cleanup\+\_\+threads (
+\begin{DoxyParamCaption}
+\item[{{\bf framework\+\_\+t} $\ast$}]{f}
+\end{DoxyParamCaption}
+)}\label{a00048_a4f0e9b4ae9c3310e14e109d04f2978f5_a4f0e9b4ae9c3310e14e109d04f2978f5}
 \hypertarget{a00048_a86930a2422f44672a2ddde80fb6a5b5a_a86930a2422f44672a2ddde80fb6a5b5a}{}\index{framework.\+c@{framework.\+c}!framework\+\_\+config\+\_\+create@{framework\+\_\+config\+\_\+create}}
 \index{framework\+\_\+config\+\_\+create@{framework\+\_\+config\+\_\+create}!framework.\+c@{framework.\+c}}
 \subsubsection[{framework\+\_\+config\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf framework\+\_\+config\+\_\+t}$\ast$ framework\+\_\+config\+\_\+create (
@@ -435,6 +451,58 @@ framework\+\_\+config\+\_\+t实例
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
+\hypertarget{a00093_gadd2b49ff4ff090a4490bd0128d00efba_gadd2b49ff4ff090a4490bd0128d00efba}{}\index{framework.\+c@{framework.\+c}!framework\+\_\+start\+\_\+wait@{framework\+\_\+start\+\_\+wait}}
+\index{framework\+\_\+start\+\_\+wait@{framework\+\_\+start\+\_\+wait}!framework.\+c@{framework.\+c}}
+\subsubsection[{framework\+\_\+start\+\_\+wait}]{\setlength{\rightskip}{0pt plus 5cm}int framework\+\_\+start\+\_\+wait (
+\begin{DoxyParamCaption}
+\item[{{\bf framework\+\_\+t} $\ast$}]{f, }
+\item[{{\bf channel\+\_\+ref\+\_\+cb\+\_\+t}}]{cb}
+\end{DoxyParamCaption}
+)}\label{a00093_gadd2b49ff4ff090a4490bd0128d00efba_gadd2b49ff4ff090a4490bd0128d00efba}
+
+
+启动框架并等待框架关闭 
+
+
+\begin{DoxyParams}{参数}
+{\em f} & framework\+\_\+t实例 \\
+\hline
+{\em cb} & 框架回调函数 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{a00093_ga0593beee9da9b0858ad53c4f81671622_ga0593beee9da9b0858ad53c4f81671622}{}\index{framework.\+c@{framework.\+c}!framework\+\_\+start\+\_\+wait\+\_\+destroy@{framework\+\_\+start\+\_\+wait\+\_\+destroy}}
+\index{framework\+\_\+start\+\_\+wait\+\_\+destroy@{framework\+\_\+start\+\_\+wait\+\_\+destroy}!framework.\+c@{framework.\+c}}
+\subsubsection[{framework\+\_\+start\+\_\+wait\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}int framework\+\_\+start\+\_\+wait\+\_\+destroy (
+\begin{DoxyParamCaption}
+\item[{{\bf framework\+\_\+t} $\ast$}]{f, }
+\item[{{\bf channel\+\_\+ref\+\_\+cb\+\_\+t}}]{cb}
+\end{DoxyParamCaption}
+)}\label{a00093_ga0593beee9da9b0858ad53c4f81671622_ga0593beee9da9b0858ad53c4f81671622}
+
+
+启动框架并等待框架关闭，如果启动失败或者框架关闭则销毁 
+
+
+\begin{DoxyParams}{参数}
+{\em f} & framework\+\_\+t实例 \\
+\hline
+{\em cb} & 框架回调函数 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
 \hypertarget{a00093_ga429be76d09278d6170f1b519f4dbb689_ga429be76d09278d6170f1b519f4dbb689}{}\index{framework.\+c@{framework.\+c}!framework\+\_\+stop@{framework\+\_\+stop}}
 \index{framework\+\_\+stop@{framework\+\_\+stop}!framework.\+c@{framework.\+c}}
 \subsubsection[{framework\+\_\+stop}]{\setlength{\rightskip}{0pt plus 5cm}int framework\+\_\+stop (
@@ -458,3 +526,19 @@ framework\+\_\+config\+\_\+t实例
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
+\hypertarget{a00093_gaefec7da1b548ddb97c73c8924ba17069_gaefec7da1b548ddb97c73c8924ba17069}{}\index{framework.\+c@{framework.\+c}!framework\+\_\+wait\+\_\+for\+\_\+stop@{framework\+\_\+wait\+\_\+for\+\_\+stop}}
+\index{framework\+\_\+wait\+\_\+for\+\_\+stop@{framework\+\_\+wait\+\_\+for\+\_\+stop}!framework.\+c@{framework.\+c}}
+\subsubsection[{framework\+\_\+wait\+\_\+for\+\_\+stop}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+wait\+\_\+for\+\_\+stop (
+\begin{DoxyParamCaption}
+\item[{{\bf framework\+\_\+t} $\ast$}]{f}
+\end{DoxyParamCaption}
+)}\label{a00093_gaefec7da1b548ddb97c73c8924ba17069_gaefec7da1b548ddb97c73c8924ba17069}
+
+
+等待框架停止 
+
+
+\begin{DoxyParams}{参数}
+{\em f} & framework\+\_\+t实例 \\
+\hline
+\end{DoxyParams}

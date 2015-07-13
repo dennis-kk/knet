@@ -84,5 +84,8 @@ void acceptor_cb(channel_ref_t* channel, channel_cb_event_e e) {
     if (e & channel_cb_event_accept) {
         /* 设置用户回调 */
         channel_ref_set_cb(channel, framework_get_cb(f));
+        /* 设置心跳间隔 */
+        channel_ref_set_timeout(channel,
+            framework_config_get_max_idle_timeout(framework_get_config(f)));
     }
 }
