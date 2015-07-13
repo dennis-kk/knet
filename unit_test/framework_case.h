@@ -68,7 +68,7 @@ CASE(Test_Framework) {
     loop_run(loop);
 
     EXPECT_TRUE(Test_Framework_Echo);
-    
+    framework_wait_for_stop(Test_Framework_Framework);
     framework_destroy(Test_Framework_Framework);
     loop_destroy(loop);
 }

@@ -1,14 +1,10 @@
 #include "example_config.h"
 
-#if COMPILE_TELNET_ECHO
+#if COMPILE_FRAMEWORK_C
 
 #include "knet.h"
 
-/**
- telnet回显
- */
-
-loop_t* loop = 0;
+framework_t* f = 0;
 
 /* 服务端 - 客户端回调 */
 void client_cb(channel_ref_t* channel, channel_cb_event_e e) {
@@ -22,7 +18,8 @@ void client_cb(channel_ref_t* channel, channel_cb_event_e e) {
         stream_pop(stream, buffer, sizeof(buffer));
         if (*buffer == 'q') {
             printf("bye...\n");
-            loop_exit(loop);
+            loop_exit(channel_ref_get_loop(channel));
+            framework_stop(f);
             return;
         }
         printf("recv: %s\n", buffer);
@@ -31,24 +28,16 @@ void client_cb(channel_ref_t* channel, channel_cb_event_e e) {
     }
 }
 
-/* 监听者回调 */
-void acceptor_cb(channel_ref_t* channel, channel_cb_event_e e) {
-    if (e & channel_cb_event_accept) { /* 新连接 */
-        printf("telnet client accepted...\n");
-        /* 设置回调 */
-        channel_ref_set_cb(channel, client_cb);
-    }
-}
-
 int main() {
-    channel_ref_t* acceptor = 0;
-    loop = loop_create();
-    acceptor = loop_create_channel(loop, 8, 1024);
-    channel_ref_set_cb(acceptor, acceptor_cb);
-    channel_ref_accept(acceptor, 0, 23, 10);
-    loop_run(loop);
-    loop_destroy(loop);
+    framework_config_t* c = 0;
+    f = framework_create();
+    c = framework_get_config(f);
+    framework_config_set_address(c, 0, 23);
+    /* 启动框架 */
+    framework_start(f, client_cb);
+    framework_wait_for_stop(f);
+    framework_destroy(f);
     return 0;
 }
 
-#endif /* COMPILE_TELNET_ECHO */
+#endif /* COMPILE_FRAMEWORK_C */

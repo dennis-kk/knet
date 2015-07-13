@@ -30,4 +30,10 @@ int framework_worker_start(framework_worker_t* w);
  */
 void framework_worker_stop(framework_worker_t* w);
 
+/**
+ * 等待框架工作线程关闭
+ * @param w framework_worker_t实例
+ */
+void framework_worker_wait_for_stop(framework_worker_t* w);
+
 #endif /* FRAMEWORK_WORKER_H */

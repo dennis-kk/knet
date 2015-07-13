@@ -28,6 +28,7 @@
 #include "channel_ref.h"
 #include "framework_acceptor.h"
 #include "framework_worker.h"
+#include "misc.h"
 
 struct _framework_config_t {
     char ip[32];              /* IP */
@@ -108,6 +109,22 @@ error_return:
     return error;
 }
 
+void framework_wait_for_stop(framework_t* f) {
+    int i = 0;
+    verify(f);
+    framework_acceptor_wait_for_stop(f->acceptor);
+    for (; i < framework_config_get_worker_thread_count(f->c); i++) {
+        if (f->workers[i]) {
+            framework_worker_wait_for_stop(f->workers[i]);
+        }
+    }
+    /* 销毁负载均衡器 */
+    if (f->balancer) {
+        loop_balancer_destroy(f->balancer);
+    }
+    f->start = 0;
+}
+
 int framework_stop(framework_t* f) {
     int i = 0;
     verify(f);
@@ -119,21 +136,6 @@ int framework_stop(framework_t* f) {
     for (; i < framework_config_get_worker_thread_count(f->c); i++) {
         framework_worker_stop(f->workers[i]);
     }
-    /* 销毁acceptor */
-    if (f->acceptor) {
-        framework_acceptor_destroy(f->acceptor);
-    }
-    /* 销毁工作线程 */
-    for (; i < framework_config_get_worker_thread_count(f->c); i++) {
-        if (f->workers[i]) {
-            framework_worker_destroy(f->workers[i]);
-        }
-    }
-    /* 销毁负载均衡器 */
-    if (f->balancer) {
-        loop_balancer_destroy(f->balancer);
-    }
-    f->start = 0;
     return error_ok;
 }
 

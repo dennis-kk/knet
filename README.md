@@ -81,6 +81,19 @@ about others. `loop_balancer_t` coordinates all attached `loop_t`(`loop_balance_
 
 For more detail, see `examples/multi_loop.c`
 
+### Framework ###
+##
+
+`framework_t` offers a general interface of multi-loop under multi-threading environment.
+
+- framework starts a standalone acceptor thread
+- a thread pool to operate accepted channels
+- use the same callback type as the parameter of function `channel_ref_set_cb` 
+
+The framework extremely simplifies code line for the startup and cleanup of loop under multi-threading environment.
+
+For more detail, see `examples/framework.c`
+
 ### RPC ###
 ##
 

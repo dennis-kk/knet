@@ -72,6 +72,12 @@ extern void framework_destroy(framework_t* f);
 extern int framework_start(framework_t* f, channel_ref_cb_t cb);
 
 /**
+ * 等待框架停止
+ * @param f framework_t实例
+ */
+extern void framework_wait_for_stop(framework_t* f);
+
+/**
  * 关闭框架
  * @param f framework_t实例
  * @retval error_ok 成功

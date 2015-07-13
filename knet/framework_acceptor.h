@@ -30,4 +30,10 @@ int framework_acceptor_start(framework_acceptor_t* a);
  */
 void framework_acceptor_stop(framework_acceptor_t* a);
 
+/**
+ * µÈ´ý¿ò¼ÜÍøÂç¼àÌýÆ÷¹Ø±Õ
+ * @param a framework_acceptor_tÊµÀý
+ */
+void framework_acceptor_wait_for_stop(framework_acceptor_t* a);
+
 #endif /* FRAMEWORK_ACCEPTOR_H */

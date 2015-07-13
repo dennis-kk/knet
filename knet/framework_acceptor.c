@@ -65,10 +65,14 @@ void framework_acceptor_stop(framework_acceptor_t* a) {
     if (a->runner) {
         if (thread_runner_check_start(a->runner)) {
             thread_runner_stop(a->runner);
-            thread_runner_join(a->runner);
         }
-        thread_runner_destroy(a->runner);
     }
+}
+
+void framework_acceptor_wait_for_stop(framework_acceptor_t* a) {
+    verify(a);
+    thread_runner_join(a->runner);
+    thread_runner_destroy(a->runner);
 }
 
 void acceptor_cb(channel_ref_t* channel, channel_cb_event_e e) {

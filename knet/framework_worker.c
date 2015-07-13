@@ -44,8 +44,12 @@ void framework_worker_stop(framework_worker_t* w) {
     if (w->runner) {
         if (thread_runner_check_start(w->runner)) {
             thread_runner_stop(w->runner);
-            thread_runner_join(w->runner);
         }
-        thread_runner_destroy(w->runner);
     }
+}
+
+void framework_worker_wait_for_stop(framework_worker_t* w) {
+    verify(w);
+    thread_runner_join(w->runner);
+    thread_runner_destroy(w->runner);
 }
