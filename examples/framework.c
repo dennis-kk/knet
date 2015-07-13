@@ -32,10 +32,8 @@ int main() {
     f = framework_create();
     c = framework_get_config(f);
     framework_config_set_address(c, 0, 23);
-    /* Æô¶¯¿ò¼Ü */
-    framework_start(f, client_cb);
-    framework_wait_for_stop(f);
-    framework_destroy(f);
+    /* Æô¶¯¿ò¼Ü, µÈ´ý¹Ø±Õ£¬Ïú»Ù*/
+    framework_start_wait_destroy(f, client_cb);
     return 0;
 }
 

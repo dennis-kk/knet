@@ -60,9 +60,24 @@ framework_t* framework_create() {
 }
 
 void framework_destroy(framework_t* f) {
+    int i = 0;
     verify(f);
     if (f->start) { /* 未关闭 */
         framework_stop(f);
+    }
+    if (f->acceptor) {
+        framework_acceptor_destroy(f->acceptor);
+    }
+    /* 销毁工作线程 */
+    for (; i < framework_config_get_worker_thread_count(f->c); i++) {
+        if (f->workers[i]) {
+            framework_worker_wait_for_stop(f->workers[i]);
+            framework_worker_destroy(f->workers[i]);
+        }
+    }
+    /* 销毁负载均衡器 */
+    if (f->balancer) {
+        loop_balancer_destroy(f->balancer);
     }
     /* 销毁配置器 */
     if (f->c) {
@@ -105,6 +120,20 @@ int framework_start(framework_t* f, channel_ref_cb_t cb) {
     f->start = 1;
     return error_ok;
 error_return:
+    framework_destroy(f);
+    return error;
+}
+
+int framework_start_wait(framework_t* f, channel_ref_cb_t cb) {
+    int error = framework_start(f, cb);
+    if (error_ok == error) {
+        framework_wait_for_stop(f);
+    }
+    return error;
+}
+
+int framework_start_wait_destroy(framework_t* f, channel_ref_cb_t cb) {
+    int error = framework_start_wait(f, cb);
     framework_destroy(f);
     return error;
 }

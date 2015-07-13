@@ -72,6 +72,24 @@ extern void framework_destroy(framework_t* f);
 extern int framework_start(framework_t* f, channel_ref_cb_t cb);
 
 /**
+ * 启动框架并等待框架关闭
+ * @param f framework_t实例
+ * @param cb 框架回调函数
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int framework_start_wait(framework_t* f, channel_ref_cb_t cb);
+
+/**
+ * 启动框架并等待框架关闭，如果启动失败或者框架关闭则销毁
+ * @param f framework_t实例
+ * @param cb 框架回调函数
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int framework_start_wait_destroy(framework_t* f, channel_ref_cb_t cb);
+
+/**
  * 等待框架停止
  * @param f framework_t实例
  */
