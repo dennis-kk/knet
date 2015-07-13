@@ -49,6 +49,25 @@ struct _framework_t {
     int                   start;    /* 启动标志 */
 };
 
+void _stop_and_cleanup_threads(framework_t* f) {
+    int i = 0;
+    if (f->acceptor) {
+        framework_acceptor_stop(f->acceptor);
+        framework_acceptor_wait_for_stop(f->acceptor);
+        framework_acceptor_destroy(f->acceptor);
+        f->acceptor = 0;
+    }
+    /* 销毁工作线程 */
+    for (; i < framework_config_get_worker_thread_count(f->c); i++) {
+        if (f->workers[i]) {
+            framework_worker_stop(f->workers[i]);
+            framework_worker_wait_for_stop(f->workers[i]);
+            framework_worker_destroy(f->workers[i]);
+            f->workers[i] = 0;
+        }
+    }
+}
+
 framework_t* framework_create() {
     framework_t* f = create(framework_t);
     verify(f);
@@ -60,21 +79,11 @@ framework_t* framework_create() {
 }
 
 void framework_destroy(framework_t* f) {
-    int i = 0;
     verify(f);
     if (f->start) { /* 未关闭 */
         framework_stop(f);
     }
-    if (f->acceptor) {
-        framework_acceptor_destroy(f->acceptor);
-    }
-    /* 销毁工作线程 */
-    for (; i < framework_config_get_worker_thread_count(f->c); i++) {
-        if (f->workers[i]) {
-            framework_worker_wait_for_stop(f->workers[i]);
-            framework_worker_destroy(f->workers[i]);
-        }
-    }
+    _stop_and_cleanup_threads(f);
     /* 销毁负载均衡器 */
     if (f->balancer) {
         loop_balancer_destroy(f->balancer);
@@ -98,6 +107,7 @@ int framework_start(framework_t* f, channel_ref_cb_t cb) {
     f->balancer = loop_balancer_create(); /* 建立负载均衡器 */
     verify(f->balancer);
     loop_balancer_set_data(f->balancer, f);
+    f->start = 1;
     f->workers = create_type(framework_worker_t*, worker_count * sizeof(framework_worker_t*));
     verify(f->workers);
     memset(f->workers, 0, worker_count * sizeof(framework_worker_t*));
@@ -117,10 +127,11 @@ int framework_start(framework_t* f, channel_ref_cb_t cb) {
     if (error_ok != error) {
         goto error_return;
     }
-    f->start = 1;
     return error_ok;
 error_return:
-    framework_destroy(f);
+    /* 销毁监听器 */
+    _stop_and_cleanup_threads(f);
+    f->start = 0;
     return error;
 }
 
@@ -134,32 +145,13 @@ int framework_start_wait(framework_t* f, channel_ref_cb_t cb) {
 
 int framework_start_wait_destroy(framework_t* f, channel_ref_cb_t cb) {
     int error = framework_start_wait(f, cb);
-    if (error_ok == error) {
-        framework_destroy(f);
-    }
+    framework_destroy(f);
     return error;
 }
 
 void framework_wait_for_stop(framework_t* f) {
-    int i = 0;
     verify(f);
-    /* 销毁监听器 */
-    framework_acceptor_wait_for_stop(f->acceptor);
-    framework_acceptor_destroy(f->acceptor);
-    f->acceptor = 0;
-    /* 销毁工作线程 */
-    for (; i < framework_config_get_worker_thread_count(f->c); i++) {
-        if (f->workers[i]) {
-            framework_worker_wait_for_stop(f->workers[i]);
-            framework_worker_destroy(f->workers[i]);
-            f->workers[i] = 0;
-        }
-    }
-    /* 销毁负载均衡器 */
-    if (f->balancer) {
-        loop_balancer_destroy(f->balancer);
-        f->balancer = 0;
-    }
+    _stop_and_cleanup_threads(f);
     f->start = 0;
 }
 

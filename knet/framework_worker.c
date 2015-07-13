@@ -50,6 +50,8 @@ void framework_worker_stop(framework_worker_t* w) {
 
 void framework_worker_wait_for_stop(framework_worker_t* w) {
     verify(w);
-    thread_runner_join(w->runner);
-    thread_runner_destroy(w->runner);
+    if (w->runner) {
+        thread_runner_join(w->runner);
+        thread_runner_destroy(w->runner);
+    }
 }

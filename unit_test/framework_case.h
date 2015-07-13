@@ -72,3 +72,22 @@ CASE(Test_Framework) {
     framework_destroy(Test_Framework_Framework);
     loop_destroy(loop);
 }
+
+CASE(Test_Framework_Start_Fail) {
+    framework_t* f = framework_create();
+    framework_config_t* c = framework_get_config(f);
+    framework_config_set_address(c, "128.0.0.1", 80);
+    EXPECT_FALSE(error_ok == framework_start(f, 0));
+    framework_destroy(f);
+
+    f = framework_create();
+    c = framework_get_config(f);
+    framework_config_set_address(c, "128.0.0.1", 80);
+    EXPECT_FALSE(error_ok == framework_start_wait(f, 0));
+    framework_destroy(f);
+
+    f = framework_create();
+    c = framework_get_config(f);
+    framework_config_set_address(c, "128.0.0.1", 80);
+    EXPECT_FALSE(error_ok == framework_start_wait_destroy(f, 0));
+}
