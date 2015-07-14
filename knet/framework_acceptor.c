@@ -105,11 +105,16 @@ void acceptor_cb(channel_ref_t* channel, channel_cb_event_e e) {
     loop_t*          loop     = channel_ref_get_loop(channel);
     loop_balancer_t* balancer = loop_get_balancer(loop);
     framework_t*     f        = (framework_t*)loop_balancer_get_data(balancer);
+    channel_ref_cb_t cb       = framework_get_cb(f);
     if (e & channel_cb_event_accept) {
         /* 设置用户回调 */
-        channel_ref_set_cb(channel, framework_get_cb(f));
+        channel_ref_set_cb(channel, cb);
         /* 设置心跳间隔 */
         channel_ref_set_timeout(channel,
             framework_config_get_max_idle_timeout(framework_get_config(f)));
+        if (cb) {
+            /* 调用一次用户回调，在用户回调内通知新连接建立 */
+            cb(channel, e);
+        }
     }
 }

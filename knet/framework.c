@@ -107,7 +107,7 @@ int framework_start(framework_t* f, channel_ref_cb_t cb) {
     f->balancer = loop_balancer_create(); /* 建立负载均衡器 */
     verify(f->balancer);
     loop_balancer_set_data(f->balancer, f);
-    f->start = 1;
+    f->start = 1; /* 设置启动标志，无论是否启动线程 */
     f->workers = create_type(framework_worker_t*, worker_count * sizeof(framework_worker_t*));
     verify(f->workers);
     memset(f->workers, 0, worker_count * sizeof(framework_worker_t*));
