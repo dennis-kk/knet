@@ -28,16 +28,16 @@
 #include "stream.h"
 
 struct _loop_profile_t {
-    loop_t*  loop;
-    uint64_t recv_bytes;
-    uint64_t send_bytes;
-    uint32_t established_channel;
-    uint32_t active_channel;
-    uint32_t close_channel;
-    uint64_t last_send_bytes;
-    uint64_t last_recv_bytes;
-    time_t   last_send_tick;
-    time_t   last_recv_tick;
+    loop_t*  loop;                /* 网络事件循环 */
+    uint64_t recv_bytes;          /* 已接收的字节数 */
+    uint64_t send_bytes;          /* 已发送的字节数 */
+    uint32_t established_channel; /* 已经建立连接的管道数量 */
+    uint32_t active_channel;      /* 还未建立连接的管道数量 */
+    uint32_t close_channel;       /* 已关闭的管道数量 */
+    uint64_t last_send_bytes;     /* 上次调用loop_profile_get_sent_bandwidth时的发送字节数 */
+    uint64_t last_recv_bytes;     /* 上次调用loop_profile_get_recv_bandwidth时的接收字节数 */
+    time_t   last_send_tick;      /* 上次调用loop_profile_get_sent_bandwidth时的时间戳（秒） */
+    time_t   last_recv_tick;      /* 上次调用loop_profile_get_recv_bandwidth时的时间戳（秒） */
 };
 
 loop_profile_t* loop_profile_create(loop_t* loop) {
@@ -129,6 +129,7 @@ uint32_t loop_profile_get_sent_bandwidth(loop_profile_t* profile) {
     uint64_t bytes     = profile->send_bytes - profile->last_send_bytes;
     verify(profile);
     if (tick == profile->last_send_tick) {
+        /* 最小为1秒 */
         intval = 1;
     } else {
         intval = tick - profile->last_send_tick;
@@ -146,6 +147,7 @@ uint32_t loop_profile_get_recv_bandwidth(loop_profile_t* profile) {
     uint64_t bytes     = profile->recv_bytes - profile->last_recv_bytes;
     verify(profile);
     if (tick == profile->last_recv_tick) {
+        /* 最小为1秒 */
         intval = 1;
     } else {
         intval = tick - profile->last_recv_tick;
