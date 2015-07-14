@@ -67,14 +67,14 @@ extern uint64_t loop_profile_get_recv_bytes(loop_profile_t* profile);
  * @param profile loop_profile_t实例
  * @return 带宽(字节/秒)
  */
-extern uint32_t loop_profile_get_sent_bindwidth(loop_profile_t* profile);
+extern uint32_t loop_profile_get_sent_bandwidth(loop_profile_t* profile);
 
 /**
  * 取得接收带宽
  * @param profile loop_profile_t实例
  * @return 带宽(字节/秒)
  */
-extern uint32_t loop_profile_get_recv_bindwidth(loop_profile_t* profile);
+extern uint32_t loop_profile_get_recv_bandwidth(loop_profile_t* profile);
 
 /**
  * 将统计信息写入文件

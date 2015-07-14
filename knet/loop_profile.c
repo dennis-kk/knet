@@ -122,38 +122,38 @@ uint64_t loop_profile_get_recv_bytes(loop_profile_t* profile) {
     return profile->recv_bytes;
 }
 
-uint32_t loop_profile_get_sent_bindwidth(loop_profile_t* profile) {
+uint32_t loop_profile_get_sent_bandwidth(loop_profile_t* profile) {
     time_t   tick      = time(0);
-    uint64_t bindwidth = 0;
+    uint64_t bandwidth = 0;
     uint64_t intval    = 0;
-    uint64_t bytes     = profile->send_bytes - profile->last_send_tick;
+    uint64_t bytes     = profile->send_bytes - profile->last_send_bytes;
     verify(profile);
     if (tick == profile->last_send_tick) {
         intval = 1;
     } else {
         intval = tick - profile->last_send_tick;
     }
-    bindwidth = bytes / intval;
+    bandwidth = bytes / intval;
     profile->last_send_tick  = tick;
     profile->last_send_bytes = profile->send_bytes;
-    return (uint32_t)(bytes / intval);
+    return (uint32_t)bandwidth;
 }
 
-uint32_t loop_profile_get_recv_bindwidth(loop_profile_t* profile) {
+uint32_t loop_profile_get_recv_bandwidth(loop_profile_t* profile) {
     time_t   tick      = time(0);
-    uint64_t bindwidth = 0;
+    uint64_t bandwidth = 0;
     uint64_t intval    = 0;
-    uint64_t bytes     = profile->recv_bytes - profile->last_recv_tick;
+    uint64_t bytes     = profile->recv_bytes - profile->last_recv_bytes;
     verify(profile);
     if (tick == profile->last_recv_tick) {
         intval = 1;
     } else {
         intval = tick - profile->last_recv_tick;
     }
-    bindwidth = bytes / intval;
+    bandwidth = bytes / intval;
     profile->last_recv_tick  = tick;
     profile->last_recv_bytes = profile->recv_bytes;
-    return (uint32_t)(bytes / intval);
+    return (uint32_t)bandwidth;
 }
 
 int loop_profile_dump_file(loop_profile_t* profile, FILE* fp) {
@@ -166,12 +166,16 @@ int loop_profile_dump_file(loop_profile_t* profile, FILE* fp) {
         "Active channel:      %ld\n"
         "Close channel:       %ld\n"
         "Received bytes:      %lld\n"
-        "Sent bytes:          %lld\n",
+        "Sent bytes:          %lld\n"
+        "Received bandwidth:  %ld\n"
+        "Sent bandwidth:      %ld\n",
         (long)loop_profile_get_established_channel_count(profile),
         (long)loop_profile_get_active_channel_count(profile),
         (long)loop_profile_get_close_channel_count(profile),
         (long long)loop_profile_get_recv_bytes(profile),
-        (long long)loop_profile_get_sent_bytes(profile));
+        (long long)loop_profile_get_sent_bytes(profile),
+        (long)loop_profile_get_recv_bandwidth(profile),
+        (long)loop_profile_get_sent_bandwidth(profile));
     if (len <= 0) {
         return error_fail;
     }
@@ -187,12 +191,16 @@ int loop_profile_dump_stream(loop_profile_t* profile, stream_t* stream) {
         "Active channel:      %ld\n"
         "Close channel:       %ld\n"
         "Received bytes:      %lld\n"
-        "Sent bytes:          %lld\n",
+        "Sent bytes:          %lld\n"
+        "Received bandwidth:  %ld\n"
+        "Sent bandwidth:      %ld\n",
         (long)loop_profile_get_established_channel_count(profile),
         (long)loop_profile_get_active_channel_count(profile),
         (long)loop_profile_get_close_channel_count(profile),
         (long long)loop_profile_get_recv_bytes(profile),
-        (long long)loop_profile_get_sent_bytes(profile));
+        (long long)loop_profile_get_sent_bytes(profile),
+        (long)loop_profile_get_recv_bandwidth(profile),
+        (long)loop_profile_get_sent_bandwidth(profile));
 }
 
 int loop_profile_dump_stdout(loop_profile_t* profile) {
@@ -204,12 +212,16 @@ int loop_profile_dump_stdout(loop_profile_t* profile) {
         "Active channel:      %ld\n"
         "Close channel:       %ld\n"
         "Received bytes:      %lld\n"
-        "Sent bytes:          %lld\n",
+        "Sent bytes:          %lld\n"
+        "Received bandwidth:  %ld\n"
+        "Sent bandwidth:      %ld\n",
         (long)loop_profile_get_established_channel_count(profile),
         (long)loop_profile_get_active_channel_count(profile),
         (long)loop_profile_get_close_channel_count(profile),
         (long long)loop_profile_get_recv_bytes(profile),
-        (long long)loop_profile_get_sent_bytes(profile));
+        (long long)loop_profile_get_sent_bytes(profile),
+        (long)loop_profile_get_recv_bandwidth(profile),
+        (long)loop_profile_get_sent_bandwidth(profile));
     if (len <= 0) {
         return error_fail;
     }
