@@ -21,7 +21,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-
+#include <stdarg.h>
 #include "stream.h"
 #include "config.h"
 #include "channel_ref.h"
@@ -82,6 +82,28 @@ int stream_push(stream_t* stream, const void* buffer, int size) {
     verify(buffer);
     verify(size);
     return channel_ref_write(stream->channel_ref, (char*)buffer, size);
+}
+
+int stream_push_varg(stream_t* stream, const char* format, ...) {
+    char buffer[1024] = {0};
+    int len           = 0;
+    va_list arg_ptr;
+    verify(stream);
+    verify(format);
+    va_start(arg_ptr, format);
+    #if defined(WIN32)
+    len = _vsnprintf(buffer, sizeof(buffer), format, arg_ptr);
+    if ((len >= sizeof(buffer)) || (len < 0)) {
+        return error_stream_buffer_overflow;
+    }
+    #else
+    len = vsnprintf(buffer, sizeof(buffer), format, arg_ptr);
+    if (len <= 0) {
+        return error_stream_buffer_overflow;
+    }
+    #endif /* defined(WIN32) */
+    va_end(arg_ptr);
+    return stream_push(stream, buffer, len);
 }
 
 int stream_copy(stream_t* stream, void* buffer, int size) {

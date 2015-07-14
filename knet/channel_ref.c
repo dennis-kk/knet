@@ -31,6 +31,7 @@
 #include "buffer.h"
 #include "ringbuffer.h"
 #include "address.h"
+#include "loop_profile.h"
 
 
 typedef struct _channel_ref_info_t {
@@ -75,6 +76,7 @@ channel_ref_t* channel_ref_create(loop_t* loop, channel_t* channel) {
     channel_ref->ref_info->loop         = loop;
     channel_ref->ref_info->last_recv_ts = time(0);
     channel_ref->ref_info->state        = channel_state_init;
+    loop_profile_increase_active_channel_count(loop_get_profile(loop));
     return channel_ref;
 }
 
@@ -197,7 +199,7 @@ void channel_ref_close(channel_ref_t* channel_ref) {
         loop_notify_close(loop, channel_ref);
     } else {
         /* 本线程内关闭 */
-        log_info("close channel in loop thread[id: %d]", loop_get_thread_id(loop));
+        log_info("close channel[%llu] in loop thread[id: %d]", channel_ref_get_uuid(channel_ref), loop_get_thread_id(loop));
         channel_ref_update_close_in_loop(loop, channel_ref);
     }
 }
@@ -207,6 +209,7 @@ void channel_ref_update_send_in_loop(loop_t* loop, channel_ref_t* channel_ref, b
     verify(loop);
     verify(channel_ref);
     verify(send_buffer);
+    loop_profile_add_send_bytes(loop_get_profile(loop), buffer_get_length(send_buffer));
     error = channel_send_buffer(channel_ref->ref_info->channel, send_buffer);
     switch (error) {
     case error_send_patial:
@@ -242,6 +245,7 @@ int channel_ref_write(channel_ref_t* channel_ref, const char* data, int size) {
         buffer_put(send_buffer, data, size);
         loop_notify_send(loop, channel_ref, send_buffer);
     } else {
+        loop_profile_add_send_bytes(loop_get_profile(channel_ref->ref_info->loop), size);
         /* 当前线程发送 */
         error = channel_send(channel_ref->ref_info->channel, data, size);
         switch (error) {
@@ -404,7 +408,9 @@ void channel_ref_update_connect(channel_ref_t* channel_ref) {
 
 void channel_ref_update_recv(channel_ref_t* channel_ref) {
     int error = 0;
+    uint32_t bytes = 0;
     verify(channel_ref);
+    bytes = stream_available(channel_ref->ref_info->stream);
     error = channel_update_recv(channel_ref->ref_info->channel);
     switch (error) {
         case error_recv_fail:
@@ -417,6 +423,8 @@ void channel_ref_update_recv(channel_ref_t* channel_ref) {
             break;
     }
     if (error == error_ok) {
+        loop_profile_add_recv_bytes(loop_get_profile(channel_ref->ref_info->loop),
+            stream_available(channel_ref->ref_info->stream) - bytes);
         if (channel_ref->ref_info->cb) {
             channel_ref->ref_info->cb(channel_ref, channel_cb_event_recv);
         }
@@ -633,6 +641,16 @@ void channel_ref_incref(channel_ref_t* channel_ref) {
 void channel_ref_decref(channel_ref_t* channel_ref) {
     verify(channel_ref);
     atomic_counter_dec(&channel_ref->ref_info->ref_count);
+}
+
+int channel_ref_check_ref(channel_ref_t* channel_ref) {
+    verify(channel_ref);
+    return !atomic_counter_zero(&channel_ref->ref_info->ref_count);
+}
+
+int channel_ref_get_ref(channel_ref_t* channel_ref) {
+    verify(channel_ref);
+    return channel_ref->ref_info->ref_count;
 }
 
 uint64_t channel_ref_get_uuid(channel_ref_t* channel_ref) {

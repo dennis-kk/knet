@@ -29,6 +29,7 @@
 #include "channel.h"
 #include "misc.h"
 #include "loop_balancer.h"
+#include "loop_profile.h"
 #include "stream.h"
 
 
@@ -44,6 +45,7 @@ struct _loop_t {
     volatile int          running;             /* 事件循环运行标志 */
     thread_id_t           thread_id;           /* 事件选取器当前运行线程ID */
     loop_balance_option_e balance_options;     /* 负载均衡配置 */
+    loop_profile_t*       profile;             /* 统计 */
     void*                 data;                /* 用户数据指针 */
 };
 
@@ -107,6 +109,7 @@ loop_t* loop_create() {
         log_fatal("loop_create() failed, reason: socket_pair()");
         return 0;
     }
+    loop->profile = loop_profile_create(loop);
     loop->active_channel_list = dlist_create();
     loop->close_channel_list = dlist_create();
     loop->event_list = dlist_create();
@@ -152,6 +155,7 @@ void loop_destroy(loop_t* loop) {
         event = (loop_event_t*)dlist_node_get_data(node);
         destroy(event);
     }
+    loop_profile_destroy(loop->profile);
     dlist_destroy(loop->event_list);
     lock_destroy(loop->lock);
     destroy(loop);
@@ -297,6 +301,8 @@ void loop_add_channel_ref(loop_t* loop, channel_ref_t* channel_ref) {
         /* 创建链表节点 */
         dlist_add_front_node(loop->active_channel_list, channel_ref);
     }
+    loop_profile_decrease_active_channel_count(loop->profile);
+    loop_profile_increase_established_channel_count(loop->profile);
     /* 设置节点 */
     channel_ref_set_loop_node(channel_ref, dlist_get_front(loop->active_channel_list));
     /* 通知选取器添加管道 */
@@ -308,6 +314,8 @@ void loop_remove_channel_ref(loop_t* loop, channel_ref_t* channel_ref) {
     verify(channel_ref);
     /* 解除与当前链表关联，但不销毁节点 */
     dlist_remove(loop->active_channel_list, channel_ref_get_loop_node(channel_ref));
+    loop_profile_decrease_established_channel_count(loop->profile);
+    loop_profile_increase_close_channel_count(loop->profile);
 }
 
 void loop_set_impl(loop_t* loop, void* impl) {
@@ -376,6 +384,7 @@ void loop_check_close(loop_t* loop) {
     dlist_for_each_safe(loop_get_close_list(loop), node, temp) {
         channel_ref = (channel_ref_t*)dlist_node_get_data(node);
         if (error_ok == channel_ref_destroy(channel_ref)) {
+            loop_profile_decrease_close_channel_count(loop->profile);
             dlist_delete(loop_get_close_list(loop), node);
         }
     }
@@ -419,4 +428,9 @@ void loop_set_data(loop_t* loop, void* data) {
 void* loop_get_data(loop_t* loop) {
     verify(loop);
     return loop->data;
+}
+
+loop_profile_t* loop_get_profile(loop_t* loop) {
+    verify(loop);
+    return loop->profile;
 }

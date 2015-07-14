@@ -211,4 +211,24 @@ const char* get_channel_cb_event_string(channel_cb_event_e e);
  */
 const char* get_channel_cb_event_name(channel_cb_event_e e);
 
+/**
+ * long转为char*
+ * @param i long
+ * @param buffer 存储转换的字符串
+ * @param size 缓冲区长度
+ * @retval 0 失败
+ * @retval 其他 成功
+ */
+char* ltoa(long l, char* buffer, int size);
+
+/**
+ * long long 转为char*
+ * @param i long long
+ * @param buffer 存储转换的字符串
+ * @param size 缓冲区长度
+ * @retval 0 失败
+ * @retval 其他 成功
+ */
+char* lltoa(long long ll, char* buffer, int size);
+
 #endif /* MISC_H */

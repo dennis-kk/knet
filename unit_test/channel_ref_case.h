@@ -171,8 +171,6 @@ CASE(Test_Channel_Share_Leave) {
                 channel_ref_close(channel);
             } else if (e & channel_cb_event_close) {
                 // 收到关闭事件, 但是因为有多一个引用，管道不能被销毁
-                // 销毁整个引用
-                channel_ref_leave(case_Test_Channel_Share_Leave_channel);
                 loop_exit(channel_ref_get_loop(channel));
                 // loop_exit调用后管道的状态最终还是会被扫描一次
                 // 这次扫描中管道将被销毁
@@ -190,19 +188,13 @@ CASE(Test_Channel_Share_Leave) {
     EXPECT_TRUE(channel_ref_check_state(acceptor, channel_state_accept));
 
     loop_run(loop);
-
-    // 4条管道分别为：
-    // 1. loop事件读管道
-    // 2. loop事件写管道
-    // 3. acceptor管道
-    // 4. 新建立的连接
-    // connector管道已经被销毁
-    // 因为在connector_cb内调用了loop_exit(), 新建立的连接有可能还未被关闭
-    EXPECT_TRUE(3 <= loop_get_active_channel_count(loop));
-
-    // 检查是否还有未销毁的管道
+    // 销毁引用
+    channel_ref_leave(case_Test_Channel_Share_Leave_channel);
+    // 销毁管道
+    for (int i = 0; i < 3; i++) {
+        loop_run_once(loop);
+    }
     EXPECT_TRUE(0 == loop_get_close_channel_count(loop));
-
-    // 剩余的4条管道在这里被销毁
+    // 剩余的3条管道在这里被销毁
     loop_destroy(loop);
 }

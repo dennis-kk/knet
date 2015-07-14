@@ -26,6 +26,7 @@ add_library(knet
 	framework.c
 	framework_acceptor.c
 	framework_worker.c
+	loop_profile.c
 )
 
 target_link_libraries(knet -lpthread)

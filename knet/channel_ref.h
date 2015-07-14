@@ -306,4 +306,19 @@ void channel_ref_incref(channel_ref_t* channel_ref);
  */
 void channel_ref_decref(channel_ref_t* channel_ref);
 
+/**
+ * 测试管道引用是否为零
+ * @param channel_ref channel_ref_t实例
+ * @return 0 不为零
+ * @return 非零 为零
+ */
+int channel_ref_check_ref(channel_ref_t* channel_ref);
+
+/**
+ * 获取管道引用计数
+ * @param channel_ref channel_ref_t实例
+ * @return 管道引用计数
+ */
+int channel_ref_get_ref(channel_ref_t* channel_ref);
+
 #endif /* CHANNEL_REF_H */

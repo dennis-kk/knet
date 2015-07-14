@@ -986,3 +986,41 @@ const char* get_channel_cb_event_name(channel_cb_event_e e) {
     }
     return "unknown channel callback event";
 }
+
+char* ltoa(long l, char* buffer, int size) {
+    int len = 0;
+    verify(buffer);
+    verify(size);
+#if defined(WIN32)
+    len = _snprintf(buffer, size, "%ld", l);
+    if ((len >= size) || (len < 0)) {
+        return 0;
+    }
+#else
+    len = snprintf(buffer, size, "%ld", l);
+    if (len <= 0) {
+        return 0;
+    }
+#endif /* WIN32 */
+    buffer[size - 1] = 0;
+    return buffer;
+}
+
+char* lltoa(long long ll, char* buffer, int size) {
+    int len = 0;
+    verify(buffer);
+    verify(size);
+#if defined(WIN32)
+    len = _snprintf(buffer, size, "%lld", ll);
+    if ((len >= size) || (len < 0)) {
+        return 0;
+    }
+#else
+    len = snprintf(buffer, size, "%lld", ll);
+    if (len <= 0) {
+        return 0;
+    }
+#endif /* WIN32 */
+    buffer[size - 1] = 0;
+    return buffer;
+}

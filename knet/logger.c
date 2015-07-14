@@ -121,6 +121,6 @@ int logger_write(logger_t* logger, logger_level_e level, const char* format, ...
         }
         lock_unlock(logger->lock);
     }
-    va_end(arg_ptr);  
+    va_end(arg_ptr);
     return error_ok;
 }

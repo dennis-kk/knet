@@ -40,6 +40,7 @@
 #include "thread_api.h"
 #include "rpc_api.h"
 #include "rpc_object_api.h"
+#include "loop_profile_api.h"
 #include "version.h"
 
 #ifdef __cplusplus

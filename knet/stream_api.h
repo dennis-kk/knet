@@ -97,6 +97,17 @@ extern int stream_pop(stream_t* stream, void* buffer, int size);
 extern int stream_push(stream_t* stream, const void* buffer, int size);
 
 /**
+ * 向数据流写数据，可变参数字符串
+ *
+ * 一次写入的长度不能超过1024
+ * @param stream stream_t实例
+ * @param format 字符串格式
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int stream_push_varg(stream_t* stream, const char* format, ...);
+
+/**
  * 从数据流内拷贝数据，但不清除数据流内数据
  * @param stream stream_t实例
  * @param buffer 缓冲区

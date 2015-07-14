@@ -134,6 +134,13 @@ extern int loop_get_close_channel_count(loop_t* loop);
  */
 extern void loop_set_data(loop_t* loop, void* data);
 
+/**
+ * 取得统计器
+ * @param loop loop_t实例
+ * @return loop_profile_t实例
+ */
+extern loop_profile_t* loop_get_profile(loop_t* loop);
+
 /** @} */
 
 #endif /* LOOP_API_H */

@@ -138,6 +138,7 @@ typedef struct _framework_t framework_t;
 typedef struct _framework_config_t framework_config_t;
 typedef struct _framework_acceptor_t framework_acceptor_t;
 typedef struct _framework_worker_t framework_worker_t;
+typedef struct _loop_profile_t loop_profile_t;
 
 /* 管道可投递事件 */
 typedef enum _channel_event_e {
