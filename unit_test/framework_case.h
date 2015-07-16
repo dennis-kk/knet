@@ -27,6 +27,7 @@
 
 framework_t* Test_Framework_Framework = 0;
 bool Test_Framework_Echo = false;
+bool Test_Framework_Accept = false;
 
 CASE(Test_Framework) {
     struct holder {
@@ -45,6 +46,9 @@ CASE(Test_Framework) {
         }
 
         static void channel_cb(channel_ref_t* channel, channel_cb_event_e e) {
+            if (e & channel_cb_event_accept) {
+                Test_Framework_Accept = true;
+            }
             if (e & channel_cb_event_recv) {
                 stream_t* stream = channel_ref_get_stream(channel);
                 stream_push(stream, "1234", 5);
@@ -68,6 +72,7 @@ CASE(Test_Framework) {
     loop_run(loop);
 
     EXPECT_TRUE(Test_Framework_Echo);
+    EXPECT_TRUE(Test_Framework_Accept);
     framework_wait_for_stop(Test_Framework_Framework);
     framework_destroy(Test_Framework_Framework);
     loop_destroy(loop);
