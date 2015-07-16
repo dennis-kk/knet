@@ -34,6 +34,7 @@ struct _loop_profile_t {
     uint32_t established_channel; /* 已经建立连接的管道数量 */
     uint32_t active_channel;      /* 还未建立连接的管道数量 */
     uint32_t close_channel;       /* 已关闭的管道数量 */
+    uint32_t __padding;           /* 填充 */
     uint64_t last_send_bytes;     /* 上次调用loop_profile_get_sent_bandwidth时的发送字节数 */
     uint64_t last_recv_bytes;     /* 上次调用loop_profile_get_recv_bandwidth时的接收字节数 */
     time_t   last_send_tick;      /* 上次调用loop_profile_get_sent_bandwidth时的时间戳（秒） */
@@ -48,12 +49,11 @@ loop_profile_t* loop_profile_create(loop_t* loop) {
     memset(profile, 0, sizeof(loop_profile_t));
     profile->loop           = loop;
     profile->last_send_tick = time(0);
-    profile->last_recv_tick = time(0);
+    profile->last_recv_tick = profile->last_send_tick;
     return profile;
 }
 
 void loop_profile_destroy(loop_profile_t* profile) {
-    verify(profile);
     destroy(profile);
 }
 
@@ -126,8 +126,9 @@ uint32_t loop_profile_get_sent_bandwidth(loop_profile_t* profile) {
     time_t   tick      = time(0);
     uint64_t bandwidth = 0;
     uint64_t intval    = 0;
-    uint64_t bytes     = profile->send_bytes - profile->last_send_bytes;
+    uint64_t bytes     = 0;
     verify(profile);
+    bytes = profile->send_bytes - profile->last_send_bytes;
     if (tick == profile->last_send_tick) {
         /* 最小为1秒 */
         intval = 1;
@@ -144,8 +145,9 @@ uint32_t loop_profile_get_recv_bandwidth(loop_profile_t* profile) {
     time_t   tick      = time(0);
     uint64_t bandwidth = 0;
     uint64_t intval    = 0;
-    uint64_t bytes     = profile->recv_bytes - profile->last_recv_bytes;
+    uint64_t bytes     = 0;
     verify(profile);
+    bytes = profile->recv_bytes - profile->last_recv_bytes;
     if (tick == profile->last_recv_tick) {
         /* 最小为1秒 */
         intval = 1;
@@ -169,8 +171,8 @@ int loop_profile_dump_file(loop_profile_t* profile, FILE* fp) {
         "Close channel:       %ld\n"
         "Received bytes:      %lld\n"
         "Sent bytes:          %lld\n"
-        "Received bandwidth:  %ld\n"
-        "Sent bandwidth:      %ld\n",
+        "Received bandwidth:  %ld(B/s)\n"
+        "Sent bandwidth:      %ld(B/s)\n",
         (long)loop_profile_get_established_channel_count(profile),
         (long)loop_profile_get_active_channel_count(profile),
         (long)loop_profile_get_close_channel_count(profile),
@@ -194,8 +196,8 @@ int loop_profile_dump_stream(loop_profile_t* profile, stream_t* stream) {
         "Close channel:       %ld\n"
         "Received bytes:      %lld\n"
         "Sent bytes:          %lld\n"
-        "Received bandwidth:  %ld\n"
-        "Sent bandwidth:      %ld\n",
+        "Received bandwidth:  %ld(B/s)\n"
+        "Sent bandwidth:      %ld(B/s)\n",
         (long)loop_profile_get_established_channel_count(profile),
         (long)loop_profile_get_active_channel_count(profile),
         (long)loop_profile_get_close_channel_count(profile),
@@ -215,8 +217,8 @@ int loop_profile_dump_stdout(loop_profile_t* profile) {
         "Close channel:       %ld\n"
         "Received bytes:      %lld\n"
         "Sent bytes:          %lld\n"
-        "Received bandwidth:  %ld\n"
-        "Sent bandwidth:      %ld\n",
+        "Received bandwidth:  %ld(B/s)\n"
+        "Sent bandwidth:      %ld(B/s)\n",
         (long)loop_profile_get_established_channel_count(profile),
         (long)loop_profile_get_active_channel_count(profile),
         (long)loop_profile_get_close_channel_count(profile),
