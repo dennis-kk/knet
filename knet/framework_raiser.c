@@ -86,12 +86,12 @@ int _create_acceptor_channel(framework_acceptor_config_t* ac, loop_t* loop) {
 int _create_connector_channel(framework_connector_config_t* cc, loop_t* loop) {
     int            error   = error_ok;
     channel_ref_t* channel = 0;
-    /* 建立监听管道 */
+    /* 建立连接器管道 */
     channel = loop_create_channel(loop, framework_connector_config_get_max_send_list_count(cc),
         framework_connector_config_get_max_recv_buffer_length(cc));
     verify(channel);
     channel_ref_set_cb(channel, framework_connector_config_get_cb(cc));
-    /* 监听 */
+    /* 连接 */
     error = channel_ref_connect(channel, framework_connector_config_get_remote_ip(cc),
         framework_connector_config_get_remote_port(cc), framework_connector_config_get_connect_timeout(cc));
     if (error != error_ok) {
