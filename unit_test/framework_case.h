@@ -39,8 +39,6 @@ CASE(Test_Framework) {
                 Test_Framework_Echo = true;
                 channel_ref_close(channel);
             } else if (e & channel_cb_event_close) {
-                // 关闭
-                loop_exit(channel_ref_get_loop(channel));
                 framework_stop(Test_Framework_Framework);
             }
         }
@@ -56,43 +54,46 @@ CASE(Test_Framework) {
         }
     };
 
-    loop_t* loop = loop_create();
-
     Test_Framework_Framework = framework_create();
     framework_config_t* c = framework_get_config(Test_Framework_Framework);
-    framework_config_set_address(c, 0, 80);
-    // 启动框架
-    EXPECT_TRUE(error_ok == framework_start(Test_Framework_Framework, &holder::channel_cb));
+    framework_acceptor_config_t* ac = framework_config_new_acceptor(c);
+    framework_acceptor_config_set_local_address(ac, 0, 80);
+    framework_acceptor_config_set_client_cb(ac, &holder::channel_cb);
+    framework_config_set_worker_thread_count(c, 4);
 
     // 模拟一个外部连接器
-    channel_ref_t* connector = loop_create_channel(loop, 1, 1024);
-    channel_ref_connect(connector, "127.0.0.1", 80, 1);
-    channel_ref_set_cb(connector, &holder::connector_cb);
-    // 启动连接器网络事件循环
-    loop_run(loop);
+    framework_connector_config_t* cc = framework_config_new_connector(c);
+    framework_connector_config_set_remote_address(cc, "127.0.0.1", 80);
+    framework_connector_config_set_cb(cc, &holder::connector_cb);
+
+    // 启动框架
+    EXPECT_TRUE(error_ok == framework_start(Test_Framework_Framework));
+
+    framework_wait_for_stop(Test_Framework_Framework);
+    framework_destroy(Test_Framework_Framework);
 
     EXPECT_TRUE(Test_Framework_Echo);
     EXPECT_TRUE(Test_Framework_Accept);
-    framework_wait_for_stop(Test_Framework_Framework);
-    framework_destroy(Test_Framework_Framework);
-    loop_destroy(loop);
 }
 
 CASE(Test_Framework_Start_Fail) {
     framework_t* f = framework_create();
     framework_config_t* c = framework_get_config(f);
-    framework_config_set_address(c, "128.0.0.1", 80);
-    EXPECT_FALSE(error_ok == framework_start(f, 0));
+    framework_acceptor_config_t* ac = framework_config_new_acceptor(c);
+    framework_acceptor_config_set_local_address(ac, "128.0.0.1", 80);
+    EXPECT_FALSE(error_ok == framework_start(f));
     framework_destroy(f);
 
     f = framework_create();
     c = framework_get_config(f);
-    framework_config_set_address(c, "128.0.0.1", 80);
-    EXPECT_FALSE(error_ok == framework_start_wait(f, 0));
+    ac = framework_config_new_acceptor(c);
+    framework_acceptor_config_set_local_address(ac, "128.0.0.1", 80);
+    EXPECT_FALSE(error_ok == framework_start_wait(f));
     framework_destroy(f);
 
     f = framework_create();
     c = framework_get_config(f);
-    framework_config_set_address(c, "128.0.0.1", 80);
-    EXPECT_FALSE(error_ok == framework_start_wait_destroy(f, 0));
+    ac = framework_config_new_acceptor(c);
+    framework_acceptor_config_set_local_address(ac, "128.0.0.1", 80);
+    EXPECT_FALSE(error_ok == framework_start_wait_destroy(f));
 }

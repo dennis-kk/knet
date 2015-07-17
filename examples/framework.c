@@ -29,11 +29,13 @@ void client_cb(channel_ref_t* channel, channel_cb_event_e e) {
 
 int main() {
     framework_config_t* c = 0;
+    framework_acceptor_config_t* ac = 0;
     f = framework_create();
     c = framework_get_config(f);
-    framework_config_set_address(c, 0, 23);
+    framework_acceptor_config_set_local_address(ac, 0, 23);
+    framework_acceptor_config_set_client_cb(ac, client_cb);
     /* 启动框架, 等待关闭，销毁*/
-    framework_start_wait_destroy(f, client_cb);
+    framework_start_wait_destroy(f);
     return 0;
 }
 

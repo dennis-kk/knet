@@ -24,8 +24,9 @@ add_library(knet
 	rpc.c
 	rpc_object.c
 	framework.c
-	framework_acceptor.c
+	framework_raiser.c
 	framework_worker.c
+	framework_config.c
 	loop_profile.c
 )
 

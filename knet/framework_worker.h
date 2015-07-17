@@ -30,15 +30,16 @@
 /**
  * 建立框架工作线程
  * @param f framework_t实例
+ * @param loop loop_t实例
  * @return framework_worker_t实例
  */
-framework_worker_t* framework_worker_create(framework_t* f);
+framework_worker_t* framework_worker_create(framework_t* f, loop_t* loop);
 
 /**
  * 销毁框架工作线程
  * @param w framework_worker_t实例
  */
-void framework_worker_destroy(framework_worker_t* w);
+void framework_worker_destroy(framework_worker_t* worker);
 
 /**
  * 启动框架工作线程
@@ -46,18 +47,18 @@ void framework_worker_destroy(framework_worker_t* w);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int framework_worker_start(framework_worker_t* w);
+int framework_worker_start(framework_worker_t* worker);
 
 /**
  * 关闭框架工作线程
  * @param w framework_worker_t实例
  */
-void framework_worker_stop(framework_worker_t* w);
+void framework_worker_stop(framework_worker_t* worker);
 
 /**
  * 等待框架工作线程关闭
  * @param w framework_worker_t实例
  */
-void framework_worker_wait_for_stop(framework_worker_t* w);
+void framework_worker_wait_for_stop(framework_worker_t* worker);
 
 #endif /* FRAMEWORK_WORKER_H */

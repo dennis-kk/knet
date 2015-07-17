@@ -90,12 +90,18 @@ dlist_node_t* channel_ref_get_loop_node(channel_ref_t* channel_ref);
 /**
  * 在loop_t所运行的线程内完成连接流程
  * @param channel_ref channel_ref_t实例
- * @param ip IP
- * @param port 端口
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int channel_ref_connect_in_loop(channel_ref_t* channel_ref, const char* ip, int port);
+int channel_ref_connect_in_loop(channel_ref_t* channel_ref);
+
+/**
+ * 在loop_t所运行的线程内完成连接流程
+ * @param channel_ref channel_ref_t实例
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int channel_ref_connect_in_loop_address(channel_ref_t* channel_ref);
 
 /**
  * 在loop_t所运行的线程内完成接收新连接流程

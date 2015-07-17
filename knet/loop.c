@@ -51,6 +51,7 @@ struct _loop_t {
 
 typedef enum _loop_event_e {
     loop_event_accept = 1,  /* 接受新连接事件 */
+    loop_event_connect,     /* 发起连接事件 */
     loop_event_send,        /* 发送事件 */
     loop_event_close,       /* 关闭事件 */
 } loop_event_e;
@@ -141,13 +142,13 @@ void loop_destroy(loop_t* loop) {
         channel_ref = (channel_ref_t*)dlist_node_get_data(node);
         channel_ref_update_close_in_loop(channel_ref_get_loop(channel_ref), channel_ref);
     }
-    /* 销毁选取器 */
-    impl_destroy(loop);
     /* 销毁已关闭管道 */
     dlist_for_each_safe(loop->close_channel_list, node, temp) {
         channel_ref = (channel_ref_t*)dlist_node_get_data(node);
         channel_ref_destroy(channel_ref);
     }
+    /* 销毁选取器 */
+    impl_destroy(loop);
     dlist_destroy(loop->close_channel_list);
     dlist_destroy(loop->active_channel_list);
     /* 销毁未处理事件 */
@@ -176,6 +177,12 @@ void loop_notify_accept(loop_t* loop, channel_ref_t* channel_ref) {
     verify(loop);
     verify(channel_ref);
     loop_add_event(loop, loop_event_create(channel_ref, 0, loop_event_accept));
+}
+
+void loop_notify_connect(loop_t* loop, channel_ref_t* channel_ref) {
+    verify(loop);
+    verify(channel_ref);
+    loop_add_event(loop, loop_event_create(channel_ref, 0, loop_event_connect));
 }
 
 void loop_notify_send(loop_t* loop, channel_ref_t* channel_ref, buffer_t* send_buffer) {
@@ -224,6 +231,9 @@ void loop_event_process(loop_t* loop) {
         switch(loop_event->event) {
             case loop_event_accept:
                 channel_ref_update_accept_in_loop(loop, loop_event->channel_ref);
+                break;
+            case loop_event_connect:
+                channel_ref_connect_in_loop(loop_event->channel_ref);
                 break;
             case loop_event_send:
                 channel_ref_update_send_in_loop(loop, loop_event->channel_ref, loop_event->send_buffer);

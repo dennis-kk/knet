@@ -36,16 +36,17 @@
  *
  * 1. 独立的监听线程，处理channel_cb_event_accept事件，监听线程不处理管道读写
  * 2. 提供了一个工作线程池，使用loop_balancer_t(负载均衡器)来分派管道
+ * 3. 提供了统一的配置接口方便建立多个连接器或者监听器
  *
  * 默认情况下工作线程池内只有一个线程，可以通过配置接口函数framework_config_set_worker_thread_count
- * 进行配置. 框架默认会启动两个线程，一个监听线程，一个工作线程(工作线程池内唯一线程).
+ * 进行配置. 框架默认会启动两个线程，一个监听线程，一个工作线程(工作线程池内唯一线程)，所有accept或者
+ * connect的管道都会被分派到不同的工作线程处理，监听线程只负责连接的建立不负责读写.
  *
  * framework_config_t提供了统一的配置接口，在framework_t建立后可以获取framework_config_t
  * 接口进行配置，调用framework_start启动成功后将不能更改配置.
  *
- * framework_start的第二个参数为管道回调函数，与channel_ref_set_cb所设置的回调函数相同，
- * 但框架的回调函数将在线程池内被回调，如果有多个工作线程的情况下，应该保证回调函数内的代码是线程安全的.
- *
+ * 框架的回调函数将在线程池内被回调，如果有多个工作线程的情况下，应该保证回调函数内的代码是线程安全的，
+ * 为了方便使用，框架的回调函数也会通知channel_cb_event_accept事件.
  * </pre>
  * @{
  */
@@ -65,35 +66,38 @@ extern void framework_destroy(framework_t* f);
 /**
  * 启动框架
  * @param f framework_t实例
- * @param cb 框架回调函数
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int framework_start(framework_t* f, channel_ref_cb_t cb);
+extern int framework_start(framework_t* f);
 
 /**
  * 启动框架并等待框架关闭
  * @param f framework_t实例
- * @param cb 框架回调函数
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int framework_start_wait(framework_t* f, channel_ref_cb_t cb);
+extern int framework_start_wait(framework_t* f);
 
 /**
  * 启动框架并等待框架关闭，如果启动失败或者框架关闭则销毁
  * @param f framework_t实例
- * @param cb 框架回调函数
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int framework_start_wait_destroy(framework_t* f, channel_ref_cb_t cb);
+extern int framework_start_wait_destroy(framework_t* f);
 
 /**
  * 等待框架停止
  * @param f framework_t实例
  */
 extern void framework_wait_for_stop(framework_t* f);
+
+/**
+ * 等待框架停止并销毁
+ * @param f framework_t实例
+ */
+extern void framework_wait_for_stop_destroy(framework_t* f);
 
 /**
  * 关闭框架
@@ -109,49 +113,6 @@ extern int framework_stop(framework_t* f);
  * @return framework_config_t实例
  */
 extern framework_config_t* framework_get_config(framework_t* f);
-
-/**
- * 设置IP地址和监听端口
- * @param c framework_config_t实例
- * @param ip IP
- * @param port 端口
- */
-extern void framework_config_set_address(framework_config_t* c, const char* ip, int port);
-
-/**
- * 设置backlog
- * @param c framework_config_t实例
- * @param backlog 等待队列长度
- */
-extern void framework_config_set_backlog(framework_config_t* c, int backlog);
-
-/**
- * 设置工作线程数量，默认为单线程
- * @param c framework_config_t实例
- * @param worker_thread_count 工作线程数量
- */
-extern void framework_config_set_worker_thread_count(framework_config_t* c, int worker_thread_count);
-
-/**
- * 设置接受到连接的发送队列最大长度
- * @param c framework_config_t实例
- * @param max_send_list 接受到连接的发送队列最大长度
- */
-extern void framework_config_set_max_send_list(framework_config_t* c, int max_send_list);
-
-/**
- * 设置接受到连接的接收缓冲区最大长度
- * @param c framework_config_t实例
- * @param max_recv_buffer 接受到连接的接收缓冲区最大长度
- */
-extern void framework_config_set_max_recv_buffer(framework_config_t* c, int max_recv_buffer);
-
-/**
- * 设置接受到连接的心跳超时时间
- * @param c framework_config_t实例
- * @param max_idle_timeout 接受到连接的心跳超时时间
- */
-extern void framework_config_set_max_idle_timeout(framework_config_t* c, int max_idle_timeout);
 
 /** @} */
 

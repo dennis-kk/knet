@@ -199,6 +199,20 @@ extern uint64_t channel_ref_get_uuid(channel_ref_t* channel_ref);
  */
 extern int channel_ref_equal(channel_ref_t* a, channel_ref_t* b);
 
+/**
+ * 设置管道用户数据
+ * @param channel_ref channel_ref_t实例
+ * @param data 用户数据指针
+ */
+extern void channel_ref_set_user_data(channel_ref_t* channel_ref, void* data);
+
+/**
+ * 获取管道用户数据
+ * @param channel_ref channel_ref_t实例
+ * @return 用户数据指针
+ */
+extern void* channel_ref_get_user_data(channel_ref_t* channel_ref);
+
 /** @} */
 
 #endif /* CHANNEL_REF_API_H */

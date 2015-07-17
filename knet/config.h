@@ -135,8 +135,10 @@ typedef struct _krpc_value_t krpc_value_t;
 typedef struct _hash_t hash_t;
 typedef struct _hash_value_t hash_value_t;
 typedef struct _framework_t framework_t;
+typedef struct _framework_acceptor_config_t framework_acceptor_config_t;
+typedef struct _framework_connector_config_t framework_connector_config_t;
 typedef struct _framework_config_t framework_config_t;
-typedef struct _framework_acceptor_t framework_acceptor_t;
+typedef struct _framework_raiser_t framework_raiser_t;
 typedef struct _framework_worker_t framework_worker_t;
 typedef struct _loop_profile_t loop_profile_t;
 

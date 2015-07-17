@@ -22,42 +22,43 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef FRAMEWORK_ACCEPTOR_H
-#define FRAMEWORK_ACCEPTOR_H
+#ifndef FRAMEWORK_RAISER_H
+#define FRAMEWORK_RAISER_H
 
 #include "config.h"
 
 /**
- * 建立框架网络监听器
+ * 建立网络连接发起者(监听器/连接器)
  * @param f framework_t实例
- * @return framework_acceptor_t实例
+ * @param loop loop_t实例
+ * @return framework_raiser_t实例
  */
-framework_acceptor_t* framework_acceptor_create(framework_t* f);
+framework_raiser_t* framework_raiser_create(framework_t* f, loop_t* loop);
 
 /**
- * 销毁框架网络监听器
- * @param a framework_acceptor_t实例
+ * 销毁网络连接发起者
+ * @param a framework_raiser_t实例
  */
-void framework_acceptor_destroy(framework_acceptor_t* a);
+void framework_raiser_destroy(framework_raiser_t* raiser);
 
 /**
- * 启动框架网络监听器
- * @param a framework_acceptor_t实例
+ * 启动网络连接发起者
+ * @param a framework_raiser_t实例
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int framework_acceptor_start(framework_acceptor_t* a);
+int framework_raiser_start(framework_raiser_t* raiser);
 
 /**
- * 关闭框架网络监听器
- * @param a framework_acceptor_t实例
+ * 关闭网络连接发起者
+ * @param a framework_raiser_t实例
  */
-void framework_acceptor_stop(framework_acceptor_t* a);
+void framework_raiser_stop(framework_raiser_t* raiser);
 
 /**
- * 等待框架网络监听器关闭
- * @param a framework_acceptor_t实例
+ * 等待网络连接发起者
+ * @param a framework_raiser_t实例
  */
-void framework_acceptor_wait_for_stop(framework_acceptor_t* a);
+void framework_raiser_wait_for_stop(framework_raiser_t* raiser);
 
-#endif /* FRAMEWORK_ACCEPTOR_H */
+#endif /* FRAMEWORK_RAISER_H */

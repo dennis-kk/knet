@@ -735,11 +735,9 @@ void thread_runner_stop(thread_runner_t* runner) {
 void thread_runner_join(thread_runner_t* runner) {
 #if defined(WIN32)
     DWORD error = 0;
-#else
-    void* retval = 0;
 #endif /* defined(WIN32) || defined(WIN64) */
     verify(runner);
-    /* 建立但未启动 */
+    /* 建立但未启动或已经结束 */
     if (!runner->thread_id) {
         return;
     }
@@ -747,9 +745,12 @@ void thread_runner_join(thread_runner_t* runner) {
     error = WaitForSingleObject((HANDLE)runner->thread_id, INFINITE);
     if ((error != WAIT_OBJECT_0) && (error != WAIT_ABANDONED)) {
         log_error("WaitForSingleObject() failed, system error: %d", sys_get_errno());
+    } else {
+        runner->thread_id = 0;
     }
 #else
-    pthread_join(runner->thread_id, &retval);
+    pthread_join(runner->thread_id, 0);
+    runner->thread_id = 0;
 #endif /* defined(WIN32) || defined(WIN64) */
 }
 

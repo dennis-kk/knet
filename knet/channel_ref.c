@@ -52,6 +52,7 @@ typedef struct _channel_ref_info_t {
     time_t                   connect_timeout; /* connect()超时（秒） */
     int                      flag;            /* 选取器所使用自定义标志位 */
     void*                    data;            /* 选取器所使用自定义数据 */
+    void*                    user_data;       /* 用户数据指针 */
     /* 扩展数据成员 */
 } channel_ref_info_t;
 
@@ -111,6 +112,8 @@ int channel_ref_destroy(channel_ref_t* channel_ref) {
 }
 
 int channel_ref_connect(channel_ref_t* channel_ref, const char* ip, int port, int timeout) {
+    int     error = error_ok;
+    loop_t* loop  = 0;
     verify(channel_ref);
     verify(port);
     if (!ip) {
@@ -124,8 +127,27 @@ int channel_ref_connect(channel_ref_t* channel_ref, const char* ip, int port, in
         /* 设置超时时间戳 */
         channel_ref->ref_info->connect_timeout = time(0) + timeout;
     }
-    /* 发起连接 */
-    return channel_ref_connect_in_loop(channel_ref, ip, port);
+    /* 如果目标积极拒绝，返回失败 */
+    error = channel_connect(channel_ref->ref_info->channel, ip, port);
+    if (error_ok != error) {
+        return error;
+    }
+    /* 负载均衡 */
+    loop = channel_ref_choose_loop(channel_ref);
+    if (loop) {
+        /* 减少原loop的active管道数量 */
+        loop_profile_decrease_active_channel_count(
+            loop_get_profile(channel_ref->ref_info->loop));
+        /* 设置目标loop */
+        channel_ref->ref_info->loop = loop;
+        /* 增加目标loop的active管道数量 */
+        loop_profile_increase_active_channel_count(loop_get_profile(loop));
+        /* 添加到其他loop */
+        loop_notify_connect(loop, channel_ref);
+        return error_ok;
+    }
+    /* 当前线程内发起连接 */
+    return channel_ref_connect_in_loop(channel_ref);
 }
 
 int channel_ref_accept(channel_ref_t* channel_ref, const char* ip, int port, int backlog) {
@@ -369,12 +391,15 @@ void channel_ref_update_accept(channel_ref_t* channel_ref) {
         if (loop) {
             client_ref = channel_ref_accept_from_socket_fd(channel_ref, loop, client_fd, 0);
             verify(client_ref);
+            channel_ref_set_user_data(client_ref, channel_ref->ref_info->user_data);
             /* 设置回调 */
             channel_ref_set_cb(client_ref, channel_ref->ref_info->cb);
             /* 添加到其他loop */
             loop_notify_accept(loop, client_ref);
         } else {
             client_ref = channel_ref_accept_from_socket_fd(channel_ref, channel_ref->ref_info->loop, client_fd, 1);
+            verify(client_ref);
+            channel_ref_set_user_data(client_ref, channel_ref->ref_info->user_data);
             /* 调用回调 */
             if (channel_ref->ref_info->cb) {
                 channel_ref->ref_info->cb(client_ref, channel_cb_event_accept);
@@ -491,9 +516,9 @@ loop_t* channel_ref_choose_loop(channel_ref_t* channel_ref) {
     loop_balancer_t* balancer     = 0;
     verify(channel_ref);
     current_loop = channel_ref->ref_info->loop;
-    if (!loop_get_thread_id(current_loop)) {
+    /*if (!loop_get_thread_id(current_loop)) {
         return 0;
-    }
+    }*/
     balancer = loop_get_balancer(current_loop);
     if (!balancer) {
         return 0;
@@ -574,18 +599,12 @@ channel_ref_cb_t channel_ref_get_cb(channel_ref_t* channel_ref) {
     return channel_ref->ref_info->cb;
 }
 
-int channel_ref_connect_in_loop(channel_ref_t* channel_ref, const char* ip, int port) {
-    int error = 0;
+int channel_ref_connect_in_loop(channel_ref_t* channel_ref) {
     verify(channel_ref);
-    verify(ip);
-    verify(port);
-    error = channel_connect(channel_ref->ref_info->channel, ip, port);
-    if (error == error_ok) {
-        loop_add_channel_ref(channel_ref->ref_info->loop, channel_ref);
-        channel_ref_set_state(channel_ref, channel_state_connect);
-        channel_ref_set_event(channel_ref, channel_event_send);
-    }
-    return error;
+    loop_add_channel_ref(channel_ref->ref_info->loop, channel_ref);
+    channel_ref_set_state(channel_ref, channel_state_connect);
+    channel_ref_set_event(channel_ref, channel_event_send);
+    return error_ok;
 }
 
 address_t* channel_ref_get_peer_address(channel_ref_t* channel_ref) {
@@ -661,4 +680,14 @@ uint64_t channel_ref_get_uuid(channel_ref_t* channel_ref) {
 int channel_ref_equal(channel_ref_t* a, channel_ref_t* b) {
     return ((channel_ref_get_uuid(a) == channel_ref_get_uuid(b)) &&
         (a->ref_info == b->ref_info));
+}
+
+void channel_ref_set_user_data(channel_ref_t* channel_ref, void* data) {
+    verify(channel_ref);
+    channel_ref->ref_info->user_data = data;
+}
+
+void* channel_ref_get_user_data(channel_ref_t* channel_ref) {
+    verify(channel_ref);
+    return channel_ref->ref_info->user_data;
 }

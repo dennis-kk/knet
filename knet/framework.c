@@ -26,47 +26,38 @@
 #include "loop.h"
 #include "loop_balancer.h"
 #include "channel_ref.h"
-#include "framework_acceptor.h"
+#include "framework_raiser.h"
 #include "framework_worker.h"
+#include "rpc_api.h"
+#include "list.h"
 #include "misc.h"
 
-struct _framework_config_t {
-    char ip[32];              /* IP */
-    int  port;                /* 监听端口 */
-    int  worker_thread_count; /* 工作线程数量 */
-    int  backlog;             /* listen() backlog */
-    int  max_send_list;       /* 发送链表最大长度 */
-    int  max_recv_buffer;     /* 接收缓冲区最大长度 */
-    int  max_idle_timeout;    /* 心跳（秒） */
-};
-
 struct _framework_t {
-    framework_config_t*   c;        /* 配置 */
-    framework_acceptor_t* acceptor; /* 外部管道监听器 */
-    framework_worker_t**  workers;  /* 工作线程 */
-    loop_balancer_t*      balancer; /* 负载均衡器 */
-    channel_ref_cb_t      cb;       /* 用户回调 */
-    int                   start;    /* 启动标志 */
+    dlist_t*             loops;    /* 网络事件循环 */
+    framework_config_t*  c;        /* 配置 */
+    framework_raiser_t*  raiser;   /* 监听器/连接器 */
+    framework_worker_t** workers;  /* 工作线程 */
+    loop_balancer_t*     balancer; /* 负载均衡器 */
+    int                  start;    /* 启动标志 */
 };
 
-void _cleanup_threads(framework_t* f) {
-    int i = 0;
-    if (f->acceptor) {
-        framework_acceptor_stop(f->acceptor);
-        framework_acceptor_wait_for_stop(f->acceptor);
-        framework_acceptor_destroy(f->acceptor);
-        f->acceptor = 0;
-    }
-    /* 销毁工作线程 */
-    for (; i < framework_config_get_worker_thread_count(f->c); i++) {
-        if (f->workers[i]) {
-            framework_worker_stop(f->workers[i]);
-            framework_worker_wait_for_stop(f->workers[i]);
-            framework_worker_destroy(f->workers[i]);
-            f->workers[i] = 0;
-        }
-    }
-}
+/**
+ * 关闭并销毁所有线程
+ * @param f framework_t实例
+ */
+void _cleanup_all_threads(framework_t* f);
+
+/**
+ * 启动工作线程
+ * @param f framework_t实例
+ */
+int _start_worker_threads(framework_t* f);
+
+/**
+ * 启动监听器/连接器发起线程
+ * @param f framework_t实例
+ */
+int _start_raiser_thread(framework_t* f);
 
 framework_t* framework_create() {
     framework_t* f = create(framework_t);
@@ -74,16 +65,22 @@ framework_t* framework_create() {
     memset(f, 0, sizeof(framework_t));
     /* 建立配置器 */
     f->c = framework_config_create();
+    /* 建立事件循环链表 */
+    f->loops = dlist_create();
     verify(f->c);
     return f;
 }
 
 void framework_destroy(framework_t* f) {
+    dlist_node_t* node = 0;
+    dlist_node_t* temp = 0;
+    loop_t*       loop = 0;
     verify(f);
     if (f->start) { /* 未关闭 */
         framework_stop(f);
     }
-    _cleanup_threads(f);
+    /* 销毁所有线程 */
+    _cleanup_all_threads(f);
     /* 销毁负载均衡器 */
     if (f->balancer) {
         loop_balancer_destroy(f->balancer);
@@ -92,79 +89,108 @@ void framework_destroy(framework_t* f) {
     if (f->c) {
         framework_config_destroy(f->c);
     }
+    /* 销毁loop */
+    dlist_for_each_safe(f->loops, node, temp) {
+        loop = (loop_t*)dlist_node_get_data(node);
+        loop_destroy(loop);
+    }
+    dlist_destroy(f->loops);
     destroy(f->workers);
     destroy(f);
 }
 
-int framework_start(framework_t* f, channel_ref_cb_t cb) {
-    int i            = 0;
-    int error        = 0;
-    int worker_count = 0;
+int framework_start(framework_t* f) {
+    int           i            = 0;
+    int           error        = 0;
+    int           worker_count = 0;
+    loop_t*       loop         = 0;
     verify(f);
     verify(f->c);
     worker_count = framework_config_get_worker_thread_count(f->c);
-    f->cb       = cb;
-    f->balancer = loop_balancer_create(); /* 建立负载均衡器 */
+    /* 建立负载均衡器 */
+    f->balancer = loop_balancer_create();
     verify(f->balancer);
-    loop_balancer_set_data(f->balancer, f);
-    f->start = 1; /* 设置启动标志，无论是否启动线程 */
-    f->workers = create_type(framework_worker_t*, worker_count * sizeof(framework_worker_t*));
-    verify(f->workers);
-    memset(f->workers, 0, worker_count * sizeof(framework_worker_t*));
-    /* 启动所有工作线程 */
-    for (; i < worker_count; i++) {
-        f->workers[i] = framework_worker_create(f);
-        verify(f->workers[i]);
-        error = framework_worker_start(f->workers[i]);
-        if (error_ok != error) {
-            goto error_return;
-        }
+    /* 建立工作线程所需的所有事件循环 */
+    for (; i < worker_count + 1; i++) {
+        loop = loop_create();
+        dlist_add_tail_node(f->loops, loop);
+        /* 关联到负载均衡器 */
+        loop_balancer_attach(f->balancer, loop);
     }
-    /* 启动监听器 */
-    f->acceptor = framework_acceptor_create(f);
-    verify(f->acceptor);
-    error = framework_acceptor_start(f->acceptor);
+    /* 设置启动标志，无论是否启动线程 */
+    f->start = 1;
+    /* 启动监听器/连接器 */
+    error = _start_raiser_thread(f);
+    if (error_ok != error) {
+        goto error_return;
+    }
+    /* 启动工作线程 */
+    error = _start_worker_threads(f);
     if (error_ok != error) {
         goto error_return;
     }
     return error_ok;
 error_return:
     /* 销毁监听器 */
-    _cleanup_threads(f);
+    _cleanup_all_threads(f);
     f->start = 0;
     return error;
 }
 
-int framework_start_wait(framework_t* f, channel_ref_cb_t cb) {
-    int error = framework_start(f, cb);
+int framework_start_wait(framework_t* f) {
+    int error = framework_start(f);
     if (error_ok == error) {
         framework_wait_for_stop(f);
     }
     return error;
 }
 
-int framework_start_wait_destroy(framework_t* f, channel_ref_cb_t cb) {
-    int error = framework_start_wait(f, cb);
+int framework_start_wait_destroy(framework_t* f) {
+    int error = framework_start_wait(f);
     framework_destroy(f);
     return error;
 }
 
 void framework_wait_for_stop(framework_t* f) {
+    int i = 0;
     verify(f);
-    _cleanup_threads(f);
+    if (!f->start) {
+        return;
+    }
+    if (f->raiser) {
+        framework_raiser_wait_for_stop(f->raiser);
+    }
+    /* 等待工作线程结束 */
+    if (f->workers) {
+        for (; i < framework_config_get_worker_thread_count(f->c); i++) {
+            if (f->workers[i]) {
+                framework_worker_wait_for_stop(f->workers[i]);
+            }
+        }
+    }
     f->start = 0;
+}
+
+void framework_wait_for_stop_destroy(framework_t* f) {
+    verify(f);
+    framework_wait_for_stop(f);
+    framework_destroy(f);
 }
 
 int framework_stop(framework_t* f) {
     int i = 0;
     verify(f);
-    /* 先关闭监听器 */
-    if (f->acceptor) {
-        framework_acceptor_stop(f->acceptor);
+    /* 先关闭监听器/连接器 */
+    if (f->raiser) {
+        framework_raiser_stop(f->raiser);
     }
     /* 关闭所有工作线程 */
-    for (; i < framework_config_get_worker_thread_count(f->c); i++) {
-        framework_worker_stop(f->workers[i]);
+    if (f->workers) {
+        for (; i < framework_config_get_worker_thread_count(f->c); i++) {
+            if (f->workers[i]) {
+                framework_worker_stop(f->workers[i]);
+            }
+        }
     }
     return error_ok;
 }
@@ -174,100 +200,64 @@ framework_config_t* framework_get_config(framework_t* f) {
     return f->c;
 }
 
-void framework_config_set_address(framework_config_t* c, const char* ip, int port) {
-    verify(c);
-    verify(port);
-    if (ip) {
-        strcpy(c->ip, ip);
-    } else {
-        strcpy(c->ip, "0.0.0.0");
-    }
-    c->port = port;
-}
-
-const char* framework_config_get_ip(framework_config_t* c) {
-    verify(c);
-    return c->ip;
-}
-
-int framework_config_get_port(framework_config_t* c) {
-    verify(c);
-    return c->port;
-}
-
-void framework_config_set_backlog(framework_config_t* c, int backlog) {
-    verify(c);
-    c->backlog = backlog;
-}
-
-int framework_config_get_backlog(framework_config_t* c) {
-    verify(c);
-    return c->backlog;
-}
-
-void framework_config_set_worker_thread_count(framework_config_t* c, int worker_thread_count) {
-    verify(c);
-    verify(worker_thread_count);
-    c->worker_thread_count = worker_thread_count;
-}
-
-void framework_config_set_max_send_list(framework_config_t* c, int max_send_list) {
-    verify(c);
-    c->max_send_list = max_send_list;
-}
-
-int framework_config_get_max_send_list(framework_config_t* c) {
-    verify(c);
-    return c->max_send_list;
-}
-
-void framework_config_set_max_recv_buffer(framework_config_t* c, int max_recv_buffer) {
-    verify(c);
-    c->max_recv_buffer = max_recv_buffer;
-}
-
-int framework_config_get_max_recv_buffer(framework_config_t* c) {
-    verify(c);
-    return c->max_recv_buffer;
-}
-
-int framework_config_get_max_idle_timeout(framework_config_t* c) {
-    verify(c);
-    return c->max_idle_timeout;
-}
-
-void framework_config_set_max_idle_timeout(framework_config_t* c, int max_idle_timeout) {
-    verify(c);
-    c->max_idle_timeout = max_idle_timeout;
-}
-
-int framework_config_get_worker_thread_count(framework_config_t* c) {
-    verify(c);
-    return c->worker_thread_count;
-}
-
-framework_config_t* framework_config_create() {
-    framework_config_t* c = create(framework_config_t);
-    verify(c);
-    memset(c, 0, sizeof(framework_config_t));
-    c->backlog             = 100;       /* 默认 - 监听等待队列 */
-    c->worker_thread_count = 1;         /* 默认 - 只有一个工作线程 */
-    c->max_send_list       = 64;        /* 默认 - 发送链表最大元素数 */
-    c->max_recv_buffer     = 1024 * 16; /* 默认 - 接受缓冲区16k */
-    return c;
-}
-
-void framework_config_destroy(framework_config_t* c) {
-    verify(c);
-    destroy(c);
-}
-
 loop_balancer_t* framework_get_balancer(framework_t* f) {
     verify(f);
     return f->balancer;
 }
 
-channel_ref_cb_t framework_get_cb(framework_t* f) {
-    verify(f);
-    return f->cb;
+void _cleanup_all_threads(framework_t* f) {
+    int i = 0;
+    if (f->raiser) {
+        framework_raiser_stop(f->raiser);
+        framework_raiser_wait_for_stop(f->raiser);
+        framework_raiser_destroy(f->raiser);
+        f->raiser = 0;
+    }
+    /* 销毁工作线程 */
+    if (f->workers) {
+        for (; i < framework_config_get_worker_thread_count(f->c); i++) {
+            if (f->workers[i]) {
+                framework_worker_stop(f->workers[i]);
+                framework_worker_wait_for_stop(f->workers[i]);
+                framework_worker_destroy(f->workers[i]);
+                f->workers[i] = 0;
+            }
+        }
+    }
+}
+
+int _start_worker_threads(framework_t* f) {
+    int           i     = 0;
+    dlist_node_t* node  = 0;
+    loop_t*       loop  = 0;
+    int           error = error_ok;
+    int worker_count = framework_config_get_worker_thread_count(f->c);
+    f->workers = create_type(framework_worker_t*, worker_count * sizeof(framework_worker_t*));
+    verify(f->workers);
+    memset(f->workers, 0, worker_count * sizeof(framework_worker_t*));
+    /* 建立工作线程 */
+    dlist_for_each(f->loops, node) {
+        loop = (loop_t*)dlist_node_get_data(node);
+        if (i != 0) {
+            f->workers[i - 1] = framework_worker_create(f, loop);
+            verify(f->workers[i - 1]);
+        }
+        i++;
+    }
+    /* 启动工作线程 */
+    for (i = 0; i < worker_count; i++) {
+        error = framework_worker_start(f->workers[i]);
+        if (error_ok != error) {
+            return error;
+        }
+    }
+    return error;
+}
+
+int _start_raiser_thread(framework_t* f) {
+    dlist_node_t* node = dlist_get_front(f->loops);
+    loop_t*       loop = (loop_t*)dlist_node_get_data(node);; 
+    f->raiser = framework_raiser_create(f, loop);
+    verify(f->raiser);
+    return framework_raiser_start(f->raiser);
 }

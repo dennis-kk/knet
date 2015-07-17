@@ -13,6 +13,7 @@ add_executable(examples
 	broadcast.c
 	timer.c
 	rpc.c
+	framework.c
 )
 
 target_link_libraries(examples libknet.a -lpthread)
