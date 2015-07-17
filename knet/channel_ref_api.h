@@ -49,7 +49,7 @@
  *
  * 在没有负载均衡器存在的情况下(loop_t没有通过loop_balancer_attach关联到loop_balancer_t),
  * 所有连接器管道都会在当前loop_t内运行，所有由监听器接受的管道也会在loop_t内运行.
- * 如果loop_t已经关联到负载均衡器，这对连接器管道没有影响，但监听器接受的管道可能不在当前loop_t内
+ * 如果loop_t已经关联到负载均衡器，连接器/监听器接受的管道可能不在当前loop_t内
  * 运行，负载均衡器会根据活跃管道的数量将这个管道分配到其他loop_t运行，或者仍然在当前loop_t内运行，
  * 结果取决于当前所有loop_t负载的情况（活跃管道的数量）.
  *
@@ -83,7 +83,7 @@ extern void channel_ref_leave(channel_ref_t* channel_ref);
 /**
  * 主动连接
  *
- * 调用channel_ref_connect的管道不会被负载均衡，将在当前loop_t所运行的线程运行
+ * 调用channel_ref_connect的管道会被负载均衡，实际运行在哪个loop_t内依赖于实际运行的情况
  * @param channel_ref channel_ref_t实例
  * @param ip IP
  * @param port 端口

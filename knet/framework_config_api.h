@@ -26,6 +26,35 @@
 #define FRAMEWORK_CONFIG_API_H
 
 /**
+ * @defgroup framework_config 框架配置
+ * 框架配置
+ *
+ * <pre>
+ * 1. 提供framework_t内建立的监听器、连接器配置接口
+ * 2. 设置工作线程的数量，工作线程将实际负载管道
+ * 
+ * 监听器:
+ *     framework_acceptor_config_t* ac = framework_config_new_acceptor(c);
+ *     framework_acceptor_config_set_local_address(ac, "127.0.0.1", 80);
+ *     framework_acceptor_config_set_client_cb(ac, cb);
+ *     ......
+ *     framework_start(...);
+ *     ......
+ *
+ * 连接器:
+ *     framework_connector_config_t* cc = framework_config_new_connector(c);
+ *     framework_connector_config_set_remote_address(cc, "127.0.0.1", 80);
+ *     framework_connector_config_set_cb(cc, cb);
+ *     ......
+ *     framework_start(...);
+ *     ......
+ *
+ * 配置必须在调用framework_start之前设置，框架启动后不能更改！
+ * </pre>
+ * @{
+ */
+
+/**
  * 设置工作线程数量，默认为单线程
  * @param c framework_config_t实例
  * @param worker_thread_count 工作线程数量
@@ -131,5 +160,7 @@ extern void framework_connector_config_set_client_max_send_list_count(framework_
  * @param max_recv_buffer_length 接收缓冲区最大长度(字节)
  */
 extern void framework_connector_config_set_client_max_recv_buffer_length(framework_connector_config_t* c, int max_recv_buffer_length);
+
+/** @} */
 
 #endif /* FRAMEWORK_CONFIG_API_H */

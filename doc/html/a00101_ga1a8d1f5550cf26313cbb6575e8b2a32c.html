@@ -144,7 +144,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><div class="memdoc">
 
 <p>主动连接 </p>
-<p>调用channel_ref_connect的管道不会被负载均衡，将在当前loop_t所运行的线程运行 </p><dl class="params"><dt>参数</dt><dd>
+<p>调用channel_ref_connect的管道会被负载均衡，实际运行在哪个loop_t内依赖于实际运行的情况 </p><dl class="params"><dt>参数</dt><dd>
   <table class="params">
     <tr><td class="paramname">channel_ref</td><td>channel_ref_t实例 </td></tr>
     <tr><td class="paramname">ip</td><td>IP </td></tr>
@@ -169,7 +169,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 17日 星期五 18:09:22 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 17日 星期五 18:34:58 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

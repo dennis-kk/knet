@@ -154,7 +154,7 @@ void $\ast$ \hyperlink{a00101_gaf4021842b995f59d23b931dd9ad3ff07_gaf4021842b995f
 
 主动连接 
 
-调用channel\+\_\+ref\+\_\+connect的管道不会被负载均衡，将在当前loop\+\_\+t所运行的线程运行 
+调用channel\+\_\+ref\+\_\+connect的管道会被负载均衡，实际运行在哪个loop\+\_\+t内依赖于实际运行的情况 
 \begin{DoxyParams}{参数}
 {\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
 \hline

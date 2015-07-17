@@ -78,7 +78,7 @@ channel\_ref\_t作为channel\_t的包装器，对于用户透明化了管道的�
 
 \begin{DoxyPre}在没有负载均衡器存在的情况下(loop\_t没有通过loop\_balancer\_attach关联到loop\_balancer\_t),
 所有连接器管道都会在当前loop\_t内运行，所有由监听器接受的管道也会在loop\_t内运行.
-如果loop\_t已经关联到负载均衡器，这对连接器管道没有影响，但监听器接受的管道可能不在当前loop\_t内
+如果loop\_t已经关联到负载均衡器，连接器/监听器接受的管道可能不在当前loop\_t内
 运行，负载均衡器会根据活跃管道的数量将这个管道分配到其他loop\_t运行，或者仍然在当前loop\_t内运行，
 结果取决于当前所有loop\_t负载的情况（活跃管道的数量）.\end{DoxyPre}
 
@@ -209,7 +209,7 @@ channel\_ref\_connect时最后一个参数传递一个非零值可以设置连�
 
 主动连接 
 
-调用channel\+\_\+ref\+\_\+connect的管道不会被负载均衡，将在当前loop\+\_\+t所运行的线程运行 
+调用channel\+\_\+ref\+\_\+connect的管道会被负载均衡，实际运行在哪个loop\+\_\+t内依赖于实际运行的情况 
 \begin{DoxyParams}{参数}
 {\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
 \hline

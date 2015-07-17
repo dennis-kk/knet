@@ -153,7 +153,7 @@ channel_ref_t作为channel_t的包装器，对于用户透明化了管道的内�
 2. 活跃   已经确定了自己的角色
 3. 关闭   已经关闭，但还未销毁，引用计数不为零</pre><pre>在没有负载均衡器存在的情况下(loop_t没有通过loop_balancer_attach关联到loop_balancer_t),
 所有连接器管道都会在当前loop_t内运行，所有由监听器接受的管道也会在loop_t内运行.
-如果loop_t已经关联到负载均衡器，这对连接器管道没有影响，但监听器接受的管道可能不在当前loop_t内
+如果loop_t已经关联到负载均衡器，连接器/监听器接受的管道可能不在当前loop_t内
 运行，负载均衡器会根据活跃管道的数量将这个管道分配到其他loop_t运行，或者仍然在当前loop_t内运行，
 结果取决于当前所有loop_t负载的情况（活跃管道的数量）.</pre><pre>可以调用函数channel_ref_check_balance确定管道是否被负载均衡调配，调用channel_ref_check_state
 检查管道当前所处的状态，channel_ref_close关闭管道，无论此时管道的引用计数是否为零，管道的套接字都会
@@ -164,7 +164,7 @@ channel_ref_connect时最后一个参数传递一个非零值可以设置连接�
 </pre> </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 17日 星期五 18:09:22 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 17日 星期五 18:34:58 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

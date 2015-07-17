@@ -1,116 +1,247 @@
-\hypertarget{a00104}{}\section{负载均衡器}
-\label{a00104}\index{负载均衡器@{负载均衡器}}
+\hypertarget{a00104}{}\section{事件循环}
+\label{a00104}\index{事件循环@{事件循环}}
 
 
-负载均衡器  
+网络事件循环  
 
 
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00050_a649c7e850ab247b5f70ad27e335a129d_a649c7e850ab247b5f70ad27e335a129d}{loop\+\_\+balancer\+\_\+t} $\ast$ \hyperlink{a00104_ga9992a50e96839282c678e51bc11158d1_ga9992a50e96839282c678e51bc11158d1}{loop\+\_\+balancer\+\_\+create} ()
-\begin{DoxyCompactList}\small\item\em 创建负载均衡器 \end{DoxyCompactList}\item 
-void \hyperlink{a00104_ga2d702b5f965fe587fdaea3f5f9e2400c_ga2d702b5f965fe587fdaea3f5f9e2400c}{loop\+\_\+balancer\+\_\+destroy} (\hyperlink{a00050_a649c7e850ab247b5f70ad27e335a129d_a649c7e850ab247b5f70ad27e335a129d}{loop\+\_\+balancer\+\_\+t} $\ast$balancer)
-\begin{DoxyCompactList}\small\item\em 销毁负载均衡器 \end{DoxyCompactList}\item 
-int \hyperlink{a00104_ga2b3cf2cb63d914efe226e901a50d8b0a_ga2b3cf2cb63d914efe226e901a50d8b0a}{loop\+\_\+balancer\+\_\+attach} (\hyperlink{a00050_a649c7e850ab247b5f70ad27e335a129d_a649c7e850ab247b5f70ad27e335a129d}{loop\+\_\+balancer\+\_\+t} $\ast$balancer, \hyperlink{a00050_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
-\begin{DoxyCompactList}\small\item\em 添加事件循环到负载均衡器 \end{DoxyCompactList}\item 
-int \hyperlink{a00104_ga548ce0c2c624c4f4731a0f963d2ca42a_ga548ce0c2c624c4f4731a0f963d2ca42a}{loop\+\_\+balancer\+\_\+detach} (\hyperlink{a00050_a649c7e850ab247b5f70ad27e335a129d_a649c7e850ab247b5f70ad27e335a129d}{loop\+\_\+balancer\+\_\+t} $\ast$balancer, \hyperlink{a00050_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
-\begin{DoxyCompactList}\small\item\em 从负载均衡器内删除事件循环 \end{DoxyCompactList}\item 
-void \hyperlink{a00104_gae10d6df162c0c43fbfb2bb68cca09e8b_gae10d6df162c0c43fbfb2bb68cca09e8b}{loop\+\_\+balancer\+\_\+set\+\_\+data} (\hyperlink{a00050_a649c7e850ab247b5f70ad27e335a129d_a649c7e850ab247b5f70ad27e335a129d}{loop\+\_\+balancer\+\_\+t} $\ast$balancer, void $\ast$data)
-\begin{DoxyCompactList}\small\item\em 设置用户数据 \end{DoxyCompactList}\item 
-void $\ast$ \hyperlink{a00104_ga0f686f513ccb9026c58ab4675e5f87e2_ga0f686f513ccb9026c58ab4675e5f87e2}{loop\+\_\+balancer\+\_\+get\+\_\+data} (\hyperlink{a00050_a649c7e850ab247b5f70ad27e335a129d_a649c7e850ab247b5f70ad27e335a129d}{loop\+\_\+balancer\+\_\+t} $\ast$balancer)
-\begin{DoxyCompactList}\small\item\em 取得用户数据 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{a00050_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$ \hyperlink{a00104_ga878bf0cd280e0bd183144bb95ca4a7b1_ga878bf0cd280e0bd183144bb95ca4a7b1}{loop\+\_\+create} ()
+\begin{DoxyCompactList}\small\item\em 创建一个事件循环 \end{DoxyCompactList}\item 
+void \hyperlink{a00104_ga921fd5e5e16a73de123e81baab187a0a_ga921fd5e5e16a73de123e81baab187a0a}{loop\+\_\+destroy} (\hyperlink{a00050_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
+\begin{DoxyCompactList}\small\item\em 销毁事件循环 事件循环内的所有管道也会被销毁 \end{DoxyCompactList}\item 
+\hyperlink{a00050_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$ \hyperlink{a00104_gab5b73ea9a0347b431f93ebf30ecd05b5_gab5b73ea9a0347b431f93ebf30ecd05b5}{loop\+\_\+create\+\_\+channel} (\hyperlink{a00050_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop, uint32\+\_\+t max\+\_\+send\+\_\+list\+\_\+len, uint32\+\_\+t recv\+\_\+ring\+\_\+len)
+\begin{DoxyCompactList}\small\item\em 创建管道 \end{DoxyCompactList}\item 
+\hyperlink{a00050_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$ \hyperlink{a00104_ga6879ac453ef83768ce8f8ef43a474409_ga6879ac453ef83768ce8f8ef43a474409}{loop\+\_\+create\+\_\+channel\+\_\+exist\+\_\+socket\+\_\+fd} (\hyperlink{a00050_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop, \hyperlink{a00050_a0d9e0afbf02fb6ed6c5b1415dce51b05_a0d9e0afbf02fb6ed6c5b1415dce51b05}{socket\+\_\+t} socket\+\_\+fd, uint32\+\_\+t max\+\_\+send\+\_\+list\+\_\+len, uint32\+\_\+t recv\+\_\+ring\+\_\+len)
+\begin{DoxyCompactList}\small\item\em 使用已存在的套接字创建管道 \end{DoxyCompactList}\item 
+int \hyperlink{a00104_ga2f1994d76e46cf4855ac955ccd41d9ef_ga2f1994d76e46cf4855ac955ccd41d9ef}{loop\+\_\+run\+\_\+once} (\hyperlink{a00050_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
+\begin{DoxyCompactList}\small\item\em 运行一次事件循环 loop\+\_\+t不是线程安全的，不能在多个线程内同时对同一个loop\+\_\+t实例调用loop\+\_\+run\+\_\+once \end{DoxyCompactList}\item 
+int \hyperlink{a00104_ga8eb0f6c8d398c70fc5ca2292664a1187_ga8eb0f6c8d398c70fc5ca2292664a1187}{loop\+\_\+run} (\hyperlink{a00050_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
+\begin{DoxyCompactList}\small\item\em 运行事件循环直到调用loop\+\_\+exit() loop\+\_\+t不是线程安全的，不能在多个线程内同时对同一个loop\+\_\+t实例调用loop\+\_\+run \end{DoxyCompactList}\item 
+void \hyperlink{a00104_ga898c7e8ef4ff2f360a32454b2b1013de_ga898c7e8ef4ff2f360a32454b2b1013de}{loop\+\_\+exit} (\hyperlink{a00050_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
+\begin{DoxyCompactList}\small\item\em 退出函数loop\+\_\+run() \end{DoxyCompactList}\item 
+int \hyperlink{a00104_ga6fa8f99fdc7a036fea6ca91971885e52_ga6fa8f99fdc7a036fea6ca91971885e52}{loop\+\_\+get\+\_\+active\+\_\+channel\+\_\+count} (\hyperlink{a00050_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
+\begin{DoxyCompactList}\small\item\em 获取活跃管道数量 \end{DoxyCompactList}\item 
+int \hyperlink{a00104_ga604184ddcd3e06bc7bfd4f1722778029_ga604184ddcd3e06bc7bfd4f1722778029}{loop\+\_\+get\+\_\+close\+\_\+channel\+\_\+count} (\hyperlink{a00050_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
+\begin{DoxyCompactList}\small\item\em 获取已关闭管道数量 \end{DoxyCompactList}\item 
+void \hyperlink{a00104_ga480fadf19a49cb27354866e06500a03c_ga480fadf19a49cb27354866e06500a03c}{loop\+\_\+set\+\_\+data} (\hyperlink{a00050_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop, void $\ast$data)
+\begin{DoxyCompactList}\small\item\em 设置用户数据指针 \end{DoxyCompactList}\item 
+\hyperlink{a00050_ad060e1396346d2f5db1ec0597376a107_ad060e1396346d2f5db1ec0597376a107}{loop\+\_\+profile\+\_\+t} $\ast$ \hyperlink{a00104_gad3f87700814d56a619ab5517b1f5fe5b_gad3f87700814d56a619ab5517b1f5fe5b}{loop\+\_\+get\+\_\+profile} (\hyperlink{a00050_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
+\begin{DoxyCompactList}\small\item\em 取得统计器 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{详细描述}
-负载均衡器 
+网络事件循环 
 
 
 \begin{DoxyPre}
-负载均衡器可以与任意数量的loop\_t关联，关联后的loop\_t内监听器接受到的新管道
-将参与负载均衡，负载均衡的策略是loop\_t内活跃管道数量，loop\_balancer\_t选择
-活跃管道最少的loop\_t负载新接受的管道.\end{DoxyPre}
+网络事件API，作为各个不同操作系统网络选取器的包装，屏蔽了不同平台的具体实现，
+为你提供统一的调用接口.\end{DoxyPre}
 
 
 
-\begin{DoxyPre}调用loop\_balancer\_attach让loop\_balancer\_t与loop\_t关联，调用loop\_balancer\_detach
-取消关联.
-\end{DoxyPre}
+\begin{DoxyPre}管道引用channel\_ref\_t通过调用loop\_create\_channel和loop\_create\_channel\_exist\_socket\_fd
+创建，loop\_run将启动事件循环并等待调用loop\_exit退出，你可以手动调用loop\_run\_once运行一次事件
+循环自己控制循环的调用频率.\end{DoxyPre}
+
+
+
+\begin{DoxyPre}每个loop\_t内都维护了活跃管道和已关闭(未销毁)管道的双向链表，可以通过loop\_get\_active\_channel\_count
+和loop\_get\_close\_channel\_count来取得具体数量.\end{DoxyPre}
+
+
+
+\begin{DoxyPre}在创建管道时，要注意两个重要的配置参数：\end{DoxyPre}
+
+
+
+\begin{DoxyPre}1. max\_send\_list\_len 发送链表最大元素个数
+2. recv\_ring\_len     接受缓冲区最大长度\end{DoxyPre}
+
+
+
+\begin{DoxyPre}通常向管道内发送数据(stream\_push\_系列)，管道会尝试直接发送，并不缓存要发送的数据，如果因为某种原因
+导致不能直接发送，数据会被缓存在发送链表内等待合适的时机发送，如果发送链表的长度达到上限，管道会被关闭.
+同样，接受缓冲区会从套接字内将数据读取出来，如果你一直不从stream\_t内取数据，那么早晚会被写满，管道也
+会被关闭.\end{DoxyPre}
+
+
+
+\begin{DoxyPre}\end{DoxyPre}
  
 
 \subsection{函数说明}
-\hypertarget{a00104_ga2b3cf2cb63d914efe226e901a50d8b0a_ga2b3cf2cb63d914efe226e901a50d8b0a}{}\index{负载均衡器@{负载均衡器}!loop\+\_\+balancer\+\_\+attach@{loop\+\_\+balancer\+\_\+attach}}
-\index{loop\+\_\+balancer\+\_\+attach@{loop\+\_\+balancer\+\_\+attach}!负载均衡器@{负载均衡器}}
-\subsubsection[{loop\+\_\+balancer\+\_\+attach}]{\setlength{\rightskip}{0pt plus 5cm}int loop\+\_\+balancer\+\_\+attach (
-\begin{DoxyParamCaption}
-\item[{{\bf loop\+\_\+balancer\+\_\+t} $\ast$}]{balancer, }
-\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
-\end{DoxyParamCaption}
-)}\label{a00104_ga2b3cf2cb63d914efe226e901a50d8b0a_ga2b3cf2cb63d914efe226e901a50d8b0a}
-
-
-添加事件循环到负载均衡器 
-
-
-\begin{DoxyParams}{参数}
-{\em balancer} & loop\+\_\+balancer\+\_\+t实例 \\
-\hline
-{\em loop} & loop\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00104_ga9992a50e96839282c678e51bc11158d1_ga9992a50e96839282c678e51bc11158d1}{}\index{负载均衡器@{负载均衡器}!loop\+\_\+balancer\+\_\+create@{loop\+\_\+balancer\+\_\+create}}
-\index{loop\+\_\+balancer\+\_\+create@{loop\+\_\+balancer\+\_\+create}!负载均衡器@{负载均衡器}}
-\subsubsection[{loop\+\_\+balancer\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf loop\+\_\+balancer\+\_\+t}$\ast$ loop\+\_\+balancer\+\_\+create (
+\hypertarget{a00104_ga878bf0cd280e0bd183144bb95ca4a7b1_ga878bf0cd280e0bd183144bb95ca4a7b1}{}\index{事件循环@{事件循环}!loop\+\_\+create@{loop\+\_\+create}}
+\index{loop\+\_\+create@{loop\+\_\+create}!事件循环@{事件循环}}
+\subsubsection[{loop\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf loop\+\_\+t}$\ast$ loop\+\_\+create (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\label{a00104_ga9992a50e96839282c678e51bc11158d1_ga9992a50e96839282c678e51bc11158d1}
+)}\label{a00104_ga878bf0cd280e0bd183144bb95ca4a7b1_ga878bf0cd280e0bd183144bb95ca4a7b1}
 
 
-创建负载均衡器 
+创建一个事件循环 
 
 \begin{DoxyReturn}{返回}
-loop\+\_\+balancer\+\_\+t实例 
+loop\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00104_ga2d702b5f965fe587fdaea3f5f9e2400c_ga2d702b5f965fe587fdaea3f5f9e2400c}{}\index{负载均衡器@{负载均衡器}!loop\+\_\+balancer\+\_\+destroy@{loop\+\_\+balancer\+\_\+destroy}}
-\index{loop\+\_\+balancer\+\_\+destroy@{loop\+\_\+balancer\+\_\+destroy}!负载均衡器@{负载均衡器}}
-\subsubsection[{loop\+\_\+balancer\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void loop\+\_\+balancer\+\_\+destroy (
+\hypertarget{a00104_gab5b73ea9a0347b431f93ebf30ecd05b5_gab5b73ea9a0347b431f93ebf30ecd05b5}{}\index{事件循环@{事件循环}!loop\+\_\+create\+\_\+channel@{loop\+\_\+create\+\_\+channel}}
+\index{loop\+\_\+create\+\_\+channel@{loop\+\_\+create\+\_\+channel}!事件循环@{事件循环}}
+\subsubsection[{loop\+\_\+create\+\_\+channel}]{\setlength{\rightskip}{0pt plus 5cm}{\bf channel\+\_\+ref\+\_\+t}$\ast$ loop\+\_\+create\+\_\+channel (
 \begin{DoxyParamCaption}
-\item[{{\bf loop\+\_\+balancer\+\_\+t} $\ast$}]{balancer}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop, }
+\item[{uint32\+\_\+t}]{max\+\_\+send\+\_\+list\+\_\+len, }
+\item[{uint32\+\_\+t}]{recv\+\_\+ring\+\_\+len}
 \end{DoxyParamCaption}
-)}\label{a00104_ga2d702b5f965fe587fdaea3f5f9e2400c_ga2d702b5f965fe587fdaea3f5f9e2400c}
+)}\label{a00104_gab5b73ea9a0347b431f93ebf30ecd05b5_gab5b73ea9a0347b431f93ebf30ecd05b5}
 
 
-销毁负载均衡器 
+创建管道 
 
 
 \begin{DoxyParams}{参数}
-{\em balancer} & loop\+\_\+balancer\+\_\+t实例 \\
+{\em loop} & loop\+\_\+t实例 \\
+\hline
+{\em max\+\_\+send\+\_\+list\+\_\+len} & 发送缓冲区链最大长度 \\
+\hline
+{\em recv\+\_\+ring\+\_\+len} & 接受环形缓冲区最大长度 \\
 \hline
 \end{DoxyParams}
-\hypertarget{a00104_ga548ce0c2c624c4f4731a0f963d2ca42a_ga548ce0c2c624c4f4731a0f963d2ca42a}{}\index{负载均衡器@{负载均衡器}!loop\+\_\+balancer\+\_\+detach@{loop\+\_\+balancer\+\_\+detach}}
-\index{loop\+\_\+balancer\+\_\+detach@{loop\+\_\+balancer\+\_\+detach}!负载均衡器@{负载均衡器}}
-\subsubsection[{loop\+\_\+balancer\+\_\+detach}]{\setlength{\rightskip}{0pt plus 5cm}int loop\+\_\+balancer\+\_\+detach (
+\begin{DoxyReturn}{返回}
+channel\+\_\+ref\+\_\+t实例 
+\end{DoxyReturn}
+\hypertarget{a00104_ga6879ac453ef83768ce8f8ef43a474409_ga6879ac453ef83768ce8f8ef43a474409}{}\index{事件循环@{事件循环}!loop\+\_\+create\+\_\+channel\+\_\+exist\+\_\+socket\+\_\+fd@{loop\+\_\+create\+\_\+channel\+\_\+exist\+\_\+socket\+\_\+fd}}
+\index{loop\+\_\+create\+\_\+channel\+\_\+exist\+\_\+socket\+\_\+fd@{loop\+\_\+create\+\_\+channel\+\_\+exist\+\_\+socket\+\_\+fd}!事件循环@{事件循环}}
+\subsubsection[{loop\+\_\+create\+\_\+channel\+\_\+exist\+\_\+socket\+\_\+fd}]{\setlength{\rightskip}{0pt plus 5cm}{\bf channel\+\_\+ref\+\_\+t}$\ast$ loop\+\_\+create\+\_\+channel\+\_\+exist\+\_\+socket\+\_\+fd (
 \begin{DoxyParamCaption}
-\item[{{\bf loop\+\_\+balancer\+\_\+t} $\ast$}]{balancer, }
-\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop, }
+\item[{{\bf socket\+\_\+t}}]{socket\+\_\+fd, }
+\item[{uint32\+\_\+t}]{max\+\_\+send\+\_\+list\+\_\+len, }
+\item[{uint32\+\_\+t}]{recv\+\_\+ring\+\_\+len}
 \end{DoxyParamCaption}
-)}\label{a00104_ga548ce0c2c624c4f4731a0f963d2ca42a_ga548ce0c2c624c4f4731a0f963d2ca42a}
+)}\label{a00104_ga6879ac453ef83768ce8f8ef43a474409_ga6879ac453ef83768ce8f8ef43a474409}
 
 
-从负载均衡器内删除事件循环 
+使用已存在的套接字创建管道 
 
 
 \begin{DoxyParams}{参数}
-{\em balancer} & loop\+\_\+balancer\+\_\+t实例 \\
+{\em loop} & loop\+\_\+t实例 \\
 \hline
+{\em socket\+\_\+fd} & 套接字 \\
+\hline
+{\em max\+\_\+send\+\_\+list\+\_\+len} & 发送缓冲区链最大长度 \\
+\hline
+{\em recv\+\_\+ring\+\_\+len} & 接受环形缓冲区最大长度 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+channel\+\_\+ref\+\_\+t实例 
+\end{DoxyReturn}
+\hypertarget{a00104_ga921fd5e5e16a73de123e81baab187a0a_ga921fd5e5e16a73de123e81baab187a0a}{}\index{事件循环@{事件循环}!loop\+\_\+destroy@{loop\+\_\+destroy}}
+\index{loop\+\_\+destroy@{loop\+\_\+destroy}!事件循环@{事件循环}}
+\subsubsection[{loop\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void loop\+\_\+destroy (
+\begin{DoxyParamCaption}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
+\end{DoxyParamCaption}
+)}\label{a00104_ga921fd5e5e16a73de123e81baab187a0a_ga921fd5e5e16a73de123e81baab187a0a}
+
+
+销毁事件循环 事件循环内的所有管道也会被销毁 
+
+
+\begin{DoxyParams}{参数}
+{\em loop} & loop\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00104_ga898c7e8ef4ff2f360a32454b2b1013de_ga898c7e8ef4ff2f360a32454b2b1013de}{}\index{事件循环@{事件循环}!loop\+\_\+exit@{loop\+\_\+exit}}
+\index{loop\+\_\+exit@{loop\+\_\+exit}!事件循环@{事件循环}}
+\subsubsection[{loop\+\_\+exit}]{\setlength{\rightskip}{0pt plus 5cm}void loop\+\_\+exit (
+\begin{DoxyParamCaption}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
+\end{DoxyParamCaption}
+)}\label{a00104_ga898c7e8ef4ff2f360a32454b2b1013de_ga898c7e8ef4ff2f360a32454b2b1013de}
+
+
+退出函数loop\+\_\+run() 
+
+
+\begin{DoxyParams}{参数}
+{\em loop} & loop\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00104_ga6fa8f99fdc7a036fea6ca91971885e52_ga6fa8f99fdc7a036fea6ca91971885e52}{}\index{事件循环@{事件循环}!loop\+\_\+get\+\_\+active\+\_\+channel\+\_\+count@{loop\+\_\+get\+\_\+active\+\_\+channel\+\_\+count}}
+\index{loop\+\_\+get\+\_\+active\+\_\+channel\+\_\+count@{loop\+\_\+get\+\_\+active\+\_\+channel\+\_\+count}!事件循环@{事件循环}}
+\subsubsection[{loop\+\_\+get\+\_\+active\+\_\+channel\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}int loop\+\_\+get\+\_\+active\+\_\+channel\+\_\+count (
+\begin{DoxyParamCaption}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
+\end{DoxyParamCaption}
+)}\label{a00104_ga6fa8f99fdc7a036fea6ca91971885e52_ga6fa8f99fdc7a036fea6ca91971885e52}
+
+
+获取活跃管道数量 
+
+
+\begin{DoxyParams}{参数}
+{\em loop} & loop\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+活跃管道数量 
+\end{DoxyReturn}
+\hypertarget{a00104_ga604184ddcd3e06bc7bfd4f1722778029_ga604184ddcd3e06bc7bfd4f1722778029}{}\index{事件循环@{事件循环}!loop\+\_\+get\+\_\+close\+\_\+channel\+\_\+count@{loop\+\_\+get\+\_\+close\+\_\+channel\+\_\+count}}
+\index{loop\+\_\+get\+\_\+close\+\_\+channel\+\_\+count@{loop\+\_\+get\+\_\+close\+\_\+channel\+\_\+count}!事件循环@{事件循环}}
+\subsubsection[{loop\+\_\+get\+\_\+close\+\_\+channel\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}int loop\+\_\+get\+\_\+close\+\_\+channel\+\_\+count (
+\begin{DoxyParamCaption}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
+\end{DoxyParamCaption}
+)}\label{a00104_ga604184ddcd3e06bc7bfd4f1722778029_ga604184ddcd3e06bc7bfd4f1722778029}
+
+
+获取已关闭管道数量 
+
+
+\begin{DoxyParams}{参数}
+{\em loop} & loop\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+关闭管道数量 
+\end{DoxyReturn}
+\hypertarget{a00104_gad3f87700814d56a619ab5517b1f5fe5b_gad3f87700814d56a619ab5517b1f5fe5b}{}\index{事件循环@{事件循环}!loop\+\_\+get\+\_\+profile@{loop\+\_\+get\+\_\+profile}}
+\index{loop\+\_\+get\+\_\+profile@{loop\+\_\+get\+\_\+profile}!事件循环@{事件循环}}
+\subsubsection[{loop\+\_\+get\+\_\+profile}]{\setlength{\rightskip}{0pt plus 5cm}{\bf loop\+\_\+profile\+\_\+t}$\ast$ loop\+\_\+get\+\_\+profile (
+\begin{DoxyParamCaption}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
+\end{DoxyParamCaption}
+)}\label{a00104_gad3f87700814d56a619ab5517b1f5fe5b_gad3f87700814d56a619ab5517b1f5fe5b}
+
+
+取得统计器 
+
+
+\begin{DoxyParams}{参数}
+{\em loop} & loop\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+loop\+\_\+profile\+\_\+t实例 
+\end{DoxyReturn}
+\hypertarget{a00104_ga8eb0f6c8d398c70fc5ca2292664a1187_ga8eb0f6c8d398c70fc5ca2292664a1187}{}\index{事件循环@{事件循环}!loop\+\_\+run@{loop\+\_\+run}}
+\index{loop\+\_\+run@{loop\+\_\+run}!事件循环@{事件循环}}
+\subsubsection[{loop\+\_\+run}]{\setlength{\rightskip}{0pt plus 5cm}int loop\+\_\+run (
+\begin{DoxyParamCaption}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
+\end{DoxyParamCaption}
+)}\label{a00104_ga8eb0f6c8d398c70fc5ca2292664a1187_ga8eb0f6c8d398c70fc5ca2292664a1187}
+
+
+运行事件循环直到调用loop\+\_\+exit() loop\+\_\+t不是线程安全的，不能在多个线程内同时对同一个loop\+\_\+t实例调用loop\+\_\+run 
+
+
+\begin{DoxyParams}{参数}
 {\em loop} & loop\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
@@ -121,40 +252,44 @@ loop\+\_\+balancer\+\_\+t实例
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00104_ga0f686f513ccb9026c58ab4675e5f87e2_ga0f686f513ccb9026c58ab4675e5f87e2}{}\index{负载均衡器@{负载均衡器}!loop\+\_\+balancer\+\_\+get\+\_\+data@{loop\+\_\+balancer\+\_\+get\+\_\+data}}
-\index{loop\+\_\+balancer\+\_\+get\+\_\+data@{loop\+\_\+balancer\+\_\+get\+\_\+data}!负载均衡器@{负载均衡器}}
-\subsubsection[{loop\+\_\+balancer\+\_\+get\+\_\+data}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ loop\+\_\+balancer\+\_\+get\+\_\+data (
+\hypertarget{a00104_ga2f1994d76e46cf4855ac955ccd41d9ef_ga2f1994d76e46cf4855ac955ccd41d9ef}{}\index{事件循环@{事件循环}!loop\+\_\+run\+\_\+once@{loop\+\_\+run\+\_\+once}}
+\index{loop\+\_\+run\+\_\+once@{loop\+\_\+run\+\_\+once}!事件循环@{事件循环}}
+\subsubsection[{loop\+\_\+run\+\_\+once}]{\setlength{\rightskip}{0pt plus 5cm}int loop\+\_\+run\+\_\+once (
 \begin{DoxyParamCaption}
-\item[{{\bf loop\+\_\+balancer\+\_\+t} $\ast$}]{balancer}
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
 \end{DoxyParamCaption}
-)}\label{a00104_ga0f686f513ccb9026c58ab4675e5f87e2_ga0f686f513ccb9026c58ab4675e5f87e2}
+)}\label{a00104_ga2f1994d76e46cf4855ac955ccd41d9ef_ga2f1994d76e46cf4855ac955ccd41d9ef}
 
 
-取得用户数据 
+运行一次事件循环 loop\+\_\+t不是线程安全的，不能在多个线程内同时对同一个loop\+\_\+t实例调用loop\+\_\+run\+\_\+once 
 
 
 \begin{DoxyParams}{参数}
-{\em balancer} & loop\+\_\+balancer\+\_\+t实例 \\
+{\em loop} & loop\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{返回}
-用户数据指针 
-\end{DoxyReturn}
-\hypertarget{a00104_gae10d6df162c0c43fbfb2bb68cca09e8b_gae10d6df162c0c43fbfb2bb68cca09e8b}{}\index{负载均衡器@{负载均衡器}!loop\+\_\+balancer\+\_\+set\+\_\+data@{loop\+\_\+balancer\+\_\+set\+\_\+data}}
-\index{loop\+\_\+balancer\+\_\+set\+\_\+data@{loop\+\_\+balancer\+\_\+set\+\_\+data}!负载均衡器@{负载均衡器}}
-\subsubsection[{loop\+\_\+balancer\+\_\+set\+\_\+data}]{\setlength{\rightskip}{0pt plus 5cm}void loop\+\_\+balancer\+\_\+set\+\_\+data (
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{a00104_ga480fadf19a49cb27354866e06500a03c_ga480fadf19a49cb27354866e06500a03c}{}\index{事件循环@{事件循环}!loop\+\_\+set\+\_\+data@{loop\+\_\+set\+\_\+data}}
+\index{loop\+\_\+set\+\_\+data@{loop\+\_\+set\+\_\+data}!事件循环@{事件循环}}
+\subsubsection[{loop\+\_\+set\+\_\+data}]{\setlength{\rightskip}{0pt plus 5cm}void loop\+\_\+set\+\_\+data (
 \begin{DoxyParamCaption}
-\item[{{\bf loop\+\_\+balancer\+\_\+t} $\ast$}]{balancer, }
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop, }
 \item[{void $\ast$}]{data}
 \end{DoxyParamCaption}
-)}\label{a00104_gae10d6df162c0c43fbfb2bb68cca09e8b_gae10d6df162c0c43fbfb2bb68cca09e8b}
+)}\label{a00104_ga480fadf19a49cb27354866e06500a03c_ga480fadf19a49cb27354866e06500a03c}
 
 
-设置用户数据 
+设置用户数据指针 
 
 
 \begin{DoxyParams}{参数}
-{\em balancer} & loop\+\_\+balancer\+\_\+t实例 \\
+{\em loop} & loop\+\_\+t实例 \\
 \hline
 {\em data} & 用户数据指针 \\
 \hline
