@@ -50,12 +50,16 @@ void _cleanup_all_threads(framework_t* f);
 /**
  * 启动工作线程
  * @param f framework_t实例
+ * @retval error_ok 成功
+ * @retval 其他 失败
  */
 int _start_worker_threads(framework_t* f);
 
 /**
  * 启动监听器/连接器发起线程
  * @param f framework_t实例
+ * @retval error_ok 成功
+ * @retval 其他 失败
  */
 int _start_raiser_thread(framework_t* f);
 
