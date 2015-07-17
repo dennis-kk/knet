@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/store.h 源文件</title>
+<title>knet: E:/knet-git/knet/knet/loop_balancer.h 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">knet
-   &#160;<span id="projectnumber">1.4.3</span>
+   &#160;<span id="projectnumber">1.4.5</span>
    </div>
   </td>
  </tr>
@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">store.h</div>  </div>
+<div class="title">loop_balancer.h</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00072.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
@@ -114,33 +114,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef STORE_H</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define STORE_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef LOOP_BALANCER_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define LOOP_BALANCER_H</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00044.html">config.h</a>&quot;</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<a class="code" href="a00027.html">store_t</a>* <a class="code" href="a00072_a1af7550aea3890ee5b11b7a63d9ab515.html#a1af7550aea3890ee5b11b7a63d9ab515">store_create</a>();</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00072_a8e0eefdf8c2410878667f0c535909cf8.html#a8e0eefdf8c2410878667f0c535909cf8">store_destroy</a>(<a class="code" href="a00027.html">store_t</a>* store);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00072_a679dfe593c799419037e5d200386ecc7.html#a679dfe593c799419037e5d200386ecc7">store_start</a>(<a class="code" href="a00027.html">store_t</a>* store, <span class="keyword">const</span> <span class="keywordtype">char</span>* ip, <span class="keywordtype">int</span> port);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00072_ac18172cdd31b0f5ec3f3be7750a1d49c.html#ac18172cdd31b0f5ec3f3be7750a1d49c">store_stop</a>(<a class="code" href="a00027.html">store_t</a>* store);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00072_a02e291e9e967e22a66b0907d776f139f.html#a02e291e9e967e22a66b0907d776f139f">store_set_worker_count</a>(<a class="code" href="a00027.html">store_t</a>* store, <span class="keywordtype">int</span> <a class="code" href="a00027_a0a415188636dd2047d50c081a95a83e3.html#a0a415188636dd2047d50c081a95a83e3">worker_count</a>);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00072_a869ae551132a316c05015e9855e9ff68.html#a869ae551132a316c05015e9855e9ff68">store_set_bucket_count</a>(<a class="code" href="a00027.html">store_t</a>* store, <span class="keywordtype">int</span> <a class="code" href="a00027_aedacf361a2ea41e8d04613446ff8ccf7.html#aedacf361a2ea41e8d04613446ff8ccf7">bucket_count</a>);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* STORE_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="a00027_html"><div class="ttname"><a href="a00027.html">_store_t</a></div><div class="ttdef"><b>Definition:</b> store.c:28</div></div>
-<div class="ttc" id="a00044_html"><div class="ttname"><a href="a00044.html">config.h</a></div></div>
-<div class="ttc" id="a00072_a02e291e9e967e22a66b0907d776f139f_html_a02e291e9e967e22a66b0907d776f139f"><div class="ttname"><a href="a00072_a02e291e9e967e22a66b0907d776f139f.html#a02e291e9e967e22a66b0907d776f139f">store_set_worker_count</a></div><div class="ttdeci">int store_set_worker_count(store_t *store, int worker_count)</div><div class="ttdef"><b>Definition:</b> store.c:68</div></div>
-<div class="ttc" id="a00027_a0a415188636dd2047d50c081a95a83e3_html_a0a415188636dd2047d50c081a95a83e3"><div class="ttname"><a href="a00027_a0a415188636dd2047d50c081a95a83e3.html#a0a415188636dd2047d50c081a95a83e3">_store_t::worker_count</a></div><div class="ttdeci">int worker_count</div><div class="ttdef"><b>Definition:</b> store.c:29</div></div>
-<div class="ttc" id="a00072_a679dfe593c799419037e5d200386ecc7_html_a679dfe593c799419037e5d200386ecc7"><div class="ttname"><a href="a00072_a679dfe593c799419037e5d200386ecc7.html#a679dfe593c799419037e5d200386ecc7">store_start</a></div><div class="ttdeci">int store_start(store_t *store, const char *ip, int port)</div><div class="ttdef"><b>Definition:</b> store.c:56</div></div>
-<div class="ttc" id="a00072_a869ae551132a316c05015e9855e9ff68_html_a869ae551132a316c05015e9855e9ff68"><div class="ttname"><a href="a00072_a869ae551132a316c05015e9855e9ff68.html#a869ae551132a316c05015e9855e9ff68">store_set_bucket_count</a></div><div class="ttdeci">int store_set_bucket_count(store_t *store, int bucket_count)</div><div class="ttdef"><b>Definition:</b> store.c:74</div></div>
-<div class="ttc" id="a00027_aedacf361a2ea41e8d04613446ff8ccf7_html_aedacf361a2ea41e8d04613446ff8ccf7"><div class="ttname"><a href="a00027_aedacf361a2ea41e8d04613446ff8ccf7.html#aedacf361a2ea41e8d04613446ff8ccf7">_store_t::bucket_count</a></div><div class="ttdeci">int bucket_count</div><div class="ttdef"><b>Definition:</b> store.c:30</div></div>
-<div class="ttc" id="a00072_ac18172cdd31b0f5ec3f3be7750a1d49c_html_ac18172cdd31b0f5ec3f3be7750a1d49c"><div class="ttname"><a href="a00072_ac18172cdd31b0f5ec3f3be7750a1d49c.html#ac18172cdd31b0f5ec3f3be7750a1d49c">store_stop</a></div><div class="ttdeci">int store_stop(store_t *store)</div><div class="ttdef"><b>Definition:</b> store.c:63</div></div>
-<div class="ttc" id="a00072_a8e0eefdf8c2410878667f0c535909cf8_html_a8e0eefdf8c2410878667f0c535909cf8"><div class="ttname"><a href="a00072_a8e0eefdf8c2410878667f0c535909cf8.html#a8e0eefdf8c2410878667f0c535909cf8">store_destroy</a></div><div class="ttdeci">void store_destroy(store_t *store)</div><div class="ttdef"><b>Definition:</b> store.c:45</div></div>
-<div class="ttc" id="a00072_a1af7550aea3890ee5b11b7a63d9ab515_html_a1af7550aea3890ee5b11b7a63d9ab515"><div class="ttname"><a href="a00072_a1af7550aea3890ee5b11b7a63d9ab515.html#a1af7550aea3890ee5b11b7a63d9ab515">store_create</a></div><div class="ttdeci">store_t * store_create()</div><div class="ttdef"><b>Definition:</b> store.c:36</div></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00050.html">config.h</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00073.html">loop_balancer_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<a class="code" href="a00032.html">loop_t</a>* <a class="code" href="a00072_ac025f218f22410cf0e60980bbd93c5e3.html#ac025f218f22410cf0e60980bbd93c5e3">loop_balancer_choose</a>(<a class="code" href="a00028.html">loop_balancer_t</a>* balancer);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* LOOP_BALANCER_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a00072_ac025f218f22410cf0e60980bbd93c5e3_html_ac025f218f22410cf0e60980bbd93c5e3"><div class="ttname"><a href="a00072_ac025f218f22410cf0e60980bbd93c5e3.html#ac025f218f22410cf0e60980bbd93c5e3">loop_balancer_choose</a></div><div class="ttdeci">loop_t * loop_balancer_choose(loop_balancer_t *balancer)</div><div class="ttdoc">负载均衡 - 选取一个loop_t实例 </div><div class="ttdef"><b>Definition:</b> loop_balancer.c:118</div></div>
+<div class="ttc" id="a00050_html"><div class="ttname"><a href="a00050.html">config.h</a></div></div>
+<div class="ttc" id="a00032_html"><div class="ttname"><a href="a00032.html">_loop_t</a></div><div class="ttdef"><b>Definition:</b> loop.c:36</div></div>
+<div class="ttc" id="a00028_html"><div class="ttname"><a href="a00028.html">_loop_balancer_t</a></div><div class="ttdef"><b>Definition:</b> loop_balancer.c:36</div></div>
+<div class="ttc" id="a00073_html"><div class="ttname"><a href="a00073.html">loop_balancer_api.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 9日 星期四 15:26:51 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 17日 星期五 18:09:21 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

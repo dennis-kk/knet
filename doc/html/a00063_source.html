@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/loop.h 源文件</title>
+<title>knet: E:/knet-git/knet/knet/knet.h 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">knet
-   &#160;<span id="projectnumber">1.4.4</span>
+   &#160;<span id="projectnumber">1.4.5</span>
    </div>
   </td>
  </tr>
@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">loop.h</div>  </div>
+<div class="title">knet.h</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00063.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
@@ -114,173 +114,51 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef LOOP_H</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define LOOP_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef KNET_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define KNET_H</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00047.html">config.h</a>&quot;</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00064.html">loop_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00063_ab4f4cfdde0b598a3e8267a5ff60775ec.html#ab4f4cfdde0b598a3e8267a5ff60775ec">loop_add_channel_ref</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>, <a class="code" href="a00005.html">channel_ref_t</a>* channel_ref);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00063_a074c9c3a80a8a5c57b831e41395d4ef5.html#a074c9c3a80a8a5c57b831e41395d4ef5">loop_remove_channel_ref</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>, <a class="code" href="a00005.html">channel_ref_t</a>* channel_ref);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00063_a9328cf8ba2faccbf363b41e524631b75.html#a9328cf8ba2faccbf363b41e524631b75">loop_close_channel_ref</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>, <a class="code" href="a00005.html">channel_ref_t</a>* channel_ref);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<a class="code" href="a00008.html">dlist_t</a>* <a class="code" href="a00063_a7c1a2360919bfff72d665f2651a8d080.html#a7c1a2360919bfff72d665f2651a8d080">loop_get_active_list</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<a class="code" href="a00008.html">dlist_t</a>* <a class="code" href="a00063_a282fa587372c0abd536f46a396cd41d4.html#a282fa587372c0abd536f46a396cd41d4">loop_get_close_list</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00063_aa9654f1b872059f74665506fd67c9bc5.html#aa9654f1b872059f74665506fd67c9bc5">loop_set_impl</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>, <span class="keywordtype">void</span>* impl);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="keywordtype">void</span>* <a class="code" href="a00063_a0f78295541723911955dd41b71ceece1.html#a0f78295541723911955dd41b71ceece1">loop_get_impl</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<a class="code" href="a00047_ad0ada5642d10ce71bdd90816182f9b79.html#ad0ada5642d10ce71bdd90816182f9b79">thread_id_t</a> <a class="code" href="a00063_a1a9b3ef7cb2655dbabeabeeae2f8f299.html#a1a9b3ef7cb2655dbabeabeeae2f8f299">loop_get_thread_id</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00063_abedbb538c1cc8ef805dbfc0f58d80f9e.html#abedbb538c1cc8ef805dbfc0f58d80f9e">loop_set_balancer</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>, <a class="code" href="a00026.html">loop_balancer_t</a>* balancer);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<a class="code" href="a00026.html">loop_balancer_t</a>* <a class="code" href="a00063_a1f9df6866c80e91a620320298d199315.html#a1f9df6866c80e91a620320298d199315">loop_get_balancer</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>);</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00063_a61e9eb6eeaaad4d1d655beba05bb8440.html#a61e9eb6eeaaad4d1d655beba05bb8440">loop_notify_accept</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>, <a class="code" href="a00005.html">channel_ref_t</a>* channel_ref);</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00063_ad023112870f736a601137129420a94b9.html#ad023112870f736a601137129420a94b9">loop_notify_send</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>, <a class="code" href="a00005.html">channel_ref_t</a>* channel_ref, <a class="code" href="a00003.html">buffer_t</a>* send_buffer);</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00063_a6c9f3ec8e93c6e7b10ebb4dcaca562d4.html#a6c9f3ec8e93c6e7b10ebb4dcaca562d4">loop_notify_close</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>, <a class="code" href="a00005.html">channel_ref_t</a>* channel_ref);</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00063_a970d2bf2e65270fe3d93de1e22a4d34c.html#a970d2bf2e65270fe3d93de1e22a4d34c">loop_queue_cb</a>(<a class="code" href="a00005.html">channel_ref_t</a>* channel, <a class="code" href="a00047_aaf2cba5d4035f3d56350b59342ebf65c.html#aaf2cba5d4035f3d56350b59342ebf65c">channel_cb_event_e</a> e);</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00063_a3857990b0f1f9e27e000b5924b88a958.html#a3857990b0f1f9e27e000b5924b88a958">loop_notify</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>);</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00063_a94a2dfa4ba7723d7face3f76ebf31e54.html#a94a2dfa4ba7723d7face3f76ebf31e54">loop_event_process</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>);</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00063_a7a6972b39402a670659621e9fa7204ce.html#a7a6972b39402a670659621e9fa7204ce">loop_check_timeout</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>, time_t ts);</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00063_a5f61cefa251961e82fbf82b1c7dc0b6b.html#a5f61cefa251961e82fbf82b1c7dc0b6b">loop_check_close</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>);</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00063_a841de68dad67aba3b98d2c55d2891521.html#a841de68dad67aba3b98d2c55d2891521">loop_check_running</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>);</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00063_a20964027b5a498c7f206d6a04568fa11.html#a20964027b5a498c7f206d6a04568fa11">loop_set_balance_options</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>, <a class="code" href="a00047_a6c87150c8f33855c3427c783480fd8ba.html#a6c87150c8f33855c3427c783480fd8ba">loop_balance_option_e</a> options);</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<a class="code" href="a00047_a6c87150c8f33855c3427c783480fd8ba.html#a6c87150c8f33855c3427c783480fd8ba">loop_balance_option_e</a> <a class="code" href="a00063_a5098c33527e18f4a0bd9bc1856ce17f1.html#a5098c33527e18f4a0bd9bc1856ce17f1">loop_get_balance_options</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>);</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00063_aff034d62b761d4ebad97180fb55a4582.html#aff034d62b761d4ebad97180fb55a4582">loop_check_balance_options</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>, <a class="code" href="a00047_a6c87150c8f33855c3427c783480fd8ba.html#a6c87150c8f33855c3427c783480fd8ba">loop_balance_option_e</a> options);</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;<span class="comment">/* </span></div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;<span class="comment"> * 选取器需要实现的函数 - 建立并初始化</span></div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="comment"> * @param loop loop_t实例</span></div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="comment"> * @retval error_ok 成功</span></div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="comment"> * @retval 其他 失败</span></div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00063_a182ab27e7200de7cea5aa0a4aa71a519.html#a182ab27e7200de7cea5aa0a4aa71a519">impl_create</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>);</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;<span class="comment">/* </span></div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="comment"> * 选取器需要实现的函数 - 停止并销毁</span></div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="comment"> * @param loop loop_t实例</span></div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00063_ae6a6b7adc5e89d55352e0d54aa603915.html#ae6a6b7adc5e89d55352e0d54aa603915">impl_destroy</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>);</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="comment">/* </span></div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="comment"> * 选取器需要实现的函数 - 运行一次事件循环</span></div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="comment"> * @param loop loop_t实例</span></div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="comment"> * @retval error_ok 成功</span></div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="comment"> * @retval 其他 失败</span></div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00063_af6be25e4d8b08e68ad1730611fc7f15c.html#af6be25e4d8b08e68ad1730611fc7f15c">impl_run_once</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>);</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;</div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;<span class="comment">/* </span></div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="comment"> * 选取器需要实现的函数 - 投递一个（多个）事件</span></div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;<span class="comment"> * @param loop loop_t实例</span></div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="comment"> * @param e 事件</span></div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;<span class="comment"> * @retval error_ok 成功</span></div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;<span class="comment"> * @retval 其他 失败</span></div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00063_ae6d969c43313283fd7490201d637e29f.html#ae6d969c43313283fd7490201d637e29f">impl_event_add</a>(<a class="code" href="a00005.html">channel_ref_t</a>* channel_ref, <a class="code" href="a00047_a5ad43ab162fdf9ad53cde10ed3d87d99.html#a5ad43ab162fdf9ad53cde10ed3d87d99">channel_event_e</a> e);</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;<span class="comment">/* </span></div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;<span class="comment"> * 选取器需要实现的函数 - 取消一个（多个）事件</span></div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;<span class="comment"> * @param loop loop_t实例</span></div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<span class="comment"> * @param e 事件</span></div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;<span class="comment"> * @retval error_ok 成功</span></div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<span class="comment"> * @retval 其他 失败</span></div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00063_a687cfc12a5dba8228bb411d4cf81df26.html#a687cfc12a5dba8228bb411d4cf81df26">impl_event_remove</a>(<a class="code" href="a00005.html">channel_ref_t</a>* channel_ref, <a class="code" href="a00047_a5ad43ab162fdf9ad53cde10ed3d87d99.html#a5ad43ab162fdf9ad53cde10ed3d87d99">channel_event_e</a> e);</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;<span class="comment">/* </span></div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;<span class="comment"> * 选取器需要实现的函数 - 通知有新的管道加入了活跃链表</span></div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;<span class="comment"> * @param loop loop_t实例</span></div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;<span class="comment"> * @param channel_ref channel_ref_t实例</span></div>
-<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;<span class="comment"> * @retval error_ok 成功</span></div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;<span class="comment"> * @retval 其他 失败</span></div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00063_a27621a2037d9d1ad2f04e1b45bb63c6c.html#a27621a2037d9d1ad2f04e1b45bb63c6c">impl_add_channel_ref</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>, <a class="code" href="a00005.html">channel_ref_t</a>* channel_ref);</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="comment">/* </span></div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="comment"> * 选取器需要实现的函数 - 通知管道关闭并销毁</span></div>
-<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="comment"> * @param loop loop_t实例</span></div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<span class="comment"> * @param channel_ref channel_ref_t实例</span></div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;<span class="comment"> * @retval error_ok 成功</span></div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;<span class="comment"> * @retval 其他 失败</span></div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00063_af253b520c9f5107bf3b4384c6e54e1ea.html#af253b520c9f5107bf3b4384c6e54e1ea">impl_remove_channel_ref</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>, <a class="code" href="a00005.html">channel_ref_t</a>* channel_ref);</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;<span class="comment">/* </span></div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;<span class="comment"> * 选取器需要实现的函数 - 新连接到来时检测选取器自定义实现</span></div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;<span class="comment"> * @param channel_ref channel_ref_t实例</span></div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;<span class="comment"> * @return 套接字</span></div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;<a class="code" href="a00047_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> <a class="code" href="a00063_a866d92a429bf2e1262bbd248036960c1.html#a866d92a429bf2e1262bbd248036960c1">impl_channel_accept</a>(<a class="code" href="a00005.html">channel_ref_t</a>* channel_ref);</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;<span class="keywordtype">void</span>* <a class="code" href="a00063_aaec184f54f4ccb89ab5fa003345cd338.html#aaec184f54f4ccb89ab5fa003345cd338">loop_get_data</a>(<a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>);</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;</div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* LOOP_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="a00063_af6be25e4d8b08e68ad1730611fc7f15c_html_af6be25e4d8b08e68ad1730611fc7f15c"><div class="ttname"><a href="a00063_af6be25e4d8b08e68ad1730611fc7f15c.html#af6be25e4d8b08e68ad1730611fc7f15c">impl_run_once</a></div><div class="ttdeci">int impl_run_once(loop_t *loop)</div></div>
-<div class="ttc" id="a00063_a841de68dad67aba3b98d2c55d2891521_html_a841de68dad67aba3b98d2c55d2891521"><div class="ttname"><a href="a00063_a841de68dad67aba3b98d2c55d2891521.html#a841de68dad67aba3b98d2c55d2891521">loop_check_running</a></div><div class="ttdeci">int loop_check_running(loop_t *loop)</div><div class="ttdoc">检查是否正在运行 </div><div class="ttdef"><b>Definition:</b> loop.c:384</div></div>
-<div class="ttc" id="a00063_a282fa587372c0abd536f46a396cd41d4_html_a282fa587372c0abd536f46a396cd41d4"><div class="ttname"><a href="a00063_a282fa587372c0abd536f46a396cd41d4.html#a282fa587372c0abd536f46a396cd41d4">loop_get_close_list</a></div><div class="ttdeci">dlist_t * loop_get_close_list(loop_t *loop)</div><div class="ttdoc">取得关闭链表 </div><div class="ttdef"><b>Definition:</b> loop.c:283</div></div>
-<div class="ttc" id="a00063_af253b520c9f5107bf3b4384c6e54e1ea_html_af253b520c9f5107bf3b4384c6e54e1ea"><div class="ttname"><a href="a00063_af253b520c9f5107bf3b4384c6e54e1ea.html#af253b520c9f5107bf3b4384c6e54e1ea">impl_remove_channel_ref</a></div><div class="ttdeci">int impl_remove_channel_ref(loop_t *loop, channel_ref_t *channel_ref)</div></div>
-<div class="ttc" id="a00003_html"><div class="ttname"><a href="a00003.html">_buffer_t</a></div><div class="ttdef"><b>Definition:</b> buffer.c:28</div></div>
-<div class="ttc" id="a00063_aff034d62b761d4ebad97180fb55a4582_html_aff034d62b761d4ebad97180fb55a4582"><div class="ttname"><a href="a00063_aff034d62b761d4ebad97180fb55a4582.html#aff034d62b761d4ebad97180fb55a4582">loop_check_balance_options</a></div><div class="ttdeci">int loop_check_balance_options(loop_t *loop, loop_balance_option_e options)</div><div class="ttdoc">检查负载均衡配置是否开启 </div><div class="ttdef"><b>Definition:</b> loop.c:409</div></div>
-<div class="ttc" id="a00047_html"><div class="ttname"><a href="a00047.html">config.h</a></div></div>
-<div class="ttc" id="a00063_abedbb538c1cc8ef805dbfc0f58d80f9e_html_abedbb538c1cc8ef805dbfc0f58d80f9e"><div class="ttname"><a href="a00063_abedbb538c1cc8ef805dbfc0f58d80f9e.html#abedbb538c1cc8ef805dbfc0f58d80f9e">loop_set_balancer</a></div><div class="ttdeci">void loop_set_balancer(loop_t *loop, loop_balancer_t *balancer)</div><div class="ttdoc">设置负载均衡器(loop_balancer_t实例） </div><div class="ttdef"><b>Definition:</b> loop.c:334</div></div>
-<div class="ttc" id="a00064_html"><div class="ttname"><a href="a00064.html">loop_api.h</a></div></div>
-<div class="ttc" id="a00063_a1f9df6866c80e91a620320298d199315_html_a1f9df6866c80e91a620320298d199315"><div class="ttname"><a href="a00063_a1f9df6866c80e91a620320298d199315.html#a1f9df6866c80e91a620320298d199315">loop_get_balancer</a></div><div class="ttdeci">loop_balancer_t * loop_get_balancer(loop_t *loop)</div><div class="ttdoc">取得负载均衡器(loop_balancer_t实例） </div><div class="ttdef"><b>Definition:</b> loop.c:339</div></div>
-<div class="ttc" id="a00063_ad023112870f736a601137129420a94b9_html_ad023112870f736a601137129420a94b9"><div class="ttname"><a href="a00063_ad023112870f736a601137129420a94b9.html#ad023112870f736a601137129420a94b9">loop_notify_send</a></div><div class="ttdeci">void loop_notify_send(loop_t *loop, channel_ref_t *channel_ref, buffer_t *send_buffer)</div><div class="ttdoc">发送事件通知 - 跨线程发送 </div><div class="ttdef"><b>Definition:</b> loop.c:177</div></div>
-<div class="ttc" id="a00047_a6c87150c8f33855c3427c783480fd8ba_html_a6c87150c8f33855c3427c783480fd8ba"><div class="ttname"><a href="a00047_a6c87150c8f33855c3427c783480fd8ba.html#a6c87150c8f33855c3427c783480fd8ba">loop_balance_option_e</a></div><div class="ttdeci">enum _loop_balance_option_e loop_balance_option_e</div></div>
-<div class="ttc" id="a00063_a5098c33527e18f4a0bd9bc1856ce17f1_html_a5098c33527e18f4a0bd9bc1856ce17f1"><div class="ttname"><a href="a00063_a5098c33527e18f4a0bd9bc1856ce17f1.html#a5098c33527e18f4a0bd9bc1856ce17f1">loop_get_balance_options</a></div><div class="ttdeci">loop_balance_option_e loop_get_balance_options(loop_t *loop)</div><div class="ttdoc">取得负载均衡配置 </div><div class="ttdef"><b>Definition:</b> loop.c:404</div></div>
-<div class="ttc" id="a00063_a687cfc12a5dba8228bb411d4cf81df26_html_a687cfc12a5dba8228bb411d4cf81df26"><div class="ttname"><a href="a00063_a687cfc12a5dba8228bb411d4cf81df26.html#a687cfc12a5dba8228bb411d4cf81df26">impl_event_remove</a></div><div class="ttdeci">int impl_event_remove(channel_ref_t *channel_ref, channel_event_e e)</div></div>
-<div class="ttc" id="a00026_html"><div class="ttname"><a href="a00026.html">_loop_balancer_t</a></div><div class="ttdef"><b>Definition:</b> loop_balancer.c:36</div></div>
-<div class="ttc" id="a00012_ab4522a69094d41136b14e382ef3fcb8a_html_ab4522a69094d41136b14e382ef3fcb8a"><div class="ttname"><a href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">_framework_worker_t::loop</a></div><div class="ttdeci">loop_t * loop</div><div class="ttdef"><b>Definition:</b> framework_worker.c:8</div></div>
-<div class="ttc" id="a00047_a0d9e0afbf02fb6ed6c5b1415dce51b05_html_a0d9e0afbf02fb6ed6c5b1415dce51b05"><div class="ttname"><a href="a00047_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a></div><div class="ttdeci">#define socket_t</div><div class="ttdef"><b>Definition:</b> config.h:88</div></div>
-<div class="ttc" id="a00063_a27621a2037d9d1ad2f04e1b45bb63c6c_html_a27621a2037d9d1ad2f04e1b45bb63c6c"><div class="ttname"><a href="a00063_a27621a2037d9d1ad2f04e1b45bb63c6c.html#a27621a2037d9d1ad2f04e1b45bb63c6c">impl_add_channel_ref</a></div><div class="ttdeci">int impl_add_channel_ref(loop_t *loop, channel_ref_t *channel_ref)</div></div>
-<div class="ttc" id="a00063_a074c9c3a80a8a5c57b831e41395d4ef5_html_a074c9c3a80a8a5c57b831e41395d4ef5"><div class="ttname"><a href="a00063_a074c9c3a80a8a5c57b831e41395d4ef5.html#a074c9c3a80a8a5c57b831e41395d4ef5">loop_remove_channel_ref</a></div><div class="ttdeci">void loop_remove_channel_ref(loop_t *loop, channel_ref_t *channel_ref)</div><div class="ttdoc">从到活跃链表删除channel_ref_t实例 </div><div class="ttdef"><b>Definition:</b> loop.c:306</div></div>
-<div class="ttc" id="a00029_html"><div class="ttname"><a href="a00029.html">_loop_t</a></div><div class="ttdef"><b>Definition:</b> loop.c:35</div></div>
-<div class="ttc" id="a00063_a9328cf8ba2faccbf363b41e524631b75_html_a9328cf8ba2faccbf363b41e524631b75"><div class="ttname"><a href="a00063_a9328cf8ba2faccbf363b41e524631b75.html#a9328cf8ba2faccbf363b41e524631b75">loop_close_channel_ref</a></div><div class="ttdeci">void loop_close_channel_ref(loop_t *loop, channel_ref_t *channel_ref)</div><div class="ttdoc">从到活跃链表删除channel_ref_t实例，并放入关闭链表 </div><div class="ttdef"><b>Definition:</b> loop.c:324</div></div>
-<div class="ttc" id="a00063_a0f78295541723911955dd41b71ceece1_html_a0f78295541723911955dd41b71ceece1"><div class="ttname"><a href="a00063_a0f78295541723911955dd41b71ceece1.html#a0f78295541723911955dd41b71ceece1">loop_get_impl</a></div><div class="ttdeci">void * loop_get_impl(loop_t *loop)</div><div class="ttdoc">取得选取器实现 </div><div class="ttdef"><b>Definition:</b> loop.c:319</div></div>
-<div class="ttc" id="a00005_html"><div class="ttname"><a href="a00005.html">_channel_ref_t</a></div><div class="ttdef"><b>Definition:</b> channel_ref.c:57</div></div>
-<div class="ttc" id="a00063_ab4f4cfdde0b598a3e8267a5ff60775ec_html_ab4f4cfdde0b598a3e8267a5ff60775ec"><div class="ttname"><a href="a00063_ab4f4cfdde0b598a3e8267a5ff60775ec.html#ab4f4cfdde0b598a3e8267a5ff60775ec">loop_add_channel_ref</a></div><div class="ttdeci">void loop_add_channel_ref(loop_t *loop, channel_ref_t *channel_ref)</div><div class="ttdoc">添加channel_ref_t实例到活跃链表 </div><div class="ttdef"><b>Definition:</b> loop.c:288</div></div>
-<div class="ttc" id="a00063_a7c1a2360919bfff72d665f2651a8d080_html_a7c1a2360919bfff72d665f2651a8d080"><div class="ttname"><a href="a00063_a7c1a2360919bfff72d665f2651a8d080.html#a7c1a2360919bfff72d665f2651a8d080">loop_get_active_list</a></div><div class="ttdeci">dlist_t * loop_get_active_list(loop_t *loop)</div><div class="ttdoc">取得活跃链表 </div><div class="ttdef"><b>Definition:</b> loop.c:278</div></div>
-<div class="ttc" id="a00063_a182ab27e7200de7cea5aa0a4aa71a519_html_a182ab27e7200de7cea5aa0a4aa71a519"><div class="ttname"><a href="a00063_a182ab27e7200de7cea5aa0a4aa71a519.html#a182ab27e7200de7cea5aa0a4aa71a519">impl_create</a></div><div class="ttdeci">int impl_create(loop_t *loop)</div></div>
-<div class="ttc" id="a00047_a5ad43ab162fdf9ad53cde10ed3d87d99_html_a5ad43ab162fdf9ad53cde10ed3d87d99"><div class="ttname"><a href="a00047_a5ad43ab162fdf9ad53cde10ed3d87d99.html#a5ad43ab162fdf9ad53cde10ed3d87d99">channel_event_e</a></div><div class="ttdeci">enum _channel_event_e channel_event_e</div></div>
-<div class="ttc" id="a00063_a7a6972b39402a670659621e9fa7204ce_html_a7a6972b39402a670659621e9fa7204ce"><div class="ttname"><a href="a00063_a7a6972b39402a670659621e9fa7204ce.html#a7a6972b39402a670659621e9fa7204ce">loop_check_timeout</a></div><div class="ttdeci">void loop_check_timeout(loop_t *loop, time_t ts)</div><div class="ttdoc">检查活跃管道空闲超时 </div><div class="ttdef"><b>Definition:</b> loop.c:344</div></div>
-<div class="ttc" id="a00063_a94a2dfa4ba7723d7face3f76ebf31e54_html_a94a2dfa4ba7723d7face3f76ebf31e54"><div class="ttname"><a href="a00063_a94a2dfa4ba7723d7face3f76ebf31e54.html#a94a2dfa4ba7723d7face3f76ebf31e54">loop_event_process</a></div><div class="ttdeci">void loop_event_process(loop_t *loop)</div><div class="ttdoc">处理事件 </div><div class="ttdef"><b>Definition:</b> loop.c:211</div></div>
-<div class="ttc" id="a00063_ae6d969c43313283fd7490201d637e29f_html_ae6d969c43313283fd7490201d637e29f"><div class="ttname"><a href="a00063_ae6d969c43313283fd7490201d637e29f.html#ae6d969c43313283fd7490201d637e29f">impl_event_add</a></div><div class="ttdeci">int impl_event_add(channel_ref_t *channel_ref, channel_event_e e)</div></div>
-<div class="ttc" id="a00063_a5f61cefa251961e82fbf82b1c7dc0b6b_html_a5f61cefa251961e82fbf82b1c7dc0b6b"><div class="ttname"><a href="a00063_a5f61cefa251961e82fbf82b1c7dc0b6b.html#a5f61cefa251961e82fbf82b1c7dc0b6b">loop_check_close</a></div><div class="ttdeci">void loop_check_close(loop_t *loop)</div><div class="ttdoc">检查关闭管道是否可以销毁 </div><div class="ttdef"><b>Definition:</b> loop.c:371</div></div>
-<div class="ttc" id="a00063_a970d2bf2e65270fe3d93de1e22a4d34c_html_a970d2bf2e65270fe3d93de1e22a4d34c"><div class="ttname"><a href="a00063_a970d2bf2e65270fe3d93de1e22a4d34c.html#a970d2bf2e65270fe3d93de1e22a4d34c">loop_queue_cb</a></div><div class="ttdeci">void loop_queue_cb(channel_ref_t *channel, channel_cb_event_e e)</div><div class="ttdoc">通知管道回调函数 </div><div class="ttdef"><b>Definition:</b> loop.c:190</div></div>
-<div class="ttc" id="a00063_aa9654f1b872059f74665506fd67c9bc5_html_aa9654f1b872059f74665506fd67c9bc5"><div class="ttname"><a href="a00063_aa9654f1b872059f74665506fd67c9bc5.html#aa9654f1b872059f74665506fd67c9bc5">loop_set_impl</a></div><div class="ttdeci">void loop_set_impl(loop_t *loop, void *impl)</div><div class="ttdoc">设置选取器实现 </div><div class="ttdef"><b>Definition:</b> loop.c:313</div></div>
-<div class="ttc" id="a00063_a20964027b5a498c7f206d6a04568fa11_html_a20964027b5a498c7f206d6a04568fa11"><div class="ttname"><a href="a00063_a20964027b5a498c7f206d6a04568fa11.html#a20964027b5a498c7f206d6a04568fa11">loop_set_balance_options</a></div><div class="ttdeci">void loop_set_balance_options(loop_t *loop, loop_balance_option_e options)</div><div class="ttdoc">设置负载均衡配置 </div><div class="ttdef"><b>Definition:</b> loop.c:399</div></div>
-<div class="ttc" id="a00008_html"><div class="ttname"><a href="a00008.html">_dlist_t</a></div><div class="ttdef"><b>Definition:</b> list.c:39</div></div>
-<div class="ttc" id="a00063_a61e9eb6eeaaad4d1d655beba05bb8440_html_a61e9eb6eeaaad4d1d655beba05bb8440"><div class="ttname"><a href="a00063_a61e9eb6eeaaad4d1d655beba05bb8440.html#a61e9eb6eeaaad4d1d655beba05bb8440">loop_notify_accept</a></div><div class="ttdeci">void loop_notify_accept(loop_t *loop, channel_ref_t *channel_ref)</div><div class="ttdoc">发送事件通知 - 监听到新连接 </div><div class="ttdef"><b>Definition:</b> loop.c:171</div></div>
-<div class="ttc" id="a00063_ae6a6b7adc5e89d55352e0d54aa603915_html_ae6a6b7adc5e89d55352e0d54aa603915"><div class="ttname"><a href="a00063_ae6a6b7adc5e89d55352e0d54aa603915.html#ae6a6b7adc5e89d55352e0d54aa603915">impl_destroy</a></div><div class="ttdeci">void impl_destroy(loop_t *loop)</div></div>
-<div class="ttc" id="a00047_ad0ada5642d10ce71bdd90816182f9b79_html_ad0ada5642d10ce71bdd90816182f9b79"><div class="ttname"><a href="a00047_ad0ada5642d10ce71bdd90816182f9b79.html#ad0ada5642d10ce71bdd90816182f9b79">thread_id_t</a></div><div class="ttdeci">#define thread_id_t</div><div class="ttdef"><b>Definition:</b> config.h:87</div></div>
-<div class="ttc" id="a00047_aaf2cba5d4035f3d56350b59342ebf65c_html_aaf2cba5d4035f3d56350b59342ebf65c"><div class="ttname"><a href="a00047_aaf2cba5d4035f3d56350b59342ebf65c.html#aaf2cba5d4035f3d56350b59342ebf65c">channel_cb_event_e</a></div><div class="ttdeci">enum _channel_cb_event_e channel_cb_event_e</div></div>
-<div class="ttc" id="a00063_a3857990b0f1f9e27e000b5924b88a958_html_a3857990b0f1f9e27e000b5924b88a958"><div class="ttname"><a href="a00063_a3857990b0f1f9e27e000b5924b88a958.html#a3857990b0f1f9e27e000b5924b88a958">loop_notify</a></div><div class="ttdeci">void loop_notify(loop_t *loop)</div><div class="ttdoc">触发读事件回调loop_queue_cb </div><div class="ttdef"><b>Definition:</b> loop.c:204</div></div>
-<div class="ttc" id="a00063_a1a9b3ef7cb2655dbabeabeeae2f8f299_html_a1a9b3ef7cb2655dbabeabeeae2f8f299"><div class="ttname"><a href="a00063_a1a9b3ef7cb2655dbabeabeeae2f8f299.html#a1a9b3ef7cb2655dbabeabeeae2f8f299">loop_get_thread_id</a></div><div class="ttdeci">thread_id_t loop_get_thread_id(loop_t *loop)</div><div class="ttdoc">取得选取器当前线程ID </div><div class="ttdef"><b>Definition:</b> loop.c:249</div></div>
-<div class="ttc" id="a00063_aaec184f54f4ccb89ab5fa003345cd338_html_aaec184f54f4ccb89ab5fa003345cd338"><div class="ttname"><a href="a00063_aaec184f54f4ccb89ab5fa003345cd338.html#aaec184f54f4ccb89ab5fa003345cd338">loop_get_data</a></div><div class="ttdeci">void * loop_get_data(loop_t *loop)</div><div class="ttdoc">取得用户数据指针 </div><div class="ttdef"><b>Definition:</b> loop.c:419</div></div>
-<div class="ttc" id="a00063_a6c9f3ec8e93c6e7b10ebb4dcaca562d4_html_a6c9f3ec8e93c6e7b10ebb4dcaca562d4"><div class="ttname"><a href="a00063_a6c9f3ec8e93c6e7b10ebb4dcaca562d4.html#a6c9f3ec8e93c6e7b10ebb4dcaca562d4">loop_notify_close</a></div><div class="ttdeci">void loop_notify_close(loop_t *loop, channel_ref_t *channel_ref)</div><div class="ttdoc">发送事件通知 - 关闭管道 </div><div class="ttdef"><b>Definition:</b> loop.c:184</div></div>
-<div class="ttc" id="a00063_a866d92a429bf2e1262bbd248036960c1_html_a866d92a429bf2e1262bbd248036960c1"><div class="ttname"><a href="a00063_a866d92a429bf2e1262bbd248036960c1.html#a866d92a429bf2e1262bbd248036960c1">impl_channel_accept</a></div><div class="ttdeci">socket_t impl_channel_accept(channel_ref_t *channel_ref)</div></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __cplusplus */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00070.html">loop_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00092.html">stream_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00049.html">channel_ref_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00040.html">address_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00073.html">loop_balancer_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00042.html">broadcast_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00053.html">framework_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00056.html">framework_config_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00096.html">timer_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00093.html">thread_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00086.html">rpc_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00089.html">rpc_object_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00079.html">loop_profile_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00098.html">version.h</a>&quot;</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __cplusplus */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* KNET_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a00093_html"><div class="ttname"><a href="a00093.html">thread_api.h</a></div></div>
+<div class="ttc" id="a00056_html"><div class="ttname"><a href="a00056.html">framework_config_api.h</a></div></div>
+<div class="ttc" id="a00042_html"><div class="ttname"><a href="a00042.html">broadcast_api.h</a></div></div>
+<div class="ttc" id="a00079_html"><div class="ttname"><a href="a00079.html">loop_profile_api.h</a></div></div>
+<div class="ttc" id="a00096_html"><div class="ttname"><a href="a00096.html">timer_api.h</a></div></div>
+<div class="ttc" id="a00070_html"><div class="ttname"><a href="a00070.html">loop_api.h</a></div></div>
+<div class="ttc" id="a00049_html"><div class="ttname"><a href="a00049.html">channel_ref_api.h</a></div></div>
+<div class="ttc" id="a00040_html"><div class="ttname"><a href="a00040.html">address_api.h</a></div></div>
+<div class="ttc" id="a00098_html"><div class="ttname"><a href="a00098.html">version.h</a></div></div>
+<div class="ttc" id="a00086_html"><div class="ttname"><a href="a00086.html">rpc_api.h</a></div></div>
+<div class="ttc" id="a00089_html"><div class="ttname"><a href="a00089.html">rpc_object_api.h</a></div></div>
+<div class="ttc" id="a00092_html"><div class="ttname"><a href="a00092.html">stream_api.h</a></div></div>
+<div class="ttc" id="a00053_html"><div class="ttname"><a href="a00053.html">framework_api.h</a></div></div>
+<div class="ttc" id="a00073_html"><div class="ttname"><a href="a00073.html">loop_balancer_api.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 13日 星期一 18:21:38 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 17日 星期五 18:09:21 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

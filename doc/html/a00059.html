@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/list.h 文件参考</title>
+<title>knet: E:/knet-git/knet/knet/framework_worker.c 文件参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">knet
-   &#160;<span id="projectnumber">1.4.4</span>
+   &#160;<span id="projectnumber">1.4.5</span>
    </div>
   </td>
  </tr>
@@ -87,89 +87,45 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#define-members">宏定义</a> &#124;
+<a href="#nested-classes">结构体</a> &#124;
 <a href="#func-members">函数</a>  </div>
   <div class="headertitle">
-<div class="title">list.h 文件参考</div>  </div>
+<div class="title">framework_worker.c 文件参考</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="a00047_source.html">config.h</a>&quot;</code><br />
-</div>
-<p><a href="a00059_source.html">浏览源代码.</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-宏定义</h2></td></tr>
-<tr class="memitem:a74abc436128d57c9cce4bb6cb4514a30"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059_a74abc436128d57c9cce4bb6cb4514a30.html#a74abc436128d57c9cce4bb6cb4514a30">dlist_for_each</a>(list,  node)&#160;&#160;&#160;for (node = <a class="el" href="a00059_aa5e2f24e1971b89ac20f3f1258a41597.html#aa5e2f24e1971b89ac20f3f1258a41597">dlist_get_front</a>(list); (node); node = <a class="el" href="a00059_a2a1c0e5ec8521d7be962798680e283fc.html#a2a1c0e5ec8521d7be962798680e283fc">dlist_next</a>(list, node))</td></tr>
-<tr class="separator:a74abc436128d57c9cce4bb6cb4514a30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06e8f967efba4722dce2899baaa5c155"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059_a06e8f967efba4722dce2899baaa5c155.html#a06e8f967efba4722dce2899baaa5c155">dlist_for_each_safe</a>(list,  node,  temp)&#160;&#160;&#160;for (node = <a class="el" href="a00059_aa5e2f24e1971b89ac20f3f1258a41597.html#aa5e2f24e1971b89ac20f3f1258a41597">dlist_get_front</a>(list), temp = <a class="el" href="a00059_a2a1c0e5ec8521d7be962798680e283fc.html#a2a1c0e5ec8521d7be962798680e283fc">dlist_next</a>(list, node); (node); node = temp, temp = <a class="el" href="a00059_a2a1c0e5ec8521d7be962798680e283fc.html#a2a1c0e5ec8521d7be962798680e283fc">dlist_next</a>(list, node))</td></tr>
-<tr class="separator:a06e8f967efba4722dce2899baaa5c155"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73da38d84d57d10d4b8a82b5ce1873e8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059_a73da38d84d57d10d4b8a82b5ce1873e8.html#a73da38d84d57d10d4b8a82b5ce1873e8">dlist_for_each_break</a>()&#160;&#160;&#160;break</td></tr>
-<tr class="separator:a73da38d84d57d10d4b8a82b5ce1873e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<div class="textblock"><code>#include &quot;<a class="el" href="a00060_source.html">framework_worker.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00052_source.html">framework.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00069_source.html">loop.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00072_source.html">loop_balancer.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00082_source.html">misc.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+结构体</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00014.html">_framework_worker_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 函数</h2></td></tr>
-<tr class="memitem:a507b885acfdb76fa25d867631c907a47"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00047_a62053232bcf3566010ef98a7d77c3cc8.html#a62053232bcf3566010ef98a7d77c3cc8">dlist_node_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059_a507b885acfdb76fa25d867631c907a47.html#a507b885acfdb76fa25d867631c907a47">dlist_node_create</a> ()</td></tr>
-<tr class="memdesc:a507b885acfdb76fa25d867631c907a47"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建链表节点  <a href="a00059_a507b885acfdb76fa25d867631c907a47.html#a507b885acfdb76fa25d867631c907a47">更多...</a><br /></td></tr>
-<tr class="separator:a507b885acfdb76fa25d867631c907a47"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af029e27336becef9644d54abda80e783"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00047_a62053232bcf3566010ef98a7d77c3cc8.html#a62053232bcf3566010ef98a7d77c3cc8">dlist_node_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059_af029e27336becef9644d54abda80e783.html#af029e27336becef9644d54abda80e783">dlist_node_init</a> (<a class="el" href="a00047_a62053232bcf3566010ef98a7d77c3cc8.html#a62053232bcf3566010ef98a7d77c3cc8">dlist_node_t</a> *node)</td></tr>
-<tr class="memdesc:af029e27336becef9644d54abda80e783"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化链表节点  <a href="a00059_af029e27336becef9644d54abda80e783.html#af029e27336becef9644d54abda80e783">更多...</a><br /></td></tr>
-<tr class="separator:af029e27336becef9644d54abda80e783"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f6a123c7b002e9a7b5612d24d59cc2b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059_a7f6a123c7b002e9a7b5612d24d59cc2b.html#a7f6a123c7b002e9a7b5612d24d59cc2b">dlist_node_destroy</a> (<a class="el" href="a00047_a62053232bcf3566010ef98a7d77c3cc8.html#a62053232bcf3566010ef98a7d77c3cc8">dlist_node_t</a> *node)</td></tr>
-<tr class="memdesc:a7f6a123c7b002e9a7b5612d24d59cc2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁链表节点  <a href="a00059_a7f6a123c7b002e9a7b5612d24d59cc2b.html#a7f6a123c7b002e9a7b5612d24d59cc2b">更多...</a><br /></td></tr>
-<tr class="separator:a7f6a123c7b002e9a7b5612d24d59cc2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a74edf062cf7c178b99cbfbac71368632"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00047_a62053232bcf3566010ef98a7d77c3cc8.html#a62053232bcf3566010ef98a7d77c3cc8">dlist_node_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059_a74edf062cf7c178b99cbfbac71368632.html#a74edf062cf7c178b99cbfbac71368632">dlist_node_set_data</a> (<a class="el" href="a00047_a62053232bcf3566010ef98a7d77c3cc8.html#a62053232bcf3566010ef98a7d77c3cc8">dlist_node_t</a> *node, void *data)</td></tr>
-<tr class="memdesc:a74edf062cf7c178b99cbfbac71368632"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置节点自定义数据  <a href="a00059_a74edf062cf7c178b99cbfbac71368632.html#a74edf062cf7c178b99cbfbac71368632">更多...</a><br /></td></tr>
-<tr class="separator:a74edf062cf7c178b99cbfbac71368632"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a84722d067652fd9347f0a59732ec80"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059_a8a84722d067652fd9347f0a59732ec80.html#a8a84722d067652fd9347f0a59732ec80">dlist_node_get_data</a> (<a class="el" href="a00047_a62053232bcf3566010ef98a7d77c3cc8.html#a62053232bcf3566010ef98a7d77c3cc8">dlist_node_t</a> *node)</td></tr>
-<tr class="memdesc:a8a84722d067652fd9347f0a59732ec80"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得节点自定义数据  <a href="a00059_a8a84722d067652fd9347f0a59732ec80.html#a8a84722d067652fd9347f0a59732ec80">更多...</a><br /></td></tr>
-<tr class="separator:a8a84722d067652fd9347f0a59732ec80"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac1229375358b81e2ae8fdf7a1e7dfee1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00047_ad6644d67df4b4e3596c1eb12977d1d16.html#ad6644d67df4b4e3596c1eb12977d1d16">dlist_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059_ac1229375358b81e2ae8fdf7a1e7dfee1.html#ac1229375358b81e2ae8fdf7a1e7dfee1">dlist_create</a> ()</td></tr>
-<tr class="memdesc:ac1229375358b81e2ae8fdf7a1e7dfee1"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建链表  <a href="a00059_ac1229375358b81e2ae8fdf7a1e7dfee1.html#ac1229375358b81e2ae8fdf7a1e7dfee1">更多...</a><br /></td></tr>
-<tr class="separator:ac1229375358b81e2ae8fdf7a1e7dfee1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18753d353840e714698af3dafe57e9b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00047_ad6644d67df4b4e3596c1eb12977d1d16.html#ad6644d67df4b4e3596c1eb12977d1d16">dlist_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059_a18753d353840e714698af3dafe57e9b2.html#a18753d353840e714698af3dafe57e9b2">dlist_init</a> (<a class="el" href="a00047_ad6644d67df4b4e3596c1eb12977d1d16.html#ad6644d67df4b4e3596c1eb12977d1d16">dlist_t</a> *dlist)</td></tr>
-<tr class="memdesc:a18753d353840e714698af3dafe57e9b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">初始化链表  <a href="a00059_a18753d353840e714698af3dafe57e9b2.html#a18753d353840e714698af3dafe57e9b2">更多...</a><br /></td></tr>
-<tr class="separator:a18753d353840e714698af3dafe57e9b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1808c7551ebb6dcbae569f7e784456ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059_a1808c7551ebb6dcbae569f7e784456ce.html#a1808c7551ebb6dcbae569f7e784456ce">dlist_destroy</a> (<a class="el" href="a00047_ad6644d67df4b4e3596c1eb12977d1d16.html#ad6644d67df4b4e3596c1eb12977d1d16">dlist_t</a> *dlist)</td></tr>
-<tr class="memdesc:a1808c7551ebb6dcbae569f7e784456ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁整个链表，并销毁所有节点（不销毁节点内自定义数据）  <a href="a00059_a1808c7551ebb6dcbae569f7e784456ce.html#a1808c7551ebb6dcbae569f7e784456ce">更多...</a><br /></td></tr>
-<tr class="separator:a1808c7551ebb6dcbae569f7e784456ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a419689054005a74cabe8c51932505580"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059_a419689054005a74cabe8c51932505580.html#a419689054005a74cabe8c51932505580">dlist_add_front</a> (<a class="el" href="a00047_ad6644d67df4b4e3596c1eb12977d1d16.html#ad6644d67df4b4e3596c1eb12977d1d16">dlist_t</a> *dlist, <a class="el" href="a00047_a62053232bcf3566010ef98a7d77c3cc8.html#a62053232bcf3566010ef98a7d77c3cc8">dlist_node_t</a> *node)</td></tr>
-<tr class="memdesc:a419689054005a74cabe8c51932505580"><td class="mdescLeft">&#160;</td><td class="mdescRight">将节点添加到链表头部  <a href="a00059_a419689054005a74cabe8c51932505580.html#a419689054005a74cabe8c51932505580">更多...</a><br /></td></tr>
-<tr class="separator:a419689054005a74cabe8c51932505580"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2786bda01e956f3ecb544184d01b6402"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059_a2786bda01e956f3ecb544184d01b6402.html#a2786bda01e956f3ecb544184d01b6402">dlist_add_tail</a> (<a class="el" href="a00047_ad6644d67df4b4e3596c1eb12977d1d16.html#ad6644d67df4b4e3596c1eb12977d1d16">dlist_t</a> *dlist, <a class="el" href="a00047_a62053232bcf3566010ef98a7d77c3cc8.html#a62053232bcf3566010ef98a7d77c3cc8">dlist_node_t</a> *node)</td></tr>
-<tr class="memdesc:a2786bda01e956f3ecb544184d01b6402"><td class="mdescLeft">&#160;</td><td class="mdescRight">将节点添加到链表尾部  <a href="a00059_a2786bda01e956f3ecb544184d01b6402.html#a2786bda01e956f3ecb544184d01b6402">更多...</a><br /></td></tr>
-<tr class="separator:a2786bda01e956f3ecb544184d01b6402"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad9f16c04ff5534a96e7585226effba4d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00047_a62053232bcf3566010ef98a7d77c3cc8.html#a62053232bcf3566010ef98a7d77c3cc8">dlist_node_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059_ad9f16c04ff5534a96e7585226effba4d.html#ad9f16c04ff5534a96e7585226effba4d">dlist_add_front_node</a> (<a class="el" href="a00047_ad6644d67df4b4e3596c1eb12977d1d16.html#ad6644d67df4b4e3596c1eb12977d1d16">dlist_t</a> *dlist, void *data)</td></tr>
-<tr class="memdesc:ad9f16c04ff5534a96e7585226effba4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">建立新节点并添加到链表头部，同时设置节点自定义数据  <a href="a00059_ad9f16c04ff5534a96e7585226effba4d.html#ad9f16c04ff5534a96e7585226effba4d">更多...</a><br /></td></tr>
-<tr class="separator:ad9f16c04ff5534a96e7585226effba4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aadf245848d5b31e84c73a6755b78b23c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00047_a62053232bcf3566010ef98a7d77c3cc8.html#a62053232bcf3566010ef98a7d77c3cc8">dlist_node_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059_aadf245848d5b31e84c73a6755b78b23c.html#aadf245848d5b31e84c73a6755b78b23c">dlist_add_tail_node</a> (<a class="el" href="a00047_ad6644d67df4b4e3596c1eb12977d1d16.html#ad6644d67df4b4e3596c1eb12977d1d16">dlist_t</a> *dlist, void *data)</td></tr>
-<tr class="memdesc:aadf245848d5b31e84c73a6755b78b23c"><td class="mdescLeft">&#160;</td><td class="mdescRight">建立新节点并添加到链表尾部，同时设置节点自定义数据  <a href="a00059_aadf245848d5b31e84c73a6755b78b23c.html#aadf245848d5b31e84c73a6755b78b23c">更多...</a><br /></td></tr>
-<tr class="separator:aadf245848d5b31e84c73a6755b78b23c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35f789c294262cce6fb4f1e7be0feb40"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059_a35f789c294262cce6fb4f1e7be0feb40.html#a35f789c294262cce6fb4f1e7be0feb40">dlist_get_count</a> (<a class="el" href="a00047_ad6644d67df4b4e3596c1eb12977d1d16.html#ad6644d67df4b4e3596c1eb12977d1d16">dlist_t</a> *dlist)</td></tr>
-<tr class="memdesc:a35f789c294262cce6fb4f1e7be0feb40"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得链表节点数量  <a href="a00059_a35f789c294262cce6fb4f1e7be0feb40.html#a35f789c294262cce6fb4f1e7be0feb40">更多...</a><br /></td></tr>
-<tr class="separator:a35f789c294262cce6fb4f1e7be0feb40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d1d1bf9d77cf74db890b5525c9ac3da"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059_a4d1d1bf9d77cf74db890b5525c9ac3da.html#a4d1d1bf9d77cf74db890b5525c9ac3da">dlist_empty</a> (<a class="el" href="a00047_ad6644d67df4b4e3596c1eb12977d1d16.html#ad6644d67df4b4e3596c1eb12977d1d16">dlist_t</a> *dlist)</td></tr>
-<tr class="memdesc:a4d1d1bf9d77cf74db890b5525c9ac3da"><td class="mdescLeft">&#160;</td><td class="mdescRight">空  <a href="a00059_a4d1d1bf9d77cf74db890b5525c9ac3da.html#a4d1d1bf9d77cf74db890b5525c9ac3da">更多...</a><br /></td></tr>
-<tr class="separator:a4d1d1bf9d77cf74db890b5525c9ac3da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81811e5aa6e78ba8bbfad6b065c2c06b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00047_a62053232bcf3566010ef98a7d77c3cc8.html#a62053232bcf3566010ef98a7d77c3cc8">dlist_node_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059_a81811e5aa6e78ba8bbfad6b065c2c06b.html#a81811e5aa6e78ba8bbfad6b065c2c06b">dlist_remove</a> (<a class="el" href="a00047_ad6644d67df4b4e3596c1eb12977d1d16.html#ad6644d67df4b4e3596c1eb12977d1d16">dlist_t</a> *dlist, <a class="el" href="a00047_a62053232bcf3566010ef98a7d77c3cc8.html#a62053232bcf3566010ef98a7d77c3cc8">dlist_node_t</a> *node)</td></tr>
-<tr class="memdesc:a81811e5aa6e78ba8bbfad6b065c2c06b"><td class="mdescLeft">&#160;</td><td class="mdescRight">将节点从链表内移除但不销毁  <a href="a00059_a81811e5aa6e78ba8bbfad6b065c2c06b.html#a81811e5aa6e78ba8bbfad6b065c2c06b">更多...</a><br /></td></tr>
-<tr class="separator:a81811e5aa6e78ba8bbfad6b065c2c06b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a865e84612f96509282eb9735761b1106"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059_a865e84612f96509282eb9735761b1106.html#a865e84612f96509282eb9735761b1106">dlist_delete</a> (<a class="el" href="a00047_ad6644d67df4b4e3596c1eb12977d1d16.html#ad6644d67df4b4e3596c1eb12977d1d16">dlist_t</a> *dlist, <a class="el" href="a00047_a62053232bcf3566010ef98a7d77c3cc8.html#a62053232bcf3566010ef98a7d77c3cc8">dlist_node_t</a> *node)</td></tr>
-<tr class="memdesc:a865e84612f96509282eb9735761b1106"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁链表节点  <a href="a00059_a865e84612f96509282eb9735761b1106.html#a865e84612f96509282eb9735761b1106">更多...</a><br /></td></tr>
-<tr class="separator:a865e84612f96509282eb9735761b1106"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a1c0e5ec8521d7be962798680e283fc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00047_a62053232bcf3566010ef98a7d77c3cc8.html#a62053232bcf3566010ef98a7d77c3cc8">dlist_node_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059_a2a1c0e5ec8521d7be962798680e283fc.html#a2a1c0e5ec8521d7be962798680e283fc">dlist_next</a> (<a class="el" href="a00047_ad6644d67df4b4e3596c1eb12977d1d16.html#ad6644d67df4b4e3596c1eb12977d1d16">dlist_t</a> *dlist, <a class="el" href="a00047_a62053232bcf3566010ef98a7d77c3cc8.html#a62053232bcf3566010ef98a7d77c3cc8">dlist_node_t</a> *node)</td></tr>
-<tr class="memdesc:a2a1c0e5ec8521d7be962798680e283fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得链头当前节点的下一个节点  <a href="a00059_a2a1c0e5ec8521d7be962798680e283fc.html#a2a1c0e5ec8521d7be962798680e283fc">更多...</a><br /></td></tr>
-<tr class="separator:a2a1c0e5ec8521d7be962798680e283fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa5e2f24e1971b89ac20f3f1258a41597"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00047_a62053232bcf3566010ef98a7d77c3cc8.html#a62053232bcf3566010ef98a7d77c3cc8">dlist_node_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059_aa5e2f24e1971b89ac20f3f1258a41597.html#aa5e2f24e1971b89ac20f3f1258a41597">dlist_get_front</a> (<a class="el" href="a00047_ad6644d67df4b4e3596c1eb12977d1d16.html#ad6644d67df4b4e3596c1eb12977d1d16">dlist_t</a> *dlist)</td></tr>
-<tr class="memdesc:aa5e2f24e1971b89ac20f3f1258a41597"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得链头节点  <a href="a00059_aa5e2f24e1971b89ac20f3f1258a41597.html#aa5e2f24e1971b89ac20f3f1258a41597">更多...</a><br /></td></tr>
-<tr class="separator:aa5e2f24e1971b89ac20f3f1258a41597"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd596a321f0d697c741a9005f558b7bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00047_a62053232bcf3566010ef98a7d77c3cc8.html#a62053232bcf3566010ef98a7d77c3cc8">dlist_node_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059_abd596a321f0d697c741a9005f558b7bc.html#abd596a321f0d697c741a9005f558b7bc">dlist_get_back</a> (<a class="el" href="a00047_ad6644d67df4b4e3596c1eb12977d1d16.html#ad6644d67df4b4e3596c1eb12977d1d16">dlist_t</a> *dlist)</td></tr>
-<tr class="memdesc:abd596a321f0d697c741a9005f558b7bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得链表尾节点  <a href="a00059_abd596a321f0d697c741a9005f558b7bc.html#abd596a321f0d697c741a9005f558b7bc">更多...</a><br /></td></tr>
-<tr class="separator:abd596a321f0d697c741a9005f558b7bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a033314598ad1544a7b6cc0cf2e5930f2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00050_aeb7a44e6b579659a8aae81f3ab819af3.html#aeb7a44e6b579659a8aae81f3ab819af3">framework_worker_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059_a033314598ad1544a7b6cc0cf2e5930f2.html#a033314598ad1544a7b6cc0cf2e5930f2">framework_worker_create</a> (<a class="el" href="a00050_a6149d769f6f07ed14a40a271c95d8463.html#a6149d769f6f07ed14a40a271c95d8463">framework_t</a> *f, <a class="el" href="a00050_a9c3ad1cd2de83e09f3a7b59fa82c94ee.html#a9c3ad1cd2de83e09f3a7b59fa82c94ee">loop_t</a> *loop)</td></tr>
+<tr class="memdesc:a033314598ad1544a7b6cc0cf2e5930f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">建立框架工作线程  <a href="a00059_a033314598ad1544a7b6cc0cf2e5930f2.html#a033314598ad1544a7b6cc0cf2e5930f2">更多...</a><br /></td></tr>
+<tr class="separator:a033314598ad1544a7b6cc0cf2e5930f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add5ddcbe427122e3afe63a10e3448116"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059_add5ddcbe427122e3afe63a10e3448116.html#add5ddcbe427122e3afe63a10e3448116">framework_worker_destroy</a> (<a class="el" href="a00050_aeb7a44e6b579659a8aae81f3ab819af3.html#aeb7a44e6b579659a8aae81f3ab819af3">framework_worker_t</a> *worker)</td></tr>
+<tr class="memdesc:add5ddcbe427122e3afe63a10e3448116"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁框架工作线程  <a href="a00059_add5ddcbe427122e3afe63a10e3448116.html#add5ddcbe427122e3afe63a10e3448116">更多...</a><br /></td></tr>
+<tr class="separator:add5ddcbe427122e3afe63a10e3448116"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8791f9f6e107cd5127797cbffcd65ea8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059_a8791f9f6e107cd5127797cbffcd65ea8.html#a8791f9f6e107cd5127797cbffcd65ea8">framework_worker_start</a> (<a class="el" href="a00050_aeb7a44e6b579659a8aae81f3ab819af3.html#aeb7a44e6b579659a8aae81f3ab819af3">framework_worker_t</a> *worker)</td></tr>
+<tr class="memdesc:a8791f9f6e107cd5127797cbffcd65ea8"><td class="mdescLeft">&#160;</td><td class="mdescRight">启动框架工作线程  <a href="a00059_a8791f9f6e107cd5127797cbffcd65ea8.html#a8791f9f6e107cd5127797cbffcd65ea8">更多...</a><br /></td></tr>
+<tr class="separator:a8791f9f6e107cd5127797cbffcd65ea8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22e4e55cc90068dc691d1b4de736fd6e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059_a22e4e55cc90068dc691d1b4de736fd6e.html#a22e4e55cc90068dc691d1b4de736fd6e">framework_worker_stop</a> (<a class="el" href="a00050_aeb7a44e6b579659a8aae81f3ab819af3.html#aeb7a44e6b579659a8aae81f3ab819af3">framework_worker_t</a> *worker)</td></tr>
+<tr class="memdesc:a22e4e55cc90068dc691d1b4de736fd6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">关闭框架工作线程  <a href="a00059_a22e4e55cc90068dc691d1b4de736fd6e.html#a22e4e55cc90068dc691d1b4de736fd6e">更多...</a><br /></td></tr>
+<tr class="separator:a22e4e55cc90068dc691d1b4de736fd6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11365f74b7c96c86c8c61d2b1f368b9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00059_a11365f74b7c96c86c8c61d2b1f368b9c.html#a11365f74b7c96c86c8c61d2b1f368b9c">framework_worker_wait_for_stop</a> (<a class="el" href="a00050_aeb7a44e6b579659a8aae81f3ab819af3.html#aeb7a44e6b579659a8aae81f3ab819af3">framework_worker_t</a> *worker)</td></tr>
+<tr class="memdesc:a11365f74b7c96c86c8c61d2b1f368b9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">等待框架工作线程关闭  <a href="a00059_a11365f74b7c96c86c8c61d2b1f368b9c.html#a11365f74b7c96c86c8c61d2b1f368b9c">更多...</a><br /></td></tr>
+<tr class="separator:a11365f74b7c96c86c8c61d2b1f368b9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 13日 星期一 18:21:39 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 17日 星期五 18:09:21 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

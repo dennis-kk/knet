@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/loop_balancer_api.h 源文件</title>
+<title>knet: E:/knet-git/knet/knet/logger.h 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">knet
-   &#160;<span id="projectnumber">1.4.4</span>
+   &#160;<span id="projectnumber">1.4.5</span>
    </div>
   </td>
  </tr>
@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">loop_balancer_api.h</div>  </div>
+<div class="title">logger.h</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00067.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
@@ -114,38 +114,109 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef LOOP_BALANCER_API_H</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define LOOP_BALANCER_API_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef LOGGER_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define LOGGER_H</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00047.html">config.h</a>&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00050.html">config.h</a>&quot;</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00026.html">loop_balancer_t</a>* <a class="code" href="a00095_ga9992a50e96839282c678e51bc11158d1.html#ga9992a50e96839282c678e51bc11158d1">loop_balancer_create</a>();</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00095_ga2d702b5f965fe587fdaea3f5f9e2400c.html#ga2d702b5f965fe587fdaea3f5f9e2400c">loop_balancer_destroy</a>(<a class="code" href="a00026.html">loop_balancer_t</a>* balancer);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00095_ga2b3cf2cb63d914efe226e901a50d8b0a.html#ga2b3cf2cb63d914efe226e901a50d8b0a">loop_balancer_attach</a>(<a class="code" href="a00026.html">loop_balancer_t</a>* balancer, <a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00095_ga548ce0c2c624c4f4731a0f963d2ca42a.html#ga548ce0c2c624c4f4731a0f963d2ca42a">loop_balancer_detach</a>(<a class="code" href="a00026.html">loop_balancer_t</a>* balancer, <a class="code" href="a00029.html">loop_t</a>* <a class="code" href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">loop</a>);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00095_gae10d6df162c0c43fbfb2bb68cca09e8b.html#gae10d6df162c0c43fbfb2bb68cca09e8b">loop_balancer_set_data</a>(<a class="code" href="a00026.html">loop_balancer_t</a>* balancer, <span class="keywordtype">void</span>* data);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span>* <a class="code" href="a00095_ga0f686f513ccb9026c58ab4675e5f87e2.html#ga0f686f513ccb9026c58ab4675e5f87e2">loop_balancer_get_data</a>(<a class="code" href="a00026.html">loop_balancer_t</a>* balancer);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* LOOP_BALANCER_API_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="a00095_ga2b3cf2cb63d914efe226e901a50d8b0a_html_ga2b3cf2cb63d914efe226e901a50d8b0a"><div class="ttname"><a href="a00095_ga2b3cf2cb63d914efe226e901a50d8b0a.html#ga2b3cf2cb63d914efe226e901a50d8b0a">loop_balancer_attach</a></div><div class="ttdeci">int loop_balancer_attach(loop_balancer_t *balancer, loop_t *loop)</div><div class="ttdoc">添加事件循环到负载均衡器 </div><div class="ttdef"><b>Definition:</b> loop_balancer.c:65</div></div>
-<div class="ttc" id="a00047_html"><div class="ttname"><a href="a00047.html">config.h</a></div></div>
-<div class="ttc" id="a00095_ga9992a50e96839282c678e51bc11158d1_html_ga9992a50e96839282c678e51bc11158d1"><div class="ttname"><a href="a00095_ga9992a50e96839282c678e51bc11158d1.html#ga9992a50e96839282c678e51bc11158d1">loop_balancer_create</a></div><div class="ttdeci">loop_balancer_t * loop_balancer_create()</div><div class="ttdoc">创建负载均衡器 </div><div class="ttdef"><b>Definition:</b> loop_balancer.c:42</div></div>
-<div class="ttc" id="a00095_gae10d6df162c0c43fbfb2bb68cca09e8b_html_gae10d6df162c0c43fbfb2bb68cca09e8b"><div class="ttname"><a href="a00095_gae10d6df162c0c43fbfb2bb68cca09e8b.html#gae10d6df162c0c43fbfb2bb68cca09e8b">loop_balancer_set_data</a></div><div class="ttdeci">void loop_balancer_set_data(loop_balancer_t *balancer, void *data)</div><div class="ttdoc">设置用户数据 </div><div class="ttdef"><b>Definition:</b> loop_balancer.c:152</div></div>
-<div class="ttc" id="a00026_html"><div class="ttname"><a href="a00026.html">_loop_balancer_t</a></div><div class="ttdef"><b>Definition:</b> loop_balancer.c:36</div></div>
-<div class="ttc" id="a00012_ab4522a69094d41136b14e382ef3fcb8a_html_ab4522a69094d41136b14e382ef3fcb8a"><div class="ttname"><a href="a00012_ab4522a69094d41136b14e382ef3fcb8a.html#ab4522a69094d41136b14e382ef3fcb8a">_framework_worker_t::loop</a></div><div class="ttdeci">loop_t * loop</div><div class="ttdef"><b>Definition:</b> framework_worker.c:8</div></div>
-<div class="ttc" id="a00029_html"><div class="ttname"><a href="a00029.html">_loop_t</a></div><div class="ttdef"><b>Definition:</b> loop.c:35</div></div>
-<div class="ttc" id="a00095_ga2d702b5f965fe587fdaea3f5f9e2400c_html_ga2d702b5f965fe587fdaea3f5f9e2400c"><div class="ttname"><a href="a00095_ga2d702b5f965fe587fdaea3f5f9e2400c.html#ga2d702b5f965fe587fdaea3f5f9e2400c">loop_balancer_destroy</a></div><div class="ttdeci">void loop_balancer_destroy(loop_balancer_t *balancer)</div><div class="ttdoc">销毁负载均衡器 </div><div class="ttdef"><b>Definition:</b> loop_balancer.c:53</div></div>
-<div class="ttc" id="a00095_ga548ce0c2c624c4f4731a0f963d2ca42a_html_ga548ce0c2c624c4f4731a0f963d2ca42a"><div class="ttname"><a href="a00095_ga548ce0c2c624c4f4731a0f963d2ca42a.html#ga548ce0c2c624c4f4731a0f963d2ca42a">loop_balancer_detach</a></div><div class="ttdeci">int loop_balancer_detach(loop_balancer_t *balancer, loop_t *loop)</div><div class="ttdoc">从负载均衡器内删除事件循环 </div><div class="ttdef"><b>Definition:</b> loop_balancer.c:91</div></div>
-<div class="ttc" id="a00095_ga0f686f513ccb9026c58ab4675e5f87e2_html_ga0f686f513ccb9026c58ab4675e5f87e2"><div class="ttname"><a href="a00095_ga0f686f513ccb9026c58ab4675e5f87e2.html#ga0f686f513ccb9026c58ab4675e5f87e2">loop_balancer_get_data</a></div><div class="ttdeci">void * loop_balancer_get_data(loop_balancer_t *balancer)</div><div class="ttdoc">取得用户数据 </div><div class="ttdef"><b>Definition:</b> loop_balancer.c:158</div></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<a class="code" href="a00027.html">logger_t</a>* <a class="code" href="a00067_a99170db05ea3c90f8799e90d23032562.html#a99170db05ea3c90f8799e90d23032562">logger_create</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* path, <a class="code" href="a00050_afe883c56a5fd8d7794a3dd36780ed9d0.html#afe883c56a5fd8d7794a3dd36780ed9d0">logger_level_e</a> level, <a class="code" href="a00050_aa72cd8c306f50bee7c64e1daa1c1f3f4.html#aa72cd8c306f50bee7c64e1daa1c1f3f4">logger_mode_e</a> mode);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00067_a45bc781df24f677451bcc079de530585.html#a45bc781df24f677451bcc079de530585">logger_destroy</a>(<a class="code" href="a00027.html">logger_t</a>* logger);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00067_aad3695a5b5df8331b3c0f3e069f037f5.html#aad3695a5b5df8331b3c0f3e069f037f5">logger_write</a>(<a class="code" href="a00027.html">logger_t</a>* logger, <a class="code" href="a00050_afe883c56a5fd8d7794a3dd36780ed9d0.html#afe883c56a5fd8d7794a3dd36780ed9d0">logger_level_e</a> level, <span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">/* 全局日志 */</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00027.html">logger_t</a>* <a class="code" href="a00067_a390c05c7cb68b8334d6418733f330945.html#a390c05c7cb68b8334d6418733f330945">global_logger</a>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">/* 建立全局日志实例 */</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="a00067_a652b2c371e63a4e5c83bfd4ccffdb5f6.html#a652b2c371e63a4e5c83bfd4ccffdb5f6">   59</a></span>&#160;<span class="preprocessor">#define GLOBAL_LOGGER_INITIALIZE() \</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">    do { \</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">        if (!global_logger) global_logger = logger_create(0, LOGGER_LEVEL, LOGGER_MODE); \</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">    } while(0);</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#ifdef LOGGER_ON</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">    #if defined(WIN32)</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">        #define log_verb(format, ...) \</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">            do { \</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">               GLOBAL_LOGGER_INITIALIZE(); \</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">               logger_write(global_logger, logger_level_verbose, format, ##__VA_ARGS__); \</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">            } while(0);</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor">        #define log_info(format, ...) \</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">            do { \</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">                GLOBAL_LOGGER_INITIALIZE(); \</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">                logger_write(global_logger, logger_level_information, format, ##__VA_ARGS__); \</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor">            } while(0);</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">        #define log_warn(format, ...) \</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor">            do { \</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">                GLOBAL_LOGGER_INITIALIZE(); \</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">                logger_write(global_logger, logger_level_warning, format, ##__VA_ARGS__); \</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">            } while(0);</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">        #define log_error(format, ...) \</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">            do { \</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">                GLOBAL_LOGGER_INITIALIZE(); \</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">                logger_write(global_logger, logger_level_error, format, ##__VA_ARGS__); \</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">            } while(0);</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">        #define log_fatal(format, ...) \</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">            do { \</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">                GLOBAL_LOGGER_INITIALIZE(); \</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">                logger_write(global_logger, logger_level_fatal, format, ##__VA_ARGS__); \</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">            } while(0);</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">    #else</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="a00067_a14cc328dca10f700057b63ef38b9b6d6.html#a14cc328dca10f700057b63ef38b9b6d6">   92</a></span>&#160;<span class="preprocessor">        #define log_verb(format, args...) \</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor">            do { \</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">                GLOBAL_LOGGER_INITIALIZE(); \</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor">                logger_write(global_logger, logger_level_verbose, format, ##args); \</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">            } while(0);</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="a00067_a315f98393b739fe47d2cf94ef0ffea0e.html#a315f98393b739fe47d2cf94ef0ffea0e">   97</a></span>&#160;<span class="preprocessor">        #define log_info(format, args...) \</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">            do { \</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor">                GLOBAL_LOGGER_INITIALIZE(); \</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">                logger_write(global_logger, logger_level_information, format, ##args); \</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">            } while(0);</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="a00067_a360bf0dfa3997b4f866d190f7051fd5e.html#a360bf0dfa3997b4f866d190f7051fd5e">  102</a></span>&#160;<span class="preprocessor">        #define log_warn(format, args...) \</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="preprocessor">            do { \</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">                GLOBAL_LOGGER_INITIALIZE(); \</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">                logger_write(global_logger, logger_level_warning, format, ##args); \</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">            } while(0);</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="a00067_a2c8ee5a5093780a8501b01381981e413.html#a2c8ee5a5093780a8501b01381981e413">  107</a></span>&#160;<span class="preprocessor">        #define log_error(format, args...) \</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="preprocessor">            do { \</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="preprocessor">                GLOBAL_LOGGER_INITIALIZE(); \</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="preprocessor">                logger_write(global_logger, logger_level_error, format, ##args); \</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="preprocessor">            } while(0);</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="a00067_a2c5b6f385060b9e82d7aa34ccb8d7546.html#a2c5b6f385060b9e82d7aa34ccb8d7546">  112</a></span>&#160;<span class="preprocessor">        #define log_fatal(format, args...) \</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor">            do { \</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="preprocessor">                GLOBAL_LOGGER_INITIALIZE(); \</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="preprocessor">                logger_write(global_logger, logger_level_fatal, format, ##args); \</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor">            } while(0);</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="preprocessor">    #endif </span><span class="comment">/* defined(WIN32) */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="preprocessor">#else </span><span class="comment">/* LOGGER_ON==0 */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="preprocessor">    #if defined(WIN32)</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="preprocessor">        #define log_verb(format, ...)</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="preprocessor">        #define log_info(format, ...)</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="preprocessor">        #define log_warn(format, ...)</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="preprocessor">        #define log_error(format, ...)</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="preprocessor">        #define log_fatal(format, ...)</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="preprocessor">    #else</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="preprocessor">        #define log_verb(format, args...)</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="preprocessor">        #define log_info(format, args...)</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="preprocessor">        #define log_warn(format, args...)</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="preprocessor">        #define log_error(format, args...)</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="preprocessor">        #define log_fatal(format, args...)</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="preprocessor">    #endif </span><span class="comment">/* defined(WIN32) */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* LOGGER_ON */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* LOGGER_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a00067_a99170db05ea3c90f8799e90d23032562_html_a99170db05ea3c90f8799e90d23032562"><div class="ttname"><a href="a00067_a99170db05ea3c90f8799e90d23032562.html#a99170db05ea3c90f8799e90d23032562">logger_create</a></div><div class="ttdeci">logger_t * logger_create(const char *path, logger_level_e level, logger_mode_e mode)</div><div class="ttdoc">建立日志 </div><div class="ttdef"><b>Definition:</b> logger.c:38</div></div>
+<div class="ttc" id="a00027_html"><div class="ttname"><a href="a00027.html">_logger_t</a></div><div class="ttdef"><b>Definition:</b> logger.c:31</div></div>
+<div class="ttc" id="a00050_aa72cd8c306f50bee7c64e1daa1c1f3f4_html_aa72cd8c306f50bee7c64e1daa1c1f3f4"><div class="ttname"><a href="a00050_aa72cd8c306f50bee7c64e1daa1c1f3f4.html#aa72cd8c306f50bee7c64e1daa1c1f3f4">logger_mode_e</a></div><div class="ttdeci">enum _logger_mode_e logger_mode_e</div></div>
+<div class="ttc" id="a00050_html"><div class="ttname"><a href="a00050.html">config.h</a></div></div>
+<div class="ttc" id="a00067_aad3695a5b5df8331b3c0f3e069f037f5_html_aad3695a5b5df8331b3c0f3e069f037f5"><div class="ttname"><a href="a00067_aad3695a5b5df8331b3c0f3e069f037f5.html#aad3695a5b5df8331b3c0f3e069f037f5">logger_write</a></div><div class="ttdeci">int logger_write(logger_t *logger, logger_level_e level, const char *format,...)</div><div class="ttdoc">写日志 </div><div class="ttdef"><b>Definition:</b> logger.c:83</div></div>
+<div class="ttc" id="a00067_a390c05c7cb68b8334d6418733f330945_html_a390c05c7cb68b8334d6418733f330945"><div class="ttname"><a href="a00067_a390c05c7cb68b8334d6418733f330945.html#a390c05c7cb68b8334d6418733f330945">global_logger</a></div><div class="ttdeci">logger_t * global_logger</div><div class="ttdef"><b>Definition:</b> logger.c:29</div></div>
+<div class="ttc" id="a00067_a45bc781df24f677451bcc079de530585_html_a45bc781df24f677451bcc079de530585"><div class="ttname"><a href="a00067_a45bc781df24f677451bcc079de530585.html#a45bc781df24f677451bcc079de530585">logger_destroy</a></div><div class="ttdeci">void logger_destroy(logger_t *logger)</div><div class="ttdoc">销毁日志 </div><div class="ttdef"><b>Definition:</b> logger.c:74</div></div>
+<div class="ttc" id="a00050_afe883c56a5fd8d7794a3dd36780ed9d0_html_afe883c56a5fd8d7794a3dd36780ed9d0"><div class="ttname"><a href="a00050_afe883c56a5fd8d7794a3dd36780ed9d0.html#afe883c56a5fd8d7794a3dd36780ed9d0">logger_level_e</a></div><div class="ttdeci">enum _logger_level_e logger_level_e</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 13日 星期一 18:21:38 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 17日 星期五 18:09:21 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

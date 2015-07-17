@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: _thread_runner_t结构体 参考</title>
+<title>knet: _loop_t结构体 参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">knet
-   &#160;<span id="projectnumber">1.4.4</span>
+   &#160;<span id="projectnumber">1.4.5</span>
    </div>
   </td>
  </tr>
@@ -86,30 +86,46 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
   <div class="summary">
 <a href="#pub-attribs">成员变量</a>  </div>
   <div class="headertitle">
-<div class="title">_thread_runner_t结构体 参考</div>  </div>
+<div class="title">_loop_t结构体 参考</div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 成员变量</h2></td></tr>
-<tr class="memitem:a5e254750aa5522725788d808314b6620"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00047_a46bcd8005e5d86fdbc6be5af0a77156c.html#a46bcd8005e5d86fdbc6be5af0a77156c">thread_func_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00032_a5e254750aa5522725788d808314b6620.html#a5e254750aa5522725788d808314b6620">func</a></td></tr>
-<tr class="separator:a5e254750aa5522725788d808314b6620"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab08f4e0fa5f6ffe16fcd3c055666c9c"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00032_aab08f4e0fa5f6ffe16fcd3c055666c9c.html#aab08f4e0fa5f6ffe16fcd3c055666c9c">params</a></td></tr>
-<tr class="separator:aab08f4e0fa5f6ffe16fcd3c055666c9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a158d37a73657b2df73e3a2dd383808f8"><td class="memItemLeft" align="right" valign="top">volatile int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00032_a158d37a73657b2df73e3a2dd383808f8.html#a158d37a73657b2df73e3a2dd383808f8">running</a></td></tr>
-<tr class="separator:a158d37a73657b2df73e3a2dd383808f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab632944b59861e33a9473347b0afdc00"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00047_ad0ada5642d10ce71bdd90816182f9b79.html#ad0ada5642d10ce71bdd90816182f9b79">thread_id_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00032_ab632944b59861e33a9473347b0afdc00.html#ab632944b59861e33a9473347b0afdc00">thread_id</a></td></tr>
-<tr class="separator:ab632944b59861e33a9473347b0afdc00"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7461a4eef9b83e07f0acd4f26923744"><td class="memItemLeft" align="right" valign="top">pthread_key_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00032_ad7461a4eef9b83e07f0acd4f26923744.html#ad7461a4eef9b83e07f0acd4f26923744">tls_key</a></td></tr>
-<tr class="separator:ad7461a4eef9b83e07f0acd4f26923744"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d4033884e087124aff750c2fa3dd940"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00050_ad6644d67df4b4e3596c1eb12977d1d16.html#ad6644d67df4b4e3596c1eb12977d1d16">dlist_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00032_a1d4033884e087124aff750c2fa3dd940.html#a1d4033884e087124aff750c2fa3dd940">active_channel_list</a></td></tr>
+<tr class="separator:a1d4033884e087124aff750c2fa3dd940"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58281719fe93904e20d8cf371cc92916"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00050_ad6644d67df4b4e3596c1eb12977d1d16.html#ad6644d67df4b4e3596c1eb12977d1d16">dlist_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00032_a58281719fe93904e20d8cf371cc92916.html#a58281719fe93904e20d8cf371cc92916">close_channel_list</a></td></tr>
+<tr class="separator:a58281719fe93904e20d8cf371cc92916"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add84738b5cc47a7bd7fda9a538d1a0b3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00050_ad6644d67df4b4e3596c1eb12977d1d16.html#ad6644d67df4b4e3596c1eb12977d1d16">dlist_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00032_add84738b5cc47a7bd7fda9a538d1a0b3.html#add84738b5cc47a7bd7fda9a538d1a0b3">event_list</a></td></tr>
+<tr class="separator:add84738b5cc47a7bd7fda9a538d1a0b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac70502c67ac58ef57d52fe62039390b7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00050_ad3e00e0eb0c79dfd77ff2ff833f49c7d.html#ad3e00e0eb0c79dfd77ff2ff833f49c7d">lock_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00032_ac70502c67ac58ef57d52fe62039390b7.html#ac70502c67ac58ef57d52fe62039390b7">lock</a></td></tr>
+<tr class="separator:ac70502c67ac58ef57d52fe62039390b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90c414783f752525e92edfc76763c44e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00050_a151271c9d188ef28d4d24bb81dcc1263.html#a151271c9d188ef28d4d24bb81dcc1263">channel_ref_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00032_a90c414783f752525e92edfc76763c44e.html#a90c414783f752525e92edfc76763c44e">notify_channel</a></td></tr>
+<tr class="separator:a90c414783f752525e92edfc76763c44e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71352fb022c26178b2777934d9aebdfb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00050_a151271c9d188ef28d4d24bb81dcc1263.html#a151271c9d188ef28d4d24bb81dcc1263">channel_ref_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00032_a71352fb022c26178b2777934d9aebdfb.html#a71352fb022c26178b2777934d9aebdfb">read_channel</a></td></tr>
+<tr class="separator:a71352fb022c26178b2777934d9aebdfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f91106a5e601739f7cde876de5021f9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00050_a649c7e850ab247b5f70ad27e335a129d.html#a649c7e850ab247b5f70ad27e335a129d">loop_balancer_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00032_a1f91106a5e601739f7cde876de5021f9.html#a1f91106a5e601739f7cde876de5021f9">balancer</a></td></tr>
+<tr class="separator:a1f91106a5e601739f7cde876de5021f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fccdd254b563ddcfc44ae772dfe1d21"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00032_a7fccdd254b563ddcfc44ae772dfe1d21.html#a7fccdd254b563ddcfc44ae772dfe1d21">impl</a></td></tr>
+<tr class="separator:a7fccdd254b563ddcfc44ae772dfe1d21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfb04cce945320081c75c19b6898a7cf"><td class="memItemLeft" align="right" valign="top">volatile int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00032_abfb04cce945320081c75c19b6898a7cf.html#abfb04cce945320081c75c19b6898a7cf">running</a></td></tr>
+<tr class="separator:abfb04cce945320081c75c19b6898a7cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa52cbdff546a9e2868d2b3397e68d6dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00050_ad0ada5642d10ce71bdd90816182f9b79.html#ad0ada5642d10ce71bdd90816182f9b79">thread_id_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00032_aa52cbdff546a9e2868d2b3397e68d6dd.html#aa52cbdff546a9e2868d2b3397e68d6dd">thread_id</a></td></tr>
+<tr class="separator:aa52cbdff546a9e2868d2b3397e68d6dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90fefc1ea1db1db789b46c689a31adbc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00050_a6c87150c8f33855c3427c783480fd8ba.html#a6c87150c8f33855c3427c783480fd8ba">loop_balance_option_e</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00032_a90fefc1ea1db1db789b46c689a31adbc.html#a90fefc1ea1db1db789b46c689a31adbc">balance_options</a></td></tr>
+<tr class="separator:a90fefc1ea1db1db789b46c689a31adbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab88b0fc50824d1ee46038030a6bcd1e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00050_ad060e1396346d2f5db1ec0597376a107.html#ad060e1396346d2f5db1ec0597376a107">loop_profile_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00032_ab88b0fc50824d1ee46038030a6bcd1e8.html#ab88b0fc50824d1ee46038030a6bcd1e8">profile</a></td></tr>
+<tr class="separator:ab88b0fc50824d1ee46038030a6bcd1e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ffe8bcae7ef6f1a735b9fd127b08c74"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00032_a5ffe8bcae7ef6f1a735b9fd127b08c74.html#a5ffe8bcae7ef6f1a735b9fd127b08c74">data</a></td></tr>
+<tr class="separator:a5ffe8bcae7ef6f1a735b9fd127b08c74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>该结构体的文档由以下文件生成:<ul>
-<li>E:/knet-git/knet/knet/<a class="el" href="a00072.html">misc.c</a></li>
+<li>E:/knet-git/knet/knet/<a class="el" href="a00068.html">loop.c</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 13日 星期一 18:21:39 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 17日 星期五 18:09:22 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

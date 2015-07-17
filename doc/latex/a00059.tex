@@ -1,461 +1,121 @@
-\hypertarget{a00059}{}\section{E\+:/knet-\/git/knet/knet/list.h 文件参考}
-\label{a00059}\index{E\+:/knet-\/git/knet/knet/list.\+h@{E\+:/knet-\/git/knet/knet/list.\+h}}
-{\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\\*
-\subsection*{宏定义}
+\hypertarget{a00059}{}\section{E\+:/knet-\/git/knet/knet/framework\+\_\+worker.c 文件参考}
+\label{a00059}\index{E\+:/knet-\/git/knet/knet/framework\+\_\+worker.\+c@{E\+:/knet-\/git/knet/knet/framework\+\_\+worker.\+c}}
+{\ttfamily \#include \char`\"{}framework\+\_\+worker.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}framework.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}loop.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}loop\+\_\+balancer.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}misc.\+h\char`\"{}}\\*
+\subsection*{结构体}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{a00059_a74abc436128d57c9cce4bb6cb4514a30_a74abc436128d57c9cce4bb6cb4514a30}{dlist\+\_\+for\+\_\+each}(list,  node)~for (node = \hyperlink{a00059_aa5e2f24e1971b89ac20f3f1258a41597_aa5e2f24e1971b89ac20f3f1258a41597}{dlist\+\_\+get\+\_\+front}(list); (node); node = \hyperlink{a00059_a2a1c0e5ec8521d7be962798680e283fc_a2a1c0e5ec8521d7be962798680e283fc}{dlist\+\_\+next}(list, node))
-\item 
-\#define \hyperlink{a00059_a06e8f967efba4722dce2899baaa5c155_a06e8f967efba4722dce2899baaa5c155}{dlist\+\_\+for\+\_\+each\+\_\+safe}(list,  node,  temp)~for (node = \hyperlink{a00059_aa5e2f24e1971b89ac20f3f1258a41597_aa5e2f24e1971b89ac20f3f1258a41597}{dlist\+\_\+get\+\_\+front}(list), temp = \hyperlink{a00059_a2a1c0e5ec8521d7be962798680e283fc_a2a1c0e5ec8521d7be962798680e283fc}{dlist\+\_\+next}(list, node); (node); node = temp, temp = \hyperlink{a00059_a2a1c0e5ec8521d7be962798680e283fc_a2a1c0e5ec8521d7be962798680e283fc}{dlist\+\_\+next}(list, node))
-\item 
-\#define \hyperlink{a00059_a73da38d84d57d10d4b8a82b5ce1873e8_a73da38d84d57d10d4b8a82b5ce1873e8}{dlist\+\_\+for\+\_\+each\+\_\+break}()~break
+struct \hyperlink{a00014}{\+\_\+framework\+\_\+worker\+\_\+t}
 \end{DoxyCompactItemize}
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00047_a62053232bcf3566010ef98a7d77c3cc8_a62053232bcf3566010ef98a7d77c3cc8}{dlist\+\_\+node\+\_\+t} $\ast$ \hyperlink{a00059_a507b885acfdb76fa25d867631c907a47_a507b885acfdb76fa25d867631c907a47}{dlist\+\_\+node\+\_\+create} ()
-\begin{DoxyCompactList}\small\item\em 创建链表节点 \end{DoxyCompactList}\item 
-\hyperlink{a00047_a62053232bcf3566010ef98a7d77c3cc8_a62053232bcf3566010ef98a7d77c3cc8}{dlist\+\_\+node\+\_\+t} $\ast$ \hyperlink{a00059_af029e27336becef9644d54abda80e783_af029e27336becef9644d54abda80e783}{dlist\+\_\+node\+\_\+init} (\hyperlink{a00047_a62053232bcf3566010ef98a7d77c3cc8_a62053232bcf3566010ef98a7d77c3cc8}{dlist\+\_\+node\+\_\+t} $\ast$node)
-\begin{DoxyCompactList}\small\item\em 初始化链表节点 \end{DoxyCompactList}\item 
-void \hyperlink{a00059_a7f6a123c7b002e9a7b5612d24d59cc2b_a7f6a123c7b002e9a7b5612d24d59cc2b}{dlist\+\_\+node\+\_\+destroy} (\hyperlink{a00047_a62053232bcf3566010ef98a7d77c3cc8_a62053232bcf3566010ef98a7d77c3cc8}{dlist\+\_\+node\+\_\+t} $\ast$node)
-\begin{DoxyCompactList}\small\item\em 销毁链表节点 \end{DoxyCompactList}\item 
-\hyperlink{a00047_a62053232bcf3566010ef98a7d77c3cc8_a62053232bcf3566010ef98a7d77c3cc8}{dlist\+\_\+node\+\_\+t} $\ast$ \hyperlink{a00059_a74edf062cf7c178b99cbfbac71368632_a74edf062cf7c178b99cbfbac71368632}{dlist\+\_\+node\+\_\+set\+\_\+data} (\hyperlink{a00047_a62053232bcf3566010ef98a7d77c3cc8_a62053232bcf3566010ef98a7d77c3cc8}{dlist\+\_\+node\+\_\+t} $\ast$node, void $\ast$data)
-\begin{DoxyCompactList}\small\item\em 设置节点自定义数据 \end{DoxyCompactList}\item 
-void $\ast$ \hyperlink{a00059_a8a84722d067652fd9347f0a59732ec80_a8a84722d067652fd9347f0a59732ec80}{dlist\+\_\+node\+\_\+get\+\_\+data} (\hyperlink{a00047_a62053232bcf3566010ef98a7d77c3cc8_a62053232bcf3566010ef98a7d77c3cc8}{dlist\+\_\+node\+\_\+t} $\ast$node)
-\begin{DoxyCompactList}\small\item\em 取得节点自定义数据 \end{DoxyCompactList}\item 
-\hyperlink{a00047_ad6644d67df4b4e3596c1eb12977d1d16_ad6644d67df4b4e3596c1eb12977d1d16}{dlist\+\_\+t} $\ast$ \hyperlink{a00059_ac1229375358b81e2ae8fdf7a1e7dfee1_ac1229375358b81e2ae8fdf7a1e7dfee1}{dlist\+\_\+create} ()
-\begin{DoxyCompactList}\small\item\em 创建链表 \end{DoxyCompactList}\item 
-\hyperlink{a00047_ad6644d67df4b4e3596c1eb12977d1d16_ad6644d67df4b4e3596c1eb12977d1d16}{dlist\+\_\+t} $\ast$ \hyperlink{a00059_a18753d353840e714698af3dafe57e9b2_a18753d353840e714698af3dafe57e9b2}{dlist\+\_\+init} (\hyperlink{a00047_ad6644d67df4b4e3596c1eb12977d1d16_ad6644d67df4b4e3596c1eb12977d1d16}{dlist\+\_\+t} $\ast$dlist)
-\begin{DoxyCompactList}\small\item\em 初始化链表 \end{DoxyCompactList}\item 
-void \hyperlink{a00059_a1808c7551ebb6dcbae569f7e784456ce_a1808c7551ebb6dcbae569f7e784456ce}{dlist\+\_\+destroy} (\hyperlink{a00047_ad6644d67df4b4e3596c1eb12977d1d16_ad6644d67df4b4e3596c1eb12977d1d16}{dlist\+\_\+t} $\ast$dlist)
-\begin{DoxyCompactList}\small\item\em 销毁整个链表，并销毁所有节点（不销毁节点内自定义数据） \end{DoxyCompactList}\item 
-void \hyperlink{a00059_a419689054005a74cabe8c51932505580_a419689054005a74cabe8c51932505580}{dlist\+\_\+add\+\_\+front} (\hyperlink{a00047_ad6644d67df4b4e3596c1eb12977d1d16_ad6644d67df4b4e3596c1eb12977d1d16}{dlist\+\_\+t} $\ast$dlist, \hyperlink{a00047_a62053232bcf3566010ef98a7d77c3cc8_a62053232bcf3566010ef98a7d77c3cc8}{dlist\+\_\+node\+\_\+t} $\ast$node)
-\begin{DoxyCompactList}\small\item\em 将节点添加到链表头部 \end{DoxyCompactList}\item 
-void \hyperlink{a00059_a2786bda01e956f3ecb544184d01b6402_a2786bda01e956f3ecb544184d01b6402}{dlist\+\_\+add\+\_\+tail} (\hyperlink{a00047_ad6644d67df4b4e3596c1eb12977d1d16_ad6644d67df4b4e3596c1eb12977d1d16}{dlist\+\_\+t} $\ast$dlist, \hyperlink{a00047_a62053232bcf3566010ef98a7d77c3cc8_a62053232bcf3566010ef98a7d77c3cc8}{dlist\+\_\+node\+\_\+t} $\ast$node)
-\begin{DoxyCompactList}\small\item\em 将节点添加到链表尾部 \end{DoxyCompactList}\item 
-\hyperlink{a00047_a62053232bcf3566010ef98a7d77c3cc8_a62053232bcf3566010ef98a7d77c3cc8}{dlist\+\_\+node\+\_\+t} $\ast$ \hyperlink{a00059_ad9f16c04ff5534a96e7585226effba4d_ad9f16c04ff5534a96e7585226effba4d}{dlist\+\_\+add\+\_\+front\+\_\+node} (\hyperlink{a00047_ad6644d67df4b4e3596c1eb12977d1d16_ad6644d67df4b4e3596c1eb12977d1d16}{dlist\+\_\+t} $\ast$dlist, void $\ast$data)
-\begin{DoxyCompactList}\small\item\em 建立新节点并添加到链表头部，同时设置节点自定义数据 \end{DoxyCompactList}\item 
-\hyperlink{a00047_a62053232bcf3566010ef98a7d77c3cc8_a62053232bcf3566010ef98a7d77c3cc8}{dlist\+\_\+node\+\_\+t} $\ast$ \hyperlink{a00059_aadf245848d5b31e84c73a6755b78b23c_aadf245848d5b31e84c73a6755b78b23c}{dlist\+\_\+add\+\_\+tail\+\_\+node} (\hyperlink{a00047_ad6644d67df4b4e3596c1eb12977d1d16_ad6644d67df4b4e3596c1eb12977d1d16}{dlist\+\_\+t} $\ast$dlist, void $\ast$data)
-\begin{DoxyCompactList}\small\item\em 建立新节点并添加到链表尾部，同时设置节点自定义数据 \end{DoxyCompactList}\item 
-int \hyperlink{a00059_a35f789c294262cce6fb4f1e7be0feb40_a35f789c294262cce6fb4f1e7be0feb40}{dlist\+\_\+get\+\_\+count} (\hyperlink{a00047_ad6644d67df4b4e3596c1eb12977d1d16_ad6644d67df4b4e3596c1eb12977d1d16}{dlist\+\_\+t} $\ast$dlist)
-\begin{DoxyCompactList}\small\item\em 取得链表节点数量 \end{DoxyCompactList}\item 
-int \hyperlink{a00059_a4d1d1bf9d77cf74db890b5525c9ac3da_a4d1d1bf9d77cf74db890b5525c9ac3da}{dlist\+\_\+empty} (\hyperlink{a00047_ad6644d67df4b4e3596c1eb12977d1d16_ad6644d67df4b4e3596c1eb12977d1d16}{dlist\+\_\+t} $\ast$dlist)
-\begin{DoxyCompactList}\small\item\em 空 \end{DoxyCompactList}\item 
-\hyperlink{a00047_a62053232bcf3566010ef98a7d77c3cc8_a62053232bcf3566010ef98a7d77c3cc8}{dlist\+\_\+node\+\_\+t} $\ast$ \hyperlink{a00059_a81811e5aa6e78ba8bbfad6b065c2c06b_a81811e5aa6e78ba8bbfad6b065c2c06b}{dlist\+\_\+remove} (\hyperlink{a00047_ad6644d67df4b4e3596c1eb12977d1d16_ad6644d67df4b4e3596c1eb12977d1d16}{dlist\+\_\+t} $\ast$dlist, \hyperlink{a00047_a62053232bcf3566010ef98a7d77c3cc8_a62053232bcf3566010ef98a7d77c3cc8}{dlist\+\_\+node\+\_\+t} $\ast$node)
-\begin{DoxyCompactList}\small\item\em 将节点从链表内移除但不销毁 \end{DoxyCompactList}\item 
-void \hyperlink{a00059_a865e84612f96509282eb9735761b1106_a865e84612f96509282eb9735761b1106}{dlist\+\_\+delete} (\hyperlink{a00047_ad6644d67df4b4e3596c1eb12977d1d16_ad6644d67df4b4e3596c1eb12977d1d16}{dlist\+\_\+t} $\ast$dlist, \hyperlink{a00047_a62053232bcf3566010ef98a7d77c3cc8_a62053232bcf3566010ef98a7d77c3cc8}{dlist\+\_\+node\+\_\+t} $\ast$node)
-\begin{DoxyCompactList}\small\item\em 销毁链表节点 \end{DoxyCompactList}\item 
-\hyperlink{a00047_a62053232bcf3566010ef98a7d77c3cc8_a62053232bcf3566010ef98a7d77c3cc8}{dlist\+\_\+node\+\_\+t} $\ast$ \hyperlink{a00059_a2a1c0e5ec8521d7be962798680e283fc_a2a1c0e5ec8521d7be962798680e283fc}{dlist\+\_\+next} (\hyperlink{a00047_ad6644d67df4b4e3596c1eb12977d1d16_ad6644d67df4b4e3596c1eb12977d1d16}{dlist\+\_\+t} $\ast$dlist, \hyperlink{a00047_a62053232bcf3566010ef98a7d77c3cc8_a62053232bcf3566010ef98a7d77c3cc8}{dlist\+\_\+node\+\_\+t} $\ast$node)
-\begin{DoxyCompactList}\small\item\em 取得链头当前节点的下一个节点 \end{DoxyCompactList}\item 
-\hyperlink{a00047_a62053232bcf3566010ef98a7d77c3cc8_a62053232bcf3566010ef98a7d77c3cc8}{dlist\+\_\+node\+\_\+t} $\ast$ \hyperlink{a00059_aa5e2f24e1971b89ac20f3f1258a41597_aa5e2f24e1971b89ac20f3f1258a41597}{dlist\+\_\+get\+\_\+front} (\hyperlink{a00047_ad6644d67df4b4e3596c1eb12977d1d16_ad6644d67df4b4e3596c1eb12977d1d16}{dlist\+\_\+t} $\ast$dlist)
-\begin{DoxyCompactList}\small\item\em 取得链头节点 \end{DoxyCompactList}\item 
-\hyperlink{a00047_a62053232bcf3566010ef98a7d77c3cc8_a62053232bcf3566010ef98a7d77c3cc8}{dlist\+\_\+node\+\_\+t} $\ast$ \hyperlink{a00059_abd596a321f0d697c741a9005f558b7bc_abd596a321f0d697c741a9005f558b7bc}{dlist\+\_\+get\+\_\+back} (\hyperlink{a00047_ad6644d67df4b4e3596c1eb12977d1d16_ad6644d67df4b4e3596c1eb12977d1d16}{dlist\+\_\+t} $\ast$dlist)
-\begin{DoxyCompactList}\small\item\em 取得链表尾节点 \end{DoxyCompactList}\end{DoxyCompactItemize}
-
-
-\subsection{宏定义说明}
-\hypertarget{a00059_a74abc436128d57c9cce4bb6cb4514a30_a74abc436128d57c9cce4bb6cb4514a30}{}\index{list.\+h@{list.\+h}!dlist\+\_\+for\+\_\+each@{dlist\+\_\+for\+\_\+each}}
-\index{dlist\+\_\+for\+\_\+each@{dlist\+\_\+for\+\_\+each}!list.\+h@{list.\+h}}
-\subsubsection[{dlist\+\_\+for\+\_\+each}]{\setlength{\rightskip}{0pt plus 5cm}\#define dlist\+\_\+for\+\_\+each(
-\begin{DoxyParamCaption}
-\item[{}]{list, }
-\item[{}]{node}
-\end{DoxyParamCaption}
-)~for (node = {\bf dlist\+\_\+get\+\_\+front}(list); (node); node = {\bf dlist\+\_\+next}(list, node))}\label{a00059_a74abc436128d57c9cce4bb6cb4514a30_a74abc436128d57c9cce4bb6cb4514a30}
-\hypertarget{a00059_a73da38d84d57d10d4b8a82b5ce1873e8_a73da38d84d57d10d4b8a82b5ce1873e8}{}\index{list.\+h@{list.\+h}!dlist\+\_\+for\+\_\+each\+\_\+break@{dlist\+\_\+for\+\_\+each\+\_\+break}}
-\index{dlist\+\_\+for\+\_\+each\+\_\+break@{dlist\+\_\+for\+\_\+each\+\_\+break}!list.\+h@{list.\+h}}
-\subsubsection[{dlist\+\_\+for\+\_\+each\+\_\+break}]{\setlength{\rightskip}{0pt plus 5cm}\#define dlist\+\_\+for\+\_\+each\+\_\+break(
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)~break}\label{a00059_a73da38d84d57d10d4b8a82b5ce1873e8_a73da38d84d57d10d4b8a82b5ce1873e8}
-\hypertarget{a00059_a06e8f967efba4722dce2899baaa5c155_a06e8f967efba4722dce2899baaa5c155}{}\index{list.\+h@{list.\+h}!dlist\+\_\+for\+\_\+each\+\_\+safe@{dlist\+\_\+for\+\_\+each\+\_\+safe}}
-\index{dlist\+\_\+for\+\_\+each\+\_\+safe@{dlist\+\_\+for\+\_\+each\+\_\+safe}!list.\+h@{list.\+h}}
-\subsubsection[{dlist\+\_\+for\+\_\+each\+\_\+safe}]{\setlength{\rightskip}{0pt plus 5cm}\#define dlist\+\_\+for\+\_\+each\+\_\+safe(
-\begin{DoxyParamCaption}
-\item[{}]{list, }
-\item[{}]{node, }
-\item[{}]{temp}
-\end{DoxyParamCaption}
-)~for (node = {\bf dlist\+\_\+get\+\_\+front}(list), temp = {\bf dlist\+\_\+next}(list, node); (node); node = temp, temp = {\bf dlist\+\_\+next}(list, node))}\label{a00059_a06e8f967efba4722dce2899baaa5c155_a06e8f967efba4722dce2899baaa5c155}
+\hyperlink{a00050_aeb7a44e6b579659a8aae81f3ab819af3_aeb7a44e6b579659a8aae81f3ab819af3}{framework\+\_\+worker\+\_\+t} $\ast$ \hyperlink{a00059_a033314598ad1544a7b6cc0cf2e5930f2_a033314598ad1544a7b6cc0cf2e5930f2}{framework\+\_\+worker\+\_\+create} (\hyperlink{a00050_a6149d769f6f07ed14a40a271c95d8463_a6149d769f6f07ed14a40a271c95d8463}{framework\+\_\+t} $\ast$f, \hyperlink{a00050_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
+\begin{DoxyCompactList}\small\item\em 建立框架工作线程 \end{DoxyCompactList}\item 
+void \hyperlink{a00059_add5ddcbe427122e3afe63a10e3448116_add5ddcbe427122e3afe63a10e3448116}{framework\+\_\+worker\+\_\+destroy} (\hyperlink{a00050_aeb7a44e6b579659a8aae81f3ab819af3_aeb7a44e6b579659a8aae81f3ab819af3}{framework\+\_\+worker\+\_\+t} $\ast$worker)
+\begin{DoxyCompactList}\small\item\em 销毁框架工作线程 \end{DoxyCompactList}\item 
+int \hyperlink{a00059_a8791f9f6e107cd5127797cbffcd65ea8_a8791f9f6e107cd5127797cbffcd65ea8}{framework\+\_\+worker\+\_\+start} (\hyperlink{a00050_aeb7a44e6b579659a8aae81f3ab819af3_aeb7a44e6b579659a8aae81f3ab819af3}{framework\+\_\+worker\+\_\+t} $\ast$worker)
+\begin{DoxyCompactList}\small\item\em 启动框架工作线程 \end{DoxyCompactList}\item 
+void \hyperlink{a00059_a22e4e55cc90068dc691d1b4de736fd6e_a22e4e55cc90068dc691d1b4de736fd6e}{framework\+\_\+worker\+\_\+stop} (\hyperlink{a00050_aeb7a44e6b579659a8aae81f3ab819af3_aeb7a44e6b579659a8aae81f3ab819af3}{framework\+\_\+worker\+\_\+t} $\ast$worker)
+\begin{DoxyCompactList}\small\item\em 关闭框架工作线程 \end{DoxyCompactList}\item 
+void \hyperlink{a00059_a11365f74b7c96c86c8c61d2b1f368b9c_a11365f74b7c96c86c8c61d2b1f368b9c}{framework\+\_\+worker\+\_\+wait\+\_\+for\+\_\+stop} (\hyperlink{a00050_aeb7a44e6b579659a8aae81f3ab819af3_aeb7a44e6b579659a8aae81f3ab819af3}{framework\+\_\+worker\+\_\+t} $\ast$worker)
+\begin{DoxyCompactList}\small\item\em 等待框架工作线程关闭 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{函数说明}
-\hypertarget{a00059_a419689054005a74cabe8c51932505580_a419689054005a74cabe8c51932505580}{}\index{list.\+h@{list.\+h}!dlist\+\_\+add\+\_\+front@{dlist\+\_\+add\+\_\+front}}
-\index{dlist\+\_\+add\+\_\+front@{dlist\+\_\+add\+\_\+front}!list.\+h@{list.\+h}}
-\subsubsection[{dlist\+\_\+add\+\_\+front}]{\setlength{\rightskip}{0pt plus 5cm}void dlist\+\_\+add\+\_\+front (
+\hypertarget{a00059_a033314598ad1544a7b6cc0cf2e5930f2_a033314598ad1544a7b6cc0cf2e5930f2}{}\index{framework\+\_\+worker.\+c@{framework\+\_\+worker.\+c}!framework\+\_\+worker\+\_\+create@{framework\+\_\+worker\+\_\+create}}
+\index{framework\+\_\+worker\+\_\+create@{framework\+\_\+worker\+\_\+create}!framework\+\_\+worker.\+c@{framework\+\_\+worker.\+c}}
+\subsubsection[{framework\+\_\+worker\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf framework\+\_\+worker\+\_\+t}$\ast$ framework\+\_\+worker\+\_\+create (
 \begin{DoxyParamCaption}
-\item[{{\bf dlist\+\_\+t} $\ast$}]{dlist, }
-\item[{{\bf dlist\+\_\+node\+\_\+t} $\ast$}]{node}
+\item[{{\bf framework\+\_\+t} $\ast$}]{f, }
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
 \end{DoxyParamCaption}
-)}\label{a00059_a419689054005a74cabe8c51932505580_a419689054005a74cabe8c51932505580}
+)}\label{a00059_a033314598ad1544a7b6cc0cf2e5930f2_a033314598ad1544a7b6cc0cf2e5930f2}
 
 
-将节点添加到链表头部 
+建立框架工作线程 
 
 
 \begin{DoxyParams}{参数}
-{\em dlist} & dlist\+\_\+t实例 \\
+{\em f} & framework\+\_\+t实例 \\
 \hline
-{\em node} & dlist\+\_\+node\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00059_ad9f16c04ff5534a96e7585226effba4d_ad9f16c04ff5534a96e7585226effba4d}{}\index{list.\+h@{list.\+h}!dlist\+\_\+add\+\_\+front\+\_\+node@{dlist\+\_\+add\+\_\+front\+\_\+node}}
-\index{dlist\+\_\+add\+\_\+front\+\_\+node@{dlist\+\_\+add\+\_\+front\+\_\+node}!list.\+h@{list.\+h}}
-\subsubsection[{dlist\+\_\+add\+\_\+front\+\_\+node}]{\setlength{\rightskip}{0pt plus 5cm}{\bf dlist\+\_\+node\+\_\+t}$\ast$ dlist\+\_\+add\+\_\+front\+\_\+node (
-\begin{DoxyParamCaption}
-\item[{{\bf dlist\+\_\+t} $\ast$}]{dlist, }
-\item[{void $\ast$}]{data}
-\end{DoxyParamCaption}
-)}\label{a00059_ad9f16c04ff5534a96e7585226effba4d_ad9f16c04ff5534a96e7585226effba4d}
-
-
-建立新节点并添加到链表头部，同时设置节点自定义数据 
-
-
-\begin{DoxyParams}{参数}
-{\em dlist} & dlist\+\_\+t实例 \\
-\hline
-{\em data} & 自定义数据指针 \\
+{\em loop} & loop\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-dlist\+\_\+node\+\_\+t实例 
+framework\+\_\+worker\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00059_a2786bda01e956f3ecb544184d01b6402_a2786bda01e956f3ecb544184d01b6402}{}\index{list.\+h@{list.\+h}!dlist\+\_\+add\+\_\+tail@{dlist\+\_\+add\+\_\+tail}}
-\index{dlist\+\_\+add\+\_\+tail@{dlist\+\_\+add\+\_\+tail}!list.\+h@{list.\+h}}
-\subsubsection[{dlist\+\_\+add\+\_\+tail}]{\setlength{\rightskip}{0pt plus 5cm}void dlist\+\_\+add\+\_\+tail (
+\hypertarget{a00059_add5ddcbe427122e3afe63a10e3448116_add5ddcbe427122e3afe63a10e3448116}{}\index{framework\+\_\+worker.\+c@{framework\+\_\+worker.\+c}!framework\+\_\+worker\+\_\+destroy@{framework\+\_\+worker\+\_\+destroy}}
+\index{framework\+\_\+worker\+\_\+destroy@{framework\+\_\+worker\+\_\+destroy}!framework\+\_\+worker.\+c@{framework\+\_\+worker.\+c}}
+\subsubsection[{framework\+\_\+worker\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+worker\+\_\+destroy (
 \begin{DoxyParamCaption}
-\item[{{\bf dlist\+\_\+t} $\ast$}]{dlist, }
-\item[{{\bf dlist\+\_\+node\+\_\+t} $\ast$}]{node}
+\item[{{\bf framework\+\_\+worker\+\_\+t} $\ast$}]{worker}
 \end{DoxyParamCaption}
-)}\label{a00059_a2786bda01e956f3ecb544184d01b6402_a2786bda01e956f3ecb544184d01b6402}
+)}\label{a00059_add5ddcbe427122e3afe63a10e3448116_add5ddcbe427122e3afe63a10e3448116}
 
 
-将节点添加到链表尾部 
+销毁框架工作线程 
 
 
 \begin{DoxyParams}{参数}
-{\em dlist} & dlist\+\_\+t实例 \\
-\hline
-{\em node} & dlist\+\_\+node\+\_\+t实例 \\
+{\em worker} & framework\+\_\+worker\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
-\hypertarget{a00059_aadf245848d5b31e84c73a6755b78b23c_aadf245848d5b31e84c73a6755b78b23c}{}\index{list.\+h@{list.\+h}!dlist\+\_\+add\+\_\+tail\+\_\+node@{dlist\+\_\+add\+\_\+tail\+\_\+node}}
-\index{dlist\+\_\+add\+\_\+tail\+\_\+node@{dlist\+\_\+add\+\_\+tail\+\_\+node}!list.\+h@{list.\+h}}
-\subsubsection[{dlist\+\_\+add\+\_\+tail\+\_\+node}]{\setlength{\rightskip}{0pt plus 5cm}{\bf dlist\+\_\+node\+\_\+t}$\ast$ dlist\+\_\+add\+\_\+tail\+\_\+node (
+\hypertarget{a00059_a8791f9f6e107cd5127797cbffcd65ea8_a8791f9f6e107cd5127797cbffcd65ea8}{}\index{framework\+\_\+worker.\+c@{framework\+\_\+worker.\+c}!framework\+\_\+worker\+\_\+start@{framework\+\_\+worker\+\_\+start}}
+\index{framework\+\_\+worker\+\_\+start@{framework\+\_\+worker\+\_\+start}!framework\+\_\+worker.\+c@{framework\+\_\+worker.\+c}}
+\subsubsection[{framework\+\_\+worker\+\_\+start}]{\setlength{\rightskip}{0pt plus 5cm}int framework\+\_\+worker\+\_\+start (
 \begin{DoxyParamCaption}
-\item[{{\bf dlist\+\_\+t} $\ast$}]{dlist, }
-\item[{void $\ast$}]{data}
+\item[{{\bf framework\+\_\+worker\+\_\+t} $\ast$}]{worker}
 \end{DoxyParamCaption}
-)}\label{a00059_aadf245848d5b31e84c73a6755b78b23c_aadf245848d5b31e84c73a6755b78b23c}
+)}\label{a00059_a8791f9f6e107cd5127797cbffcd65ea8_a8791f9f6e107cd5127797cbffcd65ea8}
 
 
-建立新节点并添加到链表尾部，同时设置节点自定义数据 
+启动框架工作线程 
 
 
 \begin{DoxyParams}{参数}
-{\em dlist} & dlist\+\_\+t实例 \\
-\hline
-{\em data} & 自定义数据指针 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-dlist\+\_\+node\+\_\+t实例 
-\end{DoxyReturn}
-\hypertarget{a00059_ac1229375358b81e2ae8fdf7a1e7dfee1_ac1229375358b81e2ae8fdf7a1e7dfee1}{}\index{list.\+h@{list.\+h}!dlist\+\_\+create@{dlist\+\_\+create}}
-\index{dlist\+\_\+create@{dlist\+\_\+create}!list.\+h@{list.\+h}}
-\subsubsection[{dlist\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf dlist\+\_\+t}$\ast$ dlist\+\_\+create (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\label{a00059_ac1229375358b81e2ae8fdf7a1e7dfee1_ac1229375358b81e2ae8fdf7a1e7dfee1}
-
-
-创建链表 
-
-\begin{DoxyReturn}{返回}
-dlist\+\_\+t实例 
-\end{DoxyReturn}
-\hypertarget{a00059_a865e84612f96509282eb9735761b1106_a865e84612f96509282eb9735761b1106}{}\index{list.\+h@{list.\+h}!dlist\+\_\+delete@{dlist\+\_\+delete}}
-\index{dlist\+\_\+delete@{dlist\+\_\+delete}!list.\+h@{list.\+h}}
-\subsubsection[{dlist\+\_\+delete}]{\setlength{\rightskip}{0pt plus 5cm}void dlist\+\_\+delete (
-\begin{DoxyParamCaption}
-\item[{{\bf dlist\+\_\+t} $\ast$}]{dlist, }
-\item[{{\bf dlist\+\_\+node\+\_\+t} $\ast$}]{node}
-\end{DoxyParamCaption}
-)}\label{a00059_a865e84612f96509282eb9735761b1106_a865e84612f96509282eb9735761b1106}
-
-
-销毁链表节点 
-
-
-\begin{DoxyParams}{参数}
-{\em dlist} & dlist\+\_\+t实例 \\
-\hline
-{\em node} & 当前节点 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00059_a1808c7551ebb6dcbae569f7e784456ce_a1808c7551ebb6dcbae569f7e784456ce}{}\index{list.\+h@{list.\+h}!dlist\+\_\+destroy@{dlist\+\_\+destroy}}
-\index{dlist\+\_\+destroy@{dlist\+\_\+destroy}!list.\+h@{list.\+h}}
-\subsubsection[{dlist\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void dlist\+\_\+destroy (
-\begin{DoxyParamCaption}
-\item[{{\bf dlist\+\_\+t} $\ast$}]{dlist}
-\end{DoxyParamCaption}
-)}\label{a00059_a1808c7551ebb6dcbae569f7e784456ce_a1808c7551ebb6dcbae569f7e784456ce}
-
-
-销毁整个链表，并销毁所有节点（不销毁节点内自定义数据） 
-
-
-\begin{DoxyParams}{参数}
-{\em dlist} & dlist\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00059_a4d1d1bf9d77cf74db890b5525c9ac3da_a4d1d1bf9d77cf74db890b5525c9ac3da}{}\index{list.\+h@{list.\+h}!dlist\+\_\+empty@{dlist\+\_\+empty}}
-\index{dlist\+\_\+empty@{dlist\+\_\+empty}!list.\+h@{list.\+h}}
-\subsubsection[{dlist\+\_\+empty}]{\setlength{\rightskip}{0pt plus 5cm}int dlist\+\_\+empty (
-\begin{DoxyParamCaption}
-\item[{{\bf dlist\+\_\+t} $\ast$}]{dlist}
-\end{DoxyParamCaption}
-)}\label{a00059_a4d1d1bf9d77cf74db890b5525c9ac3da_a4d1d1bf9d77cf74db890b5525c9ac3da}
-
-
-空 
-
-
-\begin{DoxyParams}{参数}
-{\em dlist} & dlist\+\_\+t实例 \\
+{\em worker} & framework\+\_\+worker\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 
 \begin{DoxyRetVals}{返回值}
-{\em 0} & 非空 \\
+{\em error\+\_\+ok} & 成功 \\
 \hline
-{\em 非零} & 空 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00059_abd596a321f0d697c741a9005f558b7bc_abd596a321f0d697c741a9005f558b7bc}{}\index{list.\+h@{list.\+h}!dlist\+\_\+get\+\_\+back@{dlist\+\_\+get\+\_\+back}}
-\index{dlist\+\_\+get\+\_\+back@{dlist\+\_\+get\+\_\+back}!list.\+h@{list.\+h}}
-\subsubsection[{dlist\+\_\+get\+\_\+back}]{\setlength{\rightskip}{0pt plus 5cm}{\bf dlist\+\_\+node\+\_\+t}$\ast$ dlist\+\_\+get\+\_\+back (
-\begin{DoxyParamCaption}
-\item[{{\bf dlist\+\_\+t} $\ast$}]{dlist}
-\end{DoxyParamCaption}
-)}\label{a00059_abd596a321f0d697c741a9005f558b7bc_abd596a321f0d697c741a9005f558b7bc}
-
-
-取得链表尾节点 
-
-
-\begin{DoxyParams}{参数}
-{\em dlist} & dlist\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em dlist\+\_\+node\+\_\+t实例} & \\
-\hline
-{\em 0} & 链表为空 \\
+{\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00059_a35f789c294262cce6fb4f1e7be0feb40_a35f789c294262cce6fb4f1e7be0feb40}{}\index{list.\+h@{list.\+h}!dlist\+\_\+get\+\_\+count@{dlist\+\_\+get\+\_\+count}}
-\index{dlist\+\_\+get\+\_\+count@{dlist\+\_\+get\+\_\+count}!list.\+h@{list.\+h}}
-\subsubsection[{dlist\+\_\+get\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}int dlist\+\_\+get\+\_\+count (
+\hypertarget{a00059_a22e4e55cc90068dc691d1b4de736fd6e_a22e4e55cc90068dc691d1b4de736fd6e}{}\index{framework\+\_\+worker.\+c@{framework\+\_\+worker.\+c}!framework\+\_\+worker\+\_\+stop@{framework\+\_\+worker\+\_\+stop}}
+\index{framework\+\_\+worker\+\_\+stop@{framework\+\_\+worker\+\_\+stop}!framework\+\_\+worker.\+c@{framework\+\_\+worker.\+c}}
+\subsubsection[{framework\+\_\+worker\+\_\+stop}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+worker\+\_\+stop (
 \begin{DoxyParamCaption}
-\item[{{\bf dlist\+\_\+t} $\ast$}]{dlist}
+\item[{{\bf framework\+\_\+worker\+\_\+t} $\ast$}]{worker}
 \end{DoxyParamCaption}
-)}\label{a00059_a35f789c294262cce6fb4f1e7be0feb40_a35f789c294262cce6fb4f1e7be0feb40}
+)}\label{a00059_a22e4e55cc90068dc691d1b4de736fd6e_a22e4e55cc90068dc691d1b4de736fd6e}
 
 
-取得链表节点数量 
+关闭框架工作线程 
 
 
 \begin{DoxyParams}{参数}
-{\em dlist} & dlist\+\_\+t实例 \\
+{\em worker} & framework\+\_\+worker\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{返回}
-节点数量 
-\end{DoxyReturn}
-\hypertarget{a00059_aa5e2f24e1971b89ac20f3f1258a41597_aa5e2f24e1971b89ac20f3f1258a41597}{}\index{list.\+h@{list.\+h}!dlist\+\_\+get\+\_\+front@{dlist\+\_\+get\+\_\+front}}
-\index{dlist\+\_\+get\+\_\+front@{dlist\+\_\+get\+\_\+front}!list.\+h@{list.\+h}}
-\subsubsection[{dlist\+\_\+get\+\_\+front}]{\setlength{\rightskip}{0pt plus 5cm}{\bf dlist\+\_\+node\+\_\+t}$\ast$ dlist\+\_\+get\+\_\+front (
+\hypertarget{a00059_a11365f74b7c96c86c8c61d2b1f368b9c_a11365f74b7c96c86c8c61d2b1f368b9c}{}\index{framework\+\_\+worker.\+c@{framework\+\_\+worker.\+c}!framework\+\_\+worker\+\_\+wait\+\_\+for\+\_\+stop@{framework\+\_\+worker\+\_\+wait\+\_\+for\+\_\+stop}}
+\index{framework\+\_\+worker\+\_\+wait\+\_\+for\+\_\+stop@{framework\+\_\+worker\+\_\+wait\+\_\+for\+\_\+stop}!framework\+\_\+worker.\+c@{framework\+\_\+worker.\+c}}
+\subsubsection[{framework\+\_\+worker\+\_\+wait\+\_\+for\+\_\+stop}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+worker\+\_\+wait\+\_\+for\+\_\+stop (
 \begin{DoxyParamCaption}
-\item[{{\bf dlist\+\_\+t} $\ast$}]{dlist}
+\item[{{\bf framework\+\_\+worker\+\_\+t} $\ast$}]{worker}
 \end{DoxyParamCaption}
-)}\label{a00059_aa5e2f24e1971b89ac20f3f1258a41597_aa5e2f24e1971b89ac20f3f1258a41597}
+)}\label{a00059_a11365f74b7c96c86c8c61d2b1f368b9c_a11365f74b7c96c86c8c61d2b1f368b9c}
 
 
-取得链头节点 
+等待框架工作线程关闭 
 
 
 \begin{DoxyParams}{参数}
-{\em dlist} & dlist\+\_\+t实例 \\
+{\em worker} & framework\+\_\+worker\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em dlist\+\_\+node\+\_\+t实例} & \\
-\hline
-{\em 0} & 链表为空 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00059_a18753d353840e714698af3dafe57e9b2_a18753d353840e714698af3dafe57e9b2}{}\index{list.\+h@{list.\+h}!dlist\+\_\+init@{dlist\+\_\+init}}
-\index{dlist\+\_\+init@{dlist\+\_\+init}!list.\+h@{list.\+h}}
-\subsubsection[{dlist\+\_\+init}]{\setlength{\rightskip}{0pt plus 5cm}{\bf dlist\+\_\+t}$\ast$ dlist\+\_\+init (
-\begin{DoxyParamCaption}
-\item[{{\bf dlist\+\_\+t} $\ast$}]{dlist}
-\end{DoxyParamCaption}
-)}\label{a00059_a18753d353840e714698af3dafe57e9b2_a18753d353840e714698af3dafe57e9b2}
-
-
-初始化链表 
-
-
-\begin{DoxyParams}{参数}
-{\em dlist} & dlist\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-dlist\+\_\+t实例 
-\end{DoxyReturn}
-\hypertarget{a00059_a2a1c0e5ec8521d7be962798680e283fc_a2a1c0e5ec8521d7be962798680e283fc}{}\index{list.\+h@{list.\+h}!dlist\+\_\+next@{dlist\+\_\+next}}
-\index{dlist\+\_\+next@{dlist\+\_\+next}!list.\+h@{list.\+h}}
-\subsubsection[{dlist\+\_\+next}]{\setlength{\rightskip}{0pt plus 5cm}{\bf dlist\+\_\+node\+\_\+t}$\ast$ dlist\+\_\+next (
-\begin{DoxyParamCaption}
-\item[{{\bf dlist\+\_\+t} $\ast$}]{dlist, }
-\item[{{\bf dlist\+\_\+node\+\_\+t} $\ast$}]{node}
-\end{DoxyParamCaption}
-)}\label{a00059_a2a1c0e5ec8521d7be962798680e283fc_a2a1c0e5ec8521d7be962798680e283fc}
-
-
-取得链头当前节点的下一个节点 
-
-
-\begin{DoxyParams}{参数}
-{\em dlist} & dlist\+\_\+t实例 \\
-\hline
-{\em node} & 当前节点 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em dlist\+\_\+node\+\_\+t实例} & \\
-\hline
-{\em 0} & 没有更多节点 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00059_a507b885acfdb76fa25d867631c907a47_a507b885acfdb76fa25d867631c907a47}{}\index{list.\+h@{list.\+h}!dlist\+\_\+node\+\_\+create@{dlist\+\_\+node\+\_\+create}}
-\index{dlist\+\_\+node\+\_\+create@{dlist\+\_\+node\+\_\+create}!list.\+h@{list.\+h}}
-\subsubsection[{dlist\+\_\+node\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf dlist\+\_\+node\+\_\+t}$\ast$ dlist\+\_\+node\+\_\+create (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\label{a00059_a507b885acfdb76fa25d867631c907a47_a507b885acfdb76fa25d867631c907a47}
-
-
-创建链表节点 
-
-\begin{DoxyReturn}{返回}
-dlist\+\_\+node\+\_\+t实例 
-\end{DoxyReturn}
-\hypertarget{a00059_a7f6a123c7b002e9a7b5612d24d59cc2b_a7f6a123c7b002e9a7b5612d24d59cc2b}{}\index{list.\+h@{list.\+h}!dlist\+\_\+node\+\_\+destroy@{dlist\+\_\+node\+\_\+destroy}}
-\index{dlist\+\_\+node\+\_\+destroy@{dlist\+\_\+node\+\_\+destroy}!list.\+h@{list.\+h}}
-\subsubsection[{dlist\+\_\+node\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void dlist\+\_\+node\+\_\+destroy (
-\begin{DoxyParamCaption}
-\item[{{\bf dlist\+\_\+node\+\_\+t} $\ast$}]{node}
-\end{DoxyParamCaption}
-)}\label{a00059_a7f6a123c7b002e9a7b5612d24d59cc2b_a7f6a123c7b002e9a7b5612d24d59cc2b}
-
-
-销毁链表节点 
-
-
-\begin{DoxyParams}{参数}
-{\em node} & dlist\+\_\+node\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00059_a8a84722d067652fd9347f0a59732ec80_a8a84722d067652fd9347f0a59732ec80}{}\index{list.\+h@{list.\+h}!dlist\+\_\+node\+\_\+get\+\_\+data@{dlist\+\_\+node\+\_\+get\+\_\+data}}
-\index{dlist\+\_\+node\+\_\+get\+\_\+data@{dlist\+\_\+node\+\_\+get\+\_\+data}!list.\+h@{list.\+h}}
-\subsubsection[{dlist\+\_\+node\+\_\+get\+\_\+data}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ dlist\+\_\+node\+\_\+get\+\_\+data (
-\begin{DoxyParamCaption}
-\item[{{\bf dlist\+\_\+node\+\_\+t} $\ast$}]{node}
-\end{DoxyParamCaption}
-)}\label{a00059_a8a84722d067652fd9347f0a59732ec80_a8a84722d067652fd9347f0a59732ec80}
-
-
-取得节点自定义数据 
-
-
-\begin{DoxyParams}{参数}
-{\em node} & dlist\+\_\+node\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-自定义数据指针 
-\end{DoxyReturn}
-\hypertarget{a00059_af029e27336becef9644d54abda80e783_af029e27336becef9644d54abda80e783}{}\index{list.\+h@{list.\+h}!dlist\+\_\+node\+\_\+init@{dlist\+\_\+node\+\_\+init}}
-\index{dlist\+\_\+node\+\_\+init@{dlist\+\_\+node\+\_\+init}!list.\+h@{list.\+h}}
-\subsubsection[{dlist\+\_\+node\+\_\+init}]{\setlength{\rightskip}{0pt plus 5cm}{\bf dlist\+\_\+node\+\_\+t}$\ast$ dlist\+\_\+node\+\_\+init (
-\begin{DoxyParamCaption}
-\item[{{\bf dlist\+\_\+node\+\_\+t} $\ast$}]{node}
-\end{DoxyParamCaption}
-)}\label{a00059_af029e27336becef9644d54abda80e783_af029e27336becef9644d54abda80e783}
-
-
-初始化链表节点 
-
-
-\begin{DoxyParams}{参数}
-{\em node} & dlist\+\_\+node\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-dlist\+\_\+node\+\_\+t实例 
-\end{DoxyReturn}
-\hypertarget{a00059_a74edf062cf7c178b99cbfbac71368632_a74edf062cf7c178b99cbfbac71368632}{}\index{list.\+h@{list.\+h}!dlist\+\_\+node\+\_\+set\+\_\+data@{dlist\+\_\+node\+\_\+set\+\_\+data}}
-\index{dlist\+\_\+node\+\_\+set\+\_\+data@{dlist\+\_\+node\+\_\+set\+\_\+data}!list.\+h@{list.\+h}}
-\subsubsection[{dlist\+\_\+node\+\_\+set\+\_\+data}]{\setlength{\rightskip}{0pt plus 5cm}{\bf dlist\+\_\+node\+\_\+t}$\ast$ dlist\+\_\+node\+\_\+set\+\_\+data (
-\begin{DoxyParamCaption}
-\item[{{\bf dlist\+\_\+node\+\_\+t} $\ast$}]{node, }
-\item[{void $\ast$}]{data}
-\end{DoxyParamCaption}
-)}\label{a00059_a74edf062cf7c178b99cbfbac71368632_a74edf062cf7c178b99cbfbac71368632}
-
-
-设置节点自定义数据 
-
-
-\begin{DoxyParams}{参数}
-{\em node} & dlist\+\_\+node\+\_\+t实例 \\
-\hline
-{\em data} & 自定义数据指针 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-dlist\+\_\+node\+\_\+t实例 
-\end{DoxyReturn}
-\hypertarget{a00059_a81811e5aa6e78ba8bbfad6b065c2c06b_a81811e5aa6e78ba8bbfad6b065c2c06b}{}\index{list.\+h@{list.\+h}!dlist\+\_\+remove@{dlist\+\_\+remove}}
-\index{dlist\+\_\+remove@{dlist\+\_\+remove}!list.\+h@{list.\+h}}
-\subsubsection[{dlist\+\_\+remove}]{\setlength{\rightskip}{0pt plus 5cm}{\bf dlist\+\_\+node\+\_\+t}$\ast$ dlist\+\_\+remove (
-\begin{DoxyParamCaption}
-\item[{{\bf dlist\+\_\+t} $\ast$}]{dlist, }
-\item[{{\bf dlist\+\_\+node\+\_\+t} $\ast$}]{node}
-\end{DoxyParamCaption}
-)}\label{a00059_a81811e5aa6e78ba8bbfad6b065c2c06b_a81811e5aa6e78ba8bbfad6b065c2c06b}
-
-
-将节点从链表内移除但不销毁 
-
-
-\begin{DoxyParams}{参数}
-{\em dlist} & dlist\+\_\+t实例 \\
-\hline
-{\em node} & 当前节点 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em dlist\+\_\+node\+\_\+t实例} & \\
-\hline
-\end{DoxyRetVals}

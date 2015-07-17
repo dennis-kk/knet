@@ -1,289 +1,132 @@
-\hypertarget{a00097}{}\section{流}
-\label{a00097}\index{流@{流}}
-
-
-管道流  
-
-
+\hypertarget{a00097}{}\section{E\+:/knet-\/git/knet/knet/version.c 文件参考}
+\label{a00097}\index{E\+:/knet-\/git/knet/knet/version.\+c@{E\+:/knet-\/git/knet/knet/version.\+c}}
+{\ttfamily \#include \char`\"{}version.\+h\char`\"{}}\\*
+\subsection*{宏定义}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{a00097_a877cce34f3e58fd7f9194fab90724cb8_a877cce34f3e58fd7f9194fab90724cb8}{M\+A\+J\+O\+R}~1 /$\ast$ 主版本 $\ast$/
+\item 
+\#define \hyperlink{a00097_a4e10915d93013542d442d78de0e02e9a_a4e10915d93013542d442d78de0e02e9a}{M\+I\+N\+O\+R}~4 /$\ast$ 次版本 $\ast$/
+\item 
+\#define \hyperlink{a00097_af59c44c1f3ff875c35393428624473aa_af59c44c1f3ff875c35393428624473aa}{P\+A\+T\+C\+H}~5 /$\ast$ 补丁 $\ast$/
+\item 
+\#define \hyperlink{a00097_ad4c134c968cc4fc0cc700567eb39c675_ad4c134c968cc4fc0cc700567eb39c675}{K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R}(major)~\#major
+\item 
+\#define \hyperlink{a00097_a70224fafcaea5102f9cd726ba926684f_a70224fafcaea5102f9cd726ba926684f}{K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R}(minor)~\#minor
+\item 
+\#define \hyperlink{a00097_ae9af7a95a483a187a37d3e9828c6ac1c_ae9af7a95a483a187a37d3e9828c6ac1c}{K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H}(patch)~\#patch
+\item 
+\#define \hyperlink{a00097_a96eb274e34ccfa0c0505ca99f2e09a82_a96eb274e34ccfa0c0505ca99f2e09a82}{K\+N\+E\+T\+\_\+\+V\+E\+R\+S\+I\+O\+N}(major,  minor,  patch)~\hyperlink{a00097_ad4c134c968cc4fc0cc700567eb39c675_ad4c134c968cc4fc0cc700567eb39c675}{K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R}(major)\char`\"{}.\char`\"{}\hyperlink{a00097_a70224fafcaea5102f9cd726ba926684f_a70224fafcaea5102f9cd726ba926684f}{K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R}(minor)\char`\"{}.\char`\"{}\hyperlink{a00097_ae9af7a95a483a187a37d3e9828c6ac1c_ae9af7a95a483a187a37d3e9828c6ac1c}{K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H}(patch)
+\end{DoxyCompactItemize}
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-int \hyperlink{a00097_ga6e109b2dc520782567dc1891af3b945e_ga6e109b2dc520782567dc1891af3b945e}{stream\+\_\+available} (\hyperlink{a00047_a261dba04f46f5c59a68a05f69f5a65a8_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$stream)
-\begin{DoxyCompactList}\small\item\em 取得数据流内可读字节数 \end{DoxyCompactList}\item 
-int \hyperlink{a00097_gaef7f4ca2c201faf5d82a1dad4c8d7814_gaef7f4ca2c201faf5d82a1dad4c8d7814}{stream\+\_\+eat\+\_\+all} (\hyperlink{a00047_a261dba04f46f5c59a68a05f69f5a65a8_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$stream)
-\begin{DoxyCompactList}\small\item\em 清空数据流 \end{DoxyCompactList}\item 
-int \hyperlink{a00097_ga1ab922f8bab979099b3abc3ee54dc59d_ga1ab922f8bab979099b3abc3ee54dc59d}{stream\+\_\+eat} (\hyperlink{a00047_a261dba04f46f5c59a68a05f69f5a65a8_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$stream, int size)
-\begin{DoxyCompactList}\small\item\em 删除指定长度数据 \end{DoxyCompactList}\item 
-int \hyperlink{a00097_ga6e01758abf49f8b08cd457f1cb48a954_ga6e01758abf49f8b08cd457f1cb48a954}{stream\+\_\+pop} (\hyperlink{a00047_a261dba04f46f5c59a68a05f69f5a65a8_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$stream, void $\ast$buffer, int size)
-\begin{DoxyCompactList}\small\item\em 从数据流内读取数据并清除数据 \end{DoxyCompactList}\item 
-int \hyperlink{a00097_gae7e63ef142733eb3aea7401e28bc9a75_gae7e63ef142733eb3aea7401e28bc9a75}{stream\+\_\+push} (\hyperlink{a00047_a261dba04f46f5c59a68a05f69f5a65a8_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$stream, const void $\ast$buffer, int size)
-\begin{DoxyCompactList}\small\item\em 向数据流内写数据 \end{DoxyCompactList}\item 
-int \hyperlink{a00097_ga380555bf71ee99f6b2bb4f76738d507f_ga380555bf71ee99f6b2bb4f76738d507f}{stream\+\_\+copy} (\hyperlink{a00047_a261dba04f46f5c59a68a05f69f5a65a8_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$stream, void $\ast$buffer, int size)
-\begin{DoxyCompactList}\small\item\em 从数据流内拷贝数据，但不清除数据流内数据 \end{DoxyCompactList}\item 
-int \hyperlink{a00097_gad5336c2b89b6edea5f277d5ebc221e15_gad5336c2b89b6edea5f277d5ebc221e15}{stream\+\_\+push\+\_\+stream} (\hyperlink{a00047_a261dba04f46f5c59a68a05f69f5a65a8_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$stream, \hyperlink{a00047_a261dba04f46f5c59a68a05f69f5a65a8_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$target)
-\begin{DoxyCompactList}\small\item\em 将stream内数据写入target, 并清除stream内数据 \end{DoxyCompactList}\item 
-int \hyperlink{a00097_ga296aea89ba5bec6566e119855df3b18c_ga296aea89ba5bec6566e119855df3b18c}{stream\+\_\+copy\+\_\+stream} (\hyperlink{a00047_a261dba04f46f5c59a68a05f69f5a65a8_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$stream, \hyperlink{a00047_a261dba04f46f5c59a68a05f69f5a65a8_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$target)
-\begin{DoxyCompactList}\small\item\em 将stream内数据写入target, 但不清除stream内数据 \end{DoxyCompactList}\item 
-\hyperlink{a00047_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$ \hyperlink{a00097_gab4b3e49d2c44a601e8bb7f568577fae4_gab4b3e49d2c44a601e8bb7f568577fae4}{stream\+\_\+get\+\_\+channel\+\_\+ref} (\hyperlink{a00047_a261dba04f46f5c59a68a05f69f5a65a8_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$stream)
-\begin{DoxyCompactList}\small\item\em 获取流所属的管道引用 \end{DoxyCompactList}\end{DoxyCompactItemize}
+const char $\ast$ \hyperlink{a00097_a3b6e0e802bbb0f81da8bcef8e757066a_a3b6e0e802bbb0f81da8bcef8e757066a}{knet\+\_\+get\+\_\+version\+\_\+string} ()
+\begin{DoxyCompactList}\small\item\em 取得当前版本号字符串 \end{DoxyCompactList}\item 
+int \hyperlink{a00097_ad86dd4bf914796aa945a02faac4ae52e_ad86dd4bf914796aa945a02faac4ae52e}{knet\+\_\+get\+\_\+version\+\_\+major} ()
+\begin{DoxyCompactList}\small\item\em 取得主版本号 \end{DoxyCompactList}\item 
+int \hyperlink{a00097_abedac37db9a6c72670cad32bdc2dedcd_abedac37db9a6c72670cad32bdc2dedcd}{knet\+\_\+get\+\_\+version\+\_\+minor} ()
+\begin{DoxyCompactList}\small\item\em 取得次版本号 \end{DoxyCompactList}\item 
+int \hyperlink{a00097_a6fb5e77c44c774a9d017ba43dea51672_a6fb5e77c44c774a9d017ba43dea51672}{knet\+\_\+get\+\_\+version\+\_\+path} ()
+\begin{DoxyCompactList}\small\item\em 取得补丁版本号 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\subsection{详细描述}
-管道流 
+\subsection{宏定义说明}
+\hypertarget{a00097_ad4c134c968cc4fc0cc700567eb39c675_ad4c134c968cc4fc0cc700567eb39c675}{}\index{version.\+c@{version.\+c}!K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R@{K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R}}
+\index{K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R@{K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R}!version.\+c@{version.\+c}}
+\subsubsection[{K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R(
+\begin{DoxyParamCaption}
+\item[{}]{major}
+\end{DoxyParamCaption}
+)~\#major}\label{a00097_ad4c134c968cc4fc0cc700567eb39c675_ad4c134c968cc4fc0cc700567eb39c675}
+\hypertarget{a00097_a70224fafcaea5102f9cd726ba926684f_a70224fafcaea5102f9cd726ba926684f}{}\index{version.\+c@{version.\+c}!K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R@{K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R}}
+\index{K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R@{K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R}!version.\+c@{version.\+c}}
+\subsubsection[{K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R(
+\begin{DoxyParamCaption}
+\item[{}]{minor}
+\end{DoxyParamCaption}
+)~\#minor}\label{a00097_a70224fafcaea5102f9cd726ba926684f_a70224fafcaea5102f9cd726ba926684f}
+\hypertarget{a00097_ae9af7a95a483a187a37d3e9828c6ac1c_ae9af7a95a483a187a37d3e9828c6ac1c}{}\index{version.\+c@{version.\+c}!K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H@{K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H}}
+\index{K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H@{K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H}!version.\+c@{version.\+c}}
+\subsubsection[{K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H}]{\setlength{\rightskip}{0pt plus 5cm}\#define K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H(
+\begin{DoxyParamCaption}
+\item[{}]{patch}
+\end{DoxyParamCaption}
+)~\#patch}\label{a00097_ae9af7a95a483a187a37d3e9828c6ac1c_ae9af7a95a483a187a37d3e9828c6ac1c}
+\hypertarget{a00097_a96eb274e34ccfa0c0505ca99f2e09a82_a96eb274e34ccfa0c0505ca99f2e09a82}{}\index{version.\+c@{version.\+c}!K\+N\+E\+T\+\_\+\+V\+E\+R\+S\+I\+O\+N@{K\+N\+E\+T\+\_\+\+V\+E\+R\+S\+I\+O\+N}}
+\index{K\+N\+E\+T\+\_\+\+V\+E\+R\+S\+I\+O\+N@{K\+N\+E\+T\+\_\+\+V\+E\+R\+S\+I\+O\+N}!version.\+c@{version.\+c}}
+\subsubsection[{K\+N\+E\+T\+\_\+\+V\+E\+R\+S\+I\+O\+N}]{\setlength{\rightskip}{0pt plus 5cm}\#define K\+N\+E\+T\+\_\+\+V\+E\+R\+S\+I\+O\+N(
+\begin{DoxyParamCaption}
+\item[{}]{major, }
+\item[{}]{minor, }
+\item[{}]{patch}
+\end{DoxyParamCaption}
+)~{\bf K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R}(major)\char`\"{}.\char`\"{}{\bf K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R}(minor)\char`\"{}.\char`\"{}{\bf K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H}(patch)}\label{a00097_a96eb274e34ccfa0c0505ca99f2e09a82_a96eb274e34ccfa0c0505ca99f2e09a82}
+\hypertarget{a00097_a877cce34f3e58fd7f9194fab90724cb8_a877cce34f3e58fd7f9194fab90724cb8}{}\index{version.\+c@{version.\+c}!M\+A\+J\+O\+R@{M\+A\+J\+O\+R}}
+\index{M\+A\+J\+O\+R@{M\+A\+J\+O\+R}!version.\+c@{version.\+c}}
+\subsubsection[{M\+A\+J\+O\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+J\+O\+R~1 /$\ast$ 主版本 $\ast$/}\label{a00097_a877cce34f3e58fd7f9194fab90724cb8_a877cce34f3e58fd7f9194fab90724cb8}
+\hypertarget{a00097_a4e10915d93013542d442d78de0e02e9a_a4e10915d93013542d442d78de0e02e9a}{}\index{version.\+c@{version.\+c}!M\+I\+N\+O\+R@{M\+I\+N\+O\+R}}
+\index{M\+I\+N\+O\+R@{M\+I\+N\+O\+R}!version.\+c@{version.\+c}}
+\subsubsection[{M\+I\+N\+O\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+I\+N\+O\+R~4 /$\ast$ 次版本 $\ast$/}\label{a00097_a4e10915d93013542d442d78de0e02e9a_a4e10915d93013542d442d78de0e02e9a}
+\hypertarget{a00097_af59c44c1f3ff875c35393428624473aa_af59c44c1f3ff875c35393428624473aa}{}\index{version.\+c@{version.\+c}!P\+A\+T\+C\+H@{P\+A\+T\+C\+H}}
+\index{P\+A\+T\+C\+H@{P\+A\+T\+C\+H}!version.\+c@{version.\+c}}
+\subsubsection[{P\+A\+T\+C\+H}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+A\+T\+C\+H~5 /$\ast$ 补丁 $\ast$/}\label{a00097_af59c44c1f3ff875c35393428624473aa_af59c44c1f3ff875c35393428624473aa}
 
-
-\begin{DoxyPre}
-管道流\end{DoxyPre}
-
-
-
-\begin{DoxyPre}stream\_t通过调用函数channel\_ref\_get\_stream取得. 管道流提供了基于流的数据操作
-以及特殊的针对性的方法用于提高操作效率.\end{DoxyPre}
-
-
-
-\begin{DoxyPre}1. stream\_available   获取流内可读字节数
-2. stream\_eat\_all     丢弃流内所有可读字节
-3. stream\_eat         丢弃流内指定数量的字节
-4. stream\_pop         从流内读取数据
-5. stream\_push        向流内写数据
-6. stream\_copy        从流内拷贝指定数量的可读字节，但不清除这些字节，通常用于协议检测
-7. stream\_push\_stream 将流内所有可读字节写入另一个流，不需要额外拷贝, 可用于网关的数据中转
-8. stream\_copy\_stream 将流内所有可读字节写入另一个流，不需要额外拷贝, 但不清除这些字节，可用于广播\end{DoxyPre}
-
-
-
-\begin{DoxyPre}以上这些函数的设计除了基础的流本身的功能以外，还考虑了特定领域的应用，同时兼顾了效率.\end{DoxyPre}
-
-
-
-\begin{DoxyPre}\end{DoxyPre}
- 
 
 \subsection{函数说明}
-\hypertarget{a00097_ga6e109b2dc520782567dc1891af3b945e_ga6e109b2dc520782567dc1891af3b945e}{}\index{流@{流}!stream\+\_\+available@{stream\+\_\+available}}
-\index{stream\+\_\+available@{stream\+\_\+available}!流@{流}}
-\subsubsection[{stream\+\_\+available}]{\setlength{\rightskip}{0pt plus 5cm}int stream\+\_\+available (
+\hypertarget{a00097_ad86dd4bf914796aa945a02faac4ae52e_ad86dd4bf914796aa945a02faac4ae52e}{}\index{version.\+c@{version.\+c}!knet\+\_\+get\+\_\+version\+\_\+major@{knet\+\_\+get\+\_\+version\+\_\+major}}
+\index{knet\+\_\+get\+\_\+version\+\_\+major@{knet\+\_\+get\+\_\+version\+\_\+major}!version.\+c@{version.\+c}}
+\subsubsection[{knet\+\_\+get\+\_\+version\+\_\+major}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+get\+\_\+version\+\_\+major (
 \begin{DoxyParamCaption}
-\item[{{\bf stream\+\_\+t} $\ast$}]{stream}
+{}
 \end{DoxyParamCaption}
-)}\label{a00097_ga6e109b2dc520782567dc1891af3b945e_ga6e109b2dc520782567dc1891af3b945e}
+)}\label{a00097_ad86dd4bf914796aa945a02faac4ae52e_ad86dd4bf914796aa945a02faac4ae52e}
 
 
-取得数据流内可读字节数 
+取得主版本号 
 
-
-\begin{DoxyParams}{参数}
-{\em stream} & stream\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
 \begin{DoxyReturn}{返回}
-可读字节数 
+主版本号 
 \end{DoxyReturn}
-\hypertarget{a00097_ga380555bf71ee99f6b2bb4f76738d507f_ga380555bf71ee99f6b2bb4f76738d507f}{}\index{流@{流}!stream\+\_\+copy@{stream\+\_\+copy}}
-\index{stream\+\_\+copy@{stream\+\_\+copy}!流@{流}}
-\subsubsection[{stream\+\_\+copy}]{\setlength{\rightskip}{0pt plus 5cm}int stream\+\_\+copy (
+\hypertarget{a00097_abedac37db9a6c72670cad32bdc2dedcd_abedac37db9a6c72670cad32bdc2dedcd}{}\index{version.\+c@{version.\+c}!knet\+\_\+get\+\_\+version\+\_\+minor@{knet\+\_\+get\+\_\+version\+\_\+minor}}
+\index{knet\+\_\+get\+\_\+version\+\_\+minor@{knet\+\_\+get\+\_\+version\+\_\+minor}!version.\+c@{version.\+c}}
+\subsubsection[{knet\+\_\+get\+\_\+version\+\_\+minor}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+get\+\_\+version\+\_\+minor (
 \begin{DoxyParamCaption}
-\item[{{\bf stream\+\_\+t} $\ast$}]{stream, }
-\item[{void $\ast$}]{buffer, }
-\item[{int}]{size}
+{}
 \end{DoxyParamCaption}
-)}\label{a00097_ga380555bf71ee99f6b2bb4f76738d507f_ga380555bf71ee99f6b2bb4f76738d507f}
+)}\label{a00097_abedac37db9a6c72670cad32bdc2dedcd_abedac37db9a6c72670cad32bdc2dedcd}
 
 
-从数据流内拷贝数据，但不清除数据流内数据 
+取得次版本号 
 
-
-\begin{DoxyParams}{参数}
-{\em stream} & stream\+\_\+t实例 \\
-\hline
-{\em buffer} & 缓冲区 \\
-\hline
-{\em size} & 缓冲区大小 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00097_ga296aea89ba5bec6566e119855df3b18c_ga296aea89ba5bec6566e119855df3b18c}{}\index{流@{流}!stream\+\_\+copy\+\_\+stream@{stream\+\_\+copy\+\_\+stream}}
-\index{stream\+\_\+copy\+\_\+stream@{stream\+\_\+copy\+\_\+stream}!流@{流}}
-\subsubsection[{stream\+\_\+copy\+\_\+stream}]{\setlength{\rightskip}{0pt plus 5cm}int stream\+\_\+copy\+\_\+stream (
-\begin{DoxyParamCaption}
-\item[{{\bf stream\+\_\+t} $\ast$}]{stream, }
-\item[{{\bf stream\+\_\+t} $\ast$}]{target}
-\end{DoxyParamCaption}
-)}\label{a00097_ga296aea89ba5bec6566e119855df3b18c_ga296aea89ba5bec6566e119855df3b18c}
-
-
-将stream内数据写入target, 但不清除stream内数据 
-
-
-\begin{DoxyParams}{参数}
-{\em stream} & stream\+\_\+t实例 \\
-\hline
-{\em target} & stream\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00097_ga1ab922f8bab979099b3abc3ee54dc59d_ga1ab922f8bab979099b3abc3ee54dc59d}{}\index{流@{流}!stream\+\_\+eat@{stream\+\_\+eat}}
-\index{stream\+\_\+eat@{stream\+\_\+eat}!流@{流}}
-\subsubsection[{stream\+\_\+eat}]{\setlength{\rightskip}{0pt plus 5cm}int stream\+\_\+eat (
-\begin{DoxyParamCaption}
-\item[{{\bf stream\+\_\+t} $\ast$}]{stream, }
-\item[{int}]{size}
-\end{DoxyParamCaption}
-)}\label{a00097_ga1ab922f8bab979099b3abc3ee54dc59d_ga1ab922f8bab979099b3abc3ee54dc59d}
-
-
-删除指定长度数据 
-
-
-\begin{DoxyParams}{参数}
-{\em stream} & stream\+\_\+t实例 \\
-\hline
-{\em size} & 需要删除的长度 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00097_gaef7f4ca2c201faf5d82a1dad4c8d7814_gaef7f4ca2c201faf5d82a1dad4c8d7814}{}\index{流@{流}!stream\+\_\+eat\+\_\+all@{stream\+\_\+eat\+\_\+all}}
-\index{stream\+\_\+eat\+\_\+all@{stream\+\_\+eat\+\_\+all}!流@{流}}
-\subsubsection[{stream\+\_\+eat\+\_\+all}]{\setlength{\rightskip}{0pt plus 5cm}int stream\+\_\+eat\+\_\+all (
-\begin{DoxyParamCaption}
-\item[{{\bf stream\+\_\+t} $\ast$}]{stream}
-\end{DoxyParamCaption}
-)}\label{a00097_gaef7f4ca2c201faf5d82a1dad4c8d7814_gaef7f4ca2c201faf5d82a1dad4c8d7814}
-
-
-清空数据流 
-
-
-\begin{DoxyParams}{参数}
-{\em stream} & stream\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00097_gab4b3e49d2c44a601e8bb7f568577fae4_gab4b3e49d2c44a601e8bb7f568577fae4}{}\index{流@{流}!stream\+\_\+get\+\_\+channel\+\_\+ref@{stream\+\_\+get\+\_\+channel\+\_\+ref}}
-\index{stream\+\_\+get\+\_\+channel\+\_\+ref@{stream\+\_\+get\+\_\+channel\+\_\+ref}!流@{流}}
-\subsubsection[{stream\+\_\+get\+\_\+channel\+\_\+ref}]{\setlength{\rightskip}{0pt plus 5cm}{\bf channel\+\_\+ref\+\_\+t}$\ast$ stream\+\_\+get\+\_\+channel\+\_\+ref (
-\begin{DoxyParamCaption}
-\item[{{\bf stream\+\_\+t} $\ast$}]{stream}
-\end{DoxyParamCaption}
-)}\label{a00097_gab4b3e49d2c44a601e8bb7f568577fae4_gab4b3e49d2c44a601e8bb7f568577fae4}
-
-
-获取流所属的管道引用 
-
-
-\begin{DoxyParams}{参数}
-{\em stream} & stream\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
 \begin{DoxyReturn}{返回}
-channel\+\_\+ref\+\_\+t实例 
+次版本号 
 \end{DoxyReturn}
-\hypertarget{a00097_ga6e01758abf49f8b08cd457f1cb48a954_ga6e01758abf49f8b08cd457f1cb48a954}{}\index{流@{流}!stream\+\_\+pop@{stream\+\_\+pop}}
-\index{stream\+\_\+pop@{stream\+\_\+pop}!流@{流}}
-\subsubsection[{stream\+\_\+pop}]{\setlength{\rightskip}{0pt plus 5cm}int stream\+\_\+pop (
+\hypertarget{a00097_a6fb5e77c44c774a9d017ba43dea51672_a6fb5e77c44c774a9d017ba43dea51672}{}\index{version.\+c@{version.\+c}!knet\+\_\+get\+\_\+version\+\_\+path@{knet\+\_\+get\+\_\+version\+\_\+path}}
+\index{knet\+\_\+get\+\_\+version\+\_\+path@{knet\+\_\+get\+\_\+version\+\_\+path}!version.\+c@{version.\+c}}
+\subsubsection[{knet\+\_\+get\+\_\+version\+\_\+path}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+get\+\_\+version\+\_\+path (
 \begin{DoxyParamCaption}
-\item[{{\bf stream\+\_\+t} $\ast$}]{stream, }
-\item[{void $\ast$}]{buffer, }
-\item[{int}]{size}
+{}
 \end{DoxyParamCaption}
-)}\label{a00097_ga6e01758abf49f8b08cd457f1cb48a954_ga6e01758abf49f8b08cd457f1cb48a954}
+)}\label{a00097_a6fb5e77c44c774a9d017ba43dea51672_a6fb5e77c44c774a9d017ba43dea51672}
 
 
-从数据流内读取数据并清除数据 
+取得补丁版本号 
 
-
-\begin{DoxyParams}{参数}
-{\em stream} & stream\+\_\+t实例 \\
-\hline
-{\em buffer} & 缓冲区 \\
-\hline
-{\em size} & 缓冲区大小 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00097_gae7e63ef142733eb3aea7401e28bc9a75_gae7e63ef142733eb3aea7401e28bc9a75}{}\index{流@{流}!stream\+\_\+push@{stream\+\_\+push}}
-\index{stream\+\_\+push@{stream\+\_\+push}!流@{流}}
-\subsubsection[{stream\+\_\+push}]{\setlength{\rightskip}{0pt plus 5cm}int stream\+\_\+push (
+\begin{DoxyReturn}{返回}
+补丁版本号 
+\end{DoxyReturn}
+\hypertarget{a00097_a3b6e0e802bbb0f81da8bcef8e757066a_a3b6e0e802bbb0f81da8bcef8e757066a}{}\index{version.\+c@{version.\+c}!knet\+\_\+get\+\_\+version\+\_\+string@{knet\+\_\+get\+\_\+version\+\_\+string}}
+\index{knet\+\_\+get\+\_\+version\+\_\+string@{knet\+\_\+get\+\_\+version\+\_\+string}!version.\+c@{version.\+c}}
+\subsubsection[{knet\+\_\+get\+\_\+version\+\_\+string}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ knet\+\_\+get\+\_\+version\+\_\+string (
 \begin{DoxyParamCaption}
-\item[{{\bf stream\+\_\+t} $\ast$}]{stream, }
-\item[{const void $\ast$}]{buffer, }
-\item[{int}]{size}
+{}
 \end{DoxyParamCaption}
-)}\label{a00097_gae7e63ef142733eb3aea7401e28bc9a75_gae7e63ef142733eb3aea7401e28bc9a75}
+)}\label{a00097_a3b6e0e802bbb0f81da8bcef8e757066a_a3b6e0e802bbb0f81da8bcef8e757066a}
 
 
-向数据流内写数据 
+取得当前版本号字符串 
 
-
-\begin{DoxyParams}{参数}
-{\em stream} & stream\+\_\+t实例 \\
-\hline
-{\em buffer} & 缓冲区 \\
-\hline
-{\em size} & 缓冲区大小 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00097_gad5336c2b89b6edea5f277d5ebc221e15_gad5336c2b89b6edea5f277d5ebc221e15}{}\index{流@{流}!stream\+\_\+push\+\_\+stream@{stream\+\_\+push\+\_\+stream}}
-\index{stream\+\_\+push\+\_\+stream@{stream\+\_\+push\+\_\+stream}!流@{流}}
-\subsubsection[{stream\+\_\+push\+\_\+stream}]{\setlength{\rightskip}{0pt plus 5cm}int stream\+\_\+push\+\_\+stream (
-\begin{DoxyParamCaption}
-\item[{{\bf stream\+\_\+t} $\ast$}]{stream, }
-\item[{{\bf stream\+\_\+t} $\ast$}]{target}
-\end{DoxyParamCaption}
-)}\label{a00097_gad5336c2b89b6edea5f277d5ebc221e15_gad5336c2b89b6edea5f277d5ebc221e15}
-
-
-将stream内数据写入target, 并清除stream内数据 
-
-
-\begin{DoxyParams}{参数}
-{\em stream} & stream\+\_\+t实例 \\
-\hline
-{\em target} & stream\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
+\begin{DoxyReturn}{返回}
+当前版本号字符串 
+\end{DoxyReturn}

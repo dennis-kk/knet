@@ -1,197 +1,46 @@
-\hypertarget{a00052}{}\section{E\+:/knet-\/git/knet/knet/framework\+\_\+api.h 文件参考}
-\label{a00052}\index{E\+:/knet-\/git/knet/knet/framework\+\_\+api.\+h@{E\+:/knet-\/git/knet/knet/framework\+\_\+api.\+h}}
-{\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\\*
+\hypertarget{a00052}{}\section{E\+:/knet-\/git/knet/knet/framework.h 文件参考}
+\label{a00052}\index{E\+:/knet-\/git/knet/knet/framework.\+h@{E\+:/knet-\/git/knet/knet/framework.\+h}}
+{\ttfamily \#include \char`\"{}framework\+\_\+api.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}framework\+\_\+config.\+h\char`\"{}}\\*
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00047_a6149d769f6f07ed14a40a271c95d8463_a6149d769f6f07ed14a40a271c95d8463}{framework\+\_\+t} $\ast$ \hyperlink{a00093_ga90b29a0c500209cb9b37437a32188a40_ga90b29a0c500209cb9b37437a32188a40}{framework\+\_\+create} ()
-\begin{DoxyCompactList}\small\item\em 建立框架 \end{DoxyCompactList}\item 
-void \hyperlink{a00093_gad1b6cb17014bfc515f8861bad3198e22_gad1b6cb17014bfc515f8861bad3198e22}{framework\+\_\+destroy} (\hyperlink{a00047_a6149d769f6f07ed14a40a271c95d8463_a6149d769f6f07ed14a40a271c95d8463}{framework\+\_\+t} $\ast$f)
-\begin{DoxyCompactList}\small\item\em 销毁框架 \end{DoxyCompactList}\item 
-int \hyperlink{a00093_ga7579f69fe8d0ec6887e4594f52cbb883_ga7579f69fe8d0ec6887e4594f52cbb883}{framework\+\_\+start} (\hyperlink{a00047_a6149d769f6f07ed14a40a271c95d8463_a6149d769f6f07ed14a40a271c95d8463}{framework\+\_\+t} $\ast$f, \hyperlink{a00047_ae296ec4d1ce108960de8dcc423956a1d_ae296ec4d1ce108960de8dcc423956a1d}{channel\+\_\+ref\+\_\+cb\+\_\+t} cb)
-\begin{DoxyCompactList}\small\item\em 启动框架 \end{DoxyCompactList}\item 
-int \hyperlink{a00093_gadd2b49ff4ff090a4490bd0128d00efba_gadd2b49ff4ff090a4490bd0128d00efba}{framework\+\_\+start\+\_\+wait} (\hyperlink{a00047_a6149d769f6f07ed14a40a271c95d8463_a6149d769f6f07ed14a40a271c95d8463}{framework\+\_\+t} $\ast$f, \hyperlink{a00047_ae296ec4d1ce108960de8dcc423956a1d_ae296ec4d1ce108960de8dcc423956a1d}{channel\+\_\+ref\+\_\+cb\+\_\+t} cb)
-\begin{DoxyCompactList}\small\item\em 启动框架并等待框架关闭 \end{DoxyCompactList}\item 
-int \hyperlink{a00093_ga0593beee9da9b0858ad53c4f81671622_ga0593beee9da9b0858ad53c4f81671622}{framework\+\_\+start\+\_\+wait\+\_\+destroy} (\hyperlink{a00047_a6149d769f6f07ed14a40a271c95d8463_a6149d769f6f07ed14a40a271c95d8463}{framework\+\_\+t} $\ast$f, \hyperlink{a00047_ae296ec4d1ce108960de8dcc423956a1d_ae296ec4d1ce108960de8dcc423956a1d}{channel\+\_\+ref\+\_\+cb\+\_\+t} cb)
-\begin{DoxyCompactList}\small\item\em 启动框架并等待框架关闭，如果启动失败或者框架关闭则销毁 \end{DoxyCompactList}\item 
-void \hyperlink{a00093_gaefec7da1b548ddb97c73c8924ba17069_gaefec7da1b548ddb97c73c8924ba17069}{framework\+\_\+wait\+\_\+for\+\_\+stop} (\hyperlink{a00047_a6149d769f6f07ed14a40a271c95d8463_a6149d769f6f07ed14a40a271c95d8463}{framework\+\_\+t} $\ast$f)
-\begin{DoxyCompactList}\small\item\em 等待框架停止 \end{DoxyCompactList}\item 
-int \hyperlink{a00093_ga429be76d09278d6170f1b519f4dbb689_ga429be76d09278d6170f1b519f4dbb689}{framework\+\_\+stop} (\hyperlink{a00047_a6149d769f6f07ed14a40a271c95d8463_a6149d769f6f07ed14a40a271c95d8463}{framework\+\_\+t} $\ast$f)
-\begin{DoxyCompactList}\small\item\em 关闭框架 \end{DoxyCompactList}\item 
-\hyperlink{a00047_a55b26efa9e6ee05514d087ba2593a54b_a55b26efa9e6ee05514d087ba2593a54b}{framework\+\_\+config\+\_\+t} $\ast$ \hyperlink{a00093_gaf0524cc257c8e57ba11d676dcca6bf64_gaf0524cc257c8e57ba11d676dcca6bf64}{framework\+\_\+get\+\_\+config} (\hyperlink{a00047_a6149d769f6f07ed14a40a271c95d8463_a6149d769f6f07ed14a40a271c95d8463}{framework\+\_\+t} $\ast$f)
-\begin{DoxyCompactList}\small\item\em 取得框架配置 \end{DoxyCompactList}\item 
-void \hyperlink{a00093_ga63620720efce87c837a3f069f626f6b1_ga63620720efce87c837a3f069f626f6b1}{framework\+\_\+config\+\_\+set\+\_\+address} (\hyperlink{a00047_a55b26efa9e6ee05514d087ba2593a54b_a55b26efa9e6ee05514d087ba2593a54b}{framework\+\_\+config\+\_\+t} $\ast$c, const char $\ast$ip, int port)
-\begin{DoxyCompactList}\small\item\em 设置\+I\+P地址和监听端口 \end{DoxyCompactList}\item 
-void \hyperlink{a00093_gafdcba98785a6e0c7729c14eac004c1e3_gafdcba98785a6e0c7729c14eac004c1e3}{framework\+\_\+config\+\_\+set\+\_\+backlog} (\hyperlink{a00047_a55b26efa9e6ee05514d087ba2593a54b_a55b26efa9e6ee05514d087ba2593a54b}{framework\+\_\+config\+\_\+t} $\ast$c, int backlog)
-\begin{DoxyCompactList}\small\item\em 设置backlog \end{DoxyCompactList}\item 
-void \hyperlink{a00093_ga46fc5d54c72138bced5ddd4068ef77e5_ga46fc5d54c72138bced5ddd4068ef77e5}{framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+thread\+\_\+count} (\hyperlink{a00047_a55b26efa9e6ee05514d087ba2593a54b_a55b26efa9e6ee05514d087ba2593a54b}{framework\+\_\+config\+\_\+t} $\ast$c, int worker\+\_\+thread\+\_\+count)
-\begin{DoxyCompactList}\small\item\em 设置工作线程数量，默认为单线程 \end{DoxyCompactList}\item 
-void \hyperlink{a00093_ga6d3affd6639a3d75920197811c333fac_ga6d3affd6639a3d75920197811c333fac}{framework\+\_\+config\+\_\+set\+\_\+max\+\_\+send\+\_\+list} (\hyperlink{a00047_a55b26efa9e6ee05514d087ba2593a54b_a55b26efa9e6ee05514d087ba2593a54b}{framework\+\_\+config\+\_\+t} $\ast$c, int max\+\_\+send\+\_\+list)
-\begin{DoxyCompactList}\small\item\em 设置接受到连接的发送队列最大长度 \end{DoxyCompactList}\item 
-void \hyperlink{a00093_ga582e128041da47fa6578aa150b5a615a_ga582e128041da47fa6578aa150b5a615a}{framework\+\_\+config\+\_\+set\+\_\+max\+\_\+recv\+\_\+buffer} (\hyperlink{a00047_a55b26efa9e6ee05514d087ba2593a54b_a55b26efa9e6ee05514d087ba2593a54b}{framework\+\_\+config\+\_\+t} $\ast$c, int max\+\_\+recv\+\_\+buffer)
-\begin{DoxyCompactList}\small\item\em 设置接受到连接的接收缓冲区最大长度 \end{DoxyCompactList}\item 
-void \hyperlink{a00093_ga22047d5186ce58243e3c4308dd851ab6_ga22047d5186ce58243e3c4308dd851ab6}{framework\+\_\+config\+\_\+set\+\_\+max\+\_\+idle\+\_\+timeout} (\hyperlink{a00047_a55b26efa9e6ee05514d087ba2593a54b_a55b26efa9e6ee05514d087ba2593a54b}{framework\+\_\+config\+\_\+t} $\ast$c, int max\+\_\+idle\+\_\+timeout)
-\begin{DoxyCompactList}\small\item\em 设置接受到连接的心跳超时时间 \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \hyperlink{a00052_a4ef7d97742bc9410f486ebc4e0b75e82_a4ef7d97742bc9410f486ebc4e0b75e82}{acceptor\+\_\+cb} (\hyperlink{a00050_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel, \hyperlink{a00050_aaf2cba5d4035f3d56350b59342ebf65c_aaf2cba5d4035f3d56350b59342ebf65c}{channel\+\_\+cb\+\_\+event\+\_\+e} e)
+\begin{DoxyCompactList}\small\item\em 事件channel\+\_\+cb\+\_\+event\+\_\+accept处理函数 \end{DoxyCompactList}\item 
+\hyperlink{a00050_a649c7e850ab247b5f70ad27e335a129d_a649c7e850ab247b5f70ad27e335a129d}{loop\+\_\+balancer\+\_\+t} $\ast$ \hyperlink{a00052_a1cd41581680bc47f0d86d625fc3234ae_a1cd41581680bc47f0d86d625fc3234ae}{framework\+\_\+get\+\_\+balancer} (\hyperlink{a00050_a6149d769f6f07ed14a40a271c95d8463_a6149d769f6f07ed14a40a271c95d8463}{framework\+\_\+t} $\ast$f)
+\begin{DoxyCompactList}\small\item\em 获取负载均衡器 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{函数说明}
-\hypertarget{a00093_ga63620720efce87c837a3f069f626f6b1_ga63620720efce87c837a3f069f626f6b1}{}\index{framework\+\_\+api.\+h@{framework\+\_\+api.\+h}!framework\+\_\+config\+\_\+set\+\_\+address@{framework\+\_\+config\+\_\+set\+\_\+address}}
-\index{framework\+\_\+config\+\_\+set\+\_\+address@{framework\+\_\+config\+\_\+set\+\_\+address}!framework\+\_\+api.\+h@{framework\+\_\+api.\+h}}
-\subsubsection[{framework\+\_\+config\+\_\+set\+\_\+address}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+config\+\_\+set\+\_\+address (
+\hypertarget{a00052_a4ef7d97742bc9410f486ebc4e0b75e82_a4ef7d97742bc9410f486ebc4e0b75e82}{}\index{framework.\+h@{framework.\+h}!acceptor\+\_\+cb@{acceptor\+\_\+cb}}
+\index{acceptor\+\_\+cb@{acceptor\+\_\+cb}!framework.\+h@{framework.\+h}}
+\subsubsection[{acceptor\+\_\+cb}]{\setlength{\rightskip}{0pt plus 5cm}void acceptor\+\_\+cb (
 \begin{DoxyParamCaption}
-\item[{{\bf framework\+\_\+config\+\_\+t} $\ast$}]{c, }
-\item[{const char $\ast$}]{ip, }
-\item[{int}]{port}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel, }
+\item[{{\bf channel\+\_\+cb\+\_\+event\+\_\+e}}]{e}
 \end{DoxyParamCaption}
-)}\label{a00093_ga63620720efce87c837a3f069f626f6b1_ga63620720efce87c837a3f069f626f6b1}
+)}\label{a00052_a4ef7d97742bc9410f486ebc4e0b75e82_a4ef7d97742bc9410f486ebc4e0b75e82}
 
 
-设置\+I\+P地址和监听端口 
+事件channel\+\_\+cb\+\_\+event\+\_\+accept处理函数 
 
 
 \begin{DoxyParams}{参数}
-{\em c} & framework\+\_\+config\+\_\+t实例 \\
+{\em channel} & 监听管道，channel\+\_\+ref\+\_\+t实例 \\
 \hline
-{\em ip} & I\+P \\
-\hline
-{\em port} & 端口 \\
+{\em e} & 管道事件 \\
 \hline
 \end{DoxyParams}
-\hypertarget{a00093_gafdcba98785a6e0c7729c14eac004c1e3_gafdcba98785a6e0c7729c14eac004c1e3}{}\index{framework\+\_\+api.\+h@{framework\+\_\+api.\+h}!framework\+\_\+config\+\_\+set\+\_\+backlog@{framework\+\_\+config\+\_\+set\+\_\+backlog}}
-\index{framework\+\_\+config\+\_\+set\+\_\+backlog@{framework\+\_\+config\+\_\+set\+\_\+backlog}!framework\+\_\+api.\+h@{framework\+\_\+api.\+h}}
-\subsubsection[{framework\+\_\+config\+\_\+set\+\_\+backlog}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+config\+\_\+set\+\_\+backlog (
-\begin{DoxyParamCaption}
-\item[{{\bf framework\+\_\+config\+\_\+t} $\ast$}]{c, }
-\item[{int}]{backlog}
-\end{DoxyParamCaption}
-)}\label{a00093_gafdcba98785a6e0c7729c14eac004c1e3_gafdcba98785a6e0c7729c14eac004c1e3}
-
-
-设置backlog 
-
-
-\begin{DoxyParams}{参数}
-{\em c} & framework\+\_\+config\+\_\+t实例 \\
-\hline
-{\em backlog} & 等待队列长度 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00093_ga22047d5186ce58243e3c4308dd851ab6_ga22047d5186ce58243e3c4308dd851ab6}{}\index{framework\+\_\+api.\+h@{framework\+\_\+api.\+h}!framework\+\_\+config\+\_\+set\+\_\+max\+\_\+idle\+\_\+timeout@{framework\+\_\+config\+\_\+set\+\_\+max\+\_\+idle\+\_\+timeout}}
-\index{framework\+\_\+config\+\_\+set\+\_\+max\+\_\+idle\+\_\+timeout@{framework\+\_\+config\+\_\+set\+\_\+max\+\_\+idle\+\_\+timeout}!framework\+\_\+api.\+h@{framework\+\_\+api.\+h}}
-\subsubsection[{framework\+\_\+config\+\_\+set\+\_\+max\+\_\+idle\+\_\+timeout}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+config\+\_\+set\+\_\+max\+\_\+idle\+\_\+timeout (
-\begin{DoxyParamCaption}
-\item[{{\bf framework\+\_\+config\+\_\+t} $\ast$}]{c, }
-\item[{int}]{max\+\_\+idle\+\_\+timeout}
-\end{DoxyParamCaption}
-)}\label{a00093_ga22047d5186ce58243e3c4308dd851ab6_ga22047d5186ce58243e3c4308dd851ab6}
-
-
-设置接受到连接的心跳超时时间 
-
-
-\begin{DoxyParams}{参数}
-{\em c} & framework\+\_\+config\+\_\+t实例 \\
-\hline
-{\em max\+\_\+idle\+\_\+timeout} & 接受到连接的心跳超时时间 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00093_ga582e128041da47fa6578aa150b5a615a_ga582e128041da47fa6578aa150b5a615a}{}\index{framework\+\_\+api.\+h@{framework\+\_\+api.\+h}!framework\+\_\+config\+\_\+set\+\_\+max\+\_\+recv\+\_\+buffer@{framework\+\_\+config\+\_\+set\+\_\+max\+\_\+recv\+\_\+buffer}}
-\index{framework\+\_\+config\+\_\+set\+\_\+max\+\_\+recv\+\_\+buffer@{framework\+\_\+config\+\_\+set\+\_\+max\+\_\+recv\+\_\+buffer}!framework\+\_\+api.\+h@{framework\+\_\+api.\+h}}
-\subsubsection[{framework\+\_\+config\+\_\+set\+\_\+max\+\_\+recv\+\_\+buffer}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+config\+\_\+set\+\_\+max\+\_\+recv\+\_\+buffer (
-\begin{DoxyParamCaption}
-\item[{{\bf framework\+\_\+config\+\_\+t} $\ast$}]{c, }
-\item[{int}]{max\+\_\+recv\+\_\+buffer}
-\end{DoxyParamCaption}
-)}\label{a00093_ga582e128041da47fa6578aa150b5a615a_ga582e128041da47fa6578aa150b5a615a}
-
-
-设置接受到连接的接收缓冲区最大长度 
-
-
-\begin{DoxyParams}{参数}
-{\em c} & framework\+\_\+config\+\_\+t实例 \\
-\hline
-{\em max\+\_\+recv\+\_\+buffer} & 接受到连接的接收缓冲区最大长度 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00093_ga6d3affd6639a3d75920197811c333fac_ga6d3affd6639a3d75920197811c333fac}{}\index{framework\+\_\+api.\+h@{framework\+\_\+api.\+h}!framework\+\_\+config\+\_\+set\+\_\+max\+\_\+send\+\_\+list@{framework\+\_\+config\+\_\+set\+\_\+max\+\_\+send\+\_\+list}}
-\index{framework\+\_\+config\+\_\+set\+\_\+max\+\_\+send\+\_\+list@{framework\+\_\+config\+\_\+set\+\_\+max\+\_\+send\+\_\+list}!framework\+\_\+api.\+h@{framework\+\_\+api.\+h}}
-\subsubsection[{framework\+\_\+config\+\_\+set\+\_\+max\+\_\+send\+\_\+list}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+config\+\_\+set\+\_\+max\+\_\+send\+\_\+list (
-\begin{DoxyParamCaption}
-\item[{{\bf framework\+\_\+config\+\_\+t} $\ast$}]{c, }
-\item[{int}]{max\+\_\+send\+\_\+list}
-\end{DoxyParamCaption}
-)}\label{a00093_ga6d3affd6639a3d75920197811c333fac_ga6d3affd6639a3d75920197811c333fac}
-
-
-设置接受到连接的发送队列最大长度 
-
-
-\begin{DoxyParams}{参数}
-{\em c} & framework\+\_\+config\+\_\+t实例 \\
-\hline
-{\em max\+\_\+send\+\_\+list} & 接受到连接的发送队列最大长度 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00093_ga46fc5d54c72138bced5ddd4068ef77e5_ga46fc5d54c72138bced5ddd4068ef77e5}{}\index{framework\+\_\+api.\+h@{framework\+\_\+api.\+h}!framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+thread\+\_\+count@{framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+thread\+\_\+count}}
-\index{framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+thread\+\_\+count@{framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+thread\+\_\+count}!framework\+\_\+api.\+h@{framework\+\_\+api.\+h}}
-\subsubsection[{framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+thread\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+thread\+\_\+count (
-\begin{DoxyParamCaption}
-\item[{{\bf framework\+\_\+config\+\_\+t} $\ast$}]{c, }
-\item[{int}]{worker\+\_\+thread\+\_\+count}
-\end{DoxyParamCaption}
-)}\label{a00093_ga46fc5d54c72138bced5ddd4068ef77e5_ga46fc5d54c72138bced5ddd4068ef77e5}
-
-
-设置工作线程数量，默认为单线程 
-
-
-\begin{DoxyParams}{参数}
-{\em c} & framework\+\_\+config\+\_\+t实例 \\
-\hline
-{\em worker\+\_\+thread\+\_\+count} & 工作线程数量 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00093_ga90b29a0c500209cb9b37437a32188a40_ga90b29a0c500209cb9b37437a32188a40}{}\index{framework\+\_\+api.\+h@{framework\+\_\+api.\+h}!framework\+\_\+create@{framework\+\_\+create}}
-\index{framework\+\_\+create@{framework\+\_\+create}!framework\+\_\+api.\+h@{framework\+\_\+api.\+h}}
-\subsubsection[{framework\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf framework\+\_\+t}$\ast$ framework\+\_\+create (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\label{a00093_ga90b29a0c500209cb9b37437a32188a40_ga90b29a0c500209cb9b37437a32188a40}
-
-
-建立框架 
-
-\begin{DoxyReturn}{返回}
-framework\+\_\+t实例 
-\end{DoxyReturn}
-\hypertarget{a00093_gad1b6cb17014bfc515f8861bad3198e22_gad1b6cb17014bfc515f8861bad3198e22}{}\index{framework\+\_\+api.\+h@{framework\+\_\+api.\+h}!framework\+\_\+destroy@{framework\+\_\+destroy}}
-\index{framework\+\_\+destroy@{framework\+\_\+destroy}!framework\+\_\+api.\+h@{framework\+\_\+api.\+h}}
-\subsubsection[{framework\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+destroy (
+\hypertarget{a00052_a1cd41581680bc47f0d86d625fc3234ae_a1cd41581680bc47f0d86d625fc3234ae}{}\index{framework.\+h@{framework.\+h}!framework\+\_\+get\+\_\+balancer@{framework\+\_\+get\+\_\+balancer}}
+\index{framework\+\_\+get\+\_\+balancer@{framework\+\_\+get\+\_\+balancer}!framework.\+h@{framework.\+h}}
+\subsubsection[{framework\+\_\+get\+\_\+balancer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf loop\+\_\+balancer\+\_\+t}$\ast$ framework\+\_\+get\+\_\+balancer (
 \begin{DoxyParamCaption}
 \item[{{\bf framework\+\_\+t} $\ast$}]{f}
 \end{DoxyParamCaption}
-)}\label{a00093_gad1b6cb17014bfc515f8861bad3198e22_gad1b6cb17014bfc515f8861bad3198e22}
+)}\label{a00052_a1cd41581680bc47f0d86d625fc3234ae_a1cd41581680bc47f0d86d625fc3234ae}
 
 
-销毁框架 
-
-
-\begin{DoxyParams}{参数}
-{\em f} & framework\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00093_gaf0524cc257c8e57ba11d676dcca6bf64_gaf0524cc257c8e57ba11d676dcca6bf64}{}\index{framework\+\_\+api.\+h@{framework\+\_\+api.\+h}!framework\+\_\+get\+\_\+config@{framework\+\_\+get\+\_\+config}}
-\index{framework\+\_\+get\+\_\+config@{framework\+\_\+get\+\_\+config}!framework\+\_\+api.\+h@{framework\+\_\+api.\+h}}
-\subsubsection[{framework\+\_\+get\+\_\+config}]{\setlength{\rightskip}{0pt plus 5cm}{\bf framework\+\_\+config\+\_\+t}$\ast$ framework\+\_\+get\+\_\+config (
-\begin{DoxyParamCaption}
-\item[{{\bf framework\+\_\+t} $\ast$}]{f}
-\end{DoxyParamCaption}
-)}\label{a00093_gaf0524cc257c8e57ba11d676dcca6bf64_gaf0524cc257c8e57ba11d676dcca6bf64}
-
-
-取得框架配置 
+获取负载均衡器 
 
 
 \begin{DoxyParams}{参数}
@@ -199,122 +48,5 @@ framework\+\_\+t实例
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-framework\+\_\+config\+\_\+t实例 
+loop\+\_\+balancer\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00093_ga7579f69fe8d0ec6887e4594f52cbb883_ga7579f69fe8d0ec6887e4594f52cbb883}{}\index{framework\+\_\+api.\+h@{framework\+\_\+api.\+h}!framework\+\_\+start@{framework\+\_\+start}}
-\index{framework\+\_\+start@{framework\+\_\+start}!framework\+\_\+api.\+h@{framework\+\_\+api.\+h}}
-\subsubsection[{framework\+\_\+start}]{\setlength{\rightskip}{0pt plus 5cm}int framework\+\_\+start (
-\begin{DoxyParamCaption}
-\item[{{\bf framework\+\_\+t} $\ast$}]{f, }
-\item[{{\bf channel\+\_\+ref\+\_\+cb\+\_\+t}}]{cb}
-\end{DoxyParamCaption}
-)}\label{a00093_ga7579f69fe8d0ec6887e4594f52cbb883_ga7579f69fe8d0ec6887e4594f52cbb883}
-
-
-启动框架 
-
-
-\begin{DoxyParams}{参数}
-{\em f} & framework\+\_\+t实例 \\
-\hline
-{\em cb} & 框架回调函数 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00093_gadd2b49ff4ff090a4490bd0128d00efba_gadd2b49ff4ff090a4490bd0128d00efba}{}\index{framework\+\_\+api.\+h@{framework\+\_\+api.\+h}!framework\+\_\+start\+\_\+wait@{framework\+\_\+start\+\_\+wait}}
-\index{framework\+\_\+start\+\_\+wait@{framework\+\_\+start\+\_\+wait}!framework\+\_\+api.\+h@{framework\+\_\+api.\+h}}
-\subsubsection[{framework\+\_\+start\+\_\+wait}]{\setlength{\rightskip}{0pt plus 5cm}int framework\+\_\+start\+\_\+wait (
-\begin{DoxyParamCaption}
-\item[{{\bf framework\+\_\+t} $\ast$}]{f, }
-\item[{{\bf channel\+\_\+ref\+\_\+cb\+\_\+t}}]{cb}
-\end{DoxyParamCaption}
-)}\label{a00093_gadd2b49ff4ff090a4490bd0128d00efba_gadd2b49ff4ff090a4490bd0128d00efba}
-
-
-启动框架并等待框架关闭 
-
-
-\begin{DoxyParams}{参数}
-{\em f} & framework\+\_\+t实例 \\
-\hline
-{\em cb} & 框架回调函数 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00093_ga0593beee9da9b0858ad53c4f81671622_ga0593beee9da9b0858ad53c4f81671622}{}\index{framework\+\_\+api.\+h@{framework\+\_\+api.\+h}!framework\+\_\+start\+\_\+wait\+\_\+destroy@{framework\+\_\+start\+\_\+wait\+\_\+destroy}}
-\index{framework\+\_\+start\+\_\+wait\+\_\+destroy@{framework\+\_\+start\+\_\+wait\+\_\+destroy}!framework\+\_\+api.\+h@{framework\+\_\+api.\+h}}
-\subsubsection[{framework\+\_\+start\+\_\+wait\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}int framework\+\_\+start\+\_\+wait\+\_\+destroy (
-\begin{DoxyParamCaption}
-\item[{{\bf framework\+\_\+t} $\ast$}]{f, }
-\item[{{\bf channel\+\_\+ref\+\_\+cb\+\_\+t}}]{cb}
-\end{DoxyParamCaption}
-)}\label{a00093_ga0593beee9da9b0858ad53c4f81671622_ga0593beee9da9b0858ad53c4f81671622}
-
-
-启动框架并等待框架关闭，如果启动失败或者框架关闭则销毁 
-
-
-\begin{DoxyParams}{参数}
-{\em f} & framework\+\_\+t实例 \\
-\hline
-{\em cb} & 框架回调函数 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00093_ga429be76d09278d6170f1b519f4dbb689_ga429be76d09278d6170f1b519f4dbb689}{}\index{framework\+\_\+api.\+h@{framework\+\_\+api.\+h}!framework\+\_\+stop@{framework\+\_\+stop}}
-\index{framework\+\_\+stop@{framework\+\_\+stop}!framework\+\_\+api.\+h@{framework\+\_\+api.\+h}}
-\subsubsection[{framework\+\_\+stop}]{\setlength{\rightskip}{0pt plus 5cm}int framework\+\_\+stop (
-\begin{DoxyParamCaption}
-\item[{{\bf framework\+\_\+t} $\ast$}]{f}
-\end{DoxyParamCaption}
-)}\label{a00093_ga429be76d09278d6170f1b519f4dbb689_ga429be76d09278d6170f1b519f4dbb689}
-
-
-关闭框架 
-
-
-\begin{DoxyParams}{参数}
-{\em f} & framework\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00093_gaefec7da1b548ddb97c73c8924ba17069_gaefec7da1b548ddb97c73c8924ba17069}{}\index{framework\+\_\+api.\+h@{framework\+\_\+api.\+h}!framework\+\_\+wait\+\_\+for\+\_\+stop@{framework\+\_\+wait\+\_\+for\+\_\+stop}}
-\index{framework\+\_\+wait\+\_\+for\+\_\+stop@{framework\+\_\+wait\+\_\+for\+\_\+stop}!framework\+\_\+api.\+h@{framework\+\_\+api.\+h}}
-\subsubsection[{framework\+\_\+wait\+\_\+for\+\_\+stop}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+wait\+\_\+for\+\_\+stop (
-\begin{DoxyParamCaption}
-\item[{{\bf framework\+\_\+t} $\ast$}]{f}
-\end{DoxyParamCaption}
-)}\label{a00093_gaefec7da1b548ddb97c73c8924ba17069_gaefec7da1b548ddb97c73c8924ba17069}
-
-
-等待框架停止 
-
-
-\begin{DoxyParams}{参数}
-{\em f} & framework\+\_\+t实例 \\
-\hline
-\end{DoxyParams}

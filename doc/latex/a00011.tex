@@ -1,43 +1,48 @@
-\hypertarget{a00011}{}\section{\+\_\+framework\+\_\+t结构体 参考}
-\label{a00011}\index{\+\_\+framework\+\_\+t@{\+\_\+framework\+\_\+t}}
+\hypertarget{a00011}{}\section{\+\_\+framework\+\_\+connector\+\_\+config\+\_\+t结构体 参考}
+\label{a00011}\index{\+\_\+framework\+\_\+connector\+\_\+config\+\_\+t@{\+\_\+framework\+\_\+connector\+\_\+config\+\_\+t}}
 \subsection*{成员变量}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00047_a55b26efa9e6ee05514d087ba2593a54b_a55b26efa9e6ee05514d087ba2593a54b}{framework\+\_\+config\+\_\+t} $\ast$ \hyperlink{a00011_afe5323ec18afb54a631f5069fd2b904b_afe5323ec18afb54a631f5069fd2b904b}{c}
+char \hyperlink{a00011_a09a135e761eb026e64952e76ca193c1b_a09a135e761eb026e64952e76ca193c1b}{ip} \mbox{[}32\mbox{]}
 \item 
-\hyperlink{a00047_ab0952db3c97c4760192720875e69d040_ab0952db3c97c4760192720875e69d040}{framework\+\_\+acceptor\+\_\+t} $\ast$ \hyperlink{a00011_a7167c11767ec44a7e5da53a805cfd439_a7167c11767ec44a7e5da53a805cfd439}{acceptor}
+int \hyperlink{a00011_a5427527be42630baf3fc0497e74e4d4d_a5427527be42630baf3fc0497e74e4d4d}{port}
 \item 
-\hyperlink{a00047_aeb7a44e6b579659a8aae81f3ab819af3_aeb7a44e6b579659a8aae81f3ab819af3}{framework\+\_\+worker\+\_\+t} $\ast$$\ast$ \hyperlink{a00011_ae67335a4a11e73fa2c1bfdb0965c60c6_ae67335a4a11e73fa2c1bfdb0965c60c6}{workers}
+int \hyperlink{a00011_a103e36450fc30baa72acc26b7efd5b98_a103e36450fc30baa72acc26b7efd5b98}{idle\+\_\+timeout}
 \item 
-\hyperlink{a00047_a649c7e850ab247b5f70ad27e335a129d_a649c7e850ab247b5f70ad27e335a129d}{loop\+\_\+balancer\+\_\+t} $\ast$ \hyperlink{a00011_a5ec36af472f9290ee5bdb4a7805b0ed3_a5ec36af472f9290ee5bdb4a7805b0ed3}{balancer}
+int \hyperlink{a00011_a02f7315d98e5e2872fde99130da6b7c8_a02f7315d98e5e2872fde99130da6b7c8}{connect\+\_\+timeout}
 \item 
-\hyperlink{a00047_ae296ec4d1ce108960de8dcc423956a1d_ae296ec4d1ce108960de8dcc423956a1d}{channel\+\_\+ref\+\_\+cb\+\_\+t} \hyperlink{a00011_a60b32f8b2d610e5fc5fb816b4e0e7897_a60b32f8b2d610e5fc5fb816b4e0e7897}{cb}
+int \hyperlink{a00011_ac6e964a4a4ca24a176016275955a4e05_ac6e964a4a4ca24a176016275955a4e05}{max\+\_\+send\+\_\+list\+\_\+count}
 \item 
-int \hyperlink{a00011_a52822affef77067a5718084bd32253bd_a52822affef77067a5718084bd32253bd}{start}
+int \hyperlink{a00011_a7f803ef991aaf690e9b3585c423511d1_a7f803ef991aaf690e9b3585c423511d1}{max\+\_\+recv\+\_\+buffer\+\_\+length}
+\item 
+\hyperlink{a00050_ae296ec4d1ce108960de8dcc423956a1d_ae296ec4d1ce108960de8dcc423956a1d}{channel\+\_\+ref\+\_\+cb\+\_\+t} \hyperlink{a00011_a7aeae2c4a7d06ea452374fb40434e1c7_a7aeae2c4a7d06ea452374fb40434e1c7}{cb}
 \end{DoxyCompactItemize}
 
 
 \subsection{结构体成员变量说明}
-\hypertarget{a00011_a7167c11767ec44a7e5da53a805cfd439_a7167c11767ec44a7e5da53a805cfd439}{}\index{\+\_\+framework\+\_\+t@{\+\_\+framework\+\_\+t}!acceptor@{acceptor}}
-\index{acceptor@{acceptor}!\+\_\+framework\+\_\+t@{\+\_\+framework\+\_\+t}}
-\subsubsection[{acceptor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf framework\+\_\+acceptor\+\_\+t}$\ast$ \+\_\+framework\+\_\+t\+::acceptor}\label{a00011_a7167c11767ec44a7e5da53a805cfd439_a7167c11767ec44a7e5da53a805cfd439}
-\hypertarget{a00011_a5ec36af472f9290ee5bdb4a7805b0ed3_a5ec36af472f9290ee5bdb4a7805b0ed3}{}\index{\+\_\+framework\+\_\+t@{\+\_\+framework\+\_\+t}!balancer@{balancer}}
-\index{balancer@{balancer}!\+\_\+framework\+\_\+t@{\+\_\+framework\+\_\+t}}
-\subsubsection[{balancer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf loop\+\_\+balancer\+\_\+t}$\ast$ \+\_\+framework\+\_\+t\+::balancer}\label{a00011_a5ec36af472f9290ee5bdb4a7805b0ed3_a5ec36af472f9290ee5bdb4a7805b0ed3}
-\hypertarget{a00011_afe5323ec18afb54a631f5069fd2b904b_afe5323ec18afb54a631f5069fd2b904b}{}\index{\+\_\+framework\+\_\+t@{\+\_\+framework\+\_\+t}!c@{c}}
-\index{c@{c}!\+\_\+framework\+\_\+t@{\+\_\+framework\+\_\+t}}
-\subsubsection[{c}]{\setlength{\rightskip}{0pt plus 5cm}{\bf framework\+\_\+config\+\_\+t}$\ast$ \+\_\+framework\+\_\+t\+::c}\label{a00011_afe5323ec18afb54a631f5069fd2b904b_afe5323ec18afb54a631f5069fd2b904b}
-\hypertarget{a00011_a60b32f8b2d610e5fc5fb816b4e0e7897_a60b32f8b2d610e5fc5fb816b4e0e7897}{}\index{\+\_\+framework\+\_\+t@{\+\_\+framework\+\_\+t}!cb@{cb}}
-\index{cb@{cb}!\+\_\+framework\+\_\+t@{\+\_\+framework\+\_\+t}}
-\subsubsection[{cb}]{\setlength{\rightskip}{0pt plus 5cm}{\bf channel\+\_\+ref\+\_\+cb\+\_\+t} \+\_\+framework\+\_\+t\+::cb}\label{a00011_a60b32f8b2d610e5fc5fb816b4e0e7897_a60b32f8b2d610e5fc5fb816b4e0e7897}
-\hypertarget{a00011_a52822affef77067a5718084bd32253bd_a52822affef77067a5718084bd32253bd}{}\index{\+\_\+framework\+\_\+t@{\+\_\+framework\+\_\+t}!start@{start}}
-\index{start@{start}!\+\_\+framework\+\_\+t@{\+\_\+framework\+\_\+t}}
-\subsubsection[{start}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+framework\+\_\+t\+::start}\label{a00011_a52822affef77067a5718084bd32253bd_a52822affef77067a5718084bd32253bd}
-\hypertarget{a00011_ae67335a4a11e73fa2c1bfdb0965c60c6_ae67335a4a11e73fa2c1bfdb0965c60c6}{}\index{\+\_\+framework\+\_\+t@{\+\_\+framework\+\_\+t}!workers@{workers}}
-\index{workers@{workers}!\+\_\+framework\+\_\+t@{\+\_\+framework\+\_\+t}}
-\subsubsection[{workers}]{\setlength{\rightskip}{0pt plus 5cm}{\bf framework\+\_\+worker\+\_\+t}$\ast$$\ast$ \+\_\+framework\+\_\+t\+::workers}\label{a00011_ae67335a4a11e73fa2c1bfdb0965c60c6_ae67335a4a11e73fa2c1bfdb0965c60c6}
+\hypertarget{a00011_a7aeae2c4a7d06ea452374fb40434e1c7_a7aeae2c4a7d06ea452374fb40434e1c7}{}\index{\+\_\+framework\+\_\+connector\+\_\+config\+\_\+t@{\+\_\+framework\+\_\+connector\+\_\+config\+\_\+t}!cb@{cb}}
+\index{cb@{cb}!\+\_\+framework\+\_\+connector\+\_\+config\+\_\+t@{\+\_\+framework\+\_\+connector\+\_\+config\+\_\+t}}
+\subsubsection[{cb}]{\setlength{\rightskip}{0pt plus 5cm}{\bf channel\+\_\+ref\+\_\+cb\+\_\+t} \+\_\+framework\+\_\+connector\+\_\+config\+\_\+t\+::cb}\label{a00011_a7aeae2c4a7d06ea452374fb40434e1c7_a7aeae2c4a7d06ea452374fb40434e1c7}
+\hypertarget{a00011_a02f7315d98e5e2872fde99130da6b7c8_a02f7315d98e5e2872fde99130da6b7c8}{}\index{\+\_\+framework\+\_\+connector\+\_\+config\+\_\+t@{\+\_\+framework\+\_\+connector\+\_\+config\+\_\+t}!connect\+\_\+timeout@{connect\+\_\+timeout}}
+\index{connect\+\_\+timeout@{connect\+\_\+timeout}!\+\_\+framework\+\_\+connector\+\_\+config\+\_\+t@{\+\_\+framework\+\_\+connector\+\_\+config\+\_\+t}}
+\subsubsection[{connect\+\_\+timeout}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+framework\+\_\+connector\+\_\+config\+\_\+t\+::connect\+\_\+timeout}\label{a00011_a02f7315d98e5e2872fde99130da6b7c8_a02f7315d98e5e2872fde99130da6b7c8}
+\hypertarget{a00011_a103e36450fc30baa72acc26b7efd5b98_a103e36450fc30baa72acc26b7efd5b98}{}\index{\+\_\+framework\+\_\+connector\+\_\+config\+\_\+t@{\+\_\+framework\+\_\+connector\+\_\+config\+\_\+t}!idle\+\_\+timeout@{idle\+\_\+timeout}}
+\index{idle\+\_\+timeout@{idle\+\_\+timeout}!\+\_\+framework\+\_\+connector\+\_\+config\+\_\+t@{\+\_\+framework\+\_\+connector\+\_\+config\+\_\+t}}
+\subsubsection[{idle\+\_\+timeout}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+framework\+\_\+connector\+\_\+config\+\_\+t\+::idle\+\_\+timeout}\label{a00011_a103e36450fc30baa72acc26b7efd5b98_a103e36450fc30baa72acc26b7efd5b98}
+\hypertarget{a00011_a09a135e761eb026e64952e76ca193c1b_a09a135e761eb026e64952e76ca193c1b}{}\index{\+\_\+framework\+\_\+connector\+\_\+config\+\_\+t@{\+\_\+framework\+\_\+connector\+\_\+config\+\_\+t}!ip@{ip}}
+\index{ip@{ip}!\+\_\+framework\+\_\+connector\+\_\+config\+\_\+t@{\+\_\+framework\+\_\+connector\+\_\+config\+\_\+t}}
+\subsubsection[{ip}]{\setlength{\rightskip}{0pt plus 5cm}char \+\_\+framework\+\_\+connector\+\_\+config\+\_\+t\+::ip\mbox{[}32\mbox{]}}\label{a00011_a09a135e761eb026e64952e76ca193c1b_a09a135e761eb026e64952e76ca193c1b}
+\hypertarget{a00011_a7f803ef991aaf690e9b3585c423511d1_a7f803ef991aaf690e9b3585c423511d1}{}\index{\+\_\+framework\+\_\+connector\+\_\+config\+\_\+t@{\+\_\+framework\+\_\+connector\+\_\+config\+\_\+t}!max\+\_\+recv\+\_\+buffer\+\_\+length@{max\+\_\+recv\+\_\+buffer\+\_\+length}}
+\index{max\+\_\+recv\+\_\+buffer\+\_\+length@{max\+\_\+recv\+\_\+buffer\+\_\+length}!\+\_\+framework\+\_\+connector\+\_\+config\+\_\+t@{\+\_\+framework\+\_\+connector\+\_\+config\+\_\+t}}
+\subsubsection[{max\+\_\+recv\+\_\+buffer\+\_\+length}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+framework\+\_\+connector\+\_\+config\+\_\+t\+::max\+\_\+recv\+\_\+buffer\+\_\+length}\label{a00011_a7f803ef991aaf690e9b3585c423511d1_a7f803ef991aaf690e9b3585c423511d1}
+\hypertarget{a00011_ac6e964a4a4ca24a176016275955a4e05_ac6e964a4a4ca24a176016275955a4e05}{}\index{\+\_\+framework\+\_\+connector\+\_\+config\+\_\+t@{\+\_\+framework\+\_\+connector\+\_\+config\+\_\+t}!max\+\_\+send\+\_\+list\+\_\+count@{max\+\_\+send\+\_\+list\+\_\+count}}
+\index{max\+\_\+send\+\_\+list\+\_\+count@{max\+\_\+send\+\_\+list\+\_\+count}!\+\_\+framework\+\_\+connector\+\_\+config\+\_\+t@{\+\_\+framework\+\_\+connector\+\_\+config\+\_\+t}}
+\subsubsection[{max\+\_\+send\+\_\+list\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+framework\+\_\+connector\+\_\+config\+\_\+t\+::max\+\_\+send\+\_\+list\+\_\+count}\label{a00011_ac6e964a4a4ca24a176016275955a4e05_ac6e964a4a4ca24a176016275955a4e05}
+\hypertarget{a00011_a5427527be42630baf3fc0497e74e4d4d_a5427527be42630baf3fc0497e74e4d4d}{}\index{\+\_\+framework\+\_\+connector\+\_\+config\+\_\+t@{\+\_\+framework\+\_\+connector\+\_\+config\+\_\+t}!port@{port}}
+\index{port@{port}!\+\_\+framework\+\_\+connector\+\_\+config\+\_\+t@{\+\_\+framework\+\_\+connector\+\_\+config\+\_\+t}}
+\subsubsection[{port}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+framework\+\_\+connector\+\_\+config\+\_\+t\+::port}\label{a00011_a5427527be42630baf3fc0497e74e4d4d_a5427527be42630baf3fc0497e74e4d4d}
 
 
 该结构体的文档由以下文件生成\+:\begin{DoxyCompactItemize}
 \item 
-E\+:/knet-\/git/knet/knet/\hyperlink{a00048}{framework.\+c}\end{DoxyCompactItemize}
+E\+:/knet-\/git/knet/knet/\hyperlink{a00054}{framework\+\_\+config.\+c}\end{DoxyCompactItemize}

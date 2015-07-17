@@ -1,91 +1,74 @@
-\hypertarget{a00060}{}\section{E\+:/knet-\/git/knet/knet/logger.c 文件参考}
-\label{a00060}\index{E\+:/knet-\/git/knet/knet/logger.\+c@{E\+:/knet-\/git/knet/knet/logger.\+c}}
-{\ttfamily \#include $<$stdarg.\+h$>$}\\*
-{\ttfamily \#include \char`\"{}misc.\+h\char`\"{}}\\*
-\subsection*{结构体}
-\begin{DoxyCompactItemize}
-\item 
-struct \hyperlink{a00025}{\+\_\+logger\+\_\+t}
-\end{DoxyCompactItemize}
+\hypertarget{a00060}{}\section{E\+:/knet-\/git/knet/knet/framework\+\_\+worker.h 文件参考}
+\label{a00060}\index{E\+:/knet-\/git/knet/knet/framework\+\_\+worker.\+h@{E\+:/knet-\/git/knet/knet/framework\+\_\+worker.\+h}}
+{\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\\*
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00047_a0468bf19eb27c2a3035789901b262671_a0468bf19eb27c2a3035789901b262671}{logger\+\_\+t} $\ast$ \hyperlink{a00060_a99170db05ea3c90f8799e90d23032562_a99170db05ea3c90f8799e90d23032562}{logger\+\_\+create} (const char $\ast$path, \hyperlink{a00047_afe883c56a5fd8d7794a3dd36780ed9d0_afe883c56a5fd8d7794a3dd36780ed9d0}{logger\+\_\+level\+\_\+e} level, \hyperlink{a00047_aa72cd8c306f50bee7c64e1daa1c1f3f4_aa72cd8c306f50bee7c64e1daa1c1f3f4}{logger\+\_\+mode\+\_\+e} mode)
-\begin{DoxyCompactList}\small\item\em 建立日志 \end{DoxyCompactList}\item 
-void \hyperlink{a00060_a45bc781df24f677451bcc079de530585_a45bc781df24f677451bcc079de530585}{logger\+\_\+destroy} (\hyperlink{a00047_a0468bf19eb27c2a3035789901b262671_a0468bf19eb27c2a3035789901b262671}{logger\+\_\+t} $\ast$logger)
-\begin{DoxyCompactList}\small\item\em 销毁日志 \end{DoxyCompactList}\item 
-int \hyperlink{a00060_aad3695a5b5df8331b3c0f3e069f037f5_aad3695a5b5df8331b3c0f3e069f037f5}{logger\+\_\+write} (\hyperlink{a00047_a0468bf19eb27c2a3035789901b262671_a0468bf19eb27c2a3035789901b262671}{logger\+\_\+t} $\ast$logger, \hyperlink{a00047_afe883c56a5fd8d7794a3dd36780ed9d0_afe883c56a5fd8d7794a3dd36780ed9d0}{logger\+\_\+level\+\_\+e} level, const char $\ast$format,...)
-\begin{DoxyCompactList}\small\item\em 写日志 \end{DoxyCompactList}\end{DoxyCompactItemize}
-\subsection*{变量}
-\begin{DoxyCompactItemize}
-\item 
-\hyperlink{a00047_a0468bf19eb27c2a3035789901b262671_a0468bf19eb27c2a3035789901b262671}{logger\+\_\+t} $\ast$ \hyperlink{a00060_a390c05c7cb68b8334d6418733f330945_a390c05c7cb68b8334d6418733f330945}{global\+\_\+logger} = 0
-\end{DoxyCompactItemize}
+\hyperlink{a00050_aeb7a44e6b579659a8aae81f3ab819af3_aeb7a44e6b579659a8aae81f3ab819af3}{framework\+\_\+worker\+\_\+t} $\ast$ \hyperlink{a00060_a033314598ad1544a7b6cc0cf2e5930f2_a033314598ad1544a7b6cc0cf2e5930f2}{framework\+\_\+worker\+\_\+create} (\hyperlink{a00050_a6149d769f6f07ed14a40a271c95d8463_a6149d769f6f07ed14a40a271c95d8463}{framework\+\_\+t} $\ast$f, \hyperlink{a00050_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
+\begin{DoxyCompactList}\small\item\em 建立框架工作线程 \end{DoxyCompactList}\item 
+void \hyperlink{a00060_add5ddcbe427122e3afe63a10e3448116_add5ddcbe427122e3afe63a10e3448116}{framework\+\_\+worker\+\_\+destroy} (\hyperlink{a00050_aeb7a44e6b579659a8aae81f3ab819af3_aeb7a44e6b579659a8aae81f3ab819af3}{framework\+\_\+worker\+\_\+t} $\ast$worker)
+\begin{DoxyCompactList}\small\item\em 销毁框架工作线程 \end{DoxyCompactList}\item 
+int \hyperlink{a00060_a8791f9f6e107cd5127797cbffcd65ea8_a8791f9f6e107cd5127797cbffcd65ea8}{framework\+\_\+worker\+\_\+start} (\hyperlink{a00050_aeb7a44e6b579659a8aae81f3ab819af3_aeb7a44e6b579659a8aae81f3ab819af3}{framework\+\_\+worker\+\_\+t} $\ast$worker)
+\begin{DoxyCompactList}\small\item\em 启动框架工作线程 \end{DoxyCompactList}\item 
+void \hyperlink{a00060_a22e4e55cc90068dc691d1b4de736fd6e_a22e4e55cc90068dc691d1b4de736fd6e}{framework\+\_\+worker\+\_\+stop} (\hyperlink{a00050_aeb7a44e6b579659a8aae81f3ab819af3_aeb7a44e6b579659a8aae81f3ab819af3}{framework\+\_\+worker\+\_\+t} $\ast$worker)
+\begin{DoxyCompactList}\small\item\em 关闭框架工作线程 \end{DoxyCompactList}\item 
+void \hyperlink{a00060_a11365f74b7c96c86c8c61d2b1f368b9c_a11365f74b7c96c86c8c61d2b1f368b9c}{framework\+\_\+worker\+\_\+wait\+\_\+for\+\_\+stop} (\hyperlink{a00050_aeb7a44e6b579659a8aae81f3ab819af3_aeb7a44e6b579659a8aae81f3ab819af3}{framework\+\_\+worker\+\_\+t} $\ast$worker)
+\begin{DoxyCompactList}\small\item\em 等待框架工作线程关闭 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{函数说明}
-\hypertarget{a00060_a99170db05ea3c90f8799e90d23032562_a99170db05ea3c90f8799e90d23032562}{}\index{logger.\+c@{logger.\+c}!logger\+\_\+create@{logger\+\_\+create}}
-\index{logger\+\_\+create@{logger\+\_\+create}!logger.\+c@{logger.\+c}}
-\subsubsection[{logger\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf logger\+\_\+t}$\ast$ logger\+\_\+create (
+\hypertarget{a00060_a033314598ad1544a7b6cc0cf2e5930f2_a033314598ad1544a7b6cc0cf2e5930f2}{}\index{framework\+\_\+worker.\+h@{framework\+\_\+worker.\+h}!framework\+\_\+worker\+\_\+create@{framework\+\_\+worker\+\_\+create}}
+\index{framework\+\_\+worker\+\_\+create@{framework\+\_\+worker\+\_\+create}!framework\+\_\+worker.\+h@{framework\+\_\+worker.\+h}}
+\subsubsection[{framework\+\_\+worker\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf framework\+\_\+worker\+\_\+t}$\ast$ framework\+\_\+worker\+\_\+create (
 \begin{DoxyParamCaption}
-\item[{const char $\ast$}]{path, }
-\item[{{\bf logger\+\_\+level\+\_\+e}}]{level, }
-\item[{{\bf logger\+\_\+mode\+\_\+e}}]{mode}
+\item[{{\bf framework\+\_\+t} $\ast$}]{f, }
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
 \end{DoxyParamCaption}
-)}\label{a00060_a99170db05ea3c90f8799e90d23032562_a99170db05ea3c90f8799e90d23032562}
+)}\label{a00060_a033314598ad1544a7b6cc0cf2e5930f2_a033314598ad1544a7b6cc0cf2e5930f2}
 
 
-建立日志 
+建立框架工作线程 
 
 
 \begin{DoxyParams}{参数}
-{\em path} & 日志文件路径, 如果为0将使用当前目录 \\
+{\em f} & framework\+\_\+t实例 \\
 \hline
-{\em level} & 日志等级 \\
-\hline
-{\em mode} & 日志模式 \\
+{\em loop} & loop\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-logger\+\_\+t实例 
+framework\+\_\+worker\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00060_a45bc781df24f677451bcc079de530585_a45bc781df24f677451bcc079de530585}{}\index{logger.\+c@{logger.\+c}!logger\+\_\+destroy@{logger\+\_\+destroy}}
-\index{logger\+\_\+destroy@{logger\+\_\+destroy}!logger.\+c@{logger.\+c}}
-\subsubsection[{logger\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void logger\+\_\+destroy (
+\hypertarget{a00060_add5ddcbe427122e3afe63a10e3448116_add5ddcbe427122e3afe63a10e3448116}{}\index{framework\+\_\+worker.\+h@{framework\+\_\+worker.\+h}!framework\+\_\+worker\+\_\+destroy@{framework\+\_\+worker\+\_\+destroy}}
+\index{framework\+\_\+worker\+\_\+destroy@{framework\+\_\+worker\+\_\+destroy}!framework\+\_\+worker.\+h@{framework\+\_\+worker.\+h}}
+\subsubsection[{framework\+\_\+worker\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+worker\+\_\+destroy (
 \begin{DoxyParamCaption}
-\item[{{\bf logger\+\_\+t} $\ast$}]{logger}
+\item[{{\bf framework\+\_\+worker\+\_\+t} $\ast$}]{worker}
 \end{DoxyParamCaption}
-)}\label{a00060_a45bc781df24f677451bcc079de530585_a45bc781df24f677451bcc079de530585}
+)}\label{a00060_add5ddcbe427122e3afe63a10e3448116_add5ddcbe427122e3afe63a10e3448116}
 
 
-销毁日志 
+销毁框架工作线程 
 
 
 \begin{DoxyParams}{参数}
-{\em logger} & logger\+\_\+t实例 \\
+{\em worker} & framework\+\_\+worker\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
-\hypertarget{a00060_aad3695a5b5df8331b3c0f3e069f037f5_aad3695a5b5df8331b3c0f3e069f037f5}{}\index{logger.\+c@{logger.\+c}!logger\+\_\+write@{logger\+\_\+write}}
-\index{logger\+\_\+write@{logger\+\_\+write}!logger.\+c@{logger.\+c}}
-\subsubsection[{logger\+\_\+write}]{\setlength{\rightskip}{0pt plus 5cm}int logger\+\_\+write (
+\hypertarget{a00060_a8791f9f6e107cd5127797cbffcd65ea8_a8791f9f6e107cd5127797cbffcd65ea8}{}\index{framework\+\_\+worker.\+h@{framework\+\_\+worker.\+h}!framework\+\_\+worker\+\_\+start@{framework\+\_\+worker\+\_\+start}}
+\index{framework\+\_\+worker\+\_\+start@{framework\+\_\+worker\+\_\+start}!framework\+\_\+worker.\+h@{framework\+\_\+worker.\+h}}
+\subsubsection[{framework\+\_\+worker\+\_\+start}]{\setlength{\rightskip}{0pt plus 5cm}int framework\+\_\+worker\+\_\+start (
 \begin{DoxyParamCaption}
-\item[{{\bf logger\+\_\+t} $\ast$}]{logger, }
-\item[{{\bf logger\+\_\+level\+\_\+e}}]{level, }
-\item[{const char $\ast$}]{format, }
-\item[{}]{...}
+\item[{{\bf framework\+\_\+worker\+\_\+t} $\ast$}]{worker}
 \end{DoxyParamCaption}
-)}\label{a00060_aad3695a5b5df8331b3c0f3e069f037f5_aad3695a5b5df8331b3c0f3e069f037f5}
+)}\label{a00060_a8791f9f6e107cd5127797cbffcd65ea8_a8791f9f6e107cd5127797cbffcd65ea8}
 
 
-写日志 
+启动框架工作线程 
 
 
 \begin{DoxyParams}{参数}
-{\em logger} & logger\+\_\+t实例 \\
-\hline
-{\em level} & 日志等级 \\
-\hline
-{\em format} & 日志格式 \\
+{\em worker} & framework\+\_\+worker\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 
@@ -95,9 +78,35 @@ logger\+\_\+t实例
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
+\hypertarget{a00060_a22e4e55cc90068dc691d1b4de736fd6e_a22e4e55cc90068dc691d1b4de736fd6e}{}\index{framework\+\_\+worker.\+h@{framework\+\_\+worker.\+h}!framework\+\_\+worker\+\_\+stop@{framework\+\_\+worker\+\_\+stop}}
+\index{framework\+\_\+worker\+\_\+stop@{framework\+\_\+worker\+\_\+stop}!framework\+\_\+worker.\+h@{framework\+\_\+worker.\+h}}
+\subsubsection[{framework\+\_\+worker\+\_\+stop}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+worker\+\_\+stop (
+\begin{DoxyParamCaption}
+\item[{{\bf framework\+\_\+worker\+\_\+t} $\ast$}]{worker}
+\end{DoxyParamCaption}
+)}\label{a00060_a22e4e55cc90068dc691d1b4de736fd6e_a22e4e55cc90068dc691d1b4de736fd6e}
 
 
-\subsection{变量说明}
-\hypertarget{a00060_a390c05c7cb68b8334d6418733f330945_a390c05c7cb68b8334d6418733f330945}{}\index{logger.\+c@{logger.\+c}!global\+\_\+logger@{global\+\_\+logger}}
-\index{global\+\_\+logger@{global\+\_\+logger}!logger.\+c@{logger.\+c}}
-\subsubsection[{global\+\_\+logger}]{\setlength{\rightskip}{0pt plus 5cm}{\bf logger\+\_\+t}$\ast$ global\+\_\+logger = 0}\label{a00060_a390c05c7cb68b8334d6418733f330945_a390c05c7cb68b8334d6418733f330945}
+关闭框架工作线程 
+
+
+\begin{DoxyParams}{参数}
+{\em worker} & framework\+\_\+worker\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00060_a11365f74b7c96c86c8c61d2b1f368b9c_a11365f74b7c96c86c8c61d2b1f368b9c}{}\index{framework\+\_\+worker.\+h@{framework\+\_\+worker.\+h}!framework\+\_\+worker\+\_\+wait\+\_\+for\+\_\+stop@{framework\+\_\+worker\+\_\+wait\+\_\+for\+\_\+stop}}
+\index{framework\+\_\+worker\+\_\+wait\+\_\+for\+\_\+stop@{framework\+\_\+worker\+\_\+wait\+\_\+for\+\_\+stop}!framework\+\_\+worker.\+h@{framework\+\_\+worker.\+h}}
+\subsubsection[{framework\+\_\+worker\+\_\+wait\+\_\+for\+\_\+stop}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+worker\+\_\+wait\+\_\+for\+\_\+stop (
+\begin{DoxyParamCaption}
+\item[{{\bf framework\+\_\+worker\+\_\+t} $\ast$}]{worker}
+\end{DoxyParamCaption}
+)}\label{a00060_a11365f74b7c96c86c8c61d2b1f368b9c_a11365f74b7c96c86c8c61d2b1f368b9c}
+
+
+等待框架工作线程关闭 
+
+
+\begin{DoxyParams}{参数}
+{\em worker} & framework\+\_\+worker\+\_\+t实例 \\
+\hline
+\end{DoxyParams}

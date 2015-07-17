@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/channel.c 文件参考</title>
+<title>knet: E:/knet-git/knet/knet/broadcast_api.h 文件参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">knet
-   &#160;<span id="projectnumber">1.4.4</span>
+   &#160;<span id="projectnumber">1.4.5</span>
    </div>
   </td>
  </tr>
@@ -87,76 +87,40 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">结构体</a> &#124;
 <a href="#func-members">函数</a>  </div>
   <div class="headertitle">
-<div class="title">channel.c 文件参考</div>  </div>
+<div class="title">broadcast_api.h 文件参考</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="a00043_source.html">channel.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00041_source.html">buffer.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00059_source.html">list.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00075_source.html">ringbuffer.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00063_source.html">loop.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00073_source.html">misc.h</a>&quot;</code><br />
-</div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-结构体</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00006.html">_channel_t</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
+<div class="textblock"><code>#include &quot;<a class="el" href="a00050_source.html">config.h</a>&quot;</code><br />
+</div>
+<p><a href="a00042_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 函数</h2></td></tr>
-<tr class="memitem:ac2250584fc8b99ed26a4bbe4750cce61"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00047_a2effb3e20d0b7e5f6d5ac42118e0330b.html#a2effb3e20d0b7e5f6d5ac42118e0330b">channel_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00042_ac2250584fc8b99ed26a4bbe4750cce61.html#ac2250584fc8b99ed26a4bbe4750cce61">channel_create</a> (uint32_t max_send_list_len, uint32_t recv_ring_len)</td></tr>
-<tr class="memdesc:ac2250584fc8b99ed26a4bbe4750cce61"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个channel_t实例  <a href="a00042_ac2250584fc8b99ed26a4bbe4750cce61.html#ac2250584fc8b99ed26a4bbe4750cce61">更多...</a><br /></td></tr>
-<tr class="separator:ac2250584fc8b99ed26a4bbe4750cce61"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9fe31ed96008befaf02f50568b59a199"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00047_a2effb3e20d0b7e5f6d5ac42118e0330b.html#a2effb3e20d0b7e5f6d5ac42118e0330b">channel_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00042_a9fe31ed96008befaf02f50568b59a199.html#a9fe31ed96008befaf02f50568b59a199">channel_create_exist_socket_fd</a> (<a class="el" href="a00047_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd, uint32_t max_send_list_len, uint32_t recv_ring_len)</td></tr>
-<tr class="memdesc:a9fe31ed96008befaf02f50568b59a199"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个channel_t实例  <a href="a00042_a9fe31ed96008befaf02f50568b59a199.html#a9fe31ed96008befaf02f50568b59a199">更多...</a><br /></td></tr>
-<tr class="separator:a9fe31ed96008befaf02f50568b59a199"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7e93c006b66c9fa049a4233840cda05"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00042_ad7e93c006b66c9fa049a4233840cda05.html#ad7e93c006b66c9fa049a4233840cda05">channel_destroy</a> (<a class="el" href="a00047_a2effb3e20d0b7e5f6d5ac42118e0330b.html#a2effb3e20d0b7e5f6d5ac42118e0330b">channel_t</a> *channel)</td></tr>
-<tr class="memdesc:ad7e93c006b66c9fa049a4233840cda05"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁channel_t实例  <a href="a00042_ad7e93c006b66c9fa049a4233840cda05.html#ad7e93c006b66c9fa049a4233840cda05">更多...</a><br /></td></tr>
-<tr class="separator:ad7e93c006b66c9fa049a4233840cda05"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a86caf9eb37ca45a77045cc5e10018afb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00042_a86caf9eb37ca45a77045cc5e10018afb.html#a86caf9eb37ca45a77045cc5e10018afb">channel_connect</a> (<a class="el" href="a00047_a2effb3e20d0b7e5f6d5ac42118e0330b.html#a2effb3e20d0b7e5f6d5ac42118e0330b">channel_t</a> *channel, const char *ip, int port)</td></tr>
-<tr class="memdesc:a86caf9eb37ca45a77045cc5e10018afb"><td class="mdescLeft">&#160;</td><td class="mdescRight">连接监听器  <a href="a00042_a86caf9eb37ca45a77045cc5e10018afb.html#a86caf9eb37ca45a77045cc5e10018afb">更多...</a><br /></td></tr>
-<tr class="separator:a86caf9eb37ca45a77045cc5e10018afb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8345afe1fa7e60dd9b12304809a96a7e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00042_a8345afe1fa7e60dd9b12304809a96a7e.html#a8345afe1fa7e60dd9b12304809a96a7e">channel_accept</a> (<a class="el" href="a00047_a2effb3e20d0b7e5f6d5ac42118e0330b.html#a2effb3e20d0b7e5f6d5ac42118e0330b">channel_t</a> *channel, const char *ip, int port, int backlog)</td></tr>
-<tr class="memdesc:a8345afe1fa7e60dd9b12304809a96a7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">监听  <a href="a00042_a8345afe1fa7e60dd9b12304809a96a7e.html#a8345afe1fa7e60dd9b12304809a96a7e">更多...</a><br /></td></tr>
-<tr class="separator:a8345afe1fa7e60dd9b12304809a96a7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5feb399faecad39ace64e718e9913fbe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00042_a5feb399faecad39ace64e718e9913fbe.html#a5feb399faecad39ace64e718e9913fbe">channel_send_buffer</a> (<a class="el" href="a00047_a2effb3e20d0b7e5f6d5ac42118e0330b.html#a2effb3e20d0b7e5f6d5ac42118e0330b">channel_t</a> *channel, <a class="el" href="a00047_aad99a77d28bd81d3d36d0ea569c9482d.html#aad99a77d28bd81d3d36d0ea569c9482d">buffer_t</a> *send_buffer)</td></tr>
-<tr class="memdesc:a5feb399faecad39ace64e718e9913fbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">发送 放到发送链表末尾等待适当时机发送.  <a href="a00042_a5feb399faecad39ace64e718e9913fbe.html#a5feb399faecad39ace64e718e9913fbe">更多...</a><br /></td></tr>
-<tr class="separator:a5feb399faecad39ace64e718e9913fbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a455a575d389757e332028a087d701857"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00042_a455a575d389757e332028a087d701857.html#a455a575d389757e332028a087d701857">channel_send</a> (<a class="el" href="a00047_a2effb3e20d0b7e5f6d5ac42118e0330b.html#a2effb3e20d0b7e5f6d5ac42118e0330b">channel_t</a> *channel, const char *data, int size)</td></tr>
-<tr class="memdesc:a455a575d389757e332028a087d701857"><td class="mdescLeft">&#160;</td><td class="mdescRight">发送 当发送链表为空的时候，会首先尝试直接发送到套接字缓冲区(zero copy)，否则会放到发送链表末尾等待 适当时机发送.  <a href="a00042_a455a575d389757e332028a087d701857.html#a455a575d389757e332028a087d701857">更多...</a><br /></td></tr>
-<tr class="separator:a455a575d389757e332028a087d701857"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92bd8d7a98e233279f011f19f6724794"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00042_a92bd8d7a98e233279f011f19f6724794.html#a92bd8d7a98e233279f011f19f6724794">channel_update_send</a> (<a class="el" href="a00047_a2effb3e20d0b7e5f6d5ac42118e0330b.html#a2effb3e20d0b7e5f6d5ac42118e0330b">channel_t</a> *channel)</td></tr>
-<tr class="memdesc:a92bd8d7a98e233279f011f19f6724794"><td class="mdescLeft">&#160;</td><td class="mdescRight">可写事件通知  <a href="a00042_a92bd8d7a98e233279f011f19f6724794.html#a92bd8d7a98e233279f011f19f6724794">更多...</a><br /></td></tr>
-<tr class="separator:a92bd8d7a98e233279f011f19f6724794"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad4aaa94d5f475b4b488ffa1e711ff1e1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00042_ad4aaa94d5f475b4b488ffa1e711ff1e1.html#ad4aaa94d5f475b4b488ffa1e711ff1e1">channel_update_recv</a> (<a class="el" href="a00047_a2effb3e20d0b7e5f6d5ac42118e0330b.html#a2effb3e20d0b7e5f6d5ac42118e0330b">channel_t</a> *channel)</td></tr>
-<tr class="memdesc:ad4aaa94d5f475b4b488ffa1e711ff1e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">可读事件通知  <a href="a00042_ad4aaa94d5f475b4b488ffa1e711ff1e1.html#ad4aaa94d5f475b4b488ffa1e711ff1e1">更多...</a><br /></td></tr>
-<tr class="separator:ad4aaa94d5f475b4b488ffa1e711ff1e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44ee392afecbffb25ab7c4de4898df0d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00042_a44ee392afecbffb25ab7c4de4898df0d.html#a44ee392afecbffb25ab7c4de4898df0d">channel_close</a> (<a class="el" href="a00047_a2effb3e20d0b7e5f6d5ac42118e0330b.html#a2effb3e20d0b7e5f6d5ac42118e0330b">channel_t</a> *channel)</td></tr>
-<tr class="memdesc:a44ee392afecbffb25ab7c4de4898df0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">关闭  <a href="a00042_a44ee392afecbffb25ab7c4de4898df0d.html#a44ee392afecbffb25ab7c4de4898df0d">更多...</a><br /></td></tr>
-<tr class="separator:a44ee392afecbffb25ab7c4de4898df0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a950ec7a2a3c89032577fba60a59b1f91"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00047_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00042_a950ec7a2a3c89032577fba60a59b1f91.html#a950ec7a2a3c89032577fba60a59b1f91">channel_get_socket_fd</a> (<a class="el" href="a00047_a2effb3e20d0b7e5f6d5ac42118e0330b.html#a2effb3e20d0b7e5f6d5ac42118e0330b">channel_t</a> *channel)</td></tr>
-<tr class="memdesc:a950ec7a2a3c89032577fba60a59b1f91"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得套接字  <a href="a00042_a950ec7a2a3c89032577fba60a59b1f91.html#a950ec7a2a3c89032577fba60a59b1f91">更多...</a><br /></td></tr>
-<tr class="separator:a950ec7a2a3c89032577fba60a59b1f91"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7ab12f174b1d8384b1c3ef3b15bd83b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00047_af929c5cf86b6a0f64dde407dfe60482e.html#af929c5cf86b6a0f64dde407dfe60482e">ringbuffer_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00042_aa7ab12f174b1d8384b1c3ef3b15bd83b.html#aa7ab12f174b1d8384b1c3ef3b15bd83b">channel_get_ringbuffer</a> (<a class="el" href="a00047_a2effb3e20d0b7e5f6d5ac42118e0330b.html#a2effb3e20d0b7e5f6d5ac42118e0330b">channel_t</a> *channel)</td></tr>
-<tr class="memdesc:aa7ab12f174b1d8384b1c3ef3b15bd83b"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得读缓冲区  <a href="a00042_aa7ab12f174b1d8384b1c3ef3b15bd83b.html#aa7ab12f174b1d8384b1c3ef3b15bd83b">更多...</a><br /></td></tr>
-<tr class="separator:aa7ab12f174b1d8384b1c3ef3b15bd83b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a855f29f5cb8f5c0420af7a377bd2f531"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00042_a855f29f5cb8f5c0420af7a377bd2f531.html#a855f29f5cb8f5c0420af7a377bd2f531">channel_get_max_send_list_len</a> (<a class="el" href="a00047_a2effb3e20d0b7e5f6d5ac42118e0330b.html#a2effb3e20d0b7e5f6d5ac42118e0330b">channel_t</a> *channel)</td></tr>
-<tr class="memdesc:a855f29f5cb8f5c0420af7a377bd2f531"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得发送链表最大长度限制  <a href="a00042_a855f29f5cb8f5c0420af7a377bd2f531.html#a855f29f5cb8f5c0420af7a377bd2f531">更多...</a><br /></td></tr>
-<tr class="separator:a855f29f5cb8f5c0420af7a377bd2f531"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af23ca0f2b9462f153a4236d787f9f25a"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00042_af23ca0f2b9462f153a4236d787f9f25a.html#af23ca0f2b9462f153a4236d787f9f25a">channel_get_uuid</a> (<a class="el" href="a00047_a2effb3e20d0b7e5f6d5ac42118e0330b.html#a2effb3e20d0b7e5f6d5ac42118e0330b">channel_t</a> *channel)</td></tr>
-<tr class="memdesc:af23ca0f2b9462f153a4236d787f9f25a"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取管道UUID  <a href="a00042_af23ca0f2b9462f153a4236d787f9f25a.html#af23ca0f2b9462f153a4236d787f9f25a">更多...</a><br /></td></tr>
-<tr class="separator:af23ca0f2b9462f153a4236d787f9f25a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a755d848b2b5d58cf883ef1b66950274c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00042_a755d848b2b5d58cf883ef1b66950274c.html#a755d848b2b5d58cf883ef1b66950274c">channel_ref_send_list_reach_max</a> (<a class="el" href="a00047_a2effb3e20d0b7e5f6d5ac42118e0330b.html#a2effb3e20d0b7e5f6d5ac42118e0330b">channel_t</a> *channel)</td></tr>
-<tr class="memdesc:a755d848b2b5d58cf883ef1b66950274c"><td class="mdescLeft">&#160;</td><td class="mdescRight">发送链表内缓冲区数量是否达到最大  <a href="a00042_a755d848b2b5d58cf883ef1b66950274c.html#a755d848b2b5d58cf883ef1b66950274c">更多...</a><br /></td></tr>
-<tr class="separator:a755d848b2b5d58cf883ef1b66950274c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa3b09fb6ff3281cb10736c0aabac18fc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00050_ac970c5deaf6417a866aabed01cd57b1b.html#ac970c5deaf6417a866aabed01cd57b1b">broadcast_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00100_gaa3b09fb6ff3281cb10736c0aabac18fc.html#gaa3b09fb6ff3281cb10736c0aabac18fc">broadcast_create</a> ()</td></tr>
+<tr class="memdesc:gaa3b09fb6ff3281cb10736c0aabac18fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建广播域  <a href="a00100_gaa3b09fb6ff3281cb10736c0aabac18fc.html#gaa3b09fb6ff3281cb10736c0aabac18fc">更多...</a><br /></td></tr>
+<tr class="separator:gaa3b09fb6ff3281cb10736c0aabac18fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa28451fa4656633ded0c7b966ff159c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00100_gaa28451fa4656633ded0c7b966ff159c3.html#gaa28451fa4656633ded0c7b966ff159c3">broadcast_destroy</a> (<a class="el" href="a00050_ac970c5deaf6417a866aabed01cd57b1b.html#ac970c5deaf6417a866aabed01cd57b1b">broadcast_t</a> *broadcast)</td></tr>
+<tr class="memdesc:gaa28451fa4656633ded0c7b966ff159c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁广播域  <a href="a00100_gaa28451fa4656633ded0c7b966ff159c3.html#gaa28451fa4656633ded0c7b966ff159c3">更多...</a><br /></td></tr>
+<tr class="separator:gaa28451fa4656633ded0c7b966ff159c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1c736809a1d0e4b7c77b617ac8ce590d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00050_a151271c9d188ef28d4d24bb81dcc1263.html#a151271c9d188ef28d4d24bb81dcc1263">channel_ref_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00100_ga1c736809a1d0e4b7c77b617ac8ce590d.html#ga1c736809a1d0e4b7c77b617ac8ce590d">broadcast_join</a> (<a class="el" href="a00050_ac970c5deaf6417a866aabed01cd57b1b.html#ac970c5deaf6417a866aabed01cd57b1b">broadcast_t</a> *broadcast, <a class="el" href="a00050_a151271c9d188ef28d4d24bb81dcc1263.html#a151271c9d188ef28d4d24bb81dcc1263">channel_ref_t</a> *channel_ref)</td></tr>
+<tr class="memdesc:ga1c736809a1d0e4b7c77b617ac8ce590d"><td class="mdescLeft">&#160;</td><td class="mdescRight">加入广播域  <a href="a00100_ga1c736809a1d0e4b7c77b617ac8ce590d.html#ga1c736809a1d0e4b7c77b617ac8ce590d">更多...</a><br /></td></tr>
+<tr class="separator:ga1c736809a1d0e4b7c77b617ac8ce590d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad846ced37d33b750f61a88565eaed9a4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00100_gad846ced37d33b750f61a88565eaed9a4.html#gad846ced37d33b750f61a88565eaed9a4">broadcast_leave</a> (<a class="el" href="a00050_ac970c5deaf6417a866aabed01cd57b1b.html#ac970c5deaf6417a866aabed01cd57b1b">broadcast_t</a> *broadcast, <a class="el" href="a00050_a151271c9d188ef28d4d24bb81dcc1263.html#a151271c9d188ef28d4d24bb81dcc1263">channel_ref_t</a> *channel_ref)</td></tr>
+<tr class="memdesc:gad846ced37d33b750f61a88565eaed9a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">离开广播域  <a href="a00100_gad846ced37d33b750f61a88565eaed9a4.html#gad846ced37d33b750f61a88565eaed9a4">更多...</a><br /></td></tr>
+<tr class="separator:gad846ced37d33b750f61a88565eaed9a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacd045b1ca8be7fa8fac6e337934acc97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00100_gacd045b1ca8be7fa8fac6e337934acc97.html#gacd045b1ca8be7fa8fac6e337934acc97">broadcast_get_count</a> (<a class="el" href="a00050_ac970c5deaf6417a866aabed01cd57b1b.html#ac970c5deaf6417a866aabed01cd57b1b">broadcast_t</a> *broadcast)</td></tr>
+<tr class="memdesc:gacd045b1ca8be7fa8fac6e337934acc97"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得广播域内管道数量  <a href="a00100_gacd045b1ca8be7fa8fac6e337934acc97.html#gacd045b1ca8be7fa8fac6e337934acc97">更多...</a><br /></td></tr>
+<tr class="separator:gacd045b1ca8be7fa8fac6e337934acc97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0e8a8826a84c9c93a96e0fda1ca846aa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00100_ga0e8a8826a84c9c93a96e0fda1ca846aa.html#ga0e8a8826a84c9c93a96e0fda1ca846aa">broadcast_write</a> (<a class="el" href="a00050_ac970c5deaf6417a866aabed01cd57b1b.html#ac970c5deaf6417a866aabed01cd57b1b">broadcast_t</a> *broadcast, char *buffer, uint32_t size)</td></tr>
+<tr class="memdesc:ga0e8a8826a84c9c93a96e0fda1ca846aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">广播  <a href="a00100_ga0e8a8826a84c9c93a96e0fda1ca846aa.html#ga0e8a8826a84c9c93a96e0fda1ca846aa">更多...</a><br /></td></tr>
+<tr class="separator:ga0e8a8826a84c9c93a96e0fda1ca846aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 13日 星期一 18:21:38 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 17日 星期五 18:09:21 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

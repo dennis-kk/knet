@@ -1,214 +1,58 @@
-\hypertarget{a00040}{}\section{E\+:/knet-\/git/knet/knet/buffer.c 文件参考}
-\label{a00040}\index{E\+:/knet-\/git/knet/knet/buffer.\+c@{E\+:/knet-\/git/knet/knet/buffer.\+c}}
-{\ttfamily \#include \char`\"{}buffer.\+h\char`\"{}}\\*
-\subsection*{结构体}
-\begin{DoxyCompactItemize}
-\item 
-struct \hyperlink{a00003}{\+\_\+buffer\+\_\+t}
-\end{DoxyCompactItemize}
+\hypertarget{a00040}{}\section{E\+:/knet-\/git/knet/knet/address\+\_\+api.h 文件参考}
+\label{a00040}\index{E\+:/knet-\/git/knet/knet/address\+\_\+api.\+h@{E\+:/knet-\/git/knet/knet/address\+\_\+api.\+h}}
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00047_aad99a77d28bd81d3d36d0ea569c9482d_aad99a77d28bd81d3d36d0ea569c9482d}{buffer\+\_\+t} $\ast$ \hyperlink{a00040_aa5059c5ab47dd3f98ce1d208831dfb88_aa5059c5ab47dd3f98ce1d208831dfb88}{buffer\+\_\+create} (uint32\+\_\+t size)
-\begin{DoxyCompactList}\small\item\em 创建一个固定长度的缓冲区 \end{DoxyCompactList}\item 
-void \hyperlink{a00040_a75b1ca3205331cdaf7a9f4e6f28c03d9_a75b1ca3205331cdaf7a9f4e6f28c03d9}{buffer\+\_\+destroy} (\hyperlink{a00047_aad99a77d28bd81d3d36d0ea569c9482d_aad99a77d28bd81d3d36d0ea569c9482d}{buffer\+\_\+t} $\ast$sb)
-\begin{DoxyCompactList}\small\item\em 销毁缓冲区 \end{DoxyCompactList}\item 
-uint32\+\_\+t \hyperlink{a00040_ab3e5b8fef4f96fbba03bcd2a55d5c4e2_ab3e5b8fef4f96fbba03bcd2a55d5c4e2}{buffer\+\_\+put} (\hyperlink{a00047_aad99a77d28bd81d3d36d0ea569c9482d_aad99a77d28bd81d3d36d0ea569c9482d}{buffer\+\_\+t} $\ast$sb, const char $\ast$temp, uint32\+\_\+t size)
-\begin{DoxyCompactList}\small\item\em 写入 \end{DoxyCompactList}\item 
-uint32\+\_\+t \hyperlink{a00040_a521aa1247c7e0ce15f48da2b3f87ede5_a521aa1247c7e0ce15f48da2b3f87ede5}{buffer\+\_\+get\+\_\+length} (\hyperlink{a00047_aad99a77d28bd81d3d36d0ea569c9482d_aad99a77d28bd81d3d36d0ea569c9482d}{buffer\+\_\+t} $\ast$sb)
-\begin{DoxyCompactList}\small\item\em 取得缓冲区内数据长度 \end{DoxyCompactList}\item 
-uint32\+\_\+t \hyperlink{a00040_a13dfff4814bad92a4f5c263b68ddf475_a13dfff4814bad92a4f5c263b68ddf475}{buffer\+\_\+get\+\_\+max\+\_\+size} (\hyperlink{a00047_aad99a77d28bd81d3d36d0ea569c9482d_aad99a77d28bd81d3d36d0ea569c9482d}{buffer\+\_\+t} $\ast$sb)
-\begin{DoxyCompactList}\small\item\em 取得缓冲区内最大长度 \end{DoxyCompactList}\item 
-int \hyperlink{a00040_ae5cb663b693f41f93952c34cdd7f1f14_ae5cb663b693f41f93952c34cdd7f1f14}{buffer\+\_\+enough} (\hyperlink{a00047_aad99a77d28bd81d3d36d0ea569c9482d_aad99a77d28bd81d3d36d0ea569c9482d}{buffer\+\_\+t} $\ast$sb, uint32\+\_\+t size)
-\begin{DoxyCompactList}\small\item\em 测试缓冲区内是否有足够空间 \end{DoxyCompactList}\item 
-char $\ast$ \hyperlink{a00040_ab54cc02c921fa0034efe6fbd146de96c_ab54cc02c921fa0034efe6fbd146de96c}{buffer\+\_\+get\+\_\+ptr} (\hyperlink{a00047_aad99a77d28bd81d3d36d0ea569c9482d_aad99a77d28bd81d3d36d0ea569c9482d}{buffer\+\_\+t} $\ast$sb)
-\begin{DoxyCompactList}\small\item\em 取得缓冲区数据起始地址 \end{DoxyCompactList}\item 
-void \hyperlink{a00040_a1e574a50d7d434434bc466978601b703_a1e574a50d7d434434bc466978601b703}{buffer\+\_\+adjust} (\hyperlink{a00047_aad99a77d28bd81d3d36d0ea569c9482d_aad99a77d28bd81d3d36d0ea569c9482d}{buffer\+\_\+t} $\ast$sb, uint32\+\_\+t gap)
-\begin{DoxyCompactList}\small\item\em 调整数据起始地址 \end{DoxyCompactList}\item 
-void \hyperlink{a00040_a0f64078ea08b7269039ea6694f009729_a0f64078ea08b7269039ea6694f009729}{buffer\+\_\+clear} (\hyperlink{a00047_aad99a77d28bd81d3d36d0ea569c9482d_aad99a77d28bd81d3d36d0ea569c9482d}{buffer\+\_\+t} $\ast$sb)
-\begin{DoxyCompactList}\small\item\em 清空缓冲区 \end{DoxyCompactList}\end{DoxyCompactItemize}
+const char $\ast$ \hyperlink{a00099_gac1cb1b6031c4a8a724d42e3ed01d1ba6_gac1cb1b6031c4a8a724d42e3ed01d1ba6}{address\+\_\+get\+\_\+ip} (\hyperlink{a00050_a7a6e75b85c8b441f843bd40004a7d9d5_a7a6e75b85c8b441f843bd40004a7d9d5}{address\+\_\+t} $\ast$address)
+\begin{DoxyCompactList}\small\item\em 取得\+I\+P \end{DoxyCompactList}\item 
+int \hyperlink{a00099_ga223a2192ce38fc5e79a73b5030a42e0e_ga223a2192ce38fc5e79a73b5030a42e0e}{address\+\_\+get\+\_\+port} (\hyperlink{a00050_a7a6e75b85c8b441f843bd40004a7d9d5_a7a6e75b85c8b441f843bd40004a7d9d5}{address\+\_\+t} $\ast$address)
+\begin{DoxyCompactList}\small\item\em 取得port \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{函数说明}
-\hypertarget{a00040_a1e574a50d7d434434bc466978601b703_a1e574a50d7d434434bc466978601b703}{}\index{buffer.\+c@{buffer.\+c}!buffer\+\_\+adjust@{buffer\+\_\+adjust}}
-\index{buffer\+\_\+adjust@{buffer\+\_\+adjust}!buffer.\+c@{buffer.\+c}}
-\subsubsection[{buffer\+\_\+adjust}]{\setlength{\rightskip}{0pt plus 5cm}void buffer\+\_\+adjust (
+\hypertarget{a00099_gac1cb1b6031c4a8a724d42e3ed01d1ba6_gac1cb1b6031c4a8a724d42e3ed01d1ba6}{}\index{address\+\_\+api.\+h@{address\+\_\+api.\+h}!address\+\_\+get\+\_\+ip@{address\+\_\+get\+\_\+ip}}
+\index{address\+\_\+get\+\_\+ip@{address\+\_\+get\+\_\+ip}!address\+\_\+api.\+h@{address\+\_\+api.\+h}}
+\subsubsection[{address\+\_\+get\+\_\+ip}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ address\+\_\+get\+\_\+ip (
 \begin{DoxyParamCaption}
-\item[{{\bf buffer\+\_\+t} $\ast$}]{sb, }
-\item[{uint32\+\_\+t}]{gap}
+\item[{{\bf address\+\_\+t} $\ast$}]{address}
 \end{DoxyParamCaption}
-)}\label{a00040_a1e574a50d7d434434bc466978601b703_a1e574a50d7d434434bc466978601b703}
+)}\label{a00099_gac1cb1b6031c4a8a724d42e3ed01d1ba6_gac1cb1b6031c4a8a724d42e3ed01d1ba6}
 
 
-调整数据起始地址 
+取得\+I\+P 
 
 
 \begin{DoxyParams}{参数}
-{\em sb} & buffer\+\_\+t实例 \\
-\hline
-{\em gap} & 调整的长度 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00040_a0f64078ea08b7269039ea6694f009729_a0f64078ea08b7269039ea6694f009729}{}\index{buffer.\+c@{buffer.\+c}!buffer\+\_\+clear@{buffer\+\_\+clear}}
-\index{buffer\+\_\+clear@{buffer\+\_\+clear}!buffer.\+c@{buffer.\+c}}
-\subsubsection[{buffer\+\_\+clear}]{\setlength{\rightskip}{0pt plus 5cm}void buffer\+\_\+clear (
-\begin{DoxyParamCaption}
-\item[{{\bf buffer\+\_\+t} $\ast$}]{sb}
-\end{DoxyParamCaption}
-)}\label{a00040_a0f64078ea08b7269039ea6694f009729_a0f64078ea08b7269039ea6694f009729}
-
-
-清空缓冲区 
-
-
-\begin{DoxyParams}{参数}
-{\em sb} & buffer\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00040_aa5059c5ab47dd3f98ce1d208831dfb88_aa5059c5ab47dd3f98ce1d208831dfb88}{}\index{buffer.\+c@{buffer.\+c}!buffer\+\_\+create@{buffer\+\_\+create}}
-\index{buffer\+\_\+create@{buffer\+\_\+create}!buffer.\+c@{buffer.\+c}}
-\subsubsection[{buffer\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf buffer\+\_\+t}$\ast$ buffer\+\_\+create (
-\begin{DoxyParamCaption}
-\item[{uint32\+\_\+t}]{size}
-\end{DoxyParamCaption}
-)}\label{a00040_aa5059c5ab47dd3f98ce1d208831dfb88_aa5059c5ab47dd3f98ce1d208831dfb88}
-
-
-创建一个固定长度的缓冲区 
-
-
-\begin{DoxyParams}{参数}
-{\em size} & 缓冲区长度（字节） \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-buffer\+\_\+t实例 
-\end{DoxyReturn}
-\hypertarget{a00040_a75b1ca3205331cdaf7a9f4e6f28c03d9_a75b1ca3205331cdaf7a9f4e6f28c03d9}{}\index{buffer.\+c@{buffer.\+c}!buffer\+\_\+destroy@{buffer\+\_\+destroy}}
-\index{buffer\+\_\+destroy@{buffer\+\_\+destroy}!buffer.\+c@{buffer.\+c}}
-\subsubsection[{buffer\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void buffer\+\_\+destroy (
-\begin{DoxyParamCaption}
-\item[{{\bf buffer\+\_\+t} $\ast$}]{sb}
-\end{DoxyParamCaption}
-)}\label{a00040_a75b1ca3205331cdaf7a9f4e6f28c03d9_a75b1ca3205331cdaf7a9f4e6f28c03d9}
-
-
-销毁缓冲区 
-
-
-\begin{DoxyParams}{参数}
-{\em sb} & buffer\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00040_ae5cb663b693f41f93952c34cdd7f1f14_ae5cb663b693f41f93952c34cdd7f1f14}{}\index{buffer.\+c@{buffer.\+c}!buffer\+\_\+enough@{buffer\+\_\+enough}}
-\index{buffer\+\_\+enough@{buffer\+\_\+enough}!buffer.\+c@{buffer.\+c}}
-\subsubsection[{buffer\+\_\+enough}]{\setlength{\rightskip}{0pt plus 5cm}int buffer\+\_\+enough (
-\begin{DoxyParamCaption}
-\item[{{\bf buffer\+\_\+t} $\ast$}]{sb, }
-\item[{uint32\+\_\+t}]{size}
-\end{DoxyParamCaption}
-)}\label{a00040_ae5cb663b693f41f93952c34cdd7f1f14_ae5cb663b693f41f93952c34cdd7f1f14}
-
-
-测试缓冲区内是否有足够空间 
-
-
-\begin{DoxyParams}{参数}
-{\em sb} & buffer\+\_\+t实例 \\
-\hline
-{\em size} & 需求长度 \\
+{\em address} & address\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 
 \begin{DoxyRetVals}{返回值}
-{\em 0} & 没有足够空间 \\
+{\em 有效的指针} & I\+P字符串 \\
 \hline
-{\em 非零} & 有足够空间 \\
+{\em 0} & 管道连接未建立 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00040_a521aa1247c7e0ce15f48da2b3f87ede5_a521aa1247c7e0ce15f48da2b3f87ede5}{}\index{buffer.\+c@{buffer.\+c}!buffer\+\_\+get\+\_\+length@{buffer\+\_\+get\+\_\+length}}
-\index{buffer\+\_\+get\+\_\+length@{buffer\+\_\+get\+\_\+length}!buffer.\+c@{buffer.\+c}}
-\subsubsection[{buffer\+\_\+get\+\_\+length}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t buffer\+\_\+get\+\_\+length (
+\hypertarget{a00099_ga223a2192ce38fc5e79a73b5030a42e0e_ga223a2192ce38fc5e79a73b5030a42e0e}{}\index{address\+\_\+api.\+h@{address\+\_\+api.\+h}!address\+\_\+get\+\_\+port@{address\+\_\+get\+\_\+port}}
+\index{address\+\_\+get\+\_\+port@{address\+\_\+get\+\_\+port}!address\+\_\+api.\+h@{address\+\_\+api.\+h}}
+\subsubsection[{address\+\_\+get\+\_\+port}]{\setlength{\rightskip}{0pt plus 5cm}int address\+\_\+get\+\_\+port (
 \begin{DoxyParamCaption}
-\item[{{\bf buffer\+\_\+t} $\ast$}]{sb}
+\item[{{\bf address\+\_\+t} $\ast$}]{address}
 \end{DoxyParamCaption}
-)}\label{a00040_a521aa1247c7e0ce15f48da2b3f87ede5_a521aa1247c7e0ce15f48da2b3f87ede5}
+)}\label{a00099_ga223a2192ce38fc5e79a73b5030a42e0e_ga223a2192ce38fc5e79a73b5030a42e0e}
 
 
-取得缓冲区内数据长度 
+取得port 
 
 
 \begin{DoxyParams}{参数}
-{\em sb} & buffer\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-数据长度 
-\end{DoxyReturn}
-\hypertarget{a00040_a13dfff4814bad92a4f5c263b68ddf475_a13dfff4814bad92a4f5c263b68ddf475}{}\index{buffer.\+c@{buffer.\+c}!buffer\+\_\+get\+\_\+max\+\_\+size@{buffer\+\_\+get\+\_\+max\+\_\+size}}
-\index{buffer\+\_\+get\+\_\+max\+\_\+size@{buffer\+\_\+get\+\_\+max\+\_\+size}!buffer.\+c@{buffer.\+c}}
-\subsubsection[{buffer\+\_\+get\+\_\+max\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t buffer\+\_\+get\+\_\+max\+\_\+size (
-\begin{DoxyParamCaption}
-\item[{{\bf buffer\+\_\+t} $\ast$}]{sb}
-\end{DoxyParamCaption}
-)}\label{a00040_a13dfff4814bad92a4f5c263b68ddf475_a13dfff4814bad92a4f5c263b68ddf475}
-
-
-取得缓冲区内最大长度 
-
-
-\begin{DoxyParams}{参数}
-{\em sb} & buffer\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-最大长度 
-\end{DoxyReturn}
-\hypertarget{a00040_ab54cc02c921fa0034efe6fbd146de96c_ab54cc02c921fa0034efe6fbd146de96c}{}\index{buffer.\+c@{buffer.\+c}!buffer\+\_\+get\+\_\+ptr@{buffer\+\_\+get\+\_\+ptr}}
-\index{buffer\+\_\+get\+\_\+ptr@{buffer\+\_\+get\+\_\+ptr}!buffer.\+c@{buffer.\+c}}
-\subsubsection[{buffer\+\_\+get\+\_\+ptr}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ buffer\+\_\+get\+\_\+ptr (
-\begin{DoxyParamCaption}
-\item[{{\bf buffer\+\_\+t} $\ast$}]{sb}
-\end{DoxyParamCaption}
-)}\label{a00040_ab54cc02c921fa0034efe6fbd146de96c_ab54cc02c921fa0034efe6fbd146de96c}
-
-
-取得缓冲区数据起始地址 
-
-
-\begin{DoxyParams}{参数}
-{\em sb} & buffer\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-数据长度 
-\end{DoxyReturn}
-\hypertarget{a00040_ab3e5b8fef4f96fbba03bcd2a55d5c4e2_ab3e5b8fef4f96fbba03bcd2a55d5c4e2}{}\index{buffer.\+c@{buffer.\+c}!buffer\+\_\+put@{buffer\+\_\+put}}
-\index{buffer\+\_\+put@{buffer\+\_\+put}!buffer.\+c@{buffer.\+c}}
-\subsubsection[{buffer\+\_\+put}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t buffer\+\_\+put (
-\begin{DoxyParamCaption}
-\item[{{\bf buffer\+\_\+t} $\ast$}]{sb, }
-\item[{const char $\ast$}]{temp, }
-\item[{uint32\+\_\+t}]{size}
-\end{DoxyParamCaption}
-)}\label{a00040_ab3e5b8fef4f96fbba03bcd2a55d5c4e2_ab3e5b8fef4f96fbba03bcd2a55d5c4e2}
-
-
-写入 
-
-
-\begin{DoxyParams}{参数}
-{\em sb} & buffer\+\_\+t实例 \\
-\hline
-{\em temp} & 字节数组指针 \\
-\hline
-{\em size} & 字节数组长度 \\
+{\em address} & address\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 
 \begin{DoxyRetVals}{返回值}
-{\em 0} & 写入失败 \\
+{\em 有效的端口号} & 端口号 \\
 \hline
-{\em $>$0} & 实际写入的字节数 \\
+{\em 0} & 管道连接未建立 \\
 \hline
 \end{DoxyRetVals}

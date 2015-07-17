@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/channel.h 源文件</title>
+<title>knet: E:/knet-git/knet/knet/address_api.h 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">knet
-   &#160;<span id="projectnumber">1.4.3</span>
+   &#160;<span id="projectnumber">1.4.5</span>
    </div>
   </td>
  </tr>
@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">channel.h</div>  </div>
+<div class="title">address_api.h</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00040.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
@@ -114,66 +114,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef CHANNEL_H</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define CHANNEL_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef ADDRESS_API_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define ADDRESS_API_H</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00044.html">config.h</a>&quot;</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<a class="code" href="a00006.html">channel_t</a>* <a class="code" href="a00040_ac2250584fc8b99ed26a4bbe4750cce61.html#ac2250584fc8b99ed26a4bbe4750cce61">channel_create</a>(uint32_t max_send_list_len, uint32_t recv_ring_len);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<a class="code" href="a00006.html">channel_t</a>* <a class="code" href="a00040_a9fe31ed96008befaf02f50568b59a199.html#a9fe31ed96008befaf02f50568b59a199">channel_create_exist_socket_fd</a>(<a class="code" href="a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd, uint32_t max_send_list_len, uint32_t recv_ring_len);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00040_ad7e93c006b66c9fa049a4233840cda05.html#ad7e93c006b66c9fa049a4233840cda05">channel_destroy</a>(<a class="code" href="a00006.html">channel_t</a>* channel);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00040_a86caf9eb37ca45a77045cc5e10018afb.html#a86caf9eb37ca45a77045cc5e10018afb">channel_connect</a>(<a class="code" href="a00006.html">channel_t</a>* channel, <span class="keyword">const</span> <span class="keywordtype">char</span>* ip, <span class="keywordtype">int</span> port);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00040_a8345afe1fa7e60dd9b12304809a96a7e.html#a8345afe1fa7e60dd9b12304809a96a7e">channel_accept</a>(<a class="code" href="a00006.html">channel_t</a>* channel, <span class="keyword">const</span> <span class="keywordtype">char</span>* ip, <span class="keywordtype">int</span> port, <span class="keywordtype">int</span> backlog);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00040_a44ee392afecbffb25ab7c4de4898df0d.html#a44ee392afecbffb25ab7c4de4898df0d">channel_close</a>(<a class="code" href="a00006.html">channel_t</a>* channel);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00040_a455a575d389757e332028a087d701857.html#a455a575d389757e332028a087d701857">channel_send</a>(<a class="code" href="a00006.html">channel_t</a>* channel, <span class="keyword">const</span> <span class="keywordtype">char</span>* data, <span class="keywordtype">int</span> size);</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00040_a5feb399faecad39ace64e718e9913fbe.html#a5feb399faecad39ace64e718e9913fbe">channel_send_buffer</a>(<a class="code" href="a00006.html">channel_t</a>* channel, <a class="code" href="a00003.html">buffer_t</a>* send_buffer);</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00040_a92bd8d7a98e233279f011f19f6724794.html#a92bd8d7a98e233279f011f19f6724794">channel_update_send</a>(<a class="code" href="a00006.html">channel_t</a>* channel);</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00040_ad4aaa94d5f475b4b488ffa1e711ff1e1.html#ad4aaa94d5f475b4b488ffa1e711ff1e1">channel_update_recv</a>(<a class="code" href="a00006.html">channel_t</a>* channel);</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<a class="code" href="a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> <a class="code" href="a00040_a950ec7a2a3c89032577fba60a59b1f91.html#a950ec7a2a3c89032577fba60a59b1f91">channel_get_socket_fd</a>(<a class="code" href="a00006.html">channel_t</a>* channel);</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<a class="code" href="a00026.html">ringbuffer_t</a>* <a class="code" href="a00040_aa7ab12f174b1d8384b1c3ef3b15bd83b.html#aa7ab12f174b1d8384b1c3ef3b15bd83b">channel_get_ringbuffer</a>(<a class="code" href="a00006.html">channel_t</a>* channel);</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;uint32_t <a class="code" href="a00040_a855f29f5cb8f5c0420af7a377bd2f531.html#a855f29f5cb8f5c0420af7a377bd2f531">channel_get_max_send_list_len</a>(<a class="code" href="a00006.html">channel_t</a>* channel);</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;uint64_t <a class="code" href="a00040_af23ca0f2b9462f153a4236d787f9f25a.html#af23ca0f2b9462f153a4236d787f9f25a">channel_get_uuid</a>(<a class="code" href="a00006.html">channel_t</a>* channel);</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00040_a755d848b2b5d58cf883ef1b66950274c.html#a755d848b2b5d58cf883ef1b66950274c">channel_ref_send_list_reach_max</a>(<a class="code" href="a00006.html">channel_t</a>* channel);</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* CHANNEL_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="a00044_html"><div class="ttname"><a href="a00044.html">config.h</a></div></div>
-<div class="ttc" id="a00003_html"><div class="ttname"><a href="a00003.html">_buffer_t</a></div><div class="ttdef"><b>Definition:</b> buffer.c:28</div></div>
-<div class="ttc" id="a00040_a455a575d389757e332028a087d701857_html_a455a575d389757e332028a087d701857"><div class="ttname"><a href="a00040_a455a575d389757e332028a087d701857.html#a455a575d389757e332028a087d701857">channel_send</a></div><div class="ttdeci">int channel_send(channel_t *channel, const char *data, int size)</div><div class="ttdoc">发送 当发送链表为空的时候，会首先尝试直接发送到套接字缓冲区(zero copy)，否则会放到发送链表末尾等待 适...</div><div class="ttdef"><b>Definition:</b> channel.c:126</div></div>
-<div class="ttc" id="a00040_a86caf9eb37ca45a77045cc5e10018afb_html_a86caf9eb37ca45a77045cc5e10018afb"><div class="ttname"><a href="a00040_a86caf9eb37ca45a77045cc5e10018afb.html#a86caf9eb37ca45a77045cc5e10018afb">channel_connect</a></div><div class="ttdeci">int channel_connect(channel_t *channel, const char *ip, int port)</div><div class="ttdoc">连接监听器 </div><div class="ttdef"><b>Definition:</b> channel.c:92</div></div>
-<div class="ttc" id="a00040_a755d848b2b5d58cf883ef1b66950274c_html_a755d848b2b5d58cf883ef1b66950274c"><div class="ttname"><a href="a00040_a755d848b2b5d58cf883ef1b66950274c.html#a755d848b2b5d58cf883ef1b66950274c">channel_ref_send_list_reach_max</a></div><div class="ttdeci">int channel_ref_send_list_reach_max(channel_t *channel)</div><div class="ttdoc">发送链表内缓冲区数量是否达到最大 </div><div class="ttdef"><b>Definition:</b> channel.c:244</div></div>
-<div class="ttc" id="a00040_ad4aaa94d5f475b4b488ffa1e711ff1e1_html_ad4aaa94d5f475b4b488ffa1e711ff1e1"><div class="ttname"><a href="a00040_ad4aaa94d5f475b4b488ffa1e711ff1e1.html#ad4aaa94d5f475b4b488ffa1e711ff1e1">channel_update_recv</a></div><div class="ttdeci">int channel_update_recv(channel_t *channel)</div><div class="ttdoc">可读事件通知 </div><div class="ttdef"><b>Definition:</b> channel.c:185</div></div>
-<div class="ttc" id="a00040_ac2250584fc8b99ed26a4bbe4750cce61_html_ac2250584fc8b99ed26a4bbe4750cce61"><div class="ttname"><a href="a00040_ac2250584fc8b99ed26a4bbe4750cce61.html#ac2250584fc8b99ed26a4bbe4750cce61">channel_create</a></div><div class="ttdeci">channel_t * channel_create(uint32_t max_send_list_len, uint32_t recv_ring_len)</div><div class="ttdoc">创建一个channel_t实例 </div><div class="ttdef"><b>Definition:</b> channel.c:41</div></div>
-<div class="ttc" id="a00040_a9fe31ed96008befaf02f50568b59a199_html_a9fe31ed96008befaf02f50568b59a199"><div class="ttname"><a href="a00040_a9fe31ed96008befaf02f50568b59a199.html#a9fe31ed96008befaf02f50568b59a199">channel_create_exist_socket_fd</a></div><div class="ttdeci">channel_t * channel_create_exist_socket_fd(socket_t socket_fd, uint32_t max_send_list_len, uint32_t recv_ring_len)</div><div class="ttdoc">创建一个channel_t实例 </div><div class="ttdef"><b>Definition:</b> channel.c:50</div></div>
-<div class="ttc" id="a00040_a44ee392afecbffb25ab7c4de4898df0d_html_a44ee392afecbffb25ab7c4de4898df0d"><div class="ttname"><a href="a00040_a44ee392afecbffb25ab7c4de4898df0d.html#a44ee392afecbffb25ab7c4de4898df0d">channel_close</a></div><div class="ttdeci">void channel_close(channel_t *channel)</div><div class="ttdoc">关闭 </div><div class="ttdef"><b>Definition:</b> channel.c:219</div></div>
-<div class="ttc" id="a00040_ad7e93c006b66c9fa049a4233840cda05_html_ad7e93c006b66c9fa049a4233840cda05"><div class="ttname"><a href="a00040_ad7e93c006b66c9fa049a4233840cda05.html#ad7e93c006b66c9fa049a4233840cda05">channel_destroy</a></div><div class="ttdeci">void channel_destroy(channel_t *channel)</div><div class="ttdoc">销毁channel_t实例 </div><div class="ttdef"><b>Definition:</b> channel.c:72</div></div>
-<div class="ttc" id="a00006_html"><div class="ttname"><a href="a00006.html">_channel_t</a></div><div class="ttdef"><b>Definition:</b> channel.c:33</div></div>
-<div class="ttc" id="a00026_html"><div class="ttname"><a href="a00026.html">_ringbuffer_t</a></div><div class="ttdef"><b>Definition:</b> ringbuffer.c:29</div></div>
-<div class="ttc" id="a00040_a8345afe1fa7e60dd9b12304809a96a7e_html_a8345afe1fa7e60dd9b12304809a96a7e"><div class="ttname"><a href="a00040_a8345afe1fa7e60dd9b12304809a96a7e.html#a8345afe1fa7e60dd9b12304809a96a7e">channel_accept</a></div><div class="ttdeci">int channel_accept(channel_t *channel, const char *ip, int port, int backlog)</div><div class="ttdoc">监听 </div><div class="ttdef"><b>Definition:</b> channel.c:98</div></div>
-<div class="ttc" id="a00040_af23ca0f2b9462f153a4236d787f9f25a_html_af23ca0f2b9462f153a4236d787f9f25a"><div class="ttname"><a href="a00040_af23ca0f2b9462f153a4236d787f9f25a.html#af23ca0f2b9462f153a4236d787f9f25a">channel_get_uuid</a></div><div class="ttdeci">uint64_t channel_get_uuid(channel_t *channel)</div><div class="ttdoc">获取管道UUID </div><div class="ttdef"><b>Definition:</b> channel.c:239</div></div>
-<div class="ttc" id="a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05_html_a0d9e0afbf02fb6ed6c5b1415dce51b05"><div class="ttname"><a href="a00044_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a></div><div class="ttdeci">#define socket_t</div><div class="ttdef"><b>Definition:</b> config.h:88</div></div>
-<div class="ttc" id="a00040_a5feb399faecad39ace64e718e9913fbe_html_a5feb399faecad39ace64e718e9913fbe"><div class="ttname"><a href="a00040_a5feb399faecad39ace64e718e9913fbe.html#a5feb399faecad39ace64e718e9913fbe">channel_send_buffer</a></div><div class="ttdeci">int channel_send_buffer(channel_t *channel, buffer_t *send_buffer)</div><div class="ttdoc">发送 放到发送链表末尾等待适当时机发送. </div><div class="ttdef"><b>Definition:</b> channel.c:111</div></div>
-<div class="ttc" id="a00040_a855f29f5cb8f5c0420af7a377bd2f531_html_a855f29f5cb8f5c0420af7a377bd2f531"><div class="ttname"><a href="a00040_a855f29f5cb8f5c0420af7a377bd2f531.html#a855f29f5cb8f5c0420af7a377bd2f531">channel_get_max_send_list_len</a></div><div class="ttdeci">uint32_t channel_get_max_send_list_len(channel_t *channel)</div><div class="ttdoc">取得发送链表最大长度限制 </div><div class="ttdef"><b>Definition:</b> channel.c:234</div></div>
-<div class="ttc" id="a00040_a92bd8d7a98e233279f011f19f6724794_html_a92bd8d7a98e233279f011f19f6724794"><div class="ttname"><a href="a00040_a92bd8d7a98e233279f011f19f6724794.html#a92bd8d7a98e233279f011f19f6724794">channel_update_send</a></div><div class="ttdeci">int channel_update_send(channel_t *channel)</div><div class="ttdoc">可写事件通知 </div><div class="ttdef"><b>Definition:</b> channel.c:156</div></div>
-<div class="ttc" id="a00040_a950ec7a2a3c89032577fba60a59b1f91_html_a950ec7a2a3c89032577fba60a59b1f91"><div class="ttname"><a href="a00040_a950ec7a2a3c89032577fba60a59b1f91.html#a950ec7a2a3c89032577fba60a59b1f91">channel_get_socket_fd</a></div><div class="ttdeci">socket_t channel_get_socket_fd(channel_t *channel)</div><div class="ttdoc">取得套接字 </div><div class="ttdef"><b>Definition:</b> channel.c:224</div></div>
-<div class="ttc" id="a00040_aa7ab12f174b1d8384b1c3ef3b15bd83b_html_aa7ab12f174b1d8384b1c3ef3b15bd83b"><div class="ttname"><a href="a00040_aa7ab12f174b1d8384b1c3ef3b15bd83b.html#aa7ab12f174b1d8384b1c3ef3b15bd83b">channel_get_ringbuffer</a></div><div class="ttdeci">ringbuffer_t * channel_get_ringbuffer(channel_t *channel)</div><div class="ttdoc">取得读缓冲区 </div><div class="ttdef"><b>Definition:</b> channel.c:229</div></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="a00099_gac1cb1b6031c4a8a724d42e3ed01d1ba6.html#gac1cb1b6031c4a8a724d42e3ed01d1ba6">address_get_ip</a>(<a class="code" href="a00001.html">address_t</a>* address);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00099_ga223a2192ce38fc5e79a73b5030a42e0e.html#ga223a2192ce38fc5e79a73b5030a42e0e">address_get_port</a>(<a class="code" href="a00001.html">address_t</a>* address);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* ADDRESS_API_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a00001_html"><div class="ttname"><a href="a00001.html">_address_t</a></div><div class="ttdef"><b>Definition:</b> address.c:27</div></div>
+<div class="ttc" id="a00099_gac1cb1b6031c4a8a724d42e3ed01d1ba6_html_gac1cb1b6031c4a8a724d42e3ed01d1ba6"><div class="ttname"><a href="a00099_gac1cb1b6031c4a8a724d42e3ed01d1ba6.html#gac1cb1b6031c4a8a724d42e3ed01d1ba6">address_get_ip</a></div><div class="ttdeci">const char * address_get_ip(address_t *address)</div><div class="ttdoc">取得IP </div><div class="ttdef"><b>Definition:</b> address.c:55</div></div>
+<div class="ttc" id="a00099_ga223a2192ce38fc5e79a73b5030a42e0e_html_ga223a2192ce38fc5e79a73b5030a42e0e"><div class="ttname"><a href="a00099_ga223a2192ce38fc5e79a73b5030a42e0e.html#ga223a2192ce38fc5e79a73b5030a42e0e">address_get_port</a></div><div class="ttdeci">int address_get_port(address_t *address)</div><div class="ttdoc">取得port </div><div class="ttdef"><b>Definition:</b> address.c:60</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 9日 星期四 15:26:51 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 17日 星期五 18:09:21 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

@@ -1,31 +1,103 @@
-\hypertarget{a00066}{}\section{E\+:/knet-\/git/knet/knet/loop\+\_\+balancer.h 文件参考}
-\label{a00066}\index{E\+:/knet-\/git/knet/knet/loop\+\_\+balancer.\+h@{E\+:/knet-\/git/knet/knet/loop\+\_\+balancer.\+h}}
-{\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}loop\+\_\+balancer\+\_\+api.\+h\char`\"{}}\\*
+\hypertarget{a00066}{}\section{E\+:/knet-\/git/knet/knet/logger.c 文件参考}
+\label{a00066}\index{E\+:/knet-\/git/knet/knet/logger.\+c@{E\+:/knet-\/git/knet/knet/logger.\+c}}
+{\ttfamily \#include $<$stdarg.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}misc.\+h\char`\"{}}\\*
+\subsection*{结构体}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{a00027}{\+\_\+logger\+\_\+t}
+\end{DoxyCompactItemize}
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00047_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$ \hyperlink{a00066_ac025f218f22410cf0e60980bbd93c5e3_ac025f218f22410cf0e60980bbd93c5e3}{loop\+\_\+balancer\+\_\+choose} (\hyperlink{a00047_a649c7e850ab247b5f70ad27e335a129d_a649c7e850ab247b5f70ad27e335a129d}{loop\+\_\+balancer\+\_\+t} $\ast$balancer)
-\begin{DoxyCompactList}\small\item\em 负载均衡 -\/ 选取一个loop\+\_\+t实例 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{a00050_a0468bf19eb27c2a3035789901b262671_a0468bf19eb27c2a3035789901b262671}{logger\+\_\+t} $\ast$ \hyperlink{a00066_a99170db05ea3c90f8799e90d23032562_a99170db05ea3c90f8799e90d23032562}{logger\+\_\+create} (const char $\ast$path, \hyperlink{a00050_afe883c56a5fd8d7794a3dd36780ed9d0_afe883c56a5fd8d7794a3dd36780ed9d0}{logger\+\_\+level\+\_\+e} level, \hyperlink{a00050_aa72cd8c306f50bee7c64e1daa1c1f3f4_aa72cd8c306f50bee7c64e1daa1c1f3f4}{logger\+\_\+mode\+\_\+e} mode)
+\begin{DoxyCompactList}\small\item\em 建立日志 \end{DoxyCompactList}\item 
+void \hyperlink{a00066_a45bc781df24f677451bcc079de530585_a45bc781df24f677451bcc079de530585}{logger\+\_\+destroy} (\hyperlink{a00050_a0468bf19eb27c2a3035789901b262671_a0468bf19eb27c2a3035789901b262671}{logger\+\_\+t} $\ast$logger)
+\begin{DoxyCompactList}\small\item\em 销毁日志 \end{DoxyCompactList}\item 
+int \hyperlink{a00066_aad3695a5b5df8331b3c0f3e069f037f5_aad3695a5b5df8331b3c0f3e069f037f5}{logger\+\_\+write} (\hyperlink{a00050_a0468bf19eb27c2a3035789901b262671_a0468bf19eb27c2a3035789901b262671}{logger\+\_\+t} $\ast$logger, \hyperlink{a00050_afe883c56a5fd8d7794a3dd36780ed9d0_afe883c56a5fd8d7794a3dd36780ed9d0}{logger\+\_\+level\+\_\+e} level, const char $\ast$format,...)
+\begin{DoxyCompactList}\small\item\em 写日志 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00050_a0468bf19eb27c2a3035789901b262671_a0468bf19eb27c2a3035789901b262671}{logger\+\_\+t} $\ast$ \hyperlink{a00066_a390c05c7cb68b8334d6418733f330945_a390c05c7cb68b8334d6418733f330945}{global\+\_\+logger} = 0
+\end{DoxyCompactItemize}
 
 
 \subsection{函数说明}
-\hypertarget{a00066_ac025f218f22410cf0e60980bbd93c5e3_ac025f218f22410cf0e60980bbd93c5e3}{}\index{loop\+\_\+balancer.\+h@{loop\+\_\+balancer.\+h}!loop\+\_\+balancer\+\_\+choose@{loop\+\_\+balancer\+\_\+choose}}
-\index{loop\+\_\+balancer\+\_\+choose@{loop\+\_\+balancer\+\_\+choose}!loop\+\_\+balancer.\+h@{loop\+\_\+balancer.\+h}}
-\subsubsection[{loop\+\_\+balancer\+\_\+choose}]{\setlength{\rightskip}{0pt plus 5cm}{\bf loop\+\_\+t}$\ast$ loop\+\_\+balancer\+\_\+choose (
+\hypertarget{a00066_a99170db05ea3c90f8799e90d23032562_a99170db05ea3c90f8799e90d23032562}{}\index{logger.\+c@{logger.\+c}!logger\+\_\+create@{logger\+\_\+create}}
+\index{logger\+\_\+create@{logger\+\_\+create}!logger.\+c@{logger.\+c}}
+\subsubsection[{logger\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf logger\+\_\+t}$\ast$ logger\+\_\+create (
 \begin{DoxyParamCaption}
-\item[{{\bf loop\+\_\+balancer\+\_\+t} $\ast$}]{balancer}
+\item[{const char $\ast$}]{path, }
+\item[{{\bf logger\+\_\+level\+\_\+e}}]{level, }
+\item[{{\bf logger\+\_\+mode\+\_\+e}}]{mode}
 \end{DoxyParamCaption}
-)}\label{a00066_ac025f218f22410cf0e60980bbd93c5e3_ac025f218f22410cf0e60980bbd93c5e3}
+)}\label{a00066_a99170db05ea3c90f8799e90d23032562_a99170db05ea3c90f8799e90d23032562}
 
 
-负载均衡 -\/ 选取一个loop\+\_\+t实例 
+建立日志 
 
 
 \begin{DoxyParams}{参数}
-{\em balancer} & loop\+\_\+balancer\+\_\+t实例 \\
+{\em path} & 日志文件路径, 如果为0将使用当前目录 \\
+\hline
+{\em level} & 日志等级 \\
+\hline
+{\em mode} & 日志模式 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-loop\+\_\+t实例 
+logger\+\_\+t实例 
 \end{DoxyReturn}
+\hypertarget{a00066_a45bc781df24f677451bcc079de530585_a45bc781df24f677451bcc079de530585}{}\index{logger.\+c@{logger.\+c}!logger\+\_\+destroy@{logger\+\_\+destroy}}
+\index{logger\+\_\+destroy@{logger\+\_\+destroy}!logger.\+c@{logger.\+c}}
+\subsubsection[{logger\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void logger\+\_\+destroy (
+\begin{DoxyParamCaption}
+\item[{{\bf logger\+\_\+t} $\ast$}]{logger}
+\end{DoxyParamCaption}
+)}\label{a00066_a45bc781df24f677451bcc079de530585_a45bc781df24f677451bcc079de530585}
+
+
+销毁日志 
+
+
+\begin{DoxyParams}{参数}
+{\em logger} & logger\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00066_aad3695a5b5df8331b3c0f3e069f037f5_aad3695a5b5df8331b3c0f3e069f037f5}{}\index{logger.\+c@{logger.\+c}!logger\+\_\+write@{logger\+\_\+write}}
+\index{logger\+\_\+write@{logger\+\_\+write}!logger.\+c@{logger.\+c}}
+\subsubsection[{logger\+\_\+write}]{\setlength{\rightskip}{0pt plus 5cm}int logger\+\_\+write (
+\begin{DoxyParamCaption}
+\item[{{\bf logger\+\_\+t} $\ast$}]{logger, }
+\item[{{\bf logger\+\_\+level\+\_\+e}}]{level, }
+\item[{const char $\ast$}]{format, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}\label{a00066_aad3695a5b5df8331b3c0f3e069f037f5_aad3695a5b5df8331b3c0f3e069f037f5}
+
+
+写日志 
+
+
+\begin{DoxyParams}{参数}
+{\em logger} & logger\+\_\+t实例 \\
+\hline
+{\em level} & 日志等级 \\
+\hline
+{\em format} & 日志格式 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+
+
+\subsection{变量说明}
+\hypertarget{a00066_a390c05c7cb68b8334d6418733f330945_a390c05c7cb68b8334d6418733f330945}{}\index{logger.\+c@{logger.\+c}!global\+\_\+logger@{global\+\_\+logger}}
+\index{global\+\_\+logger@{global\+\_\+logger}!logger.\+c@{logger.\+c}}
+\subsubsection[{global\+\_\+logger}]{\setlength{\rightskip}{0pt plus 5cm}{\bf logger\+\_\+t}$\ast$ global\+\_\+logger = 0}\label{a00066_a390c05c7cb68b8334d6418733f330945_a390c05c7cb68b8334d6418733f330945}

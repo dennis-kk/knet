@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/broadcast_api.h 源文件</title>
+<title>knet: E:/knet-git/knet/knet/address.h 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">knet
-   &#160;<span id="projectnumber">1.4.4</span>
+   &#160;<span id="projectnumber">1.4.5</span>
    </div>
   </td>
  </tr>
@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">broadcast_api.h</div>  </div>
+<div class="title">address.h</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00039.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
@@ -114,37 +114,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef BROADCAST_API_H</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define BROADCAST_API_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef ADDRESS_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define ADDRESS_H</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00047.html">config.h</a>&quot;</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00002.html">broadcast_t</a>* <a class="code" href="a00091_gaa3b09fb6ff3281cb10736c0aabac18fc.html#gaa3b09fb6ff3281cb10736c0aabac18fc">broadcast_create</a>();</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00091_gaa28451fa4656633ded0c7b966ff159c3.html#gaa28451fa4656633ded0c7b966ff159c3">broadcast_destroy</a>(<a class="code" href="a00002.html">broadcast_t</a>* broadcast);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00005.html">channel_ref_t</a>* <a class="code" href="a00091_ga1c736809a1d0e4b7c77b617ac8ce590d.html#ga1c736809a1d0e4b7c77b617ac8ce590d">broadcast_join</a>(<a class="code" href="a00002.html">broadcast_t</a>* broadcast, <a class="code" href="a00005.html">channel_ref_t</a>* channel_ref);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00091_gad846ced37d33b750f61a88565eaed9a4.html#gad846ced37d33b750f61a88565eaed9a4">broadcast_leave</a>(<a class="code" href="a00002.html">broadcast_t</a>* broadcast, <a class="code" href="a00005.html">channel_ref_t</a>* channel_ref);</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00091_gacd045b1ca8be7fa8fac6e337934acc97.html#gacd045b1ca8be7fa8fac6e337934acc97">broadcast_get_count</a>(<a class="code" href="a00002.html">broadcast_t</a>* broadcast);</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00091_ga0e8a8826a84c9c93a96e0fda1ca846aa.html#ga0e8a8826a84c9c93a96e0fda1ca846aa">broadcast_write</a>(<a class="code" href="a00002.html">broadcast_t</a>* broadcast, <span class="keywordtype">char</span>* buffer, uint32_t size);</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* BROADCAST_API_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="a00091_gaa28451fa4656633ded0c7b966ff159c3_html_gaa28451fa4656633ded0c7b966ff159c3"><div class="ttname"><a href="a00091_gaa28451fa4656633ded0c7b966ff159c3.html#gaa28451fa4656633ded0c7b966ff159c3">broadcast_destroy</a></div><div class="ttdeci">void broadcast_destroy(broadcast_t *broadcast)</div><div class="ttdoc">销毁广播域 </div><div class="ttdef"><b>Definition:</b> broadcast.c:55</div></div>
-<div class="ttc" id="a00047_html"><div class="ttname"><a href="a00047.html">config.h</a></div></div>
-<div class="ttc" id="a00091_ga0e8a8826a84c9c93a96e0fda1ca846aa_html_ga0e8a8826a84c9c93a96e0fda1ca846aa"><div class="ttname"><a href="a00091_ga0e8a8826a84c9c93a96e0fda1ca846aa.html#ga0e8a8826a84c9c93a96e0fda1ca846aa">broadcast_write</a></div><div class="ttdeci">int broadcast_write(broadcast_t *broadcast, char *buffer, uint32_t size)</div><div class="ttdoc">广播 </div><div class="ttdef"><b>Definition:</b> broadcast.c:120</div></div>
-<div class="ttc" id="a00091_gad846ced37d33b750f61a88565eaed9a4_html_gad846ced37d33b750f61a88565eaed9a4"><div class="ttname"><a href="a00091_gad846ced37d33b750f61a88565eaed9a4.html#gad846ced37d33b750f61a88565eaed9a4">broadcast_leave</a></div><div class="ttdeci">int broadcast_leave(broadcast_t *broadcast, channel_ref_t *channel_ref)</div><div class="ttdoc">离开广播域 </div><div class="ttdef"><b>Definition:</b> broadcast.c:91</div></div>
-<div class="ttc" id="a00091_gacd045b1ca8be7fa8fac6e337934acc97_html_gacd045b1ca8be7fa8fac6e337934acc97"><div class="ttname"><a href="a00091_gacd045b1ca8be7fa8fac6e337934acc97.html#gacd045b1ca8be7fa8fac6e337934acc97">broadcast_get_count</a></div><div class="ttdeci">int broadcast_get_count(broadcast_t *broadcast)</div><div class="ttdoc">取得广播域内管道数量 </div><div class="ttdef"><b>Definition:</b> broadcast.c:109</div></div>
-<div class="ttc" id="a00005_html"><div class="ttname"><a href="a00005.html">_channel_ref_t</a></div><div class="ttdef"><b>Definition:</b> channel_ref.c:57</div></div>
-<div class="ttc" id="a00091_ga1c736809a1d0e4b7c77b617ac8ce590d_html_ga1c736809a1d0e4b7c77b617ac8ce590d"><div class="ttname"><a href="a00091_ga1c736809a1d0e4b7c77b617ac8ce590d.html#ga1c736809a1d0e4b7c77b617ac8ce590d">broadcast_join</a></div><div class="ttdeci">channel_ref_t * broadcast_join(broadcast_t *broadcast, channel_ref_t *channel_ref)</div><div class="ttdoc">加入广播域 </div><div class="ttdef"><b>Definition:</b> broadcast.c:74</div></div>
-<div class="ttc" id="a00091_gaa3b09fb6ff3281cb10736c0aabac18fc_html_gaa3b09fb6ff3281cb10736c0aabac18fc"><div class="ttname"><a href="a00091_gaa3b09fb6ff3281cb10736c0aabac18fc.html#gaa3b09fb6ff3281cb10736c0aabac18fc">broadcast_create</a></div><div class="ttdeci">broadcast_t * broadcast_create()</div><div class="ttdoc">创建广播域 </div><div class="ttdef"><b>Definition:</b> broadcast.c:36</div></div>
-<div class="ttc" id="a00002_html"><div class="ttname"><a href="a00002.html">_broadcast_t</a></div><div class="ttdef"><b>Definition:</b> broadcast.c:30</div></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00050.html">config.h</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00040.html">address_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<a class="code" href="a00001.html">address_t</a>* <a class="code" href="a00039_a017638ab20e8ffe8d3d088ab3352f425.html#a017638ab20e8ffe8d3d088ab3352f425">address_create</a>();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00039_a0d50d3966a12ad364f3a4595d3c8af33.html#a0d50d3966a12ad364f3a4595d3c8af33">address_destroy</a>(<a class="code" href="a00001.html">address_t</a>* address);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00039_abbf3c9871bb3a08477b2ebba126fb2c2.html#abbf3c9871bb3a08477b2ebba126fb2c2">address_set</a>(<a class="code" href="a00001.html">address_t</a>* address, <span class="keyword">const</span> <span class="keywordtype">char</span>* ip, <span class="keywordtype">int</span> port);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* ADDRESS_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a00039_a017638ab20e8ffe8d3d088ab3352f425_html_a017638ab20e8ffe8d3d088ab3352f425"><div class="ttname"><a href="a00039_a017638ab20e8ffe8d3d088ab3352f425.html#a017638ab20e8ffe8d3d088ab3352f425">address_create</a></div><div class="ttdeci">address_t * address_create()</div><div class="ttdoc">创建一个address_t实例 </div><div class="ttdef"><b>Definition:</b> address.c:32</div></div>
+<div class="ttc" id="a00001_html"><div class="ttname"><a href="a00001.html">_address_t</a></div><div class="ttdef"><b>Definition:</b> address.c:27</div></div>
+<div class="ttc" id="a00039_abbf3c9871bb3a08477b2ebba126fb2c2_html_abbf3c9871bb3a08477b2ebba126fb2c2"><div class="ttname"><a href="a00039_abbf3c9871bb3a08477b2ebba126fb2c2.html#abbf3c9871bb3a08477b2ebba126fb2c2">address_set</a></div><div class="ttdeci">void address_set(address_t *address, const char *ip, int port)</div><div class="ttdoc">设置IP和端口 </div><div class="ttdef"><b>Definition:</b> address.c:47</div></div>
+<div class="ttc" id="a00050_html"><div class="ttname"><a href="a00050.html">config.h</a></div></div>
+<div class="ttc" id="a00040_html"><div class="ttname"><a href="a00040.html">address_api.h</a></div></div>
+<div class="ttc" id="a00039_a0d50d3966a12ad364f3a4595d3c8af33_html_a0d50d3966a12ad364f3a4595d3c8af33"><div class="ttname"><a href="a00039_a0d50d3966a12ad364f3a4595d3c8af33.html#a0d50d3966a12ad364f3a4595d3c8af33">address_destroy</a></div><div class="ttdeci">void address_destroy(address_t *address)</div><div class="ttdoc">销毁一个address_t实例 </div><div class="ttdef"><b>Definition:</b> address.c:40</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 13日 星期一 18:21:38 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 17日 星期五 18:09:21 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

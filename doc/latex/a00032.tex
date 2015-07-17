@@ -1,38 +1,78 @@
-\hypertarget{a00032}{}\section{\+\_\+thread\+\_\+runner\+\_\+t结构体 参考}
-\label{a00032}\index{\+\_\+thread\+\_\+runner\+\_\+t@{\+\_\+thread\+\_\+runner\+\_\+t}}
+\hypertarget{a00032}{}\section{\+\_\+loop\+\_\+t结构体 参考}
+\label{a00032}\index{\+\_\+loop\+\_\+t@{\+\_\+loop\+\_\+t}}
 \subsection*{成员变量}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00047_a46bcd8005e5d86fdbc6be5af0a77156c_a46bcd8005e5d86fdbc6be5af0a77156c}{thread\+\_\+func\+\_\+t} \hyperlink{a00032_a5e254750aa5522725788d808314b6620_a5e254750aa5522725788d808314b6620}{func}
+\hyperlink{a00050_ad6644d67df4b4e3596c1eb12977d1d16_ad6644d67df4b4e3596c1eb12977d1d16}{dlist\+\_\+t} $\ast$ \hyperlink{a00032_a1d4033884e087124aff750c2fa3dd940_a1d4033884e087124aff750c2fa3dd940}{active\+\_\+channel\+\_\+list}
 \item 
-void $\ast$ \hyperlink{a00032_aab08f4e0fa5f6ffe16fcd3c055666c9c_aab08f4e0fa5f6ffe16fcd3c055666c9c}{params}
+\hyperlink{a00050_ad6644d67df4b4e3596c1eb12977d1d16_ad6644d67df4b4e3596c1eb12977d1d16}{dlist\+\_\+t} $\ast$ \hyperlink{a00032_a58281719fe93904e20d8cf371cc92916_a58281719fe93904e20d8cf371cc92916}{close\+\_\+channel\+\_\+list}
 \item 
-volatile int \hyperlink{a00032_a158d37a73657b2df73e3a2dd383808f8_a158d37a73657b2df73e3a2dd383808f8}{running}
+\hyperlink{a00050_ad6644d67df4b4e3596c1eb12977d1d16_ad6644d67df4b4e3596c1eb12977d1d16}{dlist\+\_\+t} $\ast$ \hyperlink{a00032_add84738b5cc47a7bd7fda9a538d1a0b3_add84738b5cc47a7bd7fda9a538d1a0b3}{event\+\_\+list}
 \item 
-\hyperlink{a00047_ad0ada5642d10ce71bdd90816182f9b79_ad0ada5642d10ce71bdd90816182f9b79}{thread\+\_\+id\+\_\+t} \hyperlink{a00032_ab632944b59861e33a9473347b0afdc00_ab632944b59861e33a9473347b0afdc00}{thread\+\_\+id}
+\hyperlink{a00050_ad3e00e0eb0c79dfd77ff2ff833f49c7d_ad3e00e0eb0c79dfd77ff2ff833f49c7d}{lock\+\_\+t} $\ast$ \hyperlink{a00032_ac70502c67ac58ef57d52fe62039390b7_ac70502c67ac58ef57d52fe62039390b7}{lock}
 \item 
-pthread\+\_\+key\+\_\+t \hyperlink{a00032_ad7461a4eef9b83e07f0acd4f26923744_ad7461a4eef9b83e07f0acd4f26923744}{tls\+\_\+key}
+\hyperlink{a00050_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$ \hyperlink{a00032_a90c414783f752525e92edfc76763c44e_a90c414783f752525e92edfc76763c44e}{notify\+\_\+channel}
+\item 
+\hyperlink{a00050_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$ \hyperlink{a00032_a71352fb022c26178b2777934d9aebdfb_a71352fb022c26178b2777934d9aebdfb}{read\+\_\+channel}
+\item 
+\hyperlink{a00050_a649c7e850ab247b5f70ad27e335a129d_a649c7e850ab247b5f70ad27e335a129d}{loop\+\_\+balancer\+\_\+t} $\ast$ \hyperlink{a00032_a1f91106a5e601739f7cde876de5021f9_a1f91106a5e601739f7cde876de5021f9}{balancer}
+\item 
+void $\ast$ \hyperlink{a00032_a7fccdd254b563ddcfc44ae772dfe1d21_a7fccdd254b563ddcfc44ae772dfe1d21}{impl}
+\item 
+volatile int \hyperlink{a00032_abfb04cce945320081c75c19b6898a7cf_abfb04cce945320081c75c19b6898a7cf}{running}
+\item 
+\hyperlink{a00050_ad0ada5642d10ce71bdd90816182f9b79_ad0ada5642d10ce71bdd90816182f9b79}{thread\+\_\+id\+\_\+t} \hyperlink{a00032_aa52cbdff546a9e2868d2b3397e68d6dd_aa52cbdff546a9e2868d2b3397e68d6dd}{thread\+\_\+id}
+\item 
+\hyperlink{a00050_a6c87150c8f33855c3427c783480fd8ba_a6c87150c8f33855c3427c783480fd8ba}{loop\+\_\+balance\+\_\+option\+\_\+e} \hyperlink{a00032_a90fefc1ea1db1db789b46c689a31adbc_a90fefc1ea1db1db789b46c689a31adbc}{balance\+\_\+options}
+\item 
+\hyperlink{a00050_ad060e1396346d2f5db1ec0597376a107_ad060e1396346d2f5db1ec0597376a107}{loop\+\_\+profile\+\_\+t} $\ast$ \hyperlink{a00032_ab88b0fc50824d1ee46038030a6bcd1e8_ab88b0fc50824d1ee46038030a6bcd1e8}{profile}
+\item 
+void $\ast$ \hyperlink{a00032_a5ffe8bcae7ef6f1a735b9fd127b08c74_a5ffe8bcae7ef6f1a735b9fd127b08c74}{data}
 \end{DoxyCompactItemize}
 
 
 \subsection{结构体成员变量说明}
-\hypertarget{a00032_a5e254750aa5522725788d808314b6620_a5e254750aa5522725788d808314b6620}{}\index{\+\_\+thread\+\_\+runner\+\_\+t@{\+\_\+thread\+\_\+runner\+\_\+t}!func@{func}}
-\index{func@{func}!\+\_\+thread\+\_\+runner\+\_\+t@{\+\_\+thread\+\_\+runner\+\_\+t}}
-\subsubsection[{func}]{\setlength{\rightskip}{0pt plus 5cm}{\bf thread\+\_\+func\+\_\+t} \+\_\+thread\+\_\+runner\+\_\+t\+::func}\label{a00032_a5e254750aa5522725788d808314b6620_a5e254750aa5522725788d808314b6620}
-\hypertarget{a00032_aab08f4e0fa5f6ffe16fcd3c055666c9c_aab08f4e0fa5f6ffe16fcd3c055666c9c}{}\index{\+\_\+thread\+\_\+runner\+\_\+t@{\+\_\+thread\+\_\+runner\+\_\+t}!params@{params}}
-\index{params@{params}!\+\_\+thread\+\_\+runner\+\_\+t@{\+\_\+thread\+\_\+runner\+\_\+t}}
-\subsubsection[{params}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ \+\_\+thread\+\_\+runner\+\_\+t\+::params}\label{a00032_aab08f4e0fa5f6ffe16fcd3c055666c9c_aab08f4e0fa5f6ffe16fcd3c055666c9c}
-\hypertarget{a00032_a158d37a73657b2df73e3a2dd383808f8_a158d37a73657b2df73e3a2dd383808f8}{}\index{\+\_\+thread\+\_\+runner\+\_\+t@{\+\_\+thread\+\_\+runner\+\_\+t}!running@{running}}
-\index{running@{running}!\+\_\+thread\+\_\+runner\+\_\+t@{\+\_\+thread\+\_\+runner\+\_\+t}}
-\subsubsection[{running}]{\setlength{\rightskip}{0pt plus 5cm}volatile int \+\_\+thread\+\_\+runner\+\_\+t\+::running}\label{a00032_a158d37a73657b2df73e3a2dd383808f8_a158d37a73657b2df73e3a2dd383808f8}
-\hypertarget{a00032_ab632944b59861e33a9473347b0afdc00_ab632944b59861e33a9473347b0afdc00}{}\index{\+\_\+thread\+\_\+runner\+\_\+t@{\+\_\+thread\+\_\+runner\+\_\+t}!thread\+\_\+id@{thread\+\_\+id}}
-\index{thread\+\_\+id@{thread\+\_\+id}!\+\_\+thread\+\_\+runner\+\_\+t@{\+\_\+thread\+\_\+runner\+\_\+t}}
-\subsubsection[{thread\+\_\+id}]{\setlength{\rightskip}{0pt plus 5cm}{\bf thread\+\_\+id\+\_\+t} \+\_\+thread\+\_\+runner\+\_\+t\+::thread\+\_\+id}\label{a00032_ab632944b59861e33a9473347b0afdc00_ab632944b59861e33a9473347b0afdc00}
-\hypertarget{a00032_ad7461a4eef9b83e07f0acd4f26923744_ad7461a4eef9b83e07f0acd4f26923744}{}\index{\+\_\+thread\+\_\+runner\+\_\+t@{\+\_\+thread\+\_\+runner\+\_\+t}!tls\+\_\+key@{tls\+\_\+key}}
-\index{tls\+\_\+key@{tls\+\_\+key}!\+\_\+thread\+\_\+runner\+\_\+t@{\+\_\+thread\+\_\+runner\+\_\+t}}
-\subsubsection[{tls\+\_\+key}]{\setlength{\rightskip}{0pt plus 5cm}pthread\+\_\+key\+\_\+t \+\_\+thread\+\_\+runner\+\_\+t\+::tls\+\_\+key}\label{a00032_ad7461a4eef9b83e07f0acd4f26923744_ad7461a4eef9b83e07f0acd4f26923744}
+\hypertarget{a00032_a1d4033884e087124aff750c2fa3dd940_a1d4033884e087124aff750c2fa3dd940}{}\index{\+\_\+loop\+\_\+t@{\+\_\+loop\+\_\+t}!active\+\_\+channel\+\_\+list@{active\+\_\+channel\+\_\+list}}
+\index{active\+\_\+channel\+\_\+list@{active\+\_\+channel\+\_\+list}!\+\_\+loop\+\_\+t@{\+\_\+loop\+\_\+t}}
+\subsubsection[{active\+\_\+channel\+\_\+list}]{\setlength{\rightskip}{0pt plus 5cm}{\bf dlist\+\_\+t}$\ast$ \+\_\+loop\+\_\+t\+::active\+\_\+channel\+\_\+list}\label{a00032_a1d4033884e087124aff750c2fa3dd940_a1d4033884e087124aff750c2fa3dd940}
+\hypertarget{a00032_a90fefc1ea1db1db789b46c689a31adbc_a90fefc1ea1db1db789b46c689a31adbc}{}\index{\+\_\+loop\+\_\+t@{\+\_\+loop\+\_\+t}!balance\+\_\+options@{balance\+\_\+options}}
+\index{balance\+\_\+options@{balance\+\_\+options}!\+\_\+loop\+\_\+t@{\+\_\+loop\+\_\+t}}
+\subsubsection[{balance\+\_\+options}]{\setlength{\rightskip}{0pt plus 5cm}{\bf loop\+\_\+balance\+\_\+option\+\_\+e} \+\_\+loop\+\_\+t\+::balance\+\_\+options}\label{a00032_a90fefc1ea1db1db789b46c689a31adbc_a90fefc1ea1db1db789b46c689a31adbc}
+\hypertarget{a00032_a1f91106a5e601739f7cde876de5021f9_a1f91106a5e601739f7cde876de5021f9}{}\index{\+\_\+loop\+\_\+t@{\+\_\+loop\+\_\+t}!balancer@{balancer}}
+\index{balancer@{balancer}!\+\_\+loop\+\_\+t@{\+\_\+loop\+\_\+t}}
+\subsubsection[{balancer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf loop\+\_\+balancer\+\_\+t}$\ast$ \+\_\+loop\+\_\+t\+::balancer}\label{a00032_a1f91106a5e601739f7cde876de5021f9_a1f91106a5e601739f7cde876de5021f9}
+\hypertarget{a00032_a58281719fe93904e20d8cf371cc92916_a58281719fe93904e20d8cf371cc92916}{}\index{\+\_\+loop\+\_\+t@{\+\_\+loop\+\_\+t}!close\+\_\+channel\+\_\+list@{close\+\_\+channel\+\_\+list}}
+\index{close\+\_\+channel\+\_\+list@{close\+\_\+channel\+\_\+list}!\+\_\+loop\+\_\+t@{\+\_\+loop\+\_\+t}}
+\subsubsection[{close\+\_\+channel\+\_\+list}]{\setlength{\rightskip}{0pt plus 5cm}{\bf dlist\+\_\+t}$\ast$ \+\_\+loop\+\_\+t\+::close\+\_\+channel\+\_\+list}\label{a00032_a58281719fe93904e20d8cf371cc92916_a58281719fe93904e20d8cf371cc92916}
+\hypertarget{a00032_a5ffe8bcae7ef6f1a735b9fd127b08c74_a5ffe8bcae7ef6f1a735b9fd127b08c74}{}\index{\+\_\+loop\+\_\+t@{\+\_\+loop\+\_\+t}!data@{data}}
+\index{data@{data}!\+\_\+loop\+\_\+t@{\+\_\+loop\+\_\+t}}
+\subsubsection[{data}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ \+\_\+loop\+\_\+t\+::data}\label{a00032_a5ffe8bcae7ef6f1a735b9fd127b08c74_a5ffe8bcae7ef6f1a735b9fd127b08c74}
+\hypertarget{a00032_add84738b5cc47a7bd7fda9a538d1a0b3_add84738b5cc47a7bd7fda9a538d1a0b3}{}\index{\+\_\+loop\+\_\+t@{\+\_\+loop\+\_\+t}!event\+\_\+list@{event\+\_\+list}}
+\index{event\+\_\+list@{event\+\_\+list}!\+\_\+loop\+\_\+t@{\+\_\+loop\+\_\+t}}
+\subsubsection[{event\+\_\+list}]{\setlength{\rightskip}{0pt plus 5cm}{\bf dlist\+\_\+t}$\ast$ \+\_\+loop\+\_\+t\+::event\+\_\+list}\label{a00032_add84738b5cc47a7bd7fda9a538d1a0b3_add84738b5cc47a7bd7fda9a538d1a0b3}
+\hypertarget{a00032_a7fccdd254b563ddcfc44ae772dfe1d21_a7fccdd254b563ddcfc44ae772dfe1d21}{}\index{\+\_\+loop\+\_\+t@{\+\_\+loop\+\_\+t}!impl@{impl}}
+\index{impl@{impl}!\+\_\+loop\+\_\+t@{\+\_\+loop\+\_\+t}}
+\subsubsection[{impl}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ \+\_\+loop\+\_\+t\+::impl}\label{a00032_a7fccdd254b563ddcfc44ae772dfe1d21_a7fccdd254b563ddcfc44ae772dfe1d21}
+\hypertarget{a00032_ac70502c67ac58ef57d52fe62039390b7_ac70502c67ac58ef57d52fe62039390b7}{}\index{\+\_\+loop\+\_\+t@{\+\_\+loop\+\_\+t}!lock@{lock}}
+\index{lock@{lock}!\+\_\+loop\+\_\+t@{\+\_\+loop\+\_\+t}}
+\subsubsection[{lock}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lock\+\_\+t}$\ast$ \+\_\+loop\+\_\+t\+::lock}\label{a00032_ac70502c67ac58ef57d52fe62039390b7_ac70502c67ac58ef57d52fe62039390b7}
+\hypertarget{a00032_a90c414783f752525e92edfc76763c44e_a90c414783f752525e92edfc76763c44e}{}\index{\+\_\+loop\+\_\+t@{\+\_\+loop\+\_\+t}!notify\+\_\+channel@{notify\+\_\+channel}}
+\index{notify\+\_\+channel@{notify\+\_\+channel}!\+\_\+loop\+\_\+t@{\+\_\+loop\+\_\+t}}
+\subsubsection[{notify\+\_\+channel}]{\setlength{\rightskip}{0pt plus 5cm}{\bf channel\+\_\+ref\+\_\+t}$\ast$ \+\_\+loop\+\_\+t\+::notify\+\_\+channel}\label{a00032_a90c414783f752525e92edfc76763c44e_a90c414783f752525e92edfc76763c44e}
+\hypertarget{a00032_ab88b0fc50824d1ee46038030a6bcd1e8_ab88b0fc50824d1ee46038030a6bcd1e8}{}\index{\+\_\+loop\+\_\+t@{\+\_\+loop\+\_\+t}!profile@{profile}}
+\index{profile@{profile}!\+\_\+loop\+\_\+t@{\+\_\+loop\+\_\+t}}
+\subsubsection[{profile}]{\setlength{\rightskip}{0pt plus 5cm}{\bf loop\+\_\+profile\+\_\+t}$\ast$ \+\_\+loop\+\_\+t\+::profile}\label{a00032_ab88b0fc50824d1ee46038030a6bcd1e8_ab88b0fc50824d1ee46038030a6bcd1e8}
+\hypertarget{a00032_a71352fb022c26178b2777934d9aebdfb_a71352fb022c26178b2777934d9aebdfb}{}\index{\+\_\+loop\+\_\+t@{\+\_\+loop\+\_\+t}!read\+\_\+channel@{read\+\_\+channel}}
+\index{read\+\_\+channel@{read\+\_\+channel}!\+\_\+loop\+\_\+t@{\+\_\+loop\+\_\+t}}
+\subsubsection[{read\+\_\+channel}]{\setlength{\rightskip}{0pt plus 5cm}{\bf channel\+\_\+ref\+\_\+t}$\ast$ \+\_\+loop\+\_\+t\+::read\+\_\+channel}\label{a00032_a71352fb022c26178b2777934d9aebdfb_a71352fb022c26178b2777934d9aebdfb}
+\hypertarget{a00032_abfb04cce945320081c75c19b6898a7cf_abfb04cce945320081c75c19b6898a7cf}{}\index{\+\_\+loop\+\_\+t@{\+\_\+loop\+\_\+t}!running@{running}}
+\index{running@{running}!\+\_\+loop\+\_\+t@{\+\_\+loop\+\_\+t}}
+\subsubsection[{running}]{\setlength{\rightskip}{0pt plus 5cm}volatile int \+\_\+loop\+\_\+t\+::running}\label{a00032_abfb04cce945320081c75c19b6898a7cf_abfb04cce945320081c75c19b6898a7cf}
+\hypertarget{a00032_aa52cbdff546a9e2868d2b3397e68d6dd_aa52cbdff546a9e2868d2b3397e68d6dd}{}\index{\+\_\+loop\+\_\+t@{\+\_\+loop\+\_\+t}!thread\+\_\+id@{thread\+\_\+id}}
+\index{thread\+\_\+id@{thread\+\_\+id}!\+\_\+loop\+\_\+t@{\+\_\+loop\+\_\+t}}
+\subsubsection[{thread\+\_\+id}]{\setlength{\rightskip}{0pt plus 5cm}{\bf thread\+\_\+id\+\_\+t} \+\_\+loop\+\_\+t\+::thread\+\_\+id}\label{a00032_aa52cbdff546a9e2868d2b3397e68d6dd_aa52cbdff546a9e2868d2b3397e68d6dd}
 
 
 该结构体的文档由以下文件生成\+:\begin{DoxyCompactItemize}
 \item 
-E\+:/knet-\/git/knet/knet/\hyperlink{a00072}{misc.\+c}\end{DoxyCompactItemize}
+E\+:/knet-\/git/knet/knet/\hyperlink{a00068}{loop.\+c}\end{DoxyCompactItemize}

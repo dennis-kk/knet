@@ -37,13 +37,13 @@ framework_raiser_t* framework_raiser_create(framework_t* f, loop_t* loop);
 
 /**
  * 销毁网络连接发起者
- * @param a framework_raiser_t实例
+ * @param raiser framework_raiser_t实例
  */
 void framework_raiser_destroy(framework_raiser_t* raiser);
 
 /**
  * 启动网络连接发起者
- * @param a framework_raiser_t实例
+ * @param raiser framework_raiser_t实例
  * @retval error_ok 成功
  * @retval 其他 失败
  */
@@ -51,13 +51,13 @@ int framework_raiser_start(framework_raiser_t* raiser);
 
 /**
  * 关闭网络连接发起者
- * @param a framework_raiser_t实例
+ * @param raiser framework_raiser_t实例
  */
 void framework_raiser_stop(framework_raiser_t* raiser);
 
 /**
  * 等待网络连接发起者
- * @param a framework_raiser_t实例
+ * @param raiser framework_raiser_t实例
  */
 void framework_raiser_wait_for_stop(framework_raiser_t* raiser);
 

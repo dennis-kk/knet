@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: _logger_t结构体 参考</title>
+<title>knet: _ktimer_t结构体 参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">knet
-   &#160;<span id="projectnumber">1.4.4</span>
+   &#160;<span id="projectnumber">1.4.5</span>
    </div>
   </td>
  </tr>
@@ -86,28 +86,42 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
   <div class="summary">
 <a href="#pub-attribs">成员变量</a>  </div>
   <div class="headertitle">
-<div class="title">_logger_t结构体 参考</div>  </div>
+<div class="title">_ktimer_t结构体 参考</div>  </div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 成员变量</h2></td></tr>
-<tr class="memitem:a72330b5809799b449e034987289c7ae5"><td class="memItemLeft" align="right" valign="top">FILE *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00025_a72330b5809799b449e034987289c7ae5.html#a72330b5809799b449e034987289c7ae5">fd</a></td></tr>
-<tr class="separator:a72330b5809799b449e034987289c7ae5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea62dc2d11b22e3a6c689a7dccac9d78"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00047_afe883c56a5fd8d7794a3dd36780ed9d0.html#afe883c56a5fd8d7794a3dd36780ed9d0">logger_level_e</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00025_aea62dc2d11b22e3a6c689a7dccac9d78.html#aea62dc2d11b22e3a6c689a7dccac9d78">level</a></td></tr>
-<tr class="separator:aea62dc2d11b22e3a6c689a7dccac9d78"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c4fac533ec7a74d823ccfb25710216a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00047_aa72cd8c306f50bee7c64e1daa1c1f3f4.html#aa72cd8c306f50bee7c64e1daa1c1f3f4">logger_mode_e</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00025_a2c4fac533ec7a74d823ccfb25710216a.html#a2c4fac533ec7a74d823ccfb25710216a">mode</a></td></tr>
-<tr class="separator:a2c4fac533ec7a74d823ccfb25710216a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a321cb9563007ebbec8aaf91e6cb7b976"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00047_ad3e00e0eb0c79dfd77ff2ff833f49c7d.html#ad3e00e0eb0c79dfd77ff2ff833f49c7d">lock_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00025_a321cb9563007ebbec8aaf91e6cb7b976.html#a321cb9563007ebbec8aaf91e6cb7b976">lock</a></td></tr>
-<tr class="separator:a321cb9563007ebbec8aaf91e6cb7b976"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3efe4998796ae77714c2bd293891506"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00050_ad6644d67df4b4e3596c1eb12977d1d16.html#ad6644d67df4b4e3596c1eb12977d1d16">dlist_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00025_af3efe4998796ae77714c2bd293891506.html#af3efe4998796ae77714c2bd293891506">current_list</a></td></tr>
+<tr class="separator:af3efe4998796ae77714c2bd293891506"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5514bb4918b14de260b0a9e60d2b040a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00050_a62053232bcf3566010ef98a7d77c3cc8.html#a62053232bcf3566010ef98a7d77c3cc8">dlist_node_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00025_a5514bb4918b14de260b0a9e60d2b040a.html#a5514bb4918b14de260b0a9e60d2b040a">list_node</a></td></tr>
+<tr class="separator:a5514bb4918b14de260b0a9e60d2b040a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa990d5bd4a8b8079988b9db4c1cc11f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00050_a024af2aa29615e7a811ea6c45438157d.html#a024af2aa29615e7a811ea6c45438157d">ktimer_loop_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00025_aa990d5bd4a8b8079988b9db4c1cc11f5.html#aa990d5bd4a8b8079988b9db4c1cc11f5">ktimer_loop</a></td></tr>
+<tr class="separator:aa990d5bd4a8b8079988b9db4c1cc11f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7423b634636770ecb2f6edfbc6bdc73d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00050_a42e924130e6eb3bd995344f6d3f3e918.html#a42e924130e6eb3bd995344f6d3f3e918">ktimer_type_e</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00025_a7423b634636770ecb2f6edfbc6bdc73d.html#a7423b634636770ecb2f6edfbc6bdc73d">type</a></td></tr>
+<tr class="separator:a7423b634636770ecb2f6edfbc6bdc73d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab819f6a6f6ada412a7f48eacf2bbe329"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00050_a2333fd0f2c3a85faf586300ca40deed4.html#a2333fd0f2c3a85faf586300ca40deed4">ktimer_cb_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00025_ab819f6a6f6ada412a7f48eacf2bbe329.html#ab819f6a6f6ada412a7f48eacf2bbe329">cb</a></td></tr>
+<tr class="separator:ab819f6a6f6ada412a7f48eacf2bbe329"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06e03c86d2720dac84bef631e6a8e47a"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00025_a06e03c86d2720dac84bef631e6a8e47a.html#a06e03c86d2720dac84bef631e6a8e47a">data</a></td></tr>
+<tr class="separator:a06e03c86d2720dac84bef631e6a8e47a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a12892ba226e41cc852fd118b7fd08b"><td class="memItemLeft" align="right" valign="top">time_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00025_a1a12892ba226e41cc852fd118b7fd08b.html#a1a12892ba226e41cc852fd118b7fd08b">ms</a></td></tr>
+<tr class="separator:a1a12892ba226e41cc852fd118b7fd08b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36cb3a8cf9533869881fbcecc06554f9"><td class="memItemLeft" align="right" valign="top">time_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00025_a36cb3a8cf9533869881fbcecc06554f9.html#a36cb3a8cf9533869881fbcecc06554f9">intval</a></td></tr>
+<tr class="separator:a36cb3a8cf9533869881fbcecc06554f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b65efd78ea3c5e6cee2c0992cd0cead"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00025_a6b65efd78ea3c5e6cee2c0992cd0cead.html#a6b65efd78ea3c5e6cee2c0992cd0cead">times</a></td></tr>
+<tr class="separator:a6b65efd78ea3c5e6cee2c0992cd0cead"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abad8750e54845862d2768b348997db69"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00025_abad8750e54845862d2768b348997db69.html#abad8750e54845862d2768b348997db69">current_times</a></td></tr>
+<tr class="separator:abad8750e54845862d2768b348997db69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbde3157e6d8d730adcfd5463ed7b131"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00025_afbde3157e6d8d730adcfd5463ed7b131.html#afbde3157e6d8d730adcfd5463ed7b131">stop</a></td></tr>
+<tr class="separator:afbde3157e6d8d730adcfd5463ed7b131"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>该结构体的文档由以下文件生成:<ul>
-<li>E:/knet-git/knet/knet/<a class="el" href="a00060.html">logger.c</a></li>
+<li>E:/knet-git/knet/knet/<a class="el" href="a00094.html">timer.c</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 13日 星期一 18:21:39 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 17日 星期五 18:09:22 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

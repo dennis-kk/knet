@@ -1,28 +1,48 @@
-\hypertarget{a00015}{}\section{\+\_\+krpc\+\_\+map\+\_\+t结构体 参考}
-\label{a00015}\index{\+\_\+krpc\+\_\+map\+\_\+t@{\+\_\+krpc\+\_\+map\+\_\+t}}
+\hypertarget{a00015}{}\section{\+\_\+hash\+\_\+t结构体 参考}
+\label{a00015}\index{\+\_\+hash\+\_\+t@{\+\_\+hash\+\_\+t}}
 \subsection*{成员变量}
 \begin{DoxyCompactItemize}
 \item 
-uint16\+\_\+t \hyperlink{a00015_ac15cc07012dd09c3148595a58e7044c8_ac15cc07012dd09c3148595a58e7044c8}{key\+\_\+type}
+uint32\+\_\+t \hyperlink{a00015_a670ef62d04ed8614eb5c921e8610c0eb_a670ef62d04ed8614eb5c921e8610c0eb}{size}
 \item 
-uint16\+\_\+t \hyperlink{a00015_acc4c0879bedc13cb9b4e2f3695905810_acc4c0879bedc13cb9b4e2f3695905810}{value\+\_\+type}
+uint32\+\_\+t \hyperlink{a00015_a49e8948b5242af0d06671e5a9e4bf299_a49e8948b5242af0d06671e5a9e4bf299}{count}
 \item 
-\hyperlink{a00047_a188677c3015513590ab998e96b999966_a188677c3015513590ab998e96b999966}{hash\+\_\+t} $\ast$ \hyperlink{a00015_aed4e46fb2ad26a88c6e03d666c1170f7_aed4e46fb2ad26a88c6e03d666c1170f7}{hash}
+\hyperlink{a00050_ad6644d67df4b4e3596c1eb12977d1d16_ad6644d67df4b4e3596c1eb12977d1d16}{dlist\+\_\+t} $\ast$$\ast$ \hyperlink{a00015_ace932642a1e9be419a96d7bd20d3d0cf_ace932642a1e9be419a96d7bd20d3d0cf}{buckets}
+\item 
+\hyperlink{a00050_a5dcd1ed9242185e4448352748e58573d_a5dcd1ed9242185e4448352748e58573d}{hash\+\_\+dtor\+\_\+t} \hyperlink{a00015_a440743e5469433eadb5f6150120ecb7b_a440743e5469433eadb5f6150120ecb7b}{dtor}
+\item 
+uint32\+\_\+t \hyperlink{a00015_a0508ecea0c72d04bae0c5238d14f1b64_a0508ecea0c72d04bae0c5238d14f1b64}{it\+\_\+index}
+\item 
+\hyperlink{a00050_a62053232bcf3566010ef98a7d77c3cc8_a62053232bcf3566010ef98a7d77c3cc8}{dlist\+\_\+node\+\_\+t} $\ast$ \hyperlink{a00015_a2ecda37d04a240f7d06d482fd28507c0_a2ecda37d04a240f7d06d482fd28507c0}{it\+\_\+node\+\_\+safe}
+\item 
+\hyperlink{a00050_a62053232bcf3566010ef98a7d77c3cc8_a62053232bcf3566010ef98a7d77c3cc8}{dlist\+\_\+node\+\_\+t} $\ast$ \hyperlink{a00015_a2b1764711c152f4aae8619b7fedb005c_a2b1764711c152f4aae8619b7fedb005c}{it\+\_\+node\+\_\+next}
 \end{DoxyCompactItemize}
 
 
 \subsection{结构体成员变量说明}
-\hypertarget{a00015_aed4e46fb2ad26a88c6e03d666c1170f7_aed4e46fb2ad26a88c6e03d666c1170f7}{}\index{\+\_\+krpc\+\_\+map\+\_\+t@{\+\_\+krpc\+\_\+map\+\_\+t}!hash@{hash}}
-\index{hash@{hash}!\+\_\+krpc\+\_\+map\+\_\+t@{\+\_\+krpc\+\_\+map\+\_\+t}}
-\subsubsection[{hash}]{\setlength{\rightskip}{0pt plus 5cm}{\bf hash\+\_\+t}$\ast$ \+\_\+krpc\+\_\+map\+\_\+t\+::hash}\label{a00015_aed4e46fb2ad26a88c6e03d666c1170f7_aed4e46fb2ad26a88c6e03d666c1170f7}
-\hypertarget{a00015_ac15cc07012dd09c3148595a58e7044c8_ac15cc07012dd09c3148595a58e7044c8}{}\index{\+\_\+krpc\+\_\+map\+\_\+t@{\+\_\+krpc\+\_\+map\+\_\+t}!key\+\_\+type@{key\+\_\+type}}
-\index{key\+\_\+type@{key\+\_\+type}!\+\_\+krpc\+\_\+map\+\_\+t@{\+\_\+krpc\+\_\+map\+\_\+t}}
-\subsubsection[{key\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t \+\_\+krpc\+\_\+map\+\_\+t\+::key\+\_\+type}\label{a00015_ac15cc07012dd09c3148595a58e7044c8_ac15cc07012dd09c3148595a58e7044c8}
-\hypertarget{a00015_acc4c0879bedc13cb9b4e2f3695905810_acc4c0879bedc13cb9b4e2f3695905810}{}\index{\+\_\+krpc\+\_\+map\+\_\+t@{\+\_\+krpc\+\_\+map\+\_\+t}!value\+\_\+type@{value\+\_\+type}}
-\index{value\+\_\+type@{value\+\_\+type}!\+\_\+krpc\+\_\+map\+\_\+t@{\+\_\+krpc\+\_\+map\+\_\+t}}
-\subsubsection[{value\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t \+\_\+krpc\+\_\+map\+\_\+t\+::value\+\_\+type}\label{a00015_acc4c0879bedc13cb9b4e2f3695905810_acc4c0879bedc13cb9b4e2f3695905810}
+\hypertarget{a00015_ace932642a1e9be419a96d7bd20d3d0cf_ace932642a1e9be419a96d7bd20d3d0cf}{}\index{\+\_\+hash\+\_\+t@{\+\_\+hash\+\_\+t}!buckets@{buckets}}
+\index{buckets@{buckets}!\+\_\+hash\+\_\+t@{\+\_\+hash\+\_\+t}}
+\subsubsection[{buckets}]{\setlength{\rightskip}{0pt plus 5cm}{\bf dlist\+\_\+t}$\ast$$\ast$ \+\_\+hash\+\_\+t\+::buckets}\label{a00015_ace932642a1e9be419a96d7bd20d3d0cf_ace932642a1e9be419a96d7bd20d3d0cf}
+\hypertarget{a00015_a49e8948b5242af0d06671e5a9e4bf299_a49e8948b5242af0d06671e5a9e4bf299}{}\index{\+\_\+hash\+\_\+t@{\+\_\+hash\+\_\+t}!count@{count}}
+\index{count@{count}!\+\_\+hash\+\_\+t@{\+\_\+hash\+\_\+t}}
+\subsubsection[{count}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t \+\_\+hash\+\_\+t\+::count}\label{a00015_a49e8948b5242af0d06671e5a9e4bf299_a49e8948b5242af0d06671e5a9e4bf299}
+\hypertarget{a00015_a440743e5469433eadb5f6150120ecb7b_a440743e5469433eadb5f6150120ecb7b}{}\index{\+\_\+hash\+\_\+t@{\+\_\+hash\+\_\+t}!dtor@{dtor}}
+\index{dtor@{dtor}!\+\_\+hash\+\_\+t@{\+\_\+hash\+\_\+t}}
+\subsubsection[{dtor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf hash\+\_\+dtor\+\_\+t} \+\_\+hash\+\_\+t\+::dtor}\label{a00015_a440743e5469433eadb5f6150120ecb7b_a440743e5469433eadb5f6150120ecb7b}
+\hypertarget{a00015_a0508ecea0c72d04bae0c5238d14f1b64_a0508ecea0c72d04bae0c5238d14f1b64}{}\index{\+\_\+hash\+\_\+t@{\+\_\+hash\+\_\+t}!it\+\_\+index@{it\+\_\+index}}
+\index{it\+\_\+index@{it\+\_\+index}!\+\_\+hash\+\_\+t@{\+\_\+hash\+\_\+t}}
+\subsubsection[{it\+\_\+index}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t \+\_\+hash\+\_\+t\+::it\+\_\+index}\label{a00015_a0508ecea0c72d04bae0c5238d14f1b64_a0508ecea0c72d04bae0c5238d14f1b64}
+\hypertarget{a00015_a2b1764711c152f4aae8619b7fedb005c_a2b1764711c152f4aae8619b7fedb005c}{}\index{\+\_\+hash\+\_\+t@{\+\_\+hash\+\_\+t}!it\+\_\+node\+\_\+next@{it\+\_\+node\+\_\+next}}
+\index{it\+\_\+node\+\_\+next@{it\+\_\+node\+\_\+next}!\+\_\+hash\+\_\+t@{\+\_\+hash\+\_\+t}}
+\subsubsection[{it\+\_\+node\+\_\+next}]{\setlength{\rightskip}{0pt plus 5cm}{\bf dlist\+\_\+node\+\_\+t}$\ast$ \+\_\+hash\+\_\+t\+::it\+\_\+node\+\_\+next}\label{a00015_a2b1764711c152f4aae8619b7fedb005c_a2b1764711c152f4aae8619b7fedb005c}
+\hypertarget{a00015_a2ecda37d04a240f7d06d482fd28507c0_a2ecda37d04a240f7d06d482fd28507c0}{}\index{\+\_\+hash\+\_\+t@{\+\_\+hash\+\_\+t}!it\+\_\+node\+\_\+safe@{it\+\_\+node\+\_\+safe}}
+\index{it\+\_\+node\+\_\+safe@{it\+\_\+node\+\_\+safe}!\+\_\+hash\+\_\+t@{\+\_\+hash\+\_\+t}}
+\subsubsection[{it\+\_\+node\+\_\+safe}]{\setlength{\rightskip}{0pt plus 5cm}{\bf dlist\+\_\+node\+\_\+t}$\ast$ \+\_\+hash\+\_\+t\+::it\+\_\+node\+\_\+safe}\label{a00015_a2ecda37d04a240f7d06d482fd28507c0_a2ecda37d04a240f7d06d482fd28507c0}
+\hypertarget{a00015_a670ef62d04ed8614eb5c921e8610c0eb_a670ef62d04ed8614eb5c921e8610c0eb}{}\index{\+\_\+hash\+\_\+t@{\+\_\+hash\+\_\+t}!size@{size}}
+\index{size@{size}!\+\_\+hash\+\_\+t@{\+\_\+hash\+\_\+t}}
+\subsubsection[{size}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t \+\_\+hash\+\_\+t\+::size}\label{a00015_a670ef62d04ed8614eb5c921e8610c0eb_a670ef62d04ed8614eb5c921e8610c0eb}
 
 
 该结构体的文档由以下文件生成\+:\begin{DoxyCompactItemize}
 \item 
-E\+:/knet-\/git/knet/knet/\hyperlink{a00078}{rpc\+\_\+object.\+c}\end{DoxyCompactItemize}
+E\+:/knet-\/git/knet/knet/\hyperlink{a00061}{hash.\+c}\end{DoxyCompactItemize}

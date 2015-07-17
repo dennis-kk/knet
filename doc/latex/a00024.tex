@@ -1,18 +1,43 @@
-\hypertarget{a00024}{}\section{\+\_\+lock\+\_\+t结构体 参考}
-\label{a00024}\index{\+\_\+lock\+\_\+t@{\+\_\+lock\+\_\+t}}
+\hypertarget{a00024}{}\section{\+\_\+ktimer\+\_\+loop\+\_\+t结构体 参考}
+\label{a00024}\index{\+\_\+ktimer\+\_\+loop\+\_\+t@{\+\_\+ktimer\+\_\+loop\+\_\+t}}
 \subsection*{成员变量}
 \begin{DoxyCompactItemize}
 \item 
-pthread\+\_\+mutex\+\_\+t \hyperlink{a00024_ad70401bf297691adf8f5407185246bb4_ad70401bf297691adf8f5407185246bb4}{lock}
+\hyperlink{a00050_ad6644d67df4b4e3596c1eb12977d1d16_ad6644d67df4b4e3596c1eb12977d1d16}{dlist\+\_\+t} $\ast$$\ast$ \hyperlink{a00024_af68f6f946f2b3583d04d8a459b738d29_af68f6f946f2b3583d04d8a459b738d29}{ktimer\+\_\+wheels}
+\item 
+int \hyperlink{a00024_aab0b79491b93f3752c93dfb1d8c60e66_aab0b79491b93f3752c93dfb1d8c60e66}{running}
+\item 
+int \hyperlink{a00024_aeb8772fdff5de87ce1db9878f1357043_aeb8772fdff5de87ce1db9878f1357043}{max\+\_\+slot}
+\item 
+int \hyperlink{a00024_ae54f1df7a355b968dcc9baf7dca10a8d_ae54f1df7a355b968dcc9baf7dca10a8d}{slot}
+\item 
+time\+\_\+t \hyperlink{a00024_aa0cf5e5f3b5532aa4335d25831c9d2c3_aa0cf5e5f3b5532aa4335d25831c9d2c3}{last\+\_\+tick}
+\item 
+time\+\_\+t \hyperlink{a00024_a5bfbb75720e6a5310417980347763c82_a5bfbb75720e6a5310417980347763c82}{tick\+\_\+intval}
 \end{DoxyCompactItemize}
 
 
 \subsection{结构体成员变量说明}
-\hypertarget{a00024_ad70401bf297691adf8f5407185246bb4_ad70401bf297691adf8f5407185246bb4}{}\index{\+\_\+lock\+\_\+t@{\+\_\+lock\+\_\+t}!lock@{lock}}
-\index{lock@{lock}!\+\_\+lock\+\_\+t@{\+\_\+lock\+\_\+t}}
-\subsubsection[{lock}]{\setlength{\rightskip}{0pt plus 5cm}pthread\+\_\+mutex\+\_\+t \+\_\+lock\+\_\+t\+::lock}\label{a00024_ad70401bf297691adf8f5407185246bb4_ad70401bf297691adf8f5407185246bb4}
+\hypertarget{a00024_af68f6f946f2b3583d04d8a459b738d29_af68f6f946f2b3583d04d8a459b738d29}{}\index{\+\_\+ktimer\+\_\+loop\+\_\+t@{\+\_\+ktimer\+\_\+loop\+\_\+t}!ktimer\+\_\+wheels@{ktimer\+\_\+wheels}}
+\index{ktimer\+\_\+wheels@{ktimer\+\_\+wheels}!\+\_\+ktimer\+\_\+loop\+\_\+t@{\+\_\+ktimer\+\_\+loop\+\_\+t}}
+\subsubsection[{ktimer\+\_\+wheels}]{\setlength{\rightskip}{0pt plus 5cm}{\bf dlist\+\_\+t}$\ast$$\ast$ \+\_\+ktimer\+\_\+loop\+\_\+t\+::ktimer\+\_\+wheels}\label{a00024_af68f6f946f2b3583d04d8a459b738d29_af68f6f946f2b3583d04d8a459b738d29}
+\hypertarget{a00024_aa0cf5e5f3b5532aa4335d25831c9d2c3_aa0cf5e5f3b5532aa4335d25831c9d2c3}{}\index{\+\_\+ktimer\+\_\+loop\+\_\+t@{\+\_\+ktimer\+\_\+loop\+\_\+t}!last\+\_\+tick@{last\+\_\+tick}}
+\index{last\+\_\+tick@{last\+\_\+tick}!\+\_\+ktimer\+\_\+loop\+\_\+t@{\+\_\+ktimer\+\_\+loop\+\_\+t}}
+\subsubsection[{last\+\_\+tick}]{\setlength{\rightskip}{0pt plus 5cm}time\+\_\+t \+\_\+ktimer\+\_\+loop\+\_\+t\+::last\+\_\+tick}\label{a00024_aa0cf5e5f3b5532aa4335d25831c9d2c3_aa0cf5e5f3b5532aa4335d25831c9d2c3}
+\hypertarget{a00024_aeb8772fdff5de87ce1db9878f1357043_aeb8772fdff5de87ce1db9878f1357043}{}\index{\+\_\+ktimer\+\_\+loop\+\_\+t@{\+\_\+ktimer\+\_\+loop\+\_\+t}!max\+\_\+slot@{max\+\_\+slot}}
+\index{max\+\_\+slot@{max\+\_\+slot}!\+\_\+ktimer\+\_\+loop\+\_\+t@{\+\_\+ktimer\+\_\+loop\+\_\+t}}
+\subsubsection[{max\+\_\+slot}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+ktimer\+\_\+loop\+\_\+t\+::max\+\_\+slot}\label{a00024_aeb8772fdff5de87ce1db9878f1357043_aeb8772fdff5de87ce1db9878f1357043}
+\hypertarget{a00024_aab0b79491b93f3752c93dfb1d8c60e66_aab0b79491b93f3752c93dfb1d8c60e66}{}\index{\+\_\+ktimer\+\_\+loop\+\_\+t@{\+\_\+ktimer\+\_\+loop\+\_\+t}!running@{running}}
+\index{running@{running}!\+\_\+ktimer\+\_\+loop\+\_\+t@{\+\_\+ktimer\+\_\+loop\+\_\+t}}
+\subsubsection[{running}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+ktimer\+\_\+loop\+\_\+t\+::running}\label{a00024_aab0b79491b93f3752c93dfb1d8c60e66_aab0b79491b93f3752c93dfb1d8c60e66}
+\hypertarget{a00024_ae54f1df7a355b968dcc9baf7dca10a8d_ae54f1df7a355b968dcc9baf7dca10a8d}{}\index{\+\_\+ktimer\+\_\+loop\+\_\+t@{\+\_\+ktimer\+\_\+loop\+\_\+t}!slot@{slot}}
+\index{slot@{slot}!\+\_\+ktimer\+\_\+loop\+\_\+t@{\+\_\+ktimer\+\_\+loop\+\_\+t}}
+\subsubsection[{slot}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+ktimer\+\_\+loop\+\_\+t\+::slot}\label{a00024_ae54f1df7a355b968dcc9baf7dca10a8d_ae54f1df7a355b968dcc9baf7dca10a8d}
+\hypertarget{a00024_a5bfbb75720e6a5310417980347763c82_a5bfbb75720e6a5310417980347763c82}{}\index{\+\_\+ktimer\+\_\+loop\+\_\+t@{\+\_\+ktimer\+\_\+loop\+\_\+t}!tick\+\_\+intval@{tick\+\_\+intval}}
+\index{tick\+\_\+intval@{tick\+\_\+intval}!\+\_\+ktimer\+\_\+loop\+\_\+t@{\+\_\+ktimer\+\_\+loop\+\_\+t}}
+\subsubsection[{tick\+\_\+intval}]{\setlength{\rightskip}{0pt plus 5cm}time\+\_\+t \+\_\+ktimer\+\_\+loop\+\_\+t\+::tick\+\_\+intval}\label{a00024_a5bfbb75720e6a5310417980347763c82_a5bfbb75720e6a5310417980347763c82}
 
 
 该结构体的文档由以下文件生成\+:\begin{DoxyCompactItemize}
 \item 
-E\+:/knet-\/git/knet/knet/\hyperlink{a00072}{misc.\+c}\end{DoxyCompactItemize}
+E\+:/knet-\/git/knet/knet/\hyperlink{a00094}{timer.\+c}\end{DoxyCompactItemize}

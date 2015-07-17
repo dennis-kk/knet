@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/timer.h 源文件</title>
+<title>knet: E:/knet-git/knet/knet/loop_profile.h 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">knet
-   &#160;<span id="projectnumber">1.4.3</span>
+   &#160;<span id="projectnumber">1.4.5</span>
    </div>
   </td>
  </tr>
@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">timer.h</div>  </div>
+<div class="title">loop_profile.h</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00078.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
@@ -114,40 +114,54 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef TIMER_H</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define TIMER_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef LOOP_PROFILE_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define LOOP_PROFILE_H</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00044.html">config.h</a>&quot;</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00079.html">timer_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00050.html">config.h</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00079.html">loop_profile_api.h</a>&quot;</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00078_af64f93b32c31cd222c02f0ad40bb642c.html#af64f93b32c31cd222c02f0ad40bb642c">ktimer_destroy</a>(<a class="code" href="a00019.html">ktimer_t</a>* timer);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00078_a6e263963404ff40c8d7865ba117d3446.html#a6e263963404ff40c8d7865ba117d3446">ktimer_check_timeout</a>(<a class="code" href="a00019.html">ktimer_t</a>* timer, time_t ms);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00078_a7c448e677f3022e5e7d910d3961dda61.html#a7c448e677f3022e5e7d910d3961dda61">ktimer_set_current_list</a>(<a class="code" href="a00019.html">ktimer_t</a>* timer, <a class="code" href="a00008.html">dlist_t</a>* list);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<a class="code" href="a00008.html">dlist_t</a>* <a class="code" href="a00078_ad43b4e56bb273f1559d13143a783c974.html#ad43b4e56bb273f1559d13143a783c974">ktimer_get_current_list</a>(<a class="code" href="a00019.html">ktimer_t</a>* timer);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00078_a9d06164f71d9a170962ba64e2cb7b79f.html#a9d06164f71d9a170962ba64e2cb7b79f">ktimer_set_current_list_node</a>(<a class="code" href="a00019.html">ktimer_t</a>* timer, <a class="code" href="a00007.html">dlist_node_t</a>* node);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<a class="code" href="a00007.html">dlist_node_t</a>* <a class="code" href="a00078_afdfb2aec56b4e94af90f3befcef9b223.html#afdfb2aec56b4e94af90f3befcef9b223">ktimer_get_current_list_node</a>(<a class="code" href="a00019.html">ktimer_t</a>* timer);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* TIMER_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="a00078_a7c448e677f3022e5e7d910d3961dda61_html_a7c448e677f3022e5e7d910d3961dda61"><div class="ttname"><a href="a00078_a7c448e677f3022e5e7d910d3961dda61.html#a7c448e677f3022e5e7d910d3961dda61">ktimer_set_current_list</a></div><div class="ttdeci">void ktimer_set_current_list(ktimer_t *timer, dlist_t *list)</div><div class="ttdoc">设置定时器所在的当前链表 </div><div class="ttdef"><b>Definition:</b> timer.c:174</div></div>
-<div class="ttc" id="a00044_html"><div class="ttname"><a href="a00044.html">config.h</a></div></div>
-<div class="ttc" id="a00079_html"><div class="ttname"><a href="a00079.html">timer_api.h</a></div></div>
-<div class="ttc" id="a00078_afdfb2aec56b4e94af90f3befcef9b223_html_afdfb2aec56b4e94af90f3befcef9b223"><div class="ttname"><a href="a00078_afdfb2aec56b4e94af90f3befcef9b223.html#afdfb2aec56b4e94af90f3befcef9b223">ktimer_get_current_list_node</a></div><div class="ttdeci">dlist_node_t * ktimer_get_current_list_node(ktimer_t *timer)</div><div class="ttdoc">取得当前链表节点 </div><div class="ttdef"><b>Definition:</b> timer.c:190</div></div>
-<div class="ttc" id="a00078_af64f93b32c31cd222c02f0ad40bb642c_html_af64f93b32c31cd222c02f0ad40bb642c"><div class="ttname"><a href="a00078_af64f93b32c31cd222c02f0ad40bb642c.html#af64f93b32c31cd222c02f0ad40bb642c">ktimer_destroy</a></div><div class="ttdeci">void ktimer_destroy(ktimer_t *timer)</div><div class="ttdoc">销毁定时器 </div><div class="ttdef"><b>Definition:</b> timer.c:205</div></div>
-<div class="ttc" id="a00078_a6e263963404ff40c8d7865ba117d3446_html_a6e263963404ff40c8d7865ba117d3446"><div class="ttname"><a href="a00078_a6e263963404ff40c8d7865ba117d3446.html#a6e263963404ff40c8d7865ba117d3446">ktimer_check_timeout</a></div><div class="ttdeci">int ktimer_check_timeout(ktimer_t *timer, time_t ms)</div><div class="ttdoc">检查定时器是否超时 </div><div class="ttdef"><b>Definition:</b> timer.c:228</div></div>
-<div class="ttc" id="a00008_html"><div class="ttname"><a href="a00008.html">_dlist_t</a></div><div class="ttdef"><b>Definition:</b> list.c:39</div></div>
-<div class="ttc" id="a00078_ad43b4e56bb273f1559d13143a783c974_html_ad43b4e56bb273f1559d13143a783c974"><div class="ttname"><a href="a00078_ad43b4e56bb273f1559d13143a783c974.html#ad43b4e56bb273f1559d13143a783c974">ktimer_get_current_list</a></div><div class="ttdeci">dlist_t * ktimer_get_current_list(ktimer_t *timer)</div><div class="ttdoc">取得当前所属链表 </div><div class="ttdef"><b>Definition:</b> timer.c:185</div></div>
-<div class="ttc" id="a00078_a9d06164f71d9a170962ba64e2cb7b79f_html_a9d06164f71d9a170962ba64e2cb7b79f"><div class="ttname"><a href="a00078_a9d06164f71d9a170962ba64e2cb7b79f.html#a9d06164f71d9a170962ba64e2cb7b79f">ktimer_set_current_list_node</a></div><div class="ttdeci">void ktimer_set_current_list_node(ktimer_t *timer, dlist_node_t *node)</div><div class="ttdoc">设置定时器所在的当前链表的链表节点 </div><div class="ttdef"><b>Definition:</b> timer.c:179</div></div>
-<div class="ttc" id="a00019_html"><div class="ttname"><a href="a00019.html">_ktimer_t</a></div><div class="ttdef"><b>Definition:</b> timer.c:30</div></div>
-<div class="ttc" id="a00007_html"><div class="ttname"><a href="a00007.html">_dlist_node_t</a></div><div class="ttdef"><b>Definition:</b> list.c:31</div></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<a class="code" href="a00031.html">loop_profile_t</a>* <a class="code" href="a00078_adb276ec4e5559b1e167dc9045fa499bb.html#adb276ec4e5559b1e167dc9045fa499bb">loop_profile_create</a>(<a class="code" href="a00032.html">loop_t</a>* <a class="code" href="a00031_a980ff537ba150044fae36b625ad23461.html#a980ff537ba150044fae36b625ad23461">loop</a>);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00078_a737f9f904afe15e70f56886c44372e5d.html#a737f9f904afe15e70f56886c44372e5d">loop_profile_destroy</a>(<a class="code" href="a00031.html">loop_profile_t</a>* profile);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;uint32_t <a class="code" href="a00078_af388f071a9558df8049c51205d33361a.html#af388f071a9558df8049c51205d33361a">loop_profile_increase_established_channel_count</a>(<a class="code" href="a00031.html">loop_profile_t</a>* profile);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;uint32_t <a class="code" href="a00078_a7cfc0ba3d4b5083413f330b519e38eec.html#a7cfc0ba3d4b5083413f330b519e38eec">loop_profile_decrease_established_channel_count</a>(<a class="code" href="a00031.html">loop_profile_t</a>* profile);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;uint32_t <a class="code" href="a00078_a60b6b1d29dcb8746bc44c90b8b438544.html#a60b6b1d29dcb8746bc44c90b8b438544">loop_profile_increase_active_channel_count</a>(<a class="code" href="a00031.html">loop_profile_t</a>* profile);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;uint32_t <a class="code" href="a00078_ab1bcbe8b5c4c4618605821581cdcaacd.html#ab1bcbe8b5c4c4618605821581cdcaacd">loop_profile_decrease_active_channel_count</a>(<a class="code" href="a00031.html">loop_profile_t</a>* profile);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;uint32_t <a class="code" href="a00078_ae06a8af9d1d8e3b32a3ae6220aa904b2.html#ae06a8af9d1d8e3b32a3ae6220aa904b2">loop_profile_increase_close_channel_count</a>(<a class="code" href="a00031.html">loop_profile_t</a>* profile);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;uint32_t <a class="code" href="a00078_abae75de750f7969632e5e8087eb6c778.html#abae75de750f7969632e5e8087eb6c778">loop_profile_decrease_close_channel_count</a>(<a class="code" href="a00031.html">loop_profile_t</a>* profile);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;uint64_t <a class="code" href="a00078_a04e566a4074bb91aa86119c34157c440.html#a04e566a4074bb91aa86119c34157c440">loop_profile_add_send_bytes</a>(<a class="code" href="a00031.html">loop_profile_t</a>* profile, uint64_t <a class="code" href="a00031_a1c6ce181c5e47d5aa0692e380dae50b9.html#a1c6ce181c5e47d5aa0692e380dae50b9">send_bytes</a>);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;uint64_t <a class="code" href="a00078_ac826bfebabc5f965c6906ce83400f1de.html#ac826bfebabc5f965c6906ce83400f1de">loop_profile_add_recv_bytes</a>(<a class="code" href="a00031.html">loop_profile_t</a>* profile, uint64_t <a class="code" href="a00031_a65c0413fffa7982e7a7c99e630e2d94b.html#a65c0413fffa7982e7a7c99e630e2d94b">recv_bytes</a>);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* LOOP_PROFILE_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a00078_af388f071a9558df8049c51205d33361a_html_af388f071a9558df8049c51205d33361a"><div class="ttname"><a href="a00078_af388f071a9558df8049c51205d33361a.html#af388f071a9558df8049c51205d33361a">loop_profile_increase_established_channel_count</a></div><div class="ttdeci">uint32_t loop_profile_increase_established_channel_count(loop_profile_t *profile)</div><div class="ttdoc">增加已建立连接的管道数量 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:60</div></div>
+<div class="ttc" id="a00031_a65c0413fffa7982e7a7c99e630e2d94b_html_a65c0413fffa7982e7a7c99e630e2d94b"><div class="ttname"><a href="a00031_a65c0413fffa7982e7a7c99e630e2d94b.html#a65c0413fffa7982e7a7c99e630e2d94b">_loop_profile_t::recv_bytes</a></div><div class="ttdeci">uint64_t recv_bytes</div><div class="ttdef"><b>Definition:</b> loop_profile.c:32</div></div>
+<div class="ttc" id="a00050_html"><div class="ttname"><a href="a00050.html">config.h</a></div></div>
+<div class="ttc" id="a00079_html"><div class="ttname"><a href="a00079.html">loop_profile_api.h</a></div></div>
+<div class="ttc" id="a00078_ac826bfebabc5f965c6906ce83400f1de_html_ac826bfebabc5f965c6906ce83400f1de"><div class="ttname"><a href="a00078_ac826bfebabc5f965c6906ce83400f1de.html#ac826bfebabc5f965c6906ce83400f1de">loop_profile_add_recv_bytes</a></div><div class="ttdeci">uint64_t loop_profile_add_recv_bytes(loop_profile_t *profile, uint64_t recv_bytes)</div><div class="ttdoc">增加接收字节数 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:115</div></div>
+<div class="ttc" id="a00078_a737f9f904afe15e70f56886c44372e5d_html_a737f9f904afe15e70f56886c44372e5d"><div class="ttname"><a href="a00078_a737f9f904afe15e70f56886c44372e5d.html#a737f9f904afe15e70f56886c44372e5d">loop_profile_destroy</a></div><div class="ttdeci">void loop_profile_destroy(loop_profile_t *profile)</div><div class="ttdoc">销毁统计器 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:56</div></div>
+<div class="ttc" id="a00078_abae75de750f7969632e5e8087eb6c778_html_abae75de750f7969632e5e8087eb6c778"><div class="ttname"><a href="a00078_abae75de750f7969632e5e8087eb6c778.html#abae75de750f7969632e5e8087eb6c778">loop_profile_decrease_close_channel_count</a></div><div class="ttdeci">uint32_t loop_profile_decrease_close_channel_count(loop_profile_t *profile)</div><div class="ttdoc">减少已关闭管道数量 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:95</div></div>
+<div class="ttc" id="a00078_a7cfc0ba3d4b5083413f330b519e38eec_html_a7cfc0ba3d4b5083413f330b519e38eec"><div class="ttname"><a href="a00078_a7cfc0ba3d4b5083413f330b519e38eec.html#a7cfc0ba3d4b5083413f330b519e38eec">loop_profile_decrease_established_channel_count</a></div><div class="ttdeci">uint32_t loop_profile_decrease_established_channel_count(loop_profile_t *profile)</div><div class="ttdoc">减少已建立连接的管道数量 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:65</div></div>
+<div class="ttc" id="a00078_adb276ec4e5559b1e167dc9045fa499bb_html_adb276ec4e5559b1e167dc9045fa499bb"><div class="ttname"><a href="a00078_adb276ec4e5559b1e167dc9045fa499bb.html#adb276ec4e5559b1e167dc9045fa499bb">loop_profile_create</a></div><div class="ttdeci">loop_profile_t * loop_profile_create(loop_t *loop)</div><div class="ttdoc">建立loop_t统计器 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:44</div></div>
+<div class="ttc" id="a00032_html"><div class="ttname"><a href="a00032.html">_loop_t</a></div><div class="ttdef"><b>Definition:</b> loop.c:36</div></div>
+<div class="ttc" id="a00078_a60b6b1d29dcb8746bc44c90b8b438544_html_a60b6b1d29dcb8746bc44c90b8b438544"><div class="ttname"><a href="a00078_a60b6b1d29dcb8746bc44c90b8b438544.html#a60b6b1d29dcb8746bc44c90b8b438544">loop_profile_increase_active_channel_count</a></div><div class="ttdeci">uint32_t loop_profile_increase_active_channel_count(loop_profile_t *profile)</div><div class="ttdoc">增加已建立但未连接的管道数量 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:75</div></div>
+<div class="ttc" id="a00078_a04e566a4074bb91aa86119c34157c440_html_a04e566a4074bb91aa86119c34157c440"><div class="ttname"><a href="a00078_a04e566a4074bb91aa86119c34157c440.html#a04e566a4074bb91aa86119c34157c440">loop_profile_add_send_bytes</a></div><div class="ttdeci">uint64_t loop_profile_add_send_bytes(loop_profile_t *profile, uint64_t send_bytes)</div><div class="ttdoc">增加发送字节数 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:105</div></div>
+<div class="ttc" id="a00078_ab1bcbe8b5c4c4618605821581cdcaacd_html_ab1bcbe8b5c4c4618605821581cdcaacd"><div class="ttname"><a href="a00078_ab1bcbe8b5c4c4618605821581cdcaacd.html#ab1bcbe8b5c4c4618605821581cdcaacd">loop_profile_decrease_active_channel_count</a></div><div class="ttdeci">uint32_t loop_profile_decrease_active_channel_count(loop_profile_t *profile)</div><div class="ttdoc">减少已建立但未连接的管道数量 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:80</div></div>
+<div class="ttc" id="a00031_html"><div class="ttname"><a href="a00031.html">_loop_profile_t</a></div><div class="ttdef"><b>Definition:</b> loop_profile.c:30</div></div>
+<div class="ttc" id="a00031_a980ff537ba150044fae36b625ad23461_html_a980ff537ba150044fae36b625ad23461"><div class="ttname"><a href="a00031_a980ff537ba150044fae36b625ad23461.html#a980ff537ba150044fae36b625ad23461">_loop_profile_t::loop</a></div><div class="ttdeci">loop_t * loop</div><div class="ttdef"><b>Definition:</b> loop_profile.c:31</div></div>
+<div class="ttc" id="a00078_ae06a8af9d1d8e3b32a3ae6220aa904b2_html_ae06a8af9d1d8e3b32a3ae6220aa904b2"><div class="ttname"><a href="a00078_ae06a8af9d1d8e3b32a3ae6220aa904b2.html#ae06a8af9d1d8e3b32a3ae6220aa904b2">loop_profile_increase_close_channel_count</a></div><div class="ttdeci">uint32_t loop_profile_increase_close_channel_count(loop_profile_t *profile)</div><div class="ttdoc">增加已关闭管道数量 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:90</div></div>
+<div class="ttc" id="a00031_a1c6ce181c5e47d5aa0692e380dae50b9_html_a1c6ce181c5e47d5aa0692e380dae50b9"><div class="ttname"><a href="a00031_a1c6ce181c5e47d5aa0692e380dae50b9.html#a1c6ce181c5e47d5aa0692e380dae50b9">_loop_profile_t::send_bytes</a></div><div class="ttdeci">uint64_t send_bytes</div><div class="ttdef"><b>Definition:</b> loop_profile.c:33</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 9日 星期四 15:26:51 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 17日 星期五 18:09:21 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

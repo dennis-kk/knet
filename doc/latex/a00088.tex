@@ -1,132 +1,90 @@
-\hypertarget{a00088}{}\section{E\+:/knet-\/git/knet/knet/version.c 文件参考}
-\label{a00088}\index{E\+:/knet-\/git/knet/knet/version.\+c@{E\+:/knet-\/git/knet/knet/version.\+c}}
-{\ttfamily \#include \char`\"{}version.\+h\char`\"{}}\\*
-\subsection*{宏定义}
-\begin{DoxyCompactItemize}
-\item 
-\#define \hyperlink{a00088_a877cce34f3e58fd7f9194fab90724cb8_a877cce34f3e58fd7f9194fab90724cb8}{M\+A\+J\+O\+R}~1 /$\ast$ 主版本 $\ast$/
-\item 
-\#define \hyperlink{a00088_a4e10915d93013542d442d78de0e02e9a_a4e10915d93013542d442d78de0e02e9a}{M\+I\+N\+O\+R}~4 /$\ast$ 次版本 $\ast$/
-\item 
-\#define \hyperlink{a00088_af59c44c1f3ff875c35393428624473aa_af59c44c1f3ff875c35393428624473aa}{P\+A\+T\+C\+H}~4 /$\ast$ 补丁 $\ast$/
-\item 
-\#define \hyperlink{a00088_ad4c134c968cc4fc0cc700567eb39c675_ad4c134c968cc4fc0cc700567eb39c675}{K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R}(major)~\#major
-\item 
-\#define \hyperlink{a00088_a70224fafcaea5102f9cd726ba926684f_a70224fafcaea5102f9cd726ba926684f}{K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R}(minor)~\#minor
-\item 
-\#define \hyperlink{a00088_ae9af7a95a483a187a37d3e9828c6ac1c_ae9af7a95a483a187a37d3e9828c6ac1c}{K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H}(patch)~\#patch
-\item 
-\#define \hyperlink{a00088_a96eb274e34ccfa0c0505ca99f2e09a82_a96eb274e34ccfa0c0505ca99f2e09a82}{K\+N\+E\+T\+\_\+\+V\+E\+R\+S\+I\+O\+N}(major,  minor,  patch)~\hyperlink{a00088_ad4c134c968cc4fc0cc700567eb39c675_ad4c134c968cc4fc0cc700567eb39c675}{K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R}(major)\char`\"{}.\char`\"{}\hyperlink{a00088_a70224fafcaea5102f9cd726ba926684f_a70224fafcaea5102f9cd726ba926684f}{K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R}(minor)\char`\"{}.\char`\"{}\hyperlink{a00088_ae9af7a95a483a187a37d3e9828c6ac1c_ae9af7a95a483a187a37d3e9828c6ac1c}{K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H}(patch)
-\end{DoxyCompactItemize}
+\hypertarget{a00088}{}\section{E\+:/knet-\/git/knet/knet/rpc\+\_\+object.h 文件参考}
+\label{a00088}\index{E\+:/knet-\/git/knet/knet/rpc\+\_\+object.\+h@{E\+:/knet-\/git/knet/knet/rpc\+\_\+object.\+h}}
+{\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}rpc\+\_\+object\+\_\+api.\+h\char`\"{}}\\*
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-const char $\ast$ \hyperlink{a00088_a3b6e0e802bbb0f81da8bcef8e757066a_a3b6e0e802bbb0f81da8bcef8e757066a}{knet\+\_\+get\+\_\+version\+\_\+string} ()
-\begin{DoxyCompactList}\small\item\em 取得当前版本号字符串 \end{DoxyCompactList}\item 
-int \hyperlink{a00088_ad86dd4bf914796aa945a02faac4ae52e_ad86dd4bf914796aa945a02faac4ae52e}{knet\+\_\+get\+\_\+version\+\_\+major} ()
-\begin{DoxyCompactList}\small\item\em 取得主版本号 \end{DoxyCompactList}\item 
-int \hyperlink{a00088_abedac37db9a6c72670cad32bdc2dedcd_abedac37db9a6c72670cad32bdc2dedcd}{knet\+\_\+get\+\_\+version\+\_\+minor} ()
-\begin{DoxyCompactList}\small\item\em 取得次版本号 \end{DoxyCompactList}\item 
-int \hyperlink{a00088_a6fb5e77c44c774a9d017ba43dea51672_a6fb5e77c44c774a9d017ba43dea51672}{knet\+\_\+get\+\_\+version\+\_\+path} ()
-\begin{DoxyCompactList}\small\item\em 取得补丁版本号 \end{DoxyCompactList}\end{DoxyCompactItemize}
-
-
-\subsection{宏定义说明}
-\hypertarget{a00088_ad4c134c968cc4fc0cc700567eb39c675_ad4c134c968cc4fc0cc700567eb39c675}{}\index{version.\+c@{version.\+c}!K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R@{K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R}}
-\index{K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R@{K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R}!version.\+c@{version.\+c}}
-\subsubsection[{K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R(
-\begin{DoxyParamCaption}
-\item[{}]{major}
-\end{DoxyParamCaption}
-)~\#major}\label{a00088_ad4c134c968cc4fc0cc700567eb39c675_ad4c134c968cc4fc0cc700567eb39c675}
-\hypertarget{a00088_a70224fafcaea5102f9cd726ba926684f_a70224fafcaea5102f9cd726ba926684f}{}\index{version.\+c@{version.\+c}!K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R@{K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R}}
-\index{K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R@{K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R}!version.\+c@{version.\+c}}
-\subsubsection[{K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R(
-\begin{DoxyParamCaption}
-\item[{}]{minor}
-\end{DoxyParamCaption}
-)~\#minor}\label{a00088_a70224fafcaea5102f9cd726ba926684f_a70224fafcaea5102f9cd726ba926684f}
-\hypertarget{a00088_ae9af7a95a483a187a37d3e9828c6ac1c_ae9af7a95a483a187a37d3e9828c6ac1c}{}\index{version.\+c@{version.\+c}!K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H@{K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H}}
-\index{K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H@{K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H}!version.\+c@{version.\+c}}
-\subsubsection[{K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H}]{\setlength{\rightskip}{0pt plus 5cm}\#define K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H(
-\begin{DoxyParamCaption}
-\item[{}]{patch}
-\end{DoxyParamCaption}
-)~\#patch}\label{a00088_ae9af7a95a483a187a37d3e9828c6ac1c_ae9af7a95a483a187a37d3e9828c6ac1c}
-\hypertarget{a00088_a96eb274e34ccfa0c0505ca99f2e09a82_a96eb274e34ccfa0c0505ca99f2e09a82}{}\index{version.\+c@{version.\+c}!K\+N\+E\+T\+\_\+\+V\+E\+R\+S\+I\+O\+N@{K\+N\+E\+T\+\_\+\+V\+E\+R\+S\+I\+O\+N}}
-\index{K\+N\+E\+T\+\_\+\+V\+E\+R\+S\+I\+O\+N@{K\+N\+E\+T\+\_\+\+V\+E\+R\+S\+I\+O\+N}!version.\+c@{version.\+c}}
-\subsubsection[{K\+N\+E\+T\+\_\+\+V\+E\+R\+S\+I\+O\+N}]{\setlength{\rightskip}{0pt plus 5cm}\#define K\+N\+E\+T\+\_\+\+V\+E\+R\+S\+I\+O\+N(
-\begin{DoxyParamCaption}
-\item[{}]{major, }
-\item[{}]{minor, }
-\item[{}]{patch}
-\end{DoxyParamCaption}
-)~{\bf K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R}(major)\char`\"{}.\char`\"{}{\bf K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R}(minor)\char`\"{}.\char`\"{}{\bf K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H}(patch)}\label{a00088_a96eb274e34ccfa0c0505ca99f2e09a82_a96eb274e34ccfa0c0505ca99f2e09a82}
-\hypertarget{a00088_a877cce34f3e58fd7f9194fab90724cb8_a877cce34f3e58fd7f9194fab90724cb8}{}\index{version.\+c@{version.\+c}!M\+A\+J\+O\+R@{M\+A\+J\+O\+R}}
-\index{M\+A\+J\+O\+R@{M\+A\+J\+O\+R}!version.\+c@{version.\+c}}
-\subsubsection[{M\+A\+J\+O\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+J\+O\+R~1 /$\ast$ 主版本 $\ast$/}\label{a00088_a877cce34f3e58fd7f9194fab90724cb8_a877cce34f3e58fd7f9194fab90724cb8}
-\hypertarget{a00088_a4e10915d93013542d442d78de0e02e9a_a4e10915d93013542d442d78de0e02e9a}{}\index{version.\+c@{version.\+c}!M\+I\+N\+O\+R@{M\+I\+N\+O\+R}}
-\index{M\+I\+N\+O\+R@{M\+I\+N\+O\+R}!version.\+c@{version.\+c}}
-\subsubsection[{M\+I\+N\+O\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+I\+N\+O\+R~4 /$\ast$ 次版本 $\ast$/}\label{a00088_a4e10915d93013542d442d78de0e02e9a_a4e10915d93013542d442d78de0e02e9a}
-\hypertarget{a00088_af59c44c1f3ff875c35393428624473aa_af59c44c1f3ff875c35393428624473aa}{}\index{version.\+c@{version.\+c}!P\+A\+T\+C\+H@{P\+A\+T\+C\+H}}
-\index{P\+A\+T\+C\+H@{P\+A\+T\+C\+H}!version.\+c@{version.\+c}}
-\subsubsection[{P\+A\+T\+C\+H}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+A\+T\+C\+H~4 /$\ast$ 补丁 $\ast$/}\label{a00088_af59c44c1f3ff875c35393428624473aa_af59c44c1f3ff875c35393428624473aa}
+uint16\+\_\+t \hyperlink{a00088_aaa8a155df38de3bbf2a876b94686d195_aaa8a155df38de3bbf2a876b94686d195}{krpc\+\_\+number\+\_\+get\+\_\+marshal\+\_\+size} (\hyperlink{a00050_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
+\begin{DoxyCompactList}\small\item\em 获取数字对象序列化长度 \end{DoxyCompactList}\item 
+int \hyperlink{a00088_af0d124108915f859d85fccd58facf12f_af0d124108915f859d85fccd58facf12f}{krpc\+\_\+string\+\_\+set\+\_\+size} (\hyperlink{a00050_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, uint16\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em 设置字符串长度 \end{DoxyCompactList}\item 
+void \hyperlink{a00088_a13be7946c84baeebe93977ef511e125f_a13be7946c84baeebe93977ef511e125f}{krpc\+\_\+vector\+\_\+enlarge} (\hyperlink{a00050_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
+\begin{DoxyCompactList}\small\item\em 扩展数组 \end{DoxyCompactList}\item 
+void \hyperlink{a00088_a79b7c0edd0ee7a8c462d19881589f701_a79b7c0edd0ee7a8c462d19881589f701}{hash\+\_\+value\+\_\+dtor} (void $\ast$v)
+\begin{DoxyCompactList}\small\item\em 表值销毁函数 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{函数说明}
-\hypertarget{a00088_ad86dd4bf914796aa945a02faac4ae52e_ad86dd4bf914796aa945a02faac4ae52e}{}\index{version.\+c@{version.\+c}!knet\+\_\+get\+\_\+version\+\_\+major@{knet\+\_\+get\+\_\+version\+\_\+major}}
-\index{knet\+\_\+get\+\_\+version\+\_\+major@{knet\+\_\+get\+\_\+version\+\_\+major}!version.\+c@{version.\+c}}
-\subsubsection[{knet\+\_\+get\+\_\+version\+\_\+major}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+get\+\_\+version\+\_\+major (
+\hypertarget{a00088_a79b7c0edd0ee7a8c462d19881589f701_a79b7c0edd0ee7a8c462d19881589f701}{}\index{rpc\+\_\+object.\+h@{rpc\+\_\+object.\+h}!hash\+\_\+value\+\_\+dtor@{hash\+\_\+value\+\_\+dtor}}
+\index{hash\+\_\+value\+\_\+dtor@{hash\+\_\+value\+\_\+dtor}!rpc\+\_\+object.\+h@{rpc\+\_\+object.\+h}}
+\subsubsection[{hash\+\_\+value\+\_\+dtor}]{\setlength{\rightskip}{0pt plus 5cm}void hash\+\_\+value\+\_\+dtor (
 \begin{DoxyParamCaption}
-{}
+\item[{void $\ast$}]{v}
 \end{DoxyParamCaption}
-)}\label{a00088_ad86dd4bf914796aa945a02faac4ae52e_ad86dd4bf914796aa945a02faac4ae52e}
+)}\label{a00088_a79b7c0edd0ee7a8c462d19881589f701_a79b7c0edd0ee7a8c462d19881589f701}
 
 
-取得主版本号 
+表值销毁函数 
 
-\begin{DoxyReturn}{返回}
-主版本号 
-\end{DoxyReturn}
-\hypertarget{a00088_abedac37db9a6c72670cad32bdc2dedcd_abedac37db9a6c72670cad32bdc2dedcd}{}\index{version.\+c@{version.\+c}!knet\+\_\+get\+\_\+version\+\_\+minor@{knet\+\_\+get\+\_\+version\+\_\+minor}}
-\index{knet\+\_\+get\+\_\+version\+\_\+minor@{knet\+\_\+get\+\_\+version\+\_\+minor}!version.\+c@{version.\+c}}
-\subsubsection[{knet\+\_\+get\+\_\+version\+\_\+minor}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+get\+\_\+version\+\_\+minor (
+\hypertarget{a00088_aaa8a155df38de3bbf2a876b94686d195_aaa8a155df38de3bbf2a876b94686d195}{}\index{rpc\+\_\+object.\+h@{rpc\+\_\+object.\+h}!krpc\+\_\+number\+\_\+get\+\_\+marshal\+\_\+size@{krpc\+\_\+number\+\_\+get\+\_\+marshal\+\_\+size}}
+\index{krpc\+\_\+number\+\_\+get\+\_\+marshal\+\_\+size@{krpc\+\_\+number\+\_\+get\+\_\+marshal\+\_\+size}!rpc\+\_\+object.\+h@{rpc\+\_\+object.\+h}}
+\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+marshal\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t krpc\+\_\+number\+\_\+get\+\_\+marshal\+\_\+size (
 \begin{DoxyParamCaption}
-{}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
 \end{DoxyParamCaption}
-)}\label{a00088_abedac37db9a6c72670cad32bdc2dedcd_abedac37db9a6c72670cad32bdc2dedcd}
+)}\label{a00088_aaa8a155df38de3bbf2a876b94686d195_aaa8a155df38de3bbf2a876b94686d195}
 
 
-取得次版本号 
+获取数字对象序列化长度 
 
+
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{返回}
-次版本号 
+数字对象序列化长度 
 \end{DoxyReturn}
-\hypertarget{a00088_a6fb5e77c44c774a9d017ba43dea51672_a6fb5e77c44c774a9d017ba43dea51672}{}\index{version.\+c@{version.\+c}!knet\+\_\+get\+\_\+version\+\_\+path@{knet\+\_\+get\+\_\+version\+\_\+path}}
-\index{knet\+\_\+get\+\_\+version\+\_\+path@{knet\+\_\+get\+\_\+version\+\_\+path}!version.\+c@{version.\+c}}
-\subsubsection[{knet\+\_\+get\+\_\+version\+\_\+path}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+get\+\_\+version\+\_\+path (
+\hypertarget{a00088_af0d124108915f859d85fccd58facf12f_af0d124108915f859d85fccd58facf12f}{}\index{rpc\+\_\+object.\+h@{rpc\+\_\+object.\+h}!krpc\+\_\+string\+\_\+set\+\_\+size@{krpc\+\_\+string\+\_\+set\+\_\+size}}
+\index{krpc\+\_\+string\+\_\+set\+\_\+size@{krpc\+\_\+string\+\_\+set\+\_\+size}!rpc\+\_\+object.\+h@{rpc\+\_\+object.\+h}}
+\subsubsection[{krpc\+\_\+string\+\_\+set\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+string\+\_\+set\+\_\+size (
 \begin{DoxyParamCaption}
-{}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
+\item[{uint16\+\_\+t}]{size}
 \end{DoxyParamCaption}
-)}\label{a00088_a6fb5e77c44c774a9d017ba43dea51672_a6fb5e77c44c774a9d017ba43dea51672}
+)}\label{a00088_af0d124108915f859d85fccd58facf12f_af0d124108915f859d85fccd58facf12f}
 
 
-取得补丁版本号 
+设置字符串长度 
 
-\begin{DoxyReturn}{返回}
-补丁版本号 
-\end{DoxyReturn}
-\hypertarget{a00088_a3b6e0e802bbb0f81da8bcef8e757066a_a3b6e0e802bbb0f81da8bcef8e757066a}{}\index{version.\+c@{version.\+c}!knet\+\_\+get\+\_\+version\+\_\+string@{knet\+\_\+get\+\_\+version\+\_\+string}}
-\index{knet\+\_\+get\+\_\+version\+\_\+string@{knet\+\_\+get\+\_\+version\+\_\+string}!version.\+c@{version.\+c}}
-\subsubsection[{knet\+\_\+get\+\_\+version\+\_\+string}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ knet\+\_\+get\+\_\+version\+\_\+string (
+
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+{\em size} & 长度 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{a00088_a13be7946c84baeebe93977ef511e125f_a13be7946c84baeebe93977ef511e125f}{}\index{rpc\+\_\+object.\+h@{rpc\+\_\+object.\+h}!krpc\+\_\+vector\+\_\+enlarge@{krpc\+\_\+vector\+\_\+enlarge}}
+\index{krpc\+\_\+vector\+\_\+enlarge@{krpc\+\_\+vector\+\_\+enlarge}!rpc\+\_\+object.\+h@{rpc\+\_\+object.\+h}}
+\subsubsection[{krpc\+\_\+vector\+\_\+enlarge}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+vector\+\_\+enlarge (
 \begin{DoxyParamCaption}
-{}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
 \end{DoxyParamCaption}
-)}\label{a00088_a3b6e0e802bbb0f81da8bcef8e757066a_a3b6e0e802bbb0f81da8bcef8e757066a}
+)}\label{a00088_a13be7946c84baeebe93977ef511e125f_a13be7946c84baeebe93977ef511e125f}
 
 
-取得当前版本号字符串 
+扩展数组 
 
-\begin{DoxyReturn}{返回}
-当前版本号字符串 
-\end{DoxyReturn}
+
+\begin{DoxyParams}{参数}
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+\hline
+\end{DoxyParams}

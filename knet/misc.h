@@ -213,7 +213,7 @@ const char* get_channel_cb_event_name(channel_cb_event_e e);
 
 /**
  * long转为char*
- * @param i long
+ * @param l long
  * @param buffer 存储转换的字符串
  * @param size 缓冲区长度
  * @retval 0 失败
@@ -223,7 +223,7 @@ char* ltoa(long l, char* buffer, int size);
 
 /**
  * long long 转为char*
- * @param i long long
+ * @param ll long long
  * @param buffer 存储转换的字符串
  * @param size 缓冲区长度
  * @retval 0 失败

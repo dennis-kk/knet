@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['hash',['hash',['../a00015_aed4e46fb2ad26a88c6e03d666c1170f7.html#aed4e46fb2ad26a88c6e03d666c1170f7',1,'_krpc_map_t']]],
-  ['head',['head',['../a00008_a0977afbac05b99991386bb9bd75a6fe2.html#a0977afbac05b99991386bb9bd75a6fe2',1,'_dlist_t']]]
+  ['global_5flogger',['global_logger',['../a00066_a390c05c7cb68b8334d6418733f330945.html#a390c05c7cb68b8334d6418733f330945',1,'global_logger():&#160;logger.c'],['../a00067_a390c05c7cb68b8334d6418733f330945.html#a390c05c7cb68b8334d6418733f330945',1,'global_logger():&#160;logger.c']]]
 ];

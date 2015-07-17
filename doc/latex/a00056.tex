@@ -1,493 +1,329 @@
-\hypertarget{a00056}{}\section{E\+:/knet-\/git/knet/knet/hash.h 文件参考}
-\label{a00056}\index{E\+:/knet-\/git/knet/knet/hash.\+h@{E\+:/knet-\/git/knet/knet/hash.\+h}}
-{\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\\*
-\subsection*{宏定义}
-\begin{DoxyCompactItemize}
-\item 
-\#define \hyperlink{a00056_a1ad9a5e3743668c94c9fc4ccfd83dc78_a1ad9a5e3743668c94c9fc4ccfd83dc78}{hash\+\_\+for\+\_\+each\+\_\+safe}(hash,  value)~for (value = \hyperlink{a00056_a0be817a0ad58df448b3a339b01fef058_a0be817a0ad58df448b3a339b01fef058}{hash\+\_\+get\+\_\+first}(hash); (value); value = \hyperlink{a00056_aa9239dd7173dc2847f153a70dbb6e15c_aa9239dd7173dc2847f153a70dbb6e15c}{hash\+\_\+next}(hash))
-\end{DoxyCompactItemize}
+\hypertarget{a00056}{}\section{E\+:/knet-\/git/knet/knet/framework\+\_\+config\+\_\+api.h 文件参考}
+\label{a00056}\index{E\+:/knet-\/git/knet/knet/framework\+\_\+config\+\_\+api.\+h@{E\+:/knet-\/git/knet/knet/framework\+\_\+config\+\_\+api.\+h}}
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-void $\ast$ \hyperlink{a00056_ad0be61da4760c7d8dedbe56a81a688bb_ad0be61da4760c7d8dedbe56a81a688bb}{hash\+\_\+value\+\_\+get\+\_\+value} (\hyperlink{a00047_af7ecd66aeef0ce1b0495e5f65e77733e_af7ecd66aeef0ce1b0495e5f65e77733e}{hash\+\_\+value\+\_\+t} $\ast$hash\+\_\+value)
-\begin{DoxyCompactList}\small\item\em 内部使用，哈希表，同时支持数字或字符串作为key \end{DoxyCompactList}\item 
-uint32\+\_\+t \hyperlink{a00056_ab631c6680928561445077645be20aa76_ab631c6680928561445077645be20aa76}{hash\+\_\+value\+\_\+get\+\_\+key} (\hyperlink{a00047_af7ecd66aeef0ce1b0495e5f65e77733e_af7ecd66aeef0ce1b0495e5f65e77733e}{hash\+\_\+value\+\_\+t} $\ast$hash\+\_\+value)
-\begin{DoxyCompactList}\small\item\em 取得数字键 \end{DoxyCompactList}\item 
-const char $\ast$ \hyperlink{a00056_ac50440f30c8359bbcf04c00297910b7f_ac50440f30c8359bbcf04c00297910b7f}{hash\+\_\+value\+\_\+get\+\_\+string\+\_\+key} (\hyperlink{a00047_af7ecd66aeef0ce1b0495e5f65e77733e_af7ecd66aeef0ce1b0495e5f65e77733e}{hash\+\_\+value\+\_\+t} $\ast$hash\+\_\+value)
-\begin{DoxyCompactList}\small\item\em 取得字符串键 \end{DoxyCompactList}\item 
-\hyperlink{a00047_a188677c3015513590ab998e96b999966_a188677c3015513590ab998e96b999966}{hash\+\_\+t} $\ast$ \hyperlink{a00056_accead380199ce99795d29e9d178e849b_accead380199ce99795d29e9d178e849b}{hash\+\_\+create} (uint32\+\_\+t size, \hyperlink{a00047_a5dcd1ed9242185e4448352748e58573d_a5dcd1ed9242185e4448352748e58573d}{hash\+\_\+dtor\+\_\+t} dtor)
-\begin{DoxyCompactList}\small\item\em 建立哈希表 \end{DoxyCompactList}\item 
-void \hyperlink{a00056_a4073889d36e8fb6d2b2fcdea9d890db9_a4073889d36e8fb6d2b2fcdea9d890db9}{hash\+\_\+destroy} (\hyperlink{a00047_a188677c3015513590ab998e96b999966_a188677c3015513590ab998e96b999966}{hash\+\_\+t} $\ast$hash)
-\begin{DoxyCompactList}\small\item\em 销毁哈希表 \end{DoxyCompactList}\item 
-int \hyperlink{a00056_aa74d5b564965d7d3f162eb5308bc9b3f_aa74d5b564965d7d3f162eb5308bc9b3f}{hash\+\_\+add} (\hyperlink{a00047_a188677c3015513590ab998e96b999966_a188677c3015513590ab998e96b999966}{hash\+\_\+t} $\ast$hash, uint32\+\_\+t key, void $\ast$value)
-\begin{DoxyCompactList}\small\item\em 添加元素 \end{DoxyCompactList}\item 
-int \hyperlink{a00056_ad5b36fd89c94138d38be050314d922ed_ad5b36fd89c94138d38be050314d922ed}{hash\+\_\+add\+\_\+string\+\_\+key} (\hyperlink{a00047_a188677c3015513590ab998e96b999966_a188677c3015513590ab998e96b999966}{hash\+\_\+t} $\ast$hash, const char $\ast$key, void $\ast$value)
-\begin{DoxyCompactList}\small\item\em 添加元素 \end{DoxyCompactList}\item 
-void $\ast$ \hyperlink{a00056_acef10836aec4eab1b2197ecaad759b34_acef10836aec4eab1b2197ecaad759b34}{hash\+\_\+remove} (\hyperlink{a00047_a188677c3015513590ab998e96b999966_a188677c3015513590ab998e96b999966}{hash\+\_\+t} $\ast$hash, uint32\+\_\+t key)
-\begin{DoxyCompactList}\small\item\em 移除元素 \end{DoxyCompactList}\item 
-void $\ast$ \hyperlink{a00056_a054f507d00a4f813455dafffe29202d1_a054f507d00a4f813455dafffe29202d1}{hash\+\_\+remove\+\_\+string\+\_\+key} (\hyperlink{a00047_a188677c3015513590ab998e96b999966_a188677c3015513590ab998e96b999966}{hash\+\_\+t} $\ast$hash, const char $\ast$key)
-\begin{DoxyCompactList}\small\item\em 移除元素 \end{DoxyCompactList}\item 
-int \hyperlink{a00056_ac5915f1a7177380272fbb014080217c8_ac5915f1a7177380272fbb014080217c8}{hash\+\_\+delete} (\hyperlink{a00047_a188677c3015513590ab998e96b999966_a188677c3015513590ab998e96b999966}{hash\+\_\+t} $\ast$hash, uint32\+\_\+t key)
-\begin{DoxyCompactList}\small\item\em 销毁元素 \end{DoxyCompactList}\item 
-int \hyperlink{a00056_a8a53c52f3e2efedc73073989a69aaa7f_a8a53c52f3e2efedc73073989a69aaa7f}{hash\+\_\+replace} (\hyperlink{a00047_a188677c3015513590ab998e96b999966_a188677c3015513590ab998e96b999966}{hash\+\_\+t} $\ast$hash, uint32\+\_\+t key, void $\ast$value)
-\begin{DoxyCompactList}\small\item\em 替换 \end{DoxyCompactList}\item 
-int \hyperlink{a00056_a204a56cd4efe339f71796a44830e8162_a204a56cd4efe339f71796a44830e8162}{hash\+\_\+replace\+\_\+string\+\_\+key} (\hyperlink{a00047_a188677c3015513590ab998e96b999966_a188677c3015513590ab998e96b999966}{hash\+\_\+t} $\ast$hash, const char $\ast$key, void $\ast$value)
-\begin{DoxyCompactList}\small\item\em 替换 \end{DoxyCompactList}\item 
-int \hyperlink{a00056_af31ceed9b3d6675a240da0b952492a0c_af31ceed9b3d6675a240da0b952492a0c}{hash\+\_\+delete\+\_\+string\+\_\+key} (\hyperlink{a00047_a188677c3015513590ab998e96b999966_a188677c3015513590ab998e96b999966}{hash\+\_\+t} $\ast$hash, const char $\ast$key)
-\begin{DoxyCompactList}\small\item\em 销毁元素 \end{DoxyCompactList}\item 
-void $\ast$ \hyperlink{a00056_a8f5065a1ac13afbbec3e2c61355effe3_a8f5065a1ac13afbbec3e2c61355effe3}{hash\+\_\+get} (\hyperlink{a00047_a188677c3015513590ab998e96b999966_a188677c3015513590ab998e96b999966}{hash\+\_\+t} $\ast$hash, uint32\+\_\+t key)
-\begin{DoxyCompactList}\small\item\em 获取元素 \end{DoxyCompactList}\item 
-void $\ast$ \hyperlink{a00056_a34b1caad9530537c6049ba7090d105a7_a34b1caad9530537c6049ba7090d105a7}{hash\+\_\+get\+\_\+string\+\_\+key} (\hyperlink{a00047_a188677c3015513590ab998e96b999966_a188677c3015513590ab998e96b999966}{hash\+\_\+t} $\ast$hash, const char $\ast$key)
-\begin{DoxyCompactList}\small\item\em 获取元素 \end{DoxyCompactList}\item 
-uint32\+\_\+t \hyperlink{a00056_a161be6f6ab6de6db3a3a0c3f82ce1607_a161be6f6ab6de6db3a3a0c3f82ce1607}{hash\+\_\+get\+\_\+size} (\hyperlink{a00047_a188677c3015513590ab998e96b999966_a188677c3015513590ab998e96b999966}{hash\+\_\+t} $\ast$hash)
-\begin{DoxyCompactList}\small\item\em 取得元素数量 \end{DoxyCompactList}\item 
-\hyperlink{a00047_af7ecd66aeef0ce1b0495e5f65e77733e_af7ecd66aeef0ce1b0495e5f65e77733e}{hash\+\_\+value\+\_\+t} $\ast$ \hyperlink{a00056_a0be817a0ad58df448b3a339b01fef058_a0be817a0ad58df448b3a339b01fef058}{hash\+\_\+get\+\_\+first} (\hyperlink{a00047_a188677c3015513590ab998e96b999966_a188677c3015513590ab998e96b999966}{hash\+\_\+t} $\ast$hash)
-\begin{DoxyCompactList}\small\item\em 重置遍历器，取第一个元素 \end{DoxyCompactList}\item 
-\hyperlink{a00047_af7ecd66aeef0ce1b0495e5f65e77733e_af7ecd66aeef0ce1b0495e5f65e77733e}{hash\+\_\+value\+\_\+t} $\ast$ \hyperlink{a00056_aa9239dd7173dc2847f153a70dbb6e15c_aa9239dd7173dc2847f153a70dbb6e15c}{hash\+\_\+next} (\hyperlink{a00047_a188677c3015513590ab998e96b999966_a188677c3015513590ab998e96b999966}{hash\+\_\+t} $\ast$hash)
-\begin{DoxyCompactList}\small\item\em 哈希表遍历器的下一个元素 \end{DoxyCompactList}\end{DoxyCompactItemize}
-
-
-\subsection{宏定义说明}
-\hypertarget{a00056_a1ad9a5e3743668c94c9fc4ccfd83dc78_a1ad9a5e3743668c94c9fc4ccfd83dc78}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+for\+\_\+each\+\_\+safe@{hash\+\_\+for\+\_\+each\+\_\+safe}}
-\index{hash\+\_\+for\+\_\+each\+\_\+safe@{hash\+\_\+for\+\_\+each\+\_\+safe}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+for\+\_\+each\+\_\+safe}]{\setlength{\rightskip}{0pt plus 5cm}\#define hash\+\_\+for\+\_\+each\+\_\+safe(
-\begin{DoxyParamCaption}
-\item[{}]{hash, }
-\item[{}]{value}
-\end{DoxyParamCaption}
-)~for (value = {\bf hash\+\_\+get\+\_\+first}(hash); (value); value = {\bf hash\+\_\+next}(hash))}\label{a00056_a1ad9a5e3743668c94c9fc4ccfd83dc78_a1ad9a5e3743668c94c9fc4ccfd83dc78}
+void \hyperlink{a00056_a46fc5d54c72138bced5ddd4068ef77e5_a46fc5d54c72138bced5ddd4068ef77e5}{framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+thread\+\_\+count} (\hyperlink{a00050_a55b26efa9e6ee05514d087ba2593a54b_a55b26efa9e6ee05514d087ba2593a54b}{framework\+\_\+config\+\_\+t} $\ast$c, int worker\+\_\+thread\+\_\+count)
+\begin{DoxyCompactList}\small\item\em 设置工作线程数量，默认为单线程 \end{DoxyCompactList}\item 
+\hyperlink{a00050_a61a4e424ff4c86631423dedd97c40064_a61a4e424ff4c86631423dedd97c40064}{framework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$ \hyperlink{a00056_a74c94573fba40eb46f9e183fab029978_a74c94573fba40eb46f9e183fab029978}{framework\+\_\+config\+\_\+new\+\_\+acceptor} (\hyperlink{a00050_a55b26efa9e6ee05514d087ba2593a54b_a55b26efa9e6ee05514d087ba2593a54b}{framework\+\_\+config\+\_\+t} $\ast$c)
+\begin{DoxyCompactList}\small\item\em 建立监听器配置 \end{DoxyCompactList}\item 
+\hyperlink{a00050_a81253f4c995b97e69be0e67f7a26097f_a81253f4c995b97e69be0e67f7a26097f}{framework\+\_\+connector\+\_\+config\+\_\+t} $\ast$ \hyperlink{a00056_a4ff6334d19e68c08b5741ee7fed02f81_a4ff6334d19e68c08b5741ee7fed02f81}{framework\+\_\+config\+\_\+new\+\_\+connector} (\hyperlink{a00050_a55b26efa9e6ee05514d087ba2593a54b_a55b26efa9e6ee05514d087ba2593a54b}{framework\+\_\+config\+\_\+t} $\ast$c)
+\begin{DoxyCompactList}\small\item\em 建立连接器配置 \end{DoxyCompactList}\item 
+void \hyperlink{a00056_a5b3c778f37a4c667479d9eae877d3d67_a5b3c778f37a4c667479d9eae877d3d67}{framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+local\+\_\+address} (\hyperlink{a00050_a61a4e424ff4c86631423dedd97c40064_a61a4e424ff4c86631423dedd97c40064}{framework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$c, const char $\ast$ip, int port)
+\begin{DoxyCompactList}\small\item\em 设置监听器本地地址 \end{DoxyCompactList}\item 
+void \hyperlink{a00056_ae96d14bcf7b70e8ad52fe614ad848c2c_ae96d14bcf7b70e8ad52fe614ad848c2c}{framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+backlog} (\hyperlink{a00050_a61a4e424ff4c86631423dedd97c40064_a61a4e424ff4c86631423dedd97c40064}{framework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$c, int backlog)
+\begin{DoxyCompactList}\small\item\em 设置监听器等待队列长度 \end{DoxyCompactList}\item 
+void \hyperlink{a00056_ab810538b3fa23ae98027e451f52e4221_ab810538b3fa23ae98027e451f52e4221}{framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+heartbeat\+\_\+timeout} (\hyperlink{a00050_a61a4e424ff4c86631423dedd97c40064_a61a4e424ff4c86631423dedd97c40064}{framework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$c, int timeout)
+\begin{DoxyCompactList}\small\item\em 设置客户端心跳超时 \end{DoxyCompactList}\item 
+void \hyperlink{a00056_a93ecf8240201cbc64b76857242fb39d6_a93ecf8240201cbc64b76857242fb39d6}{framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+cb} (\hyperlink{a00050_a61a4e424ff4c86631423dedd97c40064_a61a4e424ff4c86631423dedd97c40064}{framework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$c, \hyperlink{a00050_ae296ec4d1ce108960de8dcc423956a1d_ae296ec4d1ce108960de8dcc423956a1d}{channel\+\_\+ref\+\_\+cb\+\_\+t} cb)
+\begin{DoxyCompactList}\small\item\em 设置客户端回调函数 \end{DoxyCompactList}\item 
+void \hyperlink{a00056_a7c7289f2fdf2a2e220ceec22b5532909_a7c7289f2fdf2a2e220ceec22b5532909}{framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count} (\hyperlink{a00050_a61a4e424ff4c86631423dedd97c40064_a61a4e424ff4c86631423dedd97c40064}{framework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$c, int max\+\_\+send\+\_\+list\+\_\+count)
+\begin{DoxyCompactList}\small\item\em 设置客户端发送链表最大长度 \end{DoxyCompactList}\item 
+void \hyperlink{a00056_a7d46d7c6ac5a9871251b5efab34d767b_a7d46d7c6ac5a9871251b5efab34d767b}{framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length} (\hyperlink{a00050_a61a4e424ff4c86631423dedd97c40064_a61a4e424ff4c86631423dedd97c40064}{framework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$c, int max\+\_\+recv\+\_\+buffer\+\_\+length)
+\begin{DoxyCompactList}\small\item\em 设置客户端接收缓冲区最大长度 \end{DoxyCompactList}\item 
+void \hyperlink{a00056_a3d5c40af2faafd53f9ead5cb2ff8c0b0_a3d5c40af2faafd53f9ead5cb2ff8c0b0}{framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+remote\+\_\+address} (\hyperlink{a00050_a81253f4c995b97e69be0e67f7a26097f_a81253f4c995b97e69be0e67f7a26097f}{framework\+\_\+connector\+\_\+config\+\_\+t} $\ast$c, const char $\ast$ip, int port)
+\begin{DoxyCompactList}\small\item\em 设置连接器需要连接的地址 \end{DoxyCompactList}\item 
+void \hyperlink{a00056_a15e1d8ef32fcc99dcc9c35383fa5dbc8_a15e1d8ef32fcc99dcc9c35383fa5dbc8}{framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+heartbeat\+\_\+timeout} (\hyperlink{a00050_a81253f4c995b97e69be0e67f7a26097f_a81253f4c995b97e69be0e67f7a26097f}{framework\+\_\+connector\+\_\+config\+\_\+t} $\ast$c, int timeout)
+\begin{DoxyCompactList}\small\item\em 设置连接器心跳超时 \end{DoxyCompactList}\item 
+void \hyperlink{a00056_a59a35df5173a2f94e5b743fbeeb48f6b_a59a35df5173a2f94e5b743fbeeb48f6b}{framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+connect\+\_\+timeout} (\hyperlink{a00050_a81253f4c995b97e69be0e67f7a26097f_a81253f4c995b97e69be0e67f7a26097f}{framework\+\_\+connector\+\_\+config\+\_\+t} $\ast$c, int timeout)
+\begin{DoxyCompactList}\small\item\em 设置连接器连接超时 \end{DoxyCompactList}\item 
+void \hyperlink{a00056_aaa7b13871a9aca1dbb5ebfe1ece2dde8_aaa7b13871a9aca1dbb5ebfe1ece2dde8}{framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+cb} (\hyperlink{a00050_a81253f4c995b97e69be0e67f7a26097f_a81253f4c995b97e69be0e67f7a26097f}{framework\+\_\+connector\+\_\+config\+\_\+t} $\ast$c, \hyperlink{a00050_ae296ec4d1ce108960de8dcc423956a1d_ae296ec4d1ce108960de8dcc423956a1d}{channel\+\_\+ref\+\_\+cb\+\_\+t} cb)
+\begin{DoxyCompactList}\small\item\em 设置连接器回调函数 \end{DoxyCompactList}\item 
+void \hyperlink{a00056_a0afe3e1f2612f39667940fc336312cb9_a0afe3e1f2612f39667940fc336312cb9}{framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count} (\hyperlink{a00050_a81253f4c995b97e69be0e67f7a26097f_a81253f4c995b97e69be0e67f7a26097f}{framework\+\_\+connector\+\_\+config\+\_\+t} $\ast$c, int max\+\_\+send\+\_\+list\+\_\+count)
+\begin{DoxyCompactList}\small\item\em 设置连接器发送链表最大长度 \end{DoxyCompactList}\item 
+void \hyperlink{a00056_a2b6beeacea30cd3aacb8802bb0323476_a2b6beeacea30cd3aacb8802bb0323476}{framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length} (\hyperlink{a00050_a81253f4c995b97e69be0e67f7a26097f_a81253f4c995b97e69be0e67f7a26097f}{framework\+\_\+connector\+\_\+config\+\_\+t} $\ast$c, int max\+\_\+recv\+\_\+buffer\+\_\+length)
+\begin{DoxyCompactList}\small\item\em 设置连接器接收缓冲区最大长度 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{函数说明}
-\hypertarget{a00056_aa74d5b564965d7d3f162eb5308bc9b3f_aa74d5b564965d7d3f162eb5308bc9b3f}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+add@{hash\+\_\+add}}
-\index{hash\+\_\+add@{hash\+\_\+add}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+add}]{\setlength{\rightskip}{0pt plus 5cm}int hash\+\_\+add (
+\hypertarget{a00056_ae96d14bcf7b70e8ad52fe614ad848c2c_ae96d14bcf7b70e8ad52fe614ad848c2c}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+backlog@{framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+backlog}}
+\index{framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+backlog@{framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+backlog}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
+\subsubsection[{framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+backlog}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+backlog (
 \begin{DoxyParamCaption}
-\item[{{\bf hash\+\_\+t} $\ast$}]{hash, }
-\item[{uint32\+\_\+t}]{key, }
-\item[{void $\ast$}]{value}
+\item[{{\bf framework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$}]{c, }
+\item[{int}]{backlog}
 \end{DoxyParamCaption}
-)}\label{a00056_aa74d5b564965d7d3f162eb5308bc9b3f_aa74d5b564965d7d3f162eb5308bc9b3f}
+)}\label{a00056_ae96d14bcf7b70e8ad52fe614ad848c2c_ae96d14bcf7b70e8ad52fe614ad848c2c}
 
 
-添加元素 
+设置监听器等待队列长度 
 
 
 \begin{DoxyParams}{参数}
-{\em hash} & hash\+\_\+t实例 \\
+{\em c} & framework\+\_\+acceptor\+\_\+config\+\_\+t实例 \\
 \hline
-{\em key} & 键 \\
-\hline
-{\em value} & 值 \\
+{\em backlog} & 等待队列长度 \\
 \hline
 \end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00056_ad5b36fd89c94138d38be050314d922ed_ad5b36fd89c94138d38be050314d922ed}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+add\+\_\+string\+\_\+key@{hash\+\_\+add\+\_\+string\+\_\+key}}
-\index{hash\+\_\+add\+\_\+string\+\_\+key@{hash\+\_\+add\+\_\+string\+\_\+key}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+add\+\_\+string\+\_\+key}]{\setlength{\rightskip}{0pt plus 5cm}int hash\+\_\+add\+\_\+string\+\_\+key (
+\hypertarget{a00056_a93ecf8240201cbc64b76857242fb39d6_a93ecf8240201cbc64b76857242fb39d6}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+cb@{framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+cb}}
+\index{framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+cb@{framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+cb}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
+\subsubsection[{framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+cb}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+cb (
 \begin{DoxyParamCaption}
-\item[{{\bf hash\+\_\+t} $\ast$}]{hash, }
-\item[{const char $\ast$}]{key, }
-\item[{void $\ast$}]{value}
+\item[{{\bf framework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$}]{c, }
+\item[{{\bf channel\+\_\+ref\+\_\+cb\+\_\+t}}]{cb}
 \end{DoxyParamCaption}
-)}\label{a00056_ad5b36fd89c94138d38be050314d922ed_ad5b36fd89c94138d38be050314d922ed}
+)}\label{a00056_a93ecf8240201cbc64b76857242fb39d6_a93ecf8240201cbc64b76857242fb39d6}
 
 
-添加元素 
+设置客户端回调函数 
 
 
 \begin{DoxyParams}{参数}
-{\em hash} & hash\+\_\+t实例 \\
+{\em c} & framework\+\_\+acceptor\+\_\+config\+\_\+t实例 \\
 \hline
-{\em key} & 字符串键 \\
-\hline
-{\em value} & 值 \\
+{\em cb} & 客户端回调函数 \\
 \hline
 \end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00056_accead380199ce99795d29e9d178e849b_accead380199ce99795d29e9d178e849b}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+create@{hash\+\_\+create}}
-\index{hash\+\_\+create@{hash\+\_\+create}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf hash\+\_\+t}$\ast$ hash\+\_\+create (
+\hypertarget{a00056_ab810538b3fa23ae98027e451f52e4221_ab810538b3fa23ae98027e451f52e4221}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+heartbeat\+\_\+timeout@{framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+heartbeat\+\_\+timeout}}
+\index{framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+heartbeat\+\_\+timeout@{framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+heartbeat\+\_\+timeout}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
+\subsubsection[{framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+heartbeat\+\_\+timeout}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+heartbeat\+\_\+timeout (
 \begin{DoxyParamCaption}
-\item[{uint32\+\_\+t}]{size, }
-\item[{{\bf hash\+\_\+dtor\+\_\+t}}]{dtor}
+\item[{{\bf framework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$}]{c, }
+\item[{int}]{timeout}
 \end{DoxyParamCaption}
-)}\label{a00056_accead380199ce99795d29e9d178e849b_accead380199ce99795d29e9d178e849b}
+)}\label{a00056_ab810538b3fa23ae98027e451f52e4221_ab810538b3fa23ae98027e451f52e4221}
 
 
-建立哈希表 
+设置客户端心跳超时 
 
 
 \begin{DoxyParams}{参数}
-{\em size} & 哈希表桶数量, 0将使用默认桶数量 \\
+{\em c} & framework\+\_\+acceptor\+\_\+config\+\_\+t实例 \\
 \hline
-{\em dtor} & 用户自定义值销毁函数 \\
+{\em timeout} & 客户端心跳超时(秒) \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{返回}
-hash\+\_\+t实例 
-\end{DoxyReturn}
-\hypertarget{a00056_ac5915f1a7177380272fbb014080217c8_ac5915f1a7177380272fbb014080217c8}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+delete@{hash\+\_\+delete}}
-\index{hash\+\_\+delete@{hash\+\_\+delete}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+delete}]{\setlength{\rightskip}{0pt plus 5cm}int hash\+\_\+delete (
+\hypertarget{a00056_a7d46d7c6ac5a9871251b5efab34d767b_a7d46d7c6ac5a9871251b5efab34d767b}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length@{framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length}}
+\index{framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length@{framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
+\subsubsection[{framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length (
 \begin{DoxyParamCaption}
-\item[{{\bf hash\+\_\+t} $\ast$}]{hash, }
-\item[{uint32\+\_\+t}]{key}
+\item[{{\bf framework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$}]{c, }
+\item[{int}]{max\+\_\+recv\+\_\+buffer\+\_\+length}
 \end{DoxyParamCaption}
-)}\label{a00056_ac5915f1a7177380272fbb014080217c8_ac5915f1a7177380272fbb014080217c8}
+)}\label{a00056_a7d46d7c6ac5a9871251b5efab34d767b_a7d46d7c6ac5a9871251b5efab34d767b}
 
 
-销毁元素 
+设置客户端接收缓冲区最大长度 
 
 
 \begin{DoxyParams}{参数}
-{\em hash} & hash\+\_\+t实例 \\
+{\em c} & framework\+\_\+acceptor\+\_\+config\+\_\+t实例 \\
 \hline
-{\em key} & 键 \\
+{\em max\+\_\+recv\+\_\+buffer\+\_\+length} & 接收缓冲区最大长度(字节) \\
 \hline
 \end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00056_af31ceed9b3d6675a240da0b952492a0c_af31ceed9b3d6675a240da0b952492a0c}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+delete\+\_\+string\+\_\+key@{hash\+\_\+delete\+\_\+string\+\_\+key}}
-\index{hash\+\_\+delete\+\_\+string\+\_\+key@{hash\+\_\+delete\+\_\+string\+\_\+key}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+delete\+\_\+string\+\_\+key}]{\setlength{\rightskip}{0pt plus 5cm}int hash\+\_\+delete\+\_\+string\+\_\+key (
+\hypertarget{a00056_a7c7289f2fdf2a2e220ceec22b5532909_a7c7289f2fdf2a2e220ceec22b5532909}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count@{framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count}}
+\index{framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count@{framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
+\subsubsection[{framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count (
 \begin{DoxyParamCaption}
-\item[{{\bf hash\+\_\+t} $\ast$}]{hash, }
-\item[{const char $\ast$}]{key}
+\item[{{\bf framework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$}]{c, }
+\item[{int}]{max\+\_\+send\+\_\+list\+\_\+count}
 \end{DoxyParamCaption}
-)}\label{a00056_af31ceed9b3d6675a240da0b952492a0c_af31ceed9b3d6675a240da0b952492a0c}
+)}\label{a00056_a7c7289f2fdf2a2e220ceec22b5532909_a7c7289f2fdf2a2e220ceec22b5532909}
 
 
-销毁元素 
+设置客户端发送链表最大长度 
 
 
 \begin{DoxyParams}{参数}
-{\em hash} & hash\+\_\+t实例 \\
+{\em c} & framework\+\_\+acceptor\+\_\+config\+\_\+t实例 \\
 \hline
-{\em key} & 字符串键 \\
+{\em max\+\_\+send\+\_\+list\+\_\+count} & 发送链表最大长度(字节) \\
 \hline
 \end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00056_a4073889d36e8fb6d2b2fcdea9d890db9_a4073889d36e8fb6d2b2fcdea9d890db9}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+destroy@{hash\+\_\+destroy}}
-\index{hash\+\_\+destroy@{hash\+\_\+destroy}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void hash\+\_\+destroy (
+\hypertarget{a00056_a5b3c778f37a4c667479d9eae877d3d67_a5b3c778f37a4c667479d9eae877d3d67}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+local\+\_\+address@{framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+local\+\_\+address}}
+\index{framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+local\+\_\+address@{framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+local\+\_\+address}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
+\subsubsection[{framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+local\+\_\+address}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+local\+\_\+address (
 \begin{DoxyParamCaption}
-\item[{{\bf hash\+\_\+t} $\ast$}]{hash}
+\item[{{\bf framework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$}]{c, }
+\item[{const char $\ast$}]{ip, }
+\item[{int}]{port}
 \end{DoxyParamCaption}
-)}\label{a00056_a4073889d36e8fb6d2b2fcdea9d890db9_a4073889d36e8fb6d2b2fcdea9d890db9}
+)}\label{a00056_a5b3c778f37a4c667479d9eae877d3d67_a5b3c778f37a4c667479d9eae877d3d67}
 
 
-销毁哈希表 
+设置监听器本地地址 
 
 
 \begin{DoxyParams}{参数}
-{\em hash} & hash\+\_\+t实例 \\
+{\em c} & framework\+\_\+acceptor\+\_\+config\+\_\+t实例 \\
+\hline
+{\em ip} & I\+P \\
+\hline
+{\em port} & 地址 \\
 \hline
 \end{DoxyParams}
-\hypertarget{a00056_a8f5065a1ac13afbbec3e2c61355effe3_a8f5065a1ac13afbbec3e2c61355effe3}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+get@{hash\+\_\+get}}
-\index{hash\+\_\+get@{hash\+\_\+get}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+get}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ hash\+\_\+get (
+\hypertarget{a00056_a74c94573fba40eb46f9e183fab029978_a74c94573fba40eb46f9e183fab029978}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!framework\+\_\+config\+\_\+new\+\_\+acceptor@{framework\+\_\+config\+\_\+new\+\_\+acceptor}}
+\index{framework\+\_\+config\+\_\+new\+\_\+acceptor@{framework\+\_\+config\+\_\+new\+\_\+acceptor}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
+\subsubsection[{framework\+\_\+config\+\_\+new\+\_\+acceptor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf framework\+\_\+acceptor\+\_\+config\+\_\+t}$\ast$ framework\+\_\+config\+\_\+new\+\_\+acceptor (
 \begin{DoxyParamCaption}
-\item[{{\bf hash\+\_\+t} $\ast$}]{hash, }
-\item[{uint32\+\_\+t}]{key}
+\item[{{\bf framework\+\_\+config\+\_\+t} $\ast$}]{c}
 \end{DoxyParamCaption}
-)}\label{a00056_a8f5065a1ac13afbbec3e2c61355effe3_a8f5065a1ac13afbbec3e2c61355effe3}
+)}\label{a00056_a74c94573fba40eb46f9e183fab029978_a74c94573fba40eb46f9e183fab029978}
 
 
-获取元素 
+建立监听器配置 
 
 
 \begin{DoxyParams}{参数}
-{\em hash} & hash\+\_\+t实例 \\
-\hline
-{\em key} & 键 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em 0} & 未找到 \\
-\hline
-{\em 有效指针} & \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00056_a0be817a0ad58df448b3a339b01fef058_a0be817a0ad58df448b3a339b01fef058}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+get\+\_\+first@{hash\+\_\+get\+\_\+first}}
-\index{hash\+\_\+get\+\_\+first@{hash\+\_\+get\+\_\+first}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+get\+\_\+first}]{\setlength{\rightskip}{0pt plus 5cm}{\bf hash\+\_\+value\+\_\+t}$\ast$ hash\+\_\+get\+\_\+first (
-\begin{DoxyParamCaption}
-\item[{{\bf hash\+\_\+t} $\ast$}]{hash}
-\end{DoxyParamCaption}
-)}\label{a00056_a0be817a0ad58df448b3a339b01fef058_a0be817a0ad58df448b3a339b01fef058}
-
-
-重置遍历器，取第一个元素 
-
-
-\begin{DoxyParams}{参数}
-{\em hash} & hash\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em 0} & 没有元素 \\
-\hline
-{\em hash\+\_\+value\+\_\+t实例} & \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00056_a161be6f6ab6de6db3a3a0c3f82ce1607_a161be6f6ab6de6db3a3a0c3f82ce1607}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+get\+\_\+size@{hash\+\_\+get\+\_\+size}}
-\index{hash\+\_\+get\+\_\+size@{hash\+\_\+get\+\_\+size}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+get\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t hash\+\_\+get\+\_\+size (
-\begin{DoxyParamCaption}
-\item[{{\bf hash\+\_\+t} $\ast$}]{hash}
-\end{DoxyParamCaption}
-)}\label{a00056_a161be6f6ab6de6db3a3a0c3f82ce1607_a161be6f6ab6de6db3a3a0c3f82ce1607}
-
-
-取得元素数量 
-
-
-\begin{DoxyParams}{参数}
-{\em hash} & hash\+\_\+t实例 \\
+{\em c} & framework\+\_\+config\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-元素数量 
+framework\+\_\+acceptor\+\_\+config\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00056_a34b1caad9530537c6049ba7090d105a7_a34b1caad9530537c6049ba7090d105a7}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+get\+\_\+string\+\_\+key@{hash\+\_\+get\+\_\+string\+\_\+key}}
-\index{hash\+\_\+get\+\_\+string\+\_\+key@{hash\+\_\+get\+\_\+string\+\_\+key}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+get\+\_\+string\+\_\+key}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ hash\+\_\+get\+\_\+string\+\_\+key (
+\hypertarget{a00056_a4ff6334d19e68c08b5741ee7fed02f81_a4ff6334d19e68c08b5741ee7fed02f81}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!framework\+\_\+config\+\_\+new\+\_\+connector@{framework\+\_\+config\+\_\+new\+\_\+connector}}
+\index{framework\+\_\+config\+\_\+new\+\_\+connector@{framework\+\_\+config\+\_\+new\+\_\+connector}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
+\subsubsection[{framework\+\_\+config\+\_\+new\+\_\+connector}]{\setlength{\rightskip}{0pt plus 5cm}{\bf framework\+\_\+connector\+\_\+config\+\_\+t}$\ast$ framework\+\_\+config\+\_\+new\+\_\+connector (
 \begin{DoxyParamCaption}
-\item[{{\bf hash\+\_\+t} $\ast$}]{hash, }
-\item[{const char $\ast$}]{key}
+\item[{{\bf framework\+\_\+config\+\_\+t} $\ast$}]{c}
 \end{DoxyParamCaption}
-)}\label{a00056_a34b1caad9530537c6049ba7090d105a7_a34b1caad9530537c6049ba7090d105a7}
+)}\label{a00056_a4ff6334d19e68c08b5741ee7fed02f81_a4ff6334d19e68c08b5741ee7fed02f81}
 
 
-获取元素 
+建立连接器配置 
 
 
 \begin{DoxyParams}{参数}
-{\em hash} & hash\+\_\+t实例 \\
-\hline
-{\em key} & 字符串键 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em 0} & 未找到 \\
-\hline
-{\em 有效指针} & \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00056_aa9239dd7173dc2847f153a70dbb6e15c_aa9239dd7173dc2847f153a70dbb6e15c}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+next@{hash\+\_\+next}}
-\index{hash\+\_\+next@{hash\+\_\+next}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+next}]{\setlength{\rightskip}{0pt plus 5cm}{\bf hash\+\_\+value\+\_\+t}$\ast$ hash\+\_\+next (
-\begin{DoxyParamCaption}
-\item[{{\bf hash\+\_\+t} $\ast$}]{hash}
-\end{DoxyParamCaption}
-)}\label{a00056_aa9239dd7173dc2847f153a70dbb6e15c_aa9239dd7173dc2847f153a70dbb6e15c}
-
-
-哈希表遍历器的下一个元素 
-
-
-\begin{DoxyParams}{参数}
-{\em hash} & hash\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em 0} & 没有元素 \\
-\hline
-{\em hash\+\_\+value\+\_\+t实例} & \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00056_acef10836aec4eab1b2197ecaad759b34_acef10836aec4eab1b2197ecaad759b34}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+remove@{hash\+\_\+remove}}
-\index{hash\+\_\+remove@{hash\+\_\+remove}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+remove}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ hash\+\_\+remove (
-\begin{DoxyParamCaption}
-\item[{{\bf hash\+\_\+t} $\ast$}]{hash, }
-\item[{uint32\+\_\+t}]{key}
-\end{DoxyParamCaption}
-)}\label{a00056_acef10836aec4eab1b2197ecaad759b34_acef10836aec4eab1b2197ecaad759b34}
-
-
-移除元素 
-
-
-\begin{DoxyParams}{参数}
-{\em hash} & hash\+\_\+t实例 \\
-\hline
-{\em key} & 键 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em 0} & 未找到 \\
-\hline
-{\em 有效指针} & 值 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00056_a054f507d00a4f813455dafffe29202d1_a054f507d00a4f813455dafffe29202d1}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+remove\+\_\+string\+\_\+key@{hash\+\_\+remove\+\_\+string\+\_\+key}}
-\index{hash\+\_\+remove\+\_\+string\+\_\+key@{hash\+\_\+remove\+\_\+string\+\_\+key}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+remove\+\_\+string\+\_\+key}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ hash\+\_\+remove\+\_\+string\+\_\+key (
-\begin{DoxyParamCaption}
-\item[{{\bf hash\+\_\+t} $\ast$}]{hash, }
-\item[{const char $\ast$}]{key}
-\end{DoxyParamCaption}
-)}\label{a00056_a054f507d00a4f813455dafffe29202d1_a054f507d00a4f813455dafffe29202d1}
-
-
-移除元素 
-
-
-\begin{DoxyParams}{参数}
-{\em hash} & hash\+\_\+t实例 \\
-\hline
-{\em key} & 字符串键 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em 0} & 未找到 \\
-\hline
-{\em 有效指针} & 值 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00056_a8a53c52f3e2efedc73073989a69aaa7f_a8a53c52f3e2efedc73073989a69aaa7f}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+replace@{hash\+\_\+replace}}
-\index{hash\+\_\+replace@{hash\+\_\+replace}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+replace}]{\setlength{\rightskip}{0pt plus 5cm}int hash\+\_\+replace (
-\begin{DoxyParamCaption}
-\item[{{\bf hash\+\_\+t} $\ast$}]{hash, }
-\item[{uint32\+\_\+t}]{key, }
-\item[{void $\ast$}]{value}
-\end{DoxyParamCaption}
-)}\label{a00056_a8a53c52f3e2efedc73073989a69aaa7f_a8a53c52f3e2efedc73073989a69aaa7f}
-
-
-替换 
-
-
-\begin{DoxyParams}{参数}
-{\em hash} & hash\+\_\+t实例 \\
-\hline
-{\em key} & 键 \\
-\hline
-{\em value} & 值 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00056_a204a56cd4efe339f71796a44830e8162_a204a56cd4efe339f71796a44830e8162}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+replace\+\_\+string\+\_\+key@{hash\+\_\+replace\+\_\+string\+\_\+key}}
-\index{hash\+\_\+replace\+\_\+string\+\_\+key@{hash\+\_\+replace\+\_\+string\+\_\+key}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+replace\+\_\+string\+\_\+key}]{\setlength{\rightskip}{0pt plus 5cm}int hash\+\_\+replace\+\_\+string\+\_\+key (
-\begin{DoxyParamCaption}
-\item[{{\bf hash\+\_\+t} $\ast$}]{hash, }
-\item[{const char $\ast$}]{key, }
-\item[{void $\ast$}]{value}
-\end{DoxyParamCaption}
-)}\label{a00056_a204a56cd4efe339f71796a44830e8162_a204a56cd4efe339f71796a44830e8162}
-
-
-替换 
-
-
-\begin{DoxyParams}{参数}
-{\em hash} & hash\+\_\+t实例 \\
-\hline
-{\em key} & 字符串键 \\
-\hline
-{\em value} & 值 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00056_ab631c6680928561445077645be20aa76_ab631c6680928561445077645be20aa76}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+value\+\_\+get\+\_\+key@{hash\+\_\+value\+\_\+get\+\_\+key}}
-\index{hash\+\_\+value\+\_\+get\+\_\+key@{hash\+\_\+value\+\_\+get\+\_\+key}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+value\+\_\+get\+\_\+key}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t hash\+\_\+value\+\_\+get\+\_\+key (
-\begin{DoxyParamCaption}
-\item[{{\bf hash\+\_\+value\+\_\+t} $\ast$}]{hash\+\_\+value}
-\end{DoxyParamCaption}
-)}\label{a00056_ab631c6680928561445077645be20aa76_ab631c6680928561445077645be20aa76}
-
-
-取得数字键 
-
-
-\begin{DoxyParams}{参数}
-{\em hash\+\_\+value} & hash\+\_\+value\+\_\+t实例 \\
+{\em c} & framework\+\_\+config\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-数字键 
+framework\+\_\+connector\+\_\+config\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00056_ac50440f30c8359bbcf04c00297910b7f_ac50440f30c8359bbcf04c00297910b7f}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+value\+\_\+get\+\_\+string\+\_\+key@{hash\+\_\+value\+\_\+get\+\_\+string\+\_\+key}}
-\index{hash\+\_\+value\+\_\+get\+\_\+string\+\_\+key@{hash\+\_\+value\+\_\+get\+\_\+string\+\_\+key}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+value\+\_\+get\+\_\+string\+\_\+key}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ hash\+\_\+value\+\_\+get\+\_\+string\+\_\+key (
+\hypertarget{a00056_a46fc5d54c72138bced5ddd4068ef77e5_a46fc5d54c72138bced5ddd4068ef77e5}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+thread\+\_\+count@{framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+thread\+\_\+count}}
+\index{framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+thread\+\_\+count@{framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+thread\+\_\+count}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
+\subsubsection[{framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+thread\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+thread\+\_\+count (
 \begin{DoxyParamCaption}
-\item[{{\bf hash\+\_\+value\+\_\+t} $\ast$}]{hash\+\_\+value}
+\item[{{\bf framework\+\_\+config\+\_\+t} $\ast$}]{c, }
+\item[{int}]{worker\+\_\+thread\+\_\+count}
 \end{DoxyParamCaption}
-)}\label{a00056_ac50440f30c8359bbcf04c00297910b7f_ac50440f30c8359bbcf04c00297910b7f}
+)}\label{a00056_a46fc5d54c72138bced5ddd4068ef77e5_a46fc5d54c72138bced5ddd4068ef77e5}
 
 
-取得字符串键 
+设置工作线程数量，默认为单线程 
 
 
 \begin{DoxyParams}{参数}
-{\em hash\+\_\+value} & hash\+\_\+value\+\_\+t实例 \\
+{\em c} & framework\+\_\+config\+\_\+t实例 \\
+\hline
+{\em worker\+\_\+thread\+\_\+count} & 工作线程数量 \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{返回}
-字符串键 
-\end{DoxyReturn}
-\hypertarget{a00056_ad0be61da4760c7d8dedbe56a81a688bb_ad0be61da4760c7d8dedbe56a81a688bb}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+value\+\_\+get\+\_\+value@{hash\+\_\+value\+\_\+get\+\_\+value}}
-\index{hash\+\_\+value\+\_\+get\+\_\+value@{hash\+\_\+value\+\_\+get\+\_\+value}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+value\+\_\+get\+\_\+value}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ hash\+\_\+value\+\_\+get\+\_\+value (
+\hypertarget{a00056_aaa7b13871a9aca1dbb5ebfe1ece2dde8_aaa7b13871a9aca1dbb5ebfe1ece2dde8}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+cb@{framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+cb}}
+\index{framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+cb@{framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+cb}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
+\subsubsection[{framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+cb}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+cb (
 \begin{DoxyParamCaption}
-\item[{{\bf hash\+\_\+value\+\_\+t} $\ast$}]{hash\+\_\+value}
+\item[{{\bf framework\+\_\+connector\+\_\+config\+\_\+t} $\ast$}]{c, }
+\item[{{\bf channel\+\_\+ref\+\_\+cb\+\_\+t}}]{cb}
 \end{DoxyParamCaption}
-)}\label{a00056_ad0be61da4760c7d8dedbe56a81a688bb_ad0be61da4760c7d8dedbe56a81a688bb}
+)}\label{a00056_aaa7b13871a9aca1dbb5ebfe1ece2dde8_aaa7b13871a9aca1dbb5ebfe1ece2dde8}
 
 
-内部使用，哈希表，同时支持数字或字符串作为key 
+设置连接器回调函数 
 
-取得自定义值 
+
 \begin{DoxyParams}{参数}
-{\em hash\+\_\+value} & hash\+\_\+value\+\_\+t实例 \\
+{\em c} & framework\+\_\+connector\+\_\+config\+\_\+t实例 \\
+\hline
+{\em cb} & 连接器回调函数 \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{返回}
-自定义值 
-\end{DoxyReturn}
+\hypertarget{a00056_a2b6beeacea30cd3aacb8802bb0323476_a2b6beeacea30cd3aacb8802bb0323476}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length@{framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length}}
+\index{framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length@{framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
+\subsubsection[{framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length (
+\begin{DoxyParamCaption}
+\item[{{\bf framework\+\_\+connector\+\_\+config\+\_\+t} $\ast$}]{c, }
+\item[{int}]{max\+\_\+recv\+\_\+buffer\+\_\+length}
+\end{DoxyParamCaption}
+)}\label{a00056_a2b6beeacea30cd3aacb8802bb0323476_a2b6beeacea30cd3aacb8802bb0323476}
+
+
+设置连接器接收缓冲区最大长度 
+
+
+\begin{DoxyParams}{参数}
+{\em c} & framework\+\_\+connector\+\_\+config\+\_\+t实例 \\
+\hline
+{\em max\+\_\+recv\+\_\+buffer\+\_\+length} & 接收缓冲区最大长度(字节) \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00056_a0afe3e1f2612f39667940fc336312cb9_a0afe3e1f2612f39667940fc336312cb9}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count@{framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count}}
+\index{framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count@{framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
+\subsubsection[{framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count (
+\begin{DoxyParamCaption}
+\item[{{\bf framework\+\_\+connector\+\_\+config\+\_\+t} $\ast$}]{c, }
+\item[{int}]{max\+\_\+send\+\_\+list\+\_\+count}
+\end{DoxyParamCaption}
+)}\label{a00056_a0afe3e1f2612f39667940fc336312cb9_a0afe3e1f2612f39667940fc336312cb9}
+
+
+设置连接器发送链表最大长度 
+
+
+\begin{DoxyParams}{参数}
+{\em c} & framework\+\_\+connector\+\_\+config\+\_\+t实例 \\
+\hline
+{\em max\+\_\+send\+\_\+list\+\_\+count} & 发送链表最大长度(字节) \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00056_a59a35df5173a2f94e5b743fbeeb48f6b_a59a35df5173a2f94e5b743fbeeb48f6b}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+connect\+\_\+timeout@{framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+connect\+\_\+timeout}}
+\index{framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+connect\+\_\+timeout@{framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+connect\+\_\+timeout}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
+\subsubsection[{framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+connect\+\_\+timeout}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+connect\+\_\+timeout (
+\begin{DoxyParamCaption}
+\item[{{\bf framework\+\_\+connector\+\_\+config\+\_\+t} $\ast$}]{c, }
+\item[{int}]{timeout}
+\end{DoxyParamCaption}
+)}\label{a00056_a59a35df5173a2f94e5b743fbeeb48f6b_a59a35df5173a2f94e5b743fbeeb48f6b}
+
+
+设置连接器连接超时 
+
+
+\begin{DoxyParams}{参数}
+{\em c} & framework\+\_\+connector\+\_\+config\+\_\+t实例 \\
+\hline
+{\em timeout} & 连接超时(秒) \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00056_a15e1d8ef32fcc99dcc9c35383fa5dbc8_a15e1d8ef32fcc99dcc9c35383fa5dbc8}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+heartbeat\+\_\+timeout@{framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+heartbeat\+\_\+timeout}}
+\index{framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+heartbeat\+\_\+timeout@{framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+heartbeat\+\_\+timeout}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
+\subsubsection[{framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+heartbeat\+\_\+timeout}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+heartbeat\+\_\+timeout (
+\begin{DoxyParamCaption}
+\item[{{\bf framework\+\_\+connector\+\_\+config\+\_\+t} $\ast$}]{c, }
+\item[{int}]{timeout}
+\end{DoxyParamCaption}
+)}\label{a00056_a15e1d8ef32fcc99dcc9c35383fa5dbc8_a15e1d8ef32fcc99dcc9c35383fa5dbc8}
+
+
+设置连接器心跳超时 
+
+
+\begin{DoxyParams}{参数}
+{\em c} & framework\+\_\+connector\+\_\+config\+\_\+t实例 \\
+\hline
+{\em timeout} & 客户端心跳超时(秒) \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00056_a3d5c40af2faafd53f9ead5cb2ff8c0b0_a3d5c40af2faafd53f9ead5cb2ff8c0b0}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+remote\+\_\+address@{framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+remote\+\_\+address}}
+\index{framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+remote\+\_\+address@{framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+remote\+\_\+address}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
+\subsubsection[{framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+remote\+\_\+address}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+remote\+\_\+address (
+\begin{DoxyParamCaption}
+\item[{{\bf framework\+\_\+connector\+\_\+config\+\_\+t} $\ast$}]{c, }
+\item[{const char $\ast$}]{ip, }
+\item[{int}]{port}
+\end{DoxyParamCaption}
+)}\label{a00056_a3d5c40af2faafd53f9ead5cb2ff8c0b0_a3d5c40af2faafd53f9ead5cb2ff8c0b0}
+
+
+设置连接器需要连接的地址 
+
+
+\begin{DoxyParams}{参数}
+{\em c} & framework\+\_\+connector\+\_\+config\+\_\+t实例 \\
+\hline
+{\em ip} & I\+P \\
+\hline
+{\em port} & 端口 \\
+\hline
+\end{DoxyParams}

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/buffer.h 文件参考</title>
+<title>knet: E:/knet-git/knet/knet/broadcast.c 文件参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">knet
-   &#160;<span id="projectnumber">1.4.4</span>
+   &#160;<span id="projectnumber">1.4.5</span>
    </div>
   </td>
  </tr>
@@ -87,49 +87,47 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">结构体</a> &#124;
 <a href="#func-members">函数</a>  </div>
   <div class="headertitle">
-<div class="title">buffer.h 文件参考</div>  </div>
+<div class="title">broadcast.c 文件参考</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="a00047_source.html">config.h</a>&quot;</code><br />
-</div>
-<p><a href="a00041_source.html">浏览源代码.</a></p>
-<table class="memberdecls">
+<div class="textblock"><code>#include &quot;<a class="el" href="a00042_source.html">broadcast_api.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00065_source.html">list.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00048_source.html">channel_ref.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00082_source.html">misc.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+结构体</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00002.html">_broadcast_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 函数</h2></td></tr>
-<tr class="memitem:aa5059c5ab47dd3f98ce1d208831dfb88"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00047_aad99a77d28bd81d3d36d0ea569c9482d.html#aad99a77d28bd81d3d36d0ea569c9482d">buffer_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00041_aa5059c5ab47dd3f98ce1d208831dfb88.html#aa5059c5ab47dd3f98ce1d208831dfb88">buffer_create</a> (uint32_t size)</td></tr>
-<tr class="memdesc:aa5059c5ab47dd3f98ce1d208831dfb88"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个固定长度的缓冲区  <a href="a00041_aa5059c5ab47dd3f98ce1d208831dfb88.html#aa5059c5ab47dd3f98ce1d208831dfb88">更多...</a><br /></td></tr>
-<tr class="separator:aa5059c5ab47dd3f98ce1d208831dfb88"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75b1ca3205331cdaf7a9f4e6f28c03d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00041_a75b1ca3205331cdaf7a9f4e6f28c03d9.html#a75b1ca3205331cdaf7a9f4e6f28c03d9">buffer_destroy</a> (<a class="el" href="a00047_aad99a77d28bd81d3d36d0ea569c9482d.html#aad99a77d28bd81d3d36d0ea569c9482d">buffer_t</a> *sb)</td></tr>
-<tr class="memdesc:a75b1ca3205331cdaf7a9f4e6f28c03d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁缓冲区  <a href="a00041_a75b1ca3205331cdaf7a9f4e6f28c03d9.html#a75b1ca3205331cdaf7a9f4e6f28c03d9">更多...</a><br /></td></tr>
-<tr class="separator:a75b1ca3205331cdaf7a9f4e6f28c03d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab3e5b8fef4f96fbba03bcd2a55d5c4e2"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00041_ab3e5b8fef4f96fbba03bcd2a55d5c4e2.html#ab3e5b8fef4f96fbba03bcd2a55d5c4e2">buffer_put</a> (<a class="el" href="a00047_aad99a77d28bd81d3d36d0ea569c9482d.html#aad99a77d28bd81d3d36d0ea569c9482d">buffer_t</a> *sb, const char *temp, uint32_t size)</td></tr>
-<tr class="memdesc:ab3e5b8fef4f96fbba03bcd2a55d5c4e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">写入  <a href="a00041_ab3e5b8fef4f96fbba03bcd2a55d5c4e2.html#ab3e5b8fef4f96fbba03bcd2a55d5c4e2">更多...</a><br /></td></tr>
-<tr class="separator:ab3e5b8fef4f96fbba03bcd2a55d5c4e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a521aa1247c7e0ce15f48da2b3f87ede5"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00041_a521aa1247c7e0ce15f48da2b3f87ede5.html#a521aa1247c7e0ce15f48da2b3f87ede5">buffer_get_length</a> (<a class="el" href="a00047_aad99a77d28bd81d3d36d0ea569c9482d.html#aad99a77d28bd81d3d36d0ea569c9482d">buffer_t</a> *sb)</td></tr>
-<tr class="memdesc:a521aa1247c7e0ce15f48da2b3f87ede5"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得缓冲区内数据长度  <a href="a00041_a521aa1247c7e0ce15f48da2b3f87ede5.html#a521aa1247c7e0ce15f48da2b3f87ede5">更多...</a><br /></td></tr>
-<tr class="separator:a521aa1247c7e0ce15f48da2b3f87ede5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13dfff4814bad92a4f5c263b68ddf475"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00041_a13dfff4814bad92a4f5c263b68ddf475.html#a13dfff4814bad92a4f5c263b68ddf475">buffer_get_max_size</a> (<a class="el" href="a00047_aad99a77d28bd81d3d36d0ea569c9482d.html#aad99a77d28bd81d3d36d0ea569c9482d">buffer_t</a> *sb)</td></tr>
-<tr class="memdesc:a13dfff4814bad92a4f5c263b68ddf475"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得缓冲区内最大长度  <a href="a00041_a13dfff4814bad92a4f5c263b68ddf475.html#a13dfff4814bad92a4f5c263b68ddf475">更多...</a><br /></td></tr>
-<tr class="separator:a13dfff4814bad92a4f5c263b68ddf475"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5cb663b693f41f93952c34cdd7f1f14"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00041_ae5cb663b693f41f93952c34cdd7f1f14.html#ae5cb663b693f41f93952c34cdd7f1f14">buffer_enough</a> (<a class="el" href="a00047_aad99a77d28bd81d3d36d0ea569c9482d.html#aad99a77d28bd81d3d36d0ea569c9482d">buffer_t</a> *sb, uint32_t size)</td></tr>
-<tr class="memdesc:ae5cb663b693f41f93952c34cdd7f1f14"><td class="mdescLeft">&#160;</td><td class="mdescRight">测试缓冲区内是否有足够空间  <a href="a00041_ae5cb663b693f41f93952c34cdd7f1f14.html#ae5cb663b693f41f93952c34cdd7f1f14">更多...</a><br /></td></tr>
-<tr class="separator:ae5cb663b693f41f93952c34cdd7f1f14"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab54cc02c921fa0034efe6fbd146de96c"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00041_ab54cc02c921fa0034efe6fbd146de96c.html#ab54cc02c921fa0034efe6fbd146de96c">buffer_get_ptr</a> (<a class="el" href="a00047_aad99a77d28bd81d3d36d0ea569c9482d.html#aad99a77d28bd81d3d36d0ea569c9482d">buffer_t</a> *sb)</td></tr>
-<tr class="memdesc:ab54cc02c921fa0034efe6fbd146de96c"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得缓冲区数据起始地址  <a href="a00041_ab54cc02c921fa0034efe6fbd146de96c.html#ab54cc02c921fa0034efe6fbd146de96c">更多...</a><br /></td></tr>
-<tr class="separator:ab54cc02c921fa0034efe6fbd146de96c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e574a50d7d434434bc466978601b703"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00041_a1e574a50d7d434434bc466978601b703.html#a1e574a50d7d434434bc466978601b703">buffer_adjust</a> (<a class="el" href="a00047_aad99a77d28bd81d3d36d0ea569c9482d.html#aad99a77d28bd81d3d36d0ea569c9482d">buffer_t</a> *sb, uint32_t gap)</td></tr>
-<tr class="memdesc:a1e574a50d7d434434bc466978601b703"><td class="mdescLeft">&#160;</td><td class="mdescRight">调整数据起始地址  <a href="a00041_a1e574a50d7d434434bc466978601b703.html#a1e574a50d7d434434bc466978601b703">更多...</a><br /></td></tr>
-<tr class="separator:a1e574a50d7d434434bc466978601b703"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f64078ea08b7269039ea6694f009729"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00041_a0f64078ea08b7269039ea6694f009729.html#a0f64078ea08b7269039ea6694f009729">buffer_clear</a> (<a class="el" href="a00047_aad99a77d28bd81d3d36d0ea569c9482d.html#aad99a77d28bd81d3d36d0ea569c9482d">buffer_t</a> *sb)</td></tr>
-<tr class="memdesc:a0f64078ea08b7269039ea6694f009729"><td class="mdescLeft">&#160;</td><td class="mdescRight">清空缓冲区  <a href="a00041_a0f64078ea08b7269039ea6694f009729.html#a0f64078ea08b7269039ea6694f009729">更多...</a><br /></td></tr>
-<tr class="separator:a0f64078ea08b7269039ea6694f009729"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa3b09fb6ff3281cb10736c0aabac18fc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00050_ac970c5deaf6417a866aabed01cd57b1b.html#ac970c5deaf6417a866aabed01cd57b1b">broadcast_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00100_gaa3b09fb6ff3281cb10736c0aabac18fc.html#gaa3b09fb6ff3281cb10736c0aabac18fc">broadcast_create</a> ()</td></tr>
+<tr class="memdesc:gaa3b09fb6ff3281cb10736c0aabac18fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建广播域  <a href="a00100_gaa3b09fb6ff3281cb10736c0aabac18fc.html#gaa3b09fb6ff3281cb10736c0aabac18fc">更多...</a><br /></td></tr>
+<tr class="separator:gaa3b09fb6ff3281cb10736c0aabac18fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa28451fa4656633ded0c7b966ff159c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00100_gaa28451fa4656633ded0c7b966ff159c3.html#gaa28451fa4656633ded0c7b966ff159c3">broadcast_destroy</a> (<a class="el" href="a00050_ac970c5deaf6417a866aabed01cd57b1b.html#ac970c5deaf6417a866aabed01cd57b1b">broadcast_t</a> *broadcast)</td></tr>
+<tr class="memdesc:gaa28451fa4656633ded0c7b966ff159c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁广播域  <a href="a00100_gaa28451fa4656633ded0c7b966ff159c3.html#gaa28451fa4656633ded0c7b966ff159c3">更多...</a><br /></td></tr>
+<tr class="separator:gaa28451fa4656633ded0c7b966ff159c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1c736809a1d0e4b7c77b617ac8ce590d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00050_a151271c9d188ef28d4d24bb81dcc1263.html#a151271c9d188ef28d4d24bb81dcc1263">channel_ref_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00100_ga1c736809a1d0e4b7c77b617ac8ce590d.html#ga1c736809a1d0e4b7c77b617ac8ce590d">broadcast_join</a> (<a class="el" href="a00050_ac970c5deaf6417a866aabed01cd57b1b.html#ac970c5deaf6417a866aabed01cd57b1b">broadcast_t</a> *broadcast, <a class="el" href="a00050_a151271c9d188ef28d4d24bb81dcc1263.html#a151271c9d188ef28d4d24bb81dcc1263">channel_ref_t</a> *channel_ref)</td></tr>
+<tr class="memdesc:ga1c736809a1d0e4b7c77b617ac8ce590d"><td class="mdescLeft">&#160;</td><td class="mdescRight">加入广播域  <a href="a00100_ga1c736809a1d0e4b7c77b617ac8ce590d.html#ga1c736809a1d0e4b7c77b617ac8ce590d">更多...</a><br /></td></tr>
+<tr class="separator:ga1c736809a1d0e4b7c77b617ac8ce590d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad846ced37d33b750f61a88565eaed9a4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00100_gad846ced37d33b750f61a88565eaed9a4.html#gad846ced37d33b750f61a88565eaed9a4">broadcast_leave</a> (<a class="el" href="a00050_ac970c5deaf6417a866aabed01cd57b1b.html#ac970c5deaf6417a866aabed01cd57b1b">broadcast_t</a> *broadcast, <a class="el" href="a00050_a151271c9d188ef28d4d24bb81dcc1263.html#a151271c9d188ef28d4d24bb81dcc1263">channel_ref_t</a> *channel_ref)</td></tr>
+<tr class="memdesc:gad846ced37d33b750f61a88565eaed9a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">离开广播域  <a href="a00100_gad846ced37d33b750f61a88565eaed9a4.html#gad846ced37d33b750f61a88565eaed9a4">更多...</a><br /></td></tr>
+<tr class="separator:gad846ced37d33b750f61a88565eaed9a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacd045b1ca8be7fa8fac6e337934acc97"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00100_gacd045b1ca8be7fa8fac6e337934acc97.html#gacd045b1ca8be7fa8fac6e337934acc97">broadcast_get_count</a> (<a class="el" href="a00050_ac970c5deaf6417a866aabed01cd57b1b.html#ac970c5deaf6417a866aabed01cd57b1b">broadcast_t</a> *broadcast)</td></tr>
+<tr class="memdesc:gacd045b1ca8be7fa8fac6e337934acc97"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得广播域内管道数量  <a href="a00100_gacd045b1ca8be7fa8fac6e337934acc97.html#gacd045b1ca8be7fa8fac6e337934acc97">更多...</a><br /></td></tr>
+<tr class="separator:gacd045b1ca8be7fa8fac6e337934acc97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0e8a8826a84c9c93a96e0fda1ca846aa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00100_ga0e8a8826a84c9c93a96e0fda1ca846aa.html#ga0e8a8826a84c9c93a96e0fda1ca846aa">broadcast_write</a> (<a class="el" href="a00050_ac970c5deaf6417a866aabed01cd57b1b.html#ac970c5deaf6417a866aabed01cd57b1b">broadcast_t</a> *broadcast, char *buffer, uint32_t size)</td></tr>
+<tr class="memdesc:ga0e8a8826a84c9c93a96e0fda1ca846aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">广播  <a href="a00100_ga0e8a8826a84c9c93a96e0fda1ca846aa.html#ga0e8a8826a84c9c93a96e0fda1ca846aa">更多...</a><br /></td></tr>
+<tr class="separator:ga0e8a8826a84c9c93a96e0fda1ca846aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 13日 星期一 18:21:38 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 17日 星期五 18:09:21 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
