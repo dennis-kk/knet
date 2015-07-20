@@ -43,6 +43,7 @@ struct _framework_connector_config_t {
     int              connect_timeout;        /* 连接超时 */
     int              max_send_list_count;    /* 发送链表最大长度 */
     int              max_recv_buffer_length; /* 接收缓冲区最大长度 */
+    int              auto_reconnect;         /* 自动重连标志 */
     channel_ref_cb_t cb;                     /* 回调 */
 };
 
@@ -198,6 +199,11 @@ void framework_connector_config_set_connect_timeout(framework_connector_config_t
     c->connect_timeout = timeout;
 }
 
+void framework_connector_config_set_auto_reconnect(framework_connector_config_t* c, int auto_reconnect) {
+    verify(c);
+    c->auto_reconnect = auto_reconnect;
+}
+
 void framework_connector_config_set_cb(framework_connector_config_t* c, channel_ref_cb_t cb) {
     verify(c);
     c->cb = cb;
@@ -291,6 +297,11 @@ int framework_connector_config_get_heartbeat_timeout(framework_connector_config_
 int framework_connector_config_get_connect_timeout(framework_connector_config_t* c) {
     verify(c);
     return c->connect_timeout;
+}
+
+int framework_connector_config_get_auto_reconnect(framework_connector_config_t* c) {
+    verify(c);
+    return c->auto_reconnect;
 }
 
 channel_ref_cb_t framework_connector_config_get_cb(framework_connector_config_t* c) {

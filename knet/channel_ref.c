@@ -297,6 +297,15 @@ void channel_ref_update_close_in_loop(loop_t* loop, channel_ref_t* channel_ref) 
     loop_close_channel_ref(channel_ref->ref_info->loop, channel_ref);
 }
 
+void channel_ref_close_check_reconnect(channel_ref_t* channel_ref) {
+    verify(channel_ref);
+    if (channel_ref_check_auto_reconnect(channel_ref)) {
+        channel_ref_reconnect(channel_ref, 0);
+    } else {
+        channel_ref_close(channel_ref);
+    }
+}
+
 void channel_ref_close(channel_ref_t* channel_ref) {
     loop_t*     loop = 0;
     verify(channel_ref);
@@ -329,7 +338,7 @@ void channel_ref_update_send_in_loop(loop_t* loop, channel_ref_t* channel_ref, b
         channel_ref_set_event(channel_ref, channel_event_send);
         break;
     case error_send_fail:
-        channel_ref_close(channel_ref);
+        channel_ref_close_check_reconnect(channel_ref);
         break;
     default:
         break;
@@ -368,7 +377,7 @@ int channel_ref_write(channel_ref_t* channel_ref, const char* data, int size) {
             error = error_ok;
             break;
         case error_send_fail:
-            channel_ref_close(channel_ref);
+            channel_ref_close_check_reconnect(channel_ref);
             break;
         default:
             break;
@@ -530,10 +539,10 @@ void channel_ref_update_recv(channel_ref_t* channel_ref) {
     error = channel_update_recv(channel_ref->ref_info->channel);
     switch (error) {
         case error_recv_fail:
-            channel_ref_close(channel_ref);
+            channel_ref_close_check_reconnect(channel_ref);
             break;
         case error_recv_buffer_full:
-            channel_ref_close(channel_ref);
+            channel_ref_close_check_reconnect(channel_ref);
             break;
         default:
             break;
@@ -554,7 +563,7 @@ void channel_ref_update_send(channel_ref_t* channel_ref) {
     error = channel_update_send(channel_ref->ref_info->channel);
     switch (error) {
         case error_send_fail:
-            channel_ref_close(channel_ref);
+            channel_ref_close_check_reconnect(channel_ref);
             break;
         case error_send_patial:
             channel_ref_set_event(channel_ref, channel_event_send);

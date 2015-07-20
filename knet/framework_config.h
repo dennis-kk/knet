@@ -153,6 +153,13 @@ int framework_connector_config_get_heartbeat_timeout(framework_connector_config_
 int framework_connector_config_get_connect_timeout(framework_connector_config_t* c);
 
 /**
+ * 取得连接器自动重连标志
+ * @param c framework_connector_config_t实例
+ * @return 连接器自动重连标志
+ */
+int framework_connector_config_get_auto_reconnect(framework_connector_config_t* c);
+
+/**
  * 取得连接器回调函数
  * @param c framework_connector_config_t实例
  * @return 连接器回调函数

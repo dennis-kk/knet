@@ -91,6 +91,7 @@ int _create_connector_channel(framework_connector_config_t* cc, loop_t* loop) {
         framework_connector_config_get_max_recv_buffer_length(cc));
     verify(channel);
     channel_ref_set_cb(channel, framework_connector_config_get_cb(cc));
+    channel_ref_set_auto_reconnect(channel, framework_connector_config_get_auto_reconnect(cc));
     /* Á¬½Ó */
     error = channel_ref_connect(channel, framework_connector_config_get_remote_ip(cc),
         framework_connector_config_get_remote_port(cc), framework_connector_config_get_connect_timeout(cc));

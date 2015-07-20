@@ -166,6 +166,13 @@ extern void framework_connector_config_set_heartbeat_timeout(framework_connector
 extern void framework_connector_config_set_connect_timeout(framework_connector_config_t* c, int timeout);
 
 /**
+ * 设置连接器自动重连
+ * @param c framework_connector_config_t实例
+ * @param auto_reconnect 自动重连标志
+ */
+extern void framework_connector_config_set_auto_reconnect(framework_connector_config_t* c, int auto_reconnect);
+
+/**
  * 设置连接器回调函数
  * @param c framework_connector_config_t实例
  * @param cb 连接器回调函数

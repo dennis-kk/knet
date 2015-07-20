@@ -46,6 +46,12 @@ channel_ref_t* channel_ref_create(loop_t* loop, channel_t* channel);
 int channel_ref_destroy(channel_ref_t* channel_ref);
 
 /**
+ * 关闭管道并检查重连
+ * @param channel_ref channel_ref_t实例
+ */
+void channel_ref_close_check_reconnect(channel_ref_t* channel_ref);
+
+/**
  * 写入
  * 管道引用计数为零时才能被实际销毁
  * @param channel_ref channel_ref_t实例
