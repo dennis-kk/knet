@@ -150,8 +150,16 @@ int channel_ref_connect(channel_ref_t* channel_ref, const char* ip, int port, in
     return channel_ref_connect_in_loop(channel_ref);
 }
 
+void channel_ref_accept_async(channel_ref_t* channel_ref) {
+    verify(channel_ref);
+    loop_add_channel_ref(channel_ref->ref_info->loop, channel_ref);
+    channel_ref_set_state(channel_ref, channel_state_accept);
+    channel_ref_set_event(channel_ref, channel_event_recv);
+}
+
 int channel_ref_accept(channel_ref_t* channel_ref, const char* ip, int port, int backlog) {
     int error = 0;
+    thread_id_t thread_id = 0;
     verify(channel_ref);
     verify(port);
     if (channel_ref_check_state(channel_ref, channel_state_accept)) {
@@ -161,6 +169,14 @@ int channel_ref_accept(channel_ref_t* channel_ref, const char* ip, int port, int
     /* 监听 */
     error = channel_accept(channel_ref->ref_info->channel, ip, port, backlog);
     if (error == error_ok) {
+        thread_id = loop_get_thread_id(channel_ref->ref_info->loop);
+        if (thread_id) { /* loop_t在某个线程运行过 */
+            if (thread_id != thread_get_self_id()) { /* 跨线程启动监听器 */
+                loop_notify_accept_async(channel_ref->ref_info->loop, channel_ref);
+                return error;
+            }
+        }
+        /* 当前线程内 */
         loop_add_channel_ref(channel_ref->ref_info->loop, channel_ref);
         channel_ref_set_state(channel_ref, channel_state_accept);
         channel_ref_set_event(channel_ref, channel_event_recv);

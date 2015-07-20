@@ -112,6 +112,12 @@ int channel_ref_connect_in_loop_address(channel_ref_t* channel_ref);
 void channel_ref_update_accept_in_loop(loop_t* loop, channel_ref_t* channel_ref);
 
 /**
+ * 在其他完成了listen()和bind()操作，在当前线程的loop_t内监听
+ * @param channel_ref channel_ref_t实例
+ */
+void channel_ref_accept_async(channel_ref_t* channel_ref);
+
+/**
  * 在loop_t所运行的线程内完成关闭流程
  * 通过跨线程关闭触发
  * @param loop loop_t实例

@@ -33,7 +33,7 @@
  * 1. 提供framework_t内建立的监听器、连接器配置接口
  * 2. 设置工作线程的数量，工作线程将实际负载管道
  * 
- * 监听器:
+ * 监听器 - 启动前建立:
  *     framework_acceptor_config_t* ac = framework_config_new_acceptor(c);
  *     framework_acceptor_config_set_local_address(ac, "127.0.0.1", 80);
  *     framework_acceptor_config_set_client_cb(ac, cb);
@@ -41,7 +41,7 @@
  *     framework_start(...);
  *     ......
  *
- * 连接器:
+ * 连接器 - 启动前建立:
  *     framework_connector_config_t* cc = framework_config_new_connector(c);
  *     framework_connector_config_set_remote_address(cc, "127.0.0.1", 80);
  *     framework_connector_config_set_cb(cc, cb);
@@ -49,7 +49,18 @@
  *     framework_start(...);
  *     ......
  *
- * 配置必须在调用framework_start之前设置，框架启动后不能更改！
+ * 监听器 - 启动后建立:
+ *     framework_acceptor_config_t* ac = framework_config_new_acceptor(c);
+ *     framework_acceptor_config_set_local_address(ac, "127.0.0.1", 80);
+ *     framework_acceptor_config_set_client_cb(ac, cb);
+ *     framework_acceptor_start(..., ac);
+ *
+ * 连接器 - 启动后建立:
+ *     framework_connector_config_t* cc = framework_config_new_connector(c);
+ *     framework_connector_config_set_remote_address(cc, "127.0.0.1", 80);
+ *     framework_connector_config_set_cb(cc, cb);
+ *     framework_connector_start(..., cc);
+ *
  * </pre>
  * @{
  */

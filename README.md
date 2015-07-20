@@ -86,7 +86,7 @@ For more detail, see `examples/multi_loop.c`
 
 `framework_t` offers a general interface of multi-loop under multi-threading environment.
 
-- framework starts a standalone acceptor thread
+- framework starts a standalone acceptor/connector thread
 - a thread pool to operate accepted channels
 - use the same callback type as the parameter of function `channel_ref_set_cb` 
 

@@ -154,6 +154,33 @@ void framework_raiser_wait_for_stop(framework_raiser_t* raiser) {
     }
 }
 
+int framework_raiser_new_acceptor(framework_raiser_t* raiser, framework_acceptor_config_t* c) {
+    channel_ref_t* channel = 0;
+    verify(raiser);
+    verify(c);
+    channel = loop_create_channel(raiser->loop, framework_acceptor_config_get_client_max_send_list_count(c),
+        framework_acceptor_config_get_client_max_recv_buffer_length(c));
+    verify(channel);
+    channel_ref_set_timeout(channel, framework_acceptor_config_get_client_heartbeat_timeout(c));
+    channel_ref_set_cb(channel, acceptor_cb);
+    channel_ref_set_user_data(channel, c);
+    return channel_ref_accept(channel, framework_acceptor_config_get_ip(c),
+        framework_acceptor_config_get_port(c), framework_acceptor_config_get_backlog(c));
+}
+
+int framework_raiser_new_connector(framework_raiser_t* raiser, framework_connector_config_t* c) {
+    channel_ref_t* channel = 0;
+    verify(raiser);
+    verify(c);
+    channel = loop_create_channel(raiser->loop, framework_connector_config_get_max_send_list_count(c),
+        framework_connector_config_get_max_recv_buffer_length(c));
+    verify(channel);
+    channel_ref_set_cb(channel, framework_connector_config_get_cb(c));
+    channel_ref_set_timeout(channel, framework_connector_config_get_heartbeat_timeout(c));
+    return channel_ref_connect(channel, framework_connector_config_get_remote_ip(c),
+        framework_connector_config_get_remote_port(c), framework_connector_config_get_connect_timeout(c));
+}
+
 void acceptor_cb(channel_ref_t* channel, channel_cb_event_e e) {
     framework_acceptor_config_t* ac = (framework_acceptor_config_t*)channel_ref_get_user_data(channel);
     channel_ref_cb_t             cb = framework_acceptor_config_get_client_cb(ac);

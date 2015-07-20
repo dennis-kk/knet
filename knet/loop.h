@@ -106,6 +106,13 @@ loop_balancer_t* loop_get_balancer(loop_t* loop);
 void loop_notify_accept(loop_t* loop, channel_ref_t* channel_ref);
 
 /**
+ * 发起监听通知 - 当前loop内监听
+ * @param loop loop_t实例
+ * @param channel_ref channel_ref_t实例
+ */
+void loop_notify_accept_async(loop_t* loop, channel_ref_t* channel_ref);
+
+/**
  * 发送事件通知 - 发起连接
  * @param loop loop_t实例
  * @param channel_ref channel_ref_t实例

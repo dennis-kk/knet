@@ -23,6 +23,7 @@
  */
 
 #include "framework_config.h"
+#include "misc.h"
 #include "list.h"
 
 struct _framework_acceptor_config_t {
@@ -46,6 +47,7 @@ struct _framework_connector_config_t {
 };
 
 struct _framework_config_t {
+    lock_t*  lock;                  /* 锁 */
     dlist_t* acceptor_config_list;  /* 监听器配置 */
     dlist_t* connector_config_list; /* 连接器配置 */
     int      worker_thread_count;   /* 工作线程数量 */
@@ -61,6 +63,7 @@ framework_config_t* framework_config_create() {
     c->connector_config_list = dlist_create();
     verify(c->connector_config_list);
     c->worker_thread_count = 1; /* 默认 - 只有一个工作线程 */
+    c->lock = lock_create();
     return c;
 }
 
@@ -76,6 +79,7 @@ void framework_config_destroy(framework_config_t* c) {
     }
     dlist_destroy(c->acceptor_config_list);
     dlist_destroy(c->connector_config_list);
+    lock_destroy(c->lock);
     destroy(c);
 }
 
@@ -94,7 +98,9 @@ framework_acceptor_config_t* framework_config_new_acceptor(framework_config_t* c
     ac->backlog = 100;
     ac->max_send_list_count    = 128;
     ac->max_recv_buffer_length = 1024 * 16;
+    lock_lock(c->lock);
     dlist_add_tail_node(c->acceptor_config_list, ac);
+    lock_unlock(c->lock);
     return ac;
 }
 
@@ -106,7 +112,9 @@ framework_connector_config_t* framework_config_new_connector(framework_config_t*
     memset(cc, 0, sizeof(framework_connector_config_t));
     cc->max_send_list_count    = 128;
     cc->max_recv_buffer_length = 1024 * 16;
+    lock_lock(c->lock);
     dlist_add_tail_node(c->connector_config_list, cc);
+    lock_unlock(c->lock);
     return cc;
 }
 

@@ -61,4 +61,22 @@ void framework_raiser_stop(framework_raiser_t* raiser);
  */
 void framework_raiser_wait_for_stop(framework_raiser_t* raiser);
 
+/**
+ * 启动一个新的监听器
+ * @param raiser framework_raiser_t实例
+ * @param c framework_acceptor_config_t实例
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int framework_raiser_new_acceptor(framework_raiser_t* raiser, framework_acceptor_config_t* c);
+
+/**
+ * 启动一个新的连接器
+ * @param raiser framework_raiser_t实例
+ * @param c framework_connector_config_t实例
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int framework_raiser_new_connector(framework_raiser_t* raiser, framework_connector_config_t* c);
+
 #endif /* FRAMEWORK_RAISER_H */

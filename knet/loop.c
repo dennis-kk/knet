@@ -50,10 +50,11 @@ struct _loop_t {
 };
 
 typedef enum _loop_event_e {
-    loop_event_accept = 1,  /* 接受新连接事件 */
-    loop_event_connect,     /* 发起连接事件 */
-    loop_event_send,        /* 发送事件 */
-    loop_event_close,       /* 关闭事件 */
+    loop_event_accept = 1,    /* 接受新连接事件 */
+    loop_event_connect,       /* 发起连接事件 */
+    loop_event_send,          /* 发送事件 */
+    loop_event_close,         /* 关闭事件 */
+    loop_event_accept_async,  /* 异步发起监听 */
 } loop_event_e;
 
 typedef struct _loop_event_t {
@@ -179,6 +180,12 @@ void loop_notify_accept(loop_t* loop, channel_ref_t* channel_ref) {
     loop_add_event(loop, loop_event_create(channel_ref, 0, loop_event_accept));
 }
 
+void loop_notify_accept_async(loop_t* loop, channel_ref_t* channel_ref) {
+    verify(loop);
+    verify(channel_ref);
+    loop_add_event(loop, loop_event_create(channel_ref, 0, loop_event_accept_async));
+}
+
 void loop_notify_connect(loop_t* loop, channel_ref_t* channel_ref) {
     verify(loop);
     verify(channel_ref);
@@ -231,6 +238,9 @@ void loop_event_process(loop_t* loop) {
         switch(loop_event->event) {
             case loop_event_accept:
                 channel_ref_update_accept_in_loop(loop, loop_event->channel_ref);
+                break;
+            case loop_event_accept_async:
+                channel_ref_accept_async(loop_event->channel_ref);
                 break;
             case loop_event_connect:
                 channel_ref_connect_in_loop(loop_event->channel_ref);

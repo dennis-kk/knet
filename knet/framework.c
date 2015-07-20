@@ -230,6 +230,18 @@ void _cleanup_all_threads(framework_t* f) {
     }
 }
 
+int framework_acceptor_start(framework_t* f, framework_acceptor_config_t* c) {
+    verify(f);
+    verify(c);
+    return framework_raiser_new_acceptor(f->raiser, c);
+}
+
+int framework_connector_start(framework_t* f, framework_connector_config_t* c) {
+    verify(f);
+    verify(c);
+    return framework_raiser_new_connector(f->raiser, c);
+}
+
 int _start_worker_threads(framework_t* f) {
     int           i     = 0;
     dlist_node_t* node  = 0;

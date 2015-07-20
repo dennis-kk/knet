@@ -43,7 +43,7 @@
  * connect的管道都会被分派到不同的工作线程处理，监听线程只负责连接的建立不负责读写.
  *
  * framework_config_t提供了统一的配置接口，在framework_t建立后可以获取framework_config_t
- * 接口进行配置，调用framework_start启动成功后将不能更改配置.
+ * 接口进行配置，调用framework_start启动成功后将不能更改已经建立的配置，但可以在运行中增加新的监听器和连接器.
  *
  * 框架的回调函数将在线程池内被回调，如果有多个工作线程的情况下，应该保证回调函数内的代码是线程安全的，
  * 为了方便使用，框架的回调函数也会通知channel_cb_event_accept事件.
@@ -113,6 +113,24 @@ extern int framework_stop(framework_t* f);
  * @return framework_config_t实例
  */
 extern framework_config_t* framework_get_config(framework_t* f);
+
+/**
+ * 启动监听器
+ * @param f framework_t实例
+ * @param c framework_acceptor_config_t实例
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int framework_acceptor_start(framework_t* f, framework_acceptor_config_t* c);
+
+/**
+ * 启动连接器
+ * @param f framework_t实例
+ * @param c framework_connector_config_t实例
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int framework_connector_start(framework_t* f, framework_connector_config_t* c);
 
 /** @} */
 
