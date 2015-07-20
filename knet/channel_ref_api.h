@@ -122,6 +122,24 @@ extern int channel_ref_connect(channel_ref_t* channel_ref, const char* ip, int p
 extern int channel_ref_reconnect(channel_ref_t* channel_ref, int timeout);
 
 /**
+ * 设置管道自动重连
+ * <pre>
+ * auto_reconnect为非零值则开启自动重连
+ * </pre>
+ * @param channel_ref channel_ref_t实例
+ * @param auto_reconnect 自动重连标志
+ */
+extern void channel_ref_set_auto_reconnect(channel_ref_t* channel_ref, int auto_reconnect);
+
+/**
+ * 检查管道是否开启了自动重连
+ * @param channel_ref channel_ref_t实例
+ * @retval 0 未开启
+ * @retval 非零 开启
+ */
+extern int channel_ref_check_auto_reconnect(channel_ref_t* channel_ref);
+
+/**
  * 检测管道是否是通过负载均衡关联到当前的loop_t
  * @param channel_ref channel_ref_t实例
  * @retval 0 不是

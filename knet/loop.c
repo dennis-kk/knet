@@ -386,6 +386,10 @@ void loop_check_timeout(loop_t* loop, time_t ts) {
                     log_error("connect timeout, channel[%llu]", channel_ref_get_uuid(channel_ref));
                     channel_ref_get_cb(channel_ref)(channel_ref, channel_cb_event_connect_timeout);
                 }
+                /* 自动重连 */
+                if (channel_ref_check_auto_reconnect(channel_ref)) {
+                    channel_ref_reconnect(channel_ref, 0);
+                }
             }
         }
         if (channel_ref_check_timeout(channel_ref, ts)) {

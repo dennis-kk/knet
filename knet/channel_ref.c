@@ -51,6 +51,7 @@ typedef struct _channel_ref_info_t {
     time_t                   timeout;              /* 读空闲超时（秒） */
     time_t                   last_connect_timeout; /* 最后一次connect()超时（秒） */
     time_t                   connect_timeout;      /* connect()超时间隔（秒） */
+    int                      auto_reconnect;       /* 自动重连标志 */
     int                      flag;                 /* 选取器所使用自定义标志位 */
     void*                    data;                 /* 选取器所使用自定义数据 */
     void*                    user_data;            /* 用户数据指针 */
@@ -167,6 +168,7 @@ int channel_ref_reconnect(channel_ref_t* channel_ref, int timeout) {
     loop_t*          loop                = 0;
     uint32_t         max_send_list_len   = 0;
     uint32_t         max_recv_buffer_len = 0;
+    int              auto_reconnect      = 0;
     void*            user_data           = 0;
     verify(channel_ref);
     verify(channel_ref->ref_info->channel);
@@ -180,6 +182,7 @@ int channel_ref_reconnect(channel_ref_t* channel_ref, int timeout) {
     max_recv_buffer_len = channel_get_max_recv_buffer_len(channel_ref->ref_info->channel);
     cb                  = channel_ref_get_cb(channel_ref);
     user_data           = channel_ref_get_user_data(channel_ref);
+    auto_reconnect      = channel_ref_check_auto_reconnect(channel_ref);
     peer_address        = channel_ref->ref_info->peer_address;
     verify(peer_address);
     strcpy(ip, address_get_ip(peer_address));
@@ -200,6 +203,8 @@ int channel_ref_reconnect(channel_ref_t* channel_ref, int timeout) {
     channel_ref_set_cb(new_channel, cb);
     /* 设置原有用户数据 */
     channel_ref_set_user_data(new_channel, user_data);
+    /* 设置自动重连标志 */
+    channel_ref_set_auto_reconnect(new_channel, auto_reconnect);
     /* 启动新的连接器 */
     error = channel_ref_connect(new_channel, ip, port, (int)connect_timeout);
     if (error_ok != error) {
@@ -208,6 +213,16 @@ int channel_ref_reconnect(channel_ref_t* channel_ref, int timeout) {
     /* 销毁原有管道 */
     channel_ref_close(channel_ref);
     return error;
+}
+
+void channel_ref_set_auto_reconnect(channel_ref_t* channel_ref, int auto_reconnect) {
+    verify(channel_ref);
+    channel_ref->ref_info->auto_reconnect = auto_reconnect;
+}
+
+int channel_ref_check_auto_reconnect(channel_ref_t* channel_ref) {
+    verify(channel_ref);
+    return channel_ref->ref_info->auto_reconnect;
 }
 
 void channel_ref_accept_async(channel_ref_t* channel_ref) {
@@ -592,9 +607,6 @@ loop_t* channel_ref_choose_loop(channel_ref_t* channel_ref) {
     loop_balancer_t* balancer     = 0;
     verify(channel_ref);
     current_loop = channel_ref->ref_info->loop;
-    /*if (!loop_get_thread_id(current_loop)) {
-        return 0;
-    }*/
     balancer = loop_get_balancer(current_loop);
     if (!balancer) {
         return 0;
