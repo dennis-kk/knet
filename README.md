@@ -92,6 +92,24 @@ For more detail, see `examples/multi_loop.c`
 
 The framework extremely simplifies code line for the startup and cleanup of loop under multi-threading environment.
 
+	framework_t* f = framework_create();
+	framework_config_t* c = framework_get_config(f);
+	/* fork a new acceptor */
+    framework_acceptor_config_t* ac = framework_config_new_acceptor(c);
+    framework_acceptor_config_set_local_address(ac, 0, 23);
+    framework_acceptor_config_set_client_cb(ac, client_cb);
+    /* start framework, wait stop & destroy*/
+    framework_start_wait_destroy(f);
+	
+After framework started, you also can start additional acceptor or connector.
+
+	framework_acceptor_config_t* ac = framework_config_new_acceptor(c);
+    framework_acceptor_config_set_local_address(ac, 0, 23);
+    framework_acceptor_config_set_client_cb(ac, client_cb);
+	framework_acceptor_start(f, ac);
+
+The callback function you set will be invoked in multiple threads(more than one worker), make sure the function thread-safety.
+
 For more detail, see `examples/framework.c`
 
 ### RPC ###

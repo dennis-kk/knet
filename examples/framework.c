@@ -32,6 +32,7 @@ int main() {
     framework_acceptor_config_t* ac = 0;
     f = framework_create();
     c = framework_get_config(f);
+    ac = framework_config_new_acceptor(c);
     framework_acceptor_config_set_local_address(ac, 0, 23);
     framework_acceptor_config_set_client_cb(ac, client_cb);
     /* 启动框架, 等待关闭，销毁*/
