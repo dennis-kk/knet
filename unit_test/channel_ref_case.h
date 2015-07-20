@@ -109,12 +109,45 @@ CASE(Test_Channel_Ref_Uuid) {
     loop_destroy(loop);
 }
 
-CASE(Test_Channel_Connect_Timeout) {
+CASE(Test_Channel_Connect_Timeout1) {
     struct holder {
         static void connector_cb(channel_ref_t* channel, channel_cb_event_e e) {
             if (e & channel_cb_event_connect_timeout) {
                 loop_exit(channel_ref_get_loop(channel));
             } else if (e & channel_cb_event_close) {                
+            } else {
+                CASE_FAIL();
+            }
+        }
+    };
+
+    loop_t* loop = loop_create();
+
+    channel_ref_t* connector = loop_create_channel(loop, 1, 1024);
+    channel_ref_set_cb(connector, &holder::connector_cb);
+    channel_ref_connect(connector, "127.0.0.1", 80, 1);
+
+    loop_run(loop);
+    loop_destroy(loop);
+}
+
+bool Test_Channel_Connect_Timeout2_Accept = 0;
+
+CASE(Test_Channel_Connect_Timeout2) {
+    struct holder {
+        static void connector_cb(channel_ref_t* channel, channel_cb_event_e e) {
+            if (e & channel_cb_event_connect_timeout) {
+                if (!Test_Channel_Connect_Timeout2_Accept) {
+                    channel_ref_t* acceptor = loop_create_channel(channel_ref_get_loop(channel), 1, 100);
+                    channel_ref_accept(acceptor, 0, 80, 10);
+                    Test_Channel_Connect_Timeout2_Accept = true;
+                }
+                // 重连
+                channel_ref_reconnect(channel, 2);
+            } else if (e & channel_cb_event_connect) {
+                // 重连成功，退出loop
+                loop_exit(channel_ref_get_loop(channel));
+            } else if (e & channel_cb_event_close) {
             } else {
                 CASE_FAIL();
             }

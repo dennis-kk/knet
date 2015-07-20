@@ -236,6 +236,11 @@ uint32_t channel_get_max_send_list_len(channel_t* channel) {
     return channel->max_send_list_len;
 }
 
+uint32_t channel_get_max_recv_buffer_len(channel_t* channel) {
+    verify(channel);
+    return ringbuffer_get_max_size(channel->recv_ringbuffer);
+}
+
 uint64_t channel_get_uuid(channel_t* channel) {
     verify(channel);
     return channel->uuid;

@@ -111,7 +111,7 @@ int socket_connect(socket_t socket_fd, const char* ip, int port) {
 #else
     if (error < 0) {
         if ((errno != EINPROGRESS) && (errno != EINTR) && (errno != EISCONN)) {
-            log_error("connect() failed, system error: %d", sys_get_errno());
+            log_error("connect() failed, system error: %d", errno);
             return error_connect_fail;
         }
     }

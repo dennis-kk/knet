@@ -36,23 +36,24 @@
 
 typedef struct _channel_ref_info_t {
     /* 基础数据成员 */
-    int                      balance;         /* 是否被负载均衡标志 */
-    channel_t*               channel;         /* 内部管道 */
-    dlist_node_t*            loop_node;       /* 管道链表节点 */
-    stream_t*                stream;          /* 管道(读/写)数据流 */
-    loop_t*                  loop;            /* 管道所关联的loop_t */
-    address_t*               peer_address;    /* 对端地址 */
-    address_t*               local_address;   /* 本地地址 */
-    channel_event_e          event;           /* 管道投递事件 */
-    volatile channel_state_e state;           /* 管道状态 */
-    atomic_counter_t         ref_count;       /* 引用计数 */
-    channel_ref_cb_t         cb;              /* 回调 */
-    time_t                   last_recv_ts;    /* 最后一次读操作时间戳（秒） */
-    time_t                   timeout;         /* 读空闲超时（秒） */
-    time_t                   connect_timeout; /* connect()超时（秒） */
-    int                      flag;            /* 选取器所使用自定义标志位 */
-    void*                    data;            /* 选取器所使用自定义数据 */
-    void*                    user_data;       /* 用户数据指针 */
+    int                      balance;              /* 是否被负载均衡标志 */
+    channel_t*               channel;              /* 内部管道 */
+    dlist_node_t*            loop_node;            /* 管道链表节点 */
+    stream_t*                stream;               /* 管道(读/写)数据流 */
+    loop_t*                  loop;                 /* 管道所关联的loop_t */
+    address_t*               peer_address;         /* 对端地址 */
+    address_t*               local_address;        /* 本地地址 */
+    channel_event_e          event;                /* 管道投递事件 */
+    volatile channel_state_e state;                /* 管道状态 */
+    atomic_counter_t         ref_count;            /* 引用计数 */
+    channel_ref_cb_t         cb;                   /* 回调 */
+    time_t                   last_recv_ts;         /* 最后一次读操作时间戳（秒） */
+    time_t                   timeout;              /* 读空闲超时（秒） */
+    time_t                   last_connect_timeout; /* 最后一次connect()超时（秒） */
+    time_t                   connect_timeout;      /* connect()超时间隔（秒） */
+    int                      flag;                 /* 选取器所使用自定义标志位 */
+    void*                    data;                 /* 选取器所使用自定义数据 */
+    void*                    user_data;            /* 用户数据指针 */
     /* 扩展数据成员 */
 } channel_ref_info_t;
 
@@ -123,9 +124,14 @@ int channel_ref_connect(channel_ref_t* channel_ref, const char* ip, int port, in
         /* 已经处于连接状态 */
         return error_connect_in_progress;
     }
-    if (timeout) {
+    if (!channel_ref->ref_info->peer_address) {
+        channel_ref->ref_info->peer_address = address_create();        
+    }
+    address_set(channel_ref->ref_info->peer_address, ip, port);
+    if (timeout > 0) {
+        channel_ref->ref_info->connect_timeout = timeout;
         /* 设置超时时间戳 */
-        channel_ref->ref_info->connect_timeout = time(0) + timeout;
+        channel_ref->ref_info->last_connect_timeout = time(0) + timeout;
     }
     /* 如果目标积极拒绝，返回失败 */
     error = channel_connect(channel_ref->ref_info->channel, ip, port);
@@ -148,6 +154,60 @@ int channel_ref_connect(channel_ref_t* channel_ref, const char* ip, int port, in
     }
     /* 当前线程内发起连接 */
     return channel_ref_connect_in_loop(channel_ref);
+}
+
+int channel_ref_reconnect(channel_ref_t* channel_ref, int timeout) {
+    int              error               = error_ok;
+    char             ip[32]              = {0};
+    int              port                = 0;
+    channel_ref_t*   new_channel         = 0;
+    address_t*       peer_address        = 0;
+    time_t           connect_timeout     = 0;
+    channel_ref_cb_t cb                  = 0;
+    loop_t*          loop                = 0;
+    uint32_t         max_send_list_len   = 0;
+    uint32_t         max_recv_buffer_len = 0;
+    void*            user_data           = 0;
+    verify(channel_ref);
+    verify(channel_ref->ref_info->channel);
+    if (!channel_ref_check_state(channel_ref, channel_state_connect)) {
+        /* 未处于正在连接状态的管道不能重连 */
+        return error_channel_not_connect;
+    }
+    /* 获取原有管道属性 */
+    loop                = channel_ref_get_loop(channel_ref);
+    max_send_list_len   = channel_get_max_send_list_len(channel_ref->ref_info->channel);
+    max_recv_buffer_len = channel_get_max_recv_buffer_len(channel_ref->ref_info->channel);
+    cb                  = channel_ref_get_cb(channel_ref);
+    user_data           = channel_ref_get_user_data(channel_ref);
+    peer_address        = channel_ref->ref_info->peer_address;
+    verify(peer_address);
+    strcpy(ip, address_get_ip(peer_address));
+    port = address_get_port(peer_address);
+    /* 建立新管道 */
+    new_channel = loop_create_channel(loop, max_send_list_len, max_recv_buffer_len);
+    verify(new_channel);
+    if (timeout > 0) {
+        /* 设置新的超时时间戳 */
+        connect_timeout = timeout;
+    } else {
+        /* 使用原有的超时时间戳 */
+        if (channel_ref->ref_info->connect_timeout) {
+            connect_timeout = channel_ref->ref_info->connect_timeout;
+        }
+    }
+    /* 设置原有回调 */
+    channel_ref_set_cb(new_channel, cb);
+    /* 设置原有用户数据 */
+    channel_ref_set_user_data(new_channel, user_data);
+    /* 启动新的连接器 */
+    error = channel_ref_connect(new_channel, ip, port, (int)connect_timeout);
+    if (error_ok != error) {
+        return error;
+    }
+    /* 销毁原有管道 */
+    channel_ref_close(channel_ref);
+    return error;
 }
 
 void channel_ref_accept_async(channel_ref_t* channel_ref) {
@@ -586,8 +646,8 @@ void channel_ref_set_timeout(channel_ref_t* channel_ref, int timeout) {
 int channel_ref_check_connect_timeout(channel_ref_t* channel_ref, time_t ts) {
     verify(channel_ref);
     if (channel_ref_check_state(channel_ref, channel_state_connect)) {
-        if (channel_ref->ref_info->connect_timeout) {
-            return (channel_ref->ref_info->connect_timeout < ts);
+        if (channel_ref->ref_info->last_connect_timeout) {
+            return (channel_ref->ref_info->last_connect_timeout < ts);
         }
     }
     return 0;

@@ -188,6 +188,7 @@ typedef enum _error_e {
     error_recv_nothing,
     error_connect_fail,
     error_connect_in_progress,
+    error_channel_not_connect,
     error_accept_in_progress,
     error_bind_fail,
     error_listen_fail,

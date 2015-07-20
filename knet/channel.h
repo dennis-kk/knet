@@ -137,6 +137,13 @@ ringbuffer_t* channel_get_ringbuffer(channel_t* channel);
 uint32_t channel_get_max_send_list_len(channel_t* channel);
 
 /**
+ * 取得接收缓冲区最大长度限制
+ * @param channel channel_t实例
+ * @return 接收缓冲区最大长度限制
+ */
+uint32_t channel_get_max_recv_buffer_len(channel_t* channel);
+
+/**
  * 获取管道UUID
  * @param channel channel_t实例
  * @return 管道UUID

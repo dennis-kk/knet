@@ -81,6 +81,20 @@ extern channel_ref_t* channel_ref_share(channel_ref_t* channel_ref);
 extern void channel_ref_leave(channel_ref_t* channel_ref);
 
 /**
+ * 将管道转换为监听管道
+ *
+ * 由这个监听管道接受的新连接将使用与监听管道相同的发送缓冲区最大数量限制和接受缓冲区长度限制,
+ * channel_ref_accept所接受的新连接将被负载均衡，实际运行在哪个loop_t内依赖于实际运行的情况
+ * @param channel_ref channel_ref_t实例
+ * @param ip IP
+ * @param port 端口
+ * @param backlog 等待队列上限（listen())
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int channel_ref_accept(channel_ref_t* channel_ref, const char* ip, int port, int backlog);
+
+/**
  * 主动连接
  *
  * 调用channel_ref_connect的管道会被负载均衡，实际运行在哪个loop_t内依赖于实际运行的情况
@@ -94,18 +108,17 @@ extern void channel_ref_leave(channel_ref_t* channel_ref);
 extern int channel_ref_connect(channel_ref_t* channel_ref, const char* ip, int port, int timeout);
 
 /**
- * 将管道转换为监听管道
+ * 重新发起连接
  *
- * 由这个监听管道接受的新连接将使用与监听管道相同的发送缓冲区最大数量限制和接受缓冲区长度限制,
- * channel_ref_accept所接受的新连接将被负载均衡，实际运行在哪个loop_t内依赖于实际运行的情况
+ * <pre>
+ * 如果timeout设置为0，则使用原有的连接超时，如果timeout>0则使用新的连接超时
+ * </pre>
  * @param channel_ref channel_ref_t实例
- * @param ip IP
- * @param port 端口
- * @param backlog 等待队列上限（listen())
+ * @param timeout 连接超时（秒）
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int channel_ref_accept(channel_ref_t* channel_ref, const char* ip, int port, int backlog);
+extern int channel_ref_reconnect(channel_ref_t* channel_ref, int timeout);
 
 /**
  * 检测管道是否是通过负载均衡关联到当前的loop_t
