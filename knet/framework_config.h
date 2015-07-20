@@ -48,6 +48,20 @@ void framework_config_destroy(framework_config_t* c);
 int framework_config_get_worker_thread_count(framework_config_t* c);
 
 /**
+ * 取得工作线程内定时器分辨率
+ * @param c framework_config_t实例
+ * @return 工作线程内定时器分辨率（毫秒）
+ */
+time_t framework_config_get_worker_timer_freq(framework_config_t* c);
+
+/**
+ * 取得工作线程内定时器槽位数量
+ * @param c framework_config_t实例
+ * @return 定时器槽位数量
+ */
+int framework_config_get_worker_timer_slot(framework_config_t* c);
+
+/**
  * 取得监听器配置链表
  * @param c framework_config_t实例
  * @return 监听器配置链表

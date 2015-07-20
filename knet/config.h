@@ -34,11 +34,11 @@
 
 #if defined(WIN32)
     #if defined(_WIN32_WINNT)
-        #if _WIN32_WINNT < 0X0500
-            #define _WIN32_WINNT 0X0500
-        #endif /* _WIN32_WINNT < 0X0500 */ 
+        #if _WIN32_WINNT < 0x0502
+            #define _WIN32_WINNT 0x0502
+        #endif /* _WIN32_WINNT < 0x0502 */ 
     #else
-        #define _WIN32_WINNT 0X0500 /* TryEnterCriticalSection */
+        #define _WIN32_WINNT 0x0502 /* TryEnterCriticalSection */
     #endif /* defined(_WIN32_WINNT) */
     #if defined(FD_SETSIZE)
         #undef FD_SETSIZE
@@ -140,6 +140,7 @@ typedef struct _framework_connector_config_t framework_connector_config_t;
 typedef struct _framework_config_t framework_config_t;
 typedef struct _framework_raiser_t framework_raiser_t;
 typedef struct _framework_worker_t framework_worker_t;
+typedef struct _framework_timer_config_t framework_timer_config_t;
 typedef struct _loop_profile_t loop_profile_t;
 
 /* 管道可投递事件 */

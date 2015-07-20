@@ -61,4 +61,18 @@ void framework_worker_stop(framework_worker_t* worker);
  */
 void framework_worker_wait_for_stop(framework_worker_t* worker);
 
+/**
+ * 建立一个定时器
+ * @param worker framework_worker_t实例
+ * @return ktimer_t实例
+ */
+ktimer_t* framework_worker_create_timer(framework_worker_t* worker);
+
+/**
+ * 取得工作线程ID
+ * @param worker framework_worker_t实例
+ * @return 工作线程ID
+ */
+thread_id_t framework_worker_get_id(framework_worker_t* worker);
+
 #endif /* FRAMEWORK_WORKER_H */

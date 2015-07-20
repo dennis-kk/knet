@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/framework_worker.h 源文件</title>
+<title>knet: E:/knet-git/knet/knet/framework_api.h 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">knet
-   &#160;<span id="projectnumber">1.4.4</span>
+   &#160;<span id="projectnumber">1.4.5</span>
    </div>
   </td>
  </tr>
@@ -87,38 +87,85 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">framework_worker.h</div>  </div>
+<div class="title">framework_api.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="a00054.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef FRAMEWORK_WORKER_H</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define FRAMEWORK_WORKER_H</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00047.html">config.h</a>&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<a class="code" href="a00012.html">framework_worker_t</a>* <a class="code" href="a00054_a0617a9e873aa183a3bb0cc33a542a8a1.html#a0617a9e873aa183a3bb0cc33a542a8a1">framework_worker_create</a>(<a class="code" href="a00011.html">framework_t</a>* <a class="code" href="a00012_a807e1f788cb43947cfe5c14c95b8cd22.html#a807e1f788cb43947cfe5c14c95b8cd22">f</a>);</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00054_a1f5d04499db3c8137c840c8c87cdba5e.html#a1f5d04499db3c8137c840c8c87cdba5e">framework_worker_destroy</a>(<a class="code" href="a00012.html">framework_worker_t</a>* w);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00054_a8030b85e272bfe80459bbecbca5cd9c0.html#a8030b85e272bfe80459bbecbca5cd9c0">framework_worker_start</a>(<a class="code" href="a00012.html">framework_worker_t</a>* w);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00054_a52ecf94ed22881622a06600042ab1bb1.html#a52ecf94ed22881622a06600042ab1bb1">framework_worker_stop</a>(<a class="code" href="a00012.html">framework_worker_t</a>* w);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00054_a5af1821ad3a53ce7a9bd675a49c252e6.html#a5af1821ad3a53ce7a9bd675a49c252e6">framework_worker_wait_for_stop</a>(<a class="code" href="a00012.html">framework_worker_t</a>* w);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* FRAMEWORK_WORKER_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="a00054_a52ecf94ed22881622a06600042ab1bb1_html_a52ecf94ed22881622a06600042ab1bb1"><div class="ttname"><a href="a00054_a52ecf94ed22881622a06600042ab1bb1.html#a52ecf94ed22881622a06600042ab1bb1">framework_worker_stop</a></div><div class="ttdeci">void framework_worker_stop(framework_worker_t *w)</div><div class="ttdoc">关闭框架工作线程 </div><div class="ttdef"><b>Definition:</b> framework_worker.c:42</div></div>
-<div class="ttc" id="a00047_html"><div class="ttname"><a href="a00047.html">config.h</a></div></div>
-<div class="ttc" id="a00054_a5af1821ad3a53ce7a9bd675a49c252e6_html_a5af1821ad3a53ce7a9bd675a49c252e6"><div class="ttname"><a href="a00054_a5af1821ad3a53ce7a9bd675a49c252e6.html#a5af1821ad3a53ce7a9bd675a49c252e6">framework_worker_wait_for_stop</a></div><div class="ttdeci">void framework_worker_wait_for_stop(framework_worker_t *w)</div><div class="ttdoc">等待框架工作线程关闭 </div><div class="ttdef"><b>Definition:</b> framework_worker.c:51</div></div>
-<div class="ttc" id="a00012_a807e1f788cb43947cfe5c14c95b8cd22_html_a807e1f788cb43947cfe5c14c95b8cd22"><div class="ttname"><a href="a00012_a807e1f788cb43947cfe5c14c95b8cd22.html#a807e1f788cb43947cfe5c14c95b8cd22">_framework_worker_t::f</a></div><div class="ttdeci">framework_t * f</div><div class="ttdef"><b>Definition:</b> framework_worker.c:9</div></div>
-<div class="ttc" id="a00012_html"><div class="ttname"><a href="a00012.html">_framework_worker_t</a></div><div class="ttdef"><b>Definition:</b> framework_worker.c:7</div></div>
-<div class="ttc" id="a00054_a0617a9e873aa183a3bb0cc33a542a8a1_html_a0617a9e873aa183a3bb0cc33a542a8a1"><div class="ttname"><a href="a00054_a0617a9e873aa183a3bb0cc33a542a8a1.html#a0617a9e873aa183a3bb0cc33a542a8a1">framework_worker_create</a></div><div class="ttdeci">framework_worker_t * framework_worker_create(framework_t *f)</div><div class="ttdoc">建立框架工作线程 </div><div class="ttdef"><b>Definition:</b> framework_worker.c:13</div></div>
-<div class="ttc" id="a00011_html"><div class="ttname"><a href="a00011.html">_framework_t</a></div><div class="ttdef"><b>Definition:</b> framework.c:43</div></div>
-<div class="ttc" id="a00054_a8030b85e272bfe80459bbecbca5cd9c0_html_a8030b85e272bfe80459bbecbca5cd9c0"><div class="ttname"><a href="a00054_a8030b85e272bfe80459bbecbca5cd9c0.html#a8030b85e272bfe80459bbecbca5cd9c0">framework_worker_start</a></div><div class="ttdeci">int framework_worker_start(framework_worker_t *w)</div><div class="ttdoc">启动框架工作线程 </div><div class="ttdef"><b>Definition:</b> framework_worker.c:31</div></div>
-<div class="ttc" id="a00054_a1f5d04499db3c8137c840c8c87cdba5e_html_a1f5d04499db3c8137c840c8c87cdba5e"><div class="ttname"><a href="a00054_a1f5d04499db3c8137c840c8c87cdba5e.html#a1f5d04499db3c8137c840c8c87cdba5e">framework_worker_destroy</a></div><div class="ttdeci">void framework_worker_destroy(framework_worker_t *w)</div><div class="ttdoc">销毁框架工作线程 </div><div class="ttdef"><b>Definition:</b> framework_worker.c:23</div></div>
+<a href="a00054.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2014-2015, dennis wang</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * All rights reserved.</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * </span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Redistribution and use in source and binary forms, with or without</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * modification, are permitted provided that the following conditions are met:</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> *     * Redistributions of source code must retain the above copyright</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *       notice, this list of conditions and the following disclaimer.</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> *     * Redistributions in binary form must reproduce the above copyright</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> *       notice, this list of conditions and the following disclaimer in the</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> *       documentation and/or other materials provided with the distribution.</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> * </span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> * DISCLAIMED. IN NO EVENT SHALL dennis wang BE LIABLE FOR ANY</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment"> * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"> * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef FRAMEWORK_API_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define FRAMEWORK_API_H</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00051.html">config.h</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00013.html">framework_t</a>* <a class="code" href="a00103_ga90b29a0c500209cb9b37437a32188a40.html#ga90b29a0c500209cb9b37437a32188a40">framework_create</a>();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00103_gad1b6cb17014bfc515f8861bad3198e22.html#gad1b6cb17014bfc515f8861bad3198e22">framework_destroy</a>(<a class="code" href="a00013.html">framework_t</a>* f);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00103_ga23293faa7cc7d9f88ec73d4430a2355e.html#ga23293faa7cc7d9f88ec73d4430a2355e">framework_start</a>(<a class="code" href="a00013.html">framework_t</a>* f);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00103_ga5fb7151fc13ce397884a7673b4fd319b.html#ga5fb7151fc13ce397884a7673b4fd319b">framework_start_wait</a>(<a class="code" href="a00013.html">framework_t</a>* f);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00103_ga4af709f98e2bd206da043cc29f915c99.html#ga4af709f98e2bd206da043cc29f915c99">framework_start_wait_destroy</a>(<a class="code" href="a00013.html">framework_t</a>* f);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00103_gaefec7da1b548ddb97c73c8924ba17069.html#gaefec7da1b548ddb97c73c8924ba17069">framework_wait_for_stop</a>(<a class="code" href="a00013.html">framework_t</a>* f);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00103_gada1de96de1586411c77b5357a7b2376a.html#gada1de96de1586411c77b5357a7b2376a">framework_wait_for_stop_destroy</a>(<a class="code" href="a00013.html">framework_t</a>* f);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00103_ga429be76d09278d6170f1b519f4dbb689.html#ga429be76d09278d6170f1b519f4dbb689">framework_stop</a>(<a class="code" href="a00013.html">framework_t</a>* f);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00010.html">framework_config_t</a>* <a class="code" href="a00103_gaf0524cc257c8e57ba11d676dcca6bf64.html#gaf0524cc257c8e57ba11d676dcca6bf64">framework_get_config</a>(<a class="code" href="a00013.html">framework_t</a>* f);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00103_ga53ad108c8d70f15e9d31408f0d2dece1.html#ga53ad108c8d70f15e9d31408f0d2dece1">framework_acceptor_start</a>(<a class="code" href="a00013.html">framework_t</a>* f, <a class="code" href="a00009.html">framework_acceptor_config_t</a>* c);</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00103_ga4a6f0ed73c188faf4ed7e7d6050f6d5c.html#ga4a6f0ed73c188faf4ed7e7d6050f6d5c">framework_connector_start</a>(<a class="code" href="a00013.html">framework_t</a>* f, <a class="code" href="a00011.html">framework_connector_config_t</a>* c);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00025.html">ktimer_t</a>* <a class="code" href="a00103_ga810b3d53d7116eebe3a725e2d4a873fa.html#ga810b3d53d7116eebe3a725e2d4a873fa">framework_create_worker_timer</a>(<a class="code" href="a00013.html">framework_t</a>* f);</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* FRAMEWORK_API_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a00010_html"><div class="ttname"><a href="a00010.html">_framework_config_t</a></div><div class="ttdef"><b>Definition:</b> framework_config.c:49</div></div>
+<div class="ttc" id="a00103_ga5fb7151fc13ce397884a7673b4fd319b_html_ga5fb7151fc13ce397884a7673b4fd319b"><div class="ttname"><a href="a00103_ga5fb7151fc13ce397884a7673b4fd319b.html#ga5fb7151fc13ce397884a7673b4fd319b">framework_start_wait</a></div><div class="ttdeci">int framework_start_wait(framework_t *f)</div><div class="ttdoc">启动框架并等待框架关闭 </div><div class="ttdef"><b>Definition:</b> framework.c:144</div></div>
+<div class="ttc" id="a00103_ga23293faa7cc7d9f88ec73d4430a2355e_html_ga23293faa7cc7d9f88ec73d4430a2355e"><div class="ttname"><a href="a00103_ga23293faa7cc7d9f88ec73d4430a2355e.html#ga23293faa7cc7d9f88ec73d4430a2355e">framework_start</a></div><div class="ttdeci">int framework_start(framework_t *f)</div><div class="ttdoc">启动框架 </div><div class="ttdef"><b>Definition:</b> framework.c:106</div></div>
+<div class="ttc" id="a00103_ga429be76d09278d6170f1b519f4dbb689_html_ga429be76d09278d6170f1b519f4dbb689"><div class="ttname"><a href="a00103_ga429be76d09278d6170f1b519f4dbb689.html#ga429be76d09278d6170f1b519f4dbb689">framework_stop</a></div><div class="ttdeci">int framework_stop(framework_t *f)</div><div class="ttdoc">关闭框架 </div><div class="ttdef"><b>Definition:</b> framework.c:184</div></div>
+<div class="ttc" id="a00103_gad1b6cb17014bfc515f8861bad3198e22_html_gad1b6cb17014bfc515f8861bad3198e22"><div class="ttname"><a href="a00103_gad1b6cb17014bfc515f8861bad3198e22.html#gad1b6cb17014bfc515f8861bad3198e22">framework_destroy</a></div><div class="ttdeci">void framework_destroy(framework_t *f)</div><div class="ttdoc">销毁框架 </div><div class="ttdef"><b>Definition:</b> framework.c:78</div></div>
+<div class="ttc" id="a00103_gaf0524cc257c8e57ba11d676dcca6bf64_html_gaf0524cc257c8e57ba11d676dcca6bf64"><div class="ttname"><a href="a00103_gaf0524cc257c8e57ba11d676dcca6bf64.html#gaf0524cc257c8e57ba11d676dcca6bf64">framework_get_config</a></div><div class="ttdeci">framework_config_t * framework_get_config(framework_t *f)</div><div class="ttdoc">取得框架配置 </div><div class="ttdef"><b>Definition:</b> framework.c:205</div></div>
+<div class="ttc" id="a00009_html"><div class="ttname"><a href="a00009.html">_framework_acceptor_config_t</a></div><div class="ttdef"><b>Definition:</b> framework_config.c:29</div></div>
+<div class="ttc" id="a00103_ga810b3d53d7116eebe3a725e2d4a873fa_html_ga810b3d53d7116eebe3a725e2d4a873fa"><div class="ttname"><a href="a00103_ga810b3d53d7116eebe3a725e2d4a873fa.html#ga810b3d53d7116eebe3a725e2d4a873fa">framework_create_worker_timer</a></div><div class="ttdeci">ktimer_t * framework_create_worker_timer(framework_t *f)</div><div class="ttdoc">建立一个工作线程定时器 只能在工作线程内建立定时器，如果在非工作线程内建立定时器则失败 ...</div><div class="ttdef"><b>Definition:</b> framework.c:248</div></div>
+<div class="ttc" id="a00103_ga4a6f0ed73c188faf4ed7e7d6050f6d5c_html_ga4a6f0ed73c188faf4ed7e7d6050f6d5c"><div class="ttname"><a href="a00103_ga4a6f0ed73c188faf4ed7e7d6050f6d5c.html#ga4a6f0ed73c188faf4ed7e7d6050f6d5c">framework_connector_start</a></div><div class="ttdeci">int framework_connector_start(framework_t *f, framework_connector_config_t *c)</div><div class="ttdoc">启动连接器 </div><div class="ttdef"><b>Definition:</b> framework.c:242</div></div>
+<div class="ttc" id="a00025_html"><div class="ttname"><a href="a00025.html">_ktimer_t</a></div><div class="ttdef"><b>Definition:</b> timer.c:30</div></div>
+<div class="ttc" id="a00103_ga53ad108c8d70f15e9d31408f0d2dece1_html_ga53ad108c8d70f15e9d31408f0d2dece1"><div class="ttname"><a href="a00103_ga53ad108c8d70f15e9d31408f0d2dece1.html#ga53ad108c8d70f15e9d31408f0d2dece1">framework_acceptor_start</a></div><div class="ttdeci">int framework_acceptor_start(framework_t *f, framework_acceptor_config_t *c)</div><div class="ttdoc">启动监听器 </div><div class="ttdef"><b>Definition:</b> framework.c:236</div></div>
+<div class="ttc" id="a00013_html"><div class="ttname"><a href="a00013.html">_framework_t</a></div><div class="ttdef"><b>Definition:</b> framework.c:35</div></div>
+<div class="ttc" id="a00011_html"><div class="ttname"><a href="a00011.html">_framework_connector_config_t</a></div><div class="ttdef"><b>Definition:</b> framework_config.c:39</div></div>
+<div class="ttc" id="a00103_ga90b29a0c500209cb9b37437a32188a40_html_ga90b29a0c500209cb9b37437a32188a40"><div class="ttname"><a href="a00103_ga90b29a0c500209cb9b37437a32188a40.html#ga90b29a0c500209cb9b37437a32188a40">framework_create</a></div><div class="ttdeci">framework_t * framework_create()</div><div class="ttdoc">建立框架 </div><div class="ttdef"><b>Definition:</b> framework.c:66</div></div>
+<div class="ttc" id="a00103_gada1de96de1586411c77b5357a7b2376a_html_gada1de96de1586411c77b5357a7b2376a"><div class="ttname"><a href="a00103_gada1de96de1586411c77b5357a7b2376a.html#gada1de96de1586411c77b5357a7b2376a">framework_wait_for_stop_destroy</a></div><div class="ttdeci">void framework_wait_for_stop_destroy(framework_t *f)</div><div class="ttdoc">等待框架停止并销毁 </div><div class="ttdef"><b>Definition:</b> framework.c:178</div></div>
+<div class="ttc" id="a00103_ga4af709f98e2bd206da043cc29f915c99_html_ga4af709f98e2bd206da043cc29f915c99"><div class="ttname"><a href="a00103_ga4af709f98e2bd206da043cc29f915c99.html#ga4af709f98e2bd206da043cc29f915c99">framework_start_wait_destroy</a></div><div class="ttdeci">int framework_start_wait_destroy(framework_t *f)</div><div class="ttdoc">启动框架并等待框架关闭，如果启动失败或者框架关闭则销毁 </div><div class="ttdef"><b>Definition:</b> framework.c:152</div></div>
+<div class="ttc" id="a00051_html"><div class="ttname"><a href="a00051.html">config.h</a></div></div>
+<div class="ttc" id="a00103_gaefec7da1b548ddb97c73c8924ba17069_html_gaefec7da1b548ddb97c73c8924ba17069"><div class="ttname"><a href="a00103_gaefec7da1b548ddb97c73c8924ba17069.html#gaefec7da1b548ddb97c73c8924ba17069">framework_wait_for_stop</a></div><div class="ttdeci">void framework_wait_for_stop(framework_t *f)</div><div class="ttdoc">等待框架停止 </div><div class="ttdef"><b>Definition:</b> framework.c:158</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 13日 星期一 18:21:38 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 20日 星期一 15:03:38 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

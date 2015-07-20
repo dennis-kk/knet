@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/buffer.h 源文件</title>
+<title>knet: E:/knet-git/knet/knet/address_api.h 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">knet
-   &#160;<span id="projectnumber">1.4.4</span>
+   &#160;<span id="projectnumber">1.4.5</span>
    </div>
   </td>
  </tr>
@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">buffer.h</div>  </div>
+<div class="title">address_api.h</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00041.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
@@ -114,45 +114,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef BUFFER_H</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define BUFFER_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef ADDRESS_API_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define ADDRESS_API_H</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00047.html">config.h</a>&quot;</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<a class="code" href="a00003.html">buffer_t</a>* <a class="code" href="a00041_aa5059c5ab47dd3f98ce1d208831dfb88.html#aa5059c5ab47dd3f98ce1d208831dfb88">buffer_create</a>(uint32_t size);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00041_a75b1ca3205331cdaf7a9f4e6f28c03d9.html#a75b1ca3205331cdaf7a9f4e6f28c03d9">buffer_destroy</a>(<a class="code" href="a00003.html">buffer_t</a>* sb);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;uint32_t <a class="code" href="a00041_ab3e5b8fef4f96fbba03bcd2a55d5c4e2.html#ab3e5b8fef4f96fbba03bcd2a55d5c4e2">buffer_put</a>(<a class="code" href="a00003.html">buffer_t</a>* sb, <span class="keyword">const</span> <span class="keywordtype">char</span>* temp, uint32_t size);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;uint32_t <a class="code" href="a00041_a521aa1247c7e0ce15f48da2b3f87ede5.html#a521aa1247c7e0ce15f48da2b3f87ede5">buffer_get_length</a>(<a class="code" href="a00003.html">buffer_t</a>* sb);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;uint32_t <a class="code" href="a00041_a13dfff4814bad92a4f5c263b68ddf475.html#a13dfff4814bad92a4f5c263b68ddf475">buffer_get_max_size</a>(<a class="code" href="a00003.html">buffer_t</a>* sb);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00041_ae5cb663b693f41f93952c34cdd7f1f14.html#ae5cb663b693f41f93952c34cdd7f1f14">buffer_enough</a>(<a class="code" href="a00003.html">buffer_t</a>* sb, uint32_t size);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keywordtype">char</span>* <a class="code" href="a00041_ab54cc02c921fa0034efe6fbd146de96c.html#ab54cc02c921fa0034efe6fbd146de96c">buffer_get_ptr</a>(<a class="code" href="a00003.html">buffer_t</a>* sb);</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00041_a1e574a50d7d434434bc466978601b703.html#a1e574a50d7d434434bc466978601b703">buffer_adjust</a>(<a class="code" href="a00003.html">buffer_t</a>* sb, uint32_t gap);</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00041_a0f64078ea08b7269039ea6694f009729.html#a0f64078ea08b7269039ea6694f009729">buffer_clear</a>(<a class="code" href="a00003.html">buffer_t</a>* sb);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* BUFFER_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="a00041_ab54cc02c921fa0034efe6fbd146de96c_html_ab54cc02c921fa0034efe6fbd146de96c"><div class="ttname"><a href="a00041_ab54cc02c921fa0034efe6fbd146de96c.html#ab54cc02c921fa0034efe6fbd146de96c">buffer_get_ptr</a></div><div class="ttdeci">char * buffer_get_ptr(buffer_t *sb)</div><div class="ttdoc">取得缓冲区数据起始地址 </div><div class="ttdef"><b>Definition:</b> buffer.c:102</div></div>
-<div class="ttc" id="a00003_html"><div class="ttname"><a href="a00003.html">_buffer_t</a></div><div class="ttdef"><b>Definition:</b> buffer.c:28</div></div>
-<div class="ttc" id="a00041_ab3e5b8fef4f96fbba03bcd2a55d5c4e2_html_ab3e5b8fef4f96fbba03bcd2a55d5c4e2"><div class="ttname"><a href="a00041_ab3e5b8fef4f96fbba03bcd2a55d5c4e2.html#ab3e5b8fef4f96fbba03bcd2a55d5c4e2">buffer_put</a></div><div class="ttdeci">uint32_t buffer_put(buffer_t *sb, const char *temp, uint32_t size)</div><div class="ttdoc">写入 </div><div class="ttdef"><b>Definition:</b> buffer.c:63</div></div>
-<div class="ttc" id="a00041_a521aa1247c7e0ce15f48da2b3f87ede5_html_a521aa1247c7e0ce15f48da2b3f87ede5"><div class="ttname"><a href="a00041_a521aa1247c7e0ce15f48da2b3f87ede5.html#a521aa1247c7e0ce15f48da2b3f87ede5">buffer_get_length</a></div><div class="ttdeci">uint32_t buffer_get_length(buffer_t *sb)</div><div class="ttdoc">取得缓冲区内数据长度 </div><div class="ttdef"><b>Definition:</b> buffer.c:78</div></div>
-<div class="ttc" id="a00047_html"><div class="ttname"><a href="a00047.html">config.h</a></div></div>
-<div class="ttc" id="a00041_ae5cb663b693f41f93952c34cdd7f1f14_html_ae5cb663b693f41f93952c34cdd7f1f14"><div class="ttname"><a href="a00041_ae5cb663b693f41f93952c34cdd7f1f14.html#ae5cb663b693f41f93952c34cdd7f1f14">buffer_enough</a></div><div class="ttdeci">int buffer_enough(buffer_t *sb, uint32_t size)</div><div class="ttdoc">测试缓冲区内是否有足够空间 </div><div class="ttdef"><b>Definition:</b> buffer.c:94</div></div>
-<div class="ttc" id="a00041_a1e574a50d7d434434bc466978601b703_html_a1e574a50d7d434434bc466978601b703"><div class="ttname"><a href="a00041_a1e574a50d7d434434bc466978601b703.html#a1e574a50d7d434434bc466978601b703">buffer_adjust</a></div><div class="ttdeci">void buffer_adjust(buffer_t *sb, uint32_t gap)</div><div class="ttdoc">调整数据起始地址 </div><div class="ttdef"><b>Definition:</b> buffer.c:110</div></div>
-<div class="ttc" id="a00041_aa5059c5ab47dd3f98ce1d208831dfb88_html_aa5059c5ab47dd3f98ce1d208831dfb88"><div class="ttname"><a href="a00041_aa5059c5ab47dd3f98ce1d208831dfb88.html#aa5059c5ab47dd3f98ce1d208831dfb88">buffer_create</a></div><div class="ttdeci">buffer_t * buffer_create(uint32_t size)</div><div class="ttdoc">创建一个固定长度的缓冲区 </div><div class="ttdef"><b>Definition:</b> buffer.c:34</div></div>
-<div class="ttc" id="a00041_a75b1ca3205331cdaf7a9f4e6f28c03d9_html_a75b1ca3205331cdaf7a9f4e6f28c03d9"><div class="ttname"><a href="a00041_a75b1ca3205331cdaf7a9f4e6f28c03d9.html#a75b1ca3205331cdaf7a9f4e6f28c03d9">buffer_destroy</a></div><div class="ttdeci">void buffer_destroy(buffer_t *sb)</div><div class="ttdoc">销毁缓冲区 </div><div class="ttdef"><b>Definition:</b> buffer.c:50</div></div>
-<div class="ttc" id="a00041_a13dfff4814bad92a4f5c263b68ddf475_html_a13dfff4814bad92a4f5c263b68ddf475"><div class="ttname"><a href="a00041_a13dfff4814bad92a4f5c263b68ddf475.html#a13dfff4814bad92a4f5c263b68ddf475">buffer_get_max_size</a></div><div class="ttdeci">uint32_t buffer_get_max_size(buffer_t *sb)</div><div class="ttdoc">取得缓冲区内最大长度 </div><div class="ttdef"><b>Definition:</b> buffer.c:86</div></div>
-<div class="ttc" id="a00041_a0f64078ea08b7269039ea6694f009729_html_a0f64078ea08b7269039ea6694f009729"><div class="ttname"><a href="a00041_a0f64078ea08b7269039ea6694f009729.html#a0f64078ea08b7269039ea6694f009729">buffer_clear</a></div><div class="ttdeci">void buffer_clear(buffer_t *sb)</div><div class="ttdoc">清空缓冲区 </div><div class="ttdef"><b>Definition:</b> buffer.c:118</div></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="a00100_gac1cb1b6031c4a8a724d42e3ed01d1ba6.html#gac1cb1b6031c4a8a724d42e3ed01d1ba6">address_get_ip</a>(<a class="code" href="a00001.html">address_t</a>* address);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00100_ga223a2192ce38fc5e79a73b5030a42e0e.html#ga223a2192ce38fc5e79a73b5030a42e0e">address_get_port</a>(<a class="code" href="a00001.html">address_t</a>* address);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* ADDRESS_API_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a00100_gac1cb1b6031c4a8a724d42e3ed01d1ba6_html_gac1cb1b6031c4a8a724d42e3ed01d1ba6"><div class="ttname"><a href="a00100_gac1cb1b6031c4a8a724d42e3ed01d1ba6.html#gac1cb1b6031c4a8a724d42e3ed01d1ba6">address_get_ip</a></div><div class="ttdeci">const char * address_get_ip(address_t *address)</div><div class="ttdoc">取得IP </div><div class="ttdef"><b>Definition:</b> address.c:55</div></div>
+<div class="ttc" id="a00001_html"><div class="ttname"><a href="a00001.html">_address_t</a></div><div class="ttdef"><b>Definition:</b> address.c:27</div></div>
+<div class="ttc" id="a00100_ga223a2192ce38fc5e79a73b5030a42e0e_html_ga223a2192ce38fc5e79a73b5030a42e0e"><div class="ttname"><a href="a00100_ga223a2192ce38fc5e79a73b5030a42e0e.html#ga223a2192ce38fc5e79a73b5030a42e0e">address_get_port</a></div><div class="ttdeci">int address_get_port(address_t *address)</div><div class="ttdoc">取得port </div><div class="ttdef"><b>Definition:</b> address.c:60</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 13日 星期一 18:21:38 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 20日 星期一 15:03:38 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

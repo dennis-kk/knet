@@ -47,6 +47,8 @@
  *
  * 框架的回调函数将在线程池内被回调，如果有多个工作线程的情况下，应该保证回调函数内的代码是线程安全的，
  * 为了方便使用，框架的回调函数也会通知channel_cb_event_accept事件.
+ *
+ * 可以在工作线程内调用framework_create_worker_timer启动定时器，不能在工作线程外创建工作线程定时器.
  * </pre>
  * @{
  */
@@ -131,6 +133,14 @@ extern int framework_acceptor_start(framework_t* f, framework_acceptor_config_t*
  * @retval 其他 失败
  */
 extern int framework_connector_start(framework_t* f, framework_connector_config_t* c);
+
+/**
+ * 建立一个工作线程定时器
+ * 只能在工作线程内建立定时器，如果在非工作线程内建立定时器则失败
+ * @param f framework_t实例
+ * @return ktimer_t实例
+ */
+extern ktimer_t* framework_create_worker_timer(framework_t* f);
 
 /** @} */
 

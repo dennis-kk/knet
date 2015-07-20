@@ -1,33 +1,43 @@
-\hypertarget{a00036}{}\section{krpc\+\_\+header\+\_\+t结构体 参考}
-\label{a00036}\index{krpc\+\_\+header\+\_\+t@{krpc\+\_\+header\+\_\+t}}
+\hypertarget{a00036}{}\section{\+\_\+thread\+\_\+runner\+\_\+t结构体 参考}
+\label{a00036}\index{\+\_\+thread\+\_\+runner\+\_\+t@{\+\_\+thread\+\_\+runner\+\_\+t}}
 \subsection*{成员变量}
 \begin{DoxyCompactItemize}
 \item 
-uint16\+\_\+t \hyperlink{a00036_ae2e8cebd7eb0f5bedb16f50d5f4ec57a_ae2e8cebd7eb0f5bedb16f50d5f4ec57a}{length}
+\hyperlink{a00051_a46bcd8005e5d86fdbc6be5af0a77156c_a46bcd8005e5d86fdbc6be5af0a77156c}{thread\+\_\+func\+\_\+t} \hyperlink{a00036_a5e254750aa5522725788d808314b6620_a5e254750aa5522725788d808314b6620}{func}
 \item 
-uint16\+\_\+t \hyperlink{a00036_ad66b54992a2bf517e69ea69dc2dd9df5_ad66b54992a2bf517e69ea69dc2dd9df5}{rpcid}
+void $\ast$ \hyperlink{a00036_aab08f4e0fa5f6ffe16fcd3c055666c9c_aab08f4e0fa5f6ffe16fcd3c055666c9c}{params}
 \item 
-uint8\+\_\+t \hyperlink{a00036_a1f3697ad067fb01b51587878f8f8a87d_a1f3697ad067fb01b51587878f8f8a87d}{type}
+\hyperlink{a00051_ad6644d67df4b4e3596c1eb12977d1d16_ad6644d67df4b4e3596c1eb12977d1d16}{dlist\+\_\+t} $\ast$ \hyperlink{a00036_ac7256131136cb877833040554a384e6d_ac7256131136cb877833040554a384e6d}{multi\+\_\+params}
 \item 
-uint8\+\_\+t \hyperlink{a00036_a69c014b15d9dd075d2bad2b81572cc5f_a69c014b15d9dd075d2bad2b81572cc5f}{padding\+\_\+\+\_\+} \mbox{[}3\mbox{]}
+volatile int \hyperlink{a00036_a158d37a73657b2df73e3a2dd383808f8_a158d37a73657b2df73e3a2dd383808f8}{running}
+\item 
+\hyperlink{a00051_ad0ada5642d10ce71bdd90816182f9b79_ad0ada5642d10ce71bdd90816182f9b79}{thread\+\_\+id\+\_\+t} \hyperlink{a00036_ab632944b59861e33a9473347b0afdc00_ab632944b59861e33a9473347b0afdc00}{thread\+\_\+id}
+\item 
+pthread\+\_\+key\+\_\+t \hyperlink{a00036_ad7461a4eef9b83e07f0acd4f26923744_ad7461a4eef9b83e07f0acd4f26923744}{tls\+\_\+key}
 \end{DoxyCompactItemize}
 
 
 \subsection{结构体成员变量说明}
-\hypertarget{a00036_ae2e8cebd7eb0f5bedb16f50d5f4ec57a_ae2e8cebd7eb0f5bedb16f50d5f4ec57a}{}\index{krpc\+\_\+header\+\_\+t@{krpc\+\_\+header\+\_\+t}!length@{length}}
-\index{length@{length}!krpc\+\_\+header\+\_\+t@{krpc\+\_\+header\+\_\+t}}
-\subsubsection[{length}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t krpc\+\_\+header\+\_\+t\+::length}\label{a00036_ae2e8cebd7eb0f5bedb16f50d5f4ec57a_ae2e8cebd7eb0f5bedb16f50d5f4ec57a}
-\hypertarget{a00036_a69c014b15d9dd075d2bad2b81572cc5f_a69c014b15d9dd075d2bad2b81572cc5f}{}\index{krpc\+\_\+header\+\_\+t@{krpc\+\_\+header\+\_\+t}!padding\+\_\+\+\_\+@{padding\+\_\+\+\_\+}}
-\index{padding\+\_\+\+\_\+@{padding\+\_\+\+\_\+}!krpc\+\_\+header\+\_\+t@{krpc\+\_\+header\+\_\+t}}
-\subsubsection[{padding\+\_\+\+\_\+}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t krpc\+\_\+header\+\_\+t\+::padding\+\_\+\+\_\+\mbox{[}3\mbox{]}}\label{a00036_a69c014b15d9dd075d2bad2b81572cc5f_a69c014b15d9dd075d2bad2b81572cc5f}
-\hypertarget{a00036_ad66b54992a2bf517e69ea69dc2dd9df5_ad66b54992a2bf517e69ea69dc2dd9df5}{}\index{krpc\+\_\+header\+\_\+t@{krpc\+\_\+header\+\_\+t}!rpcid@{rpcid}}
-\index{rpcid@{rpcid}!krpc\+\_\+header\+\_\+t@{krpc\+\_\+header\+\_\+t}}
-\subsubsection[{rpcid}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t krpc\+\_\+header\+\_\+t\+::rpcid}\label{a00036_ad66b54992a2bf517e69ea69dc2dd9df5_ad66b54992a2bf517e69ea69dc2dd9df5}
-\hypertarget{a00036_a1f3697ad067fb01b51587878f8f8a87d_a1f3697ad067fb01b51587878f8f8a87d}{}\index{krpc\+\_\+header\+\_\+t@{krpc\+\_\+header\+\_\+t}!type@{type}}
-\index{type@{type}!krpc\+\_\+header\+\_\+t@{krpc\+\_\+header\+\_\+t}}
-\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t krpc\+\_\+header\+\_\+t\+::type}\label{a00036_a1f3697ad067fb01b51587878f8f8a87d_a1f3697ad067fb01b51587878f8f8a87d}
+\hypertarget{a00036_a5e254750aa5522725788d808314b6620_a5e254750aa5522725788d808314b6620}{}\index{\+\_\+thread\+\_\+runner\+\_\+t@{\+\_\+thread\+\_\+runner\+\_\+t}!func@{func}}
+\index{func@{func}!\+\_\+thread\+\_\+runner\+\_\+t@{\+\_\+thread\+\_\+runner\+\_\+t}}
+\subsubsection[{func}]{\setlength{\rightskip}{0pt plus 5cm}{\bf thread\+\_\+func\+\_\+t} \+\_\+thread\+\_\+runner\+\_\+t\+::func}\label{a00036_a5e254750aa5522725788d808314b6620_a5e254750aa5522725788d808314b6620}
+\hypertarget{a00036_ac7256131136cb877833040554a384e6d_ac7256131136cb877833040554a384e6d}{}\index{\+\_\+thread\+\_\+runner\+\_\+t@{\+\_\+thread\+\_\+runner\+\_\+t}!multi\+\_\+params@{multi\+\_\+params}}
+\index{multi\+\_\+params@{multi\+\_\+params}!\+\_\+thread\+\_\+runner\+\_\+t@{\+\_\+thread\+\_\+runner\+\_\+t}}
+\subsubsection[{multi\+\_\+params}]{\setlength{\rightskip}{0pt plus 5cm}{\bf dlist\+\_\+t}$\ast$ \+\_\+thread\+\_\+runner\+\_\+t\+::multi\+\_\+params}\label{a00036_ac7256131136cb877833040554a384e6d_ac7256131136cb877833040554a384e6d}
+\hypertarget{a00036_aab08f4e0fa5f6ffe16fcd3c055666c9c_aab08f4e0fa5f6ffe16fcd3c055666c9c}{}\index{\+\_\+thread\+\_\+runner\+\_\+t@{\+\_\+thread\+\_\+runner\+\_\+t}!params@{params}}
+\index{params@{params}!\+\_\+thread\+\_\+runner\+\_\+t@{\+\_\+thread\+\_\+runner\+\_\+t}}
+\subsubsection[{params}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ \+\_\+thread\+\_\+runner\+\_\+t\+::params}\label{a00036_aab08f4e0fa5f6ffe16fcd3c055666c9c_aab08f4e0fa5f6ffe16fcd3c055666c9c}
+\hypertarget{a00036_a158d37a73657b2df73e3a2dd383808f8_a158d37a73657b2df73e3a2dd383808f8}{}\index{\+\_\+thread\+\_\+runner\+\_\+t@{\+\_\+thread\+\_\+runner\+\_\+t}!running@{running}}
+\index{running@{running}!\+\_\+thread\+\_\+runner\+\_\+t@{\+\_\+thread\+\_\+runner\+\_\+t}}
+\subsubsection[{running}]{\setlength{\rightskip}{0pt plus 5cm}volatile int \+\_\+thread\+\_\+runner\+\_\+t\+::running}\label{a00036_a158d37a73657b2df73e3a2dd383808f8_a158d37a73657b2df73e3a2dd383808f8}
+\hypertarget{a00036_ab632944b59861e33a9473347b0afdc00_ab632944b59861e33a9473347b0afdc00}{}\index{\+\_\+thread\+\_\+runner\+\_\+t@{\+\_\+thread\+\_\+runner\+\_\+t}!thread\+\_\+id@{thread\+\_\+id}}
+\index{thread\+\_\+id@{thread\+\_\+id}!\+\_\+thread\+\_\+runner\+\_\+t@{\+\_\+thread\+\_\+runner\+\_\+t}}
+\subsubsection[{thread\+\_\+id}]{\setlength{\rightskip}{0pt plus 5cm}{\bf thread\+\_\+id\+\_\+t} \+\_\+thread\+\_\+runner\+\_\+t\+::thread\+\_\+id}\label{a00036_ab632944b59861e33a9473347b0afdc00_ab632944b59861e33a9473347b0afdc00}
+\hypertarget{a00036_ad7461a4eef9b83e07f0acd4f26923744_ad7461a4eef9b83e07f0acd4f26923744}{}\index{\+\_\+thread\+\_\+runner\+\_\+t@{\+\_\+thread\+\_\+runner\+\_\+t}!tls\+\_\+key@{tls\+\_\+key}}
+\index{tls\+\_\+key@{tls\+\_\+key}!\+\_\+thread\+\_\+runner\+\_\+t@{\+\_\+thread\+\_\+runner\+\_\+t}}
+\subsubsection[{tls\+\_\+key}]{\setlength{\rightskip}{0pt plus 5cm}pthread\+\_\+key\+\_\+t \+\_\+thread\+\_\+runner\+\_\+t\+::tls\+\_\+key}\label{a00036_ad7461a4eef9b83e07f0acd4f26923744_ad7461a4eef9b83e07f0acd4f26923744}
 
 
 该结构体的文档由以下文件生成\+:\begin{DoxyCompactItemize}
 \item 
-E\+:/knet-\/git/knet/knet/\hyperlink{a00085}{rpc.\+c}\end{DoxyCompactItemize}
+E\+:/knet-\/git/knet/knet/\hyperlink{a00082}{misc.\+c}\end{DoxyCompactItemize}

@@ -25,13 +25,15 @@
 #include "framework_worker.h"
 #include "framework.h"
 #include "loop.h"
+#include "timer.h"
 #include "loop_balancer.h"
 #include "misc.h"
 
 struct _framework_worker_t {
-    loop_t*          loop;   /* 网络事件循环 */
-    framework_t*     f;      /* 框架 */
-    thread_runner_t* runner; /* 线程 */
+    loop_t*          loop;       /* 网络事件循环 */
+    ktimer_loop_t*   timer_loop; /* 定时器循环 */
+    framework_t*     f;          /* 框架 */
+    thread_runner_t* runner;     /* 线程 */
 };
 
 framework_worker_t* framework_worker_create(framework_t* f, loop_t* loop) {
@@ -43,7 +45,12 @@ framework_worker_t* framework_worker_create(framework_t* f, loop_t* loop) {
     memset(worker, 0, sizeof(framework_worker_t));
     worker->f    = f;
     worker->loop = loop;
-    return worker;    
+    /* 建立一个内置的定时器循环 */
+    worker->timer_loop = ktimer_loop_create(
+        framework_config_get_worker_timer_freq(framework_get_config(f)),
+        framework_config_get_worker_timer_slot(framework_get_config(f)));
+    verify(worker->timer_loop);
+    return worker;
 }
 
 void framework_worker_destroy(framework_worker_t* worker) {
@@ -54,6 +61,9 @@ void framework_worker_destroy(framework_worker_t* worker) {
         }
         thread_runner_destroy(worker->runner);
     }
+    if (worker->timer_loop) {
+        ktimer_loop_destroy(worker->timer_loop);
+    }
     destroy(worker);
 }
 
@@ -61,7 +71,9 @@ int framework_worker_start(framework_worker_t* worker) {
     verify(worker);
     worker->runner = thread_runner_create(0, 0);
     verify(worker->runner);
-    return thread_runner_start_loop(worker->runner, worker->loop, 0);
+    /* 启动一个线程，运行一个loop_t，一个ktimer_loop_t */
+    return thread_runner_start_multi_loop_varg(worker->runner, 0, "lt",
+        worker->loop, worker->timer_loop);
 }
 
 void framework_worker_stop(framework_worker_t* worker) {
@@ -78,4 +90,21 @@ void framework_worker_wait_for_stop(framework_worker_t* worker) {
     if (worker->runner) {
         thread_runner_join(worker->runner);
     }
+}
+
+ktimer_t* framework_worker_create_timer(framework_worker_t* worker) {
+    ktimer_t* timer = 0;
+    verify(worker);
+    verify(worker->timer_loop);
+    timer = ktimer_create(worker->timer_loop);
+    verify(timer);
+    return timer;
+}
+
+thread_id_t framework_worker_get_id(framework_worker_t* worker) {
+    verify(worker);
+    if (worker->runner) {
+        return thread_runner_get_id(worker->runner);
+    }
+    return 0;
 }

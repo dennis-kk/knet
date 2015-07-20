@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/framework_api.h 源文件</title>
+<title>knet: E:/knet-git/knet/knet/framework.h 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">framework_api.h</div>  </div>
+<div class="title">framework.h</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00053.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
@@ -114,46 +114,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef FRAMEWORK_API_H</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define FRAMEWORK_API_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef FRAMEWORK_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define FRAMEWORK_H</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00050.html">config.h</a>&quot;</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00013.html">framework_t</a>* <a class="code" href="a00102_ga90b29a0c500209cb9b37437a32188a40.html#ga90b29a0c500209cb9b37437a32188a40">framework_create</a>();</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00102_gad1b6cb17014bfc515f8861bad3198e22.html#gad1b6cb17014bfc515f8861bad3198e22">framework_destroy</a>(<a class="code" href="a00013.html">framework_t</a>* f);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00102_ga23293faa7cc7d9f88ec73d4430a2355e.html#ga23293faa7cc7d9f88ec73d4430a2355e">framework_start</a>(<a class="code" href="a00013.html">framework_t</a>* f);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00102_ga5fb7151fc13ce397884a7673b4fd319b.html#ga5fb7151fc13ce397884a7673b4fd319b">framework_start_wait</a>(<a class="code" href="a00013.html">framework_t</a>* f);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00102_ga4af709f98e2bd206da043cc29f915c99.html#ga4af709f98e2bd206da043cc29f915c99">framework_start_wait_destroy</a>(<a class="code" href="a00013.html">framework_t</a>* f);</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00102_gaefec7da1b548ddb97c73c8924ba17069.html#gaefec7da1b548ddb97c73c8924ba17069">framework_wait_for_stop</a>(<a class="code" href="a00013.html">framework_t</a>* f);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00102_gada1de96de1586411c77b5357a7b2376a.html#gada1de96de1586411c77b5357a7b2376a">framework_wait_for_stop_destroy</a>(<a class="code" href="a00013.html">framework_t</a>* f);</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00102_ga429be76d09278d6170f1b519f4dbb689.html#ga429be76d09278d6170f1b519f4dbb689">framework_stop</a>(<a class="code" href="a00013.html">framework_t</a>* f);</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00010.html">framework_config_t</a>* <a class="code" href="a00102_gaf0524cc257c8e57ba11d676dcca6bf64.html#gaf0524cc257c8e57ba11d676dcca6bf64">framework_get_config</a>(<a class="code" href="a00013.html">framework_t</a>* f);</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* FRAMEWORK_API_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="a00010_html"><div class="ttname"><a href="a00010.html">_framework_config_t</a></div><div class="ttdef"><b>Definition:</b> framework_config.c:48</div></div>
-<div class="ttc" id="a00102_gad1b6cb17014bfc515f8861bad3198e22_html_gad1b6cb17014bfc515f8861bad3198e22"><div class="ttname"><a href="a00102_gad1b6cb17014bfc515f8861bad3198e22.html#gad1b6cb17014bfc515f8861bad3198e22">framework_destroy</a></div><div class="ttdeci">void framework_destroy(framework_t *f)</div><div class="ttdoc">销毁框架 </div><div class="ttdef"><b>Definition:</b> framework.c:78</div></div>
-<div class="ttc" id="a00102_ga90b29a0c500209cb9b37437a32188a40_html_ga90b29a0c500209cb9b37437a32188a40"><div class="ttname"><a href="a00102_ga90b29a0c500209cb9b37437a32188a40.html#ga90b29a0c500209cb9b37437a32188a40">framework_create</a></div><div class="ttdeci">framework_t * framework_create()</div><div class="ttdoc">建立框架 </div><div class="ttdef"><b>Definition:</b> framework.c:66</div></div>
-<div class="ttc" id="a00102_ga5fb7151fc13ce397884a7673b4fd319b_html_ga5fb7151fc13ce397884a7673b4fd319b"><div class="ttname"><a href="a00102_ga5fb7151fc13ce397884a7673b4fd319b.html#ga5fb7151fc13ce397884a7673b4fd319b">framework_start_wait</a></div><div class="ttdeci">int framework_start_wait(framework_t *f)</div><div class="ttdoc">启动框架并等待框架关闭 </div><div class="ttdef"><b>Definition:</b> framework.c:144</div></div>
-<div class="ttc" id="a00102_ga23293faa7cc7d9f88ec73d4430a2355e_html_ga23293faa7cc7d9f88ec73d4430a2355e"><div class="ttname"><a href="a00102_ga23293faa7cc7d9f88ec73d4430a2355e.html#ga23293faa7cc7d9f88ec73d4430a2355e">framework_start</a></div><div class="ttdeci">int framework_start(framework_t *f)</div><div class="ttdoc">启动框架 </div><div class="ttdef"><b>Definition:</b> framework.c:106</div></div>
-<div class="ttc" id="a00102_ga429be76d09278d6170f1b519f4dbb689_html_ga429be76d09278d6170f1b519f4dbb689"><div class="ttname"><a href="a00102_ga429be76d09278d6170f1b519f4dbb689.html#ga429be76d09278d6170f1b519f4dbb689">framework_stop</a></div><div class="ttdeci">int framework_stop(framework_t *f)</div><div class="ttdoc">关闭框架 </div><div class="ttdef"><b>Definition:</b> framework.c:184</div></div>
-<div class="ttc" id="a00050_html"><div class="ttname"><a href="a00050.html">config.h</a></div></div>
-<div class="ttc" id="a00102_gaf0524cc257c8e57ba11d676dcca6bf64_html_gaf0524cc257c8e57ba11d676dcca6bf64"><div class="ttname"><a href="a00102_gaf0524cc257c8e57ba11d676dcca6bf64.html#gaf0524cc257c8e57ba11d676dcca6bf64">framework_get_config</a></div><div class="ttdeci">framework_config_t * framework_get_config(framework_t *f)</div><div class="ttdoc">取得框架配置 </div><div class="ttdef"><b>Definition:</b> framework.c:202</div></div>
-<div class="ttc" id="a00102_ga4af709f98e2bd206da043cc29f915c99_html_ga4af709f98e2bd206da043cc29f915c99"><div class="ttname"><a href="a00102_ga4af709f98e2bd206da043cc29f915c99.html#ga4af709f98e2bd206da043cc29f915c99">framework_start_wait_destroy</a></div><div class="ttdeci">int framework_start_wait_destroy(framework_t *f)</div><div class="ttdoc">启动框架并等待框架关闭，如果启动失败或者框架关闭则销毁 </div><div class="ttdef"><b>Definition:</b> framework.c:152</div></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00054.html">framework_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00056.html">framework_config.h</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00053_a4ef7d97742bc9410f486ebc4e0b75e82.html#a4ef7d97742bc9410f486ebc4e0b75e82">acceptor_cb</a>(<a class="code" href="a00005.html">channel_ref_t</a>* channel, <a class="code" href="a00051_aaf2cba5d4035f3d56350b59342ebf65c.html#aaf2cba5d4035f3d56350b59342ebf65c">channel_cb_event_e</a> e);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<a class="code" href="a00028.html">loop_balancer_t</a>* <a class="code" href="a00053_a1cd41581680bc47f0d86d625fc3234ae.html#a1cd41581680bc47f0d86d625fc3234ae">framework_get_balancer</a>(<a class="code" href="a00013.html">framework_t</a>* f);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* FRAMEWORK_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a00056_html"><div class="ttname"><a href="a00056.html">framework_config.h</a></div></div>
+<div class="ttc" id="a00053_a1cd41581680bc47f0d86d625fc3234ae_html_a1cd41581680bc47f0d86d625fc3234ae"><div class="ttname"><a href="a00053_a1cd41581680bc47f0d86d625fc3234ae.html#a1cd41581680bc47f0d86d625fc3234ae">framework_get_balancer</a></div><div class="ttdeci">loop_balancer_t * framework_get_balancer(framework_t *f)</div><div class="ttdoc">获取负载均衡器 </div><div class="ttdef"><b>Definition:</b> framework.c:210</div></div>
+<div class="ttc" id="a00005_html"><div class="ttname"><a href="a00005.html">_channel_ref_t</a></div><div class="ttdef"><b>Definition:</b> channel_ref.c:59</div></div>
+<div class="ttc" id="a00053_a4ef7d97742bc9410f486ebc4e0b75e82_html_a4ef7d97742bc9410f486ebc4e0b75e82"><div class="ttname"><a href="a00053_a4ef7d97742bc9410f486ebc4e0b75e82.html#a4ef7d97742bc9410f486ebc4e0b75e82">acceptor_cb</a></div><div class="ttdeci">void acceptor_cb(channel_ref_t *channel, channel_cb_event_e e)</div><div class="ttdoc">事件channel_cb_event_accept处理函数 </div><div class="ttdef"><b>Definition:</b> framework_raiser.c:184</div></div>
+<div class="ttc" id="a00054_html"><div class="ttname"><a href="a00054.html">framework_api.h</a></div></div>
 <div class="ttc" id="a00013_html"><div class="ttname"><a href="a00013.html">_framework_t</a></div><div class="ttdef"><b>Definition:</b> framework.c:35</div></div>
-<div class="ttc" id="a00102_gaefec7da1b548ddb97c73c8924ba17069_html_gaefec7da1b548ddb97c73c8924ba17069"><div class="ttname"><a href="a00102_gaefec7da1b548ddb97c73c8924ba17069.html#gaefec7da1b548ddb97c73c8924ba17069">framework_wait_for_stop</a></div><div class="ttdeci">void framework_wait_for_stop(framework_t *f)</div><div class="ttdoc">等待框架停止 </div><div class="ttdef"><b>Definition:</b> framework.c:158</div></div>
-<div class="ttc" id="a00102_gada1de96de1586411c77b5357a7b2376a_html_gada1de96de1586411c77b5357a7b2376a"><div class="ttname"><a href="a00102_gada1de96de1586411c77b5357a7b2376a.html#gada1de96de1586411c77b5357a7b2376a">framework_wait_for_stop_destroy</a></div><div class="ttdeci">void framework_wait_for_stop_destroy(framework_t *f)</div><div class="ttdoc">等待框架停止并销毁 </div><div class="ttdef"><b>Definition:</b> framework.c:178</div></div>
+<div class="ttc" id="a00028_html"><div class="ttname"><a href="a00028.html">_loop_balancer_t</a></div><div class="ttdef"><b>Definition:</b> loop_balancer.c:36</div></div>
+<div class="ttc" id="a00051_aaf2cba5d4035f3d56350b59342ebf65c_html_aaf2cba5d4035f3d56350b59342ebf65c"><div class="ttname"><a href="a00051_aaf2cba5d4035f3d56350b59342ebf65c.html#aaf2cba5d4035f3d56350b59342ebf65c">channel_cb_event_e</a></div><div class="ttdeci">enum _channel_cb_event_e channel_cb_event_e</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 17日 星期五 18:34:57 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 20日 星期一 15:03:38 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

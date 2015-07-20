@@ -1,78 +1,72 @@
-\hypertarget{a00099}{}\section{地址}
-\label{a00099}\index{地址@{地址}}
-
-
-地址  
-
-
+\hypertarget{a00099}{}\section{E\+:/knet-\/git/knet/knet/version.h 文件参考}
+\label{a00099}\index{E\+:/knet-\/git/knet/knet/version.\+h@{E\+:/knet-\/git/knet/knet/version.\+h}}
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-const char $\ast$ \hyperlink{a00099_gac1cb1b6031c4a8a724d42e3ed01d1ba6_gac1cb1b6031c4a8a724d42e3ed01d1ba6}{address\+\_\+get\+\_\+ip} (\hyperlink{a00050_a7a6e75b85c8b441f843bd40004a7d9d5_a7a6e75b85c8b441f843bd40004a7d9d5}{address\+\_\+t} $\ast$address)
-\begin{DoxyCompactList}\small\item\em 取得\+I\+P \end{DoxyCompactList}\item 
-int \hyperlink{a00099_ga223a2192ce38fc5e79a73b5030a42e0e_ga223a2192ce38fc5e79a73b5030a42e0e}{address\+\_\+get\+\_\+port} (\hyperlink{a00050_a7a6e75b85c8b441f843bd40004a7d9d5_a7a6e75b85c8b441f843bd40004a7d9d5}{address\+\_\+t} $\ast$address)
-\begin{DoxyCompactList}\small\item\em 取得port \end{DoxyCompactList}\end{DoxyCompactItemize}
-
-
-\subsection{详细描述}
-地址 
-
-
-\begin{DoxyPre}
-地址接口通过channel\_ref\_get\_local\_address或channel\_ref\_get\_peer\_address
-获取本地或对端的地址
-\end{DoxyPre}
- \begin{DoxySeeAlso}{参见}
-\hyperlink{a00101_ga1dcf6af0c992fa21f9dcd03c8f763ec4_ga1dcf6af0c992fa21f9dcd03c8f763ec4}{channel\+\_\+ref\+\_\+get\+\_\+local\+\_\+address} 
-
-\hyperlink{a00101_ga7bcafd2461a1edfde9c581cb946dcd44_ga7bcafd2461a1edfde9c581cb946dcd44}{channel\+\_\+ref\+\_\+get\+\_\+peer\+\_\+address} 
-\end{DoxySeeAlso}
+const char $\ast$ \hyperlink{a00099_a3b6e0e802bbb0f81da8bcef8e757066a_a3b6e0e802bbb0f81da8bcef8e757066a}{knet\+\_\+get\+\_\+version\+\_\+string} ()
+\begin{DoxyCompactList}\small\item\em 取得当前版本号字符串 \end{DoxyCompactList}\item 
+int \hyperlink{a00099_ad86dd4bf914796aa945a02faac4ae52e_ad86dd4bf914796aa945a02faac4ae52e}{knet\+\_\+get\+\_\+version\+\_\+major} ()
+\begin{DoxyCompactList}\small\item\em 取得主版本号 \end{DoxyCompactList}\item 
+int \hyperlink{a00099_abedac37db9a6c72670cad32bdc2dedcd_abedac37db9a6c72670cad32bdc2dedcd}{knet\+\_\+get\+\_\+version\+\_\+minor} ()
+\begin{DoxyCompactList}\small\item\em 取得次版本号 \end{DoxyCompactList}\item 
+int \hyperlink{a00099_a6fb5e77c44c774a9d017ba43dea51672_a6fb5e77c44c774a9d017ba43dea51672}{knet\+\_\+get\+\_\+version\+\_\+path} ()
+\begin{DoxyCompactList}\small\item\em 取得补丁版本号 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{函数说明}
-\hypertarget{a00099_gac1cb1b6031c4a8a724d42e3ed01d1ba6_gac1cb1b6031c4a8a724d42e3ed01d1ba6}{}\index{地址@{地址}!address\+\_\+get\+\_\+ip@{address\+\_\+get\+\_\+ip}}
-\index{address\+\_\+get\+\_\+ip@{address\+\_\+get\+\_\+ip}!地址@{地址}}
-\subsubsection[{address\+\_\+get\+\_\+ip}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ address\+\_\+get\+\_\+ip (
+\hypertarget{a00099_ad86dd4bf914796aa945a02faac4ae52e_ad86dd4bf914796aa945a02faac4ae52e}{}\index{version.\+h@{version.\+h}!knet\+\_\+get\+\_\+version\+\_\+major@{knet\+\_\+get\+\_\+version\+\_\+major}}
+\index{knet\+\_\+get\+\_\+version\+\_\+major@{knet\+\_\+get\+\_\+version\+\_\+major}!version.\+h@{version.\+h}}
+\subsubsection[{knet\+\_\+get\+\_\+version\+\_\+major}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+get\+\_\+version\+\_\+major (
 \begin{DoxyParamCaption}
-\item[{{\bf address\+\_\+t} $\ast$}]{address}
+{}
 \end{DoxyParamCaption}
-)}\label{a00099_gac1cb1b6031c4a8a724d42e3ed01d1ba6_gac1cb1b6031c4a8a724d42e3ed01d1ba6}
+)}\label{a00099_ad86dd4bf914796aa945a02faac4ae52e_ad86dd4bf914796aa945a02faac4ae52e}
 
 
-取得\+I\+P 
+取得主版本号 
 
-
-\begin{DoxyParams}{参数}
-{\em address} & address\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em 有效的指针} & I\+P字符串 \\
-\hline
-{\em 0} & 管道连接未建立 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00099_ga223a2192ce38fc5e79a73b5030a42e0e_ga223a2192ce38fc5e79a73b5030a42e0e}{}\index{地址@{地址}!address\+\_\+get\+\_\+port@{address\+\_\+get\+\_\+port}}
-\index{address\+\_\+get\+\_\+port@{address\+\_\+get\+\_\+port}!地址@{地址}}
-\subsubsection[{address\+\_\+get\+\_\+port}]{\setlength{\rightskip}{0pt plus 5cm}int address\+\_\+get\+\_\+port (
+\begin{DoxyReturn}{返回}
+主版本号 
+\end{DoxyReturn}
+\hypertarget{a00099_abedac37db9a6c72670cad32bdc2dedcd_abedac37db9a6c72670cad32bdc2dedcd}{}\index{version.\+h@{version.\+h}!knet\+\_\+get\+\_\+version\+\_\+minor@{knet\+\_\+get\+\_\+version\+\_\+minor}}
+\index{knet\+\_\+get\+\_\+version\+\_\+minor@{knet\+\_\+get\+\_\+version\+\_\+minor}!version.\+h@{version.\+h}}
+\subsubsection[{knet\+\_\+get\+\_\+version\+\_\+minor}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+get\+\_\+version\+\_\+minor (
 \begin{DoxyParamCaption}
-\item[{{\bf address\+\_\+t} $\ast$}]{address}
+{}
 \end{DoxyParamCaption}
-)}\label{a00099_ga223a2192ce38fc5e79a73b5030a42e0e_ga223a2192ce38fc5e79a73b5030a42e0e}
+)}\label{a00099_abedac37db9a6c72670cad32bdc2dedcd_abedac37db9a6c72670cad32bdc2dedcd}
 
 
-取得port 
+取得次版本号 
+
+\begin{DoxyReturn}{返回}
+次版本号 
+\end{DoxyReturn}
+\hypertarget{a00099_a6fb5e77c44c774a9d017ba43dea51672_a6fb5e77c44c774a9d017ba43dea51672}{}\index{version.\+h@{version.\+h}!knet\+\_\+get\+\_\+version\+\_\+path@{knet\+\_\+get\+\_\+version\+\_\+path}}
+\index{knet\+\_\+get\+\_\+version\+\_\+path@{knet\+\_\+get\+\_\+version\+\_\+path}!version.\+h@{version.\+h}}
+\subsubsection[{knet\+\_\+get\+\_\+version\+\_\+path}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+get\+\_\+version\+\_\+path (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{a00099_a6fb5e77c44c774a9d017ba43dea51672_a6fb5e77c44c774a9d017ba43dea51672}
 
 
-\begin{DoxyParams}{参数}
-{\em address} & address\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
+取得补丁版本号 
 
-\begin{DoxyRetVals}{返回值}
-{\em 有效的端口号} & 端口号 \\
-\hline
-{\em 0} & 管道连接未建立 \\
-\hline
-\end{DoxyRetVals}
+\begin{DoxyReturn}{返回}
+补丁版本号 
+\end{DoxyReturn}
+\hypertarget{a00099_a3b6e0e802bbb0f81da8bcef8e757066a_a3b6e0e802bbb0f81da8bcef8e757066a}{}\index{version.\+h@{version.\+h}!knet\+\_\+get\+\_\+version\+\_\+string@{knet\+\_\+get\+\_\+version\+\_\+string}}
+\index{knet\+\_\+get\+\_\+version\+\_\+string@{knet\+\_\+get\+\_\+version\+\_\+string}!version.\+h@{version.\+h}}
+\subsubsection[{knet\+\_\+get\+\_\+version\+\_\+string}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ knet\+\_\+get\+\_\+version\+\_\+string (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{a00099_a3b6e0e802bbb0f81da8bcef8e757066a_a3b6e0e802bbb0f81da8bcef8e757066a}
+
+
+取得当前版本号字符串 
+
+\begin{DoxyReturn}{返回}
+当前版本号字符串 
+\end{DoxyReturn}

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/stream.h 文件参考</title>
+<title>knet: E:/knet-git/knet/knet/stream.c 文件参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,29 +87,68 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">结构体</a> &#124;
 <a href="#func-members">函数</a>  </div>
   <div class="headertitle">
-<div class="title">stream.h 文件参考</div>  </div>
+<div class="title">stream.c 文件参考</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="a00050_source.html">config.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00092_source.html">stream_api.h</a>&quot;</code><br />
-</div>
-<p><a href="a00091_source.html">浏览源代码.</a></p>
-<table class="memberdecls">
+<div class="textblock"><code>#include &lt;stdarg.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="a00092_source.html">stream.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00051_source.html">config.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00049_source.html">channel_ref.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00085_source.html">ringbuffer.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00045_source.html">buffer.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00083_source.html">misc.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+结构体</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00034.html">_stream_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 函数</h2></td></tr>
-<tr class="memitem:a3d96722aed377b124baa5a38a4b3fa54"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00050_a261dba04f46f5c59a68a05f69f5a65a8.html#a261dba04f46f5c59a68a05f69f5a65a8">stream_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00091_a3d96722aed377b124baa5a38a4b3fa54.html#a3d96722aed377b124baa5a38a4b3fa54">stream_create</a> (<a class="el" href="a00050_a151271c9d188ef28d4d24bb81dcc1263.html#a151271c9d188ef28d4d24bb81dcc1263">channel_ref_t</a> *channel_ref)</td></tr>
+<tr class="memitem:a3d96722aed377b124baa5a38a4b3fa54"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00051_a261dba04f46f5c59a68a05f69f5a65a8.html#a261dba04f46f5c59a68a05f69f5a65a8">stream_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00091_a3d96722aed377b124baa5a38a4b3fa54.html#a3d96722aed377b124baa5a38a4b3fa54">stream_create</a> (<a class="el" href="a00051_a151271c9d188ef28d4d24bb81dcc1263.html#a151271c9d188ef28d4d24bb81dcc1263">channel_ref_t</a> *channel_ref)</td></tr>
 <tr class="memdesc:a3d96722aed377b124baa5a38a4b3fa54"><td class="mdescLeft">&#160;</td><td class="mdescRight">建立管道流  <a href="a00091_a3d96722aed377b124baa5a38a4b3fa54.html#a3d96722aed377b124baa5a38a4b3fa54">更多...</a><br /></td></tr>
 <tr class="separator:a3d96722aed377b124baa5a38a4b3fa54"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac57e177168fe8e441793c4345f5745c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00091_ac57e177168fe8e441793c4345f5745c3.html#ac57e177168fe8e441793c4345f5745c3">stream_destroy</a> (<a class="el" href="a00050_a261dba04f46f5c59a68a05f69f5a65a8.html#a261dba04f46f5c59a68a05f69f5a65a8">stream_t</a> *stream)</td></tr>
+<tr class="memitem:ac57e177168fe8e441793c4345f5745c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00091_ac57e177168fe8e441793c4345f5745c3.html#ac57e177168fe8e441793c4345f5745c3">stream_destroy</a> (<a class="el" href="a00051_a261dba04f46f5c59a68a05f69f5a65a8.html#a261dba04f46f5c59a68a05f69f5a65a8">stream_t</a> *stream)</td></tr>
 <tr class="memdesc:ac57e177168fe8e441793c4345f5745c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁管道流  <a href="a00091_ac57e177168fe8e441793c4345f5745c3.html#ac57e177168fe8e441793c4345f5745c3">更多...</a><br /></td></tr>
 <tr class="separator:ac57e177168fe8e441793c4345f5745c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6e109b2dc520782567dc1891af3b945e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_ga6e109b2dc520782567dc1891af3b945e.html#ga6e109b2dc520782567dc1891af3b945e">stream_available</a> (<a class="el" href="a00051_a261dba04f46f5c59a68a05f69f5a65a8.html#a261dba04f46f5c59a68a05f69f5a65a8">stream_t</a> *stream)</td></tr>
+<tr class="memdesc:ga6e109b2dc520782567dc1891af3b945e"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得数据流内可读字节数  <a href="a00108_ga6e109b2dc520782567dc1891af3b945e.html#ga6e109b2dc520782567dc1891af3b945e">更多...</a><br /></td></tr>
+<tr class="separator:ga6e109b2dc520782567dc1891af3b945e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6e01758abf49f8b08cd457f1cb48a954"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_ga6e01758abf49f8b08cd457f1cb48a954.html#ga6e01758abf49f8b08cd457f1cb48a954">stream_pop</a> (<a class="el" href="a00051_a261dba04f46f5c59a68a05f69f5a65a8.html#a261dba04f46f5c59a68a05f69f5a65a8">stream_t</a> *stream, void *buffer, int size)</td></tr>
+<tr class="memdesc:ga6e01758abf49f8b08cd457f1cb48a954"><td class="mdescLeft">&#160;</td><td class="mdescRight">从数据流内读取数据并清除数据  <a href="a00108_ga6e01758abf49f8b08cd457f1cb48a954.html#ga6e01758abf49f8b08cd457f1cb48a954">更多...</a><br /></td></tr>
+<tr class="separator:ga6e01758abf49f8b08cd457f1cb48a954"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaef7f4ca2c201faf5d82a1dad4c8d7814"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_gaef7f4ca2c201faf5d82a1dad4c8d7814.html#gaef7f4ca2c201faf5d82a1dad4c8d7814">stream_eat_all</a> (<a class="el" href="a00051_a261dba04f46f5c59a68a05f69f5a65a8.html#a261dba04f46f5c59a68a05f69f5a65a8">stream_t</a> *stream)</td></tr>
+<tr class="memdesc:gaef7f4ca2c201faf5d82a1dad4c8d7814"><td class="mdescLeft">&#160;</td><td class="mdescRight">清空数据流  <a href="a00108_gaef7f4ca2c201faf5d82a1dad4c8d7814.html#gaef7f4ca2c201faf5d82a1dad4c8d7814">更多...</a><br /></td></tr>
+<tr class="separator:gaef7f4ca2c201faf5d82a1dad4c8d7814"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1ab922f8bab979099b3abc3ee54dc59d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_ga1ab922f8bab979099b3abc3ee54dc59d.html#ga1ab922f8bab979099b3abc3ee54dc59d">stream_eat</a> (<a class="el" href="a00051_a261dba04f46f5c59a68a05f69f5a65a8.html#a261dba04f46f5c59a68a05f69f5a65a8">stream_t</a> *stream, int size)</td></tr>
+<tr class="memdesc:ga1ab922f8bab979099b3abc3ee54dc59d"><td class="mdescLeft">&#160;</td><td class="mdescRight">删除指定长度数据  <a href="a00108_ga1ab922f8bab979099b3abc3ee54dc59d.html#ga1ab922f8bab979099b3abc3ee54dc59d">更多...</a><br /></td></tr>
+<tr class="separator:ga1ab922f8bab979099b3abc3ee54dc59d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae7e63ef142733eb3aea7401e28bc9a75"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_gae7e63ef142733eb3aea7401e28bc9a75.html#gae7e63ef142733eb3aea7401e28bc9a75">stream_push</a> (<a class="el" href="a00051_a261dba04f46f5c59a68a05f69f5a65a8.html#a261dba04f46f5c59a68a05f69f5a65a8">stream_t</a> *stream, const void *buffer, int size)</td></tr>
+<tr class="memdesc:gae7e63ef142733eb3aea7401e28bc9a75"><td class="mdescLeft">&#160;</td><td class="mdescRight">向数据流内写数据  <a href="a00108_gae7e63ef142733eb3aea7401e28bc9a75.html#gae7e63ef142733eb3aea7401e28bc9a75">更多...</a><br /></td></tr>
+<tr class="separator:gae7e63ef142733eb3aea7401e28bc9a75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9631c1d90e0fad04b6ad04ccc5b95808"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_ga9631c1d90e0fad04b6ad04ccc5b95808.html#ga9631c1d90e0fad04b6ad04ccc5b95808">stream_push_varg</a> (<a class="el" href="a00051_a261dba04f46f5c59a68a05f69f5a65a8.html#a261dba04f46f5c59a68a05f69f5a65a8">stream_t</a> *stream, const char *format,...)</td></tr>
+<tr class="memdesc:ga9631c1d90e0fad04b6ad04ccc5b95808"><td class="mdescLeft">&#160;</td><td class="mdescRight">向数据流写数据，可变参数字符串  <a href="a00108_ga9631c1d90e0fad04b6ad04ccc5b95808.html#ga9631c1d90e0fad04b6ad04ccc5b95808">更多...</a><br /></td></tr>
+<tr class="separator:ga9631c1d90e0fad04b6ad04ccc5b95808"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga380555bf71ee99f6b2bb4f76738d507f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_ga380555bf71ee99f6b2bb4f76738d507f.html#ga380555bf71ee99f6b2bb4f76738d507f">stream_copy</a> (<a class="el" href="a00051_a261dba04f46f5c59a68a05f69f5a65a8.html#a261dba04f46f5c59a68a05f69f5a65a8">stream_t</a> *stream, void *buffer, int size)</td></tr>
+<tr class="memdesc:ga380555bf71ee99f6b2bb4f76738d507f"><td class="mdescLeft">&#160;</td><td class="mdescRight">从数据流内拷贝数据，但不清除数据流内数据  <a href="a00108_ga380555bf71ee99f6b2bb4f76738d507f.html#ga380555bf71ee99f6b2bb4f76738d507f">更多...</a><br /></td></tr>
+<tr class="separator:ga380555bf71ee99f6b2bb4f76738d507f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad5336c2b89b6edea5f277d5ebc221e15"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_gad5336c2b89b6edea5f277d5ebc221e15.html#gad5336c2b89b6edea5f277d5ebc221e15">stream_push_stream</a> (<a class="el" href="a00051_a261dba04f46f5c59a68a05f69f5a65a8.html#a261dba04f46f5c59a68a05f69f5a65a8">stream_t</a> *stream, <a class="el" href="a00051_a261dba04f46f5c59a68a05f69f5a65a8.html#a261dba04f46f5c59a68a05f69f5a65a8">stream_t</a> *target)</td></tr>
+<tr class="memdesc:gad5336c2b89b6edea5f277d5ebc221e15"><td class="mdescLeft">&#160;</td><td class="mdescRight">将stream内数据写入target, 并清除stream内数据  <a href="a00108_gad5336c2b89b6edea5f277d5ebc221e15.html#gad5336c2b89b6edea5f277d5ebc221e15">更多...</a><br /></td></tr>
+<tr class="separator:gad5336c2b89b6edea5f277d5ebc221e15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga296aea89ba5bec6566e119855df3b18c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_ga296aea89ba5bec6566e119855df3b18c.html#ga296aea89ba5bec6566e119855df3b18c">stream_copy_stream</a> (<a class="el" href="a00051_a261dba04f46f5c59a68a05f69f5a65a8.html#a261dba04f46f5c59a68a05f69f5a65a8">stream_t</a> *stream, <a class="el" href="a00051_a261dba04f46f5c59a68a05f69f5a65a8.html#a261dba04f46f5c59a68a05f69f5a65a8">stream_t</a> *target)</td></tr>
+<tr class="memdesc:ga296aea89ba5bec6566e119855df3b18c"><td class="mdescLeft">&#160;</td><td class="mdescRight">将stream内数据写入target, 但不清除stream内数据  <a href="a00108_ga296aea89ba5bec6566e119855df3b18c.html#ga296aea89ba5bec6566e119855df3b18c">更多...</a><br /></td></tr>
+<tr class="separator:ga296aea89ba5bec6566e119855df3b18c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab4b3e49d2c44a601e8bb7f568577fae4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00051_a151271c9d188ef28d4d24bb81dcc1263.html#a151271c9d188ef28d4d24bb81dcc1263">channel_ref_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_gab4b3e49d2c44a601e8bb7f568577fae4.html#gab4b3e49d2c44a601e8bb7f568577fae4">stream_get_channel_ref</a> (<a class="el" href="a00051_a261dba04f46f5c59a68a05f69f5a65a8.html#a261dba04f46f5c59a68a05f69f5a65a8">stream_t</a> *stream)</td></tr>
+<tr class="memdesc:gab4b3e49d2c44a601e8bb7f568577fae4"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取流所属的管道引用  <a href="a00108_gab4b3e49d2c44a601e8bb7f568577fae4.html#gab4b3e49d2c44a601e8bb7f568577fae4">更多...</a><br /></td></tr>
+<tr class="separator:gab4b3e49d2c44a601e8bb7f568577fae4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 17日 星期五 18:34:58 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 20日 星期一 15:03:39 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

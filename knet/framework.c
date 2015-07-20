@@ -33,12 +33,12 @@
 #include "misc.h"
 
 struct _framework_t {
-    dlist_t*             loops;    /* 网络事件循环 */
-    framework_config_t*  c;        /* 配置 */
-    framework_raiser_t*  raiser;   /* 监听器/连接器 */
-    framework_worker_t** workers;  /* 工作线程 */
-    loop_balancer_t*     balancer; /* 负载均衡器 */
-    int                  start;    /* 启动标志 */
+    dlist_t*             loops;       /* 网络事件循环 */
+    framework_config_t*  c;           /* 配置 */
+    framework_raiser_t*  raiser;      /* 监听器/连接器 */
+    framework_worker_t** workers;     /* 工作线程 */
+    loop_balancer_t*     balancer;    /* 负载均衡器 */
+    volatile int         start;       /* 启动标志 */
 };
 
 /**
@@ -184,6 +184,9 @@ void framework_wait_for_stop_destroy(framework_t* f) {
 int framework_stop(framework_t* f) {
     int i = 0;
     verify(f);
+    if (!f->start) {
+        return error_ok;
+    }
     /* 先关闭监听器/连接器 */
     if (f->raiser) {
         framework_raiser_stop(f->raiser);
@@ -240,6 +243,25 @@ int framework_connector_start(framework_t* f, framework_connector_config_t* c) {
     verify(f);
     verify(c);
     return framework_raiser_new_connector(f->raiser, c);
+}
+
+ktimer_t* framework_create_worker_timer(framework_t* f) {
+    int         i            = 0;
+    int         worker_count = 0;
+    thread_id_t thread_id    = thread_get_self_id(); 
+    verify(f);
+    verify(f->c);
+    verify(f->workers);
+    worker_count = framework_config_get_worker_thread_count(f->c);
+    for (i = 0; i < worker_count; i++) {
+        /* 找到当前的工作线程 */
+        verify(f->workers[i]);
+        if (thread_id == framework_worker_get_id(f->workers[i])) {
+            return framework_worker_create_timer(f->workers[i]);
+        }
+    }
+    /* 不能在非工作线程内建立定时器 */
+    return 0;
 }
 
 int _start_worker_threads(framework_t* f) {

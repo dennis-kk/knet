@@ -34,5 +34,6 @@ var searchData=
   ['_5floop_5ft',['_loop_t',['../a00032.html',1,'']]],
   ['_5fringbuffer_5ft',['_ringbuffer_t',['../a00033.html',1,'']]],
   ['_5fstream_5ft',['_stream_t',['../a00034.html',1,'']]],
-  ['_5fthread_5frunner_5ft',['_thread_runner_t',['../a00035.html',1,'']]]
+  ['_5fthread_5fparam_5ft',['_thread_param_t',['../a00035.html',1,'']]],
+  ['_5fthread_5frunner_5ft',['_thread_runner_t',['../a00036.html',1,'']]]
 ];

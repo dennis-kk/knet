@@ -51,6 +51,8 @@ struct _framework_config_t {
     dlist_t* acceptor_config_list;  /* 监听器配置 */
     dlist_t* connector_config_list; /* 连接器配置 */
     int      worker_thread_count;   /* 工作线程数量 */
+    time_t   worker_timer_intval;   /* 定时器（工作线程内）分辨率（毫秒） */
+    int      worker_timer_slot;     /* 定时器（工作线程内）时间轮槽位数量 */
 };
 
 
@@ -62,7 +64,9 @@ framework_config_t* framework_config_create() {
     verify(c->acceptor_config_list);
     c->connector_config_list = dlist_create();
     verify(c->connector_config_list);
-    c->worker_thread_count = 1; /* 默认 - 只有一个工作线程 */
+    c->worker_thread_count = 1;    /* 默认 - 只有一个工作线程 */
+    c->worker_timer_intval = 1000; /* 默认 - 分辨率为1000毫秒（1秒） */
+    c->worker_timer_slot   = 512;  /* 默认 - 512个槽位 */
     c->lock = lock_create();
     return c;
 }
@@ -87,6 +91,22 @@ void framework_config_set_worker_thread_count(framework_config_t* c, int worker_
     verify(c);
     verify(worker_thread_count);
     c->worker_thread_count = worker_thread_count;
+}
+
+void framework_config_set_worker_timer_freq(framework_config_t* c, time_t freq) {
+    verify(c);
+    if (!freq) {
+        freq = 1000;
+    }
+    c->worker_timer_intval = freq;
+}
+
+void framework_config_set_worker_timer_slot(framework_config_t* c, int slot) {
+    verify(c);
+    if (slot <= 0) {
+        slot = 360;
+    }
+    c->worker_timer_slot = slot;
 }
 
 framework_acceptor_config_t* framework_config_new_acceptor(framework_config_t* c) {
@@ -196,6 +216,16 @@ void framework_connector_config_set_client_max_recv_buffer_length(framework_conn
 int framework_config_get_worker_thread_count(framework_config_t* c) {
     verify(c);
     return c->worker_thread_count;
+}
+
+time_t framework_config_get_worker_timer_freq(framework_config_t* c) {
+    verify(c);
+    return c->worker_timer_intval;
+}
+
+int framework_config_get_worker_timer_slot(framework_config_t* c) {
+    verify(c);
+    return c->worker_timer_slot;
 }
 
 dlist_t* framework_config_get_acceptor_config(framework_config_t* c) {

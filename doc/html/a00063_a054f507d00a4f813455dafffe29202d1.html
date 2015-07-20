@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.9.1"/>
+<title>knet: hash_remove_string_key</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">knet
+   &#160;<span id="projectnumber">1.4.5</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.9.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="modules.html"><span>模块</span></a></li>
+      <li><a href="annotated.html"><span>结构体</span></a></li>
+      <li><a href="files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_885cc87fac2d91e269af0a5a959fa5f6.html">E:</a></li><li class="navelem"><a class="el" href="dir_4e74998c9a9305a116abc25fcf9a1edb.html">knet-git</a></li><li class="navelem"><a class="el" href="dir_a1c045b39f32066568ae964b52db514f.html">knet</a></li><li class="navelem"><a class="el" href="dir_f76d03789f0b12416cfffea59e2ed47d.html">knet</a></li><li class="navelem"><a class="el" href="a00063.html">hash.h</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="contents">
+<table cellspacing="0" cellpadding="0" border="0">
+  <tr>
+   <td valign="top">
+      <div class="navtab">
+        <table>
+          <tr><td class="navtab"><a class="qindex" href="a00063_aa74d5b564965d7d3f162eb5308bc9b3f.html#aa74d5b564965d7d3f162eb5308bc9b3f">hash_add</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00063_ad5b36fd89c94138d38be050314d922ed.html#ad5b36fd89c94138d38be050314d922ed">hash_add_string_key</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00063_accead380199ce99795d29e9d178e849b.html#accead380199ce99795d29e9d178e849b">hash_create</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00063_ac5915f1a7177380272fbb014080217c8.html#ac5915f1a7177380272fbb014080217c8">hash_delete</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00063_af31ceed9b3d6675a240da0b952492a0c.html#af31ceed9b3d6675a240da0b952492a0c">hash_delete_string_key</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00063_a4073889d36e8fb6d2b2fcdea9d890db9.html#a4073889d36e8fb6d2b2fcdea9d890db9">hash_destroy</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00063_a1ad9a5e3743668c94c9fc4ccfd83dc78.html#a1ad9a5e3743668c94c9fc4ccfd83dc78">hash_for_each_safe</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00063_a8f5065a1ac13afbbec3e2c61355effe3.html#a8f5065a1ac13afbbec3e2c61355effe3">hash_get</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00063_a0be817a0ad58df448b3a339b01fef058.html#a0be817a0ad58df448b3a339b01fef058">hash_get_first</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00063_a161be6f6ab6de6db3a3a0c3f82ce1607.html#a161be6f6ab6de6db3a3a0c3f82ce1607">hash_get_size</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00063_a34b1caad9530537c6049ba7090d105a7.html#a34b1caad9530537c6049ba7090d105a7">hash_get_string_key</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00063_aa9239dd7173dc2847f153a70dbb6e15c.html#aa9239dd7173dc2847f153a70dbb6e15c">hash_next</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00063_acef10836aec4eab1b2197ecaad759b34.html#acef10836aec4eab1b2197ecaad759b34">hash_remove</a></td></tr>
+          <tr><td class="navtab"><a class="qindexHL" href="a00063_a054f507d00a4f813455dafffe29202d1.html#a054f507d00a4f813455dafffe29202d1">hash_remove_string_key</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00063_a8a53c52f3e2efedc73073989a69aaa7f.html#a8a53c52f3e2efedc73073989a69aaa7f">hash_replace</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00063_a204a56cd4efe339f71796a44830e8162.html#a204a56cd4efe339f71796a44830e8162">hash_replace_string_key</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00063_ab631c6680928561445077645be20aa76.html#ab631c6680928561445077645be20aa76">hash_value_get_key</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00063_ac50440f30c8359bbcf04c00297910b7f.html#ac50440f30c8359bbcf04c00297910b7f">hash_value_get_string_key</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00063_ad0be61da4760c7d8dedbe56a81a688bb.html#ad0be61da4760c7d8dedbe56a81a688bb">hash_value_get_value</a></td></tr>
+        </table>
+      </div>
+   </td>
+   <td valign="top" class="mempage">
+<a class="anchor" id="a054f507d00a4f813455dafffe29202d1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* hash_remove_string_key </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00051_a188677c3015513590ab998e96b999966.html#a188677c3015513590ab998e96b999966">hash_t</a> *&#160;</td>
+          <td class="paramname"><em>hash</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>移除元素 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hash</td><td>hash_t实例 </td></tr>
+    <tr><td class="paramname">key</td><td>字符串键 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">0</td><td>未找到 </td></tr>
+    <tr><td class="paramname">有效指针</td><td>值 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+    </td>
+  </tr>
+</table>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+生成于 2015年 七月 20日 星期一 15:03:39 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.9.1
+</small></address>
+</body>
+</html>

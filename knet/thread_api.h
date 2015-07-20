@@ -77,6 +77,13 @@ extern int thread_runner_start(thread_runner_t* runner, int stack_size);
 extern void thread_runner_stop(thread_runner_t* runner);
 
 /**
+ * 获取线程ID
+ * @param runner thread_runner_t实例
+ * @return 线程ID
+ */
+extern thread_id_t thread_runner_get_id(thread_runner_t* runner);
+
+/**
  * 在线程内运行loop_run()
  * @param runner thread_runner_t实例
  * @param loop loop_t实例
@@ -95,6 +102,18 @@ extern int thread_runner_start_loop(thread_runner_t* runner, loop_t* loop, int s
  * @retval 其他 失败
  */
 extern int thread_runner_start_timer_loop(thread_runner_t* runner, ktimer_loop_t* timer_loop, int stack_size);
+
+/**
+ * 在线程内启动多个loop_t或ktimer_loop_t
+ *
+ * format内可以有多个loop_t（l）或者ktimer_loop_t（t），譬如：lt，标识一个loop_t，一个ktimer_loop_t
+ * @param runner thread_runner_t实例
+ * @param stack_size 栈大小
+ * @param format 启动字符串
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int thread_runner_start_multi_loop_varg(thread_runner_t* runner, int stack_size, const char* format, ...);
 
 /**
  * 等待线程终止

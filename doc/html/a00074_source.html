@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/stream.h 源文件</title>
+<title>knet: E:/knet-git/knet/knet/loop_balancer_api.h 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">knet
-   &#160;<span id="projectnumber">1.4.3</span>
+   &#160;<span id="projectnumber">1.4.5</span>
    </div>
   </td>
  </tr>
@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">stream.h</div>  </div>
+<div class="title">loop_balancer_api.h</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00074.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
@@ -114,26 +114,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef STREAM_H</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define STREAM_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef LOOP_BALANCER_API_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define LOOP_BALANCER_API_H</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00044.html">config.h</a>&quot;</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00075.html">stream_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<a class="code" href="a00028.html">stream_t</a>* <a class="code" href="a00074_a3d96722aed377b124baa5a38a4b3fa54.html#a3d96722aed377b124baa5a38a4b3fa54">stream_create</a>(<a class="code" href="a00005.html">channel_ref_t</a>* channel_ref);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00074_ac57e177168fe8e441793c4345f5745c3.html#ac57e177168fe8e441793c4345f5745c3">stream_destroy</a>(<a class="code" href="a00028.html">stream_t</a>* stream);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* STREAM_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="a00044_html"><div class="ttname"><a href="a00044.html">config.h</a></div></div>
-<div class="ttc" id="a00074_ac57e177168fe8e441793c4345f5745c3_html_ac57e177168fe8e441793c4345f5745c3"><div class="ttname"><a href="a00074_ac57e177168fe8e441793c4345f5745c3.html#ac57e177168fe8e441793c4345f5745c3">stream_destroy</a></div><div class="ttdeci">void stream_destroy(stream_t *stream)</div><div class="ttdef"><b>Definition:</b> stream.c:47</div></div>
-<div class="ttc" id="a00075_html"><div class="ttname"><a href="a00075.html">stream_api.h</a></div></div>
-<div class="ttc" id="a00005_html"><div class="ttname"><a href="a00005.html">_channel_ref_t</a></div><div class="ttdef"><b>Definition:</b> channel_ref.c:57</div></div>
-<div class="ttc" id="a00028_html"><div class="ttname"><a href="a00028.html">_stream_t</a></div><div class="ttdef"><b>Definition:</b> stream.c:33</div></div>
-<div class="ttc" id="a00074_a3d96722aed377b124baa5a38a4b3fa54_html_a3d96722aed377b124baa5a38a4b3fa54"><div class="ttname"><a href="a00074_a3d96722aed377b124baa5a38a4b3fa54.html#a3d96722aed377b124baa5a38a4b3fa54">stream_create</a></div><div class="ttdeci">stream_t * stream_create(channel_ref_t *channel_ref)</div><div class="ttdef"><b>Definition:</b> stream.c:37</div></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00051.html">config.h</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00028.html">loop_balancer_t</a>* <a class="code" href="a00106_ga9992a50e96839282c678e51bc11158d1.html#ga9992a50e96839282c678e51bc11158d1">loop_balancer_create</a>();</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00106_ga2d702b5f965fe587fdaea3f5f9e2400c.html#ga2d702b5f965fe587fdaea3f5f9e2400c">loop_balancer_destroy</a>(<a class="code" href="a00028.html">loop_balancer_t</a>* balancer);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00106_ga2b3cf2cb63d914efe226e901a50d8b0a.html#ga2b3cf2cb63d914efe226e901a50d8b0a">loop_balancer_attach</a>(<a class="code" href="a00028.html">loop_balancer_t</a>* balancer, <a class="code" href="a00032.html">loop_t</a>* <a class="code" href="a00031_a980ff537ba150044fae36b625ad23461.html#a980ff537ba150044fae36b625ad23461">loop</a>);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00106_ga548ce0c2c624c4f4731a0f963d2ca42a.html#ga548ce0c2c624c4f4731a0f963d2ca42a">loop_balancer_detach</a>(<a class="code" href="a00028.html">loop_balancer_t</a>* balancer, <a class="code" href="a00032.html">loop_t</a>* <a class="code" href="a00031_a980ff537ba150044fae36b625ad23461.html#a980ff537ba150044fae36b625ad23461">loop</a>);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00106_gae10d6df162c0c43fbfb2bb68cca09e8b.html#gae10d6df162c0c43fbfb2bb68cca09e8b">loop_balancer_set_data</a>(<a class="code" href="a00028.html">loop_balancer_t</a>* balancer, <span class="keywordtype">void</span>* data);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span>* <a class="code" href="a00106_ga0f686f513ccb9026c58ab4675e5f87e2.html#ga0f686f513ccb9026c58ab4675e5f87e2">loop_balancer_get_data</a>(<a class="code" href="a00028.html">loop_balancer_t</a>* balancer);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* LOOP_BALANCER_API_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a00106_gae10d6df162c0c43fbfb2bb68cca09e8b_html_gae10d6df162c0c43fbfb2bb68cca09e8b"><div class="ttname"><a href="a00106_gae10d6df162c0c43fbfb2bb68cca09e8b.html#gae10d6df162c0c43fbfb2bb68cca09e8b">loop_balancer_set_data</a></div><div class="ttdeci">void loop_balancer_set_data(loop_balancer_t *balancer, void *data)</div><div class="ttdoc">设置用户数据 </div><div class="ttdef"><b>Definition:</b> loop_balancer.c:152</div></div>
+<div class="ttc" id="a00106_ga548ce0c2c624c4f4731a0f963d2ca42a_html_ga548ce0c2c624c4f4731a0f963d2ca42a"><div class="ttname"><a href="a00106_ga548ce0c2c624c4f4731a0f963d2ca42a.html#ga548ce0c2c624c4f4731a0f963d2ca42a">loop_balancer_detach</a></div><div class="ttdeci">int loop_balancer_detach(loop_balancer_t *balancer, loop_t *loop)</div><div class="ttdoc">从负载均衡器内删除事件循环 </div><div class="ttdef"><b>Definition:</b> loop_balancer.c:91</div></div>
+<div class="ttc" id="a00032_html"><div class="ttname"><a href="a00032.html">_loop_t</a></div><div class="ttdef"><b>Definition:</b> loop.c:36</div></div>
+<div class="ttc" id="a00106_ga9992a50e96839282c678e51bc11158d1_html_ga9992a50e96839282c678e51bc11158d1"><div class="ttname"><a href="a00106_ga9992a50e96839282c678e51bc11158d1.html#ga9992a50e96839282c678e51bc11158d1">loop_balancer_create</a></div><div class="ttdeci">loop_balancer_t * loop_balancer_create()</div><div class="ttdoc">创建负载均衡器 </div><div class="ttdef"><b>Definition:</b> loop_balancer.c:42</div></div>
+<div class="ttc" id="a00106_ga2d702b5f965fe587fdaea3f5f9e2400c_html_ga2d702b5f965fe587fdaea3f5f9e2400c"><div class="ttname"><a href="a00106_ga2d702b5f965fe587fdaea3f5f9e2400c.html#ga2d702b5f965fe587fdaea3f5f9e2400c">loop_balancer_destroy</a></div><div class="ttdeci">void loop_balancer_destroy(loop_balancer_t *balancer)</div><div class="ttdoc">销毁负载均衡器 </div><div class="ttdef"><b>Definition:</b> loop_balancer.c:53</div></div>
+<div class="ttc" id="a00106_ga0f686f513ccb9026c58ab4675e5f87e2_html_ga0f686f513ccb9026c58ab4675e5f87e2"><div class="ttname"><a href="a00106_ga0f686f513ccb9026c58ab4675e5f87e2.html#ga0f686f513ccb9026c58ab4675e5f87e2">loop_balancer_get_data</a></div><div class="ttdeci">void * loop_balancer_get_data(loop_balancer_t *balancer)</div><div class="ttdoc">取得用户数据 </div><div class="ttdef"><b>Definition:</b> loop_balancer.c:158</div></div>
+<div class="ttc" id="a00106_ga2b3cf2cb63d914efe226e901a50d8b0a_html_ga2b3cf2cb63d914efe226e901a50d8b0a"><div class="ttname"><a href="a00106_ga2b3cf2cb63d914efe226e901a50d8b0a.html#ga2b3cf2cb63d914efe226e901a50d8b0a">loop_balancer_attach</a></div><div class="ttdeci">int loop_balancer_attach(loop_balancer_t *balancer, loop_t *loop)</div><div class="ttdoc">添加事件循环到负载均衡器 </div><div class="ttdef"><b>Definition:</b> loop_balancer.c:65</div></div>
+<div class="ttc" id="a00031_a980ff537ba150044fae36b625ad23461_html_a980ff537ba150044fae36b625ad23461"><div class="ttname"><a href="a00031_a980ff537ba150044fae36b625ad23461.html#a980ff537ba150044fae36b625ad23461">_loop_profile_t::loop</a></div><div class="ttdeci">loop_t * loop</div><div class="ttdef"><b>Definition:</b> loop_profile.c:31</div></div>
+<div class="ttc" id="a00028_html"><div class="ttname"><a href="a00028.html">_loop_balancer_t</a></div><div class="ttdef"><b>Definition:</b> loop_balancer.c:36</div></div>
+<div class="ttc" id="a00051_html"><div class="ttname"><a href="a00051.html">config.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 9日 星期四 15:26:51 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 20日 星期一 15:03:38 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

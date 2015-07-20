@@ -1,24 +1,81 @@
-\hypertarget{a00058}{}\section{E\+:/knet-\/git/knet/knet/framework\+\_\+raiser.h 文件参考}
-\label{a00058}\index{E\+:/knet-\/git/knet/knet/framework\+\_\+raiser.\+h@{E\+:/knet-\/git/knet/knet/framework\+\_\+raiser.\+h}}
-{\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\\*
+\hypertarget{a00058}{}\section{E\+:/knet-\/git/knet/knet/framework\+\_\+raiser.c 文件参考}
+\label{a00058}\index{E\+:/knet-\/git/knet/knet/framework\+\_\+raiser.\+c@{E\+:/knet-\/git/knet/knet/framework\+\_\+raiser.\+c}}
+{\ttfamily \#include \char`\"{}framework\+\_\+raiser.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}loop.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}loop\+\_\+balancer.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}framework.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}channel\+\_\+ref.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}framework\+\_\+config.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}list.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}misc.\+h\char`\"{}}\\*
+\subsection*{结构体}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{a00012}{\+\_\+framework\+\_\+raiser\+\_\+t}
+\end{DoxyCompactItemize}
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00050_aa3ac31db191829c9e6db624d660a2563_aa3ac31db191829c9e6db624d660a2563}{framework\+\_\+raiser\+\_\+t} $\ast$ \hyperlink{a00058_a6a305a33afdea0d9b774d4b987aff05e_a6a305a33afdea0d9b774d4b987aff05e}{framework\+\_\+raiser\+\_\+create} (\hyperlink{a00050_a6149d769f6f07ed14a40a271c95d8463_a6149d769f6f07ed14a40a271c95d8463}{framework\+\_\+t} $\ast$f, \hyperlink{a00050_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
+int \hyperlink{a00058_ae1caed5e3ea73d6e6c98ddf1131310da_ae1caed5e3ea73d6e6c98ddf1131310da}{\+\_\+create\+\_\+acceptor\+\_\+channel} (\hyperlink{a00051_a61a4e424ff4c86631423dedd97c40064_a61a4e424ff4c86631423dedd97c40064}{framework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$ac, \hyperlink{a00051_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
+\item 
+int \hyperlink{a00058_a27b26fed4e5ce2f25ec573aa736dfe54_a27b26fed4e5ce2f25ec573aa736dfe54}{\+\_\+create\+\_\+connector\+\_\+channel} (\hyperlink{a00051_a81253f4c995b97e69be0e67f7a26097f_a81253f4c995b97e69be0e67f7a26097f}{framework\+\_\+connector\+\_\+config\+\_\+t} $\ast$cc, \hyperlink{a00051_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
+\item 
+\hyperlink{a00051_aa3ac31db191829c9e6db624d660a2563_aa3ac31db191829c9e6db624d660a2563}{framework\+\_\+raiser\+\_\+t} $\ast$ \hyperlink{a00058_a6a305a33afdea0d9b774d4b987aff05e_a6a305a33afdea0d9b774d4b987aff05e}{framework\+\_\+raiser\+\_\+create} (\hyperlink{a00051_a6149d769f6f07ed14a40a271c95d8463_a6149d769f6f07ed14a40a271c95d8463}{framework\+\_\+t} $\ast$f, \hyperlink{a00051_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$loop)
 \begin{DoxyCompactList}\small\item\em 建立网络连接发起者(监听器/连接器) \end{DoxyCompactList}\item 
-void \hyperlink{a00058_aeb1e0bff411b59cc3ec79da5ab23d2c1_aeb1e0bff411b59cc3ec79da5ab23d2c1}{framework\+\_\+raiser\+\_\+destroy} (\hyperlink{a00050_aa3ac31db191829c9e6db624d660a2563_aa3ac31db191829c9e6db624d660a2563}{framework\+\_\+raiser\+\_\+t} $\ast$raiser)
+void \hyperlink{a00058_aeb1e0bff411b59cc3ec79da5ab23d2c1_aeb1e0bff411b59cc3ec79da5ab23d2c1}{framework\+\_\+raiser\+\_\+destroy} (\hyperlink{a00051_aa3ac31db191829c9e6db624d660a2563_aa3ac31db191829c9e6db624d660a2563}{framework\+\_\+raiser\+\_\+t} $\ast$raiser)
 \begin{DoxyCompactList}\small\item\em 销毁网络连接发起者 \end{DoxyCompactList}\item 
-int \hyperlink{a00058_a72206fc25182b20ead062464ed0b1139_a72206fc25182b20ead062464ed0b1139}{framework\+\_\+raiser\+\_\+start} (\hyperlink{a00050_aa3ac31db191829c9e6db624d660a2563_aa3ac31db191829c9e6db624d660a2563}{framework\+\_\+raiser\+\_\+t} $\ast$raiser)
+int \hyperlink{a00058_a72206fc25182b20ead062464ed0b1139_a72206fc25182b20ead062464ed0b1139}{framework\+\_\+raiser\+\_\+start} (\hyperlink{a00051_aa3ac31db191829c9e6db624d660a2563_aa3ac31db191829c9e6db624d660a2563}{framework\+\_\+raiser\+\_\+t} $\ast$raiser)
 \begin{DoxyCompactList}\small\item\em 启动网络连接发起者 \end{DoxyCompactList}\item 
-void \hyperlink{a00058_a28061890dd7d07a16df39417ada87107_a28061890dd7d07a16df39417ada87107}{framework\+\_\+raiser\+\_\+stop} (\hyperlink{a00050_aa3ac31db191829c9e6db624d660a2563_aa3ac31db191829c9e6db624d660a2563}{framework\+\_\+raiser\+\_\+t} $\ast$raiser)
+void \hyperlink{a00058_a28061890dd7d07a16df39417ada87107_a28061890dd7d07a16df39417ada87107}{framework\+\_\+raiser\+\_\+stop} (\hyperlink{a00051_aa3ac31db191829c9e6db624d660a2563_aa3ac31db191829c9e6db624d660a2563}{framework\+\_\+raiser\+\_\+t} $\ast$raiser)
 \begin{DoxyCompactList}\small\item\em 关闭网络连接发起者 \end{DoxyCompactList}\item 
-void \hyperlink{a00058_a6f3a981ad344559bca4f51c73a0c678b_a6f3a981ad344559bca4f51c73a0c678b}{framework\+\_\+raiser\+\_\+wait\+\_\+for\+\_\+stop} (\hyperlink{a00050_aa3ac31db191829c9e6db624d660a2563_aa3ac31db191829c9e6db624d660a2563}{framework\+\_\+raiser\+\_\+t} $\ast$raiser)
-\begin{DoxyCompactList}\small\item\em 等待网络连接发起者 \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \hyperlink{a00058_a6f3a981ad344559bca4f51c73a0c678b_a6f3a981ad344559bca4f51c73a0c678b}{framework\+\_\+raiser\+\_\+wait\+\_\+for\+\_\+stop} (\hyperlink{a00051_aa3ac31db191829c9e6db624d660a2563_aa3ac31db191829c9e6db624d660a2563}{framework\+\_\+raiser\+\_\+t} $\ast$raiser)
+\begin{DoxyCompactList}\small\item\em 等待网络连接发起者 \end{DoxyCompactList}\item 
+int \hyperlink{a00058_ad199c6f451f0e2362371dcf6445efca6_ad199c6f451f0e2362371dcf6445efca6}{framework\+\_\+raiser\+\_\+new\+\_\+acceptor} (\hyperlink{a00051_aa3ac31db191829c9e6db624d660a2563_aa3ac31db191829c9e6db624d660a2563}{framework\+\_\+raiser\+\_\+t} $\ast$raiser, \hyperlink{a00051_a61a4e424ff4c86631423dedd97c40064_a61a4e424ff4c86631423dedd97c40064}{framework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$c)
+\begin{DoxyCompactList}\small\item\em 启动一个新的监听器 \end{DoxyCompactList}\item 
+int \hyperlink{a00058_ac82f5d62a951a7f7fccfa23390672c9c_ac82f5d62a951a7f7fccfa23390672c9c}{framework\+\_\+raiser\+\_\+new\+\_\+connector} (\hyperlink{a00051_aa3ac31db191829c9e6db624d660a2563_aa3ac31db191829c9e6db624d660a2563}{framework\+\_\+raiser\+\_\+t} $\ast$raiser, \hyperlink{a00051_a81253f4c995b97e69be0e67f7a26097f_a81253f4c995b97e69be0e67f7a26097f}{framework\+\_\+connector\+\_\+config\+\_\+t} $\ast$c)
+\begin{DoxyCompactList}\small\item\em 启动一个新的连接器 \end{DoxyCompactList}\item 
+void \hyperlink{a00058_a4ef7d97742bc9410f486ebc4e0b75e82_a4ef7d97742bc9410f486ebc4e0b75e82}{acceptor\+\_\+cb} (\hyperlink{a00051_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel, \hyperlink{a00051_aaf2cba5d4035f3d56350b59342ebf65c_aaf2cba5d4035f3d56350b59342ebf65c}{channel\+\_\+cb\+\_\+event\+\_\+e} e)
+\begin{DoxyCompactList}\small\item\em 事件channel\+\_\+cb\+\_\+event\+\_\+accept处理函数 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{函数说明}
-\hypertarget{a00058_a6a305a33afdea0d9b774d4b987aff05e_a6a305a33afdea0d9b774d4b987aff05e}{}\index{framework\+\_\+raiser.\+h@{framework\+\_\+raiser.\+h}!framework\+\_\+raiser\+\_\+create@{framework\+\_\+raiser\+\_\+create}}
-\index{framework\+\_\+raiser\+\_\+create@{framework\+\_\+raiser\+\_\+create}!framework\+\_\+raiser.\+h@{framework\+\_\+raiser.\+h}}
+\hypertarget{a00058_ae1caed5e3ea73d6e6c98ddf1131310da_ae1caed5e3ea73d6e6c98ddf1131310da}{}\index{framework\+\_\+raiser.\+c@{framework\+\_\+raiser.\+c}!\+\_\+create\+\_\+acceptor\+\_\+channel@{\+\_\+create\+\_\+acceptor\+\_\+channel}}
+\index{\+\_\+create\+\_\+acceptor\+\_\+channel@{\+\_\+create\+\_\+acceptor\+\_\+channel}!framework\+\_\+raiser.\+c@{framework\+\_\+raiser.\+c}}
+\subsubsection[{\+\_\+create\+\_\+acceptor\+\_\+channel}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+create\+\_\+acceptor\+\_\+channel (
+\begin{DoxyParamCaption}
+\item[{{\bf framework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$}]{ac, }
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
+\end{DoxyParamCaption}
+)}\label{a00058_ae1caed5e3ea73d6e6c98ddf1131310da_ae1caed5e3ea73d6e6c98ddf1131310da}
+\hypertarget{a00058_a27b26fed4e5ce2f25ec573aa736dfe54_a27b26fed4e5ce2f25ec573aa736dfe54}{}\index{framework\+\_\+raiser.\+c@{framework\+\_\+raiser.\+c}!\+\_\+create\+\_\+connector\+\_\+channel@{\+\_\+create\+\_\+connector\+\_\+channel}}
+\index{\+\_\+create\+\_\+connector\+\_\+channel@{\+\_\+create\+\_\+connector\+\_\+channel}!framework\+\_\+raiser.\+c@{framework\+\_\+raiser.\+c}}
+\subsubsection[{\+\_\+create\+\_\+connector\+\_\+channel}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+create\+\_\+connector\+\_\+channel (
+\begin{DoxyParamCaption}
+\item[{{\bf framework\+\_\+connector\+\_\+config\+\_\+t} $\ast$}]{cc, }
+\item[{{\bf loop\+\_\+t} $\ast$}]{loop}
+\end{DoxyParamCaption}
+)}\label{a00058_a27b26fed4e5ce2f25ec573aa736dfe54_a27b26fed4e5ce2f25ec573aa736dfe54}
+\hypertarget{a00058_a4ef7d97742bc9410f486ebc4e0b75e82_a4ef7d97742bc9410f486ebc4e0b75e82}{}\index{framework\+\_\+raiser.\+c@{framework\+\_\+raiser.\+c}!acceptor\+\_\+cb@{acceptor\+\_\+cb}}
+\index{acceptor\+\_\+cb@{acceptor\+\_\+cb}!framework\+\_\+raiser.\+c@{framework\+\_\+raiser.\+c}}
+\subsubsection[{acceptor\+\_\+cb}]{\setlength{\rightskip}{0pt plus 5cm}void acceptor\+\_\+cb (
+\begin{DoxyParamCaption}
+\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel, }
+\item[{{\bf channel\+\_\+cb\+\_\+event\+\_\+e}}]{e}
+\end{DoxyParamCaption}
+)}\label{a00058_a4ef7d97742bc9410f486ebc4e0b75e82_a4ef7d97742bc9410f486ebc4e0b75e82}
+
+
+事件channel\+\_\+cb\+\_\+event\+\_\+accept处理函数 
+
+
+\begin{DoxyParams}{参数}
+{\em channel} & 监听管道，channel\+\_\+ref\+\_\+t实例 \\
+\hline
+{\em e} & 管道事件 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00058_a6a305a33afdea0d9b774d4b987aff05e_a6a305a33afdea0d9b774d4b987aff05e}{}\index{framework\+\_\+raiser.\+c@{framework\+\_\+raiser.\+c}!framework\+\_\+raiser\+\_\+create@{framework\+\_\+raiser\+\_\+create}}
+\index{framework\+\_\+raiser\+\_\+create@{framework\+\_\+raiser\+\_\+create}!framework\+\_\+raiser.\+c@{framework\+\_\+raiser.\+c}}
 \subsubsection[{framework\+\_\+raiser\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf framework\+\_\+raiser\+\_\+t}$\ast$ framework\+\_\+raiser\+\_\+create (
 \begin{DoxyParamCaption}
 \item[{{\bf framework\+\_\+t} $\ast$}]{f, }
@@ -39,8 +96,8 @@ void \hyperlink{a00058_a6f3a981ad344559bca4f51c73a0c678b_a6f3a981ad344559bca4f51
 \begin{DoxyReturn}{返回}
 framework\+\_\+raiser\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00058_aeb1e0bff411b59cc3ec79da5ab23d2c1_aeb1e0bff411b59cc3ec79da5ab23d2c1}{}\index{framework\+\_\+raiser.\+h@{framework\+\_\+raiser.\+h}!framework\+\_\+raiser\+\_\+destroy@{framework\+\_\+raiser\+\_\+destroy}}
-\index{framework\+\_\+raiser\+\_\+destroy@{framework\+\_\+raiser\+\_\+destroy}!framework\+\_\+raiser.\+h@{framework\+\_\+raiser.\+h}}
+\hypertarget{a00058_aeb1e0bff411b59cc3ec79da5ab23d2c1_aeb1e0bff411b59cc3ec79da5ab23d2c1}{}\index{framework\+\_\+raiser.\+c@{framework\+\_\+raiser.\+c}!framework\+\_\+raiser\+\_\+destroy@{framework\+\_\+raiser\+\_\+destroy}}
+\index{framework\+\_\+raiser\+\_\+destroy@{framework\+\_\+raiser\+\_\+destroy}!framework\+\_\+raiser.\+c@{framework\+\_\+raiser.\+c}}
 \subsubsection[{framework\+\_\+raiser\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+raiser\+\_\+destroy (
 \begin{DoxyParamCaption}
 \item[{{\bf framework\+\_\+raiser\+\_\+t} $\ast$}]{raiser}
@@ -55,8 +112,60 @@ framework\+\_\+raiser\+\_\+t实例
 {\em raiser} & framework\+\_\+raiser\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
-\hypertarget{a00058_a72206fc25182b20ead062464ed0b1139_a72206fc25182b20ead062464ed0b1139}{}\index{framework\+\_\+raiser.\+h@{framework\+\_\+raiser.\+h}!framework\+\_\+raiser\+\_\+start@{framework\+\_\+raiser\+\_\+start}}
-\index{framework\+\_\+raiser\+\_\+start@{framework\+\_\+raiser\+\_\+start}!framework\+\_\+raiser.\+h@{framework\+\_\+raiser.\+h}}
+\hypertarget{a00058_ad199c6f451f0e2362371dcf6445efca6_ad199c6f451f0e2362371dcf6445efca6}{}\index{framework\+\_\+raiser.\+c@{framework\+\_\+raiser.\+c}!framework\+\_\+raiser\+\_\+new\+\_\+acceptor@{framework\+\_\+raiser\+\_\+new\+\_\+acceptor}}
+\index{framework\+\_\+raiser\+\_\+new\+\_\+acceptor@{framework\+\_\+raiser\+\_\+new\+\_\+acceptor}!framework\+\_\+raiser.\+c@{framework\+\_\+raiser.\+c}}
+\subsubsection[{framework\+\_\+raiser\+\_\+new\+\_\+acceptor}]{\setlength{\rightskip}{0pt plus 5cm}int framework\+\_\+raiser\+\_\+new\+\_\+acceptor (
+\begin{DoxyParamCaption}
+\item[{{\bf framework\+\_\+raiser\+\_\+t} $\ast$}]{raiser, }
+\item[{{\bf framework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$}]{c}
+\end{DoxyParamCaption}
+)}\label{a00058_ad199c6f451f0e2362371dcf6445efca6_ad199c6f451f0e2362371dcf6445efca6}
+
+
+启动一个新的监听器 
+
+
+\begin{DoxyParams}{参数}
+{\em raiser} & framework\+\_\+raiser\+\_\+t实例 \\
+\hline
+{\em c} & framework\+\_\+acceptor\+\_\+config\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{a00058_ac82f5d62a951a7f7fccfa23390672c9c_ac82f5d62a951a7f7fccfa23390672c9c}{}\index{framework\+\_\+raiser.\+c@{framework\+\_\+raiser.\+c}!framework\+\_\+raiser\+\_\+new\+\_\+connector@{framework\+\_\+raiser\+\_\+new\+\_\+connector}}
+\index{framework\+\_\+raiser\+\_\+new\+\_\+connector@{framework\+\_\+raiser\+\_\+new\+\_\+connector}!framework\+\_\+raiser.\+c@{framework\+\_\+raiser.\+c}}
+\subsubsection[{framework\+\_\+raiser\+\_\+new\+\_\+connector}]{\setlength{\rightskip}{0pt plus 5cm}int framework\+\_\+raiser\+\_\+new\+\_\+connector (
+\begin{DoxyParamCaption}
+\item[{{\bf framework\+\_\+raiser\+\_\+t} $\ast$}]{raiser, }
+\item[{{\bf framework\+\_\+connector\+\_\+config\+\_\+t} $\ast$}]{c}
+\end{DoxyParamCaption}
+)}\label{a00058_ac82f5d62a951a7f7fccfa23390672c9c_ac82f5d62a951a7f7fccfa23390672c9c}
+
+
+启动一个新的连接器 
+
+
+\begin{DoxyParams}{参数}
+{\em raiser} & framework\+\_\+raiser\+\_\+t实例 \\
+\hline
+{\em c} & framework\+\_\+connector\+\_\+config\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{a00058_a72206fc25182b20ead062464ed0b1139_a72206fc25182b20ead062464ed0b1139}{}\index{framework\+\_\+raiser.\+c@{framework\+\_\+raiser.\+c}!framework\+\_\+raiser\+\_\+start@{framework\+\_\+raiser\+\_\+start}}
+\index{framework\+\_\+raiser\+\_\+start@{framework\+\_\+raiser\+\_\+start}!framework\+\_\+raiser.\+c@{framework\+\_\+raiser.\+c}}
 \subsubsection[{framework\+\_\+raiser\+\_\+start}]{\setlength{\rightskip}{0pt plus 5cm}int framework\+\_\+raiser\+\_\+start (
 \begin{DoxyParamCaption}
 \item[{{\bf framework\+\_\+raiser\+\_\+t} $\ast$}]{raiser}
@@ -78,8 +187,8 @@ framework\+\_\+raiser\+\_\+t实例
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00058_a28061890dd7d07a16df39417ada87107_a28061890dd7d07a16df39417ada87107}{}\index{framework\+\_\+raiser.\+h@{framework\+\_\+raiser.\+h}!framework\+\_\+raiser\+\_\+stop@{framework\+\_\+raiser\+\_\+stop}}
-\index{framework\+\_\+raiser\+\_\+stop@{framework\+\_\+raiser\+\_\+stop}!framework\+\_\+raiser.\+h@{framework\+\_\+raiser.\+h}}
+\hypertarget{a00058_a28061890dd7d07a16df39417ada87107_a28061890dd7d07a16df39417ada87107}{}\index{framework\+\_\+raiser.\+c@{framework\+\_\+raiser.\+c}!framework\+\_\+raiser\+\_\+stop@{framework\+\_\+raiser\+\_\+stop}}
+\index{framework\+\_\+raiser\+\_\+stop@{framework\+\_\+raiser\+\_\+stop}!framework\+\_\+raiser.\+c@{framework\+\_\+raiser.\+c}}
 \subsubsection[{framework\+\_\+raiser\+\_\+stop}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+raiser\+\_\+stop (
 \begin{DoxyParamCaption}
 \item[{{\bf framework\+\_\+raiser\+\_\+t} $\ast$}]{raiser}
@@ -94,8 +203,8 @@ framework\+\_\+raiser\+\_\+t实例
 {\em raiser} & framework\+\_\+raiser\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
-\hypertarget{a00058_a6f3a981ad344559bca4f51c73a0c678b_a6f3a981ad344559bca4f51c73a0c678b}{}\index{framework\+\_\+raiser.\+h@{framework\+\_\+raiser.\+h}!framework\+\_\+raiser\+\_\+wait\+\_\+for\+\_\+stop@{framework\+\_\+raiser\+\_\+wait\+\_\+for\+\_\+stop}}
-\index{framework\+\_\+raiser\+\_\+wait\+\_\+for\+\_\+stop@{framework\+\_\+raiser\+\_\+wait\+\_\+for\+\_\+stop}!framework\+\_\+raiser.\+h@{framework\+\_\+raiser.\+h}}
+\hypertarget{a00058_a6f3a981ad344559bca4f51c73a0c678b_a6f3a981ad344559bca4f51c73a0c678b}{}\index{framework\+\_\+raiser.\+c@{framework\+\_\+raiser.\+c}!framework\+\_\+raiser\+\_\+wait\+\_\+for\+\_\+stop@{framework\+\_\+raiser\+\_\+wait\+\_\+for\+\_\+stop}}
+\index{framework\+\_\+raiser\+\_\+wait\+\_\+for\+\_\+stop@{framework\+\_\+raiser\+\_\+wait\+\_\+for\+\_\+stop}!framework\+\_\+raiser.\+c@{framework\+\_\+raiser.\+c}}
 \subsubsection[{framework\+\_\+raiser\+\_\+wait\+\_\+for\+\_\+stop}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+raiser\+\_\+wait\+\_\+for\+\_\+stop (
 \begin{DoxyParamCaption}
 \item[{{\bf framework\+\_\+raiser\+\_\+t} $\ast$}]{raiser}

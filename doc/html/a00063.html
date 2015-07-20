@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/knet.h 文件参考</title>
+<title>knet: E:/knet-git/knet/knet/hash.h 文件参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -86,30 +86,83 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div>
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#define-members">宏定义</a> &#124;
+<a href="#func-members">函数</a>  </div>
   <div class="headertitle">
-<div class="title">knet.h 文件参考</div>  </div>
+<div class="title">hash.h 文件参考</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="a00070_source.html">loop_api.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00092_source.html">stream_api.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00049_source.html">channel_ref_api.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00040_source.html">address_api.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00073_source.html">loop_balancer_api.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00042_source.html">broadcast_api.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00053_source.html">framework_api.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00056_source.html">framework_config_api.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00096_source.html">timer_api.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00093_source.html">thread_api.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00086_source.html">rpc_api.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00089_source.html">rpc_object_api.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00079_source.html">loop_profile_api.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00098_source.html">version.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="a00051_source.html">config.h</a>&quot;</code><br />
 </div>
 <p><a href="a00063_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:a1ad9a5e3743668c94c9fc4ccfd83dc78"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063_a1ad9a5e3743668c94c9fc4ccfd83dc78.html#a1ad9a5e3743668c94c9fc4ccfd83dc78">hash_for_each_safe</a>(hash,  value)&#160;&#160;&#160;for (value = <a class="el" href="a00063_a0be817a0ad58df448b3a339b01fef058.html#a0be817a0ad58df448b3a339b01fef058">hash_get_first</a>(hash); (value); value = <a class="el" href="a00063_aa9239dd7173dc2847f153a70dbb6e15c.html#aa9239dd7173dc2847f153a70dbb6e15c">hash_next</a>(hash))</td></tr>
+<tr class="separator:a1ad9a5e3743668c94c9fc4ccfd83dc78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:ad0be61da4760c7d8dedbe56a81a688bb"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063_ad0be61da4760c7d8dedbe56a81a688bb.html#ad0be61da4760c7d8dedbe56a81a688bb">hash_value_get_value</a> (<a class="el" href="a00051_af7ecd66aeef0ce1b0495e5f65e77733e.html#af7ecd66aeef0ce1b0495e5f65e77733e">hash_value_t</a> *hash_value)</td></tr>
+<tr class="memdesc:ad0be61da4760c7d8dedbe56a81a688bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">内部使用，哈希表，同时支持数字或字符串作为key  <a href="a00063_ad0be61da4760c7d8dedbe56a81a688bb.html#ad0be61da4760c7d8dedbe56a81a688bb">更多...</a><br /></td></tr>
+<tr class="separator:ad0be61da4760c7d8dedbe56a81a688bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab631c6680928561445077645be20aa76"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063_ab631c6680928561445077645be20aa76.html#ab631c6680928561445077645be20aa76">hash_value_get_key</a> (<a class="el" href="a00051_af7ecd66aeef0ce1b0495e5f65e77733e.html#af7ecd66aeef0ce1b0495e5f65e77733e">hash_value_t</a> *hash_value)</td></tr>
+<tr class="memdesc:ab631c6680928561445077645be20aa76"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得数字键  <a href="a00063_ab631c6680928561445077645be20aa76.html#ab631c6680928561445077645be20aa76">更多...</a><br /></td></tr>
+<tr class="separator:ab631c6680928561445077645be20aa76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac50440f30c8359bbcf04c00297910b7f"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063_ac50440f30c8359bbcf04c00297910b7f.html#ac50440f30c8359bbcf04c00297910b7f">hash_value_get_string_key</a> (<a class="el" href="a00051_af7ecd66aeef0ce1b0495e5f65e77733e.html#af7ecd66aeef0ce1b0495e5f65e77733e">hash_value_t</a> *hash_value)</td></tr>
+<tr class="memdesc:ac50440f30c8359bbcf04c00297910b7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得字符串键  <a href="a00063_ac50440f30c8359bbcf04c00297910b7f.html#ac50440f30c8359bbcf04c00297910b7f">更多...</a><br /></td></tr>
+<tr class="separator:ac50440f30c8359bbcf04c00297910b7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accead380199ce99795d29e9d178e849b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00051_a188677c3015513590ab998e96b999966.html#a188677c3015513590ab998e96b999966">hash_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063_accead380199ce99795d29e9d178e849b.html#accead380199ce99795d29e9d178e849b">hash_create</a> (uint32_t size, <a class="el" href="a00051_a5dcd1ed9242185e4448352748e58573d.html#a5dcd1ed9242185e4448352748e58573d">hash_dtor_t</a> dtor)</td></tr>
+<tr class="memdesc:accead380199ce99795d29e9d178e849b"><td class="mdescLeft">&#160;</td><td class="mdescRight">建立哈希表  <a href="a00063_accead380199ce99795d29e9d178e849b.html#accead380199ce99795d29e9d178e849b">更多...</a><br /></td></tr>
+<tr class="separator:accead380199ce99795d29e9d178e849b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4073889d36e8fb6d2b2fcdea9d890db9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063_a4073889d36e8fb6d2b2fcdea9d890db9.html#a4073889d36e8fb6d2b2fcdea9d890db9">hash_destroy</a> (<a class="el" href="a00051_a188677c3015513590ab998e96b999966.html#a188677c3015513590ab998e96b999966">hash_t</a> *hash)</td></tr>
+<tr class="memdesc:a4073889d36e8fb6d2b2fcdea9d890db9"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁哈希表  <a href="a00063_a4073889d36e8fb6d2b2fcdea9d890db9.html#a4073889d36e8fb6d2b2fcdea9d890db9">更多...</a><br /></td></tr>
+<tr class="separator:a4073889d36e8fb6d2b2fcdea9d890db9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa74d5b564965d7d3f162eb5308bc9b3f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063_aa74d5b564965d7d3f162eb5308bc9b3f.html#aa74d5b564965d7d3f162eb5308bc9b3f">hash_add</a> (<a class="el" href="a00051_a188677c3015513590ab998e96b999966.html#a188677c3015513590ab998e96b999966">hash_t</a> *hash, uint32_t key, void *value)</td></tr>
+<tr class="memdesc:aa74d5b564965d7d3f162eb5308bc9b3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">添加元素  <a href="a00063_aa74d5b564965d7d3f162eb5308bc9b3f.html#aa74d5b564965d7d3f162eb5308bc9b3f">更多...</a><br /></td></tr>
+<tr class="separator:aa74d5b564965d7d3f162eb5308bc9b3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5b36fd89c94138d38be050314d922ed"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063_ad5b36fd89c94138d38be050314d922ed.html#ad5b36fd89c94138d38be050314d922ed">hash_add_string_key</a> (<a class="el" href="a00051_a188677c3015513590ab998e96b999966.html#a188677c3015513590ab998e96b999966">hash_t</a> *hash, const char *key, void *value)</td></tr>
+<tr class="memdesc:ad5b36fd89c94138d38be050314d922ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">添加元素  <a href="a00063_ad5b36fd89c94138d38be050314d922ed.html#ad5b36fd89c94138d38be050314d922ed">更多...</a><br /></td></tr>
+<tr class="separator:ad5b36fd89c94138d38be050314d922ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acef10836aec4eab1b2197ecaad759b34"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063_acef10836aec4eab1b2197ecaad759b34.html#acef10836aec4eab1b2197ecaad759b34">hash_remove</a> (<a class="el" href="a00051_a188677c3015513590ab998e96b999966.html#a188677c3015513590ab998e96b999966">hash_t</a> *hash, uint32_t key)</td></tr>
+<tr class="memdesc:acef10836aec4eab1b2197ecaad759b34"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除元素  <a href="a00063_acef10836aec4eab1b2197ecaad759b34.html#acef10836aec4eab1b2197ecaad759b34">更多...</a><br /></td></tr>
+<tr class="separator:acef10836aec4eab1b2197ecaad759b34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a054f507d00a4f813455dafffe29202d1"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063_a054f507d00a4f813455dafffe29202d1.html#a054f507d00a4f813455dafffe29202d1">hash_remove_string_key</a> (<a class="el" href="a00051_a188677c3015513590ab998e96b999966.html#a188677c3015513590ab998e96b999966">hash_t</a> *hash, const char *key)</td></tr>
+<tr class="memdesc:a054f507d00a4f813455dafffe29202d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">移除元素  <a href="a00063_a054f507d00a4f813455dafffe29202d1.html#a054f507d00a4f813455dafffe29202d1">更多...</a><br /></td></tr>
+<tr class="separator:a054f507d00a4f813455dafffe29202d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5915f1a7177380272fbb014080217c8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063_ac5915f1a7177380272fbb014080217c8.html#ac5915f1a7177380272fbb014080217c8">hash_delete</a> (<a class="el" href="a00051_a188677c3015513590ab998e96b999966.html#a188677c3015513590ab998e96b999966">hash_t</a> *hash, uint32_t key)</td></tr>
+<tr class="memdesc:ac5915f1a7177380272fbb014080217c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁元素  <a href="a00063_ac5915f1a7177380272fbb014080217c8.html#ac5915f1a7177380272fbb014080217c8">更多...</a><br /></td></tr>
+<tr class="separator:ac5915f1a7177380272fbb014080217c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a53c52f3e2efedc73073989a69aaa7f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063_a8a53c52f3e2efedc73073989a69aaa7f.html#a8a53c52f3e2efedc73073989a69aaa7f">hash_replace</a> (<a class="el" href="a00051_a188677c3015513590ab998e96b999966.html#a188677c3015513590ab998e96b999966">hash_t</a> *hash, uint32_t key, void *value)</td></tr>
+<tr class="memdesc:a8a53c52f3e2efedc73073989a69aaa7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">替换  <a href="a00063_a8a53c52f3e2efedc73073989a69aaa7f.html#a8a53c52f3e2efedc73073989a69aaa7f">更多...</a><br /></td></tr>
+<tr class="separator:a8a53c52f3e2efedc73073989a69aaa7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a204a56cd4efe339f71796a44830e8162"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063_a204a56cd4efe339f71796a44830e8162.html#a204a56cd4efe339f71796a44830e8162">hash_replace_string_key</a> (<a class="el" href="a00051_a188677c3015513590ab998e96b999966.html#a188677c3015513590ab998e96b999966">hash_t</a> *hash, const char *key, void *value)</td></tr>
+<tr class="memdesc:a204a56cd4efe339f71796a44830e8162"><td class="mdescLeft">&#160;</td><td class="mdescRight">替换  <a href="a00063_a204a56cd4efe339f71796a44830e8162.html#a204a56cd4efe339f71796a44830e8162">更多...</a><br /></td></tr>
+<tr class="separator:a204a56cd4efe339f71796a44830e8162"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af31ceed9b3d6675a240da0b952492a0c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063_af31ceed9b3d6675a240da0b952492a0c.html#af31ceed9b3d6675a240da0b952492a0c">hash_delete_string_key</a> (<a class="el" href="a00051_a188677c3015513590ab998e96b999966.html#a188677c3015513590ab998e96b999966">hash_t</a> *hash, const char *key)</td></tr>
+<tr class="memdesc:af31ceed9b3d6675a240da0b952492a0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁元素  <a href="a00063_af31ceed9b3d6675a240da0b952492a0c.html#af31ceed9b3d6675a240da0b952492a0c">更多...</a><br /></td></tr>
+<tr class="separator:af31ceed9b3d6675a240da0b952492a0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f5065a1ac13afbbec3e2c61355effe3"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063_a8f5065a1ac13afbbec3e2c61355effe3.html#a8f5065a1ac13afbbec3e2c61355effe3">hash_get</a> (<a class="el" href="a00051_a188677c3015513590ab998e96b999966.html#a188677c3015513590ab998e96b999966">hash_t</a> *hash, uint32_t key)</td></tr>
+<tr class="memdesc:a8f5065a1ac13afbbec3e2c61355effe3"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取元素  <a href="a00063_a8f5065a1ac13afbbec3e2c61355effe3.html#a8f5065a1ac13afbbec3e2c61355effe3">更多...</a><br /></td></tr>
+<tr class="separator:a8f5065a1ac13afbbec3e2c61355effe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34b1caad9530537c6049ba7090d105a7"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063_a34b1caad9530537c6049ba7090d105a7.html#a34b1caad9530537c6049ba7090d105a7">hash_get_string_key</a> (<a class="el" href="a00051_a188677c3015513590ab998e96b999966.html#a188677c3015513590ab998e96b999966">hash_t</a> *hash, const char *key)</td></tr>
+<tr class="memdesc:a34b1caad9530537c6049ba7090d105a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取元素  <a href="a00063_a34b1caad9530537c6049ba7090d105a7.html#a34b1caad9530537c6049ba7090d105a7">更多...</a><br /></td></tr>
+<tr class="separator:a34b1caad9530537c6049ba7090d105a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a161be6f6ab6de6db3a3a0c3f82ce1607"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063_a161be6f6ab6de6db3a3a0c3f82ce1607.html#a161be6f6ab6de6db3a3a0c3f82ce1607">hash_get_size</a> (<a class="el" href="a00051_a188677c3015513590ab998e96b999966.html#a188677c3015513590ab998e96b999966">hash_t</a> *hash)</td></tr>
+<tr class="memdesc:a161be6f6ab6de6db3a3a0c3f82ce1607"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得元素数量  <a href="a00063_a161be6f6ab6de6db3a3a0c3f82ce1607.html#a161be6f6ab6de6db3a3a0c3f82ce1607">更多...</a><br /></td></tr>
+<tr class="separator:a161be6f6ab6de6db3a3a0c3f82ce1607"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0be817a0ad58df448b3a339b01fef058"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00051_af7ecd66aeef0ce1b0495e5f65e77733e.html#af7ecd66aeef0ce1b0495e5f65e77733e">hash_value_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063_a0be817a0ad58df448b3a339b01fef058.html#a0be817a0ad58df448b3a339b01fef058">hash_get_first</a> (<a class="el" href="a00051_a188677c3015513590ab998e96b999966.html#a188677c3015513590ab998e96b999966">hash_t</a> *hash)</td></tr>
+<tr class="memdesc:a0be817a0ad58df448b3a339b01fef058"><td class="mdescLeft">&#160;</td><td class="mdescRight">重置遍历器，取第一个元素  <a href="a00063_a0be817a0ad58df448b3a339b01fef058.html#a0be817a0ad58df448b3a339b01fef058">更多...</a><br /></td></tr>
+<tr class="separator:a0be817a0ad58df448b3a339b01fef058"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9239dd7173dc2847f153a70dbb6e15c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00051_af7ecd66aeef0ce1b0495e5f65e77733e.html#af7ecd66aeef0ce1b0495e5f65e77733e">hash_value_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00063_aa9239dd7173dc2847f153a70dbb6e15c.html#aa9239dd7173dc2847f153a70dbb6e15c">hash_next</a> (<a class="el" href="a00051_a188677c3015513590ab998e96b999966.html#a188677c3015513590ab998e96b999966">hash_t</a> *hash)</td></tr>
+<tr class="memdesc:aa9239dd7173dc2847f153a70dbb6e15c"><td class="mdescLeft">&#160;</td><td class="mdescRight">哈希表遍历器的下一个元素  <a href="a00063_aa9239dd7173dc2847f153a70dbb6e15c.html#aa9239dd7173dc2847f153a70dbb6e15c">更多...</a><br /></td></tr>
+<tr class="separator:aa9239dd7173dc2847f153a70dbb6e15c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 17日 星期五 18:34:57 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 20日 星期一 15:03:39 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

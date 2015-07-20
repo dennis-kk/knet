@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/list.h 源文件</title>
+<title>knet: E:/knet-git/knet/knet/framework_raiser.h 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">knet
-   &#160;<span id="projectnumber">1.4.4</span>
+   &#160;<span id="projectnumber">1.4.5</span>
    </div>
   </td>
  </tr>
@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">list.h</div>  </div>
+<div class="title">framework_raiser.h</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00059.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
@@ -114,87 +114,44 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef LIST_H</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define LIST_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef FRAMEWORK_RAISER_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define FRAMEWORK_RAISER_H</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00047.html">config.h</a>&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00051.html">config.h</a>&quot;</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<a class="code" href="a00007.html">dlist_node_t</a>* <a class="code" href="a00059_a507b885acfdb76fa25d867631c907a47.html#a507b885acfdb76fa25d867631c907a47">dlist_node_create</a>();</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<a class="code" href="a00007.html">dlist_node_t</a>* <a class="code" href="a00059_af029e27336becef9644d54abda80e783.html#af029e27336becef9644d54abda80e783">dlist_node_init</a>(<a class="code" href="a00007.html">dlist_node_t</a>* node);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00059_a7f6a123c7b002e9a7b5612d24d59cc2b.html#a7f6a123c7b002e9a7b5612d24d59cc2b">dlist_node_destroy</a>(<a class="code" href="a00007.html">dlist_node_t</a>* node);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<a class="code" href="a00007.html">dlist_node_t</a>* <a class="code" href="a00059_a74edf062cf7c178b99cbfbac71368632.html#a74edf062cf7c178b99cbfbac71368632">dlist_node_set_data</a>(<a class="code" href="a00007.html">dlist_node_t</a>* node, <span class="keywordtype">void</span>* data);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keywordtype">void</span>* <a class="code" href="a00059_a8a84722d067652fd9347f0a59732ec80.html#a8a84722d067652fd9347f0a59732ec80">dlist_node_get_data</a>(<a class="code" href="a00007.html">dlist_node_t</a>* node);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<a class="code" href="a00012.html">framework_raiser_t</a>* <a class="code" href="a00059_a6a305a33afdea0d9b774d4b987aff05e.html#a6a305a33afdea0d9b774d4b987aff05e">framework_raiser_create</a>(<a class="code" href="a00013.html">framework_t</a>* f, <a class="code" href="a00032.html">loop_t</a>* <a class="code" href="a00031_a980ff537ba150044fae36b625ad23461.html#a980ff537ba150044fae36b625ad23461">loop</a>);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00059_aeb1e0bff411b59cc3ec79da5ab23d2c1.html#aeb1e0bff411b59cc3ec79da5ab23d2c1">framework_raiser_destroy</a>(<a class="code" href="a00012.html">framework_raiser_t</a>* raiser);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00059_a72206fc25182b20ead062464ed0b1139.html#a72206fc25182b20ead062464ed0b1139">framework_raiser_start</a>(<a class="code" href="a00012.html">framework_raiser_t</a>* raiser);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00059_a28061890dd7d07a16df39417ada87107.html#a28061890dd7d07a16df39417ada87107">framework_raiser_stop</a>(<a class="code" href="a00012.html">framework_raiser_t</a>* raiser);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00059_a6f3a981ad344559bca4f51c73a0c678b.html#a6f3a981ad344559bca4f51c73a0c678b">framework_raiser_wait_for_stop</a>(<a class="code" href="a00012.html">framework_raiser_t</a>* raiser);</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<a class="code" href="a00008.html">dlist_t</a>* <a class="code" href="a00059_ac1229375358b81e2ae8fdf7a1e7dfee1.html#ac1229375358b81e2ae8fdf7a1e7dfee1">dlist_create</a>();</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<a class="code" href="a00008.html">dlist_t</a>* <a class="code" href="a00059_a18753d353840e714698af3dafe57e9b2.html#a18753d353840e714698af3dafe57e9b2">dlist_init</a>(<a class="code" href="a00008.html">dlist_t</a>* dlist);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00059_a1808c7551ebb6dcbae569f7e784456ce.html#a1808c7551ebb6dcbae569f7e784456ce">dlist_destroy</a>(<a class="code" href="a00008.html">dlist_t</a>* dlist);</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00059_a419689054005a74cabe8c51932505580.html#a419689054005a74cabe8c51932505580">dlist_add_front</a>(<a class="code" href="a00008.html">dlist_t</a>* dlist, <a class="code" href="a00007.html">dlist_node_t</a>* node);</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00059_a2786bda01e956f3ecb544184d01b6402.html#a2786bda01e956f3ecb544184d01b6402">dlist_add_tail</a>(<a class="code" href="a00008.html">dlist_t</a>* dlist, <a class="code" href="a00007.html">dlist_node_t</a>* node);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<a class="code" href="a00007.html">dlist_node_t</a>* <a class="code" href="a00059_ad9f16c04ff5534a96e7585226effba4d.html#ad9f16c04ff5534a96e7585226effba4d">dlist_add_front_node</a>(<a class="code" href="a00008.html">dlist_t</a>* dlist, <span class="keywordtype">void</span>* data);</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<a class="code" href="a00007.html">dlist_node_t</a>* <a class="code" href="a00059_aadf245848d5b31e84c73a6755b78b23c.html#aadf245848d5b31e84c73a6755b78b23c">dlist_add_tail_node</a>(<a class="code" href="a00008.html">dlist_t</a>* dlist, <span class="keywordtype">void</span>* data);</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00059_a35f789c294262cce6fb4f1e7be0feb40.html#a35f789c294262cce6fb4f1e7be0feb40">dlist_get_count</a>(<a class="code" href="a00008.html">dlist_t</a>* dlist);</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00059_a4d1d1bf9d77cf74db890b5525c9ac3da.html#a4d1d1bf9d77cf74db890b5525c9ac3da">dlist_empty</a>(<a class="code" href="a00008.html">dlist_t</a>* dlist);</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<a class="code" href="a00007.html">dlist_node_t</a>* <a class="code" href="a00059_a81811e5aa6e78ba8bbfad6b065c2c06b.html#a81811e5aa6e78ba8bbfad6b065c2c06b">dlist_remove</a>(<a class="code" href="a00008.html">dlist_t</a>* dlist, <a class="code" href="a00007.html">dlist_node_t</a>* node);</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00059_a865e84612f96509282eb9735761b1106.html#a865e84612f96509282eb9735761b1106">dlist_delete</a>(<a class="code" href="a00008.html">dlist_t</a>* dlist, <a class="code" href="a00007.html">dlist_node_t</a>* node);</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<a class="code" href="a00007.html">dlist_node_t</a>* <a class="code" href="a00059_a2a1c0e5ec8521d7be962798680e283fc.html#a2a1c0e5ec8521d7be962798680e283fc">dlist_next</a>(<a class="code" href="a00008.html">dlist_t</a>* dlist, <a class="code" href="a00007.html">dlist_node_t</a>* node);</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<a class="code" href="a00007.html">dlist_node_t</a>* <a class="code" href="a00059_aa5e2f24e1971b89ac20f3f1258a41597.html#aa5e2f24e1971b89ac20f3f1258a41597">dlist_get_front</a>(<a class="code" href="a00008.html">dlist_t</a>* dlist);</div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<a class="code" href="a00007.html">dlist_node_t</a>* <a class="code" href="a00059_abd596a321f0d697c741a9005f558b7bc.html#abd596a321f0d697c741a9005f558b7bc">dlist_get_back</a>(<a class="code" href="a00008.html">dlist_t</a>* dlist);</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;<span class="comment">/* 遍历链表，在遍历的同时不能删除或销毁链表节点 */</span></div>
-<div class="line"><a name="l00169"></a><span class="lineno"><a class="line" href="a00059_a74abc436128d57c9cce4bb6cb4514a30.html#a74abc436128d57c9cce4bb6cb4514a30">  169</a></span>&#160;<span class="preprocessor">#define dlist_for_each(list, node) \</span></div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;<span class="preprocessor">    for (node = dlist_get_front(list); (node); node = dlist_next(list, node))</span></div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="comment">/* 遍历链表，可以在遍历同时进行删除或销毁链表节点 */</span></div>
-<div class="line"><a name="l00173"></a><span class="lineno"><a class="line" href="a00059_a06e8f967efba4722dce2899baaa5c155.html#a06e8f967efba4722dce2899baaa5c155">  173</a></span>&#160;<span class="preprocessor">#define dlist_for_each_safe(list, node, temp) \</span></div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="preprocessor">    for (node = dlist_get_front(list), temp = dlist_next(list, node); (node); node = temp, temp = dlist_next(list, node))</span></div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;</div>
-<div class="line"><a name="l00176"></a><span class="lineno"><a class="line" href="a00059_a73da38d84d57d10d4b8a82b5ce1873e8.html#a73da38d84d57d10d4b8a82b5ce1873e8">  176</a></span>&#160;<span class="preprocessor">#define dlist_for_each_break() \</span></div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;<span class="preprocessor">    break</span></div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* LIST_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="a00059_a865e84612f96509282eb9735761b1106_html_a865e84612f96509282eb9735761b1106"><div class="ttname"><a href="a00059_a865e84612f96509282eb9735761b1106.html#a865e84612f96509282eb9735761b1106">dlist_delete</a></div><div class="ttdeci">void dlist_delete(dlist_t *dlist, dlist_node_t *node)</div><div class="ttdoc">销毁链表节点 </div><div class="ttdef"><b>Definition:</b> list.c:193</div></div>
-<div class="ttc" id="a00059_a419689054005a74cabe8c51932505580_html_a419689054005a74cabe8c51932505580"><div class="ttname"><a href="a00059_a419689054005a74cabe8c51932505580.html#a419689054005a74cabe8c51932505580">dlist_add_front</a></div><div class="ttdeci">void dlist_add_front(dlist_t *dlist, dlist_node_t *node)</div><div class="ttdoc">将节点添加到链表头部 </div><div class="ttdef"><b>Definition:</b> list.c:125</div></div>
-<div class="ttc" id="a00059_abd596a321f0d697c741a9005f558b7bc_html_abd596a321f0d697c741a9005f558b7bc"><div class="ttname"><a href="a00059_abd596a321f0d697c741a9005f558b7bc.html#abd596a321f0d697c741a9005f558b7bc">dlist_get_back</a></div><div class="ttdeci">dlist_node_t * dlist_get_back(dlist_t *dlist)</div><div class="ttdoc">取得链表尾节点 </div><div class="ttdef"><b>Definition:</b> list.c:218</div></div>
-<div class="ttc" id="a00059_a18753d353840e714698af3dafe57e9b2_html_a18753d353840e714698af3dafe57e9b2"><div class="ttname"><a href="a00059_a18753d353840e714698af3dafe57e9b2.html#a18753d353840e714698af3dafe57e9b2">dlist_init</a></div><div class="ttdeci">dlist_t * dlist_init(dlist_t *dlist)</div><div class="ttdoc">初始化链表 </div><div class="ttdef"><b>Definition:</b> list.c:100</div></div>
-<div class="ttc" id="a00047_html"><div class="ttname"><a href="a00047.html">config.h</a></div></div>
-<div class="ttc" id="a00059_a81811e5aa6e78ba8bbfad6b065c2c06b_html_a81811e5aa6e78ba8bbfad6b065c2c06b"><div class="ttname"><a href="a00059_a81811e5aa6e78ba8bbfad6b065c2c06b.html#a81811e5aa6e78ba8bbfad6b065c2c06b">dlist_remove</a></div><div class="ttdeci">dlist_node_t * dlist_remove(dlist_t *dlist, dlist_node_t *node)</div><div class="ttdoc">将节点从链表内移除但不销毁 </div><div class="ttdef"><b>Definition:</b> list.c:181</div></div>
-<div class="ttc" id="a00059_a35f789c294262cce6fb4f1e7be0feb40_html_a35f789c294262cce6fb4f1e7be0feb40"><div class="ttname"><a href="a00059_a35f789c294262cce6fb4f1e7be0feb40.html#a35f789c294262cce6fb4f1e7be0feb40">dlist_get_count</a></div><div class="ttdeci">int dlist_get_count(dlist_t *dlist)</div><div class="ttdoc">取得链表节点数量 </div><div class="ttdef"><b>Definition:</b> list.c:171</div></div>
-<div class="ttc" id="a00059_a1808c7551ebb6dcbae569f7e784456ce_html_a1808c7551ebb6dcbae569f7e784456ce"><div class="ttname"><a href="a00059_a1808c7551ebb6dcbae569f7e784456ce.html#a1808c7551ebb6dcbae569f7e784456ce">dlist_destroy</a></div><div class="ttdeci">void dlist_destroy(dlist_t *dlist)</div><div class="ttdoc">销毁整个链表，并销毁所有节点（不销毁节点内自定义数据） </div><div class="ttdef"><b>Definition:</b> list.c:112</div></div>
-<div class="ttc" id="a00059_a4d1d1bf9d77cf74db890b5525c9ac3da_html_a4d1d1bf9d77cf74db890b5525c9ac3da"><div class="ttname"><a href="a00059_a4d1d1bf9d77cf74db890b5525c9ac3da.html#a4d1d1bf9d77cf74db890b5525c9ac3da">dlist_empty</a></div><div class="ttdeci">int dlist_empty(dlist_t *dlist)</div><div class="ttdoc">空 </div><div class="ttdef"><b>Definition:</b> list.c:176</div></div>
-<div class="ttc" id="a00059_ac1229375358b81e2ae8fdf7a1e7dfee1_html_ac1229375358b81e2ae8fdf7a1e7dfee1"><div class="ttname"><a href="a00059_ac1229375358b81e2ae8fdf7a1e7dfee1.html#ac1229375358b81e2ae8fdf7a1e7dfee1">dlist_create</a></div><div class="ttdeci">dlist_t * dlist_create()</div><div class="ttdoc">创建链表 </div><div class="ttdef"><b>Definition:</b> list.c:83</div></div>
-<div class="ttc" id="a00059_aa5e2f24e1971b89ac20f3f1258a41597_html_aa5e2f24e1971b89ac20f3f1258a41597"><div class="ttname"><a href="a00059_aa5e2f24e1971b89ac20f3f1258a41597.html#aa5e2f24e1971b89ac20f3f1258a41597">dlist_get_front</a></div><div class="ttdeci">dlist_node_t * dlist_get_front(dlist_t *dlist)</div><div class="ttdoc">取得链头节点 </div><div class="ttdef"><b>Definition:</b> list.c:210</div></div>
-<div class="ttc" id="a00059_af029e27336becef9644d54abda80e783_html_af029e27336becef9644d54abda80e783"><div class="ttname"><a href="a00059_af029e27336becef9644d54abda80e783.html#af029e27336becef9644d54abda80e783">dlist_node_init</a></div><div class="ttdeci">dlist_node_t * dlist_node_init(dlist_node_t *node)</div><div class="ttdoc">初始化链表节点 </div><div class="ttdef"><b>Definition:</b> list.c:55</div></div>
-<div class="ttc" id="a00059_aadf245848d5b31e84c73a6755b78b23c_html_aadf245848d5b31e84c73a6755b78b23c"><div class="ttname"><a href="a00059_aadf245848d5b31e84c73a6755b78b23c.html#aadf245848d5b31e84c73a6755b78b23c">dlist_add_tail_node</a></div><div class="ttdeci">dlist_node_t * dlist_add_tail_node(dlist_t *dlist, void *data)</div><div class="ttdoc">建立新节点并添加到链表尾部，同时设置节点自定义数据 </div><div class="ttdef"><b>Definition:</b> list.c:158</div></div>
-<div class="ttc" id="a00059_a2786bda01e956f3ecb544184d01b6402_html_a2786bda01e956f3ecb544184d01b6402"><div class="ttname"><a href="a00059_a2786bda01e956f3ecb544184d01b6402.html#a2786bda01e956f3ecb544184d01b6402">dlist_add_tail</a></div><div class="ttdeci">void dlist_add_tail(dlist_t *dlist, dlist_node_t *node)</div><div class="ttdoc">将节点添加到链表尾部 </div><div class="ttdef"><b>Definition:</b> list.c:135</div></div>
-<div class="ttc" id="a00059_a8a84722d067652fd9347f0a59732ec80_html_a8a84722d067652fd9347f0a59732ec80"><div class="ttname"><a href="a00059_a8a84722d067652fd9347f0a59732ec80.html#a8a84722d067652fd9347f0a59732ec80">dlist_node_get_data</a></div><div class="ttdeci">void * dlist_node_get_data(dlist_node_t *node)</div><div class="ttdoc">取得节点自定义数据 </div><div class="ttdef"><b>Definition:</b> list.c:78</div></div>
-<div class="ttc" id="a00059_a7f6a123c7b002e9a7b5612d24d59cc2b_html_a7f6a123c7b002e9a7b5612d24d59cc2b"><div class="ttname"><a href="a00059_a7f6a123c7b002e9a7b5612d24d59cc2b.html#a7f6a123c7b002e9a7b5612d24d59cc2b">dlist_node_destroy</a></div><div class="ttdeci">void dlist_node_destroy(dlist_node_t *node)</div><div class="ttdoc">销毁链表节点 </div><div class="ttdef"><b>Definition:</b> list.c:64</div></div>
-<div class="ttc" id="a00059_ad9f16c04ff5534a96e7585226effba4d_html_ad9f16c04ff5534a96e7585226effba4d"><div class="ttname"><a href="a00059_ad9f16c04ff5534a96e7585226effba4d.html#ad9f16c04ff5534a96e7585226effba4d">dlist_add_front_node</a></div><div class="ttdeci">dlist_node_t * dlist_add_front_node(dlist_t *dlist, void *data)</div><div class="ttdoc">建立新节点并添加到链表头部，同时设置节点自定义数据 </div><div class="ttdef"><b>Definition:</b> list.c:145</div></div>
-<div class="ttc" id="a00059_a2a1c0e5ec8521d7be962798680e283fc_html_a2a1c0e5ec8521d7be962798680e283fc"><div class="ttname"><a href="a00059_a2a1c0e5ec8521d7be962798680e283fc.html#a2a1c0e5ec8521d7be962798680e283fc">dlist_next</a></div><div class="ttdeci">dlist_node_t * dlist_next(dlist_t *dlist, dlist_node_t *node)</div><div class="ttdoc">取得链头当前节点的下一个节点 </div><div class="ttdef"><b>Definition:</b> list.c:199</div></div>
-<div class="ttc" id="a00059_a507b885acfdb76fa25d867631c907a47_html_a507b885acfdb76fa25d867631c907a47"><div class="ttname"><a href="a00059_a507b885acfdb76fa25d867631c907a47.html#a507b885acfdb76fa25d867631c907a47">dlist_node_create</a></div><div class="ttdeci">dlist_node_t * dlist_node_create()</div><div class="ttdoc">创建链表节点 </div><div class="ttdef"><b>Definition:</b> list.c:45</div></div>
-<div class="ttc" id="a00008_html"><div class="ttname"><a href="a00008.html">_dlist_t</a></div><div class="ttdef"><b>Definition:</b> list.c:39</div></div>
-<div class="ttc" id="a00059_a74edf062cf7c178b99cbfbac71368632_html_a74edf062cf7c178b99cbfbac71368632"><div class="ttname"><a href="a00059_a74edf062cf7c178b99cbfbac71368632.html#a74edf062cf7c178b99cbfbac71368632">dlist_node_set_data</a></div><div class="ttdeci">dlist_node_t * dlist_node_set_data(dlist_node_t *node, void *data)</div><div class="ttdoc">设置节点自定义数据 </div><div class="ttdef"><b>Definition:</b> list.c:72</div></div>
-<div class="ttc" id="a00007_html"><div class="ttname"><a href="a00007.html">_dlist_node_t</a></div><div class="ttdef"><b>Definition:</b> list.c:31</div></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00059_ad199c6f451f0e2362371dcf6445efca6.html#ad199c6f451f0e2362371dcf6445efca6">framework_raiser_new_acceptor</a>(<a class="code" href="a00012.html">framework_raiser_t</a>* raiser, <a class="code" href="a00009.html">framework_acceptor_config_t</a>* c);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00059_ac82f5d62a951a7f7fccfa23390672c9c.html#ac82f5d62a951a7f7fccfa23390672c9c">framework_raiser_new_connector</a>(<a class="code" href="a00012.html">framework_raiser_t</a>* raiser, <a class="code" href="a00011.html">framework_connector_config_t</a>* c);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* FRAMEWORK_RAISER_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a00059_a72206fc25182b20ead062464ed0b1139_html_a72206fc25182b20ead062464ed0b1139"><div class="ttname"><a href="a00059_a72206fc25182b20ead062464ed0b1139.html#a72206fc25182b20ead062464ed0b1139">framework_raiser_start</a></div><div class="ttdeci">int framework_raiser_start(framework_raiser_t *raiser)</div><div class="ttdoc">启动网络连接发起者 </div><div class="ttdef"><b>Definition:</b> framework_raiser.c:103</div></div>
+<div class="ttc" id="a00059_a6f3a981ad344559bca4f51c73a0c678b_html_a6f3a981ad344559bca4f51c73a0c678b"><div class="ttname"><a href="a00059_a6f3a981ad344559bca4f51c73a0c678b.html#a6f3a981ad344559bca4f51c73a0c678b">framework_raiser_wait_for_stop</a></div><div class="ttdeci">void framework_raiser_wait_for_stop(framework_raiser_t *raiser)</div><div class="ttdoc">等待网络连接发起者 </div><div class="ttdef"><b>Definition:</b> framework_raiser.c:150</div></div>
+<div class="ttc" id="a00059_ac82f5d62a951a7f7fccfa23390672c9c_html_ac82f5d62a951a7f7fccfa23390672c9c"><div class="ttname"><a href="a00059_ac82f5d62a951a7f7fccfa23390672c9c.html#ac82f5d62a951a7f7fccfa23390672c9c">framework_raiser_new_connector</a></div><div class="ttdeci">int framework_raiser_new_connector(framework_raiser_t *raiser, framework_connector_config_t *c)</div><div class="ttdoc">启动一个新的连接器 </div><div class="ttdef"><b>Definition:</b> framework_raiser.c:171</div></div>
+<div class="ttc" id="a00059_aeb1e0bff411b59cc3ec79da5ab23d2c1_html_aeb1e0bff411b59cc3ec79da5ab23d2c1"><div class="ttname"><a href="a00059_aeb1e0bff411b59cc3ec79da5ab23d2c1.html#aeb1e0bff411b59cc3ec79da5ab23d2c1">framework_raiser_destroy</a></div><div class="ttdeci">void framework_raiser_destroy(framework_raiser_t *raiser)</div><div class="ttdoc">销毁网络连接发起者 </div><div class="ttdef"><b>Definition:</b> framework_raiser.c:57</div></div>
+<div class="ttc" id="a00059_a28061890dd7d07a16df39417ada87107_html_a28061890dd7d07a16df39417ada87107"><div class="ttname"><a href="a00059_a28061890dd7d07a16df39417ada87107.html#a28061890dd7d07a16df39417ada87107">framework_raiser_stop</a></div><div class="ttdeci">void framework_raiser_stop(framework_raiser_t *raiser)</div><div class="ttdoc">关闭网络连接发起者 </div><div class="ttdef"><b>Definition:</b> framework_raiser.c:141</div></div>
+<div class="ttc" id="a00009_html"><div class="ttname"><a href="a00009.html">_framework_acceptor_config_t</a></div><div class="ttdef"><b>Definition:</b> framework_config.c:29</div></div>
+<div class="ttc" id="a00012_html"><div class="ttname"><a href="a00012.html">_framework_raiser_t</a></div><div class="ttdef"><b>Definition:</b> framework_raiser.c:37</div></div>
+<div class="ttc" id="a00032_html"><div class="ttname"><a href="a00032.html">_loop_t</a></div><div class="ttdef"><b>Definition:</b> loop.c:36</div></div>
+<div class="ttc" id="a00059_a6a305a33afdea0d9b774d4b987aff05e_html_a6a305a33afdea0d9b774d4b987aff05e"><div class="ttname"><a href="a00059_a6a305a33afdea0d9b774d4b987aff05e.html#a6a305a33afdea0d9b774d4b987aff05e">framework_raiser_create</a></div><div class="ttdeci">framework_raiser_t * framework_raiser_create(framework_t *f, loop_t *loop)</div><div class="ttdoc">建立网络连接发起者(监听器/连接器) </div><div class="ttdef"><b>Definition:</b> framework_raiser.c:43</div></div>
+<div class="ttc" id="a00013_html"><div class="ttname"><a href="a00013.html">_framework_t</a></div><div class="ttdef"><b>Definition:</b> framework.c:35</div></div>
+<div class="ttc" id="a00011_html"><div class="ttname"><a href="a00011.html">_framework_connector_config_t</a></div><div class="ttdef"><b>Definition:</b> framework_config.c:39</div></div>
+<div class="ttc" id="a00059_ad199c6f451f0e2362371dcf6445efca6_html_ad199c6f451f0e2362371dcf6445efca6"><div class="ttname"><a href="a00059_ad199c6f451f0e2362371dcf6445efca6.html#ad199c6f451f0e2362371dcf6445efca6">framework_raiser_new_acceptor</a></div><div class="ttdeci">int framework_raiser_new_acceptor(framework_raiser_t *raiser, framework_acceptor_config_t *c)</div><div class="ttdoc">启动一个新的监听器 </div><div class="ttdef"><b>Definition:</b> framework_raiser.c:157</div></div>
+<div class="ttc" id="a00031_a980ff537ba150044fae36b625ad23461_html_a980ff537ba150044fae36b625ad23461"><div class="ttname"><a href="a00031_a980ff537ba150044fae36b625ad23461.html#a980ff537ba150044fae36b625ad23461">_loop_profile_t::loop</a></div><div class="ttdeci">loop_t * loop</div><div class="ttdef"><b>Definition:</b> loop_profile.c:31</div></div>
+<div class="ttc" id="a00051_html"><div class="ttname"><a href="a00051.html">config.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 13日 星期一 18:21:38 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 20日 星期一 15:03:38 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

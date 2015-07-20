@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.9.1"/>
+<title>knet: channel_ref_accept_async</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">knet
+   &#160;<span id="projectnumber">1.4.5</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.9.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="modules.html"><span>模块</span></a></li>
+      <li><a href="annotated.html"><span>结构体</span></a></li>
+      <li><a href="files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_885cc87fac2d91e269af0a5a959fa5f6.html">E:</a></li><li class="navelem"><a class="el" href="dir_4e74998c9a9305a116abc25fcf9a1edb.html">knet-git</a></li><li class="navelem"><a class="el" href="dir_a1c045b39f32066568ae964b52db514f.html">knet</a></li><li class="navelem"><a class="el" href="dir_f76d03789f0b12416cfffea59e2ed47d.html">knet</a></li><li class="navelem"><a class="el" href="a00047.html">channel_ref.c</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="contents">
+<table cellspacing="0" cellpadding="0" border="0">
+  <tr>
+   <td valign="top">
+      <div class="navtab">
+        <table>
+          <tr><td class="navtab"><a class="qindex" href="a00101_gae9ae0ae2a42eabf6a544ce4e0f001c9e.html#gae9ae0ae2a42eabf6a544ce4e0f001c9e">channel_ref_accept</a></td></tr>
+          <tr><td class="navtab"><a class="qindexHL" href="a00047_a0f2b0c05186514a30fb7b638c7449935.html#a0f2b0c05186514a30fb7b638c7449935">channel_ref_accept_async</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_a8312d0f4fcecc79d87a261e8b462ce95.html#a8312d0f4fcecc79d87a261e8b462ce95">channel_ref_accept_from_socket_fd</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00101_gae003fde214ddbf4feec22ddb89b8257c.html#gae003fde214ddbf4feec22ddb89b8257c">channel_ref_check_balance</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_a1f03dc2b266c99aa3189dbe02564be45.html#a1f03dc2b266c99aa3189dbe02564be45">channel_ref_check_connect_timeout</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_a7134a0dab5db76d26dac56924267e5ac.html#a7134a0dab5db76d26dac56924267e5ac">channel_ref_check_event</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_a57f990b42c6d0e5f12cb8e59c18bdcf3.html#a57f990b42c6d0e5f12cb8e59c18bdcf3">channel_ref_check_ref</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_ab71c6ed6109fedf4cf941b8de498a622.html#ab71c6ed6109fedf4cf941b8de498a622">channel_ref_check_share</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00101_gadddbdc58824b567334d46493decc90f8.html#gadddbdc58824b567334d46493decc90f8">channel_ref_check_state</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_ae0c46cab3e683bce5f93d07847db7ec1.html#ae0c46cab3e683bce5f93d07847db7ec1">channel_ref_check_timeout</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_af3fce9f1faac3773f726b1b913d42787.html#af3fce9f1faac3773f726b1b913d42787">channel_ref_choose_loop</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_a08e70ed62a98136a26d326e25d1dbeac.html#a08e70ed62a98136a26d326e25d1dbeac">channel_ref_clear_event</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00101_ga49d6ba5f0b9aad95ae5c5710dca392a1.html#ga49d6ba5f0b9aad95ae5c5710dca392a1">channel_ref_close</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00101_ga1a8d1f5550cf26313cbb6575e8b2a32c.html#ga1a8d1f5550cf26313cbb6575e8b2a32c">channel_ref_connect</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_af748fb7631166d41826187a22ef28cc4.html#af748fb7631166d41826187a22ef28cc4">channel_ref_connect_in_loop</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_a82a1514a1b492ad693c7cb28606a5d01.html#a82a1514a1b492ad693c7cb28606a5d01">channel_ref_create</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_a039d289fc9cc8550fece0cd7b154ca7c.html#a039d289fc9cc8550fece0cd7b154ca7c">channel_ref_decref</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_a8c61b880489dcb1a556e3458e748d9f7.html#a8c61b880489dcb1a556e3458e748d9f7">channel_ref_destroy</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00101_gad44fcb68845cb3ebb582a9de6db9abd0.html#gad44fcb68845cb3ebb582a9de6db9abd0">channel_ref_equal</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_a1495c5893bdd3bf7508c0d13c7a591a6.html#a1495c5893bdd3bf7508c0d13c7a591a6">channel_ref_get_cb</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_ae6545b9c070a0bab99ccfefdf0b4a999.html#ae6545b9c070a0bab99ccfefdf0b4a999">channel_ref_get_data</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_a8498a205a4580c25c337a33b571396f7.html#a8498a205a4580c25c337a33b571396f7">channel_ref_get_domain_id</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_ab5e94cb95124a4c5db7ddf5750a9bb17.html#ab5e94cb95124a4c5db7ddf5750a9bb17">channel_ref_get_domain_node</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_ac24dbde77cfb71c60e1497dfe4cb49f3.html#ac24dbde77cfb71c60e1497dfe4cb49f3">channel_ref_get_event</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_a684027d23ecd45142ee91678972b48da.html#a684027d23ecd45142ee91678972b48da">channel_ref_get_flag</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00101_ga1dcf6af0c992fa21f9dcd03c8f763ec4.html#ga1dcf6af0c992fa21f9dcd03c8f763ec4">channel_ref_get_local_address</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00101_gad840fd786ca7092d528a8fc45c2e2a76.html#gad840fd786ca7092d528a8fc45c2e2a76">channel_ref_get_loop</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_a814d6826477cb62c5e4d6826dfdc418e.html#a814d6826477cb62c5e4d6826dfdc418e">channel_ref_get_loop_node</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00101_ga7bcafd2461a1edfde9c581cb946dcd44.html#ga7bcafd2461a1edfde9c581cb946dcd44">channel_ref_get_peer_address</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_a69e281781c5375b06a0fc8c2fdc5ea19.html#a69e281781c5375b06a0fc8c2fdc5ea19">channel_ref_get_ref</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_a7f81588a2beaa8c33a5eb7bf2236e566.html#a7f81588a2beaa8c33a5eb7bf2236e566">channel_ref_get_ringbuffer</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00101_gaf0c977ef05b7e767a8ef166a8037ec8b.html#gaf0c977ef05b7e767a8ef166a8037ec8b">channel_ref_get_socket_fd</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00101_gaf8d2758e1e063e04512049c9a9869d5e.html#gaf8d2758e1e063e04512049c9a9869d5e">channel_ref_get_stream</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00101_gaf4021842b995f59d23b931dd9ad3ff07.html#gaf4021842b995f59d23b931dd9ad3ff07">channel_ref_get_user_data</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00101_ga3fd39b821fef38abd518db6240e79068.html#ga3fd39b821fef38abd518db6240e79068">channel_ref_get_uuid</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_aef059f673946f97e8b892b600f839af1.html#aef059f673946f97e8b892b600f839af1">channel_ref_incref</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_a3c8048d6abb647710be83f9b243c7822.html#a3c8048d6abb647710be83f9b243c7822">channel_ref_info_t</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00101_gab4248c6e10ac538b5d37b927bbe39ef1.html#gab4248c6e10ac538b5d37b927bbe39ef1">channel_ref_leave</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00101_ga7627dbcdb87269ef2fae5bcbbb210720.html#ga7627dbcdb87269ef2fae5bcbbb210720">channel_ref_set_cb</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_aa639e4f322194aa76b0d01368f086bc0.html#aa639e4f322194aa76b0d01368f086bc0">channel_ref_set_data</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_a66387736035e1c761a9ceebf3c33d9cf.html#a66387736035e1c761a9ceebf3c33d9cf">channel_ref_set_domain_id</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_a31d88025a8c93858b7784ce1f89cfffe.html#a31d88025a8c93858b7784ce1f89cfffe">channel_ref_set_domain_node</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_aaa459c5e4bd63d343a31b5968a3ae5bd.html#aaa459c5e4bd63d343a31b5968a3ae5bd">channel_ref_set_event</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_a754666526c935285bd6c9367513b5832.html#a754666526c935285bd6c9367513b5832">channel_ref_set_flag</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_ad7b9246a8768f761ffdd1756ea389181.html#ad7b9246a8768f761ffdd1756ea389181">channel_ref_set_loop</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_a98676b725d853de8a576f97e1eeb9068.html#a98676b725d853de8a576f97e1eeb9068">channel_ref_set_loop_node</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_a7e19561cc06440ebdf63ced5526c9e21.html#a7e19561cc06440ebdf63ced5526c9e21">channel_ref_set_state</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00101_ga4e46196f7ac40bdd14a1407167e88b7b.html#ga4e46196f7ac40bdd14a1407167e88b7b">channel_ref_set_timeout</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00101_ga92427ed1f084e9b019acfcdf79bb4b44.html#ga92427ed1f084e9b019acfcdf79bb4b44">channel_ref_set_user_data</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00101_ga7b76c4078bbe8272206a5d7467ccd4ed.html#ga7b76c4078bbe8272206a5d7467ccd4ed">channel_ref_share</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_aac9295d2423894326c8b62e0ee851f89.html#aac9295d2423894326c8b62e0ee851f89">channel_ref_update</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_a31545bffe4e0837eaf754465732642c4.html#a31545bffe4e0837eaf754465732642c4">channel_ref_update_accept</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_af2b04a39619b524c176a1b921a2a662d.html#af2b04a39619b524c176a1b921a2a662d">channel_ref_update_accept_in_loop</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_acd7537431cf488ed39e782e63f79d997.html#acd7537431cf488ed39e782e63f79d997">channel_ref_update_close_in_loop</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_ac3dee255a82a9d1fb1fc3c63a2905a5a.html#ac3dee255a82a9d1fb1fc3c63a2905a5a">channel_ref_update_connect</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_a1c47df1906826a2a5b6d99fbc51918d1.html#a1c47df1906826a2a5b6d99fbc51918d1">channel_ref_update_recv</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_ae7b781b5faec09b7bd383e4e59dfb40f.html#ae7b781b5faec09b7bd383e4e59dfb40f">channel_ref_update_send</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_ab2afcbb2288d9654f7eb656a8c242167.html#ab2afcbb2288d9654f7eb656a8c242167">channel_ref_update_send_in_loop</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00047_a0688f00d64ff34ae18fd4a354d890029.html#a0688f00d64ff34ae18fd4a354d890029">channel_ref_write</a></td></tr>
+        </table>
+      </div>
+   </td>
+   <td valign="top" class="mempage">
+<a class="anchor" id="a0f2b0c05186514a30fb7b638c7449935"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void channel_ref_accept_async </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00050_a151271c9d188ef28d4d24bb81dcc1263.html#a151271c9d188ef28d4d24bb81dcc1263">channel_ref_t</a> *&#160;</td>
+          <td class="paramname"><em>channel_ref</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>在其他完成了listen()和bind()操作，在当前线程的loop_t内监听 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">channel_ref</td><td>channel_ref_t实例 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+    </td>
+  </tr>
+</table>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+生成于 2015年 七月 20日 星期一 11:17:40 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.9.1
+</small></address>
+</body>
+</html>

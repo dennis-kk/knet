@@ -73,6 +73,20 @@
 extern void framework_config_set_worker_thread_count(framework_config_t* c, int worker_thread_count);
 
 /**
+ * 设置工作线程内定时器分辨率
+ * @param c framework_config_t实例
+ * @param freq 工作线程内定时器分辨率（毫秒）
+ */
+extern void framework_config_set_worker_timer_freq(framework_config_t* c, time_t freq);
+
+/**
+ * 设置工作线程内定时器槽位数量
+ * @param c framework_config_t实例
+ * @param slot 定时器槽位数量
+ */
+extern void framework_config_set_worker_timer_slot(framework_config_t* c, int slot);
+
+/**
  * 建立监听器配置
  * @param c framework_config_t实例
  * @return framework_acceptor_config_t实例

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/knet.h 源文件</title>
+<title>knet: E:/knet-git/knet/knet/framework_config_api.h 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -24,7 +24,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">knet
-   &#160;<span id="projectnumber">1.4.4</span>
+   &#160;<span id="projectnumber">1.4.5</span>
    </div>
   </td>
  </tr>
@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">knet.h</div>  </div>
+<div class="title">framework_config_api.h</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00057.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
@@ -114,47 +114,69 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef KNET_H</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define KNET_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef FRAMEWORK_CONFIG_API_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define FRAMEWORK_CONFIG_API_H</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __cplusplus */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00064.html">loop_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00083.html">stream_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00046.html">channel_ref_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00037.html">address_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00067.html">loop_balancer_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00039.html">broadcast_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00052.html">framework_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00087.html">timer_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00084.html">thread_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00077.html">rpc_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00080.html">rpc_object_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00089.html">version.h</a>&quot;</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __cplusplus */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* KNET_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="a00039_html"><div class="ttname"><a href="a00039.html">broadcast_api.h</a></div></div>
-<div class="ttc" id="a00064_html"><div class="ttname"><a href="a00064.html">loop_api.h</a></div></div>
-<div class="ttc" id="a00067_html"><div class="ttname"><a href="a00067.html">loop_balancer_api.h</a></div></div>
-<div class="ttc" id="a00084_html"><div class="ttname"><a href="a00084.html">thread_api.h</a></div></div>
-<div class="ttc" id="a00087_html"><div class="ttname"><a href="a00087.html">timer_api.h</a></div></div>
-<div class="ttc" id="a00083_html"><div class="ttname"><a href="a00083.html">stream_api.h</a></div></div>
-<div class="ttc" id="a00046_html"><div class="ttname"><a href="a00046.html">channel_ref_api.h</a></div></div>
-<div class="ttc" id="a00037_html"><div class="ttname"><a href="a00037.html">address_api.h</a></div></div>
-<div class="ttc" id="a00052_html"><div class="ttname"><a href="a00052.html">framework_api.h</a></div></div>
-<div class="ttc" id="a00089_html"><div class="ttname"><a href="a00089.html">version.h</a></div></div>
-<div class="ttc" id="a00077_html"><div class="ttname"><a href="a00077.html">rpc_api.h</a></div></div>
-<div class="ttc" id="a00080_html"><div class="ttname"><a href="a00080.html">rpc_object_api.h</a></div></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00104_ga46fc5d54c72138bced5ddd4068ef77e5.html#ga46fc5d54c72138bced5ddd4068ef77e5">framework_config_set_worker_thread_count</a>(<a class="code" href="a00010.html">framework_config_t</a>* c, <span class="keywordtype">int</span> worker_thread_count);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00104_gab1d3f9bfc5762af2d1f5fbc50cd1c8c5.html#gab1d3f9bfc5762af2d1f5fbc50cd1c8c5">framework_config_set_worker_timer_freq</a>(<a class="code" href="a00010.html">framework_config_t</a>* c, time_t freq);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00104_gae9dc5208c9840b3476df89ad16ef3897.html#gae9dc5208c9840b3476df89ad16ef3897">framework_config_set_worker_timer_slot</a>(<a class="code" href="a00010.html">framework_config_t</a>* c, <span class="keywordtype">int</span> slot);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00009.html">framework_acceptor_config_t</a>* <a class="code" href="a00104_ga74c94573fba40eb46f9e183fab029978.html#ga74c94573fba40eb46f9e183fab029978">framework_config_new_acceptor</a>(<a class="code" href="a00010.html">framework_config_t</a>* c);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00011.html">framework_connector_config_t</a>* <a class="code" href="a00104_ga4ff6334d19e68c08b5741ee7fed02f81.html#ga4ff6334d19e68c08b5741ee7fed02f81">framework_config_new_connector</a>(<a class="code" href="a00010.html">framework_config_t</a>* c);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00104_ga5b3c778f37a4c667479d9eae877d3d67.html#ga5b3c778f37a4c667479d9eae877d3d67">framework_acceptor_config_set_local_address</a>(<a class="code" href="a00009.html">framework_acceptor_config_t</a>* c, <span class="keyword">const</span> <span class="keywordtype">char</span>* ip, <span class="keywordtype">int</span> port);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00104_gae96d14bcf7b70e8ad52fe614ad848c2c.html#gae96d14bcf7b70e8ad52fe614ad848c2c">framework_acceptor_config_set_backlog</a>(<a class="code" href="a00009.html">framework_acceptor_config_t</a>* c, <span class="keywordtype">int</span> backlog);</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00104_gab810538b3fa23ae98027e451f52e4221.html#gab810538b3fa23ae98027e451f52e4221">framework_acceptor_config_set_client_heartbeat_timeout</a>(<a class="code" href="a00009.html">framework_acceptor_config_t</a>* c, <span class="keywordtype">int</span> timeout);</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00104_ga93ecf8240201cbc64b76857242fb39d6.html#ga93ecf8240201cbc64b76857242fb39d6">framework_acceptor_config_set_client_cb</a>(<a class="code" href="a00009.html">framework_acceptor_config_t</a>* c, <a class="code" href="a00051_ae296ec4d1ce108960de8dcc423956a1d.html#ae296ec4d1ce108960de8dcc423956a1d">channel_ref_cb_t</a> cb);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00104_ga7c7289f2fdf2a2e220ceec22b5532909.html#ga7c7289f2fdf2a2e220ceec22b5532909">framework_acceptor_config_set_client_max_send_list_count</a>(<a class="code" href="a00009.html">framework_acceptor_config_t</a>* c, <span class="keywordtype">int</span> max_send_list_count);</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00104_ga7d46d7c6ac5a9871251b5efab34d767b.html#ga7d46d7c6ac5a9871251b5efab34d767b">framework_acceptor_config_set_client_max_recv_buffer_length</a>(<a class="code" href="a00009.html">framework_acceptor_config_t</a>* c, <span class="keywordtype">int</span> max_recv_buffer_length);</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00104_ga3d5c40af2faafd53f9ead5cb2ff8c0b0.html#ga3d5c40af2faafd53f9ead5cb2ff8c0b0">framework_connector_config_set_remote_address</a>(<a class="code" href="a00011.html">framework_connector_config_t</a>* c, <span class="keyword">const</span> <span class="keywordtype">char</span>* ip, <span class="keywordtype">int</span> port);</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00104_ga15e1d8ef32fcc99dcc9c35383fa5dbc8.html#ga15e1d8ef32fcc99dcc9c35383fa5dbc8">framework_connector_config_set_heartbeat_timeout</a>(<a class="code" href="a00011.html">framework_connector_config_t</a>* c, <span class="keywordtype">int</span> timeout);</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00104_ga59a35df5173a2f94e5b743fbeeb48f6b.html#ga59a35df5173a2f94e5b743fbeeb48f6b">framework_connector_config_set_connect_timeout</a>(<a class="code" href="a00011.html">framework_connector_config_t</a>* c, <span class="keywordtype">int</span> timeout);</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00104_gaaa7b13871a9aca1dbb5ebfe1ece2dde8.html#gaaa7b13871a9aca1dbb5ebfe1ece2dde8">framework_connector_config_set_cb</a>(<a class="code" href="a00011.html">framework_connector_config_t</a>* c, <a class="code" href="a00051_ae296ec4d1ce108960de8dcc423956a1d.html#ae296ec4d1ce108960de8dcc423956a1d">channel_ref_cb_t</a> cb);</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00104_ga0afe3e1f2612f39667940fc336312cb9.html#ga0afe3e1f2612f39667940fc336312cb9">framework_connector_config_set_client_max_send_list_count</a>(<a class="code" href="a00011.html">framework_connector_config_t</a>* c, <span class="keywordtype">int</span> max_send_list_count);</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00104_ga2b6beeacea30cd3aacb8802bb0323476.html#ga2b6beeacea30cd3aacb8802bb0323476">framework_connector_config_set_client_max_recv_buffer_length</a>(<a class="code" href="a00011.html">framework_connector_config_t</a>* c, <span class="keywordtype">int</span> max_recv_buffer_length);</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* FRAMEWORK_CONFIG_API_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a00104_ga74c94573fba40eb46f9e183fab029978_html_ga74c94573fba40eb46f9e183fab029978"><div class="ttname"><a href="a00104_ga74c94573fba40eb46f9e183fab029978.html#ga74c94573fba40eb46f9e183fab029978">framework_config_new_acceptor</a></div><div class="ttdeci">framework_acceptor_config_t * framework_config_new_acceptor(framework_config_t *c)</div><div class="ttdoc">建立监听器配置 </div><div class="ttdef"><b>Definition:</b> framework_config.c:112</div></div>
+<div class="ttc" id="a00010_html"><div class="ttname"><a href="a00010.html">_framework_config_t</a></div><div class="ttdef"><b>Definition:</b> framework_config.c:49</div></div>
+<div class="ttc" id="a00104_ga4ff6334d19e68c08b5741ee7fed02f81_html_ga4ff6334d19e68c08b5741ee7fed02f81"><div class="ttname"><a href="a00104_ga4ff6334d19e68c08b5741ee7fed02f81.html#ga4ff6334d19e68c08b5741ee7fed02f81">framework_config_new_connector</a></div><div class="ttdeci">framework_connector_config_t * framework_config_new_connector(framework_config_t *c)</div><div class="ttdoc">建立连接器配置 </div><div class="ttdef"><b>Definition:</b> framework_config.c:127</div></div>
+<div class="ttc" id="a00104_ga15e1d8ef32fcc99dcc9c35383fa5dbc8_html_ga15e1d8ef32fcc99dcc9c35383fa5dbc8"><div class="ttname"><a href="a00104_ga15e1d8ef32fcc99dcc9c35383fa5dbc8.html#ga15e1d8ef32fcc99dcc9c35383fa5dbc8">framework_connector_config_set_heartbeat_timeout</a></div><div class="ttdeci">void framework_connector_config_set_heartbeat_timeout(framework_connector_config_t *c, int timeout)</div><div class="ttdoc">设置连接器心跳超时 </div><div class="ttdef"><b>Definition:</b> framework_config.c:191</div></div>
+<div class="ttc" id="a00104_ga3d5c40af2faafd53f9ead5cb2ff8c0b0_html_ga3d5c40af2faafd53f9ead5cb2ff8c0b0"><div class="ttname"><a href="a00104_ga3d5c40af2faafd53f9ead5cb2ff8c0b0.html#ga3d5c40af2faafd53f9ead5cb2ff8c0b0">framework_connector_config_set_remote_address</a></div><div class="ttdeci">void framework_connector_config_set_remote_address(framework_connector_config_t *c, const char *ip, int port)</div><div class="ttdoc">设置连接器需要连接的地址 </div><div class="ttdef"><b>Definition:</b> framework_config.c:180</div></div>
+<div class="ttc" id="a00104_ga5b3c778f37a4c667479d9eae877d3d67_html_ga5b3c778f37a4c667479d9eae877d3d67"><div class="ttname"><a href="a00104_ga5b3c778f37a4c667479d9eae877d3d67.html#ga5b3c778f37a4c667479d9eae877d3d67">framework_acceptor_config_set_local_address</a></div><div class="ttdeci">void framework_acceptor_config_set_local_address(framework_acceptor_config_t *c, const char *ip, int port)</div><div class="ttdoc">设置监听器本地地址 </div><div class="ttdef"><b>Definition:</b> framework_config.c:141</div></div>
+<div class="ttc" id="a00104_ga93ecf8240201cbc64b76857242fb39d6_html_ga93ecf8240201cbc64b76857242fb39d6"><div class="ttname"><a href="a00104_ga93ecf8240201cbc64b76857242fb39d6.html#ga93ecf8240201cbc64b76857242fb39d6">framework_acceptor_config_set_client_cb</a></div><div class="ttdeci">void framework_acceptor_config_set_client_cb(framework_acceptor_config_t *c, channel_ref_cb_t cb)</div><div class="ttdoc">设置客户端回调函数 </div><div class="ttdef"><b>Definition:</b> framework_config.c:165</div></div>
+<div class="ttc" id="a00104_ga59a35df5173a2f94e5b743fbeeb48f6b_html_ga59a35df5173a2f94e5b743fbeeb48f6b"><div class="ttname"><a href="a00104_ga59a35df5173a2f94e5b743fbeeb48f6b.html#ga59a35df5173a2f94e5b743fbeeb48f6b">framework_connector_config_set_connect_timeout</a></div><div class="ttdeci">void framework_connector_config_set_connect_timeout(framework_connector_config_t *c, int timeout)</div><div class="ttdoc">设置连接器连接超时 </div><div class="ttdef"><b>Definition:</b> framework_config.c:196</div></div>
+<div class="ttc" id="a00104_ga7c7289f2fdf2a2e220ceec22b5532909_html_ga7c7289f2fdf2a2e220ceec22b5532909"><div class="ttname"><a href="a00104_ga7c7289f2fdf2a2e220ceec22b5532909.html#ga7c7289f2fdf2a2e220ceec22b5532909">framework_acceptor_config_set_client_max_send_list_count</a></div><div class="ttdeci">void framework_acceptor_config_set_client_max_send_list_count(framework_acceptor_config_t *c, int max_send_list_count)</div><div class="ttdoc">设置客户端发送链表最大长度 </div><div class="ttdef"><b>Definition:</b> framework_config.c:170</div></div>
+<div class="ttc" id="a00104_gaaa7b13871a9aca1dbb5ebfe1ece2dde8_html_gaaa7b13871a9aca1dbb5ebfe1ece2dde8"><div class="ttname"><a href="a00104_gaaa7b13871a9aca1dbb5ebfe1ece2dde8.html#gaaa7b13871a9aca1dbb5ebfe1ece2dde8">framework_connector_config_set_cb</a></div><div class="ttdeci">void framework_connector_config_set_cb(framework_connector_config_t *c, channel_ref_cb_t cb)</div><div class="ttdoc">设置连接器回调函数 </div><div class="ttdef"><b>Definition:</b> framework_config.c:201</div></div>
+<div class="ttc" id="a00009_html"><div class="ttname"><a href="a00009.html">_framework_acceptor_config_t</a></div><div class="ttdef"><b>Definition:</b> framework_config.c:29</div></div>
+<div class="ttc" id="a00104_ga46fc5d54c72138bced5ddd4068ef77e5_html_ga46fc5d54c72138bced5ddd4068ef77e5"><div class="ttname"><a href="a00104_ga46fc5d54c72138bced5ddd4068ef77e5.html#ga46fc5d54c72138bced5ddd4068ef77e5">framework_config_set_worker_thread_count</a></div><div class="ttdeci">void framework_config_set_worker_thread_count(framework_config_t *c, int worker_thread_count)</div><div class="ttdoc">设置工作线程数量，默认为单线程 </div><div class="ttdef"><b>Definition:</b> framework_config.c:90</div></div>
+<div class="ttc" id="a00104_ga7d46d7c6ac5a9871251b5efab34d767b_html_ga7d46d7c6ac5a9871251b5efab34d767b"><div class="ttname"><a href="a00104_ga7d46d7c6ac5a9871251b5efab34d767b.html#ga7d46d7c6ac5a9871251b5efab34d767b">framework_acceptor_config_set_client_max_recv_buffer_length</a></div><div class="ttdeci">void framework_acceptor_config_set_client_max_recv_buffer_length(framework_acceptor_config_t *c, int max_recv_buffer_length)</div><div class="ttdoc">设置客户端接收缓冲区最大长度 </div><div class="ttdef"><b>Definition:</b> framework_config.c:175</div></div>
+<div class="ttc" id="a00104_ga0afe3e1f2612f39667940fc336312cb9_html_ga0afe3e1f2612f39667940fc336312cb9"><div class="ttname"><a href="a00104_ga0afe3e1f2612f39667940fc336312cb9.html#ga0afe3e1f2612f39667940fc336312cb9">framework_connector_config_set_client_max_send_list_count</a></div><div class="ttdeci">void framework_connector_config_set_client_max_send_list_count(framework_connector_config_t *c, int max_send_list_count)</div><div class="ttdoc">设置连接器发送链表最大长度 </div><div class="ttdef"><b>Definition:</b> framework_config.c:206</div></div>
+<div class="ttc" id="a00011_html"><div class="ttname"><a href="a00011.html">_framework_connector_config_t</a></div><div class="ttdef"><b>Definition:</b> framework_config.c:39</div></div>
+<div class="ttc" id="a00104_gae96d14bcf7b70e8ad52fe614ad848c2c_html_gae96d14bcf7b70e8ad52fe614ad848c2c"><div class="ttname"><a href="a00104_gae96d14bcf7b70e8ad52fe614ad848c2c.html#gae96d14bcf7b70e8ad52fe614ad848c2c">framework_acceptor_config_set_backlog</a></div><div class="ttdeci">void framework_acceptor_config_set_backlog(framework_acceptor_config_t *c, int backlog)</div><div class="ttdoc">设置监听器等待队列长度 </div><div class="ttdef"><b>Definition:</b> framework_config.c:152</div></div>
+<div class="ttc" id="a00104_gab1d3f9bfc5762af2d1f5fbc50cd1c8c5_html_gab1d3f9bfc5762af2d1f5fbc50cd1c8c5"><div class="ttname"><a href="a00104_gab1d3f9bfc5762af2d1f5fbc50cd1c8c5.html#gab1d3f9bfc5762af2d1f5fbc50cd1c8c5">framework_config_set_worker_timer_freq</a></div><div class="ttdeci">void framework_config_set_worker_timer_freq(framework_config_t *c, time_t freq)</div><div class="ttdoc">设置工作线程内定时器分辨率 </div><div class="ttdef"><b>Definition:</b> framework_config.c:96</div></div>
+<div class="ttc" id="a00104_gab810538b3fa23ae98027e451f52e4221_html_gab810538b3fa23ae98027e451f52e4221"><div class="ttname"><a href="a00104_gab810538b3fa23ae98027e451f52e4221.html#gab810538b3fa23ae98027e451f52e4221">framework_acceptor_config_set_client_heartbeat_timeout</a></div><div class="ttdeci">void framework_acceptor_config_set_client_heartbeat_timeout(framework_acceptor_config_t *c, int timeout)</div><div class="ttdoc">设置客户端心跳超时 </div><div class="ttdef"><b>Definition:</b> framework_config.c:160</div></div>
+<div class="ttc" id="a00104_gae9dc5208c9840b3476df89ad16ef3897_html_gae9dc5208c9840b3476df89ad16ef3897"><div class="ttname"><a href="a00104_gae9dc5208c9840b3476df89ad16ef3897.html#gae9dc5208c9840b3476df89ad16ef3897">framework_config_set_worker_timer_slot</a></div><div class="ttdeci">void framework_config_set_worker_timer_slot(framework_config_t *c, int slot)</div><div class="ttdoc">设置工作线程内定时器槽位数量 </div><div class="ttdef"><b>Definition:</b> framework_config.c:104</div></div>
+<div class="ttc" id="a00051_ae296ec4d1ce108960de8dcc423956a1d_html_ae296ec4d1ce108960de8dcc423956a1d"><div class="ttname"><a href="a00051_ae296ec4d1ce108960de8dcc423956a1d.html#ae296ec4d1ce108960de8dcc423956a1d">channel_ref_cb_t</a></div><div class="ttdeci">void(* channel_ref_cb_t)(channel_ref_t *, channel_cb_event_e)</div><div class="ttdef"><b>Definition:</b> config.h:286</div></div>
+<div class="ttc" id="a00104_ga2b6beeacea30cd3aacb8802bb0323476_html_ga2b6beeacea30cd3aacb8802bb0323476"><div class="ttname"><a href="a00104_ga2b6beeacea30cd3aacb8802bb0323476.html#ga2b6beeacea30cd3aacb8802bb0323476">framework_connector_config_set_client_max_recv_buffer_length</a></div><div class="ttdeci">void framework_connector_config_set_client_max_recv_buffer_length(framework_connector_config_t *c, int max_recv_buffer_length)</div><div class="ttdoc">设置连接器接收缓冲区最大长度 </div><div class="ttdef"><b>Definition:</b> framework_config.c:211</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 13日 星期一 18:21:38 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 20日 星期一 15:03:38 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

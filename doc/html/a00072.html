@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/loop_balancer.h 文件参考</title>
+<title>knet: E:/knet-git/knet/knet/loop_balancer.c 文件参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,26 +87,58 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">结构体</a> &#124;
+<a href="#typedef-members">类型定义</a> &#124;
 <a href="#func-members">函数</a>  </div>
   <div class="headertitle">
-<div class="title">loop_balancer.h 文件参考</div>  </div>
+<div class="title">loop_balancer.c 文件参考</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="a00050_source.html">config.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00073_source.html">loop_balancer_api.h</a>&quot;</code><br />
-</div>
-<p><a href="a00072_source.html">浏览源代码.</a></p>
-<table class="memberdecls">
+<div class="textblock"><code>#include &quot;<a class="el" href="a00073_source.html">loop_balancer.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00066_source.html">list.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00083_source.html">misc.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00070_source.html">loop.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+结构体</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00030.html">_loop_info_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00028.html">_loop_balancer_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+类型定义</h2></td></tr>
+<tr class="memitem:a4ae76cfed863999ec747314b93b9287d"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00030.html">_loop_info_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00072_a4ae76cfed863999ec747314b93b9287d.html#a4ae76cfed863999ec747314b93b9287d">loop_info_t</a></td></tr>
+<tr class="separator:a4ae76cfed863999ec747314b93b9287d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 函数</h2></td></tr>
-<tr class="memitem:ac025f218f22410cf0e60980bbd93c5e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00050_a9c3ad1cd2de83e09f3a7b59fa82c94ee.html#a9c3ad1cd2de83e09f3a7b59fa82c94ee">loop_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00072_ac025f218f22410cf0e60980bbd93c5e3.html#ac025f218f22410cf0e60980bbd93c5e3">loop_balancer_choose</a> (<a class="el" href="a00050_a649c7e850ab247b5f70ad27e335a129d.html#a649c7e850ab247b5f70ad27e335a129d">loop_balancer_t</a> *balancer)</td></tr>
+<tr class="memitem:ga9992a50e96839282c678e51bc11158d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00051_a649c7e850ab247b5f70ad27e335a129d.html#a649c7e850ab247b5f70ad27e335a129d">loop_balancer_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00106_ga9992a50e96839282c678e51bc11158d1.html#ga9992a50e96839282c678e51bc11158d1">loop_balancer_create</a> ()</td></tr>
+<tr class="memdesc:ga9992a50e96839282c678e51bc11158d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建负载均衡器  <a href="a00106_ga9992a50e96839282c678e51bc11158d1.html#ga9992a50e96839282c678e51bc11158d1">更多...</a><br /></td></tr>
+<tr class="separator:ga9992a50e96839282c678e51bc11158d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2d702b5f965fe587fdaea3f5f9e2400c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00106_ga2d702b5f965fe587fdaea3f5f9e2400c.html#ga2d702b5f965fe587fdaea3f5f9e2400c">loop_balancer_destroy</a> (<a class="el" href="a00051_a649c7e850ab247b5f70ad27e335a129d.html#a649c7e850ab247b5f70ad27e335a129d">loop_balancer_t</a> *balancer)</td></tr>
+<tr class="memdesc:ga2d702b5f965fe587fdaea3f5f9e2400c"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁负载均衡器  <a href="a00106_ga2d702b5f965fe587fdaea3f5f9e2400c.html#ga2d702b5f965fe587fdaea3f5f9e2400c">更多...</a><br /></td></tr>
+<tr class="separator:ga2d702b5f965fe587fdaea3f5f9e2400c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2b3cf2cb63d914efe226e901a50d8b0a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00106_ga2b3cf2cb63d914efe226e901a50d8b0a.html#ga2b3cf2cb63d914efe226e901a50d8b0a">loop_balancer_attach</a> (<a class="el" href="a00051_a649c7e850ab247b5f70ad27e335a129d.html#a649c7e850ab247b5f70ad27e335a129d">loop_balancer_t</a> *balancer, <a class="el" href="a00051_a9c3ad1cd2de83e09f3a7b59fa82c94ee.html#a9c3ad1cd2de83e09f3a7b59fa82c94ee">loop_t</a> *loop)</td></tr>
+<tr class="memdesc:ga2b3cf2cb63d914efe226e901a50d8b0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">添加事件循环到负载均衡器  <a href="a00106_ga2b3cf2cb63d914efe226e901a50d8b0a.html#ga2b3cf2cb63d914efe226e901a50d8b0a">更多...</a><br /></td></tr>
+<tr class="separator:ga2b3cf2cb63d914efe226e901a50d8b0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga548ce0c2c624c4f4731a0f963d2ca42a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00106_ga548ce0c2c624c4f4731a0f963d2ca42a.html#ga548ce0c2c624c4f4731a0f963d2ca42a">loop_balancer_detach</a> (<a class="el" href="a00051_a649c7e850ab247b5f70ad27e335a129d.html#a649c7e850ab247b5f70ad27e335a129d">loop_balancer_t</a> *balancer, <a class="el" href="a00051_a9c3ad1cd2de83e09f3a7b59fa82c94ee.html#a9c3ad1cd2de83e09f3a7b59fa82c94ee">loop_t</a> *loop)</td></tr>
+<tr class="memdesc:ga548ce0c2c624c4f4731a0f963d2ca42a"><td class="mdescLeft">&#160;</td><td class="mdescRight">从负载均衡器内删除事件循环  <a href="a00106_ga548ce0c2c624c4f4731a0f963d2ca42a.html#ga548ce0c2c624c4f4731a0f963d2ca42a">更多...</a><br /></td></tr>
+<tr class="separator:ga548ce0c2c624c4f4731a0f963d2ca42a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac025f218f22410cf0e60980bbd93c5e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00051_a9c3ad1cd2de83e09f3a7b59fa82c94ee.html#a9c3ad1cd2de83e09f3a7b59fa82c94ee">loop_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00072_ac025f218f22410cf0e60980bbd93c5e3.html#ac025f218f22410cf0e60980bbd93c5e3">loop_balancer_choose</a> (<a class="el" href="a00051_a649c7e850ab247b5f70ad27e335a129d.html#a649c7e850ab247b5f70ad27e335a129d">loop_balancer_t</a> *balancer)</td></tr>
 <tr class="memdesc:ac025f218f22410cf0e60980bbd93c5e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">负载均衡 - 选取一个loop_t实例  <a href="a00072_ac025f218f22410cf0e60980bbd93c5e3.html#ac025f218f22410cf0e60980bbd93c5e3">更多...</a><br /></td></tr>
 <tr class="separator:ac025f218f22410cf0e60980bbd93c5e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae10d6df162c0c43fbfb2bb68cca09e8b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00106_gae10d6df162c0c43fbfb2bb68cca09e8b.html#gae10d6df162c0c43fbfb2bb68cca09e8b">loop_balancer_set_data</a> (<a class="el" href="a00051_a649c7e850ab247b5f70ad27e335a129d.html#a649c7e850ab247b5f70ad27e335a129d">loop_balancer_t</a> *balancer, void *data)</td></tr>
+<tr class="memdesc:gae10d6df162c0c43fbfb2bb68cca09e8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置用户数据  <a href="a00106_gae10d6df162c0c43fbfb2bb68cca09e8b.html#gae10d6df162c0c43fbfb2bb68cca09e8b">更多...</a><br /></td></tr>
+<tr class="separator:gae10d6df162c0c43fbfb2bb68cca09e8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0f686f513ccb9026c58ab4675e5f87e2"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00106_ga0f686f513ccb9026c58ab4675e5f87e2.html#ga0f686f513ccb9026c58ab4675e5f87e2">loop_balancer_get_data</a> (<a class="el" href="a00051_a649c7e850ab247b5f70ad27e335a129d.html#a649c7e850ab247b5f70ad27e335a129d">loop_balancer_t</a> *balancer)</td></tr>
+<tr class="memdesc:ga0f686f513ccb9026c58ab4675e5f87e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得用户数据  <a href="a00106_ga0f686f513ccb9026c58ab4675e5f87e2.html#ga0f686f513ccb9026c58ab4675e5f87e2">更多...</a><br /></td></tr>
+<tr class="separator:ga0f686f513ccb9026c58ab4675e5f87e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 17日 星期五 18:34:58 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 20日 星期一 15:03:39 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

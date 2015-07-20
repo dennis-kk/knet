@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.9.1"/>
+<title>knet: thread_runner_start_timer_loop</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">knet
+   &#160;<span id="projectnumber">1.4.5</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.9.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="modules.html"><span>模块</span></a></li>
+      <li><a href="annotated.html"><span>结构体</span></a></li>
+      <li><a href="files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="a00109.html">线程</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="contents">
+<table cellspacing="0" cellpadding="0" border="0">
+  <tr>
+   <td valign="top">
+      <div class="navtab">
+        <table>
+          <tr><td class="navtab"><a class="qindex" href="a00109_gafc2df03d75cf9168b72e8c5e11953437.html#gafc2df03d75cf9168b72e8c5e11953437">atomic_counter_dec</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00109_gade4f41f1cd519f2719b5114ce7801232.html#gade4f41f1cd519f2719b5114ce7801232">atomic_counter_inc</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00109_ga141897cac9743394a99ff7780daa6a80.html#ga141897cac9743394a99ff7780daa6a80">atomic_counter_zero</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00109_gaecf10907eee00ec0e807271c906a6645.html#gaecf10907eee00ec0e807271c906a6645">thread_get_self_id</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00109_ga63c9be5b8fb04c0b26382f51b7bdf237.html#ga63c9be5b8fb04c0b26382f51b7bdf237">thread_get_tls_data</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00109_ga95c00ec3d6ef1710cc8d8bb8cb7e585d.html#ga95c00ec3d6ef1710cc8d8bb8cb7e585d">thread_runner_check_start</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00109_gac20d7726e152e0b49209ce228893c25d.html#gac20d7726e152e0b49209ce228893c25d">thread_runner_create</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00109_ga8b9d3d45b6055971fc40f24ec6572cf6.html#ga8b9d3d45b6055971fc40f24ec6572cf6">thread_runner_destroy</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00109_gae009856d195b3cd75ad7d0b4b4c10c85.html#gae009856d195b3cd75ad7d0b4b4c10c85">thread_runner_get_id</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00109_gaf67fa2b2cfefc2de422a31b9dfad2bca.html#gaf67fa2b2cfefc2de422a31b9dfad2bca">thread_runner_get_params</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00109_ga813a718c56e0923be9396630c8460794.html#ga813a718c56e0923be9396630c8460794">thread_runner_join</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00109_ga1114fd962e310f9d31ed4e83d8a21897.html#ga1114fd962e310f9d31ed4e83d8a21897">thread_runner_start</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00109_ga93f88ba77e7eab786da6fe7d1f681a2e.html#ga93f88ba77e7eab786da6fe7d1f681a2e">thread_runner_start_loop</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00109_ga99f710b40a68688398172bd27470dddf.html#ga99f710b40a68688398172bd27470dddf">thread_runner_start_multi_loop_varg</a></td></tr>
+          <tr><td class="navtab"><a class="qindexHL" href="a00109_ga9191991e2bd7f91fe68324c2855d581d.html#ga9191991e2bd7f91fe68324c2855d581d">thread_runner_start_timer_loop</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00109_gaa035f190ffd3d7f117b8fbb58716f042.html#gaa035f190ffd3d7f117b8fbb58716f042">thread_runner_stop</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00109_gaa187b2cd2c906680890fb4ea2833d665.html#gaa187b2cd2c906680890fb4ea2833d665">thread_set_tls_data</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00109_gabddf3ac30aac3f22f8c53b7517e6eb35.html#gabddf3ac30aac3f22f8c53b7517e6eb35">thread_sleep_ms</a></td></tr>
+        </table>
+      </div>
+   </td>
+   <td valign="top" class="mempage">
+<a class="anchor" id="ga9191991e2bd7f91fe68324c2855d581d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int thread_runner_start_timer_loop </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00051_a9054159cde2f926ef61c28ce1e555199.html#a9054159cde2f926ef61c28ce1e555199">thread_runner_t</a> *&#160;</td>
+          <td class="paramname"><em>runner</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="a00051_a024af2aa29615e7a811ea6c45438157d.html#a024af2aa29615e7a811ea6c45438157d">ktimer_loop_t</a> *&#160;</td>
+          <td class="paramname"><em>timer_loop</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>stack_size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>在线程内运行timer_loop_run() </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">runner</td><td>thread_runner_t实例 </td></tr>
+    <tr><td class="paramname">timer_loop</td><td>ktimer_loop_t实例 </td></tr>
+    <tr><td class="paramname">stack_size</td><td>线程栈大小（字节） </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>返回值</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">error_ok</td><td>成功 </td></tr>
+    <tr><td class="paramname">其他</td><td>失败 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+    </td>
+  </tr>
+</table>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+生成于 2015年 七月 20日 星期一 15:03:40 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.9.1
+</small></address>
+</body>
+</html>

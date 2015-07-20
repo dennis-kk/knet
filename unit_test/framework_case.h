@@ -147,3 +147,37 @@ CASE(Test_Framework_Start_Fail) {
     framework_acceptor_config_set_local_address(ac, "128.0.0.1", 80);
     EXPECT_FALSE(error_ok == framework_start_wait_destroy(f));
 }
+
+CASE(Test_Framework_Timer) {
+    struct holder {
+        static void channel_cb(channel_ref_t* channel, channel_cb_event_e e) {
+            EXPECT_TRUE(channel);
+            if (e & channel_cb_event_accept) {
+                ktimer_t* timer = framework_create_worker_timer(Test_Framework_Framework);
+                ktimer_start(timer, &holder::timer_cb, 0, 1000);
+            }            
+        }
+
+        static void timer_cb(ktimer_t* timer, void* param) {
+            EXPECT_TRUE(timer);
+            EXPECT_FALSE(param);
+            framework_stop(Test_Framework_Framework);
+        }
+    };
+    Test_Framework_Framework = framework_create();
+    framework_config_t* c = framework_get_config(Test_Framework_Framework);
+    framework_acceptor_config_t* ac = framework_config_new_acceptor(c);
+    framework_acceptor_config_set_local_address(ac, 0, 80);
+    framework_acceptor_config_set_client_cb(ac, &holder::channel_cb);
+    framework_config_set_worker_thread_count(c, 4);
+
+    // 模拟一个外部连接器
+    framework_connector_config_t* cc = framework_config_new_connector(c);
+    framework_connector_config_set_remote_address(cc, "127.0.0.1", 80);
+    framework_connector_config_set_cb(cc, 0);
+
+    // 启动框架
+    EXPECT_TRUE(error_ok == framework_start(Test_Framework_Framework));
+
+    framework_wait_for_stop_destroy(Test_Framework_Framework);
+}

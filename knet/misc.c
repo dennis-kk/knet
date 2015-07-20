@@ -22,6 +22,7 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include <stdarg.h>
 #if !defined(WIN32)
     #include <linux/tcp.h> /* TCP_NODELAY */
 #endif /* !defined(WIN32) */
@@ -31,19 +32,32 @@
 #include "channel_ref.h"
 #include "address.h"
 #include "timer.h"
+#include "list.h"
 
 
 struct _thread_runner_t {
     thread_func_t func;
     void* params;
+    dlist_t* multi_params;
     volatile int running;
     thread_id_t thread_id;
 #if defined(WIN32)
-    DWORD tls_key;
+    HANDLE thread_handle;
+    DWORD  tls_key;
 #else
     pthread_key_t tls_key;
 #endif /* defined(WIN32) */
 };
+
+typedef enum _loop_type_e {
+    loop_type_loop = 1,
+    loop_type_timer,
+} loop_type_e;
+
+typedef struct _thread_param_t {
+    loop_type_e type; /* 循环类型 */
+    void*       loop; /* 循环指针 */
+} thread_param_t;
 
 socket_t socket_create() {
 #if LOOP_IOCP
@@ -540,12 +554,15 @@ thread_runner_t* thread_runner_create(thread_func_t func, void* params) {
     thread_runner_t* runner = create(thread_runner_t);
     verify(runner);
     memset(runner, 0, sizeof(thread_runner_t));
-    runner->func   = func;
-    runner->params = params;
+    runner->func         = func;
+    runner->params       = params;
+    runner->multi_params = dlist_create();
     return runner;
 }
 
 void thread_runner_destroy(thread_runner_t* runner) {
+    dlist_node_t*   node = 0;
+    thread_param_t* param = 0;
     verify(runner);
     if (runner->running) {
         thread_runner_stop(runner);
@@ -558,6 +575,11 @@ void thread_runner_destroy(thread_runner_t* runner) {
         pthread_key_delete(runner->tls_key);
 #endif /* defined(WIN32) */
     }
+    dlist_for_each(runner->multi_params, node) {
+        param = (thread_param_t*)dlist_node_get_data(node);
+        destroy(param);
+    }
+    dlist_destroy(runner->multi_params);
     destroy(runner);
 }
 
@@ -591,6 +613,22 @@ void _thread_timer_loop_func(void* params) {
     }
 }
 
+void _thread_multi_loop_func(void* params) {
+    thread_runner_t* runner = (thread_runner_t*)params;
+    dlist_node_t*    node   = 0;
+    thread_param_t*  param  = 0;
+    while (thread_runner_check_start(runner)) {
+        dlist_for_each(runner->multi_params, node) {
+            param = (thread_param_t*)dlist_node_get_data(node);
+            if (param->type == loop_type_loop) {
+                loop_run_once((loop_t*)param->loop);
+            } else if (param->type == loop_type_timer) {
+                ktimer_loop_run_once((ktimer_loop_t*)param->loop);
+            }
+        }
+    }
+}
+
 #if defined(WIN32)
 void thread_loop_func_win(void* params) {
     _thread_loop_func(params);
@@ -609,6 +647,17 @@ void thread_timer_loop_func_win(void* params) {
 #else
 void* thread_timer_loop_func_pthread(void* params) {
     _thread_timer_loop_func(params);
+    return 0;
+}
+#endif /* defined(WIN32) || defined(WIN64) */
+
+#if defined(WIN32)
+void thread_multi_loop_func_win(void* params) {
+    _thread_multi_loop_func(params);
+}
+#else
+void* thread_multi_loop_func_pthread(void* params) {
+    _thread_multi_loop_func(params);
     return 0;
 }
 #endif /* defined(WIN32) || defined(WIN64) */
@@ -642,7 +691,8 @@ int thread_runner_start(thread_runner_t* runner, int stack_size) {
         log_error("_beginthread() failed, system error: %d", sys_get_errno());
         return error_thread_start_fail;
     }
-    runner->thread_id = retval;
+    runner->thread_handle = (HANDLE)retval;
+    runner->thread_id     = GetThreadId(runner->thread_handle);
 #else
     if (stack_size) {
         pthread_attr_init(&attr);
@@ -676,7 +726,8 @@ int thread_runner_start_loop(thread_runner_t* runner, loop_t* loop, int stack_si
         log_error("_beginthread() failed, system error: %d", sys_get_errno());
         return error_thread_start_fail;
     }
-    runner->thread_id = retval;
+    runner->thread_handle = (HANDLE)retval;
+    runner->thread_id     = GetThreadId(runner->thread_handle);
 #else
     if (stack_size) {
         pthread_attr_init(&attr);
@@ -710,7 +761,8 @@ int thread_runner_start_timer_loop(thread_runner_t* runner, ktimer_loop_t* timer
         log_error("_beginthread() failed, system error: %d", sys_get_errno());
         return error_thread_start_fail;
     }
-    runner->thread_id = retval;
+    runner->thread_handle = (HANDLE)retval;
+    runner->thread_id     = GetThreadId(runner->thread_handle);
 #else
     if (stack_size) {
         pthread_attr_init(&attr);
@@ -727,9 +779,72 @@ int thread_runner_start_timer_loop(thread_runner_t* runner, ktimer_loop_t* timer
     return error_ok;
 }
 
+int thread_runner_start_multi_loop_varg(thread_runner_t* runner, int stack_size, const char* format, ...) {
+#if defined(WIN32)
+    uintptr_t retval = 0;
+#else
+    int retval = 0;
+    pthread_attr_t attr;
+#endif /* defined(WIN32) || defined(WIN64) */
+    char            c     = 0;
+    thread_param_t* param = 0;
+    va_list arg_ptr;
+    verify(runner);
+    verify(format);
+    va_start(arg_ptr, format);
+    for (c = *format; c; format++, c = *format) {
+        switch (c) {
+        case 'l':
+            param = create(thread_param_t);
+            param->type = loop_type_loop;
+            param->loop = va_arg(arg_ptr, loop_t*);
+            dlist_add_tail_node(runner->multi_params, param);
+            break;
+        case 't':
+            param = create(thread_param_t);
+            param->type = loop_type_timer;
+            param->loop = va_arg(arg_ptr, ktimer_loop_t*);
+            dlist_add_tail_node(runner->multi_params, param);
+            break;
+        default:
+            verify(0);
+            break;
+        }
+    }
+    va_end(arg_ptr);
+    runner->running = 1;
+    #if defined(WIN32)
+        retval = _beginthread(thread_multi_loop_func_win, stack_size, runner);
+        if (retval < 0) {
+            log_error("_beginthread() failed, system error: %d", sys_get_errno());
+            return error_thread_start_fail;
+        }
+        runner->thread_handle = (HANDLE)retval;
+        runner->thread_id     = GetThreadId(runner->thread_handle);
+    #else
+        if (stack_size) {
+            pthread_attr_init(&attr);
+            pthread_attr_setstacksize(&attr, stack_size);
+            retval = pthread_create(&runner->thread_id, &attr, thread_multi_loop_func_pthread, runner);
+        } else {
+            retval = pthread_create(&runner->thread_id, 0, thread_multi_loop_func_pthread, runner);
+        }
+        if (retval) {
+            log_error("pthread_create() failed, system error: %d", sys_get_errno());
+            return error_thread_start_fail;
+        }
+    #endif /* defined(WIN32) || defined(WIN64) */
+    return error_ok;
+}
+
 void thread_runner_stop(thread_runner_t* runner) {
     verify(runner);
     runner->running = 0;
+}
+
+thread_id_t thread_runner_get_id(thread_runner_t* runner) {
+    verify(runner);
+    return runner->thread_id;
 }
 
 void thread_runner_join(thread_runner_t* runner) {
@@ -742,11 +857,15 @@ void thread_runner_join(thread_runner_t* runner) {
         return;
     }
 #if defined(WIN32)
-    error = WaitForSingleObject((HANDLE)runner->thread_id, INFINITE);
+    if (!runner->thread_handle) {
+        return;
+    }
+    error = WaitForSingleObject(runner->thread_handle, INFINITE);
     if ((error != WAIT_OBJECT_0) && (error != WAIT_ABANDONED)) {
         log_error("WaitForSingleObject() failed, system error: %d", sys_get_errno());
     } else {
         runner->thread_id = 0;
+        runner->thread_handle = 0;
     }
 #else
     pthread_join(runner->thread_id, 0);
