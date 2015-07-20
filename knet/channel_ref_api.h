@@ -111,6 +111,7 @@ extern int channel_ref_connect(channel_ref_t* channel_ref, const char* ip, int p
  * 重新发起连接
  *
  * <pre>
+ * 超时的管道将被关闭，建立新管道重连，新管道将使用原有管道的属性，包含回调函数和用户指针
  * 如果timeout设置为0，则使用原有的连接超时，如果timeout>0则使用新的连接超时
  * </pre>
  * @param channel_ref channel_ref_t实例
