@@ -49,7 +49,7 @@ void rpc_sample_t::finalize() {
 	}
 }
 
-int rpc_sample_t::rpc_proc(stream_t* stream) {
+int rpc_sample_t::rpc_proc(kstream_t* stream) {
 	return krpc_proc(_rpc, stream);
 }
 
