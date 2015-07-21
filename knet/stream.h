@@ -30,15 +30,15 @@
 
 /**
  * 建立管道流
- * @param channel_ref channel_ref_t实例
- * @return stream_t实例
+ * @param channel_ref kchannel_ref_t实例
+ * @return kstream_t实例
  */
-stream_t* stream_create(channel_ref_t* channel_ref);
+kstream_t* stream_create(kchannel_ref_t* channel_ref);
 
 /**
  * 销毁管道流
- * @param stream stream_t实例
+ * @param stream kstream_t实例
  */
-void stream_destroy(stream_t* stream);
+void stream_destroy(kstream_t* stream);
 
 #endif /* STREAM_H */

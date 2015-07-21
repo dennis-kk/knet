@@ -109,22 +109,22 @@
 #define min(a, b) ((a) < (b) ? (a) : (b))
 #endif
 
-typedef struct _loop_t loop_t;
-typedef struct _channel_t channel_t;
-typedef struct _channel_ref_t channel_ref_t;
-typedef struct _address_t address_t;
-typedef struct _lock_t lock_t;
-typedef struct _loop_balancer_t loop_balancer_t;
-typedef struct _thread_runner_t thread_runner_t;
-typedef struct _stream_t stream_t;
-typedef struct _dlist_t dlist_t;
-typedef struct _dlist_node_t dlist_node_t;
-typedef struct _ringbuffer_t ringbuffer_t;
-typedef struct _buffer_t buffer_t;
-typedef struct _broadcast_t broadcast_t;
+typedef struct _loop_t kloop_t;
+typedef struct _channel_t kchannel_t;
+typedef struct _channel_ref_t kchannel_ref_t;
+typedef struct _address_t kaddress_t;
+typedef struct _lock_t klock_t;
+typedef struct _loop_balancer_t kloop_balancer_t;
+typedef struct _thread_runner_t kthread_runner_t;
+typedef struct _stream_t kstream_t;
+typedef struct _dlist_t kdlist_t;
+typedef struct _dlist_node_t kdlist_node_t;
+typedef struct _ringbuffer_t kringbuffer_t;
+typedef struct _buffer_t kbuffer_t;
+typedef struct _broadcast_t kbroadcast_t;
 typedef struct _ktimer_loop_t ktimer_loop_t;
 typedef struct _ktimer_t ktimer_t;
-typedef struct _logger_t logger_t;
+typedef struct _logger_t klogger_t;
 typedef struct _krpc_t krpc_t;
 typedef struct _krpc_number_t krpc_number_t;
 typedef struct _krpc_string_t krpc_string_t;
@@ -132,22 +132,22 @@ typedef struct _krpc_vector_t krpc_vector_t;
 typedef struct _krpc_object_t krpc_object_t;
 typedef struct _krpc_map_t krpc_map_t;
 typedef struct _krpc_value_t krpc_value_t;
-typedef struct _hash_t hash_t;
-typedef struct _hash_value_t hash_value_t;
-typedef struct _framework_t framework_t;
-typedef struct _framework_acceptor_config_t framework_acceptor_config_t;
-typedef struct _framework_connector_config_t framework_connector_config_t;
-typedef struct _framework_config_t framework_config_t;
-typedef struct _framework_raiser_t framework_raiser_t;
-typedef struct _framework_worker_t framework_worker_t;
-typedef struct _framework_timer_config_t framework_timer_config_t;
-typedef struct _loop_profile_t loop_profile_t;
+typedef struct _hash_t khash_t;
+typedef struct _hash_value_t khash_value_t;
+typedef struct _framework_t kframework_t;
+typedef struct _framework_acceptor_config_t kframework_acceptor_config_t;
+typedef struct _framework_connector_config_t kframework_connector_config_t;
+typedef struct _framework_config_t kframework_config_t;
+typedef struct _framework_raiser_t kframework_raiser_t;
+typedef struct _framework_worker_t kframework_worker_t;
+typedef struct _framework_timer_config_t kframework_timer_config_t;
+typedef struct _loop_profile_t kloop_profile_t;
 
 /* 管道可投递事件 */
 typedef enum _channel_event_e {
     channel_event_recv = 1,
     channel_event_send = 2,
-} channel_event_e;
+} knet_channel_event_e;
 
 /*! 管道状态 */
 typedef enum _channel_state_e {
@@ -156,7 +156,7 @@ typedef enum _channel_state_e {
     channel_state_close = 4,   /*! 管道已关闭 */
     channel_state_active = 8,  /*! 管道已激活，可以收发数据 */
     channel_state_init = 16,   /*! 管道已建立，但未连接 */
-} channel_state_e;
+} knet_channel_state_e;
 
 /*! 定时器类型 */
 typedef enum _ktimer_type_e {
@@ -167,9 +167,9 @@ typedef enum _ktimer_type_e {
 
 /*! 负载均衡配置 */
 typedef enum _loop_balance_option_e {
-    loop_balancer_in  = 1, /*! 开启其他loop_t的管道在当前loop_t负载 */
-    loop_balancer_out = 2, /*! 开启当前loop_t的管道到其他loop_t内负载 */
-} loop_balance_option_e;
+    loop_balancer_in  = 1, /*! 开启其他kloop_t的管道在当前kloop_t负载 */
+    loop_balancer_out = 2, /*! 开启当前kloop_t的管道到其他kloop_t内负载 */
+} knet_loop_balance_option_e;
 
 /* 错误码 */
 typedef enum _error_e {
@@ -225,7 +225,7 @@ typedef enum _error_e {
     error_stream_disable,
     error_stream_flush,
     error_stream_buffer_overflow,
-} error_e;
+} knet_error_e;
 
 /*! 管道回调事件 */
 typedef enum _channel_cb_event_e {
@@ -236,7 +236,7 @@ typedef enum _channel_cb_event_e {
     channel_cb_event_close = 16,           /*! 管道关闭 */
     channel_cb_event_timeout = 32,         /*! 管道读空闲 */
     channel_cb_event_connect_timeout = 64, /*! 主动发起连接，但连接超时 */
-} channel_cb_event_e;
+} knet_channel_cb_event_e;
 
 /* 日志等级 */
 typedef enum _logger_level_e {
@@ -245,7 +245,7 @@ typedef enum _logger_level_e {
     logger_level_warning,     /* warning - 警告 */ 
     logger_level_error,       /* error - 错误 */
     logger_level_fatal,       /* fatal - 致命错误 */
-} logger_level_e;
+} knet_logger_level_e;
 
 /* 日志模式 */
 typedef enum _logger_mode_e {
@@ -253,7 +253,7 @@ typedef enum _logger_mode_e {
     logger_mode_console = 2,  /* 打印到stderr */
     logger_mode_flush = 4,    /* 每次写日志同时清空缓存 */
     logger_mode_override = 8, /* 覆盖已存在的日志文件 */
-} logger_mode_e;
+} knet_logger_mode_e;
 
 /*! RPC错误码 */
 typedef enum _rpc_error_e {
@@ -261,7 +261,7 @@ typedef enum _rpc_error_e {
     rpc_close,       /*! 忽略错误，关闭 */
     rpc_error,       /*! 错误，但不关闭 */
     rpc_error_close, /*! 错误且关闭 */
-} rpc_error_e;
+} knet_rpc_error_e;
 
 /*! RPC类型 */
 typedef enum _krpc_type_e {
@@ -279,12 +279,12 @@ typedef enum _krpc_type_e {
     krpc_type_string = 2048, /*! 字符串 */
     krpc_type_vector = 4096, /*! 数组 */
     krpc_type_map    = 8192, /*! 表 */
-} krpc_type_e;
+} knet_rpc_type_e;
 
 /*! 线程函数 */
-typedef void (*thread_func_t)(thread_runner_t*);
+typedef void (*knet_thread_func_t)(kthread_runner_t*);
 /*! 管道事件回调函数 */
-typedef void (*channel_ref_cb_t)(channel_ref_t*, channel_cb_event_e);
+typedef void (*knet_channel_ref_cb_t)(kchannel_ref_t*, knet_channel_cb_event_e);
 /*! 定时器回调函数 */
 typedef void (*ktimer_cb_t)(ktimer_t*, void*);
 /*! RPC回调函数 */
@@ -294,9 +294,7 @@ typedef uint16_t (*krpc_encrypt_t)(void*, uint16_t, void*, uint16_t);
 /*! RPC解密回调函数, 返回 非零 解密后长度, 0 失败 */
 typedef uint16_t (*krpc_decrypt_t)(void*, uint16_t, void*, uint16_t);
 /*! 哈希表元素销毁函数 */
-typedef void (*hash_dtor_t)(void*);
-/*! 存储回调 */
-typedef void (*framework_cb_t)(stream_t* s);
+typedef void (*knet_hash_dtor_t)(void*);
 
 /* 根据需要， 开启不同选取器 */
 #if defined(WIN32)

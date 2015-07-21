@@ -29,50 +29,50 @@
 
 /**
  * 建立框架工作线程
- * @param f framework_t实例
- * @param loop loop_t实例
- * @return framework_worker_t实例
+ * @param f kframework_t实例
+ * @param loop kloop_t实例
+ * @return kframework_worker_t实例
  */
-framework_worker_t* framework_worker_create(framework_t* f, loop_t* loop);
+kframework_worker_t* knet_framework_worker_create(kframework_t* f, kloop_t* loop);
 
 /**
  * 销毁框架工作线程
- * @param worker framework_worker_t实例
+ * @param worker kframework_worker_t实例
  */
-void framework_worker_destroy(framework_worker_t* worker);
+void knet_framework_worker_destroy(kframework_worker_t* worker);
 
 /**
  * 启动框架工作线程
- * @param worker framework_worker_t实例
+ * @param worker kframework_worker_t实例
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int framework_worker_start(framework_worker_t* worker);
+int knet_framework_worker_start(kframework_worker_t* worker);
 
 /**
  * 关闭框架工作线程
- * @param worker framework_worker_t实例
+ * @param worker kframework_worker_t实例
  */
-void framework_worker_stop(framework_worker_t* worker);
+void knet_framework_worker_stop(kframework_worker_t* worker);
 
 /**
  * 等待框架工作线程关闭
- * @param worker framework_worker_t实例
+ * @param worker kframework_worker_t实例
  */
-void framework_worker_wait_for_stop(framework_worker_t* worker);
+void knet_framework_worker_wait_for_stop(kframework_worker_t* worker);
 
 /**
  * 建立一个定时器
- * @param worker framework_worker_t实例
+ * @param worker kframework_worker_t实例
  * @return ktimer_t实例
  */
-ktimer_t* framework_worker_create_timer(framework_worker_t* worker);
+ktimer_t* knet_framework_worker_create_timer(kframework_worker_t* worker);
 
 /**
  * 取得工作线程ID
- * @param worker framework_worker_t实例
+ * @param worker kframework_worker_t实例
  * @return 工作线程ID
  */
-thread_id_t framework_worker_get_id(framework_worker_t* worker);
+thread_id_t knet_framework_worker_get_id(kframework_worker_t* worker);
 
 #endif /* FRAMEWORK_WORKER_H */

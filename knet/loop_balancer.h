@@ -29,10 +29,10 @@
 #include "loop_balancer_api.h"
 
 /**
- * 负载均衡 - 选取一个loop_t实例
- * @param balancer loop_balancer_t实例
- * @return loop_t实例
+ * 负载均衡 - 选取一个kloop_t实例
+ * @param balancer kloop_balancer_t实例
+ * @return kloop_t实例
  */
-loop_t* loop_balancer_choose(loop_balancer_t* balancer);
+kloop_t* knet_loop_balancer_choose(kloop_balancer_t* balancer);
 
 #endif /* LOOP_BALANCER_H */

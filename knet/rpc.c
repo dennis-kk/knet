@@ -57,13 +57,13 @@ typedef enum _krpc_call_type_e {
 } krpc_call_type_e;
 
 struct _krpc_t {
-    hash_t*        cb_table;
+    khash_t*        cb_table;
     krpc_encrypt_t encrypt; /* 生成签名 */
     krpc_decrypt_t decrypt; /* 验证签名 */
 };
 
-int _krpc_call_encrypt(krpc_t* rpc, stream_t* stream, uint16_t rpcid, krpc_object_t* o);
-int _krpc_call(krpc_t* rpc, stream_t* stream, uint16_t rpcid, krpc_object_t* o);
+int _krpc_call_encrypt(krpc_t* rpc, kstream_t* stream, uint16_t rpcid, krpc_object_t* o);
+int _krpc_call(krpc_t* rpc, kstream_t* stream, uint16_t rpcid, krpc_object_t* o);
 
 krpc_t* krpc_create() {
     krpc_t* rpc = create(krpc_t);
@@ -102,7 +102,7 @@ krpc_cb_t krpc_get_cb(krpc_t* rpc, uint16_t rpcid) {
     return (krpc_cb_t)hash_get(rpc->cb_table, rpcid);
 }
 
-int _krpc_proc_decrypt(krpc_t* rpc, stream_t* stream) {
+int _krpc_proc_decrypt(krpc_t* rpc, kstream_t* stream) {
     static const uint16_t BUFFER_LENGTH = 1024 * 64 - sizeof(krpc_header_t) - 1;
     int            available = 0;        /* 管道内可读字节数 */
     uint16_t       length    = 0;        /* unmarshal字节数*/
@@ -116,26 +116,26 @@ int _krpc_proc_decrypt(krpc_t* rpc, stream_t* stream) {
     verify(rpc);
     verify(stream);
     memset(&header, 0, sizeof(krpc_header_t));
-    available = stream_available(stream);
+    available = knet_stream_available(stream);
     if (available < sizeof(krpc_header_t)) {
         /* 字节数不够 */
         return error_rpc_not_enough_bytes;
     }
-    if (error_ok != stream_copy(stream, &header, sizeof(header))) {
+    if (error_ok != knet_stream_copy(stream, &header, sizeof(header))) {
         return error_rpc_unmarshal_fail;
     }
     if (header.length > available) {
         /* 字节数不够 */
         return error_rpc_not_enough_bytes;
     } else {
-        if (error_ok != stream_eat(stream, sizeof(header))) {
+        if (error_ok != knet_stream_eat(stream, sizeof(header))) {
             return error_rpc_unmarshal_fail;
         }
     }
     buffer = create_type(char, BUFFER_LENGTH * 2);
     verify(buffer);
     /* 读取包体 */
-    if (error_ok != stream_pop(stream, buffer, header.length - sizeof(krpc_header_t))) {
+    if (error_ok != knet_stream_pop(stream, buffer, header.length - sizeof(krpc_header_t))) {
         error = error_rpc_unmarshal_fail;
         goto error_return;
     }
@@ -191,7 +191,7 @@ error_return:
     return error;
 }
 
-int _krpc_proc(krpc_t* rpc, stream_t* stream) {
+int _krpc_proc(krpc_t* rpc, kstream_t* stream) {
     int            available = 0;        /* 管道内可读字节数 */
     uint16_t       length    = 0;        /* unmarshal字节数*/
     krpc_object_t* o         = 0;        /* unmarshal得到的对象 */
@@ -202,19 +202,19 @@ int _krpc_proc(krpc_t* rpc, stream_t* stream) {
     verify(rpc);
     verify(stream);
     memset(&header, 0, sizeof(krpc_header_t));
-    available = stream_available(stream);
+    available = knet_stream_available(stream);
     if (available < sizeof(krpc_header_t)) {
         /* 字节数不够 */
         return error_rpc_not_enough_bytes;
     }
-    if (error_ok != stream_copy(stream, &header, sizeof(header))) {
+    if (error_ok != knet_stream_copy(stream, &header, sizeof(header))) {
         return error_rpc_unmarshal_fail;
     }
     if (header.length > available) {
         /* 字节数不够 */
         return error_rpc_not_enough_bytes;
     } else {
-        if (error_ok != stream_eat(stream, sizeof(header))) {
+        if (error_ok != knet_stream_eat(stream, sizeof(header))) {
             return error_rpc_unmarshal_fail;
         }
     }
@@ -262,11 +262,11 @@ error_return:
     return error;
 }
 
-int krpc_proc(krpc_t* rpc, stream_t* stream) {
+int krpc_proc(krpc_t* rpc, kstream_t* stream) {
     return ((rpc->decrypt) ? _krpc_proc_decrypt(rpc, stream) : _krpc_proc(rpc, stream));
 }
 
-int _krpc_call_encrypt(krpc_t* rpc, stream_t* stream, uint16_t rpcid, krpc_object_t* o) {
+int _krpc_call_encrypt(krpc_t* rpc, kstream_t* stream, uint16_t rpcid, krpc_object_t* o) {
     static const uint16_t BUFFER_LENGTH = 1024 * 64 - sizeof(krpc_header_t) - 1;
     uint16_t bytes        = 0;
     uint16_t encrypt_size = 0;
@@ -293,11 +293,11 @@ int _krpc_call_encrypt(krpc_t* rpc, stream_t* stream, uint16_t rpcid, krpc_objec
     /* 加密后包总长度 */
     header.length = sizeof(krpc_header_t) + encrypt_size;
     /* 发送协议头 */
-    if (error_ok != stream_push(stream, &header, sizeof(header))) {
+    if (error_ok != knet_stream_push(stream, &header, sizeof(header))) {
         goto error_return;
     }
     /* 发送协议体 */
-    if (error_ok != stream_push(stream, buffer + BUFFER_LENGTH, encrypt_size)) {
+    if (error_ok != knet_stream_push(stream, buffer + BUFFER_LENGTH, encrypt_size)) {
         goto error_return;
     }
     destroy(buffer);
@@ -307,7 +307,7 @@ error_return:
     return error_rpc_marshal_fail;
 }
 
-int _krpc_call(krpc_t* rpc, stream_t* stream, uint16_t rpcid, krpc_object_t* o) {
+int _krpc_call(krpc_t* rpc, kstream_t* stream, uint16_t rpcid, krpc_object_t* o) {
     krpc_header_t header; /* RPC协议头 */
     verify(rpc);
     verify(stream);
@@ -318,14 +318,14 @@ int _krpc_call(krpc_t* rpc, stream_t* stream, uint16_t rpcid, krpc_object_t* o) 
     header.type   = krpc_call_type_call;
     header.length = sizeof(krpc_header_t) + krpc_object_get_marshal_size(o);
     /* 发送协议头 */
-    if (error_ok != stream_push(stream, &header, sizeof(header))) {
+    if (error_ok != knet_stream_push(stream, &header, sizeof(header))) {
         return error_rpc_marshal_fail;
     }
     /* marshal */
     return krpc_object_marshal(o, stream, 0);    
 }
 
-int krpc_call(krpc_t* rpc, stream_t* stream, uint16_t rpcid, krpc_object_t* o) {
+int krpc_call(krpc_t* rpc, kstream_t* stream, uint16_t rpcid, krpc_object_t* o) {
     return ((rpc->encrypt) ? _krpc_call_encrypt(rpc, stream, rpcid, o) :
         _krpc_call(rpc, stream, rpcid, o));
 }

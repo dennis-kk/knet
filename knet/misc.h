@@ -92,13 +92,13 @@ int socket_pair(socket_t pair[2]);
  * getpeername
  * @sa getpeername
  */
-int socket_getpeername(channel_ref_t* channel_ref, address_t* address);
+int socket_getpeername(kchannel_ref_t* channel_ref, kaddress_t* address);
 
 /**
  * getsockname
  * @sa getsockname
  */
-int socket_getsockname(channel_ref_t* channel_ref, address_t* address);
+int socket_getsockname(kchannel_ref_t* channel_ref, kaddress_t* address);
 
 /**
  * 检查套接字是否可写
@@ -109,34 +109,34 @@ int socket_check_send_ready(socket_t socket_fd);
 
 /**
  * 建立互斥锁实例
- * @return lock_t实例
+ * @return klock_t实例
  */
-lock_t* lock_create();
+klock_t* lock_create();
 
 /**
  * 销毁互斥锁
- * @param lock lock_t实例
+ * @param lock klock_t实例
  */
-void lock_destroy(lock_t* lock);
+void lock_destroy(klock_t* lock);
 
 /**
  * 锁
- * @param lock lock_t实例
+ * @param lock klock_t实例
  */
-void lock_lock(lock_t* lock);
+void lock_lock(klock_t* lock);
 
 /**
  * 测试锁
- * @param lock lock_t实例
+ * @param lock klock_t实例
  * @sa pthread_mutex_trylock
  */
-int lock_trylock(lock_t* lock);
+int lock_trylock(klock_t* lock);
 
 /**
  * 解锁
- * @param lock lock_t实例
+ * @param lock klock_t实例
  */
-void lock_unlock(lock_t* lock);
+void lock_unlock(klock_t* lock);
 
 /**
  * 获取当前毫秒
@@ -202,14 +202,14 @@ uint64_t ntohll(uint64_t ui64);
  * @param e 管道回调事件ID
  * @return 管道回调事件描述
  */
-const char* get_channel_cb_event_string(channel_cb_event_e e);
+const char* get_channel_cb_event_string(knet_channel_cb_event_e e);
 
 /**
  * 取得管道回调事件名字
  * @param e 管道回调事件ID
  * @return 管道回调事件名字
  */
-const char* get_channel_cb_event_name(channel_cb_event_e e);
+const char* get_channel_cb_event_name(knet_channel_cb_event_e e);
 
 /**
  * long转为char*

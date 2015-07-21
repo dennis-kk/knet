@@ -31,8 +31,8 @@ struct _buffer_t {
     uint32_t pos;
 };
 
-buffer_t* buffer_create(uint32_t size) {
-    buffer_t* sb = create(buffer_t);
+kbuffer_t* knet_buffer_create(uint32_t size) {
+    kbuffer_t* sb = create(kbuffer_t);
     verify(sb);
     if (!sb) {
         return 0;
@@ -40,14 +40,14 @@ buffer_t* buffer_create(uint32_t size) {
     sb->ptr = create_raw(size);
     verify(sb->ptr);
     if (!sb->ptr) {
-        buffer_destroy(sb);
+        knet_buffer_destroy(sb);
     }
     sb->pos = 0;
     sb->len = size;
     return sb;
 }
 
-void buffer_destroy(buffer_t* sb) {
+void knet_buffer_destroy(kbuffer_t* sb) {
     verify(sb);
     if (!sb) {
         return;
@@ -60,7 +60,7 @@ void buffer_destroy(buffer_t* sb) {
     }
 }
 
-uint32_t buffer_put(buffer_t* sb, const char* temp, uint32_t size) {
+uint32_t knet_buffer_put(kbuffer_t* sb, const char* temp, uint32_t size) {
     verify(sb);
     verify(temp);
     verify(size);
@@ -75,7 +75,7 @@ uint32_t buffer_put(buffer_t* sb, const char* temp, uint32_t size) {
     return size;
 }
 
-uint32_t buffer_get_length(buffer_t* sb) {
+uint32_t knet_buffer_get_length(kbuffer_t* sb) {
     verify(sb);
     if (!sb) {
         return 0;
@@ -83,7 +83,7 @@ uint32_t buffer_get_length(buffer_t* sb) {
     return sb->pos;
 }
 
-uint32_t buffer_get_max_size(buffer_t* sb) {
+uint32_t knet_buffer_get_max_size(kbuffer_t* sb) {
     verify(sb);
     if (!sb) {
         return 0;
@@ -91,7 +91,7 @@ uint32_t buffer_get_max_size(buffer_t* sb) {
     return sb->len;
 }
 
-int buffer_enough(buffer_t* sb, uint32_t size) {
+int knet_buffer_enough(kbuffer_t* sb, uint32_t size) {
     verify(sb);
     if (!sb) {
         return 0;
@@ -99,7 +99,7 @@ int buffer_enough(buffer_t* sb, uint32_t size) {
     return (sb->pos + size > sb->len);
 }
 
-char* buffer_get_ptr(buffer_t* sb) {
+char* knet_buffer_get_ptr(kbuffer_t* sb) {
     verify(sb);
     if (!sb) {
         return 0;
@@ -107,7 +107,7 @@ char* buffer_get_ptr(buffer_t* sb) {
     return sb->ptr;
 }
 
-void buffer_adjust(buffer_t* sb, uint32_t gap) {
+void knet_buffer_adjust(kbuffer_t* sb, uint32_t gap) {
     verify(sb); /* gap¿ÉÒÔÎª0 */
     if (!sb) {
         return;
@@ -115,7 +115,7 @@ void buffer_adjust(buffer_t* sb, uint32_t gap) {
     sb->ptr += gap;
 }
 
-void buffer_clear(buffer_t* sb) {
+void knet_buffer_clear(kbuffer_t* sb) {
     verify(sb);
     if (!sb) {
         return;

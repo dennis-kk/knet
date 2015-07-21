@@ -48,27 +48,27 @@ int ktimer_check_timeout(ktimer_t* timer, time_t ms);
  * @param timer ktimer_t实例
  * @param list 链表
  */
-void ktimer_set_current_list(ktimer_t* timer, dlist_t* list);
+void ktimer_set_current_list(ktimer_t* timer, kdlist_t* list);
 
 /**
  * 取得当前所属链表
  * @param timer ktimer_t实例
- * @return dlist_t实例
+ * @return kdlist_t实例
  */
-dlist_t* ktimer_get_current_list(ktimer_t* timer);
+kdlist_t* ktimer_get_current_list(ktimer_t* timer);
 
 /**
  * 设置定时器所在的当前链表的链表节点
  * @param timer ktimer_t实例
  * @param node 链表节点
  */
-void ktimer_set_current_list_node(ktimer_t* timer, dlist_node_t* node);
+void ktimer_set_current_list_node(ktimer_t* timer, kdlist_node_t* node);
 
 /**
  * 取得当前链表节点
  * @param timer ktimer_t实例
- * @return dlist_node_t实例
+ * @return kdlist_node_t实例
  */
-dlist_node_t* ktimer_get_current_list_node(ktimer_t* timer);
+kdlist_node_t* ktimer_get_current_list_node(ktimer_t* timer);
 
 #endif /* TIMER_H */

@@ -1,35 +1,35 @@
 #include "knet.h"
 
-void client_cb(channel_ref_t* channel, channel_cb_event_e e) {
+void client_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
     char      buffer[1024] = {0};
     int       bytes      = 0;
-    stream_t* stream     = channel_ref_get_stream(channel);
+    kstream_t* stream     = knet_channel_ref_get_stream(channel);
     if (e & channel_cb_event_recv) {
-        bytes = stream_available(stream);
-        if (error_ok == stream_pop(stream, buffer, sizeof(buffer))) {
+        bytes = knet_stream_available(stream);
+        if (error_ok == knet_stream_pop(stream, buffer, sizeof(buffer))) {
             /* echo–¥»Î */
             if (bytes) {
-                stream_push(stream, buffer, bytes);
+                knet_stream_push(stream, buffer, bytes);
             }
         }        
     } else if (e & channel_cb_event_close) {
         printf("active channel count: %d, close channel count: %d\n",
-            loop_get_active_channel_count(channel_ref_get_loop(channel)),
-            loop_get_close_channel_count(channel_ref_get_loop(channel)));
+            knet_loop_get_active_channel_count(knet_channel_ref_get_loop(channel)),
+            knet_loop_get_close_channel_count(knet_channel_ref_get_loop(channel)));
     } else if (e & channel_cb_event_timeout) {
         printf("client channel timeout\n");
-        channel_ref_close(channel);
+        knet_channel_ref_close(channel);
     }
 }
 
-void acceptor_cb(channel_ref_t* channel, channel_cb_event_e e) {
+void acceptor_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
     if (e & channel_cb_event_accept) {
         printf("accept fd: %d, active channel count: %d, close channel count: %d\n",
-            channel_ref_get_socket_fd(channel),
-            loop_get_active_channel_count(channel_ref_get_loop(channel)),
-            loop_get_close_channel_count(channel_ref_get_loop(channel)));
-        channel_ref_set_timeout(channel, 5);
-        channel_ref_set_cb(channel, client_cb);
+            knet_channel_ref_get_socket_fd(channel),
+            knet_loop_get_active_channel_count(knet_channel_ref_get_loop(channel)),
+            knet_loop_get_close_channel_count(knet_channel_ref_get_loop(channel)));
+        knet_channel_ref_set_timeout(channel, 5);
+        knet_channel_ref_set_cb(channel, client_cb);
     }
 }
 
@@ -38,11 +38,11 @@ int main(int argc, char* argv[]) {
     int               worker   = 0;
     char*             ip       = 0;
     int               port     = 0;
-    loop_t*           loop     = 0;
-    loop_t**          loops    = 0;
-    loop_balancer_t*  balancer = 0;
-    channel_ref_t*    acceptor = 0;
-    thread_runner_t** threads  = 0;
+    kloop_t*           loop     = 0;
+    kloop_t**          loops    = 0;
+    kloop_balancer_t*  balancer = 0;
+    kchannel_ref_t*    acceptor = 0;
+    kthread_runner_t** threads  = 0;
 
     static const char* helper_string =
         "-w    loop worker count\n"
@@ -64,35 +64,35 @@ int main(int argc, char* argv[]) {
         exit(0);
     }
 
-    balancer = loop_balancer_create();
-    loop     = loop_create();
-    threads  = (thread_runner_t**)malloc(sizeof(thread_runner_t*) * worker);
-    loops    = (loop_t**)malloc(sizeof(loop_t*) * worker);
+    balancer = knet_loop_balancer_create();
+    loop     = knet_loop_create();
+    threads  = (kthread_runner_t**)malloc(sizeof(kthread_runner_t*) * worker);
+    loops    = (kloop_t**)malloc(sizeof(kloop_t*) * worker);
 
-    loop_balancer_attach(balancer, loop);
+    knet_loop_balancer_attach(balancer, loop);
 
-    acceptor = loop_create_channel(loop, 8, 1024);
-    channel_ref_set_cb(acceptor, acceptor_cb);
-    channel_ref_accept(acceptor, ip, port, 500);
+    acceptor = knet_loop_create_channel(loop, 8, 1024);
+    knet_channel_ref_set_cb(acceptor, acceptor_cb);
+    knet_channel_ref_accept(acceptor, ip, port, 500);
 
     for (i = 0; i < worker; i++) {
-        loops[i] = loop_create();
-        loop_balancer_attach(balancer, loops[i]);
+        loops[i] = knet_loop_create();
+        knet_loop_balancer_attach(balancer, loops[i]);
         threads[i] = thread_runner_create(0, 0);
         assert(threads[i]);
         thread_runner_start_loop(threads[i], loops[i], 0);
     }
 
-    loop_run(loop);
+    knet_loop_run(loop);
 
     for (i = 0; i < worker; i++) {
         thread_runner_destroy(threads[i]);        
     }
     for (i = 0; i < worker; i++) {
-        loop_destroy(loops[i]);
+        knet_loop_destroy(loops[i]);
     }
-    loop_destroy(loop);
-    loop_balancer_destroy(balancer);
+    knet_loop_destroy(loop);
+    knet_loop_balancer_destroy(balancer);
     if (loops) {
         free(loops);
     }

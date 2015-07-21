@@ -29,22 +29,22 @@ struct _address_t {
     int  port;
 };
 
-address_t* address_create() {
-    address_t* address = create(address_t);
+kaddress_t* knet_address_create() {
+    kaddress_t* address = create(kaddress_t);
     verify(address);
-    memset(address, 0, sizeof(address_t));
+    memset(address, 0, sizeof(kaddress_t));
     strcpy(address->ip, "0.0.0.0");
     return address;
 }
 
-void address_destroy(address_t* address) {
+void knet_address_destroy(kaddress_t* address) {
     verify(address);
     if (address) {
         destroy(address);
     }
 }
 
-void address_set(address_t* address, const char* ip, int port) {
+void knet_address_set(kaddress_t* address, const char* ip, int port) {
     verify(address);
     if (ip) {
         strcpy(address->ip, ip);
@@ -52,12 +52,12 @@ void address_set(address_t* address, const char* ip, int port) {
     address->port = port;
 }
 
-const char* address_get_ip(address_t* address) {
+const char* address_get_ip(kaddress_t* address) {
     verify(address);
     return address->ip;
 }
 
-int address_get_port(address_t* address) {
+int address_get_port(kaddress_t* address) {
     verify(address);
     return address->port;
 }

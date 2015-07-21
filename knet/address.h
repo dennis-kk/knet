@@ -29,23 +29,23 @@
 #include "address_api.h"
 
 /**
- * 创建一个address_t实例
- * @return address_t实例
+ * 创建一个kaddress_t实例
+ * @return kaddress_t实例
  */
-address_t* address_create();
+kaddress_t* knet_address_create();
 
 /**
- * 销毁一个address_t实例
- * @param address address_t实例
+ * 销毁一个kaddress_t实例
+ * @param address kaddress_t实例
  */
-void address_destroy(address_t* address);
+void knet_address_destroy(kaddress_t* address);
 
 /**
  * 设置IP和端口
- * @param address address_t实例
+ * @param address kaddress_t实例
  * @param ip IP
  * @param port 端口
  */
-void address_set(address_t* address, const char* ip, int port);
+void knet_address_set(kaddress_t* address, const char* ip, int port);
 
 #endif /* ADDRESS_H */

@@ -38,10 +38,10 @@ struct _ringbuffer_t {
     uint32_t window_read_pos;       /* ´°¿Ú¶ÁÎ»ÖÃ */
 };
 
-ringbuffer_t* ringbuffer_create(uint32_t size) {
-    ringbuffer_t* rb = create(ringbuffer_t);
+kringbuffer_t* ringbuffer_create(uint32_t size) {
+    kringbuffer_t* rb = create(kringbuffer_t);
     verify(rb);
-    memset(rb, 0, sizeof(ringbuffer_t));
+    memset(rb, 0, sizeof(kringbuffer_t));
     rb->lock_type = 0;
     rb->max_size  = size;
     rb->ptr       = create_raw(size);
@@ -53,7 +53,7 @@ ringbuffer_t* ringbuffer_create(uint32_t size) {
     return rb;
 }
 
-int ringbuffer_eat_all(ringbuffer_t* rb) {
+int ringbuffer_eat_all(kringbuffer_t* rb) {
     verify(rb);
     if (rb->lock_size || rb->lock_type) {
         return error_recvbuffer_locked;
@@ -65,7 +65,7 @@ int ringbuffer_eat_all(ringbuffer_t* rb) {
     return error_ok;
 }
 
-int ringbuffer_eat(ringbuffer_t* rb, uint32_t size) {
+int ringbuffer_eat(kringbuffer_t* rb, uint32_t size) {
     verify(rb);
     if (rb->lock_size || rb->lock_type) {
         return error_recvbuffer_locked;
@@ -78,7 +78,7 @@ int ringbuffer_eat(ringbuffer_t* rb, uint32_t size) {
     return error_ok;
 }
 
-uint32_t ringbuffer_read(ringbuffer_t* rb, char* buffer, uint32_t size) {
+uint32_t ringbuffer_read(kringbuffer_t* rb, char* buffer, uint32_t size) {
     uint32_t i = 0;
     verify(rb);
     verify(buffer);
@@ -92,7 +92,7 @@ uint32_t ringbuffer_read(ringbuffer_t* rb, char* buffer, uint32_t size) {
     return size;
 }
 
-uint32_t ringbuffer_copy(ringbuffer_t* rb, char* buffer, uint32_t size) {
+uint32_t ringbuffer_copy(kringbuffer_t* rb, char* buffer, uint32_t size) {
     uint32_t i        = 0;
     uint32_t read_pos = 0;
     verify(rb);
@@ -107,18 +107,18 @@ uint32_t ringbuffer_copy(ringbuffer_t* rb, char* buffer, uint32_t size) {
     return size;
 }
 
-uint32_t ringbuffer_available(ringbuffer_t* rb) {
+uint32_t ringbuffer_available(kringbuffer_t* rb) {
     verify(rb);
     return rb->count;
 }
 
-void ringbuffer_destroy(ringbuffer_t* rb) {
+void ringbuffer_destroy(kringbuffer_t* rb) {
     verify(rb);
     destroy(rb->ptr);
     destroy(rb);
 }
 
-uint32_t ringbuffer_read_lock_size(ringbuffer_t* rb) {
+uint32_t ringbuffer_read_lock_size(kringbuffer_t* rb) {
     verify(rb);
     if (ringbuffer_empty(rb)) {
         return 0;
@@ -133,7 +133,7 @@ uint32_t ringbuffer_read_lock_size(ringbuffer_t* rb) {
     return rb->lock_size;
 }
 
-char* ringbuffer_read_lock_ptr(ringbuffer_t* rb) {
+char* ringbuffer_read_lock_ptr(kringbuffer_t* rb) {
     verify(rb);
     if (rb->lock_type != 1) {
         return 0;
@@ -141,7 +141,7 @@ char* ringbuffer_read_lock_ptr(ringbuffer_t* rb) {
     return rb->ptr + rb->read_pos;
 }
 
-void ringbuffer_read_commit(ringbuffer_t* rb, uint32_t size) {
+void ringbuffer_read_commit(kringbuffer_t* rb, uint32_t size) {
     verify(rb);
     if (rb->lock_type != 1) {
         return;
@@ -155,7 +155,7 @@ void ringbuffer_read_commit(ringbuffer_t* rb, uint32_t size) {
     rb->count -= size;
 }
 
-uint32_t ringbuffer_window_read_lock_size(ringbuffer_t* rb) {
+uint32_t ringbuffer_window_read_lock_size(kringbuffer_t* rb) {
     verify(rb);
     if (ringbuffer_empty(rb)) {
         return 0;
@@ -176,12 +176,12 @@ uint32_t ringbuffer_window_read_lock_size(ringbuffer_t* rb) {
     return rb->window_read_lock_size;
 }
 
-char* ringbuffer_window_read_lock_ptr(ringbuffer_t* rb) {
+char* ringbuffer_window_read_lock_ptr(kringbuffer_t* rb) {
     verify(rb);
     return rb->ptr + rb->window_read_pos;
 }
 
-void ringbuffer_window_read_commit(ringbuffer_t* rb, uint32_t size) {
+void ringbuffer_window_read_commit(kringbuffer_t* rb, uint32_t size) {
     verify(rb);
     verify(size);
     if (rb->window_read_lock_size < size) {
@@ -190,7 +190,7 @@ void ringbuffer_window_read_commit(ringbuffer_t* rb, uint32_t size) {
     rb->window_read_pos = (rb->window_read_pos + size) % rb->max_size;
 }
 
-uint32_t ringbuffer_write_lock_size(ringbuffer_t* rb) {
+uint32_t ringbuffer_write_lock_size(kringbuffer_t* rb) {
     verify(rb);
     if (ringbuffer_full(rb)) {
         return 0;
@@ -205,7 +205,7 @@ uint32_t ringbuffer_write_lock_size(ringbuffer_t* rb) {
     return rb->lock_size;
 }
 
-char* ringbuffer_write_lock_ptr(ringbuffer_t* rb) {
+char* ringbuffer_write_lock_ptr(kringbuffer_t* rb) {
     verify(rb);
     if (rb->lock_type != 2) {
         return 0;
@@ -213,7 +213,7 @@ char* ringbuffer_write_lock_ptr(ringbuffer_t* rb) {
     return rb->ptr + rb->write_pos;
 }
 
-void ringbuffer_write_commit(ringbuffer_t* rb, uint32_t size) {
+void ringbuffer_write_commit(kringbuffer_t* rb, uint32_t size) {
     verify(rb);
     if (rb->lock_type != 2) {
         return;
@@ -227,17 +227,17 @@ void ringbuffer_write_commit(ringbuffer_t* rb, uint32_t size) {
     rb->count += size;
 }
 
-int ringbuffer_full(ringbuffer_t* rb) {
+int ringbuffer_full(kringbuffer_t* rb) {
     verify(rb);
     return (rb->count == rb->max_size);
 }
 
-int ringbuffer_empty(ringbuffer_t* rb) {
+int ringbuffer_empty(kringbuffer_t* rb) {
     verify(rb);
     return !(rb->count);
 }
 
-uint32_t ringbuffer_get_max_size(ringbuffer_t* rb) {
+uint32_t ringbuffer_get_max_size(kringbuffer_t* rb) {
     verify(rb);
     return rb->max_size;
 }

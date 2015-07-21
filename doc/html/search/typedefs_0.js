@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['address_5ft',['address_t',['../a00051_a7a6e75b85c8b441f843bd40004a7d9d5.html#a7a6e75b85c8b441f843bd40004a7d9d5',1,'config.h']]]
+  ['channel_5fref_5finfo_5ft',['channel_ref_info_t',['../a00048_a3c8048d6abb647710be83f9b243c7822.html#a3c8048d6abb647710be83f9b243c7822',1,'channel_ref.c']]]
 ];

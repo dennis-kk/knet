@@ -15,7 +15,7 @@ void {{@name}}_t::finalize() {
 	}
 }
 
-int {{@name}}_t::rpc_proc(stream_t* stream) {
+int {{@name}}_t::rpc_proc(kstream_t* stream) {
 	return krpc_proc(_rpc, stream);
 }
 

@@ -58,7 +58,7 @@ typedef struct _AcceptEx_t {
 } AcceptEx_t;
 
 typedef struct _per_sock_t {  
-    channel_ref_t* channel_ref;                  /* 当前管道 */
+    kchannel_ref_t* channel_ref;                  /* 当前管道 */
     AcceptEx_t*    AcceptEx_info;                /* AcceptEx_t指针 */
     per_io_t       io_recv;                      /* 当前实现只支持同一个时刻只投递一个recv请求 */
     per_io_t       io_send;                      /* 当前实现只支持同一个时刻只投递一个send请求 */
@@ -72,10 +72,10 @@ per_sock_t* socket_data_create();
 void socket_data_destroy(per_sock_t* data);
 ACCEPTEX get_fn_AcceptEx(socket_t fd);
 AcceptEx_t* socket_data_prepare_accept(per_sock_t* data);
-loop_iocp_t* get_impl(loop_t* loop);
-per_sock_t* get_data(channel_ref_t* channel_ref);
-void on_iocp_recv(channel_ref_t* channel_ref);
-void on_iocp_send(channel_ref_t* channel_ref);
+loop_iocp_t* get_impl(kloop_t* loop);
+per_sock_t* get_data(kchannel_ref_t* channel_ref);
+void on_iocp_recv(kchannel_ref_t* channel_ref);
+void on_iocp_send(kchannel_ref_t* channel_ref);
 
 per_sock_t* socket_data_create() {
     per_sock_t* data = create(per_sock_t);
@@ -99,7 +99,7 @@ void socket_data_destroy(per_sock_t* data) {
 AcceptEx_t* socket_data_prepare_accept(per_sock_t* data) {
     socket_t fd = 0;
     verify(data);
-    fd = channel_ref_get_socket_fd(data->channel_ref);
+    fd = knet_channel_ref_get_socket_fd(data->channel_ref);
     if (!data->AcceptEx_info) {
         data->AcceptEx_info = create(AcceptEx_t);
         verify(data->AcceptEx_info);
@@ -117,20 +117,20 @@ AcceptEx_t* socket_data_prepare_accept(per_sock_t* data) {
     return data->AcceptEx_info;
 }
 
-loop_iocp_t* get_impl(loop_t* loop) {
-    return (loop_iocp_t*)loop_get_impl(loop);
+loop_iocp_t* get_impl(kloop_t* loop) {
+    return (loop_iocp_t*)knet_loop_get_impl(loop);
 }
 
-per_sock_t* get_data(channel_ref_t* channel_ref) {
-    return (per_sock_t*)channel_ref_get_data(channel_ref);
+per_sock_t* get_data(kchannel_ref_t* channel_ref) {
+    return (per_sock_t*)knet_channel_ref_get_data(channel_ref);
 }
 
-int impl_create(loop_t* loop) {
+int knet_impl_create(kloop_t* loop) {
     WSADATA wsa;
     loop_iocp_t* impl = create(loop_iocp_t);
     verify(impl);
     memset(impl, 0, sizeof(loop_iocp_t));
-    loop_set_impl(loop, impl);
+    knet_loop_set_impl(loop, impl);
     impl->iocp = CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, 0, 0);
     if (!impl->iocp) {
         destroy(impl);
@@ -140,7 +140,7 @@ int impl_create(loop_t* loop) {
     return error_ok;
 }
 
-void impl_destroy(loop_t* loop) {
+void knet_impl_destroy(kloop_t* loop) {
     loop_iocp_t* impl = get_impl(loop);
     verify(impl);
     CloseHandle(impl->iocp);
@@ -148,13 +148,13 @@ void impl_destroy(loop_t* loop) {
     WSACleanup();
 }
 
-int _select(loop_t* loop, time_t ts) {
+int _select(kloop_t* loop, time_t ts) {
     BOOL           error       = FALSE;
     DWORD          bytes       = 0;
     DWORD          last_error  = 0;
     per_io_t*      per_io      = 0;
     per_sock_t*    per_sock    = 0;
-    channel_ref_t* channel_ref = 0;
+    kchannel_ref_t* channel_ref = 0;
     loop_iocp_t*   impl        = get_impl(loop);
     error = GetQueuedCompletionStatus(impl->iocp, &bytes, (PULONG_PTR)&per_sock, (LPOVERLAPPED*)&per_io, 1);
     last_error = GetLastError();
@@ -165,7 +165,7 @@ int _select(loop_t* loop, time_t ts) {
         if (last_error == ERROR_OPERATION_ABORTED) {
             /* 取消的操作 */
             verify(per_sock);
-            channel_ref_decref(per_sock->channel_ref);
+            knet_channel_ref_decref(per_sock->channel_ref);
             return error_ok;
         }
     }
@@ -173,19 +173,19 @@ int _select(loop_t* loop, time_t ts) {
     verify(per_io);
     channel_ref = per_sock->channel_ref;  
     verify(channel_ref);
-    if (!channel_ref_check_state(channel_ref, channel_state_close)) {
+    if (!knet_channel_ref_check_state(channel_ref, channel_state_close)) {
         if ((per_io->type & io_type_recv) || (per_io->type & io_type_accept)) {
-            channel_ref_update(channel_ref, channel_event_recv, ts);
+            knet_channel_ref_update(channel_ref, channel_event_recv, ts);
         } else if ((per_io->type & io_type_send) || (per_io->type & io_type_connect)) {
-            channel_ref_update(channel_ref, channel_event_send, ts);
+            knet_channel_ref_update(channel_ref, channel_event_send, ts);
         }
     }
     /* 管道事件处理完毕，减少引用计数 */
-    channel_ref_decref(channel_ref);
+    knet_channel_ref_decref(channel_ref);
     return error_ok;
 }
 
-int impl_run_once(loop_t* loop) {
+int knet_impl_run_once(kloop_t* loop) {
     int    error = 0;
     time_t ts    = time(0);
     verify(loop);
@@ -193,19 +193,19 @@ int impl_run_once(loop_t* loop) {
     if (error != error_ok) {
         return error;
     }
-    loop_check_timeout(loop, ts);
-    loop_check_close(loop);
+    knet_loop_check_timeout(loop, ts);
+    knet_loop_check_close(loop);
     return error_ok;
 }
 
-socket_t impl_channel_accept(channel_ref_t* channel_ref) {
+socket_t knet_impl_channel_accept(kchannel_ref_t* channel_ref) {
     socket_t    acceptor = 0;
     per_sock_t* per_sock = 0;
     socket_t    client   = 0;
     verify(channel_ref);
-    acceptor = channel_ref_get_socket_fd(channel_ref);
+    acceptor = knet_channel_ref_get_socket_fd(channel_ref);
     verify(acceptor);
-    per_sock = (per_sock_t*)channel_ref_get_data(channel_ref);
+    per_sock = (per_sock_t*)knet_channel_ref_get_data(channel_ref);
     verify(per_sock);
     verify(per_sock->AcceptEx_info);
     client = per_sock->AcceptEx_info->socket_fd;
@@ -233,21 +233,21 @@ ACCEPTEX get_fn_AcceptEx(socket_t fd) {
     return fn_AcceptEx;
 }
 
-void on_iocp_recv(channel_ref_t* channel_ref) {
+void on_iocp_recv(kchannel_ref_t* channel_ref) {
     DWORD          bytes           = 0;
     DWORD          flags           = 0;
     DWORD          error           = 0;
     WSABUF         sbuf            = {0, 0};
     BOOL           result          = FALSE;
-    socket_t       fd              = channel_ref_get_socket_fd(channel_ref);
-    int            flag            = channel_ref_get_flag(channel_ref);
-    per_sock_t*    per_sock        = (per_sock_t*)channel_ref_get_data(channel_ref);
+    socket_t       fd              = knet_channel_ref_get_socket_fd(channel_ref);
+    int            flag            = knet_channel_ref_get_flag(channel_ref);
+    per_sock_t*    per_sock        = (per_sock_t*)knet_channel_ref_get_data(channel_ref);
     AcceptEx_t*    AcceptEx_ptr    = 0;
     per_io_t*      per_io          = &per_sock->io_recv;
-    if (channel_ref_check_state(channel_ref, channel_state_close)) {
+    if (knet_channel_ref_check_state(channel_ref, channel_state_close)) {
         return;
     }
-    if (channel_ref_check_state(channel_ref, channel_state_accept)) {
+    if (knet_channel_ref_check_state(channel_ref, channel_state_accept)) {
         per_io->type = io_type_accept;
         AcceptEx_ptr = socket_data_prepare_accept(per_sock);
         /* 投递一个accept请求 */
@@ -256,10 +256,10 @@ void on_iocp_recv(channel_ref_t* channel_ref) {
         if (result == FALSE) {
             error = GetLastError();
             if (error != ERROR_IO_PENDING) {
-                channel_ref_close(channel_ref);
+                knet_channel_ref_close(channel_ref);
             }
             /* 增加引用计数 */
-            channel_ref_incref(channel_ref);
+            knet_channel_ref_incref(channel_ref);
             return;
         }
     } else {
@@ -269,41 +269,41 @@ void on_iocp_recv(channel_ref_t* channel_ref) {
         if (result != 0) {
             error = GetLastError();
             if ((error != ERROR_IO_PENDING) && (error != WSAENOTCONN)) {
-                channel_ref_close(channel_ref);
+                knet_channel_ref_close(channel_ref);
             }
             /* 增加引用计数 */
-            channel_ref_incref(channel_ref);
+            knet_channel_ref_incref(channel_ref);
             return;
         }
     }
     /* 增加引用计数 */
-    channel_ref_incref(channel_ref);
+    knet_channel_ref_incref(channel_ref);
     flag |= io_type_recv;
-    channel_ref_set_flag(channel_ref, flag);
+    knet_channel_ref_set_flag(channel_ref, flag);
 }
 
-void on_iocp_send(channel_ref_t* channel_ref) {
+void on_iocp_send(kchannel_ref_t* channel_ref) {
     DWORD          bytes    = 0;
     DWORD          flags    = 0;
     DWORD          error    = 0;
     WSABUF         sbuf     = {0, 0};
     int            result   = FALSE;
-    socket_t       fd       = channel_ref_get_socket_fd(channel_ref);
-    int            flag     = channel_ref_get_flag(channel_ref);
-    per_sock_t*    per_sock = (per_sock_t*)channel_ref_get_data(channel_ref);
+    socket_t       fd       = knet_channel_ref_get_socket_fd(channel_ref);
+    int            flag     = knet_channel_ref_get_flag(channel_ref);
+    per_sock_t*    per_sock = (per_sock_t*)knet_channel_ref_get_data(channel_ref);
     per_io_t*      per_io   = &per_sock->io_send;
-    if (channel_ref_check_state(channel_ref, channel_state_close)) {
+    if (knet_channel_ref_check_state(channel_ref, channel_state_close)) {
         return;
     }
     /* 设置投递事件类型 */
-    if (channel_ref_check_state(channel_ref, channel_state_connect)) {
+    if (knet_channel_ref_check_state(channel_ref, channel_state_connect)) {
         per_io->type = io_type_connect;
     } else {
         per_io->type = io_type_send;
     }
     /* 连接状态的管道，检查是否已经完成 */
-    if (channel_ref_check_state(channel_ref, channel_state_connect)) {
-        if (!socket_check_send_ready(channel_ref_get_socket_fd(channel_ref))) {
+    if (knet_channel_ref_check_state(channel_ref, channel_state_connect)) {
+        if (!socket_check_send_ready(knet_channel_ref_get_socket_fd(channel_ref))) {
             /* 未完成连接不投递send请求 */
             return;
         }
@@ -313,22 +313,22 @@ void on_iocp_send(channel_ref_t* channel_ref) {
     if (result != 0) {
         error = GetLastError();
         if ((error != ERROR_IO_PENDING) && (error != WSAENOTCONN)) {
-            channel_ref_close(channel_ref);
+            knet_channel_ref_close(channel_ref);
         }
         /* 增加引用计数 */
-        channel_ref_incref(channel_ref);
+        knet_channel_ref_incref(channel_ref);
         return;
     }
     /* 增加引用计数 */
-    channel_ref_incref(channel_ref);
+    knet_channel_ref_incref(channel_ref);
     /* 设置投递标志 */
     flag |= io_type_send;
-    channel_ref_set_flag(channel_ref, flag);
+    knet_channel_ref_set_flag(channel_ref, flag);
 }
 
-int impl_event_add(channel_ref_t* channel_ref, channel_event_e e) {
+int knet_impl_event_add(kchannel_ref_t* channel_ref, knet_channel_event_e e) {
     verify(channel_ref);
-    if (channel_ref_check_state(channel_ref, channel_state_close)) {
+    if (knet_channel_ref_check_state(channel_ref, channel_state_close)) {
         return error_already_close;
     }
     /* 投递事件 */
@@ -341,22 +341,22 @@ int impl_event_add(channel_ref_t* channel_ref, channel_event_e e) {
     return error_ok;
 }
 
-int impl_event_remove(channel_ref_t* channel_ref, channel_event_e e) {
+int knet_impl_event_remove(kchannel_ref_t* channel_ref, knet_channel_event_e e) {
     int flag = 0;
     e;
     verify(channel_ref);
-    flag = channel_ref_get_flag(channel_ref);
+    flag = knet_channel_ref_get_flag(channel_ref);
     if (flag & io_type_recv) {
         flag &= ~io_type_recv;
     } 
     if (flag & io_type_send) {
         flag &= ~io_type_send;
     }
-    channel_ref_set_flag(channel_ref, flag);
+    knet_channel_ref_set_flag(channel_ref, flag);
     return error_ok;
 }
 
-int impl_add_channel_ref(loop_t* loop, channel_ref_t* channel_ref) {
+int knet_impl_add_channel_ref(kloop_t* loop, kchannel_ref_t* channel_ref) {
     loop_iocp_t* impl      = 0;
     socket_t     socket_fd = 0;
     HANDLE       iocp      = 0;
@@ -364,7 +364,7 @@ int impl_add_channel_ref(loop_t* loop, channel_ref_t* channel_ref) {
     verify(loop);
     verify(channel_ref);
     impl      = get_impl(loop);
-    socket_fd = channel_ref_get_socket_fd(channel_ref);
+    socket_fd = knet_channel_ref_get_socket_fd(channel_ref);
     iocp      = 0;
     per_sock  = socket_data_create();
     verify(per_sock);
@@ -375,11 +375,11 @@ int impl_add_channel_ref(loop_t* loop, channel_ref_t* channel_ref) {
         socket_data_destroy(per_sock);
         return error_impl_add_channel_ref_fail;
     }
-    channel_ref_set_data(channel_ref, per_sock);
+    knet_channel_ref_set_data(channel_ref, per_sock);
     return error_ok;
 }
 
-int impl_remove_channel_ref(loop_t* loop, channel_ref_t* channel_ref) {
+int knet_impl_remove_channel_ref(kloop_t* loop, kchannel_ref_t* channel_ref) {
     per_sock_t* per_sock  = 0;
     verify(loop);
     verify(channel_ref);

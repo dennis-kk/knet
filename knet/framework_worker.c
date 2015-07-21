@@ -30,30 +30,30 @@
 #include "misc.h"
 
 struct _framework_worker_t {
-    loop_t*          loop;       /* 网络事件循环 */
+    kloop_t*          loop;       /* 网络事件循环 */
     ktimer_loop_t*   timer_loop; /* 定时器循环 */
-    framework_t*     f;          /* 框架 */
-    thread_runner_t* runner;     /* 线程 */
+    kframework_t*     f;          /* 框架 */
+    kthread_runner_t* runner;     /* 线程 */
 };
 
-framework_worker_t* framework_worker_create(framework_t* f, loop_t* loop) {
-    framework_worker_t* worker = 0;
+kframework_worker_t* knet_framework_worker_create(kframework_t* f, kloop_t* loop) {
+    kframework_worker_t* worker = 0;
     verify(f);
     verify(loop);
-    worker = create(framework_worker_t);
+    worker = create(kframework_worker_t);
     verify(worker);
-    memset(worker, 0, sizeof(framework_worker_t));
+    memset(worker, 0, sizeof(kframework_worker_t));
     worker->f    = f;
     worker->loop = loop;
     /* 建立一个内置的定时器循环 */
     worker->timer_loop = ktimer_loop_create(
-        framework_config_get_worker_timer_freq(framework_get_config(f)),
-        framework_config_get_worker_timer_slot(framework_get_config(f)));
+        framework_config_get_worker_timer_freq(knet_framework_get_config(f)),
+        framework_config_get_worker_timer_slot(knet_framework_get_config(f)));
     verify(worker->timer_loop);
     return worker;
 }
 
-void framework_worker_destroy(framework_worker_t* worker) {
+void knet_framework_worker_destroy(kframework_worker_t* worker) {
     verify(worker);
     if (worker->runner) {
         if (thread_runner_check_start(worker->runner)) {
@@ -67,16 +67,16 @@ void framework_worker_destroy(framework_worker_t* worker) {
     destroy(worker);
 }
 
-int framework_worker_start(framework_worker_t* worker) {
+int knet_framework_worker_start(kframework_worker_t* worker) {
     verify(worker);
     worker->runner = thread_runner_create(0, 0);
     verify(worker->runner);
-    /* 启动一个线程，运行一个loop_t，一个ktimer_loop_t */
+    /* 启动一个线程，运行一个kloop_t，一个ktimer_loop_t */
     return thread_runner_start_multi_loop_varg(worker->runner, 0, "lt",
         worker->loop, worker->timer_loop);
 }
 
-void framework_worker_stop(framework_worker_t* worker) {
+void knet_framework_worker_stop(kframework_worker_t* worker) {
     verify(worker);
     if (worker->runner) {
         if (thread_runner_check_start(worker->runner)) {
@@ -85,14 +85,14 @@ void framework_worker_stop(framework_worker_t* worker) {
     }
 }
 
-void framework_worker_wait_for_stop(framework_worker_t* worker) {
+void knet_framework_worker_wait_for_stop(kframework_worker_t* worker) {
     verify(worker);
     if (worker->runner) {
         thread_runner_join(worker->runner);
     }
 }
 
-ktimer_t* framework_worker_create_timer(framework_worker_t* worker) {
+ktimer_t* knet_framework_worker_create_timer(kframework_worker_t* worker) {
     ktimer_t* timer = 0;
     verify(worker);
     verify(worker->timer_loop);
@@ -101,7 +101,7 @@ ktimer_t* framework_worker_create_timer(framework_worker_t* worker) {
     return timer;
 }
 
-thread_id_t framework_worker_get_id(framework_worker_t* worker) {
+thread_id_t knet_framework_worker_get_id(kframework_worker_t* worker) {
     verify(worker);
     if (worker->runner) {
         return thread_runner_get_id(worker->runner);

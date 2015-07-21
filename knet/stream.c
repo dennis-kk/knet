@@ -31,60 +31,60 @@
 #include "misc.h"
 
 struct _stream_t {
-    channel_ref_t* channel_ref;
+    kchannel_ref_t* channel_ref;
 };
 
-stream_t* stream_create(channel_ref_t* channel_ref) {
-    stream_t* stream = 0;
+kstream_t* stream_create(kchannel_ref_t* channel_ref) {
+    kstream_t* stream = 0;
     verify(channel_ref);
-    stream = create(stream_t);
-    memset(stream, 0, sizeof(stream_t));
+    stream = create(kstream_t);
+    memset(stream, 0, sizeof(kstream_t));
     verify(stream);
     stream->channel_ref = channel_ref;
     return stream;
 }
 
-void stream_destroy(stream_t* stream) {
+void stream_destroy(kstream_t* stream) {
     verify(stream);
     destroy(stream);
 }
 
-int stream_available(stream_t* stream) {
+int knet_stream_available(kstream_t* stream) {
     verify(stream);
-    return ringbuffer_available(channel_ref_get_ringbuffer(stream->channel_ref));
+    return ringbuffer_available(knet_channel_ref_get_ringbuffer(stream->channel_ref));
 }
 
-int stream_pop(stream_t* stream, void* buffer, int size) {
+int knet_stream_pop(kstream_t* stream, void* buffer, int size) {
     verify(stream);
     verify(buffer);
     verify(size);
-    if (0 < ringbuffer_read(channel_ref_get_ringbuffer(stream->channel_ref), (char*)buffer, size)) {
+    if (0 < ringbuffer_read(knet_channel_ref_get_ringbuffer(stream->channel_ref), (char*)buffer, size)) {
         return error_ok;
     }
     return error_recv_fail;
 }
 
-int stream_eat_all(stream_t* stream) {
+int knet_stream_eat_all(kstream_t* stream) {
     verify(stream);
-    return ringbuffer_eat_all(channel_ref_get_ringbuffer(stream->channel_ref));
+    return ringbuffer_eat_all(knet_channel_ref_get_ringbuffer(stream->channel_ref));
 }
 
-int stream_eat(stream_t* stream, int size) {
+int knet_stream_eat(kstream_t* stream, int size) {
     verify(stream);
     if (!size) {
         return error_ok;
     }
-    return ringbuffer_eat(channel_ref_get_ringbuffer(stream->channel_ref), size);
+    return ringbuffer_eat(knet_channel_ref_get_ringbuffer(stream->channel_ref), size);
 }
 
-int stream_push(stream_t* stream, const void* buffer, int size) {
+int knet_stream_push(kstream_t* stream, const void* buffer, int size) {
     verify(stream);
     verify(buffer);
     verify(size);
-    return channel_ref_write(stream->channel_ref, (char*)buffer, size);
+    return knet_channel_ref_write(stream->channel_ref, (char*)buffer, size);
 }
 
-int stream_push_varg(stream_t* stream, const char* format, ...) {
+int knet_stream_push_varg(kstream_t* stream, const char* format, ...) {
     char buffer[1024] = {0};
     int len           = 0;
     va_list arg_ptr;
@@ -103,29 +103,29 @@ int stream_push_varg(stream_t* stream, const char* format, ...) {
     }
     #endif /* defined(WIN32) */
     va_end(arg_ptr);
-    return stream_push(stream, buffer, len);
+    return knet_stream_push(stream, buffer, len);
 }
 
-int stream_copy(stream_t* stream, void* buffer, int size) {
+int knet_stream_copy(kstream_t* stream, void* buffer, int size) {
     verify(stream);
     verify(buffer);
     verify(size);
-    if (0 > ringbuffer_copy(channel_ref_get_ringbuffer(stream->channel_ref), (char*)buffer, size)) {
+    if (0 > ringbuffer_copy(knet_channel_ref_get_ringbuffer(stream->channel_ref), (char*)buffer, size)) {
         return error_recv_fail;
     }
     return error_ok;
 }
 
-int stream_push_stream(stream_t* stream, stream_t* target) {
+int knet_stream_push_stream(kstream_t* stream, kstream_t* target) {
     uint32_t      size = 0;
-    ringbuffer_t* rb   = 0;
+    kringbuffer_t* rb   = 0;
     char*         ptr  = 0;
     verify(stream);
     verify(target);
     if (stream == target) {
         return error_send_fail;
     }
-    rb = channel_ref_get_ringbuffer(stream->channel_ref);
+    rb = knet_channel_ref_get_ringbuffer(stream->channel_ref);
     verify(rb);
     /* 从ringbuffer内取数据写入另一个stream */
     for (size = ringbuffer_read_lock_size(rb);
@@ -133,7 +133,7 @@ int stream_push_stream(stream_t* stream, stream_t* target) {
         ringbuffer_read_commit(rb, size), size = ringbuffer_read_lock_size(rb)) {
         ptr = ringbuffer_read_lock_ptr(rb);
         verify(ptr);
-        if (error_ok != stream_push(target, ptr, size)) {
+        if (error_ok != knet_stream_push(target, ptr, size)) {
             ringbuffer_read_commit(rb, size);
             return error_send_fail;
         }
@@ -141,16 +141,16 @@ int stream_push_stream(stream_t* stream, stream_t* target) {
     return error_ok;
 }
 
-int stream_copy_stream(stream_t* stream, stream_t* target) {
+int knet_stream_copy_stream(kstream_t* stream, kstream_t* target) {
     uint32_t      size = 0;
-    ringbuffer_t* rb   = 0;
+    kringbuffer_t* rb   = 0;
     char*         ptr  = 0;
     verify(stream);
     verify(target);
     if (stream == target) {
         return error_send_fail;
     }
-    rb = channel_ref_get_ringbuffer(stream->channel_ref);
+    rb = knet_channel_ref_get_ringbuffer(stream->channel_ref);
     verify(rb);
     /* 从ringbuffer内取数据写入另一个stream，使用虚拟窗口，不清除数据 */
     for (size = ringbuffer_window_read_lock_size(rb);
@@ -158,7 +158,7 @@ int stream_copy_stream(stream_t* stream, stream_t* target) {
         ringbuffer_window_read_commit(rb, size), size = ringbuffer_window_read_lock_size(rb)) {
         ptr = ringbuffer_window_read_lock_ptr(rb);
         verify(ptr);
-        if (error_ok != stream_push(target, ptr, size)) {
+        if (error_ok != knet_stream_push(target, ptr, size)) {
             ringbuffer_window_read_commit(rb, size);
             return error_send_fail;
         }
@@ -166,7 +166,7 @@ int stream_copy_stream(stream_t* stream, stream_t* target) {
     return error_ok;
 }
 
-channel_ref_t* stream_get_channel_ref(stream_t* stream) {
+kchannel_ref_t* knet_stream_get_channel_ref(kstream_t* stream) {
     verify(stream);
     return stream->channel_ref;
 }

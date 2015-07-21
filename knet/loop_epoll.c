@@ -37,9 +37,9 @@ typedef struct _loop_epoll_t {
 
 #define MAXEVENTS 8192
 
-int impl_create(loop_t* loop) {
+int knet_impl_create(kloop_t* loop) {
     loop_epoll_t* impl = create(loop_epoll_t);
-    loop_set_impl(loop, impl);
+    knet_loop_set_impl(loop, impl);
     impl->epoll_fd = epoll_create(MAXEVENTS);
     if (impl->epoll_fd < 0) {
         destroy(impl);
@@ -50,15 +50,15 @@ int impl_create(loop_t* loop) {
     return error_ok;
 }
 
-void impl_destroy(loop_t* loop) {
-    loop_epoll_t* impl = (loop_epoll_t*)loop_get_impl(loop);
+void knet_impl_destroy(kloop_t* loop) {
+    loop_epoll_t* impl = (loop_epoll_t*)knet_loop_get_impl(loop);
     close(impl->epoll_fd);
     destroy(impl->events);
     destroy(impl);
 }
 
-int _select(loop_t* loop, int* count) {
-    loop_epoll_t* impl = (loop_epoll_t*)loop_get_impl(loop);
+int _select(kloop_t* loop, int* count) {
+    loop_epoll_t* impl = (loop_epoll_t*)knet_loop_get_impl(loop);
     *count = epoll_wait(impl->epoll_fd, impl->events, MAXEVENTS, 1);
     if (*count < 0) {
         return error_loop_fail;
@@ -66,44 +66,44 @@ int _select(loop_t* loop, int* count) {
     return error_ok;
 }
 
-int impl_run_once(loop_t* loop) {
+int knet_impl_run_once(kloop_t* loop) {
     int count = 0;
     int i = 0;
-    channel_ref_t* channel_ref = 0;
+    kchannel_ref_t* channel_ref = 0;
     struct epoll_event event;
     time_t ts = time(0);
     struct epoll_event* events = 0;
-    loop_epoll_t* impl = (loop_epoll_t*)loop_get_impl(loop);
+    loop_epoll_t* impl = (loop_epoll_t*)knet_loop_get_impl(loop);
     int error = _select(loop, &count);
     if (error != error_ok) {
         return error;
     }
     events = impl->events;
     for (; i < count; i++) {
-        channel_ref = (channel_ref_t*)events[i].data.ptr;
+        channel_ref = (kchannel_ref_t*)events[i].data.ptr;
         if ((events[i].events & EPOLLERR) || (events[i].events & EPOLLHUP)) {
            /* ManPage: In kernel versions before 2.6.9, the EPOLL_CTL_DEL operation required a non-NULL pointer
               in event, even though this argument is ignored. Since Linux 2.6.9, event can be specified
               as NULL when using EPOLL_CTL_DEL. Applications that need to be portable to kernels before
               2.6.9 should specify a non-NULL pointer in event.
             */
-            epoll_ctl(impl->epoll_fd, EPOLL_CTL_DEL, channel_ref_get_socket_fd(channel_ref), &event);
+            epoll_ctl(impl->epoll_fd, EPOLL_CTL_DEL, knet_channel_ref_get_socket_fd(channel_ref), &event);
         } else if (events[i].events & EPOLLIN) {
-            channel_ref_update(channel_ref, channel_event_recv, ts);
+            knet_channel_ref_update(channel_ref, channel_event_recv, ts);
         } else if (events[i].events & EPOLLOUT) {
-            channel_ref_update(channel_ref, channel_event_send, ts);
+            knet_channel_ref_update(channel_ref, channel_event_send, ts);
         } else {
         }
     }
-    loop_check_timeout(loop, ts);
-    loop_check_close(loop);
+    knet_loop_check_timeout(loop, ts);
+    knet_loop_check_close(loop);
     return error_ok;
 }
 
-int impl_event_add(channel_ref_t* channel_ref, channel_event_e e) {
+int knet_impl_event_add(kchannel_ref_t* channel_ref, knet_channel_event_e e) {
     struct epoll_event event;
-    loop_epoll_t* impl = (loop_epoll_t*)loop_get_impl(channel_ref_get_loop(channel_ref));
-    channel_event_e old_event = channel_ref_get_event(channel_ref);
+    loop_epoll_t* impl = (loop_epoll_t*)knet_loop_get_impl(knet_channel_ref_get_loop(channel_ref));
+    knet_channel_event_e old_event = knet_channel_ref_get_event(channel_ref);
     memset(&event, 0, sizeof(event));
     event.data.ptr = channel_ref;
     event.events |= EPOLLET;
@@ -119,19 +119,19 @@ int impl_event_add(channel_ref_t* channel_ref, channel_event_e e) {
         }
         event.events |= EPOLLOUT;
     }
-    if (channel_ref_get_flag(channel_ref)) {
-        epoll_ctl(impl->epoll_fd, EPOLL_CTL_MOD, channel_ref_get_socket_fd(channel_ref), &event);
+    if (knet_channel_ref_get_flag(channel_ref)) {
+        epoll_ctl(impl->epoll_fd, EPOLL_CTL_MOD, knet_channel_ref_get_socket_fd(channel_ref), &event);
     } else {
-        channel_ref_set_flag(channel_ref, 1);
-        epoll_ctl(impl->epoll_fd, EPOLL_CTL_ADD, channel_ref_get_socket_fd(channel_ref), &event);
+        knet_channel_ref_set_flag(channel_ref, 1);
+        epoll_ctl(impl->epoll_fd, EPOLL_CTL_ADD, knet_channel_ref_get_socket_fd(channel_ref), &event);
     }
     return error_ok;
 }
 
-int impl_event_remove(channel_ref_t* channel_ref, channel_event_e e) {
+int knet_impl_event_remove(kchannel_ref_t* channel_ref, knet_channel_event_e e) {
     struct epoll_event event;
-    loop_epoll_t* impl = (loop_epoll_t*)loop_get_impl(channel_ref_get_loop(channel_ref));
-    channel_event_e old_event = channel_ref_get_event(channel_ref);
+    loop_epoll_t* impl = (loop_epoll_t*)knet_loop_get_impl(knet_channel_ref_get_loop(channel_ref));
+    knet_channel_event_e old_event = knet_channel_ref_get_event(channel_ref);
     memset(&event, 0, sizeof(event));
     event.data.ptr = channel_ref;
     event.events |= EPOLLET;
@@ -145,26 +145,26 @@ int impl_event_remove(channel_ref_t* channel_ref, channel_event_e e) {
             event.events |= EPOLLIN;
         }
     }
-    if (channel_ref_get_flag(channel_ref)) {
-        epoll_ctl(impl->epoll_fd, EPOLL_CTL_MOD, channel_ref_get_socket_fd(channel_ref), &event);
+    if (knet_channel_ref_get_flag(channel_ref)) {
+        epoll_ctl(impl->epoll_fd, EPOLL_CTL_MOD, knet_channel_ref_get_socket_fd(channel_ref), &event);
     } else {
-        channel_ref_set_flag(channel_ref, 1);
-        epoll_ctl(impl->epoll_fd, EPOLL_CTL_ADD, channel_ref_get_socket_fd(channel_ref), &event);
+        knet_channel_ref_set_flag(channel_ref, 1);
+        epoll_ctl(impl->epoll_fd, EPOLL_CTL_ADD, knet_channel_ref_get_socket_fd(channel_ref), &event);
     }
     return error_ok;
 }
 
-int impl_add_channel_ref(loop_t* loop, channel_ref_t* channel_ref) {
+int knet_impl_add_channel_ref(kloop_t* loop, kchannel_ref_t* channel_ref) {
     return error_ok;
 }
 
-int impl_remove_channel_ref(loop_t* loop, channel_ref_t* channel_ref) {
+int knet_impl_remove_channel_ref(kloop_t* loop, kchannel_ref_t* channel_ref) {
     /* 清除添加标记 */
-    channel_ref_set_flag(channel_ref, 0);
+    knet_channel_ref_set_flag(channel_ref, 0);
     return error_ok;
 }
 
-socket_t impl_channel_accept(channel_ref_t* channel_ref) {
+socket_t knet_impl_channel_accept(kchannel_ref_t* channel_ref) {
     return 0;
 }
 

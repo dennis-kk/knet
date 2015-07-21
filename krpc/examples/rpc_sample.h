@@ -206,35 +206,41 @@ public:
      * \retval error_rpc_unknown_type RPC类型错误
      */
     int rpc_proc(stream_t* stream);
+	
+	/**
+	 * 获取krpc_t实例
+	 * @return krpc_t实例
+	 */
+	 krpc_t* get_rpc();
 
     /**
      * my_rpc_func1 RPC调用示例
-	 * \param stream stream_t实例
+	 * \param stream kstream_t实例
     * \param my_obj 参数1
     * \retval error_ok 成功
     * \retval error_rpc_marshal_fail 序列化RPC调用时失败
     */
-	int my_rpc_func1(stream_t* stream, my_object_t& my_obj);
+	int my_rpc_func1(kstream_t* stream, my_object_t& my_obj);
 
     /**
      * my_rpc_func2 RPC调用示例
-	 * \param stream stream_t实例
+	 * \param stream kstream_t实例
     * \param my_objs 参数1
     * \param my_i8 参数2
     * \retval error_ok 成功
     * \retval error_rpc_marshal_fail 序列化RPC调用时失败
     */
-	int my_rpc_func2(stream_t* stream, std::vector<my_object_t>& my_objs, int8_t my_i8);
+	int my_rpc_func2(kstream_t* stream, std::vector<my_object_t>& my_objs, int8_t my_i8);
 
     /**
      * my_rpc_func3 RPC调用示例
-	 * \param stream stream_t实例
+	 * \param stream kstream_t实例
     * \param my_str 参数1
     * \param my_i8 参数2
     * \retval error_ok 成功
     * \retval error_rpc_marshal_fail 序列化RPC调用时失败
     */
-	int my_rpc_func3(stream_t* stream, const std::string& my_str, int8_t my_i8);
+	int my_rpc_func3(kstream_t* stream, const std::string& my_str, int8_t my_i8);
 
 private:
     /**

@@ -26,23 +26,23 @@
 
 #include "misc.h"
 
-logger_t* global_logger = 0; /* 全局日志指针 */
+klogger_t* global_logger = 0; /* 全局日志指针 */
 
 struct _logger_t {
     FILE*          fd;    /* 文件 */
-    logger_level_e level; /* 日志等级 */
-    logger_mode_e  mode;  /* 日志模式 */
-    lock_t*        lock;  /* 锁 */
+    knet_logger_level_e level; /* 日志等级 */
+    knet_logger_mode_e  mode;  /* 日志模式 */
+    klock_t*        lock;  /* 锁 */
 };
 
-logger_t* logger_create(const char* path, logger_level_e level, logger_mode_e mode) {
+klogger_t* logger_create(const char* path, knet_logger_level_e level, knet_logger_mode_e mode) {
     char temp[PATH_MAX] = {0};
-    logger_t* logger = create(logger_t);
+    klogger_t* logger = create(klogger_t);
     verify(logger);
     if (!logger) {
         return 0;
     }
-    memset(logger, 0, sizeof(logger_t));
+    memset(logger, 0, sizeof(klogger_t));
     logger->mode  = mode;
     logger->level = level;
     logger->lock  = lock_create();
@@ -71,7 +71,7 @@ fail_return:
     return 0;
 }
 
-void logger_destroy(logger_t* logger) {
+void logger_destroy(klogger_t* logger) {
     verify(logger);
     if (logger->fd) {
         fclose(logger->fd);
@@ -80,7 +80,7 @@ void logger_destroy(logger_t* logger) {
     destroy(logger);
 }
 
-int logger_write(logger_t* logger, logger_level_e level, const char* format, ...) {
+int logger_write(klogger_t* logger, knet_logger_level_e level, const char* format, ...) {
     char buffer[64] = {0};
     int  bytes = 0;
     static const char* logger_level_name[] = { 0, "VERB", "INFO", "WARN", "ERRO", "FATA" };

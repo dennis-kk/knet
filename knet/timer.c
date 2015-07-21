@@ -28,8 +28,8 @@
 
 
 struct _ktimer_t {
-    dlist_t*       current_list;  /* 所属链表 */
-    dlist_node_t*  list_node;     /* 链表节点 */
+    kdlist_t*       current_list;  /* 所属链表 */
+    kdlist_node_t*  list_node;     /* 链表节点 */
     ktimer_loop_t* ktimer_loop;   /* 定时器循环 */
     ktimer_type_e  type;          /* 定时器类型 */
     ktimer_cb_t    cb;            /* 定时器回调 */
@@ -42,7 +42,7 @@ struct _ktimer_t {
 };
 
 struct _ktimer_loop_t {
-    dlist_t** ktimer_wheels; /* 时间轮链表数组 */
+    kdlist_t** ktimer_wheels; /* 时间轮链表数组 */
     int       running;       /* 运行标志 */
     int       max_slot;      /* 时间轮数组长度 */
     int       slot;          /* 当前槽位 */
@@ -53,8 +53,8 @@ struct _ktimer_loop_t {
 
 int _ktimer_loop_select_slot(ktimer_loop_t* ktimer_loop, time_t ms);
 void _ktimer_loop_add_timer(ktimer_loop_t* ktimer_loop, ktimer_t* timer);
-void _ktimer_loop_add_ktimer_node(ktimer_loop_t* ktimer_loop, dlist_node_t* node, time_t ms);
-dlist_node_t* _ktimer_loop_remove_timer(ktimer_t* timer);
+void _ktimer_loop_add_ktimer_node(ktimer_loop_t* ktimer_loop, kdlist_node_t* node, time_t ms);
+kdlist_node_t* _ktimer_loop_remove_timer(ktimer_t* timer);
 int _ktimer_check_stop(ktimer_t* timer);
 
 ktimer_loop_t* ktimer_loop_create(time_t freq, int slot) {
@@ -69,7 +69,7 @@ ktimer_loop_t* ktimer_loop_create(time_t freq, int slot) {
     ktimer_loop->deviation    = (time_t)((float)freq * 0.01f); /* 默认误差范围为1% */
     ktimer_loop->last_tick    = time_get_milliseconds();
     ktimer_loop->slot         = 1;
-    ktimer_loop->ktimer_wheels = (dlist_t**)create_type(dlist_t, sizeof(dlist_t*) * ktimer_loop->max_slot);
+    ktimer_loop->ktimer_wheels = (kdlist_t**)create_type(kdlist_t, sizeof(kdlist_t*) * ktimer_loop->max_slot);
     verify(ktimer_loop->ktimer_wheels);
     for (; i < ktimer_loop->max_slot; i++) {
         ktimer_loop->ktimer_wheels[i] = dlist_create();
@@ -81,8 +81,8 @@ ktimer_loop_t* ktimer_loop_create(time_t freq, int slot) {
 void ktimer_loop_destroy(ktimer_loop_t* ktimer_loop) {
     int i = 0;
     ktimer_t*     timer = 0;
-    dlist_node_t* node  = 0;
-    dlist_node_t* temp  = 0;
+    kdlist_node_t* node  = 0;
+    kdlist_node_t* temp  = 0;
     verify(ktimer_loop);
     /* 销毁所有槽内链表 */
     for (; i < ktimer_loop->max_slot; i++) {
@@ -118,7 +118,7 @@ int _ktimer_loop_select_slot(ktimer_loop_t* ktimer_loop, time_t ms) {
 
 void _ktimer_loop_add_timer(ktimer_loop_t* ktimer_loop, ktimer_t* timer) {
     /* 新timer都加入到下次运行的槽位，如果未过期会被调整到后续槽位 */
-    dlist_node_t* node = 0;
+    kdlist_node_t* node = 0;
     verify(ktimer_loop);
     verify(timer);
     node = dlist_add_tail_node(ktimer_loop->ktimer_wheels[ktimer_loop->slot], timer);
@@ -126,7 +126,7 @@ void _ktimer_loop_add_timer(ktimer_loop_t* ktimer_loop, ktimer_t* timer) {
     ktimer_set_current_list_node(timer, node);
 }
 
-void _ktimer_loop_add_ktimer_node(ktimer_loop_t* ktimer_loop, dlist_node_t* node, time_t ms) {
+void _ktimer_loop_add_ktimer_node(ktimer_loop_t* ktimer_loop, kdlist_node_t* node, time_t ms) {
     int       slot  = 0;
     ktimer_t* timer = 0;
     verify(ktimer_loop);
@@ -137,9 +137,9 @@ void _ktimer_loop_add_ktimer_node(ktimer_loop_t* ktimer_loop, dlist_node_t* node
     ktimer_set_current_list(timer, ktimer_loop->ktimer_wheels[slot]);
 }
 
-dlist_node_t* _ktimer_loop_remove_timer(ktimer_t* timer) {
-    dlist_t*      current_list = 0;
-    dlist_node_t* list_node    = 0;
+kdlist_node_t* _ktimer_loop_remove_timer(ktimer_t* timer) {
+    kdlist_t*      current_list = 0;
+    kdlist_node_t* list_node    = 0;
     verify(timer);
     current_list = ktimer_get_current_list(timer);
     verify(current_list);
@@ -151,9 +151,9 @@ dlist_node_t* _ktimer_loop_remove_timer(ktimer_t* timer) {
 } 
 
 int ktimer_loop_run_once(ktimer_loop_t* ktimer_loop) {
-    dlist_node_t* node   = 0;
-    dlist_node_t* temp   = 0;
-    dlist_t*      timers = 0;
+    kdlist_node_t* node   = 0;
+    kdlist_node_t* temp   = 0;
+    kdlist_t*      timers = 0;
     ktimer_t*     timer = 0;
     time_t        ms     = time_get_milliseconds(); /* 当前时间戳（毫秒） */
     time_t        delta  = 0;
@@ -192,23 +192,23 @@ ktimer_loop_t* ktimer_get_loop(ktimer_t* timer) {
     return timer->ktimer_loop;
 }
 
-void ktimer_set_current_list(ktimer_t* timer, dlist_t* list) {
+void ktimer_set_current_list(ktimer_t* timer, kdlist_t* list) {
     verify(timer); /* list可以为零 */
     timer->current_list = list;
 }
 
-void ktimer_set_current_list_node(ktimer_t* timer, dlist_node_t* node) {
+void ktimer_set_current_list_node(ktimer_t* timer, kdlist_node_t* node) {
     verify(timer);
     verify(node);
     timer->list_node = node;
 }
 
-dlist_t* ktimer_get_current_list(ktimer_t* timer) {
+kdlist_t* ktimer_get_current_list(ktimer_t* timer) {
     verify(timer);
     return timer->current_list;
 }
 
-dlist_node_t* ktimer_get_current_list_node(ktimer_t* timer) {
+kdlist_node_t* ktimer_get_current_list_node(ktimer_t* timer) {
     verify(timer);
     return timer->list_node;
 }
@@ -247,7 +247,7 @@ time_t ktimer_loop_get_tick_intval(ktimer_loop_t* ktimer_loop) {
 }
 
 int ktimer_check_timeout(ktimer_t* timer, time_t ms) {
-    dlist_node_t* node         = 0;
+    kdlist_node_t* node         = 0;
     time_t        tick_intval  = 0;
     ktimer_loop_t* ktimer_loop = 0;
     verify(timer);

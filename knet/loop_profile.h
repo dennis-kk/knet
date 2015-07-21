@@ -29,74 +29,74 @@
 #include "loop_profile_api.h"
 
 /**
- * 建立loop_t统计器
- * @param loop loop_t实例
- * @return loop_profile_t实例
+ * 建立kloop_t统计器
+ * @param loop kloop_t实例
+ * @return kloop_profile_t实例
  */
-loop_profile_t* loop_profile_create(loop_t* loop);
+kloop_profile_t* knet_loop_profile_create(kloop_t* loop);
 
 /**
  * 销毁统计器
- * @param profile loop_profile_t实例
+ * @param profile kloop_profile_t实例
  */
-void loop_profile_destroy(loop_profile_t* profile);
+void knet_loop_profile_destroy(kloop_profile_t* profile);
 
 /**
  * 增加已建立连接的管道数量
- * @param profile loop_profile_t实例
+ * @param profile kloop_profile_t实例
  * @return 已建立连接的管道数量
  */
-uint32_t loop_profile_increase_established_channel_count(loop_profile_t* profile);
+uint32_t knet_loop_profile_increase_established_channel_count(kloop_profile_t* profile);
 
 /**
  * 减少已建立连接的管道数量
- * @param profile loop_profile_t实例
+ * @param profile kloop_profile_t实例
  * @return 已建立连接的管道数量
  */
-uint32_t loop_profile_decrease_established_channel_count(loop_profile_t* profile);
+uint32_t knet_loop_profile_decrease_established_channel_count(kloop_profile_t* profile);
 
 /**
  * 增加已建立但未连接的管道数量
- * @param profile loop_profile_t实例
+ * @param profile kloop_profile_t实例
  * @return 已建立但未连接的管道数量
  */
-uint32_t loop_profile_increase_active_channel_count(loop_profile_t* profile);
+uint32_t knet_loop_profile_increase_active_channel_count(kloop_profile_t* profile);
 
 /**
  * 减少已建立但未连接的管道数量
- * @param profile loop_profile_t实例
+ * @param profile kloop_profile_t实例
  * @return 已建立但未连接的管道数量
  */
-uint32_t loop_profile_decrease_active_channel_count(loop_profile_t* profile);
+uint32_t knet_loop_profile_decrease_active_channel_count(kloop_profile_t* profile);
 
 /**
  * 增加已关闭管道数量
- * @param profile loop_profile_t实例
+ * @param profile kloop_profile_t实例
  * @return 已关闭管道数量
  */
-uint32_t loop_profile_increase_close_channel_count(loop_profile_t* profile);
+uint32_t knet_loop_profile_increase_close_channel_count(kloop_profile_t* profile);
 
 /**
  * 减少已关闭管道数量
- * @param profile loop_profile_t实例
+ * @param profile kloop_profile_t实例
  * @return 已关闭管道数量
  */
-uint32_t loop_profile_decrease_close_channel_count(loop_profile_t* profile);
+uint32_t knet_loop_profile_decrease_close_channel_count(kloop_profile_t* profile);
 
 /**
  * 增加发送字节数
- * @param profile loop_profile_t实例
+ * @param profile kloop_profile_t实例
  * @param send_bytes 已发送的字节数
  * @return 发送字节数
  */
-uint64_t loop_profile_add_send_bytes(loop_profile_t* profile, uint64_t send_bytes);
+uint64_t knet_loop_profile_add_send_bytes(kloop_profile_t* profile, uint64_t send_bytes);
 
 /**
  * 增加接收字节数
- * @param profile loop_profile_t实例
+ * @param profile kloop_profile_t实例
  * @param recv_bytes 已接收的字节数
  * @return 接收字节数
  */
-uint64_t loop_profile_add_recv_bytes(loop_profile_t* profile, uint64_t recv_bytes);
+uint64_t knet_loop_profile_add_recv_bytes(kloop_profile_t* profile, uint64_t recv_bytes);
 
 #endif /* LOOP_PROFILE_H */

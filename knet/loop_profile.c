@@ -28,101 +28,101 @@
 #include "stream.h"
 
 struct _loop_profile_t {
-    loop_t*  loop;                /* 网络事件循环 */
+    kloop_t*  loop;                /* 网络事件循环 */
     uint64_t recv_bytes;          /* 已接收的字节数 */
     uint64_t send_bytes;          /* 已发送的字节数 */
     uint32_t established_channel; /* 已经建立连接的管道数量 */
     uint32_t active_channel;      /* 还未建立连接的管道数量 */
     uint32_t close_channel;       /* 已关闭的管道数量 */
     uint32_t __padding;           /* 填充 */
-    uint64_t last_send_bytes;     /* 上次调用loop_profile_get_sent_bandwidth时的发送字节数 */
-    uint64_t last_recv_bytes;     /* 上次调用loop_profile_get_recv_bandwidth时的接收字节数 */
-    time_t   last_send_tick;      /* 上次调用loop_profile_get_sent_bandwidth时的时间戳（秒） */
-    time_t   last_recv_tick;      /* 上次调用loop_profile_get_recv_bandwidth时的时间戳（秒） */
+    uint64_t last_send_bytes;     /* 上次调用knet_loop_profile_get_sent_bandwidth时的发送字节数 */
+    uint64_t last_recv_bytes;     /* 上次调用knet_loop_profile_get_recv_bandwidth时的接收字节数 */
+    time_t   last_send_tick;      /* 上次调用knet_loop_profile_get_sent_bandwidth时的时间戳（秒） */
+    time_t   last_recv_tick;      /* 上次调用knet_loop_profile_get_recv_bandwidth时的时间戳（秒） */
 };
 
-loop_profile_t* loop_profile_create(loop_t* loop) {
-    loop_profile_t* profile = 0;
+kloop_profile_t* knet_loop_profile_create(kloop_t* loop) {
+    kloop_profile_t* profile = 0;
     verify(loop);
-    profile = create(loop_profile_t);
+    profile = create(kloop_profile_t);
     verify(profile);
-    memset(profile, 0, sizeof(loop_profile_t));
+    memset(profile, 0, sizeof(kloop_profile_t));
     profile->loop           = loop;
     profile->last_send_tick = time(0);
     profile->last_recv_tick = profile->last_send_tick;
     return profile;
 }
 
-void loop_profile_destroy(loop_profile_t* profile) {
+void knet_loop_profile_destroy(kloop_profile_t* profile) {
     destroy(profile);
 }
 
-uint32_t loop_profile_increase_established_channel_count(loop_profile_t* profile) {
+uint32_t knet_loop_profile_increase_established_channel_count(kloop_profile_t* profile) {
     verify(profile);
     return ++profile->established_channel;
 }
 
-uint32_t loop_profile_decrease_established_channel_count(loop_profile_t* profile) {
+uint32_t knet_loop_profile_decrease_established_channel_count(kloop_profile_t* profile) {
     verify(profile);
     return --profile->established_channel;
 }
 
-uint32_t loop_profile_get_established_channel_count(loop_profile_t* profile) {
+uint32_t knet_loop_profile_get_established_channel_count(kloop_profile_t* profile) {
     verify(profile);
     return profile->established_channel - 2; /* 事件通知管道不计入统计数据 */
 }
 
-uint32_t loop_profile_increase_active_channel_count(loop_profile_t* profile) {
+uint32_t knet_loop_profile_increase_active_channel_count(kloop_profile_t* profile) {
     verify(profile);
     return ++profile->active_channel;
 }
 
-uint32_t loop_profile_decrease_active_channel_count(loop_profile_t* profile) {
+uint32_t knet_loop_profile_decrease_active_channel_count(kloop_profile_t* profile) {
     verify(profile);
     return --profile->active_channel;
 }
 
-uint32_t loop_profile_get_active_channel_count(loop_profile_t* profile) {
+uint32_t knet_loop_profile_get_active_channel_count(kloop_profile_t* profile) {
     verify(profile);
     return profile->active_channel;
 }
 
-uint32_t loop_profile_increase_close_channel_count(loop_profile_t* profile) {
+uint32_t knet_loop_profile_increase_close_channel_count(kloop_profile_t* profile) {
     verify(profile);
     return ++profile->close_channel;
 }
 
-uint32_t loop_profile_decrease_close_channel_count(loop_profile_t* profile) {
+uint32_t knet_loop_profile_decrease_close_channel_count(kloop_profile_t* profile) {
     verify(profile);
     return --profile->close_channel;
 }
 
-uint32_t loop_profile_get_close_channel_count(loop_profile_t* profile) {
+uint32_t knet_loop_profile_get_close_channel_count(kloop_profile_t* profile) {
     verify(profile);
     return profile->close_channel;
 }
 
-uint64_t loop_profile_add_send_bytes(loop_profile_t* profile, uint64_t send_bytes) {
+uint64_t knet_loop_profile_add_send_bytes(kloop_profile_t* profile, uint64_t send_bytes) {
     verify(profile);
     return (profile->send_bytes += send_bytes);
 }
 
-uint64_t loop_profile_get_sent_bytes(loop_profile_t* profile) {
+uint64_t knet_loop_profile_get_sent_bytes(kloop_profile_t* profile) {
     verify(profile);
     return profile->send_bytes;
 }
 
-uint64_t loop_profile_add_recv_bytes(loop_profile_t* profile, uint64_t recv_bytes) {
+uint64_t knet_loop_profile_add_recv_bytes(kloop_profile_t* profile, uint64_t recv_bytes) {
     verify(profile);
     return (profile->recv_bytes += recv_bytes);
 }
 
-uint64_t loop_profile_get_recv_bytes(loop_profile_t* profile) {
+uint64_t knet_loop_profile_get_recv_bytes(kloop_profile_t* profile) {
     verify(profile);
     return profile->recv_bytes;
 }
 
-uint32_t loop_profile_get_sent_bandwidth(loop_profile_t* profile) {
+uint32_t knet_loop_profile_get_sent_bandwidth(kloop_profile_t* profile) {
     time_t   tick      = time(0);
     uint64_t bandwidth = 0;
     uint64_t intval    = 0;
@@ -141,7 +141,7 @@ uint32_t loop_profile_get_sent_bandwidth(loop_profile_t* profile) {
     return (uint32_t)bandwidth;
 }
 
-uint32_t loop_profile_get_recv_bandwidth(loop_profile_t* profile) {
+uint32_t knet_loop_profile_get_recv_bandwidth(kloop_profile_t* profile) {
     time_t   tick      = time(0);
     uint64_t bandwidth = 0;
     uint64_t intval    = 0;
@@ -160,7 +160,7 @@ uint32_t loop_profile_get_recv_bandwidth(loop_profile_t* profile) {
     return (uint32_t)bandwidth;
 }
 
-int loop_profile_dump_file(loop_profile_t* profile, FILE* fp) {
+int knet_loop_profile_dump_file(kloop_profile_t* profile, FILE* fp) {
     int len = 0;
     verify(profile);
     verify(fp);
@@ -173,23 +173,23 @@ int loop_profile_dump_file(loop_profile_t* profile, FILE* fp) {
         "Sent bytes:          %lld\n"
         "Received bandwidth:  %ld(B/s)\n"
         "Sent bandwidth:      %ld(B/s)\n",
-        (long)loop_profile_get_established_channel_count(profile),
-        (long)loop_profile_get_active_channel_count(profile),
-        (long)loop_profile_get_close_channel_count(profile),
-        (long long)loop_profile_get_recv_bytes(profile),
-        (long long)loop_profile_get_sent_bytes(profile),
-        (long)loop_profile_get_recv_bandwidth(profile),
-        (long)loop_profile_get_sent_bandwidth(profile));
+        (long)knet_loop_profile_get_established_channel_count(profile),
+        (long)knet_loop_profile_get_active_channel_count(profile),
+        (long)knet_loop_profile_get_close_channel_count(profile),
+        (long long)knet_loop_profile_get_recv_bytes(profile),
+        (long long)knet_loop_profile_get_sent_bytes(profile),
+        (long)knet_loop_profile_get_recv_bandwidth(profile),
+        (long)knet_loop_profile_get_sent_bandwidth(profile));
     if (len <= 0) {
         return error_fail;
     }
     return error_ok;
 }
 
-int loop_profile_dump_stream(loop_profile_t* profile, stream_t* stream) {
+int knet_loop_profile_dump_stream(kloop_profile_t* profile, kstream_t* stream) {
     verify(profile);
     verify(stream);
-    return stream_push_varg(
+    return knet_stream_push_varg(
         stream,
         "Established channel: %ld\n"
         "Active channel:      %ld\n"
@@ -198,16 +198,16 @@ int loop_profile_dump_stream(loop_profile_t* profile, stream_t* stream) {
         "Sent bytes:          %lld\n"
         "Received bandwidth:  %ld(B/s)\n"
         "Sent bandwidth:      %ld(B/s)\n",
-        (long)loop_profile_get_established_channel_count(profile),
-        (long)loop_profile_get_active_channel_count(profile),
-        (long)loop_profile_get_close_channel_count(profile),
-        (long long)loop_profile_get_recv_bytes(profile),
-        (long long)loop_profile_get_sent_bytes(profile),
-        (long)loop_profile_get_recv_bandwidth(profile),
-        (long)loop_profile_get_sent_bandwidth(profile));
+        (long)knet_loop_profile_get_established_channel_count(profile),
+        (long)knet_loop_profile_get_active_channel_count(profile),
+        (long)knet_loop_profile_get_close_channel_count(profile),
+        (long long)knet_loop_profile_get_recv_bytes(profile),
+        (long long)knet_loop_profile_get_sent_bytes(profile),
+        (long)knet_loop_profile_get_recv_bandwidth(profile),
+        (long)knet_loop_profile_get_sent_bandwidth(profile));
 }
 
-int loop_profile_dump_stdout(loop_profile_t* profile) {
+int knet_loop_profile_dump_stdout(kloop_profile_t* profile) {
     int len = 0;
     verify(profile);
     len = fprintf(
@@ -219,13 +219,13 @@ int loop_profile_dump_stdout(loop_profile_t* profile) {
         "Sent bytes:          %lld\n"
         "Received bandwidth:  %ld(B/s)\n"
         "Sent bandwidth:      %ld(B/s)\n",
-        (long)loop_profile_get_established_channel_count(profile),
-        (long)loop_profile_get_active_channel_count(profile),
-        (long)loop_profile_get_close_channel_count(profile),
-        (long long)loop_profile_get_recv_bytes(profile),
-        (long long)loop_profile_get_sent_bytes(profile),
-        (long)loop_profile_get_recv_bandwidth(profile),
-        (long)loop_profile_get_sent_bandwidth(profile));
+        (long)knet_loop_profile_get_established_channel_count(profile),
+        (long)knet_loop_profile_get_active_channel_count(profile),
+        (long)knet_loop_profile_get_close_channel_count(profile),
+        (long long)knet_loop_profile_get_recv_bytes(profile),
+        (long long)knet_loop_profile_get_sent_bytes(profile),
+        (long)knet_loop_profile_get_recv_bandwidth(profile),
+        (long)knet_loop_profile_get_sent_bandwidth(profile));
     if (len <= 0) {
         return error_fail;
     }

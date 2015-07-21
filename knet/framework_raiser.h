@@ -29,54 +29,56 @@
 
 /**
  * 建立网络连接发起者(监听器/连接器)
- * @param f framework_t实例
- * @param loop loop_t实例
- * @return framework_raiser_t实例
+ * @param f kframework_t实例
+ * @param loop kloop_t实例
+ * @return kframework_raiser_t实例
  */
-framework_raiser_t* framework_raiser_create(framework_t* f, loop_t* loop);
+kframework_raiser_t* knet_framework_raiser_create(kframework_t* f, kloop_t* loop);
 
 /**
  * 销毁网络连接发起者
- * @param raiser framework_raiser_t实例
+ * @param raiser kframework_raiser_t实例
  */
-void framework_raiser_destroy(framework_raiser_t* raiser);
+void knet_framework_raiser_destroy(kframework_raiser_t* raiser);
 
 /**
  * 启动网络连接发起者
- * @param raiser framework_raiser_t实例
+ * @param raiser kframework_raiser_t实例
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int framework_raiser_start(framework_raiser_t* raiser);
+int knet_framework_raiser_start(kframework_raiser_t* raiser);
 
 /**
  * 关闭网络连接发起者
- * @param raiser framework_raiser_t实例
+ * @param raiser kframework_raiser_t实例
  */
-void framework_raiser_stop(framework_raiser_t* raiser);
+void knet_framework_raiser_stop(kframework_raiser_t* raiser);
 
 /**
  * 等待网络连接发起者
- * @param raiser framework_raiser_t实例
+ * @param raiser kframework_raiser_t实例
  */
-void framework_raiser_wait_for_stop(framework_raiser_t* raiser);
+void knet_framework_raiser_wait_for_stop(kframework_raiser_t* raiser);
 
 /**
  * 启动一个新的监听器
- * @param raiser framework_raiser_t实例
- * @param c framework_acceptor_config_t实例
+ * @param raiser kframework_raiser_t实例
+ * @param c kframework_acceptor_config_t实例
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int framework_raiser_new_acceptor(framework_raiser_t* raiser, framework_acceptor_config_t* c);
+int knet_framework_raiser_new_acceptor(kframework_raiser_t* raiser,
+    kframework_acceptor_config_t* c);
 
 /**
  * 启动一个新的连接器
- * @param raiser framework_raiser_t实例
- * @param c framework_connector_config_t实例
+ * @param raiser kframework_raiser_t实例
+ * @param c kframework_connector_config_t实例
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int framework_raiser_new_connector(framework_raiser_t* raiser, framework_connector_config_t* c);
+int knet_framework_raiser_new_connector(kframework_raiser_t* raiser,
+    kframework_connector_config_t* c);
 
 #endif /* FRAMEWORK_RAISER_H */

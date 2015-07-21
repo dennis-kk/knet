@@ -8,41 +8,49 @@
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00051_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$ \hyperlink{a00102_ga7b76c4078bbe8272206a5d7467ccd4ed_ga7b76c4078bbe8272206a5d7467ccd4ed}{channel\+\_\+ref\+\_\+share} (\hyperlink{a00051_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
-\begin{DoxyCompactList}\small\item\em 增加管道引用计数，并创建与管道关联的新的channel\+\_\+ref\+\_\+t实例 \end{DoxyCompactList}\item 
-void \hyperlink{a00102_gab4248c6e10ac538b5d37b927bbe39ef1_gab4248c6e10ac538b5d37b927bbe39ef1}{channel\+\_\+ref\+\_\+leave} (\hyperlink{a00051_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
-\begin{DoxyCompactList}\small\item\em 减少管道引用计数，并销毁channel\+\_\+ref\+\_\+t实例 \end{DoxyCompactList}\item 
-int \hyperlink{a00102_ga1a8d1f5550cf26313cbb6575e8b2a32c_ga1a8d1f5550cf26313cbb6575e8b2a32c}{channel\+\_\+ref\+\_\+connect} (\hyperlink{a00051_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref, const char $\ast$ip, int port, int timeout)
-\begin{DoxyCompactList}\small\item\em 主动连接 \end{DoxyCompactList}\item 
-int \hyperlink{a00102_gae9ae0ae2a42eabf6a544ce4e0f001c9e_gae9ae0ae2a42eabf6a544ce4e0f001c9e}{channel\+\_\+ref\+\_\+accept} (\hyperlink{a00051_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref, const char $\ast$ip, int port, int backlog)
+\hyperlink{a00051_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$ \hyperlink{a00102_ga45710b87649c232603ae708616eddd85_ga45710b87649c232603ae708616eddd85}{knet\+\_\+channel\+\_\+ref\+\_\+share} (\hyperlink{a00051_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\begin{DoxyCompactList}\small\item\em 增加管道引用计数，并创建与管道关联的新的kchannel\+\_\+ref\+\_\+t实例 \end{DoxyCompactList}\item 
+void \hyperlink{a00102_ga6eded28dc89d84e8ed33615bbd205bae_ga6eded28dc89d84e8ed33615bbd205bae}{knet\+\_\+channel\+\_\+ref\+\_\+leave} (\hyperlink{a00051_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\begin{DoxyCompactList}\small\item\em 减少管道引用计数，并销毁kchannel\+\_\+ref\+\_\+t实例 \end{DoxyCompactList}\item 
+int \hyperlink{a00102_ga92a683023f347ae7c4eb692180884a01_ga92a683023f347ae7c4eb692180884a01}{knet\+\_\+channel\+\_\+ref\+\_\+accept} (\hyperlink{a00051_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref, const char $\ast$ip, int port, int backlog)
 \begin{DoxyCompactList}\small\item\em 将管道转换为监听管道 \end{DoxyCompactList}\item 
-int \hyperlink{a00102_gae003fde214ddbf4feec22ddb89b8257c_gae003fde214ddbf4feec22ddb89b8257c}{channel\+\_\+ref\+\_\+check\+\_\+balance} (\hyperlink{a00051_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
-\begin{DoxyCompactList}\small\item\em 检测管道是否是通过负载均衡关联到当前的loop\+\_\+t \end{DoxyCompactList}\item 
-int \hyperlink{a00102_gadddbdc58824b567334d46493decc90f8_gadddbdc58824b567334d46493decc90f8}{channel\+\_\+ref\+\_\+check\+\_\+state} (\hyperlink{a00051_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref, \hyperlink{a00051_a1956eea3012f780b5d592a9d09d9873c_a1956eea3012f780b5d592a9d09d9873c}{channel\+\_\+state\+\_\+e} state)
+int \hyperlink{a00102_gad8fc0ffe3928e6914b3ec50810e2e79f_gad8fc0ffe3928e6914b3ec50810e2e79f}{knet\+\_\+channel\+\_\+ref\+\_\+connect} (\hyperlink{a00051_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref, const char $\ast$ip, int port, int timeout)
+\begin{DoxyCompactList}\small\item\em 主动连接 \end{DoxyCompactList}\item 
+int \hyperlink{a00102_gad63e9094fa461829bf91cf8b50d98f21_gad63e9094fa461829bf91cf8b50d98f21}{knet\+\_\+channel\+\_\+ref\+\_\+reconnect} (\hyperlink{a00051_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref, int timeout)
+\begin{DoxyCompactList}\small\item\em 重新发起连接 \end{DoxyCompactList}\item 
+void \hyperlink{a00102_gad86b8f0e35f643881f521a1c49f85c76_gad86b8f0e35f643881f521a1c49f85c76}{knet\+\_\+channel\+\_\+ref\+\_\+set\+\_\+auto\+\_\+reconnect} (\hyperlink{a00051_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref, int auto\+\_\+reconnect)
+\begin{DoxyCompactList}\small\item\em 设置管道自动重连 \end{DoxyCompactList}\item 
+int \hyperlink{a00102_gae0a3f38cfb6a397a4c810cd8c162c37f_gae0a3f38cfb6a397a4c810cd8c162c37f}{knet\+\_\+channel\+\_\+ref\+\_\+check\+\_\+auto\+\_\+reconnect} (\hyperlink{a00051_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\begin{DoxyCompactList}\small\item\em 检查管道是否开启了自动重连 \end{DoxyCompactList}\item 
+int \hyperlink{a00102_gae6b27f8bb8c72932a086dc20a4582527_gae6b27f8bb8c72932a086dc20a4582527}{knet\+\_\+channel\+\_\+ref\+\_\+check\+\_\+balance} (\hyperlink{a00051_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\begin{DoxyCompactList}\small\item\em 检测管道是否是通过负载均衡关联到当前的kloop\+\_\+t \end{DoxyCompactList}\item 
+int \hyperlink{a00102_ga902f5bad47644b56ff5d9a4ecf152abb_ga902f5bad47644b56ff5d9a4ecf152abb}{knet\+\_\+channel\+\_\+ref\+\_\+check\+\_\+state} (\hyperlink{a00051_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref, \hyperlink{a00051_a74ff83eaafca5c7093accdc65c6b0646_a74ff83eaafca5c7093accdc65c6b0646}{knet\+\_\+channel\+\_\+state\+\_\+e} state)
 \begin{DoxyCompactList}\small\item\em 检测管道当前状态 \end{DoxyCompactList}\item 
-void \hyperlink{a00102_ga49d6ba5f0b9aad95ae5c5710dca392a1_ga49d6ba5f0b9aad95ae5c5710dca392a1}{channel\+\_\+ref\+\_\+close} (\hyperlink{a00051_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+void \hyperlink{a00102_gaf7ce59d20d4e716707bea7dec42811c3_gaf7ce59d20d4e716707bea7dec42811c3}{knet\+\_\+channel\+\_\+ref\+\_\+close} (\hyperlink{a00051_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
 \begin{DoxyCompactList}\small\item\em 关闭管道 \end{DoxyCompactList}\item 
-\hyperlink{a00051_a0d9e0afbf02fb6ed6c5b1415dce51b05_a0d9e0afbf02fb6ed6c5b1415dce51b05}{socket\+\_\+t} \hyperlink{a00102_gaf0c977ef05b7e767a8ef166a8037ec8b_gaf0c977ef05b7e767a8ef166a8037ec8b}{channel\+\_\+ref\+\_\+get\+\_\+socket\+\_\+fd} (\hyperlink{a00051_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+int \hyperlink{a00102_gad844fbd8ee19d3cbcc2ad7822b0d5a2c_gad844fbd8ee19d3cbcc2ad7822b0d5a2c}{knet\+\_\+channel\+\_\+ref\+\_\+check\+\_\+close} (\hyperlink{a00051_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\begin{DoxyCompactList}\small\item\em 检查管道是否已经关闭 \end{DoxyCompactList}\item 
+\hyperlink{a00051_a0d9e0afbf02fb6ed6c5b1415dce51b05_a0d9e0afbf02fb6ed6c5b1415dce51b05}{socket\+\_\+t} \hyperlink{a00102_ga58380a92125ad1a79ecbae828b8e9755_ga58380a92125ad1a79ecbae828b8e9755}{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+socket\+\_\+fd} (\hyperlink{a00051_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
 \begin{DoxyCompactList}\small\item\em 取得管道套接字 \end{DoxyCompactList}\item 
-\hyperlink{a00051_a261dba04f46f5c59a68a05f69f5a65a8_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$ \hyperlink{a00102_gaf8d2758e1e063e04512049c9a9869d5e_gaf8d2758e1e063e04512049c9a9869d5e}{channel\+\_\+ref\+\_\+get\+\_\+stream} (\hyperlink{a00051_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\hyperlink{a00051_acc208c4c40c875eebbfef88f00fffacf_acc208c4c40c875eebbfef88f00fffacf}{kstream\+\_\+t} $\ast$ \hyperlink{a00102_gaa96ef131ed8d43d529a76ce1c9aea1a3_gaa96ef131ed8d43d529a76ce1c9aea1a3}{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+stream} (\hyperlink{a00051_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
 \begin{DoxyCompactList}\small\item\em 取得管道数据流 \end{DoxyCompactList}\item 
-\hyperlink{a00051_a9c3ad1cd2de83e09f3a7b59fa82c94ee_a9c3ad1cd2de83e09f3a7b59fa82c94ee}{loop\+\_\+t} $\ast$ \hyperlink{a00102_gad840fd786ca7092d528a8fc45c2e2a76_gad840fd786ca7092d528a8fc45c2e2a76}{channel\+\_\+ref\+\_\+get\+\_\+loop} (\hyperlink{a00051_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\hyperlink{a00051_a97fc76209a58362019f1ded9169e397f_a97fc76209a58362019f1ded9169e397f}{kloop\+\_\+t} $\ast$ \hyperlink{a00102_ga32ac938704d08913a296bf9a7443632e_ga32ac938704d08913a296bf9a7443632e}{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+loop} (\hyperlink{a00051_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
 \begin{DoxyCompactList}\small\item\em 取得管道所关联的事件循环 \end{DoxyCompactList}\item 
-void \hyperlink{a00102_ga7627dbcdb87269ef2fae5bcbbb210720_ga7627dbcdb87269ef2fae5bcbbb210720}{channel\+\_\+ref\+\_\+set\+\_\+cb} (\hyperlink{a00051_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref, \hyperlink{a00051_ae296ec4d1ce108960de8dcc423956a1d_ae296ec4d1ce108960de8dcc423956a1d}{channel\+\_\+ref\+\_\+cb\+\_\+t} cb)
+void \hyperlink{a00102_ga7c0a36ca7b0f62985b64915f2e5cd947_ga7c0a36ca7b0f62985b64915f2e5cd947}{knet\+\_\+channel\+\_\+ref\+\_\+set\+\_\+cb} (\hyperlink{a00051_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref, \hyperlink{a00051_a8a7d96123ef4565c6d08fe58a10476a9_a8a7d96123ef4565c6d08fe58a10476a9}{knet\+\_\+channel\+\_\+ref\+\_\+cb\+\_\+t} cb)
 \begin{DoxyCompactList}\small\item\em 设置管道事件回调 \end{DoxyCompactList}\item 
-void \hyperlink{a00102_ga4e46196f7ac40bdd14a1407167e88b7b_ga4e46196f7ac40bdd14a1407167e88b7b}{channel\+\_\+ref\+\_\+set\+\_\+timeout} (\hyperlink{a00051_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref, int timeout)
+void \hyperlink{a00102_ga81b273235ae5970b4642a961744315d6_ga81b273235ae5970b4642a961744315d6}{knet\+\_\+channel\+\_\+ref\+\_\+set\+\_\+timeout} (\hyperlink{a00051_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref, int timeout)
 \begin{DoxyCompactList}\small\item\em 设置管道空闲超时 \end{DoxyCompactList}\item 
-\hyperlink{a00051_a7a6e75b85c8b441f843bd40004a7d9d5_a7a6e75b85c8b441f843bd40004a7d9d5}{address\+\_\+t} $\ast$ \hyperlink{a00102_ga7bcafd2461a1edfde9c581cb946dcd44_ga7bcafd2461a1edfde9c581cb946dcd44}{channel\+\_\+ref\+\_\+get\+\_\+peer\+\_\+address} (\hyperlink{a00051_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\hyperlink{a00051_a44e99fab0348ec54cfee119ddd9ceed6_a44e99fab0348ec54cfee119ddd9ceed6}{kaddress\+\_\+t} $\ast$ \hyperlink{a00102_gac54b0999f21b2f481f7b8ebd17699655_gac54b0999f21b2f481f7b8ebd17699655}{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+peer\+\_\+address} (\hyperlink{a00051_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
 \begin{DoxyCompactList}\small\item\em 取得对端地址 \end{DoxyCompactList}\item 
-\hyperlink{a00051_a7a6e75b85c8b441f843bd40004a7d9d5_a7a6e75b85c8b441f843bd40004a7d9d5}{address\+\_\+t} $\ast$ \hyperlink{a00102_ga1dcf6af0c992fa21f9dcd03c8f763ec4_ga1dcf6af0c992fa21f9dcd03c8f763ec4}{channel\+\_\+ref\+\_\+get\+\_\+local\+\_\+address} (\hyperlink{a00051_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\hyperlink{a00051_a44e99fab0348ec54cfee119ddd9ceed6_a44e99fab0348ec54cfee119ddd9ceed6}{kaddress\+\_\+t} $\ast$ \hyperlink{a00102_gaddc78bbbcee3974d351c2c1ec0340e3e_gaddc78bbbcee3974d351c2c1ec0340e3e}{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+local\+\_\+address} (\hyperlink{a00051_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
 \begin{DoxyCompactList}\small\item\em 取得本地地址 \end{DoxyCompactList}\item 
-uint64\+\_\+t \hyperlink{a00102_ga3fd39b821fef38abd518db6240e79068_ga3fd39b821fef38abd518db6240e79068}{channel\+\_\+ref\+\_\+get\+\_\+uuid} (\hyperlink{a00051_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+uint64\+\_\+t \hyperlink{a00102_ga33f0ef5b9b57ff12a51579e222807335_ga33f0ef5b9b57ff12a51579e222807335}{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+uuid} (\hyperlink{a00051_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
 \begin{DoxyCompactList}\small\item\em 获取管道\+U\+U\+I\+D \end{DoxyCompactList}\item 
-int \hyperlink{a00102_gad44fcb68845cb3ebb582a9de6db9abd0_gad44fcb68845cb3ebb582a9de6db9abd0}{channel\+\_\+ref\+\_\+equal} (\hyperlink{a00051_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$a, \hyperlink{a00051_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$b)
+int \hyperlink{a00102_ga021034214898a7509914a336a1afb47a_ga021034214898a7509914a336a1afb47a}{knet\+\_\+channel\+\_\+ref\+\_\+equal} (\hyperlink{a00051_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$a, \hyperlink{a00051_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$b)
 \begin{DoxyCompactList}\small\item\em 测试两个管道引用是否指向同一个管道 \end{DoxyCompactList}\item 
-void \hyperlink{a00102_ga92427ed1f084e9b019acfcdf79bb4b44_ga92427ed1f084e9b019acfcdf79bb4b44}{channel\+\_\+ref\+\_\+set\+\_\+user\+\_\+data} (\hyperlink{a00051_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref, void $\ast$data)
+void \hyperlink{a00102_ga21f85fcd9fe24484f3dbe368eac5e9bb_ga21f85fcd9fe24484f3dbe368eac5e9bb}{knet\+\_\+channel\+\_\+ref\+\_\+set\+\_\+user\+\_\+data} (\hyperlink{a00051_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref, void $\ast$data)
 \begin{DoxyCompactList}\small\item\em 设置管道用户数据 \end{DoxyCompactList}\item 
-void $\ast$ \hyperlink{a00102_gaf4021842b995f59d23b931dd9ad3ff07_gaf4021842b995f59d23b931dd9ad3ff07}{channel\+\_\+ref\+\_\+get\+\_\+user\+\_\+data} (\hyperlink{a00051_a151271c9d188ef28d4d24bb81dcc1263_a151271c9d188ef28d4d24bb81dcc1263}{channel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+void $\ast$ \hyperlink{a00102_gabd02f58cb58b94071796e06bad804369_gabd02f58cb58b94071796e06bad804369}{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+user\+\_\+data} (\hyperlink{a00051_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
 \begin{DoxyCompactList}\small\item\em 获取管道用户数据 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -51,7 +59,7 @@ void $\ast$ \hyperlink{a00102_gaf4021842b995f59d23b931dd9ad3ff07_gaf4021842b995f
 
 
 \begin{DoxyPre}
-channel\_ref\_t作为channel\_t的包装器，对于用户透明化了管道的内部实现，同时提供了引用计数用于
+kchannel\_ref\_t作为kchannel\_t的包装器，对于用户透明化了管道的内部实现，同时提供了引用计数用于
 管道的生命周期管理.\end{DoxyPre}
 
 
@@ -76,45 +84,45 @@ channel\_ref\_t作为channel\_t的包装器，对于用户透明化了管道的�
 
 
 
-\begin{DoxyPre}在没有负载均衡器存在的情况下(loop\_t没有通过loop\_balancer\_attach关联到loop\_balancer\_t),
-所有连接器管道都会在当前loop\_t内运行，所有由监听器接受的管道也会在loop\_t内运行.
-如果loop\_t已经关联到负载均衡器，连接器/监听器接受的管道可能不在当前loop\_t内
-运行，负载均衡器会根据活跃管道的数量将这个管道分配到其他loop\_t运行，或者仍然在当前loop\_t内运行，
-结果取决于当前所有loop\_t负载的情况（活跃管道的数量）.\end{DoxyPre}
+\begin{DoxyPre}在没有负载均衡器存在的情况下(kloop\_t没有通过knet\_loop\_balancer\_attach关联到kloop\_balancer\_t),
+所有连接器管道都会在当前kloop\_t内运行，所有由监听器接受的管道也会在kloop\_t内运行.
+如果kloop\_t已经关联到负载均衡器，连接器/监听器接受的管道可能不在当前kloop\_t内
+运行，负载均衡器会根据活跃管道的数量将这个管道分配到其他kloop\_t运行，或者仍然在当前kloop\_t内运行，
+结果取决于当前所有kloop\_t负载的情况（活跃管道的数量）.\end{DoxyPre}
 
 
 
-\begin{DoxyPre}可以调用函数channel\_ref\_check\_balance确定管道是否被负载均衡调配，调用channel\_ref\_check\_state
-检查管道当前所处的状态，channel\_ref\_close关闭管道，无论此时管道的引用计数是否为零，管道的套接字都会
-被关闭，当管道引用计数为零时，loop\_t才会真正销毁它.调用channel\_ref\_equal可以判断两个管道引用是否
+\begin{DoxyPre}可以调用函数knet\_channel\_ref\_check\_balance确定管道是否被负载均衡调配，调用knet\_channel\_ref\_check\_state
+检查管道当前所处的状态，knet\_channel\_ref\_close关闭管道，无论此时管道的引用计数是否为零，管道的套接字都会
+被关闭，当管道引用计数为零时，kloop\_t才会真正销毁它.调用knet\_channel\_ref\_equal可以判断两个管道引用是否
 指向同一个管道.\end{DoxyPre}
 
 
 
-\begin{DoxyPre}可以通过调用channel\_ref\_set\_timeout设置管道的读空闲超时（秒），这可以用做心跳包的处理，调用
-channel\_ref\_connect时最后一个参数传递一个非零值可以设置连接器的连接超时（秒），这可以用于重连.
-调用channel\_ref\_get\_socket\_fd得到管道套接字，调用channel\_ref\_get\_uuid的到管道UUID.
+\begin{DoxyPre}可以通过调用knet\_channel\_ref\_set\_timeout设置管道的读空闲超时（秒），这可以用做心跳包的处理，调用
+knet\_channel\_ref\_connect时最后一个参数传递一个非零值可以设置连接器的连接超时（秒），这可以用于重连.
+调用knet\_channel\_ref\_get\_socket\_fd得到管道套接字，调用knet\_channel\_ref\_get\_uuid的到管道UUID.
 \end{DoxyPre}
  
 
 \subsection{函数说明}
-\hypertarget{a00102_gae9ae0ae2a42eabf6a544ce4e0f001c9e_gae9ae0ae2a42eabf6a544ce4e0f001c9e}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+accept@{channel\+\_\+ref\+\_\+accept}}
-\index{channel\+\_\+ref\+\_\+accept@{channel\+\_\+ref\+\_\+accept}!管道引用@{管道引用}}
-\subsubsection[{channel\+\_\+ref\+\_\+accept}]{\setlength{\rightskip}{0pt plus 5cm}int channel\+\_\+ref\+\_\+accept (
+\hypertarget{a00102_ga92a683023f347ae7c4eb692180884a01_ga92a683023f347ae7c4eb692180884a01}{}\index{管道引用@{管道引用}!knet\+\_\+channel\+\_\+ref\+\_\+accept@{knet\+\_\+channel\+\_\+ref\+\_\+accept}}
+\index{knet\+\_\+channel\+\_\+ref\+\_\+accept@{knet\+\_\+channel\+\_\+ref\+\_\+accept}!管道引用@{管道引用}}
+\subsubsection[{knet\+\_\+channel\+\_\+ref\+\_\+accept}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+channel\+\_\+ref\+\_\+accept (
 \begin{DoxyParamCaption}
-\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref, }
+\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref, }
 \item[{const char $\ast$}]{ip, }
 \item[{int}]{port, }
 \item[{int}]{backlog}
 \end{DoxyParamCaption}
-)}\label{a00102_gae9ae0ae2a42eabf6a544ce4e0f001c9e_gae9ae0ae2a42eabf6a544ce4e0f001c9e}
+)}\label{a00102_ga92a683023f347ae7c4eb692180884a01_ga92a683023f347ae7c4eb692180884a01}
 
 
 将管道转换为监听管道 
 
-由这个监听管道接受的新连接将使用与监听管道相同的发送缓冲区最大数量限制和接受缓冲区长度限制, channel\+\_\+ref\+\_\+accept所接受的新连接将被负载均衡，实际运行在哪个loop\+\_\+t内依赖于实际运行的情况 
+由这个监听管道接受的新连接将使用与监听管道相同的发送缓冲区最大数量限制和接受缓冲区长度限制, knet\+\_\+channel\+\_\+ref\+\_\+accept所接受的新连接将被负载均衡，实际运行在哪个kloop\+\_\+t内依赖于实际运行的情况 
 \begin{DoxyParams}{参数}
-{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+{\em channel\+\_\+ref} & kchannel\+\_\+ref\+\_\+t实例 \\
 \hline
 {\em ip} & I\+P \\
 \hline
@@ -130,20 +138,43 @@ channel\_ref\_connect时最后一个参数传递一个非零值可以设置连�
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00102_gae003fde214ddbf4feec22ddb89b8257c_gae003fde214ddbf4feec22ddb89b8257c}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+check\+\_\+balance@{channel\+\_\+ref\+\_\+check\+\_\+balance}}
-\index{channel\+\_\+ref\+\_\+check\+\_\+balance@{channel\+\_\+ref\+\_\+check\+\_\+balance}!管道引用@{管道引用}}
-\subsubsection[{channel\+\_\+ref\+\_\+check\+\_\+balance}]{\setlength{\rightskip}{0pt plus 5cm}int channel\+\_\+ref\+\_\+check\+\_\+balance (
+\hypertarget{a00102_gae0a3f38cfb6a397a4c810cd8c162c37f_gae0a3f38cfb6a397a4c810cd8c162c37f}{}\index{管道引用@{管道引用}!knet\+\_\+channel\+\_\+ref\+\_\+check\+\_\+auto\+\_\+reconnect@{knet\+\_\+channel\+\_\+ref\+\_\+check\+\_\+auto\+\_\+reconnect}}
+\index{knet\+\_\+channel\+\_\+ref\+\_\+check\+\_\+auto\+\_\+reconnect@{knet\+\_\+channel\+\_\+ref\+\_\+check\+\_\+auto\+\_\+reconnect}!管道引用@{管道引用}}
+\subsubsection[{knet\+\_\+channel\+\_\+ref\+\_\+check\+\_\+auto\+\_\+reconnect}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+channel\+\_\+ref\+\_\+check\+\_\+auto\+\_\+reconnect (
 \begin{DoxyParamCaption}
-\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
 \end{DoxyParamCaption}
-)}\label{a00102_gae003fde214ddbf4feec22ddb89b8257c_gae003fde214ddbf4feec22ddb89b8257c}
+)}\label{a00102_gae0a3f38cfb6a397a4c810cd8c162c37f_gae0a3f38cfb6a397a4c810cd8c162c37f}
 
 
-检测管道是否是通过负载均衡关联到当前的loop\+\_\+t 
+检查管道是否开启了自动重连 
 
 
 \begin{DoxyParams}{参数}
-{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+{\em channel\+\_\+ref} & kchannel\+\_\+ref\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em 0} & 未开启 \\
+\hline
+{\em 非零} & 开启 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{a00102_gae6b27f8bb8c72932a086dc20a4582527_gae6b27f8bb8c72932a086dc20a4582527}{}\index{管道引用@{管道引用}!knet\+\_\+channel\+\_\+ref\+\_\+check\+\_\+balance@{knet\+\_\+channel\+\_\+ref\+\_\+check\+\_\+balance}}
+\index{knet\+\_\+channel\+\_\+ref\+\_\+check\+\_\+balance@{knet\+\_\+channel\+\_\+ref\+\_\+check\+\_\+balance}!管道引用@{管道引用}}
+\subsubsection[{knet\+\_\+channel\+\_\+ref\+\_\+check\+\_\+balance}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+channel\+\_\+ref\+\_\+check\+\_\+balance (
+\begin{DoxyParamCaption}
+\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\end{DoxyParamCaption}
+)}\label{a00102_gae6b27f8bb8c72932a086dc20a4582527_gae6b27f8bb8c72932a086dc20a4582527}
+
+
+检测管道是否是通过负载均衡关联到当前的kloop\+\_\+t 
+
+
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & kchannel\+\_\+ref\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 
@@ -153,21 +184,44 @@ channel\_ref\_connect时最后一个参数传递一个非零值可以设置连�
 {\em 非0} & 是 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00102_gadddbdc58824b567334d46493decc90f8_gadddbdc58824b567334d46493decc90f8}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+check\+\_\+state@{channel\+\_\+ref\+\_\+check\+\_\+state}}
-\index{channel\+\_\+ref\+\_\+check\+\_\+state@{channel\+\_\+ref\+\_\+check\+\_\+state}!管道引用@{管道引用}}
-\subsubsection[{channel\+\_\+ref\+\_\+check\+\_\+state}]{\setlength{\rightskip}{0pt plus 5cm}int channel\+\_\+ref\+\_\+check\+\_\+state (
+\hypertarget{a00102_gad844fbd8ee19d3cbcc2ad7822b0d5a2c_gad844fbd8ee19d3cbcc2ad7822b0d5a2c}{}\index{管道引用@{管道引用}!knet\+\_\+channel\+\_\+ref\+\_\+check\+\_\+close@{knet\+\_\+channel\+\_\+ref\+\_\+check\+\_\+close}}
+\index{knet\+\_\+channel\+\_\+ref\+\_\+check\+\_\+close@{knet\+\_\+channel\+\_\+ref\+\_\+check\+\_\+close}!管道引用@{管道引用}}
+\subsubsection[{knet\+\_\+channel\+\_\+ref\+\_\+check\+\_\+close}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+channel\+\_\+ref\+\_\+check\+\_\+close (
 \begin{DoxyParamCaption}
-\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref, }
-\item[{{\bf channel\+\_\+state\+\_\+e}}]{state}
+\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
 \end{DoxyParamCaption}
-)}\label{a00102_gadddbdc58824b567334d46493decc90f8_gadddbdc58824b567334d46493decc90f8}
+)}\label{a00102_gad844fbd8ee19d3cbcc2ad7822b0d5a2c_gad844fbd8ee19d3cbcc2ad7822b0d5a2c}
+
+
+检查管道是否已经关闭 
+
+
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & kchannel\+\_\+ref\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em 0} & 未关闭 \\
+\hline
+{\em 非零} & 关闭 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{a00102_ga902f5bad47644b56ff5d9a4ecf152abb_ga902f5bad47644b56ff5d9a4ecf152abb}{}\index{管道引用@{管道引用}!knet\+\_\+channel\+\_\+ref\+\_\+check\+\_\+state@{knet\+\_\+channel\+\_\+ref\+\_\+check\+\_\+state}}
+\index{knet\+\_\+channel\+\_\+ref\+\_\+check\+\_\+state@{knet\+\_\+channel\+\_\+ref\+\_\+check\+\_\+state}!管道引用@{管道引用}}
+\subsubsection[{knet\+\_\+channel\+\_\+ref\+\_\+check\+\_\+state}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+channel\+\_\+ref\+\_\+check\+\_\+state (
+\begin{DoxyParamCaption}
+\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref, }
+\item[{{\bf knet\+\_\+channel\+\_\+state\+\_\+e}}]{state}
+\end{DoxyParamCaption}
+)}\label{a00102_ga902f5bad47644b56ff5d9a4ecf152abb_ga902f5bad47644b56ff5d9a4ecf152abb}
 
 
 检测管道当前状态 
 
 
 \begin{DoxyParams}{参数}
-{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+{\em channel\+\_\+ref} & kchannel\+\_\+ref\+\_\+t实例 \\
 \hline
 {\em state} & 需要测试的状态 \\
 \hline
@@ -179,39 +233,39 @@ channel\_ref\_connect时最后一个参数传递一个非零值可以设置连�
 {\em 0} & 不是 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00102_ga49d6ba5f0b9aad95ae5c5710dca392a1_ga49d6ba5f0b9aad95ae5c5710dca392a1}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+close@{channel\+\_\+ref\+\_\+close}}
-\index{channel\+\_\+ref\+\_\+close@{channel\+\_\+ref\+\_\+close}!管道引用@{管道引用}}
-\subsubsection[{channel\+\_\+ref\+\_\+close}]{\setlength{\rightskip}{0pt plus 5cm}void channel\+\_\+ref\+\_\+close (
+\hypertarget{a00102_gaf7ce59d20d4e716707bea7dec42811c3_gaf7ce59d20d4e716707bea7dec42811c3}{}\index{管道引用@{管道引用}!knet\+\_\+channel\+\_\+ref\+\_\+close@{knet\+\_\+channel\+\_\+ref\+\_\+close}}
+\index{knet\+\_\+channel\+\_\+ref\+\_\+close@{knet\+\_\+channel\+\_\+ref\+\_\+close}!管道引用@{管道引用}}
+\subsubsection[{knet\+\_\+channel\+\_\+ref\+\_\+close}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+channel\+\_\+ref\+\_\+close (
 \begin{DoxyParamCaption}
-\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
 \end{DoxyParamCaption}
-)}\label{a00102_ga49d6ba5f0b9aad95ae5c5710dca392a1_ga49d6ba5f0b9aad95ae5c5710dca392a1}
+)}\label{a00102_gaf7ce59d20d4e716707bea7dec42811c3_gaf7ce59d20d4e716707bea7dec42811c3}
 
 
 关闭管道 
 
 
 \begin{DoxyParams}{参数}
-{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+{\em channel\+\_\+ref} & kchannel\+\_\+ref\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
-\hypertarget{a00102_ga1a8d1f5550cf26313cbb6575e8b2a32c_ga1a8d1f5550cf26313cbb6575e8b2a32c}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+connect@{channel\+\_\+ref\+\_\+connect}}
-\index{channel\+\_\+ref\+\_\+connect@{channel\+\_\+ref\+\_\+connect}!管道引用@{管道引用}}
-\subsubsection[{channel\+\_\+ref\+\_\+connect}]{\setlength{\rightskip}{0pt plus 5cm}int channel\+\_\+ref\+\_\+connect (
+\hypertarget{a00102_gad8fc0ffe3928e6914b3ec50810e2e79f_gad8fc0ffe3928e6914b3ec50810e2e79f}{}\index{管道引用@{管道引用}!knet\+\_\+channel\+\_\+ref\+\_\+connect@{knet\+\_\+channel\+\_\+ref\+\_\+connect}}
+\index{knet\+\_\+channel\+\_\+ref\+\_\+connect@{knet\+\_\+channel\+\_\+ref\+\_\+connect}!管道引用@{管道引用}}
+\subsubsection[{knet\+\_\+channel\+\_\+ref\+\_\+connect}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+channel\+\_\+ref\+\_\+connect (
 \begin{DoxyParamCaption}
-\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref, }
+\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref, }
 \item[{const char $\ast$}]{ip, }
 \item[{int}]{port, }
 \item[{int}]{timeout}
 \end{DoxyParamCaption}
-)}\label{a00102_ga1a8d1f5550cf26313cbb6575e8b2a32c_ga1a8d1f5550cf26313cbb6575e8b2a32c}
+)}\label{a00102_gad8fc0ffe3928e6914b3ec50810e2e79f_gad8fc0ffe3928e6914b3ec50810e2e79f}
 
 
 主动连接 
 
-调用channel\+\_\+ref\+\_\+connect的管道会被负载均衡，实际运行在哪个loop\+\_\+t内依赖于实际运行的情况 
+调用knet\+\_\+channel\+\_\+ref\+\_\+connect的管道会被负载均衡，实际运行在哪个kloop\+\_\+t内依赖于实际运行的情况 
 \begin{DoxyParams}{参数}
-{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+{\em channel\+\_\+ref} & kchannel\+\_\+ref\+\_\+t实例 \\
 \hline
 {\em ip} & I\+P \\
 \hline
@@ -227,23 +281,23 @@ channel\_ref\_connect时最后一个参数传递一个非零值可以设置连�
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00102_gad44fcb68845cb3ebb582a9de6db9abd0_gad44fcb68845cb3ebb582a9de6db9abd0}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+equal@{channel\+\_\+ref\+\_\+equal}}
-\index{channel\+\_\+ref\+\_\+equal@{channel\+\_\+ref\+\_\+equal}!管道引用@{管道引用}}
-\subsubsection[{channel\+\_\+ref\+\_\+equal}]{\setlength{\rightskip}{0pt plus 5cm}int channel\+\_\+ref\+\_\+equal (
+\hypertarget{a00102_ga021034214898a7509914a336a1afb47a_ga021034214898a7509914a336a1afb47a}{}\index{管道引用@{管道引用}!knet\+\_\+channel\+\_\+ref\+\_\+equal@{knet\+\_\+channel\+\_\+ref\+\_\+equal}}
+\index{knet\+\_\+channel\+\_\+ref\+\_\+equal@{knet\+\_\+channel\+\_\+ref\+\_\+equal}!管道引用@{管道引用}}
+\subsubsection[{knet\+\_\+channel\+\_\+ref\+\_\+equal}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+channel\+\_\+ref\+\_\+equal (
 \begin{DoxyParamCaption}
-\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{a, }
-\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{b}
+\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{a, }
+\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{b}
 \end{DoxyParamCaption}
-)}\label{a00102_gad44fcb68845cb3ebb582a9de6db9abd0_gad44fcb68845cb3ebb582a9de6db9abd0}
+)}\label{a00102_ga021034214898a7509914a336a1afb47a_ga021034214898a7509914a336a1afb47a}
 
 
 测试两个管道引用是否指向同一个管道 
 
 
 \begin{DoxyParams}{参数}
-{\em a} & channel\+\_\+t实例 \\
+{\em a} & kchannel\+\_\+t实例 \\
 \hline
-{\em b} & channel\+\_\+t实例 \\
+{\em b} & kchannel\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 
@@ -253,228 +307,283 @@ channel\_ref\_connect时最后一个参数传递一个非零值可以设置连�
 {\em 非零} & 相同 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00102_ga1dcf6af0c992fa21f9dcd03c8f763ec4_ga1dcf6af0c992fa21f9dcd03c8f763ec4}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+get\+\_\+local\+\_\+address@{channel\+\_\+ref\+\_\+get\+\_\+local\+\_\+address}}
-\index{channel\+\_\+ref\+\_\+get\+\_\+local\+\_\+address@{channel\+\_\+ref\+\_\+get\+\_\+local\+\_\+address}!管道引用@{管道引用}}
-\subsubsection[{channel\+\_\+ref\+\_\+get\+\_\+local\+\_\+address}]{\setlength{\rightskip}{0pt plus 5cm}{\bf address\+\_\+t}$\ast$ channel\+\_\+ref\+\_\+get\+\_\+local\+\_\+address (
+\hypertarget{a00102_gaddc78bbbcee3974d351c2c1ec0340e3e_gaddc78bbbcee3974d351c2c1ec0340e3e}{}\index{管道引用@{管道引用}!knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+local\+\_\+address@{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+local\+\_\+address}}
+\index{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+local\+\_\+address@{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+local\+\_\+address}!管道引用@{管道引用}}
+\subsubsection[{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+local\+\_\+address}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kaddress\+\_\+t}$\ast$ knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+local\+\_\+address (
 \begin{DoxyParamCaption}
-\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
 \end{DoxyParamCaption}
-)}\label{a00102_ga1dcf6af0c992fa21f9dcd03c8f763ec4_ga1dcf6af0c992fa21f9dcd03c8f763ec4}
+)}\label{a00102_gaddc78bbbcee3974d351c2c1ec0340e3e_gaddc78bbbcee3974d351c2c1ec0340e3e}
 
 
 取得本地地址 
 
 
 \begin{DoxyParams}{参数}
-{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+{\em channel\+\_\+ref} & kchannel\+\_\+ref\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-address\+\_\+t实例 
+kaddress\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00102_gad840fd786ca7092d528a8fc45c2e2a76_gad840fd786ca7092d528a8fc45c2e2a76}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+get\+\_\+loop@{channel\+\_\+ref\+\_\+get\+\_\+loop}}
-\index{channel\+\_\+ref\+\_\+get\+\_\+loop@{channel\+\_\+ref\+\_\+get\+\_\+loop}!管道引用@{管道引用}}
-\subsubsection[{channel\+\_\+ref\+\_\+get\+\_\+loop}]{\setlength{\rightskip}{0pt plus 5cm}{\bf loop\+\_\+t}$\ast$ channel\+\_\+ref\+\_\+get\+\_\+loop (
+\hypertarget{a00102_ga32ac938704d08913a296bf9a7443632e_ga32ac938704d08913a296bf9a7443632e}{}\index{管道引用@{管道引用}!knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+loop@{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+loop}}
+\index{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+loop@{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+loop}!管道引用@{管道引用}}
+\subsubsection[{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+loop}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kloop\+\_\+t}$\ast$ knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+loop (
 \begin{DoxyParamCaption}
-\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
 \end{DoxyParamCaption}
-)}\label{a00102_gad840fd786ca7092d528a8fc45c2e2a76_gad840fd786ca7092d528a8fc45c2e2a76}
+)}\label{a00102_ga32ac938704d08913a296bf9a7443632e_ga32ac938704d08913a296bf9a7443632e}
 
 
 取得管道所关联的事件循环 
 
 
 \begin{DoxyParams}{参数}
-{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+{\em channel\+\_\+ref} & kchannel\+\_\+ref\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-loop\+\_\+t实例 
+kloop\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00102_ga7bcafd2461a1edfde9c581cb946dcd44_ga7bcafd2461a1edfde9c581cb946dcd44}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+get\+\_\+peer\+\_\+address@{channel\+\_\+ref\+\_\+get\+\_\+peer\+\_\+address}}
-\index{channel\+\_\+ref\+\_\+get\+\_\+peer\+\_\+address@{channel\+\_\+ref\+\_\+get\+\_\+peer\+\_\+address}!管道引用@{管道引用}}
-\subsubsection[{channel\+\_\+ref\+\_\+get\+\_\+peer\+\_\+address}]{\setlength{\rightskip}{0pt plus 5cm}{\bf address\+\_\+t}$\ast$ channel\+\_\+ref\+\_\+get\+\_\+peer\+\_\+address (
+\hypertarget{a00102_gac54b0999f21b2f481f7b8ebd17699655_gac54b0999f21b2f481f7b8ebd17699655}{}\index{管道引用@{管道引用}!knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+peer\+\_\+address@{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+peer\+\_\+address}}
+\index{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+peer\+\_\+address@{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+peer\+\_\+address}!管道引用@{管道引用}}
+\subsubsection[{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+peer\+\_\+address}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kaddress\+\_\+t}$\ast$ knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+peer\+\_\+address (
 \begin{DoxyParamCaption}
-\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
 \end{DoxyParamCaption}
-)}\label{a00102_ga7bcafd2461a1edfde9c581cb946dcd44_ga7bcafd2461a1edfde9c581cb946dcd44}
+)}\label{a00102_gac54b0999f21b2f481f7b8ebd17699655_gac54b0999f21b2f481f7b8ebd17699655}
 
 
 取得对端地址 
 
 
 \begin{DoxyParams}{参数}
-{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+{\em channel\+\_\+ref} & kchannel\+\_\+ref\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-address\+\_\+t实例 
+kaddress\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00102_gaf0c977ef05b7e767a8ef166a8037ec8b_gaf0c977ef05b7e767a8ef166a8037ec8b}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+get\+\_\+socket\+\_\+fd@{channel\+\_\+ref\+\_\+get\+\_\+socket\+\_\+fd}}
-\index{channel\+\_\+ref\+\_\+get\+\_\+socket\+\_\+fd@{channel\+\_\+ref\+\_\+get\+\_\+socket\+\_\+fd}!管道引用@{管道引用}}
-\subsubsection[{channel\+\_\+ref\+\_\+get\+\_\+socket\+\_\+fd}]{\setlength{\rightskip}{0pt plus 5cm}{\bf socket\+\_\+t} channel\+\_\+ref\+\_\+get\+\_\+socket\+\_\+fd (
+\hypertarget{a00102_ga58380a92125ad1a79ecbae828b8e9755_ga58380a92125ad1a79ecbae828b8e9755}{}\index{管道引用@{管道引用}!knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+socket\+\_\+fd@{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+socket\+\_\+fd}}
+\index{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+socket\+\_\+fd@{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+socket\+\_\+fd}!管道引用@{管道引用}}
+\subsubsection[{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+socket\+\_\+fd}]{\setlength{\rightskip}{0pt plus 5cm}{\bf socket\+\_\+t} knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+socket\+\_\+fd (
 \begin{DoxyParamCaption}
-\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
 \end{DoxyParamCaption}
-)}\label{a00102_gaf0c977ef05b7e767a8ef166a8037ec8b_gaf0c977ef05b7e767a8ef166a8037ec8b}
+)}\label{a00102_ga58380a92125ad1a79ecbae828b8e9755_ga58380a92125ad1a79ecbae828b8e9755}
 
 
 取得管道套接字 
 
 
 \begin{DoxyParams}{参数}
-{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+{\em channel\+\_\+ref} & kchannel\+\_\+ref\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
 套接字 
 \end{DoxyReturn}
-\hypertarget{a00102_gaf8d2758e1e063e04512049c9a9869d5e_gaf8d2758e1e063e04512049c9a9869d5e}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+get\+\_\+stream@{channel\+\_\+ref\+\_\+get\+\_\+stream}}
-\index{channel\+\_\+ref\+\_\+get\+\_\+stream@{channel\+\_\+ref\+\_\+get\+\_\+stream}!管道引用@{管道引用}}
-\subsubsection[{channel\+\_\+ref\+\_\+get\+\_\+stream}]{\setlength{\rightskip}{0pt plus 5cm}{\bf stream\+\_\+t}$\ast$ channel\+\_\+ref\+\_\+get\+\_\+stream (
+\hypertarget{a00102_gaa96ef131ed8d43d529a76ce1c9aea1a3_gaa96ef131ed8d43d529a76ce1c9aea1a3}{}\index{管道引用@{管道引用}!knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+stream@{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+stream}}
+\index{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+stream@{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+stream}!管道引用@{管道引用}}
+\subsubsection[{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+stream}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kstream\+\_\+t}$\ast$ knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+stream (
 \begin{DoxyParamCaption}
-\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
 \end{DoxyParamCaption}
-)}\label{a00102_gaf8d2758e1e063e04512049c9a9869d5e_gaf8d2758e1e063e04512049c9a9869d5e}
+)}\label{a00102_gaa96ef131ed8d43d529a76ce1c9aea1a3_gaa96ef131ed8d43d529a76ce1c9aea1a3}
 
 
 取得管道数据流 
 
 
 \begin{DoxyParams}{参数}
-{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+{\em channel\+\_\+ref} & kchannel\+\_\+ref\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-stream\+\_\+t实例 
+kstream\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00102_gaf4021842b995f59d23b931dd9ad3ff07_gaf4021842b995f59d23b931dd9ad3ff07}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+get\+\_\+user\+\_\+data@{channel\+\_\+ref\+\_\+get\+\_\+user\+\_\+data}}
-\index{channel\+\_\+ref\+\_\+get\+\_\+user\+\_\+data@{channel\+\_\+ref\+\_\+get\+\_\+user\+\_\+data}!管道引用@{管道引用}}
-\subsubsection[{channel\+\_\+ref\+\_\+get\+\_\+user\+\_\+data}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ channel\+\_\+ref\+\_\+get\+\_\+user\+\_\+data (
+\hypertarget{a00102_gabd02f58cb58b94071796e06bad804369_gabd02f58cb58b94071796e06bad804369}{}\index{管道引用@{管道引用}!knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+user\+\_\+data@{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+user\+\_\+data}}
+\index{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+user\+\_\+data@{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+user\+\_\+data}!管道引用@{管道引用}}
+\subsubsection[{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+user\+\_\+data}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+user\+\_\+data (
 \begin{DoxyParamCaption}
-\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
 \end{DoxyParamCaption}
-)}\label{a00102_gaf4021842b995f59d23b931dd9ad3ff07_gaf4021842b995f59d23b931dd9ad3ff07}
+)}\label{a00102_gabd02f58cb58b94071796e06bad804369_gabd02f58cb58b94071796e06bad804369}
 
 
 获取管道用户数据 
 
 
 \begin{DoxyParams}{参数}
-{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+{\em channel\+\_\+ref} & kchannel\+\_\+ref\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
 用户数据指针 
 \end{DoxyReturn}
-\hypertarget{a00102_ga3fd39b821fef38abd518db6240e79068_ga3fd39b821fef38abd518db6240e79068}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+get\+\_\+uuid@{channel\+\_\+ref\+\_\+get\+\_\+uuid}}
-\index{channel\+\_\+ref\+\_\+get\+\_\+uuid@{channel\+\_\+ref\+\_\+get\+\_\+uuid}!管道引用@{管道引用}}
-\subsubsection[{channel\+\_\+ref\+\_\+get\+\_\+uuid}]{\setlength{\rightskip}{0pt plus 5cm}uint64\+\_\+t channel\+\_\+ref\+\_\+get\+\_\+uuid (
+\hypertarget{a00102_ga33f0ef5b9b57ff12a51579e222807335_ga33f0ef5b9b57ff12a51579e222807335}{}\index{管道引用@{管道引用}!knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+uuid@{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+uuid}}
+\index{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+uuid@{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+uuid}!管道引用@{管道引用}}
+\subsubsection[{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+uuid}]{\setlength{\rightskip}{0pt plus 5cm}uint64\+\_\+t knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+uuid (
 \begin{DoxyParamCaption}
-\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
 \end{DoxyParamCaption}
-)}\label{a00102_ga3fd39b821fef38abd518db6240e79068_ga3fd39b821fef38abd518db6240e79068}
+)}\label{a00102_ga33f0ef5b9b57ff12a51579e222807335_ga33f0ef5b9b57ff12a51579e222807335}
 
 
 获取管道\+U\+U\+I\+D 
 
 
 \begin{DoxyParams}{参数}
-{\em channel\+\_\+ref} & channel\+\_\+t实例 \\
+{\em channel\+\_\+ref} & kchannel\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
 管道\+U\+U\+I\+D 
 \end{DoxyReturn}
-\hypertarget{a00102_gab4248c6e10ac538b5d37b927bbe39ef1_gab4248c6e10ac538b5d37b927bbe39ef1}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+leave@{channel\+\_\+ref\+\_\+leave}}
-\index{channel\+\_\+ref\+\_\+leave@{channel\+\_\+ref\+\_\+leave}!管道引用@{管道引用}}
-\subsubsection[{channel\+\_\+ref\+\_\+leave}]{\setlength{\rightskip}{0pt plus 5cm}void channel\+\_\+ref\+\_\+leave (
+\hypertarget{a00102_ga6eded28dc89d84e8ed33615bbd205bae_ga6eded28dc89d84e8ed33615bbd205bae}{}\index{管道引用@{管道引用}!knet\+\_\+channel\+\_\+ref\+\_\+leave@{knet\+\_\+channel\+\_\+ref\+\_\+leave}}
+\index{knet\+\_\+channel\+\_\+ref\+\_\+leave@{knet\+\_\+channel\+\_\+ref\+\_\+leave}!管道引用@{管道引用}}
+\subsubsection[{knet\+\_\+channel\+\_\+ref\+\_\+leave}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+channel\+\_\+ref\+\_\+leave (
 \begin{DoxyParamCaption}
-\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
 \end{DoxyParamCaption}
-)}\label{a00102_gab4248c6e10ac538b5d37b927bbe39ef1_gab4248c6e10ac538b5d37b927bbe39ef1}
+)}\label{a00102_ga6eded28dc89d84e8ed33615bbd205bae_ga6eded28dc89d84e8ed33615bbd205bae}
 
 
-减少管道引用计数，并销毁channel\+\_\+ref\+\_\+t实例 
+减少管道引用计数，并销毁kchannel\+\_\+ref\+\_\+t实例 
 
 
 \begin{DoxyParams}{参数}
-{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+{\em channel\+\_\+ref} & kchannel\+\_\+ref\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
-\hypertarget{a00102_ga7627dbcdb87269ef2fae5bcbbb210720_ga7627dbcdb87269ef2fae5bcbbb210720}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+set\+\_\+cb@{channel\+\_\+ref\+\_\+set\+\_\+cb}}
-\index{channel\+\_\+ref\+\_\+set\+\_\+cb@{channel\+\_\+ref\+\_\+set\+\_\+cb}!管道引用@{管道引用}}
-\subsubsection[{channel\+\_\+ref\+\_\+set\+\_\+cb}]{\setlength{\rightskip}{0pt plus 5cm}void channel\+\_\+ref\+\_\+set\+\_\+cb (
+\hypertarget{a00102_gad63e9094fa461829bf91cf8b50d98f21_gad63e9094fa461829bf91cf8b50d98f21}{}\index{管道引用@{管道引用}!knet\+\_\+channel\+\_\+ref\+\_\+reconnect@{knet\+\_\+channel\+\_\+ref\+\_\+reconnect}}
+\index{knet\+\_\+channel\+\_\+ref\+\_\+reconnect@{knet\+\_\+channel\+\_\+ref\+\_\+reconnect}!管道引用@{管道引用}}
+\subsubsection[{knet\+\_\+channel\+\_\+ref\+\_\+reconnect}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+channel\+\_\+ref\+\_\+reconnect (
 \begin{DoxyParamCaption}
-\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref, }
-\item[{{\bf channel\+\_\+ref\+\_\+cb\+\_\+t}}]{cb}
+\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref, }
+\item[{int}]{timeout}
 \end{DoxyParamCaption}
-)}\label{a00102_ga7627dbcdb87269ef2fae5bcbbb210720_ga7627dbcdb87269ef2fae5bcbbb210720}
+)}\label{a00102_gad63e9094fa461829bf91cf8b50d98f21_gad63e9094fa461829bf91cf8b50d98f21}
+
+
+重新发起连接 
+
+
+\begin{DoxyPre}
+超时的管道将被关闭，建立新管道重连，新管道将使用原有管道的属性，包含回调函数和用户指针
+如果timeout设置为0，则使用原有的连接超时，如果timeout>0则使用新的连接超时
+\end{DoxyPre}
+ 
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & kchannel\+\_\+ref\+\_\+t实例 \\
+\hline
+{\em timeout} & 连接超时（秒） \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{a00102_gad86b8f0e35f643881f521a1c49f85c76_gad86b8f0e35f643881f521a1c49f85c76}{}\index{管道引用@{管道引用}!knet\+\_\+channel\+\_\+ref\+\_\+set\+\_\+auto\+\_\+reconnect@{knet\+\_\+channel\+\_\+ref\+\_\+set\+\_\+auto\+\_\+reconnect}}
+\index{knet\+\_\+channel\+\_\+ref\+\_\+set\+\_\+auto\+\_\+reconnect@{knet\+\_\+channel\+\_\+ref\+\_\+set\+\_\+auto\+\_\+reconnect}!管道引用@{管道引用}}
+\subsubsection[{knet\+\_\+channel\+\_\+ref\+\_\+set\+\_\+auto\+\_\+reconnect}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+channel\+\_\+ref\+\_\+set\+\_\+auto\+\_\+reconnect (
+\begin{DoxyParamCaption}
+\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref, }
+\item[{int}]{auto\+\_\+reconnect}
+\end{DoxyParamCaption}
+)}\label{a00102_gad86b8f0e35f643881f521a1c49f85c76_gad86b8f0e35f643881f521a1c49f85c76}
+
+
+设置管道自动重连 
+
+
+\begin{DoxyPre}
+auto\_reconnect为非零值则开启自动重连，所有非错误性导致管道关闭，都会自动重连，用户手动调用
+knet\_channel\_ref\_close将不会触发自动重连
+\end{DoxyPre}
+ 
+\begin{DoxyParams}{参数}
+{\em channel\+\_\+ref} & kchannel\+\_\+ref\+\_\+t实例 \\
+\hline
+{\em auto\+\_\+reconnect} & 自动重连标志 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00102_ga7c0a36ca7b0f62985b64915f2e5cd947_ga7c0a36ca7b0f62985b64915f2e5cd947}{}\index{管道引用@{管道引用}!knet\+\_\+channel\+\_\+ref\+\_\+set\+\_\+cb@{knet\+\_\+channel\+\_\+ref\+\_\+set\+\_\+cb}}
+\index{knet\+\_\+channel\+\_\+ref\+\_\+set\+\_\+cb@{knet\+\_\+channel\+\_\+ref\+\_\+set\+\_\+cb}!管道引用@{管道引用}}
+\subsubsection[{knet\+\_\+channel\+\_\+ref\+\_\+set\+\_\+cb}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+channel\+\_\+ref\+\_\+set\+\_\+cb (
+\begin{DoxyParamCaption}
+\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref, }
+\item[{{\bf knet\+\_\+channel\+\_\+ref\+\_\+cb\+\_\+t}}]{cb}
+\end{DoxyParamCaption}
+)}\label{a00102_ga7c0a36ca7b0f62985b64915f2e5cd947_ga7c0a36ca7b0f62985b64915f2e5cd947}
 
 
 设置管道事件回调 
 
-事件回调将在关联的loop\+\_\+t实例所在线程内被回调 
+事件回调将在关联的kloop\+\_\+t实例所在线程内被回调 
 \begin{DoxyParams}{参数}
-{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+{\em channel\+\_\+ref} & kchannel\+\_\+ref\+\_\+t实例 \\
 \hline
 {\em cb} & 回调函数 \\
 \hline
 \end{DoxyParams}
-\hypertarget{a00102_ga4e46196f7ac40bdd14a1407167e88b7b_ga4e46196f7ac40bdd14a1407167e88b7b}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+set\+\_\+timeout@{channel\+\_\+ref\+\_\+set\+\_\+timeout}}
-\index{channel\+\_\+ref\+\_\+set\+\_\+timeout@{channel\+\_\+ref\+\_\+set\+\_\+timeout}!管道引用@{管道引用}}
-\subsubsection[{channel\+\_\+ref\+\_\+set\+\_\+timeout}]{\setlength{\rightskip}{0pt plus 5cm}void channel\+\_\+ref\+\_\+set\+\_\+timeout (
+\hypertarget{a00102_ga81b273235ae5970b4642a961744315d6_ga81b273235ae5970b4642a961744315d6}{}\index{管道引用@{管道引用}!knet\+\_\+channel\+\_\+ref\+\_\+set\+\_\+timeout@{knet\+\_\+channel\+\_\+ref\+\_\+set\+\_\+timeout}}
+\index{knet\+\_\+channel\+\_\+ref\+\_\+set\+\_\+timeout@{knet\+\_\+channel\+\_\+ref\+\_\+set\+\_\+timeout}!管道引用@{管道引用}}
+\subsubsection[{knet\+\_\+channel\+\_\+ref\+\_\+set\+\_\+timeout}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+channel\+\_\+ref\+\_\+set\+\_\+timeout (
 \begin{DoxyParamCaption}
-\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref, }
+\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref, }
 \item[{int}]{timeout}
 \end{DoxyParamCaption}
-)}\label{a00102_ga4e46196f7ac40bdd14a1407167e88b7b_ga4e46196f7ac40bdd14a1407167e88b7b}
+)}\label{a00102_ga81b273235ae5970b4642a961744315d6_ga81b273235ae5970b4642a961744315d6}
 
 
 设置管道空闲超时 
 
 管道空闲超时依赖读操作作为判断，在timeout间隔内未有可读数据既触发超时 
 \begin{DoxyParams}{参数}
-{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+{\em channel\+\_\+ref} & kchannel\+\_\+ref\+\_\+t实例 \\
 \hline
 {\em timeout} & 超时（秒） \\
 \hline
 \end{DoxyParams}
-\hypertarget{a00102_ga92427ed1f084e9b019acfcdf79bb4b44_ga92427ed1f084e9b019acfcdf79bb4b44}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+set\+\_\+user\+\_\+data@{channel\+\_\+ref\+\_\+set\+\_\+user\+\_\+data}}
-\index{channel\+\_\+ref\+\_\+set\+\_\+user\+\_\+data@{channel\+\_\+ref\+\_\+set\+\_\+user\+\_\+data}!管道引用@{管道引用}}
-\subsubsection[{channel\+\_\+ref\+\_\+set\+\_\+user\+\_\+data}]{\setlength{\rightskip}{0pt plus 5cm}void channel\+\_\+ref\+\_\+set\+\_\+user\+\_\+data (
+\hypertarget{a00102_ga21f85fcd9fe24484f3dbe368eac5e9bb_ga21f85fcd9fe24484f3dbe368eac5e9bb}{}\index{管道引用@{管道引用}!knet\+\_\+channel\+\_\+ref\+\_\+set\+\_\+user\+\_\+data@{knet\+\_\+channel\+\_\+ref\+\_\+set\+\_\+user\+\_\+data}}
+\index{knet\+\_\+channel\+\_\+ref\+\_\+set\+\_\+user\+\_\+data@{knet\+\_\+channel\+\_\+ref\+\_\+set\+\_\+user\+\_\+data}!管道引用@{管道引用}}
+\subsubsection[{knet\+\_\+channel\+\_\+ref\+\_\+set\+\_\+user\+\_\+data}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+channel\+\_\+ref\+\_\+set\+\_\+user\+\_\+data (
 \begin{DoxyParamCaption}
-\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref, }
+\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref, }
 \item[{void $\ast$}]{data}
 \end{DoxyParamCaption}
-)}\label{a00102_ga92427ed1f084e9b019acfcdf79bb4b44_ga92427ed1f084e9b019acfcdf79bb4b44}
+)}\label{a00102_ga21f85fcd9fe24484f3dbe368eac5e9bb_ga21f85fcd9fe24484f3dbe368eac5e9bb}
 
 
 设置管道用户数据 
 
 
 \begin{DoxyParams}{参数}
-{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+{\em channel\+\_\+ref} & kchannel\+\_\+ref\+\_\+t实例 \\
 \hline
 {\em data} & 用户数据指针 \\
 \hline
 \end{DoxyParams}
-\hypertarget{a00102_ga7b76c4078bbe8272206a5d7467ccd4ed_ga7b76c4078bbe8272206a5d7467ccd4ed}{}\index{管道引用@{管道引用}!channel\+\_\+ref\+\_\+share@{channel\+\_\+ref\+\_\+share}}
-\index{channel\+\_\+ref\+\_\+share@{channel\+\_\+ref\+\_\+share}!管道引用@{管道引用}}
-\subsubsection[{channel\+\_\+ref\+\_\+share}]{\setlength{\rightskip}{0pt plus 5cm}{\bf channel\+\_\+ref\+\_\+t}$\ast$ channel\+\_\+ref\+\_\+share (
+\hypertarget{a00102_ga45710b87649c232603ae708616eddd85_ga45710b87649c232603ae708616eddd85}{}\index{管道引用@{管道引用}!knet\+\_\+channel\+\_\+ref\+\_\+share@{knet\+\_\+channel\+\_\+ref\+\_\+share}}
+\index{knet\+\_\+channel\+\_\+ref\+\_\+share@{knet\+\_\+channel\+\_\+ref\+\_\+share}!管道引用@{管道引用}}
+\subsubsection[{knet\+\_\+channel\+\_\+ref\+\_\+share}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kchannel\+\_\+ref\+\_\+t}$\ast$ knet\+\_\+channel\+\_\+ref\+\_\+share (
 \begin{DoxyParamCaption}
-\item[{{\bf channel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
 \end{DoxyParamCaption}
-)}\label{a00102_ga7b76c4078bbe8272206a5d7467ccd4ed_ga7b76c4078bbe8272206a5d7467ccd4ed}
+)}\label{a00102_ga45710b87649c232603ae708616eddd85_ga45710b87649c232603ae708616eddd85}
 
 
-增加管道引用计数，并创建与管道关联的新的channel\+\_\+ref\+\_\+t实例 
+增加管道引用计数，并创建与管道关联的新的kchannel\+\_\+ref\+\_\+t实例 
 
-channel\+\_\+ref\+\_\+share调用完成后，可以在当前线程内访问其他线程(loop\+\_\+t)内运行的管道 
+knet\+\_\+channel\+\_\+ref\+\_\+share调用完成后，可以在当前线程内访问其他线程(kloop\+\_\+t)内运行的管道 
 \begin{DoxyParams}{参数}
-{\em channel\+\_\+ref} & channel\+\_\+ref\+\_\+t实例 \\
+{\em channel\+\_\+ref} & kchannel\+\_\+ref\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-channel\+\_\+ref\+\_\+t实例 
+kchannel\+\_\+ref\+\_\+t实例 
 \end{DoxyReturn}

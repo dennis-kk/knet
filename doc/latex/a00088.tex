@@ -33,17 +33,17 @@ typedef struct \hyperlink{a00038}{krpc\+\_\+object\+\_\+header\+\_\+t} \hyperlin
 \begin{DoxyCompactList}\small\item\em 所有set类方法调用时确定krpc\+\_\+object\+\_\+t实际类型，类型一旦确定不能再次更改 \end{DoxyCompactList}\item 
 void \hyperlink{a00107_ga8bb578f8ba5a8de682a1fe2a4c8a20f6_ga8bb578f8ba5a8de682a1fe2a4c8a20f6}{krpc\+\_\+object\+\_\+destroy} (\hyperlink{a00051_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
 \begin{DoxyCompactList}\small\item\em 销毁\+R\+P\+C对象 \end{DoxyCompactList}\item 
-int \hyperlink{a00107_ga207aac182f9f86e96ddea230ee9c8f61_ga207aac182f9f86e96ddea230ee9c8f61}{krpc\+\_\+object\+\_\+check\+\_\+type} (\hyperlink{a00051_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, \hyperlink{a00051_a6bca3ecacad337637254bb43ab58a0b6_a6bca3ecacad337637254bb43ab58a0b6}{krpc\+\_\+type\+\_\+e} type)
+int \hyperlink{a00107_gac0a05f116ee7164ceebf6f7fabcf46cf_gac0a05f116ee7164ceebf6f7fabcf46cf}{krpc\+\_\+object\+\_\+check\+\_\+type} (\hyperlink{a00051_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, \hyperlink{a00051_a6fe1ebc0ddea56dd3c337115c1e10bc4_a6fe1ebc0ddea56dd3c337115c1e10bc4}{knet\+\_\+rpc\+\_\+type\+\_\+e} type)
 \begin{DoxyCompactList}\small\item\em 测试\+R\+P\+C对象类型 \end{DoxyCompactList}\item 
 uint16\+\_\+t \hyperlink{a00088_aaa8a155df38de3bbf2a876b94686d195_aaa8a155df38de3bbf2a876b94686d195}{krpc\+\_\+number\+\_\+get\+\_\+marshal\+\_\+size} (\hyperlink{a00051_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
 \begin{DoxyCompactList}\small\item\em 获取数字对象序列化长度 \end{DoxyCompactList}\item 
 uint16\+\_\+t \hyperlink{a00107_gad51ebf7392be0ee1fd9597aa22a43015_gad51ebf7392be0ee1fd9597aa22a43015}{krpc\+\_\+object\+\_\+get\+\_\+marshal\+\_\+size} (\hyperlink{a00051_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
 \begin{DoxyCompactList}\small\item\em 取得序列化后的长度 \end{DoxyCompactList}\item 
-int \hyperlink{a00107_ga88e197e67ba6e7dc4b6fa361db77376b_ga88e197e67ba6e7dc4b6fa361db77376b}{krpc\+\_\+object\+\_\+marshal} (\hyperlink{a00051_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, \hyperlink{a00051_a261dba04f46f5c59a68a05f69f5a65a8_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$stream, uint16\+\_\+t $\ast$bytes)
+int \hyperlink{a00107_ga77cc2dde006f9cdddf078289159bd514_ga77cc2dde006f9cdddf078289159bd514}{krpc\+\_\+object\+\_\+marshal} (\hyperlink{a00051_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, \hyperlink{a00051_acc208c4c40c875eebbfef88f00fffacf_acc208c4c40c875eebbfef88f00fffacf}{kstream\+\_\+t} $\ast$stream, uint16\+\_\+t $\ast$bytes)
 \begin{DoxyCompactList}\small\item\em 序列化到数据流 \end{DoxyCompactList}\item 
 int \hyperlink{a00107_ga32ed12c4faa68e258582b239b46fd180_ga32ed12c4faa68e258582b239b46fd180}{krpc\+\_\+object\+\_\+marshal\+\_\+buffer} (\hyperlink{a00051_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, char $\ast$buffer, uint16\+\_\+t length, uint16\+\_\+t $\ast$bytes)
 \begin{DoxyCompactList}\small\item\em 序列化到缓冲区 \end{DoxyCompactList}\item 
-int \hyperlink{a00107_gaff1ec30de69047da0315283957d877ca_gaff1ec30de69047da0315283957d877ca}{krpc\+\_\+object\+\_\+unmarshal} (\hyperlink{a00051_a261dba04f46f5c59a68a05f69f5a65a8_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$stream, \hyperlink{a00051_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$$\ast$o, uint16\+\_\+t $\ast$bytes)
+int \hyperlink{a00107_ga3e61d7f696fd28c1cb4152037e4cc3c8_ga3e61d7f696fd28c1cb4152037e4cc3c8}{krpc\+\_\+object\+\_\+unmarshal} (\hyperlink{a00051_acc208c4c40c875eebbfef88f00fffacf_acc208c4c40c875eebbfef88f00fffacf}{kstream\+\_\+t} $\ast$stream, \hyperlink{a00051_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$$\ast$o, uint16\+\_\+t $\ast$bytes)
 \begin{DoxyCompactList}\small\item\em 从数据流反序列化对象 \end{DoxyCompactList}\item 
 int \hyperlink{a00107_ga0f2289e356949bc9ae0e8e0a151e42f4_ga0f2289e356949bc9ae0e8e0a151e42f4}{krpc\+\_\+object\+\_\+unmarshal\+\_\+buffer} (char $\ast$buffer, uint16\+\_\+t size, \hyperlink{a00051_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$$\ast$o, uint16\+\_\+t $\ast$bytes)
 \begin{DoxyCompactList}\small\item\em 从缓冲区反序列化对象 \end{DoxyCompactList}\item 
@@ -721,14 +721,14 @@ $<$kev, value$>$个数
 {\em ui8} & 无符号8位 \\
 \hline
 \end{DoxyParams}
-\hypertarget{a00107_ga207aac182f9f86e96ddea230ee9c8f61_ga207aac182f9f86e96ddea230ee9c8f61}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+object\+\_\+check\+\_\+type@{krpc\+\_\+object\+\_\+check\+\_\+type}}
+\hypertarget{a00107_gac0a05f116ee7164ceebf6f7fabcf46cf_gac0a05f116ee7164ceebf6f7fabcf46cf}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+object\+\_\+check\+\_\+type@{krpc\+\_\+object\+\_\+check\+\_\+type}}
 \index{krpc\+\_\+object\+\_\+check\+\_\+type@{krpc\+\_\+object\+\_\+check\+\_\+type}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
 \subsubsection[{krpc\+\_\+object\+\_\+check\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+object\+\_\+check\+\_\+type (
 \begin{DoxyParamCaption}
 \item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{{\bf krpc\+\_\+type\+\_\+e}}]{type}
+\item[{{\bf knet\+\_\+rpc\+\_\+type\+\_\+e}}]{type}
 \end{DoxyParamCaption}
-)}\label{a00107_ga207aac182f9f86e96ddea230ee9c8f61_ga207aac182f9f86e96ddea230ee9c8f61}
+)}\label{a00107_gac0a05f116ee7164ceebf6f7fabcf46cf_gac0a05f116ee7164ceebf6f7fabcf46cf}
 
 
 测试\+R\+P\+C对象类型 
@@ -796,15 +796,15 @@ krpc\+\_\+object\+\_\+t实例
 \begin{DoxyReturn}{返回}
 取得序列化后的长度 
 \end{DoxyReturn}
-\hypertarget{a00107_ga88e197e67ba6e7dc4b6fa361db77376b_ga88e197e67ba6e7dc4b6fa361db77376b}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+object\+\_\+marshal@{krpc\+\_\+object\+\_\+marshal}}
+\hypertarget{a00107_ga77cc2dde006f9cdddf078289159bd514_ga77cc2dde006f9cdddf078289159bd514}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+object\+\_\+marshal@{krpc\+\_\+object\+\_\+marshal}}
 \index{krpc\+\_\+object\+\_\+marshal@{krpc\+\_\+object\+\_\+marshal}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
 \subsubsection[{krpc\+\_\+object\+\_\+marshal}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+object\+\_\+marshal (
 \begin{DoxyParamCaption}
 \item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{{\bf stream\+\_\+t} $\ast$}]{stream, }
+\item[{{\bf kstream\+\_\+t} $\ast$}]{stream, }
 \item[{uint16\+\_\+t $\ast$}]{bytes}
 \end{DoxyParamCaption}
-)}\label{a00107_ga88e197e67ba6e7dc4b6fa361db77376b_ga88e197e67ba6e7dc4b6fa361db77376b}
+)}\label{a00107_ga77cc2dde006f9cdddf078289159bd514_ga77cc2dde006f9cdddf078289159bd514}
 
 
 序列化到数据流 
@@ -813,7 +813,7 @@ krpc\+\_\+object\+\_\+t实例
 \begin{DoxyParams}{参数}
 {\em o} & krpc\+\_\+object\+\_\+t实例 \\
 \hline
-{\em stream} & stream\+\_\+t实例 \\
+{\em stream} & kstream\+\_\+t实例 \\
 \hline
 {\em bytes} & 写入流的数据字节数 \\
 \hline
@@ -857,22 +857,22 @@ krpc\+\_\+object\+\_\+t实例
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00107_gaff1ec30de69047da0315283957d877ca_gaff1ec30de69047da0315283957d877ca}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+object\+\_\+unmarshal@{krpc\+\_\+object\+\_\+unmarshal}}
+\hypertarget{a00107_ga3e61d7f696fd28c1cb4152037e4cc3c8_ga3e61d7f696fd28c1cb4152037e4cc3c8}{}\index{rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}!krpc\+\_\+object\+\_\+unmarshal@{krpc\+\_\+object\+\_\+unmarshal}}
 \index{krpc\+\_\+object\+\_\+unmarshal@{krpc\+\_\+object\+\_\+unmarshal}!rpc\+\_\+object.\+c@{rpc\+\_\+object.\+c}}
 \subsubsection[{krpc\+\_\+object\+\_\+unmarshal}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+object\+\_\+unmarshal (
 \begin{DoxyParamCaption}
-\item[{{\bf stream\+\_\+t} $\ast$}]{stream, }
+\item[{{\bf kstream\+\_\+t} $\ast$}]{stream, }
 \item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$$\ast$}]{o, }
 \item[{uint16\+\_\+t $\ast$}]{bytes}
 \end{DoxyParamCaption}
-)}\label{a00107_gaff1ec30de69047da0315283957d877ca_gaff1ec30de69047da0315283957d877ca}
+)}\label{a00107_ga3e61d7f696fd28c1cb4152037e4cc3c8_ga3e61d7f696fd28c1cb4152037e4cc3c8}
 
 
 从数据流反序列化对象 
 
 
 \begin{DoxyParams}{参数}
-{\em stream} & stream\+\_\+t实例 \\
+{\em stream} & kstream\+\_\+t实例 \\
 \hline
 {\em o} & 存储得到的对象指针 \\
 \hline

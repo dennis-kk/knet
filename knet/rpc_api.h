@@ -81,7 +81,7 @@ extern krpc_cb_t krpc_get_cb(krpc_t* rpc, uint16_t rpcid);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int krpc_proc(krpc_t* rpc, stream_t* stream);
+extern int krpc_proc(krpc_t* rpc, kstream_t* stream);
 
 /**
  * 发起RPC调用
@@ -92,7 +92,7 @@ extern int krpc_proc(krpc_t* rpc, stream_t* stream);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int krpc_call(krpc_t* rpc, stream_t* stream, uint16_t rpcid, krpc_object_t* o);
+extern int krpc_call(krpc_t* rpc, kstream_t* stream, uint16_t rpcid, krpc_object_t* o);
 
 /**
  * 设置签名加密回调

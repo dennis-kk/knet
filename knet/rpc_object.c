@@ -82,7 +82,7 @@ struct _krpc_value_t {
 struct _krpc_map_t {
     uint16_t key_type;   /* 键类型 */
     uint16_t value_type; /* 值类型 */
-    hash_t*  hash;
+    khash_t*  hash;
 };
 
 struct _krpc_object_t {
@@ -129,7 +129,7 @@ void krpc_object_destroy(krpc_object_t* o) {
     destroy(o);
 }
 
-int krpc_object_check_type(krpc_object_t* o, krpc_type_e type) {
+int krpc_object_check_type(krpc_object_t* o, knet_rpc_type_e type) {
     verify(o);
     if (!o->type) {
         return 1;
@@ -195,7 +195,7 @@ uint16_t krpc_object_get_marshal_size(krpc_object_t* o) {
     return size;
 }
 
-int krpc_object_marshal(krpc_object_t* o, stream_t* stream, uint16_t* bytes) {
+int krpc_object_marshal(krpc_object_t* o, kstream_t* stream, uint16_t* bytes) {
     uint16_t       size = 0;
     int            i    = 0;
     krpc_object_t* k    = 0;
@@ -207,12 +207,12 @@ int krpc_object_marshal(krpc_object_t* o, stream_t* stream, uint16_t* bytes) {
     memset(&header, 0, sizeof(krpc_object_header_t));
     header.type   = o->type;
     header.length += krpc_object_get_marshal_size(o);
-    if (error_ok != stream_push(stream, &header, sizeof(krpc_object_header_t))) {
+    if (error_ok != knet_stream_push(stream, &header, sizeof(krpc_object_header_t))) {
         return error_rpc_marshal_fail;
     }
     if (o->type & krpc_type_string) {
         /* 字符串 */
-        if (error_ok != stream_push(stream, o->string.str, o->string.size)) {
+        if (error_ok != knet_stream_push(stream, o->string.str, o->string.size)) {
             return error_rpc_marshal_fail;
         }
     } else if (o->type & krpc_type_vector) {
@@ -245,21 +245,21 @@ int krpc_object_marshal(krpc_object_t* o, stream_t* stream, uint16_t* bytes) {
         /* 数字 */
         if (krpc_object_check_type(o, krpc_type_i16) || krpc_object_check_type(o, krpc_type_ui16)) {
             uint16_t ui16 = htons(o->number.ui16);
-            if (error_ok != stream_push(stream, &ui16, krpc_number_get_marshal_size(o))) {
+            if (error_ok != knet_stream_push(stream, &ui16, krpc_number_get_marshal_size(o))) {
                 return error_rpc_marshal_fail;
             }
         } else if (krpc_object_check_type(o, krpc_type_i32) || krpc_object_check_type(o, krpc_type_ui32)) {
             uint32_t ui32 = htonl(o->number.ui32);
-            if (error_ok != stream_push(stream, &ui32, krpc_number_get_marshal_size(o))) {
+            if (error_ok != knet_stream_push(stream, &ui32, krpc_number_get_marshal_size(o))) {
                 return error_rpc_marshal_fail;
             }
         } else if (krpc_object_check_type(o, krpc_type_i64) || krpc_object_check_type(o, krpc_type_ui64)) {
             uint64_t ui64 = htonll(o->number.ui64);
-            if (error_ok != stream_push(stream, &ui64, krpc_number_get_marshal_size(o))) {
+            if (error_ok != knet_stream_push(stream, &ui64, krpc_number_get_marshal_size(o))) {
                 return error_rpc_marshal_fail;
             }
         } else {
-            if (error_ok != stream_push(stream, &o->number, krpc_number_get_marshal_size(o))) {
+            if (error_ok != knet_stream_push(stream, &o->number, krpc_number_get_marshal_size(o))) {
                 return error_rpc_marshal_fail;
             }
         }
@@ -353,7 +353,7 @@ int krpc_object_marshal_buffer(krpc_object_t* o, char* buffer, uint16_t length, 
     return error_ok;
 }
 
-int krpc_object_unmarshal(stream_t* stream, krpc_object_t** o, uint16_t* bytes) {
+int krpc_object_unmarshal(kstream_t* stream, krpc_object_t** o, uint16_t* bytes) {
     uint16_t       length    = 0; /* 临时变量 */
     int            available = 0; /* 可读字节数 */
     uint16_t       consume   = 0; /* 单次unmarshal消耗字节数 */
@@ -364,19 +364,19 @@ int krpc_object_unmarshal(stream_t* stream, krpc_object_t** o, uint16_t* bytes) 
     verify(stream);
     verify(o);
     verify(bytes);
-    available = stream_available(stream);
+    available = knet_stream_available(stream);
     if (available < sizeof(krpc_object_header_t)) {
         /* 字节数不够 */
         return error_rpc_not_enough_bytes;
     }
-    if (error_ok != stream_copy(stream, &header, sizeof(header))) {
+    if (error_ok != knet_stream_copy(stream, &header, sizeof(header))) {
         return error_rpc_unmarshal_fail;
     }
     if (header.length > (uint16_t)available) {
         /* 字节数不够 */
         return error_rpc_not_enough_bytes;
     }
-    if (error_ok != stream_eat(stream, sizeof(krpc_object_header_t))) {
+    if (error_ok != knet_stream_eat(stream, sizeof(krpc_object_header_t))) {
         return error_rpc_unmarshal_fail;
     }
     /* 建立一个对象 */
@@ -384,7 +384,7 @@ int krpc_object_unmarshal(stream_t* stream, krpc_object_t** o, uint16_t* bytes) 
     verify(*o);
     if (header.type & krpc_type_number) {
         /* 数字 */
-        if (error_ok != stream_pop(stream, &(*o)->number, header.length - sizeof(krpc_object_header_t))) {
+        if (error_ok != knet_stream_pop(stream, &(*o)->number, header.length - sizeof(krpc_object_header_t))) {
             goto error_return;
         }
         /* 数字 */
@@ -400,7 +400,7 @@ int krpc_object_unmarshal(stream_t* stream, krpc_object_t** o, uint16_t* bytes) 
         if (error_ok != krpc_string_set_size(*o, header.length - sizeof(krpc_object_header_t))) {
             goto error_return;
         }
-        if (error_ok != stream_pop(stream, (*o)->string.str, header.length - sizeof(krpc_object_header_t))) {
+        if (error_ok != knet_stream_pop(stream, (*o)->string.str, header.length - sizeof(krpc_object_header_t))) {
             goto error_return;
         }
         (*o)->string.size = header.length - sizeof(krpc_object_header_t);
@@ -440,7 +440,7 @@ int krpc_object_unmarshal(stream_t* stream, krpc_object_t** o, uint16_t* bytes) 
         /* 未知类型 */
         goto error_return;
     }
-    (*o)->type = (krpc_type_e)header.type; /* 类型 */
+    (*o)->type = (knet_rpc_type_e)header.type; /* 类型 */
     *bytes     = header.length;            /* 消耗字节数 */
     return error_ok;
 error_return:
@@ -544,7 +544,7 @@ int krpc_object_unmarshal_buffer(char* buffer, uint16_t size, krpc_object_t** o,
         /* 未知类型 */
         goto error_return;
     }
-    (*o)->type = (krpc_type_e)header.type; /* 类型 */
+    (*o)->type = (knet_rpc_type_e)header.type; /* 类型 */
     *bytes     = header.length;            /* 消耗字节数 */
     return error_ok;
 error_return:
@@ -1020,7 +1020,7 @@ uint32_t krpc_map_get_size(krpc_object_t* m) {
 
 int krpc_map_get_first(krpc_object_t* m, krpc_object_t** k, krpc_object_t** v) {
     krpc_value_t* kvalue = 0;
-    hash_value_t* value = 0;
+    khash_value_t* value = 0;
     verify(k);
     verify(v);
     verify(m);
@@ -1032,7 +1032,7 @@ int krpc_map_get_first(krpc_object_t* m, krpc_object_t** k, krpc_object_t** v) {
     if (!m->map.hash) {
         return 0;
     }
-    value = (hash_value_t*)hash_get_first(m->map.hash);
+    value = (khash_value_t*)hash_get_first(m->map.hash);
     if (!value) {
         return 0;
     }
@@ -1044,7 +1044,7 @@ int krpc_map_get_first(krpc_object_t* m, krpc_object_t** k, krpc_object_t** v) {
 
 int krpc_map_next(krpc_object_t* m, krpc_object_t** k, krpc_object_t** v) {
     krpc_value_t* kvalue = 0;
-    hash_value_t* value = 0;
+    khash_value_t* value = 0;
     verify(k);
     verify(v);
     verify(m);
@@ -1054,7 +1054,7 @@ int krpc_map_next(krpc_object_t* m, krpc_object_t** k, krpc_object_t** v) {
         return 0;
     }
     verify(m->map.hash);
-    value = (hash_value_t*)hash_next(m->map.hash);
+    value = (khash_value_t*)hash_next(m->map.hash);
     if (!value) {
         return 0;
     }

@@ -3,6 +3,7 @@ var searchData=
   ['error_5faccept_5fin_5fprogress',['error_accept_in_progress',['../a00051_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a9a1f1f635ba8d4081b6c5442381b4c9d',1,'config.h']]],
   ['error_5falready_5fclose',['error_already_close',['../a00051_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a539e3210fafed98d714b021d484c6f15',1,'config.h']]],
   ['error_5fbind_5ffail',['error_bind_fail',['../a00051_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5ad7900603bad2c052720094b489d659a7',1,'config.h']]],
+  ['error_5fchannel_5fnot_5fconnect',['error_channel_not_connect',['../a00051_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a090f5020bf1d0a0c9f89e17a1400a255',1,'config.h']]],
   ['error_5fconnect_5ffail',['error_connect_fail',['../a00051_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a33e93368e2f8582da6b8fefd32617c16',1,'config.h']]],
   ['error_5fconnect_5fin_5fprogress',['error_connect_in_progress',['../a00051_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a109dd163cd60f4bc74496b6e1672c7f5',1,'config.h']]],
   ['error_5ffail',['error_fail',['../a00051_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a1fc783b4f64cce71ba2396f728703276',1,'config.h']]],

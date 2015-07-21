@@ -26,31 +26,31 @@
 #include "knet.h"
 
 CASE(Test_Address) {
-    loop_t* loop = loop_create();
+    kloop_t* loop = knet_loop_create();
 
-    channel_ref_t* channel = loop_create_channel(loop, 0, 1024);
-    address_t* peer = channel_ref_get_peer_address(channel);
-    address_t* local = channel_ref_get_local_address(channel);
+    kchannel_ref_t* channel = knet_loop_create_channel(loop, 0, 1024);
+    kaddress_t* peer = knet_channel_ref_get_peer_address(channel);
+    kaddress_t* local = knet_channel_ref_get_local_address(channel);
     // 未建立连接
     EXPECT_TRUE(std::string("0.0.0.0") == address_get_ip(peer));
     EXPECT_FALSE(address_get_port(peer));
     EXPECT_TRUE_OUTPUT(std::string("0.0.0.0") == address_get_ip(local), address_get_ip(local));
     EXPECT_FALSE(address_get_port(local));
 
-    channel_ref_close(channel); /* 未建立起连接，需要手动销毁 */
+    knet_channel_ref_close(channel); /* 未建立起连接，需要手动销毁 */
 
-    channel_ref_t* connector = loop_create_channel(loop, 1, 1024);
-    channel_ref_t* acceptor = loop_create_channel(loop, 1, 1024);
-    channel_ref_accept(acceptor, 0, 80, 1);
-    channel_ref_connect(connector, "127.0.0.1", 80, 1);
-    loop_run_once(loop);
+    kchannel_ref_t* connector = knet_loop_create_channel(loop, 1, 1024);
+    kchannel_ref_t* acceptor = knet_loop_create_channel(loop, 1, 1024);
+    knet_channel_ref_accept(acceptor, 0, 80, 1);
+    knet_channel_ref_connect(connector, "127.0.0.1", 80, 1);
+    knet_loop_run_once(loop);
 
-    peer = channel_ref_get_peer_address(connector);
-    local = channel_ref_get_local_address(connector);
+    peer = knet_channel_ref_get_peer_address(connector);
+    local = knet_channel_ref_get_local_address(connector);
     EXPECT_TRUE(std::string("0.0.0.0") != address_get_ip(peer));
     EXPECT_TRUE(80 == address_get_port(peer));
     EXPECT_TRUE(std::string("0.0.0.0") != address_get_ip(local));
     EXPECT_TRUE(0 != address_get_port(local));
 
-    loop_destroy(loop);
+    knet_loop_destroy(loop);
 }

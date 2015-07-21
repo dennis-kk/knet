@@ -36,11 +36,11 @@
 
 
 struct _thread_runner_t {
-    thread_func_t func;
-    void* params;
-    dlist_t* multi_params;
-    volatile int running;
-    thread_id_t thread_id;
+    knet_thread_func_t func;
+    void*         params;
+    kdlist_t*      multi_params;
+    volatile int  running;
+    thread_id_t   thread_id;
 #if defined(WIN32)
     HANDLE thread_handle;
     DWORD  tls_key;
@@ -422,7 +422,7 @@ error_return:
 #endif /* defined(WIN32) || defined(WIN64) */
 }
 
-int socket_getpeername(channel_ref_t* channel_ref, address_t* address) {
+int socket_getpeername(kchannel_ref_t* channel_ref, kaddress_t* address) {
 #if defined(WIN32)
     char* ip;
 #else
@@ -431,7 +431,7 @@ int socket_getpeername(channel_ref_t* channel_ref, address_t* address) {
     int port;
     struct sockaddr_in addr;
     socket_len_t len = sizeof(struct sockaddr);
-    int retval = getpeername(channel_ref_get_socket_fd(channel_ref), (struct sockaddr*)&addr, &len);
+    int retval = getpeername(knet_channel_ref_get_socket_fd(channel_ref), (struct sockaddr*)&addr, &len);
     if (retval < 0) {
         log_error("getpeername() failed, system error: %d", sys_get_errno());
         return error_getpeername;
@@ -442,11 +442,11 @@ int socket_getpeername(channel_ref_t* channel_ref, address_t* address) {
     inet_ntop(AF_INET, &addr.sin_addr.s_addr, ip, sizeof(ip));
 #endif /* defined(WIN32) || define(WIN64) */
     port = ntohs(addr.sin_port);
-    address_set(address, ip, port);
+    knet_address_set(address, ip, port);
     return error_ok;
 }
 
-int socket_getsockname(channel_ref_t* channel_ref,address_t* address) {
+int socket_getsockname(kchannel_ref_t* channel_ref,kaddress_t* address) {
 #if defined(WIN32)
     char* ip;
 #else
@@ -455,7 +455,7 @@ int socket_getsockname(channel_ref_t* channel_ref,address_t* address) {
     int port;
     struct sockaddr_in addr;
     socket_len_t len = sizeof(struct sockaddr);
-    int retval = getsockname(channel_ref_get_socket_fd(channel_ref), (struct sockaddr*)&addr, &len);
+    int retval = getsockname(knet_channel_ref_get_socket_fd(channel_ref), (struct sockaddr*)&addr, &len);
     if (retval < 0) {
         log_error("getsockname() failed, system error: %d", sys_get_errno());
         return error_getpeername;
@@ -466,7 +466,7 @@ int socket_getsockname(channel_ref_t* channel_ref,address_t* address) {
     inet_ntop(AF_INET, &addr.sin_addr.s_addr, ip, sizeof(ip));
 #endif /* defined(WIN32) || define(WIN64) */
     port = ntohs(addr.sin_port);
-    address_set(address, ip, port);
+    knet_address_set(address, ip, port);
     return error_ok;
 }
 
@@ -498,7 +498,7 @@ struct _lock_t {
     #endif /* defined(WIN32) || defined(WIN64) */
 };
 
-void _lock_init(lock_t* lock) {
+void _lock_init(klock_t* lock) {
     #if defined(WIN32)
         InitializeCriticalSection(&lock->lock);
     #else
@@ -506,14 +506,14 @@ void _lock_init(lock_t* lock) {
     #endif /* defined(WIN32) || defined(WIN64) */ 
 }
 
-lock_t* lock_create() {
-    lock_t* lock = create(lock_t);
+klock_t* lock_create() {
+    klock_t* lock = create(klock_t);
     verify(lock);
     _lock_init(lock);
     return lock;
 }
 
-void lock_destroy(lock_t* lock) {
+void lock_destroy(klock_t* lock) {
     verify(lock);
     #if defined(WIN32)
         DeleteCriticalSection(&lock->lock);
@@ -523,7 +523,7 @@ void lock_destroy(lock_t* lock) {
     destroy(lock);
 }
 
-void lock_lock(lock_t* lock) {
+void lock_lock(klock_t* lock) {
     verify(lock);
     #if defined(WIN32)
         EnterCriticalSection(&lock->lock);
@@ -532,7 +532,7 @@ void lock_lock(lock_t* lock) {
     #endif /* defined(WIN32) || defined(WIN64) */ 
 }
 
-int lock_trylock(lock_t* lock) {
+int lock_trylock(klock_t* lock) {
     verify(lock);
     #if defined(WIN32)
         return TryEnterCriticalSection(&lock->lock);
@@ -541,7 +541,7 @@ int lock_trylock(lock_t* lock) {
     #endif /* defined(WIN32) || defined(WIN64) */ 
 }
 
-void lock_unlock(lock_t* lock) {
+void lock_unlock(klock_t* lock) {
     verify(lock);
     #if defined(WIN32)
         LeaveCriticalSection(&lock->lock);
@@ -550,18 +550,18 @@ void lock_unlock(lock_t* lock) {
     #endif /* defined(WIN32) || defined(WIN64) */ 
 }
 
-thread_runner_t* thread_runner_create(thread_func_t func, void* params) {
-    thread_runner_t* runner = create(thread_runner_t);
+kthread_runner_t* thread_runner_create(knet_thread_func_t func, void* params) {
+    kthread_runner_t* runner = create(kthread_runner_t);
     verify(runner);
-    memset(runner, 0, sizeof(thread_runner_t));
+    memset(runner, 0, sizeof(kthread_runner_t));
     runner->func         = func;
     runner->params       = params;
     runner->multi_params = dlist_create();
     return runner;
 }
 
-void thread_runner_destroy(thread_runner_t* runner) {
-    dlist_node_t*   node = 0;
+void thread_runner_destroy(kthread_runner_t* runner) {
+    kdlist_node_t*   node = 0;
     thread_param_t* param = 0;
     verify(runner);
     if (runner->running) {
@@ -584,18 +584,18 @@ void thread_runner_destroy(thread_runner_t* runner) {
 }
 
 void _thread_func(void* params) {
-    thread_runner_t* runner = 0;
+    kthread_runner_t* runner = 0;
     verify(params);
-    runner = (thread_runner_t*)params;
+    runner = (kthread_runner_t*)params;
     runner->func(runner->params);
 }
 
 void _thread_loop_func(void* params) {
     int error = 0;
-    thread_runner_t* runner = (thread_runner_t*)params;
-    loop_t* loop = (loop_t*)runner->params;
+    kthread_runner_t* runner = (kthread_runner_t*)params;
+    kloop_t* loop = (kloop_t*)runner->params;
     while (thread_runner_check_start(runner)) {
-        error = loop_run_once(loop);
+        error = knet_loop_run_once(loop);
         if (error != error_ok) {
             thread_runner_stop(runner);
             verify(0);
@@ -604,7 +604,7 @@ void _thread_loop_func(void* params) {
 }
 
 void _thread_timer_loop_func(void* params) {
-    thread_runner_t* runner = (thread_runner_t*)params;
+    kthread_runner_t* runner = (kthread_runner_t*)params;
     ktimer_loop_t* loop = (ktimer_loop_t*)runner->params;
     int tick = (int)ktimer_loop_get_tick_intval(loop);
     while (thread_runner_check_start(runner)) {
@@ -614,14 +614,14 @@ void _thread_timer_loop_func(void* params) {
 }
 
 void _thread_multi_loop_func(void* params) {
-    thread_runner_t* runner = (thread_runner_t*)params;
-    dlist_node_t*    node   = 0;
+    kthread_runner_t* runner = (kthread_runner_t*)params;
+    kdlist_node_t*    node   = 0;
     thread_param_t*  param  = 0;
     while (thread_runner_check_start(runner)) {
         dlist_for_each(runner->multi_params, node) {
             param = (thread_param_t*)dlist_node_get_data(node);
             if (param->type == loop_type_loop) {
-                loop_run_once((loop_t*)param->loop);
+                knet_loop_run_once((kloop_t*)param->loop);
             } else if (param->type == loop_type_timer) {
                 ktimer_loop_run_once((ktimer_loop_t*)param->loop);
             }
@@ -673,7 +673,7 @@ void* thread_func_pthread(void* params) {
 }
 #endif /* defined(WIN32) || defined(WIN64) */
 
-int thread_runner_start(thread_runner_t* runner, int stack_size) {
+int thread_runner_start(kthread_runner_t* runner, int stack_size) {
 #if defined(WIN32)
     uintptr_t retval = 0;
 #else
@@ -709,7 +709,7 @@ int thread_runner_start(thread_runner_t* runner, int stack_size) {
     return error_ok;
 }
 
-int thread_runner_start_loop(thread_runner_t* runner, loop_t* loop, int stack_size) {
+int thread_runner_start_loop(kthread_runner_t* runner, kloop_t* loop, int stack_size) {
 #if defined(WIN32)
     uintptr_t retval = 0;
 #else
@@ -744,7 +744,7 @@ int thread_runner_start_loop(thread_runner_t* runner, loop_t* loop, int stack_si
     return error_ok;
 }
 
-int thread_runner_start_timer_loop(thread_runner_t* runner, ktimer_loop_t* timer_loop, int stack_size) {
+int thread_runner_start_timer_loop(kthread_runner_t* runner, ktimer_loop_t* timer_loop, int stack_size) {
 #if defined(WIN32)
     uintptr_t retval = 0;
 #else
@@ -779,7 +779,7 @@ int thread_runner_start_timer_loop(thread_runner_t* runner, ktimer_loop_t* timer
     return error_ok;
 }
 
-int thread_runner_start_multi_loop_varg(thread_runner_t* runner, int stack_size, const char* format, ...) {
+int thread_runner_start_multi_loop_varg(kthread_runner_t* runner, int stack_size, const char* format, ...) {
 #if defined(WIN32)
     uintptr_t retval = 0;
 #else
@@ -797,7 +797,7 @@ int thread_runner_start_multi_loop_varg(thread_runner_t* runner, int stack_size,
         case 'l':
             param = create(thread_param_t);
             param->type = loop_type_loop;
-            param->loop = va_arg(arg_ptr, loop_t*);
+            param->loop = va_arg(arg_ptr, kloop_t*);
             dlist_add_tail_node(runner->multi_params, param);
             break;
         case 't':
@@ -837,17 +837,17 @@ int thread_runner_start_multi_loop_varg(thread_runner_t* runner, int stack_size,
     return error_ok;
 }
 
-void thread_runner_stop(thread_runner_t* runner) {
+void thread_runner_stop(kthread_runner_t* runner) {
     verify(runner);
     runner->running = 0;
 }
 
-thread_id_t thread_runner_get_id(thread_runner_t* runner) {
+thread_id_t thread_runner_get_id(kthread_runner_t* runner) {
     verify(runner);
     return runner->thread_id;
 }
 
-void thread_runner_join(thread_runner_t* runner) {
+void thread_runner_join(kthread_runner_t* runner) {
 #if defined(WIN32)
     DWORD error = 0;
 #endif /* defined(WIN32) || defined(WIN64) */
@@ -873,12 +873,12 @@ void thread_runner_join(thread_runner_t* runner) {
 #endif /* defined(WIN32) || defined(WIN64) */
 }
 
-int thread_runner_check_start(thread_runner_t* runner) {
+int thread_runner_check_start(kthread_runner_t* runner) {
     verify(runner);
     return runner->running;
 }
 
-void* thread_runner_get_params(thread_runner_t* runner) {
+void* thread_runner_get_params(kthread_runner_t* runner) {
     verify(runner);
     return runner->params;
 }
@@ -899,7 +899,7 @@ void thread_sleep_ms(int ms) {
 #endif /* defined(WIN32) */
 }
 
-int thread_set_tls_data(thread_runner_t* runner, void* data) {
+int thread_set_tls_data(kthread_runner_t* runner, void* data) {
     verify(runner);
     if (!runner->tls_key) {
 #if defined(WIN32)
@@ -929,7 +929,7 @@ int thread_set_tls_data(thread_runner_t* runner, void* data) {
     return error_ok;
 }
 
-void* thread_get_tls_data(thread_runner_t* runner) {
+void* thread_get_tls_data(kthread_runner_t* runner) {
     verify(runner);
 #if defined(WIN32)
     return TlsGetValue(runner->tls_key);
@@ -1063,7 +1063,7 @@ uint64_t ntohll(uint64_t ui64) {
      return (((uint64_t)ntohl((uint32_t)ui64)) << 32) + ntohl(ui64 >> 32); 
 } 
 
-const char* get_channel_cb_event_string(channel_cb_event_e e) {
+const char* get_channel_cb_event_string(knet_channel_cb_event_e e) {
     switch (e) {
     case channel_cb_event_connect:
         return "channel as connector connected successfully";
@@ -1083,7 +1083,7 @@ const char* get_channel_cb_event_string(channel_cb_event_e e) {
     return "unknown channel callback event";
 }
 
-const char* get_channel_cb_event_name(channel_cb_event_e e) {
+const char* get_channel_cb_event_name(knet_channel_cb_event_e e) {
     switch (e) {
     case channel_cb_event_connect:
         return "channel_cb_event_connect";

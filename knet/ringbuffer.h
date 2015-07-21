@@ -30,142 +30,142 @@
 /**
  * 建立一个ringbuffer
  * @param size 最大长度
- * @return ringbuffer_t实例
+ * @return kringbuffer_t实例
  */
-ringbuffer_t* ringbuffer_create(uint32_t size);
+kringbuffer_t* ringbuffer_create(uint32_t size);
 
 /**
  * 销毁ringbuffer
- * @param rb ringbuffer_t实例
+ * @param rb kringbuffer_t实例
  */
-void ringbuffer_destroy(ringbuffer_t* rb);
+void ringbuffer_destroy(kringbuffer_t* rb);
 
 /**
  * 读取并清除
- * @param rb ringbuffer_t实例
+ * @param rb kringbuffer_t实例
  * @param buffer 写入缓冲区指针
  * @param size 写入缓冲区长度
  * @return 实际读出字节数
  */
-uint32_t ringbuffer_read(ringbuffer_t* rb, char* buffer, uint32_t size);
+uint32_t ringbuffer_read(kringbuffer_t* rb, char* buffer, uint32_t size);
 
 /**
  * 读取但不清除
- * @param rb ringbuffer_t实例
+ * @param rb kringbuffer_t实例
  * @param buffer 写入缓冲区指针
  * @param size 写入缓冲区长度
  * @return 实际读出字节数
  */
-uint32_t ringbuffer_copy(ringbuffer_t* rb, char* buffer, uint32_t size);
+uint32_t ringbuffer_copy(kringbuffer_t* rb, char* buffer, uint32_t size);
 
 /**
  * 取得可读字节数
- * @param rb ringbuffer_t实例
+ * @param rb kringbuffer_t实例
  * @return 可读字节数
  */
-uint32_t ringbuffer_available(ringbuffer_t* rb);
+uint32_t ringbuffer_available(kringbuffer_t* rb);
 
 /**
  * 清除所有可读字节
- * @param rb ringbuffer_t实例
+ * @param rb kringbuffer_t实例
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int ringbuffer_eat_all(ringbuffer_t* rb);
+int ringbuffer_eat_all(kringbuffer_t* rb);
 
 /**
  * 清除指定长度的可读字节
- * @param rb ringbuffer_t实例
+ * @param rb kringbuffer_t实例
  * @param size 需要清除的长度
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int ringbuffer_eat(ringbuffer_t* rb, uint32_t size);
+int ringbuffer_eat(kringbuffer_t* rb, uint32_t size);
 
 /**
  * 取得非绕回连续地址的最大可读字节数
- * @param rb ringbuffer_t实例
+ * @param rb kringbuffer_t实例
  * @return 非绕回连续地址的最大可读字节数
  */
-uint32_t ringbuffer_read_lock_size(ringbuffer_t* rb);
+uint32_t ringbuffer_read_lock_size(kringbuffer_t* rb);
 
 /**
  * 取得可读数据起止指针
- * @param rb ringbuffer_t实例
+ * @param rb kringbuffer_t实例
  * @return 可读数据起止指针
  */
-char* ringbuffer_read_lock_ptr(ringbuffer_t* rb);
+char* ringbuffer_read_lock_ptr(kringbuffer_t* rb);
 
 /**
  * 提交并清除已经读到的字节
- * @param rb ringbuffer_t实例
+ * @param rb kringbuffer_t实例
  * @param size 已经读出的字节数
  */
-void ringbuffer_read_commit(ringbuffer_t* rb, uint32_t size);
+void ringbuffer_read_commit(kringbuffer_t* rb, uint32_t size);
 
 /**
  * 虚拟窗口 - 取得非绕回连续地址的最大可读字节数
- * @param rb ringbuffer_t实例
+ * @param rb kringbuffer_t实例
  * @return 非绕回连续地址的最大可读字节数
  */
-uint32_t ringbuffer_window_read_lock_size(ringbuffer_t* rb);
+uint32_t ringbuffer_window_read_lock_size(kringbuffer_t* rb);
 
 /**
  * 虚拟窗口 - 取得可读数据起止指针
- * @param rb ringbuffer_t实例
+ * @param rb kringbuffer_t实例
  * @return 可读数据起止指针
  */
-char* ringbuffer_window_read_lock_ptr(ringbuffer_t* rb);
+char* ringbuffer_window_read_lock_ptr(kringbuffer_t* rb);
 
 /**
  * 虚拟窗口 - 提交已经读到的字节，但不清除
- * @param rb ringbuffer_t实例
+ * @param rb kringbuffer_t实例
  * @param size 已经读出的字节数
  */
-void ringbuffer_window_read_commit(ringbuffer_t* rb, uint32_t size);
+void ringbuffer_window_read_commit(kringbuffer_t* rb, uint32_t size);
 
 /**
  * 取得非绕回可连续写入的最大长度
- * @param rb ringbuffer_t实例
+ * @param rb kringbuffer_t实例
  * @return 非绕回可连续写入的最大长度
  */
-uint32_t ringbuffer_write_lock_size(ringbuffer_t* rb);
+uint32_t ringbuffer_write_lock_size(kringbuffer_t* rb);
 
 /**
  * 取得可写起始指针
- * @param rb ringbuffer_t实例
+ * @param rb kringbuffer_t实例
  * @return 可写起止指针
  */
-char* ringbuffer_write_lock_ptr(ringbuffer_t* rb);
+char* ringbuffer_write_lock_ptr(kringbuffer_t* rb);
 
 /**
  * 提交成功写入的字节数
- * @param rb ringbuffer_t实例
+ * @param rb kringbuffer_t实例
  * @param size 成功写入的字节数
  */
-void ringbuffer_write_commit(ringbuffer_t* rb, uint32_t size);
+void ringbuffer_write_commit(kringbuffer_t* rb, uint32_t size);
 
 /**
  * 满
- * @param rb ringbuffer_t实例
+ * @param rb kringbuffer_t实例
  * @retval 0 未满
  * @retval 非零 满
  */
-int ringbuffer_full(ringbuffer_t* rb);
+int ringbuffer_full(kringbuffer_t* rb);
 
 /**
  * 空
- * @param rb ringbuffer_t实例
+ * @param rb kringbuffer_t实例
  * @retval 0 非空
  * @retval 非零 空
  */
-int ringbuffer_empty(ringbuffer_t* rb);
+int ringbuffer_empty(kringbuffer_t* rb);
 
 /**
  * 取得最大长度
- * @param rb ringbuffer_t实例
+ * @param rb kringbuffer_t实例
  * @return 最大长度
  */
-uint32_t ringbuffer_get_max_size(ringbuffer_t* rb);
+uint32_t ringbuffer_get_max_size(kringbuffer_t* rb);
 
 #endif /* RINGBUFFER_H */

@@ -37,13 +37,13 @@ struct _dlist_node_t {
 
 /* 双向循环链表 */
 struct _dlist_t {
-    dlist_node_t*    head;
+    kdlist_node_t*    head;
     atomic_counter_t count;
     int              init;
 };
 
-dlist_node_t* dlist_node_create() {
-    dlist_node_t* node = create(dlist_node_t);
+kdlist_node_t* dlist_node_create() {
+    kdlist_node_t* node = create(kdlist_node_t);
     verify(node);
     node->next  = 0;
     node->prev  = 0;
@@ -52,7 +52,7 @@ dlist_node_t* dlist_node_create() {
     return node;
 }
 
-dlist_node_t* dlist_node_init(dlist_node_t* node) {
+kdlist_node_t* dlist_node_init(kdlist_node_t* node) {
     verify(node);
     node->next  = 0;
     node->prev  = 0;
@@ -61,7 +61,7 @@ dlist_node_t* dlist_node_init(dlist_node_t* node) {
     return node;
 }
 
-void dlist_node_destroy(dlist_node_t* node) {
+void dlist_node_destroy(kdlist_node_t* node) {
     verify(node);
     /* data在外部销毁 */
     if (!node->init) {
@@ -69,19 +69,19 @@ void dlist_node_destroy(dlist_node_t* node) {
     }
 }
 
-dlist_node_t* dlist_node_set_data(dlist_node_t* node, void* data) {
+kdlist_node_t* dlist_node_set_data(kdlist_node_t* node, void* data) {
     verify(node);
     node->data = data;
     return node;
 }
 
-void* dlist_node_get_data(dlist_node_t* node) {
+void* dlist_node_get_data(kdlist_node_t* node) {
     verify(node);
     return node->data;
 }
 
-dlist_t* dlist_create() {
-    dlist_t* dlist = create(dlist_t);
+kdlist_t* dlist_create() {
+    kdlist_t* dlist = create(kdlist_t);
     verify(dlist);
     dlist->head = dlist_node_create();
     verify(dlist->head);
@@ -97,7 +97,7 @@ dlist_t* dlist_create() {
     return dlist;
 }
 
-dlist_t* dlist_init(dlist_t* dlist) {
+kdlist_t* dlist_init(kdlist_t* dlist) {
     verify(dlist);
     dlist->head = dlist_node_create();
     verify(dlist->head);
@@ -109,9 +109,9 @@ dlist_t* dlist_init(dlist_t* dlist) {
     return dlist;
 }
 
-void dlist_destroy(dlist_t* dlist) {
-    dlist_node_t* node = 0;
-    dlist_node_t* temp = 0;
+void dlist_destroy(kdlist_t* dlist) {
+    kdlist_node_t* node = 0;
+    kdlist_node_t* temp = 0;
     verify(dlist);
     dlist_for_each_safe(dlist, node, temp) {
         dlist_delete(dlist, node);
@@ -122,7 +122,7 @@ void dlist_destroy(dlist_t* dlist) {
     }
 }
 
-void dlist_add_front(dlist_t* dlist, dlist_node_t* node) {
+void dlist_add_front(kdlist_t* dlist, kdlist_node_t* node) {
     verify(dlist);
     verify(node);
     dlist->head->next->prev = node;
@@ -132,7 +132,7 @@ void dlist_add_front(dlist_t* dlist, dlist_node_t* node) {
     atomic_counter_inc(&dlist->count);
 }
 
-void dlist_add_tail(dlist_t* dlist, dlist_node_t* node) {
+void dlist_add_tail(kdlist_t* dlist, kdlist_node_t* node) {
     verify(dlist);
     verify(node);
     dlist->head->prev->next = node;
@@ -142,8 +142,8 @@ void dlist_add_tail(dlist_t* dlist, dlist_node_t* node) {
     atomic_counter_inc(&dlist->count);
 }
 
-dlist_node_t* dlist_add_front_node(dlist_t* dlist, void* data) {
-    dlist_node_t* node = 0;
+kdlist_node_t* dlist_add_front_node(kdlist_t* dlist, void* data) {
+    kdlist_node_t* node = 0;
     verify(dlist);
     node = dlist_node_create();
     verify(node);
@@ -155,8 +155,8 @@ dlist_node_t* dlist_add_front_node(dlist_t* dlist, void* data) {
     return node;
 }
 
-dlist_node_t* dlist_add_tail_node(dlist_t* dlist, void* data) {
-    dlist_node_t* node = 0;
+kdlist_node_t* dlist_add_tail_node(kdlist_t* dlist, void* data) {
+    kdlist_node_t* node = 0;
     verify(dlist);
     node = dlist_node_create();
     verify(node);
@@ -168,17 +168,17 @@ dlist_node_t* dlist_add_tail_node(dlist_t* dlist, void* data) {
     return node;
 }
 
-int dlist_get_count(dlist_t* dlist) {
+int dlist_get_count(kdlist_t* dlist) {
     verify(dlist);
     return dlist->count;
 }
 
-int dlist_empty(dlist_t* dlist) {
+int dlist_empty(kdlist_t* dlist) {
     verify(dlist);
     return atomic_counter_zero(&dlist->count);
 }
 
-dlist_node_t* dlist_remove(dlist_t* dlist, dlist_node_t* node) {
+kdlist_node_t* dlist_remove(kdlist_t* dlist, kdlist_node_t* node) {
     verify(dlist);
     verify(node);
     if (!node->prev || !node->next) {
@@ -190,13 +190,13 @@ dlist_node_t* dlist_remove(dlist_t* dlist, dlist_node_t* node) {
     return node;
 }
 
-void dlist_delete(dlist_t* dlist, dlist_node_t* node) {
+void dlist_delete(kdlist_t* dlist, kdlist_node_t* node) {
     verify(dlist);
     verify(node);
     dlist_node_destroy(dlist_remove(dlist, node));
 }
 
-dlist_node_t* dlist_next(dlist_t* dlist, dlist_node_t* node) {
+kdlist_node_t* dlist_next(kdlist_t* dlist, kdlist_node_t* node) {
     verify(dlist);
     if (!node) {
         return 0;
@@ -207,7 +207,7 @@ dlist_node_t* dlist_next(dlist_t* dlist, dlist_node_t* node) {
     return node->next;
 }
 
-dlist_node_t* dlist_get_front(dlist_t* dlist) {
+kdlist_node_t* dlist_get_front(kdlist_t* dlist) {
     verify(dlist);
     if (dlist->head->next == dlist->head) {
         return 0;
@@ -215,7 +215,7 @@ dlist_node_t* dlist_get_front(dlist_t* dlist) {
     return dlist->head->next;
 }
 
-dlist_node_t* dlist_get_back(dlist_t* dlist) {
+kdlist_node_t* dlist_get_back(kdlist_t* dlist) {
     verify(dlist);
     if (dlist->head->prev == dlist->head) {
         return 0;

@@ -31,26 +31,26 @@
 
 
 struct _channel_t {
-    dlist_t*      send_buffer_list;  /* 发送链表 */
+    kdlist_t*      send_buffer_list;  /* 发送链表 */
     uint32_t      max_send_list_len; /* 发送链表最大长度 */
-    ringbuffer_t* recv_ringbuffer;   /* 读环形缓冲区 */
+    kringbuffer_t* recv_ringbuffer;   /* 读环形缓冲区 */
     socket_t      socket_fd;         /* 套接字 */
     uint64_t      uuid;              /* 管道UUID */
 };
 
-channel_t* channel_create(uint32_t max_send_list_len, uint32_t recv_ring_len) {
+kchannel_t* knet_channel_create(uint32_t max_send_list_len, uint32_t recv_ring_len) {
     socket_t socket_fd = socket_create();
     verify(socket_fd > 0);
     if (socket_fd <= 0) {
         return 0;
     }
-    return channel_create_exist_socket_fd(socket_fd, max_send_list_len, recv_ring_len);
+    return knet_channel_create_exist_socket_fd(socket_fd, max_send_list_len, recv_ring_len);
 }
 
-channel_t* channel_create_exist_socket_fd(socket_t socket_fd, uint32_t max_send_list_len, uint32_t recv_ring_len) {
-    channel_t* channel = create(channel_t);
+kchannel_t* knet_channel_create_exist_socket_fd(socket_t socket_fd, uint32_t max_send_list_len, uint32_t recv_ring_len) {
+    kchannel_t* channel = create(kchannel_t);
     verify(channel);
-    memset(channel, 0, sizeof(channel_t));
+    memset(channel, 0, sizeof(kchannel_t));
     channel->uuid = uuid_create();
     channel->send_buffer_list = dlist_create();
     verify(channel->send_buffer_list);
@@ -69,16 +69,16 @@ channel_t* channel_create_exist_socket_fd(socket_t socket_fd, uint32_t max_send_
     return channel;
 }
 
-void channel_destroy(channel_t* channel) {
-    dlist_node_t* node        = 0;
-    dlist_node_t* temp        = 0;
-    buffer_t*     send_buffer = 0;
+void knet_channel_destroy(kchannel_t* channel) {
+    kdlist_node_t* node        = 0;
+    kdlist_node_t* temp        = 0;
+    kbuffer_t*     send_buffer = 0;
     verify(channel);
     /* 销毁未发送的数据 */
     if (channel->send_buffer_list) {
         dlist_for_each_safe(channel->send_buffer_list, node, temp) {
-            send_buffer = (buffer_t*)dlist_node_get_data(node);
-            buffer_destroy(send_buffer);
+            send_buffer = (kbuffer_t*)dlist_node_get_data(node);
+            knet_buffer_destroy(send_buffer);
         }
         dlist_destroy(channel->send_buffer_list);
     }
@@ -89,13 +89,13 @@ void channel_destroy(channel_t* channel) {
     destroy(channel);
 }
 
-int channel_connect(channel_t* channel, const char* ip, int port) {
+int knet_channel_connect(kchannel_t* channel, const char* ip, int port) {
     verify(channel);
     verify(ip);
     return socket_connect(channel->socket_fd, ip, port);
 }
 
-int channel_accept(channel_t* channel, const char* ip, int port, int backlog) {
+int knet_channel_accept(kchannel_t* channel, const char* ip, int port, int backlog) {
     verify(channel);
     verify(port);
     if (!backlog) {
@@ -108,13 +108,13 @@ int channel_accept(channel_t* channel, const char* ip, int port, int backlog) {
     return socket_bind_and_listen(channel->socket_fd, ip, port, backlog);
 }
 
-int channel_send_buffer(channel_t* channel, buffer_t* send_buffer) {
+int knet_channel_send_buffer(kchannel_t* channel, kbuffer_t* send_buffer) {
     verify(channel);
     verify(send_buffer);
     verify(channel->send_buffer_list);
     /* 始终无法发送 */
-    if (channel_ref_send_list_reach_max(channel)) {
-        buffer_destroy(send_buffer);
+    if (knet_channel_ref_send_list_reach_max(channel)) {
+        knet_buffer_destroy(send_buffer);
         return error_send_fail;
     }
     /* 将发送缓冲区加到链表尾部 */
@@ -123,15 +123,15 @@ int channel_send_buffer(channel_t* channel, buffer_t* send_buffer) {
     return error_send_patial;
 }
 
-int channel_send(channel_t* channel, const char* data, int size) {
+int knet_channel_send(kchannel_t* channel, const char* data, int size) {
     int       bytes       = 0;
-    buffer_t* send_buffer = 0;
+    kbuffer_t* send_buffer = 0;
     verify(channel);
     verify(data);
     verify(size);
     verify(channel->send_buffer_list);
     /* 始终无法发送 */
-    if (channel_ref_send_list_reach_max(channel)) {
+    if (knet_channel_ref_send_list_reach_max(channel)) {
         return error_send_fail;
     }
     if (dlist_empty(channel->send_buffer_list)) {
@@ -143,9 +143,9 @@ int channel_send(channel_t* channel, const char* data, int size) {
     }
     /* 直接发送失败，或者没有发送完毕的字节放入发送链表等待下次发送 */
     if (size > bytes) {
-        send_buffer = buffer_create(size - bytes);
+        send_buffer = knet_buffer_create(size - bytes);
         verify(send_buffer);
-        buffer_put(send_buffer, data + bytes, size - bytes);
+        knet_buffer_put(send_buffer, data + bytes, size - bytes);
         dlist_add_tail_node(channel->send_buffer_list, send_buffer);
         /* 需要稍后发送 */
         return error_send_patial;
@@ -153,28 +153,28 @@ int channel_send(channel_t* channel, const char* data, int size) {
     return error_ok;
 }
 
-int channel_update_send(channel_t* channel) {
-    dlist_node_t* node        = 0;
-    dlist_node_t* temp        = 0;
-    buffer_t*     send_buffer = 0;
+int knet_channel_update_send(kchannel_t* channel) {
+    kdlist_node_t* node        = 0;
+    kdlist_node_t* temp        = 0;
+    kbuffer_t*     send_buffer = 0;
     int           bytes       = 0;
     verify(channel);
     verify(channel->send_buffer_list);
     /* 发送链表内所有数据 */
     dlist_for_each_safe(channel->send_buffer_list, node, temp) {
-        send_buffer = (buffer_t*)dlist_node_get_data(node);
-        bytes = socket_send(channel->socket_fd, buffer_get_ptr(send_buffer), buffer_get_length(send_buffer));
+        send_buffer = (kbuffer_t*)dlist_node_get_data(node);
+        bytes = socket_send(channel->socket_fd, knet_buffer_get_ptr(send_buffer), knet_buffer_get_length(send_buffer));
         if (bytes < 0) {
             return error_send_fail;
         }
-        if (buffer_get_length(send_buffer) > (uint32_t)bytes) {
+        if (knet_buffer_get_length(send_buffer) > (uint32_t)bytes) {
             /* 本次未发送完毕，调整buffer长度，等待下次发送 */
-            buffer_adjust(send_buffer, bytes);
+            knet_buffer_adjust(send_buffer, bytes);
             /* 部分发送 */
             return error_send_patial;
         } else {
             /* 销毁已发送节点 */
-            buffer_destroy(send_buffer);
+            knet_buffer_destroy(send_buffer);
             dlist_delete(channel->send_buffer_list, node);
         }
     }
@@ -182,7 +182,7 @@ int channel_update_send(channel_t* channel) {
     return error_ok;
 }
 
-int channel_update_recv(channel_t* channel) {
+int knet_channel_update_recv(kchannel_t* channel) {
     int      bytes      = 0;
     int      recv_bytes = 0;
     uint32_t size       = 0;
@@ -216,37 +216,37 @@ int channel_update_recv(channel_t* channel) {
     return error_ok;
 }
 
-void channel_close(channel_t* channel) {
+void knet_channel_close(kchannel_t* channel) {
     verify(channel);
     socket_close(channel->socket_fd);
 }
 
-socket_t channel_get_socket_fd(channel_t* channel) {
+socket_t knet_channel_get_socket_fd(kchannel_t* channel) {
     verify(channel);
     return channel->socket_fd;
 }
 
-ringbuffer_t* channel_get_ringbuffer(channel_t* channel) {
+kringbuffer_t* knet_channel_get_ringbuffer(kchannel_t* channel) {
     verify(channel);
     return channel->recv_ringbuffer;
 }
 
-uint32_t channel_get_max_send_list_len(channel_t* channel) {
+uint32_t knet_channel_get_max_send_list_len(kchannel_t* channel) {
     verify(channel);
     return channel->max_send_list_len;
 }
 
-uint32_t channel_get_max_recv_buffer_len(channel_t* channel) {
+uint32_t knet_channel_get_max_recv_buffer_len(kchannel_t* channel) {
     verify(channel);
     return ringbuffer_get_max_size(channel->recv_ringbuffer);
 }
 
-uint64_t channel_get_uuid(channel_t* channel) {
+uint64_t knet_channel_get_uuid(kchannel_t* channel) {
     verify(channel);
     return channel->uuid;
 }
 
-int channel_ref_send_list_reach_max(channel_t* channel) {
+int knet_channel_ref_send_list_reach_max(kchannel_t* channel) {
     verify(channel);
     return (dlist_get_count(channel->send_buffer_list) > (int)channel->max_send_list_len);
 }

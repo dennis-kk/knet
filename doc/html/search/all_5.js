@@ -4,9 +4,9 @@ var searchData=
   ['error_5faccept_5fin_5fprogress',['error_accept_in_progress',['../a00051_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a9a1f1f635ba8d4081b6c5442381b4c9d',1,'config.h']]],
   ['error_5falready_5fclose',['error_already_close',['../a00051_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a539e3210fafed98d714b021d484c6f15',1,'config.h']]],
   ['error_5fbind_5ffail',['error_bind_fail',['../a00051_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5ad7900603bad2c052720094b489d659a7',1,'config.h']]],
+  ['error_5fchannel_5fnot_5fconnect',['error_channel_not_connect',['../a00051_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a090f5020bf1d0a0c9f89e17a1400a255',1,'config.h']]],
   ['error_5fconnect_5ffail',['error_connect_fail',['../a00051_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a33e93368e2f8582da6b8fefd32617c16',1,'config.h']]],
   ['error_5fconnect_5fin_5fprogress',['error_connect_in_progress',['../a00051_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a109dd163cd60f4bc74496b6e1672c7f5',1,'config.h']]],
-  ['error_5fe',['error_e',['../a00051_a884b5eeef8214526df297659611c7d9b.html#a884b5eeef8214526df297659611c7d9b',1,'config.h']]],
   ['error_5ffail',['error_fail',['../a00051_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a1fc783b4f64cce71ba2396f728703276',1,'config.h']]],
   ['error_5fgetpeername',['error_getpeername',['../a00051_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a72e859d152b89000f411da513c43e224',1,'config.h']]],
   ['error_5fgetsockname',['error_getsockname',['../a00051_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a766fb950881ff8cc851b6b1f087e59f6',1,'config.h']]],
@@ -54,6 +54,6 @@ var searchData=
   ['error_5fstream_5fflush',['error_stream_flush',['../a00051_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a90fe0c9db61e4545d29b25a00a96c940',1,'config.h']]],
   ['error_5fthread_5fstart_5ffail',['error_thread_start_fail',['../a00051_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5ae71a38f8f323404444508a5264a6c92f',1,'config.h']]],
   ['established_5fchannel',['established_channel',['../a00031_a14f2e0a88263ec993c3422f496c6df95.html#a14f2e0a88263ec993c3422f496c6df95',1,'_loop_profile_t']]],
-  ['event',['event',['../a00004_a61224f966c4df759a33ba36b43556b1c.html#a61224f966c4df759a33ba36b43556b1c',1,'_channel_ref_info_t::event()'],['../a00029_a76dd6f9dca6bec4527fbe55184812a70.html#a76dd6f9dca6bec4527fbe55184812a70',1,'_loop_event_t::event()']]],
-  ['event_5flist',['event_list',['../a00032_add84738b5cc47a7bd7fda9a538d1a0b3.html#add84738b5cc47a7bd7fda9a538d1a0b3',1,'_loop_t']]]
+  ['event',['event',['../a00004_ab929f040af6b4bdae177fd3363609018.html#ab929f040af6b4bdae177fd3363609018',1,'_channel_ref_info_t::event()'],['../a00029_a76dd6f9dca6bec4527fbe55184812a70.html#a76dd6f9dca6bec4527fbe55184812a70',1,'_loop_event_t::event()']]],
+  ['event_5flist',['event_list',['../a00032_a04eade8a3ca133ea21406aad285e3473.html#a04eade8a3ca133ea21406aad285e3473',1,'_loop_t']]]
 ];

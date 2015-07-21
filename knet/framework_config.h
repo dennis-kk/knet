@@ -30,154 +30,154 @@
 
 /**
  * 建立框架配置器
- * @return framework_config_t实例
+ * @return kframework_config_t实例
  */
-framework_config_t* framework_config_create();
+kframework_config_t* framework_config_create();
 
 /**
  * 销毁框架配置器
- * @param c framework_config_t实例
+ * @param c kframework_config_t实例
  */
-void framework_config_destroy(framework_config_t* c);
+void framework_config_destroy(kframework_config_t* c);
 
 /**
  * 取得工作线程数量
- * @param c framework_config_t实例
+ * @param c kframework_config_t实例
  * @return 工作线程数量
  */
-int framework_config_get_worker_thread_count(framework_config_t* c);
+int framework_config_get_worker_thread_count(kframework_config_t* c);
 
 /**
  * 取得工作线程内定时器分辨率
- * @param c framework_config_t实例
+ * @param c kframework_config_t实例
  * @return 工作线程内定时器分辨率（毫秒）
  */
-time_t framework_config_get_worker_timer_freq(framework_config_t* c);
+time_t framework_config_get_worker_timer_freq(kframework_config_t* c);
 
 /**
  * 取得工作线程内定时器槽位数量
- * @param c framework_config_t实例
+ * @param c kframework_config_t实例
  * @return 定时器槽位数量
  */
-int framework_config_get_worker_timer_slot(framework_config_t* c);
+int framework_config_get_worker_timer_slot(kframework_config_t* c);
 
 /**
  * 取得监听器配置链表
- * @param c framework_config_t实例
+ * @param c kframework_config_t实例
  * @return 监听器配置链表
  */
-dlist_t* framework_config_get_acceptor_config(framework_config_t* c);
+kdlist_t* framework_config_get_acceptor_config(kframework_config_t* c);
 
 /**
  * 取得连接器配置链表
- * @param c framework_config_t实例
+ * @param c kframework_config_t实例
  * @return 连接器配置链表
  */
-dlist_t* framework_config_get_connector_config(framework_config_t* c);
+kdlist_t* framework_config_get_connector_config(kframework_config_t* c);
 
 /**
  * 取得监听器IP
- * @param c framework_acceptor_config_t实例
+ * @param c kframework_acceptor_config_t实例
  * @return 监听器IP
  */
-const char* framework_acceptor_config_get_ip(framework_acceptor_config_t* c);
+const char* framework_acceptor_config_get_ip(kframework_acceptor_config_t* c);
 
 /**
  * 取得监听器端口
- * @param c framework_acceptor_config_t实例
+ * @param c kframework_acceptor_config_t实例
  * @return 监听器端口
  */
-int framework_acceptor_config_get_port(framework_acceptor_config_t* c);
+int framework_acceptor_config_get_port(kframework_acceptor_config_t* c);
 
 /**
  * 取得监听器等待队列长度
- * @param c framework_acceptor_config_t实例
+ * @param c kframework_acceptor_config_t实例
  * @return 监听器等待队列长度
  */
-int framework_acceptor_config_get_backlog(framework_acceptor_config_t* c);
+int framework_acceptor_config_get_backlog(kframework_acceptor_config_t* c);
 
 /**
  * 取得监听器客户端心跳(秒)
- * @param c framework_acceptor_config_t实例
+ * @param c kframework_acceptor_config_t实例
  * @return 客户端心跳(秒)
  */
-int framework_acceptor_config_get_client_heartbeat_timeout(framework_acceptor_config_t* c);
+int framework_acceptor_config_get_client_heartbeat_timeout(kframework_acceptor_config_t* c);
 
 /**
  * 取得监听器客户端回调函数
- * @param c framework_acceptor_config_t实例
+ * @param c kframework_acceptor_config_t实例
  * @return 客户端回调函数
  */
-channel_ref_cb_t framework_acceptor_config_get_client_cb(framework_acceptor_config_t* c);
+knet_channel_ref_cb_t framework_acceptor_config_get_client_cb(kframework_acceptor_config_t* c);
 
 /**
  * 取得监听器客户端发送队列最大长度
- * @param c framework_acceptor_config_t实例
+ * @param c kframework_acceptor_config_t实例
  * @return 客户端发送队列最大长度
  */
-int framework_acceptor_config_get_client_max_send_list_count(framework_acceptor_config_t* c);
+int framework_acceptor_config_get_client_max_send_list_count(kframework_acceptor_config_t* c);
 
 /**
  * 取得监听器客户端接收缓冲区最大长度
- * @param c framework_acceptor_config_t实例
+ * @param c kframework_acceptor_config_t实例
  * @return 客户端接收缓冲区最大长度
  */
-int framework_acceptor_config_get_client_max_recv_buffer_length(framework_acceptor_config_t* c);
+int framework_acceptor_config_get_client_max_recv_buffer_length(kframework_acceptor_config_t* c);
 
 /**
  * 取得连接器对端IP
- * @param c framework_connector_config_t实例
+ * @param c kframework_connector_config_t实例
  * @return 连接器对端IP
  */
-const char* framework_connector_config_get_remote_ip(framework_connector_config_t* c);
+const char* framework_connector_config_get_remote_ip(kframework_connector_config_t* c);
 
 /**
  * 取得连接器对端端口
- * @param c framework_connector_config_t实例
+ * @param c kframework_connector_config_t实例
  * @return 连接器对端端口
  */
-int framework_connector_config_get_remote_port(framework_connector_config_t* c);
+int framework_connector_config_get_remote_port(kframework_connector_config_t* c);
 
 /**
  * 取得连接器心跳超时(秒)
- * @param c framework_connector_config_t实例
+ * @param c kframework_connector_config_t实例
  * @return 连接器心跳超时(秒)
  */
-int framework_connector_config_get_heartbeat_timeout(framework_connector_config_t* c);
+int framework_connector_config_get_heartbeat_timeout(kframework_connector_config_t* c);
 
 /**
  * 取得连接器连接超时(秒)
- * @param c framework_connector_config_t实例
+ * @param c kframework_connector_config_t实例
  * @return 连接器连接超时(秒)
  */
-int framework_connector_config_get_connect_timeout(framework_connector_config_t* c);
+int framework_connector_config_get_connect_timeout(kframework_connector_config_t* c);
 
 /**
  * 取得连接器自动重连标志
- * @param c framework_connector_config_t实例
+ * @param c kframework_connector_config_t实例
  * @return 连接器自动重连标志
  */
-int framework_connector_config_get_auto_reconnect(framework_connector_config_t* c);
+int framework_connector_config_get_auto_reconnect(kframework_connector_config_t* c);
 
 /**
  * 取得连接器回调函数
- * @param c framework_connector_config_t实例
+ * @param c kframework_connector_config_t实例
  * @return 连接器回调函数
  */
-channel_ref_cb_t framework_connector_config_get_cb(framework_connector_config_t* c);
+knet_channel_ref_cb_t framework_connector_config_get_cb(kframework_connector_config_t* c);
 
 /**
  * 取得连接器发送链表最大长度
- * @param c framework_connector_config_t实例
+ * @param c kframework_connector_config_t实例
  * @return 连接器发送链表最大长度
  */
-int framework_connector_config_get_max_send_list_count(framework_connector_config_t* c);
+int framework_connector_config_get_max_send_list_count(kframework_connector_config_t* c);
 
 /**
  * 取得连接器接收缓冲区最大长度
- * @param c framework_connector_config_t实例
+ * @param c kframework_connector_config_t实例
  * @return 连接器接收缓冲区最大长度
  */
-int framework_connector_config_get_max_recv_buffer_length(framework_connector_config_t* c);
+int framework_connector_config_get_max_recv_buffer_length(kframework_connector_config_t* c);
 
 #endif /* FRAMEWORK_CONFIG_H */

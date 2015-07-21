@@ -13,26 +13,26 @@ void timer_cb(ktimer_t* timer, void* data) {
     printf("Active channel: %d, Recv: %d, Send: %d\n", active_channel, recv_bytes, send_bytes);
 }
 
-void connector_cb(channel_ref_t* channel, channel_cb_event_e e) {
-    channel_ref_t* connector  = 0;
+void connector_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
+    kchannel_ref_t* connector  = 0;
     char      buffer[1024]    = {0};
     char*     hello           = "hello world";
     int       bytes           = 0;
-    stream_t* stream          = channel_ref_get_stream(channel);
+    kstream_t* stream          = knet_channel_ref_get_stream(channel);
     if (e & channel_cb_event_connect) { /* 连接成功 */
         active_channel++;
         /* 写入 */
         send_bytes += 12;
-        stream_push(stream, hello, 12);
+        knet_stream_push(stream, hello, 12);
         if (active_channel < client_n) {
-            connector = loop_create_channel(channel_ref_get_loop(channel), 8, 121);
-            channel_ref_set_cb(connector, connector_cb);
-            channel_ref_set_timeout(connector, 1);
-            channel_ref_connect(connector, ip, port, 120);
+            connector = knet_loop_create_channel(knet_channel_ref_get_loop(channel), 8, 121);
+            knet_channel_ref_set_cb(connector, connector_cb);
+            knet_channel_ref_set_timeout(connector, 1);
+            knet_channel_ref_connect(connector, ip, port, 120);
         }
     } else if (e & channel_cb_event_recv) {
-        bytes = stream_available(stream);
-        if (error_ok == stream_pop(stream, buffer, bytes)) {
+        bytes = knet_stream_available(stream);
+        if (error_ok == knet_stream_pop(stream, buffer, bytes)) {
             recv_bytes += bytes;
         }
     } else if (e & channel_cb_event_close) {
@@ -40,10 +40,10 @@ void connector_cb(channel_ref_t* channel, channel_cb_event_e e) {
         printf("unexpect close\n");
     } else if (e & channel_cb_event_connect_timeout) {
         printf("connect timeout!\n");
-        channel_ref_close(channel);
+        knet_channel_ref_close(channel);
     } else if (e & channel_cb_event_timeout) {
         /* 写入 */
-        if (error_ok == stream_push(stream, hello, 12)) {
+        if (error_ok == knet_stream_push(stream, hello, 12)) {
             send_bytes += 12;
         }
     }
@@ -51,10 +51,10 @@ void connector_cb(channel_ref_t* channel, channel_cb_event_e e) {
 
 int main(int argc, char* argv[]) {
     int                i            = 0;
-    loop_t*            loop         = 0;
+    kloop_t*            loop         = 0;
     ktimer_t*          timer        = 0;
-    channel_ref_t*     connector    = 0;
-    thread_runner_t*   timer_thread = 0;
+    kchannel_ref_t*     connector    = 0;
+    kthread_runner_t*   timer_thread = 0;
     static const char* helper_string =
         "-n    client count\n"
         "-ip   remote host IP\n"
@@ -75,7 +75,7 @@ int main(int argc, char* argv[]) {
         exit(0);
     }
 
-    loop       = loop_create();
+    loop       = knet_loop_create();
     timer_loop = ktimer_loop_create(1000, 1000);
     timer      = ktimer_create(timer_loop);
 
@@ -83,16 +83,16 @@ int main(int argc, char* argv[]) {
     timer_thread = thread_runner_create(0, 0);
     thread_runner_start_timer_loop(timer_thread, timer_loop, 0);
 
-    connector = loop_create_channel(loop, 8, 121);
-    channel_ref_set_cb(connector, connector_cb);
-    channel_ref_set_timeout(connector, 1);
-    if (error_ok != channel_ref_connect(connector, ip, port, 5)) {
+    connector = knet_loop_create_channel(loop, 8, 121);
+    knet_channel_ref_set_cb(connector, connector_cb);
+    knet_channel_ref_set_timeout(connector, 1);
+    if (error_ok != knet_channel_ref_connect(connector, ip, port, 5)) {
         return 0;
     }
 
-    loop_run(loop);
+    knet_loop_run(loop);
     thread_runner_destroy(timer_thread);
-    loop_destroy(loop);
+    knet_loop_destroy(loop);
     ktimer_loop_destroy(timer_loop);
 
     return 0;

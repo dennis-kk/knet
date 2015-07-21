@@ -7,24 +7,24 @@
 ### Loop ###
 ##
 
-`loop_t` is the wrapper of different implemented model, it's easy to use `loop_t` to build a loop.    
+`kloop_t` is the wrapper of different implemented model, it's easy to use `kloop_t` to build a loop.    
 
 	#include "knet.h"
-	loop_t* loop = loop_create();
+	kloop_t* loop = knet_loop_create();
 
 For now, a loop is ready for run, we create a `channel_ref_t` as acceptor.
 
-	channel_ref_t* channel = loop_create_channel(loop, 0, 1024);
-	channel_ref_accept(channel, "127.0.0.1", 80);
+	kchannel_ref_t* channel = knet_loop_create_channel(loop, 0, 1024);
+	kchannel_ref_accept(channel, "127.0.0.1", 80);
 
 We built a acceptor channel with infinite send chain size and maximal read buffer size 1024, after that run endless loop.
 
-	loop_run(loop);
-	loop_destroy(loop);
+	knet_loop_run(loop);
+	knet_loop_destroy(loop);
 
 The program just holds your screen, we should add some code for new client coming.
 
-	void acceptor_cb(channel_ref_t* channel, channel_cb_event_e e) {
+	void acceptor_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
 	    if (e & channel_cb_event_accept) {
 	        /* TODO do job here */
 	    }
@@ -34,19 +34,19 @@ The whole story:
 
 	#include "knet.h"
 
-	void acceptor_cb(channel_ref_t* channel, channel_cb_event_e e) {
+	void acceptor_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
 	    if (e & channel_cb_event_accept) { /* the new client coming */
 	        /* TODO do job here */
 	    }
 	}
 
 	int main() {
-		loop_t* loop = loop_create();
-		channel_ref_t* channel = loop_create_channel(loop, 0, 1024);
-		channel_ref_accept(channel, "127.0.0.1", 80);
-		channel_ref_set_cb(channel, acceptor_cb);
-		loop_run(loop);
-		loop_destroy(loop);
+		kloop_t* loop = knet_loop_create();
+		kchannel_ref_t* channel = knet_loop_create_channel(loop, 0, 1024);
+		knet_channel_ref_accept(channel, "127.0.0.1", 80);
+		knet_channel_ref_set_cb(channel, acceptor_cb);
+		knet_loop_run(loop);
+		knet_loop_destroy(loop);
 		return 0;
 	}
 
@@ -74,10 +74,10 @@ In header file `knet/config.h`, change the macro value to tell compiler choose s
 ### Balancer ###
 ##
 
-`loop_t` runs at the thread which calling `loop_run` or `loop_run_once`, each `loop_t` knows nothing
-about others. `loop_balancer_t` coordinates all attached `loop_t`(`loop_balance_attach`) and try to balance load for them.   
+`kloop_t` runs at the thread which calling `knet_loop_run` or `knet_loop_run_once`, each `loop_t` knows nothing
+about others. `kloop_balancer_t` coordinates all attached `kloop_t`(`knet_loop_balance_attach`) and try to balance load for them.   
 
-`loop_balancer_t` conceal the details and sophisticated for developer, the process of balancing is thread-safety  and highly efficent. **knet** offers a simple thread API to run internally `loop_run`, the interact among loops are also transparent for developers.
+`kloop_balancer_t` conceal the details and sophisticated for developer, the process of balancing is thread-safety  and highly efficent. **knet** offers a simple thread API to run internally `knet_loop_run`, the interact among loops are also transparent for developers.
 
 For more detail, see `examples/multi_loop.c`
 
@@ -92,21 +92,21 @@ For more detail, see `examples/multi_loop.c`
 
 The framework extremely simplifies code line for the startup and cleanup of loop under multi-threading environment.
 
-	framework_t* f = framework_create();
-	framework_config_t* c = framework_get_config(f);
+	kframework_t* f = knet_framework_create();
+	kframework_config_t* c = knet_framework_get_config(f);
 	/* fork a new acceptor */
-    framework_acceptor_config_t* ac = framework_config_new_acceptor(c);
-    framework_acceptor_config_set_local_address(ac, 0, 23);
-    framework_acceptor_config_set_client_cb(ac, client_cb);
+    kframework_acceptor_config_t* ac = knet_framework_config_new_acceptor(c);
+    knet_framework_acceptor_config_set_local_address(ac, 0, 23);
+    knet_framework_acceptor_config_set_client_cb(ac, client_cb);
     /* start framework, wait stop & destroy*/
-    framework_start_wait_destroy(f);
+    knet_framework_start_wait_destroy(f);
 	
 After framework started, you also can start additional acceptor or connector.
 
-	framework_acceptor_config_t* ac = framework_config_new_acceptor(c);
-    framework_acceptor_config_set_local_address(ac, 0, 23);
-    framework_acceptor_config_set_client_cb(ac, client_cb);
-	framework_acceptor_start(f, ac);
+	kframework_acceptor_config_t* ac = knet_framework_config_new_acceptor(c);
+    knet_framework_acceptor_config_set_local_address(ac, 0, 23);
+    knet_framework_acceptor_config_set_client_cb(ac, client_cb);
+	knet_framework_acceptor_start(f, ac);
 
 The callback function you set will be invoked in multiple threads(more than one worker), make sure the function thread-safety.
 

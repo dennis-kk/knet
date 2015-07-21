@@ -33,7 +33,7 @@ int my_rpc_func3(const std::string& my_str, int8_t my_i8) {
 
 /* 客户端 - 连接器回调 */
 void connector_cb(channel_ref_t* channel, channel_cb_event_e e) {
-    stream_t* stream = channel_ref_get_stream(channel);
+    kstream_t* stream = channel_ref_get_stream(channel);
     if (e & channel_cb_event_connect) { /* 连接成功 */
         /* 调用RPC函数 */
         my_object_other_t my_other_obj;
@@ -65,7 +65,7 @@ void connector_cb(channel_ref_t* channel, channel_cb_event_e e) {
 /* 服务端 - 客户端回调 */
 void client_cb(channel_ref_t* channel, channel_cb_event_e e) {
     static int i = 0;
-    stream_t* stream = channel_ref_get_stream(channel);
+    kstream_t* stream = channel_ref_get_stream(channel);
     if (e & channel_cb_event_recv) { /* 有数据可以读 */
         for (;;) {
             int error = rpc_sample_ptr()->rpc_proc(stream);

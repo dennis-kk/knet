@@ -30,16 +30,16 @@
 
 /**
  * 事件channel_cb_event_accept处理函数
- * @param channel 监听管道，channel_ref_t实例
+ * @param channel 监听管道，kchannel_ref_t实例
  * @param e 管道事件
  */
-void acceptor_cb(channel_ref_t* channel, channel_cb_event_e e);
+void acceptor_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e);
 
 /**
  * 获取负载均衡器
- * @param f framework_t实例
- * @return loop_balancer_t实例
+ * @param f kframework_t实例
+ * @return kloop_balancer_t实例
  */
-loop_balancer_t* framework_get_balancer(framework_t* f);
+kloop_balancer_t* knet_framework_get_balancer(kframework_t* f);
 
 #endif /* FRAMEWORK_H */

@@ -120,23 +120,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00054.html">framework_api.h</a>&quot;</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00056.html">framework_config.h</a>&quot;</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00053_a4ef7d97742bc9410f486ebc4e0b75e82.html#a4ef7d97742bc9410f486ebc4e0b75e82">acceptor_cb</a>(<a class="code" href="a00005.html">channel_ref_t</a>* channel, <a class="code" href="a00051_aaf2cba5d4035f3d56350b59342ebf65c.html#aaf2cba5d4035f3d56350b59342ebf65c">channel_cb_event_e</a> e);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00053_ac31f510b72c39d3b0611b9500789577b.html#ac31f510b72c39d3b0611b9500789577b">acceptor_cb</a>(<a class="code" href="a00005.html">kchannel_ref_t</a>* channel, <a class="code" href="a00051_a2fd2faf971268f5b682ab375c455f7c9.html#a2fd2faf971268f5b682ab375c455f7c9">knet_channel_cb_event_e</a> e);</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<a class="code" href="a00028.html">loop_balancer_t</a>* <a class="code" href="a00053_a1cd41581680bc47f0d86d625fc3234ae.html#a1cd41581680bc47f0d86d625fc3234ae">framework_get_balancer</a>(<a class="code" href="a00013.html">framework_t</a>* f);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<a class="code" href="a00028.html">kloop_balancer_t</a>* <a class="code" href="a00053_a5bda21127c93214014579d21f6efd643.html#a5bda21127c93214014579d21f6efd643">knet_framework_get_balancer</a>(<a class="code" href="a00013.html">kframework_t</a>* f);</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* FRAMEWORK_H */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="a00056_html"><div class="ttname"><a href="a00056.html">framework_config.h</a></div></div>
-<div class="ttc" id="a00053_a1cd41581680bc47f0d86d625fc3234ae_html_a1cd41581680bc47f0d86d625fc3234ae"><div class="ttname"><a href="a00053_a1cd41581680bc47f0d86d625fc3234ae.html#a1cd41581680bc47f0d86d625fc3234ae">framework_get_balancer</a></div><div class="ttdeci">loop_balancer_t * framework_get_balancer(framework_t *f)</div><div class="ttdoc">获取负载均衡器 </div><div class="ttdef"><b>Definition:</b> framework.c:210</div></div>
-<div class="ttc" id="a00005_html"><div class="ttname"><a href="a00005.html">_channel_ref_t</a></div><div class="ttdef"><b>Definition:</b> channel_ref.c:59</div></div>
-<div class="ttc" id="a00053_a4ef7d97742bc9410f486ebc4e0b75e82_html_a4ef7d97742bc9410f486ebc4e0b75e82"><div class="ttname"><a href="a00053_a4ef7d97742bc9410f486ebc4e0b75e82.html#a4ef7d97742bc9410f486ebc4e0b75e82">acceptor_cb</a></div><div class="ttdeci">void acceptor_cb(channel_ref_t *channel, channel_cb_event_e e)</div><div class="ttdoc">事件channel_cb_event_accept处理函数 </div><div class="ttdef"><b>Definition:</b> framework_raiser.c:184</div></div>
+<div class="ttc" id="a00053_a5bda21127c93214014579d21f6efd643_html_a5bda21127c93214014579d21f6efd643"><div class="ttname"><a href="a00053_a5bda21127c93214014579d21f6efd643.html#a5bda21127c93214014579d21f6efd643">knet_framework_get_balancer</a></div><div class="ttdeci">kloop_balancer_t * knet_framework_get_balancer(kframework_t *f)</div><div class="ttdoc">获取负载均衡器 </div><div class="ttdef"><b>Definition:</b> framework.c:210</div></div>
+<div class="ttc" id="a00053_ac31f510b72c39d3b0611b9500789577b_html_ac31f510b72c39d3b0611b9500789577b"><div class="ttname"><a href="a00053_ac31f510b72c39d3b0611b9500789577b.html#ac31f510b72c39d3b0611b9500789577b">acceptor_cb</a></div><div class="ttdeci">void acceptor_cb(kchannel_ref_t *channel, knet_channel_cb_event_e e)</div><div class="ttdoc">事件channel_cb_event_accept处理函数 </div><div class="ttdef"><b>Definition:</b> framework_raiser.c:192</div></div>
+<div class="ttc" id="a00005_html"><div class="ttname"><a href="a00005.html">_channel_ref_t</a></div><div class="ttdef"><b>Definition:</b> channel_ref.c:61</div></div>
 <div class="ttc" id="a00054_html"><div class="ttname"><a href="a00054.html">framework_api.h</a></div></div>
 <div class="ttc" id="a00013_html"><div class="ttname"><a href="a00013.html">_framework_t</a></div><div class="ttdef"><b>Definition:</b> framework.c:35</div></div>
+<div class="ttc" id="a00051_a2fd2faf971268f5b682ab375c455f7c9_html_a2fd2faf971268f5b682ab375c455f7c9"><div class="ttname"><a href="a00051_a2fd2faf971268f5b682ab375c455f7c9.html#a2fd2faf971268f5b682ab375c455f7c9">knet_channel_cb_event_e</a></div><div class="ttdeci">enum _channel_cb_event_e knet_channel_cb_event_e</div></div>
 <div class="ttc" id="a00028_html"><div class="ttname"><a href="a00028.html">_loop_balancer_t</a></div><div class="ttdef"><b>Definition:</b> loop_balancer.c:36</div></div>
-<div class="ttc" id="a00051_aaf2cba5d4035f3d56350b59342ebf65c_html_aaf2cba5d4035f3d56350b59342ebf65c"><div class="ttname"><a href="a00051_aaf2cba5d4035f3d56350b59342ebf65c.html#aaf2cba5d4035f3d56350b59342ebf65c">channel_cb_event_e</a></div><div class="ttdeci">enum _channel_cb_event_e channel_cb_event_e</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 20日 星期一 15:03:38 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 21日 星期二 13:46:16 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

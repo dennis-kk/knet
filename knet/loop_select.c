@@ -34,46 +34,46 @@ typedef struct _loop_select_t {
     fd_set send_fds[FD_SETSIZE]; /* select写描述符数组 */
 } loop_select_t;
 
-int impl_create(loop_t* loop) {
+int knet_impl_create(kloop_t* loop) {
 #if defined(WIN32) || defined(WIN64)
     WSADATA wsa;
 #endif /* defined(WIN32) || defined(WIN64) */
     loop_select_t* impl = create(loop_select_t);
-    loop_set_impl(loop, impl);
+    knet_loop_set_impl(loop, impl);
 #if defined(WIN32) || defined(WIN64)
     WSAStartup(MAKEWORD(2, 2), &wsa);
 #endif /* defined(WIN32) || defined(WIN64) */
     return error_ok;
 }
 
-void impl_destroy(loop_t* loop) {
-    destroy(loop_get_impl(loop));
+void knet_impl_destroy(kloop_t* loop) {
+    destroy(knet_loop_get_impl(loop));
 #if defined(WIN32) || defined(WIN64)
     WSACleanup();
 #endif /* defined(WIN32) || defined(WIN64) */
 }
 
-int _select(loop_t* loop) {
+int _select(kloop_t* loop) {
     socket_t max_fd = 0;
     socket_t fd = 0;
     int error = 0;
     dlist_node_t* node = 0;
     dlist_node_t* temp = 0;
-    channel_ref_t* channel_ref = 0;
+    kchannel_ref_t* channel_ref = 0;
     struct timeval tv = {0, 100}; /* 空转时最多等待1ms */
-    loop_select_t* impl = (loop_select_t*)loop_get_impl(loop);
+    loop_select_t* impl = (loop_select_t*)knet_loop_get_impl(loop);
     FD_ZERO(impl->read_fds);
     FD_ZERO(impl->send_fds);
-    dlist_for_each_safe(loop_get_active_list(loop), node, temp) {
-        channel_ref = (channel_ref_t*)dlist_node_get_data(node);
-        fd = channel_ref_get_socket_fd(channel_ref);
-        if (channel_ref_check_balance(channel_ref)) {
+    dlist_for_each_safe(knet_loop_get_active_list(loop), node, temp) {
+        channel_ref = (kchannel_ref_t*)dlist_node_get_data(node);
+        fd = knet_channel_ref_get_socket_fd(channel_ref);
+        if (knet_channel_ref_check_balance(channel_ref)) {
         }
-        if (channel_ref_check_event(channel_ref, channel_event_recv)) {
+        if (knet_channel_ref_check_event(channel_ref, channel_event_recv)) {
             FD_SET(fd, impl->read_fds);
             max_fd = max(max_fd, fd);
         }
-        if (channel_ref_check_event(channel_ref, channel_event_send)) {
+        if (knet_channel_ref_check_event(channel_ref, channel_event_send)) {
             FD_SET(fd, impl->send_fds);
             max_fd = max(max_fd, fd);
         }
@@ -85,56 +85,56 @@ int _select(loop_t* loop) {
     return error_ok;
 }
 
-int impl_run_once(loop_t* loop) {
+int knet_impl_run_once(kloop_t* loop) {
     dlist_node_t* node = 0;
     dlist_node_t* temp = 0;
-    channel_ref_t* channel_ref = 0;
+    kchannel_ref_t* channel_ref = 0;
     socket_t fd = 0;
     time_t ts = time(0);
-    loop_select_t* impl = (loop_select_t*)loop_get_impl(loop);
+    loop_select_t* impl = (loop_select_t*)knet_loop_get_impl(loop);
     int error = _select(loop);
     if (error != error_ok) {
         return error;
     }
-    dlist_for_each_safe(loop_get_active_list(loop), node, temp) {
-        channel_ref = (channel_ref_t*)dlist_node_get_data(node);
-        fd = channel_ref_get_socket_fd(channel_ref);
+    dlist_for_each_safe(knet_loop_get_active_list(loop), node, temp) {
+        channel_ref = (kchannel_ref_t*)dlist_node_get_data(node);
+        fd = knet_channel_ref_get_socket_fd(channel_ref);
         if (FD_ISSET(fd, impl->read_fds)) {
-            channel_ref_update(channel_ref, channel_event_recv, ts);
+            knet_channel_ref_update(channel_ref, channel_event_recv, ts);
         }
         if (FD_ISSET(fd, impl->send_fds)) {
-            channel_ref_update(channel_ref, channel_event_send, ts);
+            knet_channel_ref_update(channel_ref, channel_event_send, ts);
         }
     }
-    loop_check_timeout(loop, ts);
-    loop_check_close(loop);
+    knet_loop_check_timeout(loop, ts);
+    knet_loop_check_close(loop);
     return error_ok;
 }
 
-socket_t impl_channel_accept(channel_ref_t* channel_ref) {
+socket_t knet_impl_channel_accept(kchannel_ref_t* channel_ref) {
     channel_ref;
     return 0;
 }
 
-int impl_event_add(channel_ref_t* channel_ref, channel_event_e e) {
+int knet_impl_event_add(kchannel_ref_t* channel_ref, knet_channel_event_e e) {
     channel_ref;
     e;
     return error_ok;
 }
 
-int impl_event_remove(channel_ref_t* channel_ref, channel_event_e e) {
+int knet_impl_event_remove(kchannel_ref_t* channel_ref, knet_channel_event_e e) {
     channel_ref;
     e;
     return error_ok;
 }
 
-int impl_add_channel_ref(loop_t* loop, channel_ref_t* channel_ref) {
+int knet_impl_add_channel_ref(kloop_t* loop, kchannel_ref_t* channel_ref) {
     loop;
     channel_ref;
     return error_ok;
 }
 
-int impl_remove_channel_ref(loop_t* loop, channel_ref_t* channel_ref) {
+int knet_impl_remove_channel_ref(kloop_t* loop, kchannel_ref_t* channel_ref) {
     loop;
     channel_ref;
     return error_ok;

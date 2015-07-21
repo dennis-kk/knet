@@ -30,6 +30,7 @@
 #endif /* __cplusplus */
 
 #include "loop_api.h"
+#include "loop_profile_api.h"
 #include "stream_api.h"
 #include "channel_ref_api.h"
 #include "address_api.h"
@@ -41,7 +42,6 @@
 #include "thread_api.h"
 #include "rpc_api.h"
 #include "rpc_object_api.h"
-#include "loop_profile_api.h"
 #include "version.h"
 
 #ifdef __cplusplus

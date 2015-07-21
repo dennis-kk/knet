@@ -34,17 +34,17 @@
  * <pre>
  * 管道流
  *
- * stream_t通过调用函数channel_ref_get_stream取得. 管道流提供了基于流的数据操作
+ * kstream_t通过调用函数knet_channel_ref_get_stream取得. 管道流提供了基于流的数据操作
  * 以及特殊的针对性的方法用于提高操作效率.
  * 
- * 1. stream_available   获取流内可读字节数
- * 2. stream_eat_all     丢弃流内所有可读字节
- * 3. stream_eat         丢弃流内指定数量的字节
- * 4. stream_pop         从流内读取数据
- * 5. stream_push        向流内写数据
- * 6. stream_copy        从流内拷贝指定数量的可读字节，但不清除这些字节，通常用于协议检测
- * 7. stream_push_stream 将流内所有可读字节写入另一个流，不需要额外拷贝, 可用于网关的数据中转
- * 8. stream_copy_stream 将流内所有可读字节写入另一个流，不需要额外拷贝, 但不清除这些字节，可用于广播
+ * 1. knet_stream_available   获取流内可读字节数
+ * 2. knet_stream_eat_all     丢弃流内所有可读字节
+ * 3. knet_stream_eat         丢弃流内指定数量的字节
+ * 4. knet_stream_pop         从流内读取数据
+ * 5. knet_stream_push        向流内写数据
+ * 6. knet_stream_copy        从流内拷贝指定数量的可读字节，但不清除这些字节，通常用于协议检测
+ * 7. knet_stream_push_stream 将流内所有可读字节写入另一个流，不需要额外拷贝, 可用于网关的数据中转
+ * 8. knet_stream_copy_stream 将流内所有可读字节写入另一个流，不需要额外拷贝, 但不清除这些字节，可用于广播
  *
  * 以上这些函数的设计除了基础的流本身的功能以外，还考虑了特定领域的应用，同时兼顾了效率.
  *
@@ -54,93 +54,93 @@
 
 /**
  * 取得数据流内可读字节数
- * @param stream stream_t实例
+ * @param stream kstream_t实例
  * @return 可读字节数
  */
-extern int stream_available(stream_t* stream);
+extern int knet_stream_available(kstream_t* stream);
 
 /**
  * 清空数据流
- * @param stream stream_t实例
+ * @param stream kstream_t实例
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int stream_eat_all(stream_t* stream);
+extern int knet_stream_eat_all(kstream_t* stream);
 
 /**
  * 删除指定长度数据
- * @param stream stream_t实例
+ * @param stream kstream_t实例
  * @param size 需要删除的长度
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int stream_eat(stream_t* stream, int size);
+extern int knet_stream_eat(kstream_t* stream, int size);
 
 /**
  * 从数据流内读取数据并清除数据
- * @param stream stream_t实例
+ * @param stream kstream_t实例
  * @param buffer 缓冲区
  * @param size 缓冲区大小
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int stream_pop(stream_t* stream, void* buffer, int size);
+extern int knet_stream_pop(kstream_t* stream, void* buffer, int size);
 
 /**
  * 向数据流内写数据
- * @param stream stream_t实例
+ * @param stream kstream_t实例
  * @param buffer 缓冲区
  * @param size 缓冲区大小
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int stream_push(stream_t* stream, const void* buffer, int size);
+extern int knet_stream_push(kstream_t* stream, const void* buffer, int size);
 
 /**
  * 向数据流写数据，可变参数字符串
  *
  * 一次写入的长度不能超过1024
- * @param stream stream_t实例
+ * @param stream kstream_t实例
  * @param format 字符串格式
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int stream_push_varg(stream_t* stream, const char* format, ...);
+extern int knet_stream_push_varg(kstream_t* stream, const char* format, ...);
 
 /**
  * 从数据流内拷贝数据，但不清除数据流内数据
- * @param stream stream_t实例
+ * @param stream kstream_t实例
  * @param buffer 缓冲区
  * @param size 缓冲区大小
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int stream_copy(stream_t* stream, void* buffer, int size);
+extern int knet_stream_copy(kstream_t* stream, void* buffer, int size);
 
 /**
  * 将stream内数据写入target, 并清除stream内数据
- * @param stream stream_t实例
- * @param target stream_t实例
+ * @param stream kstream_t实例
+ * @param target kstream_t实例
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int stream_push_stream(stream_t* stream, stream_t* target);
+extern int knet_stream_push_stream(kstream_t* stream, kstream_t* target);
 
 /**
  * 将stream内数据写入target, 但不清除stream内数据
- * @param stream stream_t实例
- * @param target stream_t实例
+ * @param stream kstream_t实例
+ * @param target kstream_t实例
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int stream_copy_stream(stream_t* stream, stream_t* target);
+extern int knet_stream_copy_stream(kstream_t* stream, kstream_t* target);
 
 /**
  * 获取流所属的管道引用
- * @param stream stream_t实例
- * @return channel_ref_t实例
+ * @param stream kstream_t实例
+ * @return kchannel_ref_t实例
  */
-extern channel_ref_t* stream_get_channel_ref(stream_t* stream);
+extern kchannel_ref_t* knet_stream_get_channel_ref(kstream_t* stream);
 
 /** @} */
 

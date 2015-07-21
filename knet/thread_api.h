@@ -40,9 +40,9 @@
  * 2. TLS
  * 3. 原子操作
  *
- * thread_runner_start_loop可以直接以loop_t作为参数在线程内运行loop_run
- * thread_runner_start_timer_loop可以直接以ktimer_loop_t作为参数在线程内运行ktimer_loop_run
- *
+ * thread_runner_start_loop可以直接以kloop_t作为参数在线程内运行knet_loop_run_once
+ * thread_runner_start_timer_loop可以直接以ktimer_loop_t作为参数在线程内运行ktimer_loop_run_once
+ * thread_runner_start_multi_loop_varg可以同时运行多个knet_loop_run_once或者ktimer_loop_run_once
  * </pre>
  * @{
  */
@@ -51,90 +51,90 @@
  * 创建一个线程
  * @param func 线程函数
  * @param params 参数
- * @return thread_runner_t实例
+ * @return kthread_runner_t实例
  */
-extern thread_runner_t* thread_runner_create(thread_func_t func, void* params);
+extern kthread_runner_t* thread_runner_create(knet_thread_func_t func, void* params);
 
 /**
  * 销毁一个线程
- * @param runner thread_runner_t实例
+ * @param runner kthread_runner_t实例
  */
-extern void thread_runner_destroy(thread_runner_t* runner);
+extern void thread_runner_destroy(kthread_runner_t* runner);
 
 /**
  * 启动线程
- * @param runner thread_runner_t实例
+ * @param runner kthread_runner_t实例
  * @param stack_size 线程栈大小（字节）
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int thread_runner_start(thread_runner_t* runner, int stack_size);
+extern int thread_runner_start(kthread_runner_t* runner, int stack_size);
 
 /**
  * 停止线程
- * @param runner thread_runner_t实例
+ * @param runner kthread_runner_t实例
  */
-extern void thread_runner_stop(thread_runner_t* runner);
+extern void thread_runner_stop(kthread_runner_t* runner);
 
 /**
  * 获取线程ID
- * @param runner thread_runner_t实例
+ * @param runner kthread_runner_t实例
  * @return 线程ID
  */
-extern thread_id_t thread_runner_get_id(thread_runner_t* runner);
+extern thread_id_t thread_runner_get_id(kthread_runner_t* runner);
 
 /**
- * 在线程内运行loop_run()
- * @param runner thread_runner_t实例
- * @param loop loop_t实例
+ * 在线程内运行knet_loop_run()
+ * @param runner kthread_runner_t实例
+ * @param loop kloop_t实例
  * @param stack_size 线程栈大小（字节）
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int thread_runner_start_loop(thread_runner_t* runner, loop_t* loop, int stack_size);
+extern int thread_runner_start_loop(kthread_runner_t* runner, kloop_t* loop, int stack_size);
 
 /**
  * 在线程内运行timer_loop_run()
- * @param runner thread_runner_t实例
+ * @param runner kthread_runner_t实例
  * @param timer_loop ktimer_loop_t实例
  * @param stack_size 线程栈大小（字节）
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int thread_runner_start_timer_loop(thread_runner_t* runner, ktimer_loop_t* timer_loop, int stack_size);
+extern int thread_runner_start_timer_loop(kthread_runner_t* runner, ktimer_loop_t* timer_loop, int stack_size);
 
 /**
- * 在线程内启动多个loop_t或ktimer_loop_t
+ * 在线程内启动多个kloop_t或ktimer_loop_t
  *
- * format内可以有多个loop_t（l）或者ktimer_loop_t（t），譬如：lt，标识一个loop_t，一个ktimer_loop_t
- * @param runner thread_runner_t实例
+ * format内可以有多个kloop_t（l）或者ktimer_loop_t（t），譬如：lt，标识一个kloop_t，一个ktimer_loop_t
+ * @param runner kthread_runner_t实例
  * @param stack_size 栈大小
  * @param format 启动字符串
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int thread_runner_start_multi_loop_varg(thread_runner_t* runner, int stack_size, const char* format, ...);
+extern int thread_runner_start_multi_loop_varg(kthread_runner_t* runner, int stack_size, const char* format, ...);
 
 /**
  * 等待线程终止
- * @param runner thread_runner_t实例
+ * @param runner kthread_runner_t实例
  */
-extern void thread_runner_join(thread_runner_t* runner);
+extern void thread_runner_join(kthread_runner_t* runner);
 
 /**
  * 检查线程是否正在运行
- * @param runner thread_runner_t实例
+ * @param runner kthread_runner_t实例
  * @retval 0 未运行
  * @retval 非零 正在运行
  */
-extern int thread_runner_check_start(thread_runner_t* runner);
+extern int thread_runner_check_start(kthread_runner_t* runner);
 
 /**
  * 取得线程运行参数，thread_runner_create()第二个参数
- * @param runner thread_runner_t实例
+ * @param runner kthread_runner_t实例
  * @return 线程运行参数
  */
-extern void* thread_runner_get_params(thread_runner_t* runner);
+extern void* thread_runner_get_params(kthread_runner_t* runner);
 
 /**
  * 取得线程ID
@@ -150,20 +150,20 @@ extern void thread_sleep_ms(int ms);
 
 /**
  * 设置线程本地存储
- * @param runner thread_runner_t实例
+ * @param runner kthread_runner_t实例
  * @param data 自定义数据指针
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int thread_set_tls_data(thread_runner_t* runner, void* data);
+int thread_set_tls_data(kthread_runner_t* runner, void* data);
 
 /**
  * 取得线程本地存储
- * @param runner thread_runner_t实例
+ * @param runner kthread_runner_t实例
  * @retval 0 获取失败或不存在
  * @retval 有效指针
  */
-void* thread_get_tls_data(thread_runner_t* runner);
+void* thread_get_tls_data(kthread_runner_t* runner);
 
 /**
  * 原子操作 - 递增

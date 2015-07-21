@@ -31,30 +31,37 @@
 #include "list.h"
 #include "misc.h"
 
-int _create_acceptor_channel(framework_acceptor_config_t* ac, loop_t* loop);
-int _create_connector_channel(framework_connector_config_t* cc, loop_t* loop);
+/**
+ * 创建监听器
+ */
+int _create_acceptor_channel(kframework_acceptor_config_t* ac, kloop_t* loop);
+
+/**
+ * 创建连接器
+ */
+int _create_connector_channel(kframework_connector_config_t* cc, kloop_t* loop);
 
 struct _framework_raiser_t {
-    loop_t*          loop;   /* 网络事件循环 */
-    framework_t*     f;      /* 框架 */
-    thread_runner_t* runner; /* 线程 */
+    kloop_t*          loop;   /* 网络事件循环 */
+    kframework_t*     f;      /* 框架 */
+    kthread_runner_t* runner; /* 线程 */
 };
 
-framework_raiser_t* framework_raiser_create(framework_t* f, loop_t* loop) {    
-    framework_raiser_t* raiser = 0;
+kframework_raiser_t* knet_framework_raiser_create(kframework_t* f, kloop_t* loop) {    
+    kframework_raiser_t* raiser = 0;
     verify(f);
-    raiser = create(framework_raiser_t);
+    raiser = create(kframework_raiser_t);
     verify(raiser);
-    memset(raiser, 0, sizeof(framework_raiser_t));
+    memset(raiser, 0, sizeof(kframework_raiser_t));
     raiser->f    = f;
     raiser->loop = loop;
     verify(raiser->loop);
-    /* 所有接受/发起连接的新管道全部给其他loop_t处理 */
-    loop_set_balance_options(raiser->loop, loop_balancer_out);
+    /* 所有接受/发起连接的新管道全部给其他kloop_t处理 */
+    knet_loop_set_balance_options(raiser->loop, loop_balancer_out);
     return raiser;
 }
 
-void framework_raiser_destroy(framework_raiser_t* raiser) {
+void knet_framework_raiser_destroy(kframework_raiser_t* raiser) {
     verify(raiser);
     if (raiser->runner) {
         if (thread_runner_check_start(raiser->runner)) {
@@ -65,60 +72,60 @@ void framework_raiser_destroy(framework_raiser_t* raiser) {
     destroy(raiser);
 }
 
-int _create_acceptor_channel(framework_acceptor_config_t* ac, loop_t* loop) {
+int _create_acceptor_channel(kframework_acceptor_config_t* ac, kloop_t* loop) {
     int            error   = error_ok;
-    channel_ref_t* channel = 0;
+    kchannel_ref_t* channel = 0;
     /* 建立监听管道 */
-    channel = loop_create_channel(loop, framework_acceptor_config_get_client_max_send_list_count(ac),
+    channel = knet_loop_create_channel(loop, framework_acceptor_config_get_client_max_send_list_count(ac),
         framework_acceptor_config_get_client_max_recv_buffer_length(ac));
     verify(channel);
-    channel_ref_set_cb(channel, acceptor_cb);
-    channel_ref_set_user_data(channel, ac);
+    knet_channel_ref_set_cb(channel, acceptor_cb);
+    knet_channel_ref_set_user_data(channel, ac);
     /* 监听 */
-    error = channel_ref_accept(channel, framework_acceptor_config_get_ip(ac),
+    error = knet_channel_ref_accept(channel, framework_acceptor_config_get_ip(ac),
         framework_acceptor_config_get_port(ac), framework_acceptor_config_get_backlog(ac));
     if (error != error_ok) {
-        channel_ref_destroy(channel);
+        knet_channel_ref_destroy(channel);
     }
     return error;
 }
 
-int _create_connector_channel(framework_connector_config_t* cc, loop_t* loop) {
+int _create_connector_channel(kframework_connector_config_t* cc, kloop_t* loop) {
     int            error   = error_ok;
-    channel_ref_t* channel = 0;
+    kchannel_ref_t* channel = 0;
     /* 建立连接器管道 */
-    channel = loop_create_channel(loop, framework_connector_config_get_max_send_list_count(cc),
+    channel = knet_loop_create_channel(loop, framework_connector_config_get_max_send_list_count(cc),
         framework_connector_config_get_max_recv_buffer_length(cc));
     verify(channel);
-    channel_ref_set_cb(channel, framework_connector_config_get_cb(cc));
-    channel_ref_set_auto_reconnect(channel, framework_connector_config_get_auto_reconnect(cc));
+    knet_channel_ref_set_cb(channel, framework_connector_config_get_cb(cc));
+    knet_channel_ref_set_auto_reconnect(channel, framework_connector_config_get_auto_reconnect(cc));
     /* 连接 */
-    error = channel_ref_connect(channel, framework_connector_config_get_remote_ip(cc),
+    error = knet_channel_ref_connect(channel, framework_connector_config_get_remote_ip(cc),
         framework_connector_config_get_remote_port(cc), framework_connector_config_get_connect_timeout(cc));
     if (error != error_ok) {
-        channel_ref_destroy(channel);
+        knet_channel_ref_destroy(channel);
     }
     return error;
 }
 
-int framework_raiser_start(framework_raiser_t* raiser) {
+int knet_framework_raiser_start(kframework_raiser_t* raiser) {
     int                           error            = 0;
-    framework_config_t*           config           = 0;
-    framework_acceptor_config_t*  ac               = 0;
-    framework_connector_config_t* cc               = 0;
-    dlist_node_t*                 node             = 0;
-    dlist_node_t*                 temp             = 0;
-    dlist_t*                      acceptor_config  = 0;
-    dlist_t*                      connector_config = 0;
+    kframework_config_t*           config           = 0;
+    kframework_acceptor_config_t*  ac               = 0;
+    kframework_connector_config_t* cc               = 0;
+    kdlist_node_t*                 node             = 0;
+    kdlist_node_t*                 temp             = 0;
+    kdlist_t*                      acceptor_config  = 0;
+    kdlist_t*                      connector_config = 0;
     verify(raiser);
-    config  = framework_get_config(raiser->f);
+    config  = knet_framework_get_config(raiser->f);
     /* 关联到负载均衡器，监听器所有新连接都会被分派到工作线程处理 */
-    loop_balancer_attach(framework_get_balancer(raiser->f), raiser->loop);
+    knet_loop_balancer_attach(knet_framework_get_balancer(raiser->f), raiser->loop);
     verify(config);
     /* 建立监听管道 */
     acceptor_config = framework_config_get_acceptor_config(config);
     dlist_for_each_safe(acceptor_config, node, temp) {
-        ac = (framework_acceptor_config_t*)dlist_node_get_data(node);
+        ac = (kframework_acceptor_config_t*)dlist_node_get_data(node);
         error = _create_acceptor_channel(ac, raiser->loop);
         if (error_ok != error) {
             return error;
@@ -127,7 +134,7 @@ int framework_raiser_start(framework_raiser_t* raiser) {
     /* 建立连接器管道 */
     connector_config = framework_config_get_connector_config(config);
     dlist_for_each_safe(connector_config, node, temp) {
-        cc = (framework_connector_config_t*)dlist_node_get_data(node);
+        cc = (kframework_connector_config_t*)dlist_node_get_data(node);
         error = _create_connector_channel(cc, raiser->loop);
         if (error_ok != error) {
             return error;
@@ -139,7 +146,7 @@ int framework_raiser_start(framework_raiser_t* raiser) {
     return thread_runner_start_loop(raiser->runner, raiser->loop, 0);
 }
 
-void framework_raiser_stop(framework_raiser_t* raiser) {
+void knet_framework_raiser_stop(kframework_raiser_t* raiser) {
     verify(raiser);
     if (raiser->runner) {
         if (thread_runner_check_start(raiser->runner)) {
@@ -148,48 +155,48 @@ void framework_raiser_stop(framework_raiser_t* raiser) {
     }
 }
 
-void framework_raiser_wait_for_stop(framework_raiser_t* raiser) {
+void knet_framework_raiser_wait_for_stop(kframework_raiser_t* raiser) {
     verify(raiser);
     if (raiser->runner) {
         thread_runner_join(raiser->runner);
     }
 }
 
-int framework_raiser_new_acceptor(framework_raiser_t* raiser, framework_acceptor_config_t* c) {
-    channel_ref_t* channel = 0;
+int knet_framework_raiser_new_acceptor(kframework_raiser_t* raiser, kframework_acceptor_config_t* c) {
+    kchannel_ref_t* channel = 0;
     verify(raiser);
     verify(c);
-    channel = loop_create_channel(raiser->loop, framework_acceptor_config_get_client_max_send_list_count(c),
+    channel = knet_loop_create_channel(raiser->loop, framework_acceptor_config_get_client_max_send_list_count(c),
         framework_acceptor_config_get_client_max_recv_buffer_length(c));
     verify(channel);
-    channel_ref_set_timeout(channel, framework_acceptor_config_get_client_heartbeat_timeout(c));
-    channel_ref_set_cb(channel, acceptor_cb);
-    channel_ref_set_user_data(channel, c);
-    return channel_ref_accept(channel, framework_acceptor_config_get_ip(c),
+    knet_channel_ref_set_timeout(channel, framework_acceptor_config_get_client_heartbeat_timeout(c));
+    knet_channel_ref_set_cb(channel, acceptor_cb);
+    knet_channel_ref_set_user_data(channel, c);
+    return knet_channel_ref_accept(channel, framework_acceptor_config_get_ip(c),
         framework_acceptor_config_get_port(c), framework_acceptor_config_get_backlog(c));
 }
 
-int framework_raiser_new_connector(framework_raiser_t* raiser, framework_connector_config_t* c) {
-    channel_ref_t* channel = 0;
+int knet_framework_raiser_new_connector(kframework_raiser_t* raiser, kframework_connector_config_t* c) {
+    kchannel_ref_t* channel = 0;
     verify(raiser);
     verify(c);
-    channel = loop_create_channel(raiser->loop, framework_connector_config_get_max_send_list_count(c),
+    channel = knet_loop_create_channel(raiser->loop, framework_connector_config_get_max_send_list_count(c),
         framework_connector_config_get_max_recv_buffer_length(c));
     verify(channel);
-    channel_ref_set_cb(channel, framework_connector_config_get_cb(c));
-    channel_ref_set_timeout(channel, framework_connector_config_get_heartbeat_timeout(c));
-    return channel_ref_connect(channel, framework_connector_config_get_remote_ip(c),
+    knet_channel_ref_set_cb(channel, framework_connector_config_get_cb(c));
+    knet_channel_ref_set_timeout(channel, framework_connector_config_get_heartbeat_timeout(c));
+    return knet_channel_ref_connect(channel, framework_connector_config_get_remote_ip(c),
         framework_connector_config_get_remote_port(c), framework_connector_config_get_connect_timeout(c));
 }
 
-void acceptor_cb(channel_ref_t* channel, channel_cb_event_e e) {
-    framework_acceptor_config_t* ac = (framework_acceptor_config_t*)channel_ref_get_user_data(channel);
-    channel_ref_cb_t             cb = framework_acceptor_config_get_client_cb(ac);
+void acceptor_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
+    kframework_acceptor_config_t* ac = (kframework_acceptor_config_t*)knet_channel_ref_get_user_data(channel);
+    knet_channel_ref_cb_t             cb = framework_acceptor_config_get_client_cb(ac);
     if (e & channel_cb_event_accept) {
         /* 设置用户回调 */
-        channel_ref_set_cb(channel, cb);
+        knet_channel_ref_set_cb(channel, cb);
         /* 设置心跳间隔 */
-        channel_ref_set_timeout(channel,
+        knet_channel_ref_set_timeout(channel,
             framework_acceptor_config_get_client_heartbeat_timeout(ac));
         if (cb) {
             /* 调用一次用户回调，在用户回调内通知新连接建立 */

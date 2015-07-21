@@ -29,9 +29,9 @@ enum \hyperlink{a00086_a4045ccaf4758dcf838a88a58c73e462b_a4045ccaf4758dcf838a88a
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-int \hyperlink{a00086_a481fc218a988b1d8a3736ae17dd0f99f_a481fc218a988b1d8a3736ae17dd0f99f}{\+\_\+krpc\+\_\+call\+\_\+encrypt} (\hyperlink{a00051_a1e414ac6f6de24462ccf81e10f63428d_a1e414ac6f6de24462ccf81e10f63428d}{krpc\+\_\+t} $\ast$rpc, \hyperlink{a00051_a261dba04f46f5c59a68a05f69f5a65a8_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$stream, uint16\+\_\+t rpcid, \hyperlink{a00051_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
+int \hyperlink{a00086_a81438b66394a3d6bf42c1971fefeb67c_a81438b66394a3d6bf42c1971fefeb67c}{\+\_\+krpc\+\_\+call\+\_\+encrypt} (\hyperlink{a00051_a1e414ac6f6de24462ccf81e10f63428d_a1e414ac6f6de24462ccf81e10f63428d}{krpc\+\_\+t} $\ast$rpc, \hyperlink{a00051_acc208c4c40c875eebbfef88f00fffacf_acc208c4c40c875eebbfef88f00fffacf}{kstream\+\_\+t} $\ast$stream, uint16\+\_\+t rpcid, \hyperlink{a00051_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
 \item 
-int \hyperlink{a00086_a962a9e0f2aa7e697177cd59af327729a_a962a9e0f2aa7e697177cd59af327729a}{\+\_\+krpc\+\_\+call} (\hyperlink{a00051_a1e414ac6f6de24462ccf81e10f63428d_a1e414ac6f6de24462ccf81e10f63428d}{krpc\+\_\+t} $\ast$rpc, \hyperlink{a00051_a261dba04f46f5c59a68a05f69f5a65a8_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$stream, uint16\+\_\+t rpcid, \hyperlink{a00051_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
+int \hyperlink{a00086_a8e2ea426099ea032432a9aeb24088cf0_a8e2ea426099ea032432a9aeb24088cf0}{\+\_\+krpc\+\_\+call} (\hyperlink{a00051_a1e414ac6f6de24462ccf81e10f63428d_a1e414ac6f6de24462ccf81e10f63428d}{krpc\+\_\+t} $\ast$rpc, \hyperlink{a00051_acc208c4c40c875eebbfef88f00fffacf_acc208c4c40c875eebbfef88f00fffacf}{kstream\+\_\+t} $\ast$stream, uint16\+\_\+t rpcid, \hyperlink{a00051_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
 \item 
 \hyperlink{a00051_a1e414ac6f6de24462ccf81e10f63428d_a1e414ac6f6de24462ccf81e10f63428d}{krpc\+\_\+t} $\ast$ \hyperlink{a00086_a5d55f838d222f44965d99eac9a0381c1_a5d55f838d222f44965d99eac9a0381c1}{krpc\+\_\+create} ()
 \begin{DoxyCompactList}\small\item\em R\+P\+C框架提供了一套底层\+R\+P\+C序列化及反序列化的基础，开发者不应该直接调用这些\+A\+P\+I，应使用代码生成工具 提供的代码框架来进行\+R\+P\+C操作，生成的代码框架屏蔽了所有烦人的细节，使用起来也会比直接调用这些\+A\+P\+I更 方便. \end{DoxyCompactList}\item 
@@ -43,13 +43,13 @@ int \hyperlink{a00086_a76529ccab5c6f0ada79cac791e299ef9_a76529ccab5c6f0ada79cac7
 \begin{DoxyCompactList}\small\item\em 删除注册过的\+R\+P\+C调用回调函数 \end{DoxyCompactList}\item 
 \hyperlink{a00051_a06bb708c1b97445d3a5d0c1b32ad2ab6_a06bb708c1b97445d3a5d0c1b32ad2ab6}{krpc\+\_\+cb\+\_\+t} \hyperlink{a00086_a7841a0b4c828efcb607a51bbdd9c9ab1_a7841a0b4c828efcb607a51bbdd9c9ab1}{krpc\+\_\+get\+\_\+cb} (\hyperlink{a00051_a1e414ac6f6de24462ccf81e10f63428d_a1e414ac6f6de24462ccf81e10f63428d}{krpc\+\_\+t} $\ast$rpc, uint16\+\_\+t rpcid)
 \begin{DoxyCompactList}\small\item\em 取得注册过的\+R\+P\+C调用回调函数 \end{DoxyCompactList}\item 
-int \hyperlink{a00086_a8570b46c2568409656f216a5af1bd287_a8570b46c2568409656f216a5af1bd287}{\+\_\+krpc\+\_\+proc\+\_\+decrypt} (\hyperlink{a00051_a1e414ac6f6de24462ccf81e10f63428d_a1e414ac6f6de24462ccf81e10f63428d}{krpc\+\_\+t} $\ast$rpc, \hyperlink{a00051_a261dba04f46f5c59a68a05f69f5a65a8_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$stream)
+int \hyperlink{a00086_a87f076f27729e0d352ffd12173ab13ab_a87f076f27729e0d352ffd12173ab13ab}{\+\_\+krpc\+\_\+proc\+\_\+decrypt} (\hyperlink{a00051_a1e414ac6f6de24462ccf81e10f63428d_a1e414ac6f6de24462ccf81e10f63428d}{krpc\+\_\+t} $\ast$rpc, \hyperlink{a00051_acc208c4c40c875eebbfef88f00fffacf_acc208c4c40c875eebbfef88f00fffacf}{kstream\+\_\+t} $\ast$stream)
 \item 
-int \hyperlink{a00086_ab51c5d23d5a897a8f1fdb97f5b6c79c2_ab51c5d23d5a897a8f1fdb97f5b6c79c2}{\+\_\+krpc\+\_\+proc} (\hyperlink{a00051_a1e414ac6f6de24462ccf81e10f63428d_a1e414ac6f6de24462ccf81e10f63428d}{krpc\+\_\+t} $\ast$rpc, \hyperlink{a00051_a261dba04f46f5c59a68a05f69f5a65a8_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$stream)
+int \hyperlink{a00086_ae905b4f6864964a0080435a81748c3f1_ae905b4f6864964a0080435a81748c3f1}{\+\_\+krpc\+\_\+proc} (\hyperlink{a00051_a1e414ac6f6de24462ccf81e10f63428d_a1e414ac6f6de24462ccf81e10f63428d}{krpc\+\_\+t} $\ast$rpc, \hyperlink{a00051_acc208c4c40c875eebbfef88f00fffacf_acc208c4c40c875eebbfef88f00fffacf}{kstream\+\_\+t} $\ast$stream)
 \item 
-int \hyperlink{a00086_a9c94cce18fdcbb5e184af7f2ea20cceb_a9c94cce18fdcbb5e184af7f2ea20cceb}{krpc\+\_\+proc} (\hyperlink{a00051_a1e414ac6f6de24462ccf81e10f63428d_a1e414ac6f6de24462ccf81e10f63428d}{krpc\+\_\+t} $\ast$rpc, \hyperlink{a00051_a261dba04f46f5c59a68a05f69f5a65a8_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$stream)
+int \hyperlink{a00086_ac583f7d7c3e3ecb9954530e8d0f6f5f1_ac583f7d7c3e3ecb9954530e8d0f6f5f1}{krpc\+\_\+proc} (\hyperlink{a00051_a1e414ac6f6de24462ccf81e10f63428d_a1e414ac6f6de24462ccf81e10f63428d}{krpc\+\_\+t} $\ast$rpc, \hyperlink{a00051_acc208c4c40c875eebbfef88f00fffacf_acc208c4c40c875eebbfef88f00fffacf}{kstream\+\_\+t} $\ast$stream)
 \begin{DoxyCompactList}\small\item\em 处理\+R\+P\+C调用，从数据流反序列化\+R\+P\+C调用，并调用回调函数 \end{DoxyCompactList}\item 
-int \hyperlink{a00086_a51bbf2caf4916c0c08d8c8d8d86e562e_a51bbf2caf4916c0c08d8c8d8d86e562e}{krpc\+\_\+call} (\hyperlink{a00051_a1e414ac6f6de24462ccf81e10f63428d_a1e414ac6f6de24462ccf81e10f63428d}{krpc\+\_\+t} $\ast$rpc, \hyperlink{a00051_a261dba04f46f5c59a68a05f69f5a65a8_a261dba04f46f5c59a68a05f69f5a65a8}{stream\+\_\+t} $\ast$stream, uint16\+\_\+t rpcid, \hyperlink{a00051_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
+int \hyperlink{a00086_a063313e66bd9a479b4d0a6295a5e665b_a063313e66bd9a479b4d0a6295a5e665b}{krpc\+\_\+call} (\hyperlink{a00051_a1e414ac6f6de24462ccf81e10f63428d_a1e414ac6f6de24462ccf81e10f63428d}{krpc\+\_\+t} $\ast$rpc, \hyperlink{a00051_acc208c4c40c875eebbfef88f00fffacf_acc208c4c40c875eebbfef88f00fffacf}{kstream\+\_\+t} $\ast$stream, uint16\+\_\+t rpcid, \hyperlink{a00051_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
 \begin{DoxyCompactList}\small\item\em 发起\+R\+P\+C调用 \end{DoxyCompactList}\item 
 int \hyperlink{a00086_a5317bb571cb4d94bc56b83989c1b10c2_a5317bb571cb4d94bc56b83989c1b10c2}{krpc\+\_\+set\+\_\+encrypt\+\_\+cb} (\hyperlink{a00051_a1e414ac6f6de24462ccf81e10f63428d_a1e414ac6f6de24462ccf81e10f63428d}{krpc\+\_\+t} $\ast$rpc, \hyperlink{a00051_ae41a67cc07f8dff897ca978e03b1f2d7_ae41a67cc07f8dff897ca978e03b1f2d7}{krpc\+\_\+encrypt\+\_\+t} func)
 \begin{DoxyCompactList}\small\item\em 设置签名加密回调 \end{DoxyCompactList}\item 
@@ -82,42 +82,42 @@ int \hyperlink{a00086_aa75ec66092e77639ca2cf2b5ad04c5db_aa75ec66092e77639ca2cf2b
 
 
 \subsection{函数说明}
-\hypertarget{a00086_a962a9e0f2aa7e697177cd59af327729a_a962a9e0f2aa7e697177cd59af327729a}{}\index{rpc.\+c@{rpc.\+c}!\+\_\+krpc\+\_\+call@{\+\_\+krpc\+\_\+call}}
+\hypertarget{a00086_a8e2ea426099ea032432a9aeb24088cf0_a8e2ea426099ea032432a9aeb24088cf0}{}\index{rpc.\+c@{rpc.\+c}!\+\_\+krpc\+\_\+call@{\+\_\+krpc\+\_\+call}}
 \index{\+\_\+krpc\+\_\+call@{\+\_\+krpc\+\_\+call}!rpc.\+c@{rpc.\+c}}
 \subsubsection[{\+\_\+krpc\+\_\+call}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+krpc\+\_\+call (
 \begin{DoxyParamCaption}
 \item[{{\bf krpc\+\_\+t} $\ast$}]{rpc, }
-\item[{{\bf stream\+\_\+t} $\ast$}]{stream, }
+\item[{{\bf kstream\+\_\+t} $\ast$}]{stream, }
 \item[{uint16\+\_\+t}]{rpcid, }
 \item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
 \end{DoxyParamCaption}
-)}\label{a00086_a962a9e0f2aa7e697177cd59af327729a_a962a9e0f2aa7e697177cd59af327729a}
-\hypertarget{a00086_a481fc218a988b1d8a3736ae17dd0f99f_a481fc218a988b1d8a3736ae17dd0f99f}{}\index{rpc.\+c@{rpc.\+c}!\+\_\+krpc\+\_\+call\+\_\+encrypt@{\+\_\+krpc\+\_\+call\+\_\+encrypt}}
+)}\label{a00086_a8e2ea426099ea032432a9aeb24088cf0_a8e2ea426099ea032432a9aeb24088cf0}
+\hypertarget{a00086_a81438b66394a3d6bf42c1971fefeb67c_a81438b66394a3d6bf42c1971fefeb67c}{}\index{rpc.\+c@{rpc.\+c}!\+\_\+krpc\+\_\+call\+\_\+encrypt@{\+\_\+krpc\+\_\+call\+\_\+encrypt}}
 \index{\+\_\+krpc\+\_\+call\+\_\+encrypt@{\+\_\+krpc\+\_\+call\+\_\+encrypt}!rpc.\+c@{rpc.\+c}}
 \subsubsection[{\+\_\+krpc\+\_\+call\+\_\+encrypt}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+krpc\+\_\+call\+\_\+encrypt (
 \begin{DoxyParamCaption}
 \item[{{\bf krpc\+\_\+t} $\ast$}]{rpc, }
-\item[{{\bf stream\+\_\+t} $\ast$}]{stream, }
+\item[{{\bf kstream\+\_\+t} $\ast$}]{stream, }
 \item[{uint16\+\_\+t}]{rpcid, }
 \item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
 \end{DoxyParamCaption}
-)}\label{a00086_a481fc218a988b1d8a3736ae17dd0f99f_a481fc218a988b1d8a3736ae17dd0f99f}
-\hypertarget{a00086_ab51c5d23d5a897a8f1fdb97f5b6c79c2_ab51c5d23d5a897a8f1fdb97f5b6c79c2}{}\index{rpc.\+c@{rpc.\+c}!\+\_\+krpc\+\_\+proc@{\+\_\+krpc\+\_\+proc}}
+)}\label{a00086_a81438b66394a3d6bf42c1971fefeb67c_a81438b66394a3d6bf42c1971fefeb67c}
+\hypertarget{a00086_ae905b4f6864964a0080435a81748c3f1_ae905b4f6864964a0080435a81748c3f1}{}\index{rpc.\+c@{rpc.\+c}!\+\_\+krpc\+\_\+proc@{\+\_\+krpc\+\_\+proc}}
 \index{\+\_\+krpc\+\_\+proc@{\+\_\+krpc\+\_\+proc}!rpc.\+c@{rpc.\+c}}
 \subsubsection[{\+\_\+krpc\+\_\+proc}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+krpc\+\_\+proc (
 \begin{DoxyParamCaption}
 \item[{{\bf krpc\+\_\+t} $\ast$}]{rpc, }
-\item[{{\bf stream\+\_\+t} $\ast$}]{stream}
+\item[{{\bf kstream\+\_\+t} $\ast$}]{stream}
 \end{DoxyParamCaption}
-)}\label{a00086_ab51c5d23d5a897a8f1fdb97f5b6c79c2_ab51c5d23d5a897a8f1fdb97f5b6c79c2}
-\hypertarget{a00086_a8570b46c2568409656f216a5af1bd287_a8570b46c2568409656f216a5af1bd287}{}\index{rpc.\+c@{rpc.\+c}!\+\_\+krpc\+\_\+proc\+\_\+decrypt@{\+\_\+krpc\+\_\+proc\+\_\+decrypt}}
+)}\label{a00086_ae905b4f6864964a0080435a81748c3f1_ae905b4f6864964a0080435a81748c3f1}
+\hypertarget{a00086_a87f076f27729e0d352ffd12173ab13ab_a87f076f27729e0d352ffd12173ab13ab}{}\index{rpc.\+c@{rpc.\+c}!\+\_\+krpc\+\_\+proc\+\_\+decrypt@{\+\_\+krpc\+\_\+proc\+\_\+decrypt}}
 \index{\+\_\+krpc\+\_\+proc\+\_\+decrypt@{\+\_\+krpc\+\_\+proc\+\_\+decrypt}!rpc.\+c@{rpc.\+c}}
 \subsubsection[{\+\_\+krpc\+\_\+proc\+\_\+decrypt}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+krpc\+\_\+proc\+\_\+decrypt (
 \begin{DoxyParamCaption}
 \item[{{\bf krpc\+\_\+t} $\ast$}]{rpc, }
-\item[{{\bf stream\+\_\+t} $\ast$}]{stream}
+\item[{{\bf kstream\+\_\+t} $\ast$}]{stream}
 \end{DoxyParamCaption}
-)}\label{a00086_a8570b46c2568409656f216a5af1bd287_a8570b46c2568409656f216a5af1bd287}
+)}\label{a00086_a87f076f27729e0d352ffd12173ab13ab_a87f076f27729e0d352ffd12173ab13ab}
 \hypertarget{a00086_aa12a9874d2b0308994c3fa651cdbbd61_aa12a9874d2b0308994c3fa651cdbbd61}{}\index{rpc.\+c@{rpc.\+c}!krpc\+\_\+add\+\_\+cb@{krpc\+\_\+add\+\_\+cb}}
 \index{krpc\+\_\+add\+\_\+cb@{krpc\+\_\+add\+\_\+cb}!rpc.\+c@{rpc.\+c}}
 \subsubsection[{krpc\+\_\+add\+\_\+cb}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+add\+\_\+cb (
@@ -147,16 +147,16 @@ int \hyperlink{a00086_aa75ec66092e77639ca2cf2b5ad04c5db_aa75ec66092e77639ca2cf2b
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00086_a51bbf2caf4916c0c08d8c8d8d86e562e_a51bbf2caf4916c0c08d8c8d8d86e562e}{}\index{rpc.\+c@{rpc.\+c}!krpc\+\_\+call@{krpc\+\_\+call}}
+\hypertarget{a00086_a063313e66bd9a479b4d0a6295a5e665b_a063313e66bd9a479b4d0a6295a5e665b}{}\index{rpc.\+c@{rpc.\+c}!krpc\+\_\+call@{krpc\+\_\+call}}
 \index{krpc\+\_\+call@{krpc\+\_\+call}!rpc.\+c@{rpc.\+c}}
 \subsubsection[{krpc\+\_\+call}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+call (
 \begin{DoxyParamCaption}
 \item[{{\bf krpc\+\_\+t} $\ast$}]{rpc, }
-\item[{{\bf stream\+\_\+t} $\ast$}]{stream, }
+\item[{{\bf kstream\+\_\+t} $\ast$}]{stream, }
 \item[{uint16\+\_\+t}]{rpcid, }
 \item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
 \end{DoxyParamCaption}
-)}\label{a00086_a51bbf2caf4916c0c08d8c8d8d86e562e_a51bbf2caf4916c0c08d8c8d8d86e562e}
+)}\label{a00086_a063313e66bd9a479b4d0a6295a5e665b_a063313e66bd9a479b4d0a6295a5e665b}
 
 
 发起\+R\+P\+C调用 
@@ -257,14 +257,14 @@ krpc\+\_\+t实例
 \begin{DoxyReturn}{返回}
 回调函数指针 
 \end{DoxyReturn}
-\hypertarget{a00086_a9c94cce18fdcbb5e184af7f2ea20cceb_a9c94cce18fdcbb5e184af7f2ea20cceb}{}\index{rpc.\+c@{rpc.\+c}!krpc\+\_\+proc@{krpc\+\_\+proc}}
+\hypertarget{a00086_ac583f7d7c3e3ecb9954530e8d0f6f5f1_ac583f7d7c3e3ecb9954530e8d0f6f5f1}{}\index{rpc.\+c@{rpc.\+c}!krpc\+\_\+proc@{krpc\+\_\+proc}}
 \index{krpc\+\_\+proc@{krpc\+\_\+proc}!rpc.\+c@{rpc.\+c}}
 \subsubsection[{krpc\+\_\+proc}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+proc (
 \begin{DoxyParamCaption}
 \item[{{\bf krpc\+\_\+t} $\ast$}]{rpc, }
-\item[{{\bf stream\+\_\+t} $\ast$}]{stream}
+\item[{{\bf kstream\+\_\+t} $\ast$}]{stream}
 \end{DoxyParamCaption}
-)}\label{a00086_a9c94cce18fdcbb5e184af7f2ea20cceb_a9c94cce18fdcbb5e184af7f2ea20cceb}
+)}\label{a00086_ac583f7d7c3e3ecb9954530e8d0f6f5f1_ac583f7d7c3e3ecb9954530e8d0f6f5f1}
 
 
 处理\+R\+P\+C调用，从数据流反序列化\+R\+P\+C调用，并调用回调函数 

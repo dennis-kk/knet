@@ -25,52 +25,52 @@
 #include "helper.h"
 #include "knet.h"
 
-framework_t* Test_Framework_Framework = 0;
+kframework_t* Test_Framework_Framework = 0;
 bool Test_Framework_Echo = false;
 bool Test_Framework_Accept = false;
 
 CASE(Test_Framework) {
     struct holder {
-        static void connector_cb(channel_ref_t* channel, channel_cb_event_e e) {
+        static void connector_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
             if (e & channel_cb_event_connect) {
-                stream_t* stream = channel_ref_get_stream(channel);
-                stream_push(stream, "1234", 5);
+                kstream_t* stream = knet_channel_ref_get_stream(channel);
+                knet_stream_push(stream, "1234", 5);
             } else if (e & channel_cb_event_recv) {
                 Test_Framework_Echo = true;
-                channel_ref_close(channel);
+                knet_channel_ref_close(channel);
             } else if (e & channel_cb_event_close) {
-                framework_stop(Test_Framework_Framework);
+                knet_framework_stop(Test_Framework_Framework);
             }
         }
 
-        static void channel_cb(channel_ref_t* channel, channel_cb_event_e e) {
+        static void channel_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
             if (e & channel_cb_event_accept) {
                 Test_Framework_Accept = true;
             }
             if (e & channel_cb_event_recv) {
-                stream_t* stream = channel_ref_get_stream(channel);
-                stream_push(stream, "1234", 5);
+                kstream_t* stream = knet_channel_ref_get_stream(channel);
+                knet_stream_push(stream, "1234", 5);
             }
         }
     };
 
-    Test_Framework_Framework = framework_create();
-    framework_config_t* c = framework_get_config(Test_Framework_Framework);
-    framework_acceptor_config_t* ac = framework_config_new_acceptor(c);
-    framework_acceptor_config_set_local_address(ac, 0, 80);
-    framework_acceptor_config_set_client_cb(ac, &holder::channel_cb);
-    framework_config_set_worker_thread_count(c, 4);
+    Test_Framework_Framework = knet_framework_create();
+    kframework_config_t* c = knet_framework_get_config(Test_Framework_Framework);
+    kframework_acceptor_config_t* ac = knet_framework_config_new_acceptor(c);
+    knet_framework_acceptor_config_set_local_address(ac, 0, 80);
+    knet_framework_acceptor_config_set_client_cb(ac, &holder::channel_cb);
+    knet_framework_config_set_worker_thread_count(c, 4);
 
     // 模拟一个外部连接器
-    framework_connector_config_t* cc = framework_config_new_connector(c);
-    framework_connector_config_set_remote_address(cc, "127.0.0.1", 80);
-    framework_connector_config_set_cb(cc, &holder::connector_cb);
+    kframework_connector_config_t* cc = knet_framework_config_new_connector(c);
+    knet_framework_connector_config_set_remote_address(cc, "127.0.0.1", 80);
+    knet_framework_connector_config_set_cb(cc, &holder::connector_cb);
 
     // 启动框架
-    EXPECT_TRUE(error_ok == framework_start(Test_Framework_Framework));
+    EXPECT_TRUE(error_ok == knet_framework_start(Test_Framework_Framework));
 
-    framework_wait_for_stop(Test_Framework_Framework);
-    framework_destroy(Test_Framework_Framework);
+    knet_framework_wait_for_stop(Test_Framework_Framework);
+    knet_framework_destroy(Test_Framework_Framework);
 
     EXPECT_TRUE(Test_Framework_Echo);
     EXPECT_TRUE(Test_Framework_Accept);
@@ -78,82 +78,82 @@ CASE(Test_Framework) {
 
 CASE(Test_Framework_Async) {
     struct holder {
-        static void connector_cb(channel_ref_t* channel, channel_cb_event_e e) {
+        static void connector_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
             if (e & channel_cb_event_connect) {
-                stream_t* stream = channel_ref_get_stream(channel);
-                stream_push(stream, "1234", 5);
+                kstream_t* stream = knet_channel_ref_get_stream(channel);
+                knet_stream_push(stream, "1234", 5);
             } else if (e & channel_cb_event_recv) {
                 Test_Framework_Echo = true;
-                channel_ref_close(channel);
+                knet_channel_ref_close(channel);
             } else if (e & channel_cb_event_close) {
-                framework_stop(Test_Framework_Framework);
+                knet_framework_stop(Test_Framework_Framework);
             }
         }
 
-        static void channel_cb(channel_ref_t* channel, channel_cb_event_e e) {
+        static void channel_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
             if (e & channel_cb_event_accept) {
                 Test_Framework_Accept = true;
             }
             if (e & channel_cb_event_recv) {
-                stream_t* stream = channel_ref_get_stream(channel);
-                stream_push(stream, "1234", 5);
+                kstream_t* stream = knet_channel_ref_get_stream(channel);
+                knet_stream_push(stream, "1234", 5);
             }
         }
     };
 
-    Test_Framework_Framework = framework_create();
-    framework_config_t* c = framework_get_config(Test_Framework_Framework);
-    framework_config_set_worker_thread_count(c, 4);
+    Test_Framework_Framework = knet_framework_create();
+    kframework_config_t* c = knet_framework_get_config(Test_Framework_Framework);
+    knet_framework_config_set_worker_thread_count(c, 4);
     // 启动框架
-    EXPECT_TRUE(error_ok == framework_start(Test_Framework_Framework));
+    EXPECT_TRUE(error_ok == knet_framework_start(Test_Framework_Framework));
 
     // 框架启动后，建立一个监听器
-    framework_acceptor_config_t* ac = framework_config_new_acceptor(c);
-    framework_acceptor_config_set_local_address(ac, 0, 80);
-    framework_acceptor_config_set_client_cb(ac, &holder::channel_cb);
-    framework_acceptor_start(Test_Framework_Framework, ac);
+    kframework_acceptor_config_t* ac = knet_framework_config_new_acceptor(c);
+    knet_framework_acceptor_config_set_local_address(ac, 0, 80);
+    knet_framework_acceptor_config_set_client_cb(ac, &holder::channel_cb);
+    knet_framework_acceptor_start(Test_Framework_Framework, ac);
 
     // 框架启动后，模拟一个外部连接器
-    framework_connector_config_t* cc = framework_config_new_connector(c);
-    framework_connector_config_set_remote_address(cc, "127.0.0.1", 80);
-    framework_connector_config_set_cb(cc, &holder::connector_cb);
-    framework_connector_start(Test_Framework_Framework, cc);
+    kframework_connector_config_t* cc = knet_framework_config_new_connector(c);
+    knet_framework_connector_config_set_remote_address(cc, "127.0.0.1", 80);
+    knet_framework_connector_config_set_cb(cc, &holder::connector_cb);
+    knet_framework_connector_start(Test_Framework_Framework, cc);
 
-    framework_wait_for_stop(Test_Framework_Framework);
-    framework_destroy(Test_Framework_Framework);
+    knet_framework_wait_for_stop(Test_Framework_Framework);
+    knet_framework_destroy(Test_Framework_Framework);
 
     EXPECT_TRUE(Test_Framework_Echo);
     EXPECT_TRUE(Test_Framework_Accept);
 }
 
 CASE(Test_Framework_Start_Fail) {
-    framework_t* f = framework_create();
-    framework_config_t* c = framework_get_config(f);
-    framework_acceptor_config_t* ac = framework_config_new_acceptor(c);
-    framework_acceptor_config_set_local_address(ac, "128.0.0.1", 80);
-    EXPECT_FALSE(error_ok == framework_start(f));
-    framework_destroy(f);
+    kframework_t* f = knet_framework_create();
+    kframework_config_t* c = knet_framework_get_config(f);
+    kframework_acceptor_config_t* ac = knet_framework_config_new_acceptor(c);
+    knet_framework_acceptor_config_set_local_address(ac, "128.0.0.1", 80);
+    EXPECT_FALSE(error_ok == knet_framework_start(f));
+    knet_framework_destroy(f);
 
-    f = framework_create();
-    c = framework_get_config(f);
-    ac = framework_config_new_acceptor(c);
-    framework_acceptor_config_set_local_address(ac, "128.0.0.1", 80);
-    EXPECT_FALSE(error_ok == framework_start_wait(f));
-    framework_destroy(f);
+    f = knet_framework_create();
+    c = knet_framework_get_config(f);
+    ac = knet_framework_config_new_acceptor(c);
+    knet_framework_acceptor_config_set_local_address(ac, "128.0.0.1", 80);
+    EXPECT_FALSE(error_ok == knet_framework_start_wait(f));
+    knet_framework_destroy(f);
 
-    f = framework_create();
-    c = framework_get_config(f);
-    ac = framework_config_new_acceptor(c);
-    framework_acceptor_config_set_local_address(ac, "128.0.0.1", 80);
-    EXPECT_FALSE(error_ok == framework_start_wait_destroy(f));
+    f = knet_framework_create();
+    c = knet_framework_get_config(f);
+    ac = knet_framework_config_new_acceptor(c);
+    knet_framework_acceptor_config_set_local_address(ac, "128.0.0.1", 80);
+    EXPECT_FALSE(error_ok == knet_framework_start_wait_destroy(f));
 }
 
 CASE(Test_Framework_Timer) {
     struct holder {
-        static void channel_cb(channel_ref_t* channel, channel_cb_event_e e) {
+        static void channel_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
             EXPECT_TRUE(channel);
             if (e & channel_cb_event_accept) {
-                ktimer_t* timer = framework_create_worker_timer(Test_Framework_Framework);
+                ktimer_t* timer = knet_framework_create_worker_timer(Test_Framework_Framework);
                 ktimer_start(timer, &holder::timer_cb, 0, 1000);
             }            
         }
@@ -161,23 +161,23 @@ CASE(Test_Framework_Timer) {
         static void timer_cb(ktimer_t* timer, void* param) {
             EXPECT_TRUE(timer);
             EXPECT_FALSE(param);
-            framework_stop(Test_Framework_Framework);
+            knet_framework_stop(Test_Framework_Framework);
         }
     };
-    Test_Framework_Framework = framework_create();
-    framework_config_t* c = framework_get_config(Test_Framework_Framework);
-    framework_acceptor_config_t* ac = framework_config_new_acceptor(c);
-    framework_acceptor_config_set_local_address(ac, 0, 80);
-    framework_acceptor_config_set_client_cb(ac, &holder::channel_cb);
-    framework_config_set_worker_thread_count(c, 4);
+    Test_Framework_Framework = knet_framework_create();
+    kframework_config_t* c = knet_framework_get_config(Test_Framework_Framework);
+    kframework_acceptor_config_t* ac = knet_framework_config_new_acceptor(c);
+    knet_framework_acceptor_config_set_local_address(ac, 0, 80);
+    knet_framework_acceptor_config_set_client_cb(ac, &holder::channel_cb);
+    knet_framework_config_set_worker_thread_count(c, 4);
 
     // 模拟一个外部连接器
-    framework_connector_config_t* cc = framework_config_new_connector(c);
-    framework_connector_config_set_remote_address(cc, "127.0.0.1", 80);
-    framework_connector_config_set_cb(cc, 0);
+    kframework_connector_config_t* cc = knet_framework_config_new_connector(c);
+    knet_framework_connector_config_set_remote_address(cc, "127.0.0.1", 80);
+    knet_framework_connector_config_set_cb(cc, 0);
 
     // 启动框架
-    EXPECT_TRUE(error_ok == framework_start(Test_Framework_Framework));
+    EXPECT_TRUE(error_ok == knet_framework_start(Test_Framework_Framework));
 
-    framework_wait_for_stop_destroy(Test_Framework_Framework);
+    knet_framework_wait_for_stop_destroy(Test_Framework_Framework);
 }

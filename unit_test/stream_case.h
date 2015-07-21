@@ -25,136 +25,136 @@
 #include "helper.h"
 #include "knet.h"
 
-channel_ref_t* Test_Stream_Push_Stream_Client1 = 0;
-channel_ref_t* Test_Stream_Push_Stream_Client2 = 0;
-channel_ref_t* Test_Stream_Push_Stream_Connector1 = 0;
-channel_ref_t* Test_Stream_Push_Stream_Connector2 = 0;
+kchannel_ref_t* Test_Stream_Push_Stream_Client1 = 0;
+kchannel_ref_t* Test_Stream_Push_Stream_Client2 = 0;
+kchannel_ref_t* Test_Stream_Push_Stream_Connector1 = 0;
+kchannel_ref_t* Test_Stream_Push_Stream_Connector2 = 0;
 
 CASE(Test_Stream_Push_Stream) {
     struct holder {
-        static void connector_cb(channel_ref_t* channel, channel_cb_event_e e) {            
+        static void connector_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {            
             if (e & channel_cb_event_recv) {
                 // 第一个连接器收到服务器发来的数据
                 if (channel == Test_Stream_Push_Stream_Connector1) {
-                    stream_t* stream1 = channel_ref_get_stream(channel);
-                    stream_t* stream2 = channel_ref_get_stream(Test_Stream_Push_Stream_Connector2);
+                    kstream_t* stream1 = knet_channel_ref_get_stream(channel);
+                    kstream_t* stream2 = knet_channel_ref_get_stream(Test_Stream_Push_Stream_Connector2);
                     // 将服务器第一个客户端的数据写入第二个连接器，将触发client_cb回调
-                    EXPECT_TRUE(error_ok == stream_push_stream(stream1, stream2));
+                    EXPECT_TRUE(error_ok == knet_stream_push_stream(stream1, stream2));
                 }
             }
         }
 
-        static void client_cb(channel_ref_t* channel, channel_cb_event_e e) {
+        static void client_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
             if (e & channel_cb_event_recv) {
                 if (channel == Test_Stream_Push_Stream_Client2) {
-                    stream_t* stream = channel_ref_get_stream(channel);
-                    // 收到由stream_push_stream发来的数据
-                    EXPECT_TRUE(error_ok == stream_eat(stream, 4));
-                    EXPECT_FALSE(stream_available(stream));
-                    loop_exit(channel_ref_get_loop(channel));
+                    kstream_t* stream = knet_channel_ref_get_stream(channel);
+                    // 收到由knet_stream_push_stream发来的数据
+                    EXPECT_TRUE(error_ok == knet_stream_eat(stream, 4));
+                    EXPECT_FALSE(knet_stream_available(stream));
+                    knet_loop_exit(knet_channel_ref_get_loop(channel));
                 }
             }
         }
 
-        static void acceptor_cb(channel_ref_t* channel, channel_cb_event_e e) {
+        static void acceptor_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
             if (e & channel_cb_event_accept) {
                 if (Test_Stream_Push_Stream_Client1) {
                     Test_Stream_Push_Stream_Client2 = channel;
                 } else {
                     Test_Stream_Push_Stream_Client1 = channel;
                 }
-                channel_ref_set_cb(channel, client_cb);
+                knet_channel_ref_set_cb(channel, client_cb);
                 // 两个客户端都已经连接成功
                 if (Test_Stream_Push_Stream_Client1 && Test_Stream_Push_Stream_Client2) {
                     // 向第一个客户端写入4个字节
-                    stream_t* stream = channel_ref_get_stream(Test_Stream_Push_Stream_Client1);
-                    EXPECT_TRUE(error_ok == stream_push(stream, "123", 4));
+                    kstream_t* stream = knet_channel_ref_get_stream(Test_Stream_Push_Stream_Client1);
+                    EXPECT_TRUE(error_ok == knet_stream_push(stream, "123", 4));
                 }
             }
         }
     };
 
-    loop_t* loop = loop_create();
+    kloop_t* loop = knet_loop_create();
 
-    Test_Stream_Push_Stream_Connector1 = loop_create_channel(loop, 1, 1024);
-    Test_Stream_Push_Stream_Connector2 = loop_create_channel(loop, 1, 1024);
-    channel_ref_t* acceptor = loop_create_channel(loop, 1, 1024);
-    channel_ref_set_cb(acceptor, &holder::acceptor_cb);
-    channel_ref_accept(acceptor, "127.0.0.1", 80, 1);
+    Test_Stream_Push_Stream_Connector1 = knet_loop_create_channel(loop, 1, 1024);
+    Test_Stream_Push_Stream_Connector2 = knet_loop_create_channel(loop, 1, 1024);
+    kchannel_ref_t* acceptor = knet_loop_create_channel(loop, 1, 1024);
+    knet_channel_ref_set_cb(acceptor, &holder::acceptor_cb);
+    knet_channel_ref_accept(acceptor, "127.0.0.1", 80, 1);
     // 启动两个客户端
     // 设置第一个连接器事件回调
-    channel_ref_set_cb(Test_Stream_Push_Stream_Connector1, &holder::connector_cb);
-    channel_ref_connect(Test_Stream_Push_Stream_Connector1, "127.0.0.1", 80, 1);
-    channel_ref_connect(Test_Stream_Push_Stream_Connector2, "127.0.0.1", 80, 1);
+    knet_channel_ref_set_cb(Test_Stream_Push_Stream_Connector1, &holder::connector_cb);
+    knet_channel_ref_connect(Test_Stream_Push_Stream_Connector1, "127.0.0.1", 80, 1);
+    knet_channel_ref_connect(Test_Stream_Push_Stream_Connector2, "127.0.0.1", 80, 1);
 
-    loop_run(loop);
-    loop_destroy(loop);
+    knet_loop_run(loop);
+    knet_loop_destroy(loop);
 }
 
-channel_ref_t* Test_Stream_Copy_Stream_Client1 = 0;
-channel_ref_t* Test_Stream_Copy_Stream_Client2 = 0;
-channel_ref_t* Test_Stream_Copy_Stream_Connector1 = 0;
-channel_ref_t* Test_Stream_Copy_Stream_Connector2 = 0;
+kchannel_ref_t* Test_Stream_Copy_Stream_Client1 = 0;
+kchannel_ref_t* Test_Stream_Copy_Stream_Client2 = 0;
+kchannel_ref_t* Test_Stream_Copy_Stream_Connector1 = 0;
+kchannel_ref_t* Test_Stream_Copy_Stream_Connector2 = 0;
 
 CASE(Test_Stream_Copy_Stream) {
     struct holder {
-        static void connector_cb(channel_ref_t* channel, channel_cb_event_e e) {            
+        static void connector_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {            
             if (e & channel_cb_event_recv) {
                 // 第一个连接器收到服务器发来的数据
                 if (channel == Test_Stream_Copy_Stream_Connector1) {
-                    stream_t* stream1 = channel_ref_get_stream(channel);
-                    stream_t* stream2 = channel_ref_get_stream(Test_Stream_Copy_Stream_Connector2);
+                    kstream_t* stream1 = knet_channel_ref_get_stream(channel);
+                    kstream_t* stream2 = knet_channel_ref_get_stream(Test_Stream_Copy_Stream_Connector2);
                     // 将服务器第一个客户端的数据写入第二个连接器，将触发client_cb回调
-                    EXPECT_TRUE(error_ok == stream_copy_stream(stream1, stream2));
-                    EXPECT_TRUE(4 == stream_available(stream1));
+                    EXPECT_TRUE(error_ok == knet_stream_copy_stream(stream1, stream2));
+                    EXPECT_TRUE(4 == knet_stream_available(stream1));
                 }
             }
         }
 
-        static void client_cb(channel_ref_t* channel, channel_cb_event_e e) {
+        static void client_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
             if (e & channel_cb_event_recv) {
                 if (channel == Test_Stream_Copy_Stream_Client2) {
-                    stream_t* stream = channel_ref_get_stream(channel);
-                    // 收到由stream_copy_stream发来的数据
-                    EXPECT_TRUE(error_ok == stream_eat(stream, 4));
-                    EXPECT_FALSE(stream_available(stream));
-                    loop_exit(channel_ref_get_loop(channel));
+                    kstream_t* stream = knet_channel_ref_get_stream(channel);
+                    // 收到由knet_stream_copy_stream发来的数据
+                    EXPECT_TRUE(error_ok == knet_stream_eat(stream, 4));
+                    EXPECT_FALSE(knet_stream_available(stream));
+                    knet_loop_exit(knet_channel_ref_get_loop(channel));
                 }
             }
         }
 
-        static void acceptor_cb(channel_ref_t* channel, channel_cb_event_e e) {
+        static void acceptor_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
             if (e & channel_cb_event_accept) {
                 if (Test_Stream_Copy_Stream_Client1) {
                     Test_Stream_Copy_Stream_Client2 = channel;
                 } else {
                     Test_Stream_Copy_Stream_Client1 = channel;
                 }
-                channel_ref_set_cb(channel, client_cb);
+                knet_channel_ref_set_cb(channel, client_cb);
                 // 两个客户端都已经连接成功
                 if (Test_Stream_Copy_Stream_Client1 && Test_Stream_Copy_Stream_Client2) {
                     // 向第一个客户端写入4个字节
-                    stream_t* stream = channel_ref_get_stream(Test_Stream_Copy_Stream_Client1);
-                    EXPECT_TRUE(error_ok == stream_push(stream, "123", 4));
+                    kstream_t* stream = knet_channel_ref_get_stream(Test_Stream_Copy_Stream_Client1);
+                    EXPECT_TRUE(error_ok == knet_stream_push(stream, "123", 4));
                 }
             }
         }
     };
 
-    loop_t* loop = loop_create();
+    kloop_t* loop = knet_loop_create();
 
-    Test_Stream_Copy_Stream_Connector1 = loop_create_channel(loop, 1, 1024);
-    Test_Stream_Copy_Stream_Connector2 = loop_create_channel(loop, 1, 1024);
-    channel_ref_t* acceptor = loop_create_channel(loop, 1, 1024);
-    channel_ref_set_cb(acceptor, &holder::acceptor_cb);
-    channel_ref_accept(acceptor, "127.0.0.1", 80, 1);
+    Test_Stream_Copy_Stream_Connector1 = knet_loop_create_channel(loop, 1, 1024);
+    Test_Stream_Copy_Stream_Connector2 = knet_loop_create_channel(loop, 1, 1024);
+    kchannel_ref_t* acceptor = knet_loop_create_channel(loop, 1, 1024);
+    knet_channel_ref_set_cb(acceptor, &holder::acceptor_cb);
+    knet_channel_ref_accept(acceptor, "127.0.0.1", 80, 1);
 
     // 启动两个客户端
     // 设置第一个连接器事件回调
-    channel_ref_set_cb(Test_Stream_Copy_Stream_Connector1, &holder::connector_cb);
-    channel_ref_connect(Test_Stream_Copy_Stream_Connector1, "127.0.0.1", 80, 1);
-    channel_ref_connect(Test_Stream_Copy_Stream_Connector2, "127.0.0.1", 80, 1);
+    knet_channel_ref_set_cb(Test_Stream_Copy_Stream_Connector1, &holder::connector_cb);
+    knet_channel_ref_connect(Test_Stream_Copy_Stream_Connector1, "127.0.0.1", 80, 1);
+    knet_channel_ref_connect(Test_Stream_Copy_Stream_Connector2, "127.0.0.1", 80, 1);
 
-    loop_run(loop);
-    loop_destroy(loop);
+    knet_loop_run(loop);
+    knet_loop_destroy(loop);
 }

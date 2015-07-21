@@ -32,11 +32,11 @@
  * 负载均衡器
  *
  * <pre>
- * 负载均衡器可以与任意数量的loop_t关联，关联后的loop_t内监听器接受到的新管道
- * 将参与负载均衡，负载均衡的策略是loop_t内活跃管道数量，loop_balancer_t选择
- * 活跃管道最少的loop_t负载新接受的管道.
+ * 负载均衡器可以与任意数量的kloop_t关联，关联后的kloop_t内监听器接受到的新管道
+ * 将参与负载均衡，负载均衡的策略是kloop_t内活跃管道数量，kloop_balancer_t选择
+ * 活跃管道最少的kloop_t负载新接受的管道.
  *
- * 调用loop_balancer_attach让loop_balancer_t与loop_t关联，调用loop_balancer_detach
+ * 调用knet_loop_balancer_attach让kloop_balancer_t与kloop_t关联，调用knet_loop_balancer_detach
  * 取消关联.
  * </pre>
  * @{
@@ -44,47 +44,47 @@
 
 /**
  * 创建负载均衡器
- * @return loop_balancer_t实例
+ * @return kloop_balancer_t实例
  */
-extern loop_balancer_t* loop_balancer_create();
+extern kloop_balancer_t* knet_loop_balancer_create();
 
 /**
  * 销毁负载均衡器
- * @param balancer loop_balancer_t实例
+ * @param balancer kloop_balancer_t实例
  */
-extern void loop_balancer_destroy(loop_balancer_t* balancer);
+extern void knet_loop_balancer_destroy(kloop_balancer_t* balancer);
 
 /**
  * 添加事件循环到负载均衡器
- * @param balancer loop_balancer_t实例
- * @param loop loop_t实例
+ * @param balancer kloop_balancer_t实例
+ * @param loop kloop_t实例
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int loop_balancer_attach(loop_balancer_t* balancer, loop_t* loop);
+extern int knet_loop_balancer_attach(kloop_balancer_t* balancer, kloop_t* loop);
 
 /**
  * 从负载均衡器内删除事件循环
- * @param balancer loop_balancer_t实例
- * @param loop loop_t实例
+ * @param balancer kloop_balancer_t实例
+ * @param loop kloop_t实例
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int loop_balancer_detach(loop_balancer_t* balancer, loop_t* loop);
+extern int knet_loop_balancer_detach(kloop_balancer_t* balancer, kloop_t* loop);
 
 /**
  * 设置用户数据
- * @param balancer loop_balancer_t实例
+ * @param balancer kloop_balancer_t实例
  * @param data 用户数据指针
  */
-extern void loop_balancer_set_data(loop_balancer_t* balancer, void* data);
+extern void knet_loop_balancer_set_data(kloop_balancer_t* balancer, void* data);
 
 /**
  * 取得用户数据
- * @param balancer loop_balancer_t实例
+ * @param balancer kloop_balancer_t实例
  * @return 用户数据指针
  */
-extern void* loop_balancer_get_data(loop_balancer_t* balancer);
+extern void* knet_loop_balancer_get_data(kloop_balancer_t* balancer);
 
 /** @} */
 

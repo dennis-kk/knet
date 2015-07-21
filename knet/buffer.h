@@ -30,67 +30,67 @@
 /**
  * 创建一个固定长度的缓冲区
  * @param size 缓冲区长度（字节）
- * @return buffer_t实例
+ * @return kbuffer_t实例
  */
-buffer_t* buffer_create(uint32_t size);
+kbuffer_t* knet_buffer_create(uint32_t size);
 
 /**
  * 销毁缓冲区
- * @param sb buffer_t实例
+ * @param sb kbuffer_t实例
  */
-void buffer_destroy(buffer_t* sb);
+void knet_buffer_destroy(kbuffer_t* sb);
 
 /**
  * 写入
- * @param sb buffer_t实例
+ * @param sb kbuffer_t实例
  * @param temp 字节数组指针
  * @param size 字节数组长度
  * @retval 0 写入失败
  * @retval >0 实际写入的字节数
  */
-uint32_t buffer_put(buffer_t* sb, const char* temp, uint32_t size);
+uint32_t knet_buffer_put(kbuffer_t* sb, const char* temp, uint32_t size);
 
 /**
  * 取得缓冲区内数据长度
- * @param sb buffer_t实例
+ * @param sb kbuffer_t实例
  * @return 数据长度
  */
-uint32_t buffer_get_length(buffer_t* sb);
+uint32_t knet_buffer_get_length(kbuffer_t* sb);
 
 /**
  * 取得缓冲区内最大长度
- * @param sb buffer_t实例
+ * @param sb kbuffer_t实例
  * @return 最大长度
  */
-uint32_t buffer_get_max_size(buffer_t* sb);
+uint32_t knet_buffer_get_max_size(kbuffer_t* sb);
 
 /**
  * 测试缓冲区内是否有足够空间
- * @param sb buffer_t实例
+ * @param sb kbuffer_t实例
  * @param size 需求长度
  * @retval 0 没有足够空间
  * @retval 非零 有足够空间
  */
-int buffer_enough(buffer_t* sb, uint32_t size);
+int knet_buffer_enough(kbuffer_t* sb, uint32_t size);
 
 /**
  * 取得缓冲区数据起始地址
- * @param sb buffer_t实例
+ * @param sb kbuffer_t实例
  * @return 数据长度
  */
-char* buffer_get_ptr(buffer_t* sb);
+char* knet_buffer_get_ptr(kbuffer_t* sb);
 
 /**
  * 调整数据起始地址
- * @param sb buffer_t实例
+ * @param sb kbuffer_t实例
  * @param gap 调整的长度
  */
-void buffer_adjust(buffer_t* sb, uint32_t gap);
+void knet_buffer_adjust(kbuffer_t* sb, uint32_t gap);
 
 /**
  * 清空缓冲区
- * @param sb buffer_t实例
+ * @param sb kbuffer_t实例
  */
-void buffer_clear(buffer_t* sb);
+void knet_buffer_clear(kbuffer_t* sb);
 
 #endif /* BUFFER_H */

@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.9.1"/>
+<title>knet: knet_buffer_adjust</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">knet
+   &#160;<span id="projectnumber">1.4.5</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.9.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="modules.html"><span>模块</span></a></li>
+      <li><a href="annotated.html"><span>结构体</span></a></li>
+      <li><a href="files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_885cc87fac2d91e269af0a5a959fa5f6.html">E:</a></li><li class="navelem"><a class="el" href="dir_4e74998c9a9305a116abc25fcf9a1edb.html">knet-git</a></li><li class="navelem"><a class="el" href="dir_a1c045b39f32066568ae964b52db514f.html">knet</a></li><li class="navelem"><a class="el" href="dir_f76d03789f0b12416cfffea59e2ed47d.html">knet</a></li><li class="navelem"><a class="el" href="a00044.html">buffer.c</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="contents">
+<table cellspacing="0" cellpadding="0" border="0">
+  <tr>
+   <td valign="top">
+      <div class="navtab">
+        <table>
+          <tr><td class="navtab"><a class="qindexHL" href="a00044_ace8a684108f818eab5d956235b0bce77.html#ace8a684108f818eab5d956235b0bce77">knet_buffer_adjust</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00044_ac787e1b4f944728f621d7f59b67eb0aa.html#ac787e1b4f944728f621d7f59b67eb0aa">knet_buffer_clear</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00044_ab7c640d7d31868f39679942dafd12175.html#ab7c640d7d31868f39679942dafd12175">knet_buffer_create</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00044_ad7934fdee7f0eea3f1581b5dd94736e2.html#ad7934fdee7f0eea3f1581b5dd94736e2">knet_buffer_destroy</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00044_ab52a4b25cb665848167e2e3a57ad38f4.html#ab52a4b25cb665848167e2e3a57ad38f4">knet_buffer_enough</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00044_a8d22cd2f8625aee29cbf263e0fba8cef.html#a8d22cd2f8625aee29cbf263e0fba8cef">knet_buffer_get_length</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00044_a8eee118becbc822b85b0459ece43b944.html#a8eee118becbc822b85b0459ece43b944">knet_buffer_get_max_size</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00044_aad25b6a27ca6270b4cffb9c45daea697.html#aad25b6a27ca6270b4cffb9c45daea697">knet_buffer_get_ptr</a></td></tr>
+          <tr><td class="navtab"><a class="qindex" href="a00044_abf453d69e41199e1f64314d31ff23a69.html#abf453d69e41199e1f64314d31ff23a69">knet_buffer_put</a></td></tr>
+        </table>
+      </div>
+   </td>
+   <td valign="top" class="mempage">
+<a class="anchor" id="ace8a684108f818eab5d956235b0bce77"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void knet_buffer_adjust </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="a00051_a4b09a7574cd440f9b94285ab73c81b4e.html#a4b09a7574cd440f9b94285ab73c81b4e">kbuffer_t</a> *&#160;</td>
+          <td class="paramname"><em>sb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>gap</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>调整数据起始地址 </p>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sb</td><td>kbuffer_t实例 </td></tr>
+    <tr><td class="paramname">gap</td><td>调整的长度 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+    </td>
+  </tr>
+</table>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+生成于 2015年 七月 21日 星期二 13:46:16 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.9.1
+</small></address>
+</body>
+</html>

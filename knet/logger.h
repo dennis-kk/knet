@@ -32,28 +32,28 @@
  * @param path 日志文件路径, 如果为0将使用当前目录
  * @param level 日志等级
  * @param mode 日志模式
- * @return logger_t实例
+ * @return klogger_t实例
  */
-logger_t* logger_create(const char* path, logger_level_e level, logger_mode_e mode);
+klogger_t* logger_create(const char* path, knet_logger_level_e level, knet_logger_mode_e mode);
 
 /**
  * 销毁日志
- * @param logger logger_t实例
+ * @param logger klogger_t实例
  */
-void logger_destroy(logger_t* logger);
+void logger_destroy(klogger_t* logger);
 
 /**
  * 写日志
- * @param logger logger_t实例
+ * @param logger klogger_t实例
  * @param level 日志等级
  * @param format 日志格式
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int logger_write(logger_t* logger, logger_level_e level, const char* format, ...);
+int logger_write(klogger_t* logger, knet_logger_level_e level, const char* format, ...);
 
 /* 全局日志 */
-extern logger_t* global_logger;
+extern klogger_t* global_logger;
 
 /* 建立全局日志实例 */
 #define GLOBAL_LOGGER_INITIALIZE() \

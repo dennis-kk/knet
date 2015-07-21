@@ -93,7 +93,7 @@ extern void krpc_object_destroy(krpc_object_t* o);
  * @retval 0 不是type类型
  * @retval 非零 是type类型
  */
-extern int krpc_object_check_type(krpc_object_t* o, krpc_type_e type);
+extern int krpc_object_check_type(krpc_object_t* o, knet_rpc_type_e type);
 
 /**
  * 取得序列化后的长度
@@ -105,12 +105,12 @@ extern uint16_t krpc_object_get_marshal_size(krpc_object_t* o);
 /**
  * 序列化到数据流
  * @param o krpc_object_t实例
- * @param stream stream_t实例
+ * @param stream kstream_t实例
  * @param bytes 写入流的数据字节数
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int krpc_object_marshal(krpc_object_t* o, stream_t* stream, uint16_t* bytes);
+extern int krpc_object_marshal(krpc_object_t* o, kstream_t* stream, uint16_t* bytes);
 
 /**
  * 序列化到缓冲区
@@ -125,13 +125,13 @@ extern int krpc_object_marshal_buffer(krpc_object_t* o, char* buffer, uint16_t l
 
 /**
  * 从数据流反序列化对象
- * @param stream stream_t实例
+ * @param stream kstream_t实例
  * @param o 存储得到的对象指针
  * @param bytes 读取的流数据字节数
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int krpc_object_unmarshal(stream_t* stream, krpc_object_t** o, uint16_t* bytes);
+extern int krpc_object_unmarshal(kstream_t* stream, krpc_object_t** o, uint16_t* bytes);
 
 /**
  * 从缓冲区反序列化对象

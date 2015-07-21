@@ -103,7 +103,7 @@ void krpc_gen_cpp_t::gen_entry_rpc_method_comment(krpc_ostream_t& header, krpc_r
     krpc_attribute_t* attribute = rpc_call->get_attribute();
     krpc_attribute_t::field_list_t::iterator field =
         attribute->get_field_list().begin();
-    header << "\t * \\param stream stream_tÊµÀý\n";
+    header << "\t * \\param stream kstream_tÊµÀý\n";
     for (; field != attribute->get_field_list().end(); field++) {
         gen_entry_rpc_method_param_comment(header, *field);
     }
@@ -112,7 +112,7 @@ void krpc_gen_cpp_t::gen_entry_rpc_method_comment(krpc_ostream_t& header, krpc_r
 
 void krpc_gen_cpp_t::gen_entry_rpc_method_decl(krpc_ostream_t& header, krpc_rpc_call_t* rpc_call) {
     gen_entry_rpc_method_comment(header, rpc_call);
-    header << "\tint " << rpc_call->get_name() << "(stream_t* stream, ";
+    header << "\tint " << rpc_call->get_name() << "(kstream_t* stream, ";
     krpc_attribute_t* attribute = rpc_call->get_attribute();
     krpc_attribute_t::field_list_t::iterator field =
         attribute->get_field_list().begin();
@@ -297,7 +297,7 @@ void krpc_gen_cpp_t::gen_entry_rpc_call_wrapper_method_impl(krpc_ostream_t& sour
 void krpc_gen_cpp_t::gen_entry_rpc_call_wrapper_method_prototype(krpc_ostream_t& source, krpc_rpc_call_t* rpc_call) {
     krpc_gen_t::option_map_t& options = _rpc_gen->get_options();
     source << "int " << options["name"] << "_t::"
-            << rpc_call->get_name() << "(stream_t* stream, ";
+            << rpc_call->get_name() << "(kstream_t* stream, ";
     krpc_attribute_t* attribute = rpc_call->get_attribute();
     krpc_attribute_t::field_list_t::iterator field =
         attribute->get_field_list().begin();
