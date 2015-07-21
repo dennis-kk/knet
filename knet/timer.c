@@ -111,27 +111,40 @@ void ktimer_loop_exit(ktimer_loop_t* ktimer_loop) {
 }
 
 int _ktimer_loop_select_slot(ktimer_loop_t* ktimer_loop, time_t ms) {
+    verify(ktimer_loop);
     /* 计算按当前槽位的位置，后面哪个槽位会触发定时器 */
     return (int)(ktimer_loop->slot + ms / ktimer_loop->tick_intval) % ktimer_loop->max_slot;
 }
 
 void _ktimer_loop_add_timer(ktimer_loop_t* ktimer_loop, ktimer_t* timer) {
     /* 新timer都加入到下次运行的槽位，如果未过期会被调整到后续槽位 */
-    dlist_node_t* node = dlist_add_tail_node(ktimer_loop->ktimer_wheels[ktimer_loop->slot], timer);
+    dlist_node_t* node = 0;
+    verify(ktimer_loop);
+    verify(timer);
+    node = dlist_add_tail_node(ktimer_loop->ktimer_wheels[ktimer_loop->slot], timer);
     ktimer_set_current_list(timer, ktimer_loop->ktimer_wheels[ktimer_loop->slot]);
     ktimer_set_current_list_node(timer, node);
 }
 
 void _ktimer_loop_add_ktimer_node(ktimer_loop_t* ktimer_loop, dlist_node_t* node, time_t ms) {
-    int slot = _ktimer_loop_select_slot(ktimer_loop, ms);
-    ktimer_t* timer = (ktimer_t*)dlist_node_get_data(node);
+    int       slot  = 0;
+    ktimer_t* timer = 0;
+    verify(ktimer_loop);
+    verify(node);
+    slot = _ktimer_loop_select_slot(ktimer_loop, ms);
+    timer = (ktimer_t*)dlist_node_get_data(node);
     dlist_add_tail(ktimer_loop->ktimer_wheels[slot], node);
     ktimer_set_current_list(timer, ktimer_loop->ktimer_wheels[slot]);
 }
 
 dlist_node_t* _ktimer_loop_remove_timer(ktimer_t* timer) {
-    dlist_t* current_list = ktimer_get_current_list(timer);
-    dlist_node_t* list_node = ktimer_get_current_list_node(timer);
+    dlist_t*      current_list = 0;
+    dlist_node_t* list_node    = 0;
+    verify(timer);
+    current_list = ktimer_get_current_list(timer);
+    verify(current_list);
+    list_node = ktimer_get_current_list_node(timer);
+    verify(list_node);
     dlist_remove(current_list, list_node);
     ktimer_set_current_list(timer, 0);
     return list_node;
@@ -143,9 +156,10 @@ int ktimer_loop_run_once(ktimer_loop_t* ktimer_loop) {
     dlist_t*      timers = 0;
     ktimer_t*     timer = 0;
     time_t        ms     = time_get_milliseconds(); /* 当前时间戳（毫秒） */
-    time_t        delta  = ms - ktimer_loop->last_tick;
+    time_t        delta  = 0;
     int           count  = 0;
     verify(ktimer_loop);
+    delta  = ms - ktimer_loop->last_tick;
     /* 误差范围内都启动 */
     if (delta + ktimer_loop->deviation < ktimer_loop->tick_intval) {
         return 0;
@@ -297,6 +311,7 @@ int ktimer_start(ktimer_t* timer, ktimer_cb_t cb, void* data, time_t ms) {
     timer->type   = ktimer_type_period;
     timer->ms     = time_get_milliseconds() + ms;
     timer->intval = ms;
+    verify(timer->ktimer_loop);
     _ktimer_loop_add_timer(timer->ktimer_loop, timer);
     return error_ok;
 }
@@ -313,6 +328,7 @@ int ktimer_start_once(ktimer_t* timer, ktimer_cb_t cb, void* data, time_t ms) {
     timer->type   = ktimer_type_once;
     timer->ms     = time_get_milliseconds() + ms;
     timer->intval = ms;
+    verify(timer->ktimer_loop);
     _ktimer_loop_add_timer(timer->ktimer_loop, timer);
     return error_ok;
 }
@@ -330,6 +346,7 @@ int ktimer_start_times(ktimer_t* timer, ktimer_cb_t cb, void* data, time_t ms, i
     timer->times  = times;
     timer->ms     = time_get_milliseconds() + ms;
     timer->intval = ms;
+    verify(timer->ktimer_loop);
     _ktimer_loop_add_timer(timer->ktimer_loop, timer);
     return error_ok;
 }

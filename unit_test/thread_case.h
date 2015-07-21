@@ -25,6 +25,12 @@
 #include "helper.h"
 #include "knet.h"
 
+CASE(Test_Thread_Get_Invalid_Tls_Data) {
+    thread_runner_t* r = thread_runner_create(0, 0);
+    EXPECT_FALSE(thread_get_tls_data(r));
+    thread_runner_destroy(r);
+}
+
 CASE(Test_Thread_Set_Get_Tls_Data) {
     thread_runner_t* r = thread_runner_create(0, 0);
     int i = 0;

@@ -931,10 +931,6 @@ int thread_set_tls_data(thread_runner_t* runner, void* data) {
 
 void* thread_get_tls_data(thread_runner_t* runner) {
     verify(runner);
-    if (!runner->tls_key) {
-        log_error("tls never initialize");
-        return 0;
-    }
 #if defined(WIN32)
     return TlsGetValue(runner->tls_key);
 #else

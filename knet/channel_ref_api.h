@@ -124,7 +124,8 @@ extern int channel_ref_reconnect(channel_ref_t* channel_ref, int timeout);
 /**
  * 设置管道自动重连
  * <pre>
- * auto_reconnect为非零值则开启自动重连
+ * auto_reconnect为非零值则开启自动重连，所有非错误性导致管道关闭，都会自动重连，用户手动调用
+ * channel_ref_close将不会触发自动重连
  * </pre>
  * @param channel_ref channel_ref_t实例
  * @param auto_reconnect 自动重连标志

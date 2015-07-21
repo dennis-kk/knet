@@ -236,19 +236,19 @@ void loop_event_process(loop_t* loop) {
     dlist_for_each_safe(loop->event_list, node, temp) {
         loop_event = (loop_event_t*)dlist_node_get_data(node);
         switch(loop_event->event) {
-            case loop_event_accept:
+            case loop_event_accept: /* 接受新连接 */
                 channel_ref_update_accept_in_loop(loop, loop_event->channel_ref);
                 break;
-            case loop_event_accept_async:
+            case loop_event_accept_async: /* 当前loop内accept() */
                 channel_ref_accept_async(loop_event->channel_ref);
                 break;
-            case loop_event_connect:
+            case loop_event_connect: /* 当前loop内connect */
                 channel_ref_connect_in_loop(loop_event->channel_ref);
                 break;
-            case loop_event_send:
+            case loop_event_send: /* 当前loop内send */
                 channel_ref_update_send_in_loop(loop, loop_event->channel_ref, loop_event->send_buffer);
                 break;
-            case loop_event_close:
+            case loop_event_close: /* 当前loop内close */
                 channel_ref_update_close_in_loop(loop, loop_event->channel_ref);
                 break;
             default:

@@ -218,7 +218,6 @@ CASE(Test_Channel_Idle_Timeout) {
     loop_destroy(loop);
 }
 
-// C++函数体内类静态成员作用域的问题，只有放这里了
 channel_ref_t* case_Test_Channel_Share_Leave_channel = 0;
 
 CASE(Test_Channel_Share_Leave) {

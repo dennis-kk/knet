@@ -104,9 +104,9 @@ void framework_destroy(framework_t* f) {
 }
 
 int framework_start(framework_t* f) {
-    int           i            = 0;
+    uint32_t      i            = 0;
     int           error        = 0;
-    int           worker_count = 0;
+    uint32_t      worker_count = 0;
     loop_t*       loop         = 0;
     verify(f);
     verify(f->c);
@@ -156,7 +156,7 @@ int framework_start_wait_destroy(framework_t* f) {
 }
 
 void framework_wait_for_stop(framework_t* f) {
-    int i = 0;
+    uint32_t i = 0;
     verify(f);
     if (!f->start) {
         return;
@@ -166,7 +166,7 @@ void framework_wait_for_stop(framework_t* f) {
     }
     /* 等待工作线程结束 */
     if (f->workers) {
-        for (; i < framework_config_get_worker_thread_count(f->c); i++) {
+        for (; i < (uint32_t)framework_config_get_worker_thread_count(f->c); i++) {
             if (f->workers[i]) {
                 framework_worker_wait_for_stop(f->workers[i]);
             }
@@ -182,7 +182,7 @@ void framework_wait_for_stop_destroy(framework_t* f) {
 }
 
 int framework_stop(framework_t* f) {
-    int i = 0;
+    uint32_t i = 0;
     verify(f);
     if (!f->start) {
         return error_ok;
@@ -193,7 +193,7 @@ int framework_stop(framework_t* f) {
     }
     /* 关闭所有工作线程 */
     if (f->workers) {
-        for (; i < framework_config_get_worker_thread_count(f->c); i++) {
+        for (; i < (uint32_t)framework_config_get_worker_thread_count(f->c); i++) {
             if (f->workers[i]) {
                 framework_worker_stop(f->workers[i]);
             }
@@ -213,7 +213,7 @@ loop_balancer_t* framework_get_balancer(framework_t* f) {
 }
 
 void _cleanup_all_threads(framework_t* f) {
-    int i = 0;
+    uint32_t i = 0;
     if (f->raiser) {
         framework_raiser_stop(f->raiser);
         framework_raiser_wait_for_stop(f->raiser);
@@ -222,7 +222,7 @@ void _cleanup_all_threads(framework_t* f) {
     }
     /* 销毁工作线程 */
     if (f->workers) {
-        for (; i < framework_config_get_worker_thread_count(f->c); i++) {
+        for (; i < (uint32_t)framework_config_get_worker_thread_count(f->c); i++) {
             if (f->workers[i]) {
                 framework_worker_stop(f->workers[i]);
                 framework_worker_wait_for_stop(f->workers[i]);
@@ -246,8 +246,8 @@ int framework_connector_start(framework_t* f, framework_connector_config_t* c) {
 }
 
 ktimer_t* framework_create_worker_timer(framework_t* f) {
-    int         i            = 0;
-    int         worker_count = 0;
+    uint32_t    i            = 0;
+    uint32_t    worker_count = 0;
     thread_id_t thread_id    = thread_get_self_id(); 
     verify(f);
     verify(f->c);
@@ -265,11 +265,11 @@ ktimer_t* framework_create_worker_timer(framework_t* f) {
 }
 
 int _start_worker_threads(framework_t* f) {
-    int           i     = 0;
-    dlist_node_t* node  = 0;
-    loop_t*       loop  = 0;
-    int           error = error_ok;
-    int worker_count = framework_config_get_worker_thread_count(f->c);
+    uint32_t      i            = 0;
+    dlist_node_t* node         = 0;
+    loop_t*       loop         = 0;
+    int           error        = error_ok;
+    uint32_t      worker_count = framework_config_get_worker_thread_count(f->c);
     f->workers = create_type(framework_worker_t*, worker_count * sizeof(framework_worker_t*));
     verify(f->workers);
     memset(f->workers, 0, worker_count * sizeof(framework_worker_t*));
