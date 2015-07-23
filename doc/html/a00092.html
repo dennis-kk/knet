@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/stream.h 文件参考</title>
+<title>knet: E:/knet-git/knet/knet/rpc_object.h 文件参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -39,6 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="pages.html"><span>相关页面</span></a></li>
       <li><a href="modules.html"><span>模块</span></a></li>
       <li><a href="annotated.html"><span>结构体</span></a></li>
       <li class="current"><a href="files.html"><span>文件</span></a></li>
@@ -89,27 +90,33 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
   <div class="summary">
 <a href="#func-members">函数</a>  </div>
   <div class="headertitle">
-<div class="title">stream.h 文件参考</div>  </div>
+<div class="title">rpc_object.h 文件参考</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="a00051_source.html">config.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00093_source.html">stream_api.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="a00053_source.html">config.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00093_source.html">rpc_object_api.h</a>&quot;</code><br />
 </div>
 <p><a href="a00092_source.html">浏览源代码.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 函数</h2></td></tr>
-<tr class="memitem:a6bd4317031384f8711bacd24ea59be47"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00051_acc208c4c40c875eebbfef88f00fffacf.html#acc208c4c40c875eebbfef88f00fffacf">kstream_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00092_a6bd4317031384f8711bacd24ea59be47.html#a6bd4317031384f8711bacd24ea59be47">stream_create</a> (<a class="el" href="a00051_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *channel_ref)</td></tr>
-<tr class="memdesc:a6bd4317031384f8711bacd24ea59be47"><td class="mdescLeft">&#160;</td><td class="mdescRight">建立管道流  <a href="a00092_a6bd4317031384f8711bacd24ea59be47.html#a6bd4317031384f8711bacd24ea59be47">更多...</a><br /></td></tr>
-<tr class="separator:a6bd4317031384f8711bacd24ea59be47"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8aa700d37115d60d17bd80078ae4d4c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00092_ad8aa700d37115d60d17bd80078ae4d4c.html#ad8aa700d37115d60d17bd80078ae4d4c">stream_destroy</a> (<a class="el" href="a00051_acc208c4c40c875eebbfef88f00fffacf.html#acc208c4c40c875eebbfef88f00fffacf">kstream_t</a> *stream)</td></tr>
-<tr class="memdesc:ad8aa700d37115d60d17bd80078ae4d4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁管道流  <a href="a00092_ad8aa700d37115d60d17bd80078ae4d4c.html#ad8aa700d37115d60d17bd80078ae4d4c">更多...</a><br /></td></tr>
-<tr class="separator:ad8aa700d37115d60d17bd80078ae4d4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa8a155df38de3bbf2a876b94686d195"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00092_aaa8a155df38de3bbf2a876b94686d195.html#aaa8a155df38de3bbf2a876b94686d195">krpc_number_get_marshal_size</a> (<a class="el" href="a00053_a9c07dfc8c3b965f75b09f82fdb1bbb1e.html#a9c07dfc8c3b965f75b09f82fdb1bbb1e">krpc_object_t</a> *o)</td></tr>
+<tr class="memdesc:aaa8a155df38de3bbf2a876b94686d195"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取数字对象序列化长度  <a href="a00092_aaa8a155df38de3bbf2a876b94686d195.html#aaa8a155df38de3bbf2a876b94686d195">更多...</a><br /></td></tr>
+<tr class="separator:aaa8a155df38de3bbf2a876b94686d195"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0d124108915f859d85fccd58facf12f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00092_af0d124108915f859d85fccd58facf12f.html#af0d124108915f859d85fccd58facf12f">krpc_string_set_size</a> (<a class="el" href="a00053_a9c07dfc8c3b965f75b09f82fdb1bbb1e.html#a9c07dfc8c3b965f75b09f82fdb1bbb1e">krpc_object_t</a> *o, uint16_t size)</td></tr>
+<tr class="memdesc:af0d124108915f859d85fccd58facf12f"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置字符串长度  <a href="a00092_af0d124108915f859d85fccd58facf12f.html#af0d124108915f859d85fccd58facf12f">更多...</a><br /></td></tr>
+<tr class="separator:af0d124108915f859d85fccd58facf12f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13be7946c84baeebe93977ef511e125f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00092_a13be7946c84baeebe93977ef511e125f.html#a13be7946c84baeebe93977ef511e125f">krpc_vector_enlarge</a> (<a class="el" href="a00053_a9c07dfc8c3b965f75b09f82fdb1bbb1e.html#a9c07dfc8c3b965f75b09f82fdb1bbb1e">krpc_object_t</a> *o)</td></tr>
+<tr class="memdesc:a13be7946c84baeebe93977ef511e125f"><td class="mdescLeft">&#160;</td><td class="mdescRight">扩展数组  <a href="a00092_a13be7946c84baeebe93977ef511e125f.html#a13be7946c84baeebe93977ef511e125f">更多...</a><br /></td></tr>
+<tr class="separator:a13be7946c84baeebe93977ef511e125f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79b7c0edd0ee7a8c462d19881589f701"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00092_a79b7c0edd0ee7a8c462d19881589f701.html#a79b7c0edd0ee7a8c462d19881589f701">hash_value_dtor</a> (void *v)</td></tr>
+<tr class="memdesc:a79b7c0edd0ee7a8c462d19881589f701"><td class="mdescLeft">&#160;</td><td class="mdescRight">表值销毁函数  <a href="a00092_a79b7c0edd0ee7a8c462d19881589f701.html#a79b7c0edd0ee7a8c462d19881589f701">更多...</a><br /></td></tr>
+<tr class="separator:a79b7c0edd0ee7a8c462d19881589f701"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 21日 星期二 13:46:17 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 22日 星期三 10:41:04 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

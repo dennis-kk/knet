@@ -1,44 +1,127 @@
-\hypertarget{a00054}{}\section{E\+:/knet-\/git/knet/knet/framework\+\_\+api.h 文件参考}
-\label{a00054}\index{E\+:/knet-\/git/knet/knet/framework\+\_\+api.\+h@{E\+:/knet-\/git/knet/knet/framework\+\_\+api.\+h}}
-{\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\\*
+\hypertarget{a00054}{}\section{E\+:/knet-\/git/knet/knet/framework.c 文件参考}
+\label{a00054}\index{E\+:/knet-\/git/knet/knet/framework.\+c@{E\+:/knet-\/git/knet/knet/framework.\+c}}
+{\ttfamily \#include \char`\"{}framework.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}loop.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}loop\+\_\+balancer.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}channel\+\_\+ref.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}framework\+\_\+raiser.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}framework\+\_\+worker.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}rpc\+\_\+api.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}list.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}misc.\+h\char`\"{}}\\*
+\subsection*{结构体}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{a00015}{\+\_\+framework\+\_\+t}
+\end{DoxyCompactItemize}
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00051_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$ \hyperlink{a00103_ga066683c6d9defb4121552b439d11d7ba_ga066683c6d9defb4121552b439d11d7ba}{knet\+\_\+framework\+\_\+create} ()
+void \hyperlink{a00054_a9c5bb6308c754d2a46ade4c7fef5907f_a9c5bb6308c754d2a46ade4c7fef5907f}{\+\_\+cleanup\+\_\+all\+\_\+threads} (\hyperlink{a00053_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f)
+\begin{DoxyCompactList}\small\item\em 关闭并销毁所有线程 \end{DoxyCompactList}\item 
+int \hyperlink{a00054_a1ff0491ef03493e3d3b299f4d8f64d0d_a1ff0491ef03493e3d3b299f4d8f64d0d}{\+\_\+start\+\_\+worker\+\_\+threads} (\hyperlink{a00053_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f)
+\begin{DoxyCompactList}\small\item\em 启动工作线程 \end{DoxyCompactList}\item 
+int \hyperlink{a00054_a23f8160552bd4b1a0bca4c2779d49a4d_a23f8160552bd4b1a0bca4c2779d49a4d}{\+\_\+start\+\_\+raiser\+\_\+thread} (\hyperlink{a00053_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f)
+\begin{DoxyCompactList}\small\item\em 启动监听器/连接器发起线程 \end{DoxyCompactList}\item 
+\hyperlink{a00053_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$ \hyperlink{a00106_ga066683c6d9defb4121552b439d11d7ba_ga066683c6d9defb4121552b439d11d7ba}{knet\+\_\+framework\+\_\+create} ()
 \begin{DoxyCompactList}\small\item\em 建立框架 \end{DoxyCompactList}\item 
-void \hyperlink{a00103_gaee7016dea12793dae5e6732fb86ee8d0_gaee7016dea12793dae5e6732fb86ee8d0}{knet\+\_\+framework\+\_\+destroy} (\hyperlink{a00051_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f)
+void \hyperlink{a00106_gaee7016dea12793dae5e6732fb86ee8d0_gaee7016dea12793dae5e6732fb86ee8d0}{knet\+\_\+framework\+\_\+destroy} (\hyperlink{a00053_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f)
 \begin{DoxyCompactList}\small\item\em 销毁框架 \end{DoxyCompactList}\item 
-int \hyperlink{a00103_gae2bea4af82f4cdce2f4efbf68aa8054c_gae2bea4af82f4cdce2f4efbf68aa8054c}{knet\+\_\+framework\+\_\+start} (\hyperlink{a00051_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f)
+int \hyperlink{a00106_gae2bea4af82f4cdce2f4efbf68aa8054c_gae2bea4af82f4cdce2f4efbf68aa8054c}{knet\+\_\+framework\+\_\+start} (\hyperlink{a00053_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f)
 \begin{DoxyCompactList}\small\item\em 启动框架 \end{DoxyCompactList}\item 
-int \hyperlink{a00103_ga5eda19f3b32bb48578cf735e877aac2e_ga5eda19f3b32bb48578cf735e877aac2e}{knet\+\_\+framework\+\_\+start\+\_\+wait} (\hyperlink{a00051_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f)
+int \hyperlink{a00106_ga5eda19f3b32bb48578cf735e877aac2e_ga5eda19f3b32bb48578cf735e877aac2e}{knet\+\_\+framework\+\_\+start\+\_\+wait} (\hyperlink{a00053_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f)
 \begin{DoxyCompactList}\small\item\em 启动框架并等待框架关闭 \end{DoxyCompactList}\item 
-int \hyperlink{a00103_gab44f183a42eda626fe6ec1e6d35bb859_gab44f183a42eda626fe6ec1e6d35bb859}{knet\+\_\+framework\+\_\+start\+\_\+wait\+\_\+destroy} (\hyperlink{a00051_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f)
+int \hyperlink{a00106_gab44f183a42eda626fe6ec1e6d35bb859_gab44f183a42eda626fe6ec1e6d35bb859}{knet\+\_\+framework\+\_\+start\+\_\+wait\+\_\+destroy} (\hyperlink{a00053_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f)
 \begin{DoxyCompactList}\small\item\em 启动框架并等待框架关闭，如果启动失败或者框架关闭则销毁 \end{DoxyCompactList}\item 
-void \hyperlink{a00103_gacff434cca9ce60fa5a3597348ee4360b_gacff434cca9ce60fa5a3597348ee4360b}{knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop} (\hyperlink{a00051_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f)
+void \hyperlink{a00106_gacff434cca9ce60fa5a3597348ee4360b_gacff434cca9ce60fa5a3597348ee4360b}{knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop} (\hyperlink{a00053_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f)
 \begin{DoxyCompactList}\small\item\em 等待框架停止 \end{DoxyCompactList}\item 
-void \hyperlink{a00103_ga5936d2ece03511c366b19bc7616ac8be_ga5936d2ece03511c366b19bc7616ac8be}{knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop\+\_\+destroy} (\hyperlink{a00051_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f)
+void \hyperlink{a00106_ga5936d2ece03511c366b19bc7616ac8be_ga5936d2ece03511c366b19bc7616ac8be}{knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop\+\_\+destroy} (\hyperlink{a00053_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f)
 \begin{DoxyCompactList}\small\item\em 等待框架停止并销毁 \end{DoxyCompactList}\item 
-int \hyperlink{a00103_gac8f76fe72392bc5103b70fb5b3280839_gac8f76fe72392bc5103b70fb5b3280839}{knet\+\_\+framework\+\_\+stop} (\hyperlink{a00051_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f)
+int \hyperlink{a00106_gac8f76fe72392bc5103b70fb5b3280839_gac8f76fe72392bc5103b70fb5b3280839}{knet\+\_\+framework\+\_\+stop} (\hyperlink{a00053_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f)
 \begin{DoxyCompactList}\small\item\em 关闭框架 \end{DoxyCompactList}\item 
-\hyperlink{a00051_adeaf952e0f0887507ff836385bf54874_adeaf952e0f0887507ff836385bf54874}{kframework\+\_\+config\+\_\+t} $\ast$ \hyperlink{a00103_ga2fcd8c172557a78fe7edbba0e7f9da40_ga2fcd8c172557a78fe7edbba0e7f9da40}{knet\+\_\+framework\+\_\+get\+\_\+config} (\hyperlink{a00051_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f)
+\hyperlink{a00053_adeaf952e0f0887507ff836385bf54874_adeaf952e0f0887507ff836385bf54874}{kframework\+\_\+config\+\_\+t} $\ast$ \hyperlink{a00106_ga2fcd8c172557a78fe7edbba0e7f9da40_ga2fcd8c172557a78fe7edbba0e7f9da40}{knet\+\_\+framework\+\_\+get\+\_\+config} (\hyperlink{a00053_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f)
 \begin{DoxyCompactList}\small\item\em 取得框架配置 \end{DoxyCompactList}\item 
-int \hyperlink{a00103_gae3f68614153df18fabd1c7d148ce826b_gae3f68614153df18fabd1c7d148ce826b}{knet\+\_\+framework\+\_\+acceptor\+\_\+start} (\hyperlink{a00051_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f, \hyperlink{a00051_a39c993eb450173e4fde04498d757f9b6_a39c993eb450173e4fde04498d757f9b6}{kframework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$c)
+\hyperlink{a00053_abd3f964265beb2f8984e76f44fb5ea33_abd3f964265beb2f8984e76f44fb5ea33}{kloop\+\_\+balancer\+\_\+t} $\ast$ \hyperlink{a00054_a5bda21127c93214014579d21f6efd643_a5bda21127c93214014579d21f6efd643}{knet\+\_\+framework\+\_\+get\+\_\+balancer} (\hyperlink{a00053_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f)
+\begin{DoxyCompactList}\small\item\em 获取负载均衡器 \end{DoxyCompactList}\item 
+int \hyperlink{a00106_gae3f68614153df18fabd1c7d148ce826b_gae3f68614153df18fabd1c7d148ce826b}{knet\+\_\+framework\+\_\+acceptor\+\_\+start} (\hyperlink{a00053_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f, \hyperlink{a00053_a39c993eb450173e4fde04498d757f9b6_a39c993eb450173e4fde04498d757f9b6}{kframework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$c)
 \begin{DoxyCompactList}\small\item\em 启动监听器 \end{DoxyCompactList}\item 
-int \hyperlink{a00103_ga28cdba2072f2c191547c0450d040d536_ga28cdba2072f2c191547c0450d040d536}{knet\+\_\+framework\+\_\+connector\+\_\+start} (\hyperlink{a00051_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f, \hyperlink{a00051_a44d3033eba5a4fd784a741700a7a2521_a44d3033eba5a4fd784a741700a7a2521}{kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$c)
+int \hyperlink{a00106_ga28cdba2072f2c191547c0450d040d536_ga28cdba2072f2c191547c0450d040d536}{knet\+\_\+framework\+\_\+connector\+\_\+start} (\hyperlink{a00053_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f, \hyperlink{a00053_a44d3033eba5a4fd784a741700a7a2521_a44d3033eba5a4fd784a741700a7a2521}{kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$c)
 \begin{DoxyCompactList}\small\item\em 启动连接器 \end{DoxyCompactList}\item 
-\hyperlink{a00051_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$ \hyperlink{a00103_gaf740887dd472ce5bb57263e156e3e75e_gaf740887dd472ce5bb57263e156e3e75e}{knet\+\_\+framework\+\_\+create\+\_\+worker\+\_\+timer} (\hyperlink{a00051_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f)
+\hyperlink{a00053_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$ \hyperlink{a00106_gaf740887dd472ce5bb57263e156e3e75e_gaf740887dd472ce5bb57263e156e3e75e}{knet\+\_\+framework\+\_\+create\+\_\+worker\+\_\+timer} (\hyperlink{a00053_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f)
 \begin{DoxyCompactList}\small\item\em 建立一个工作线程定时器 只能在工作线程内建立定时器，如果在非工作线程内建立定时器则失败 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{函数说明}
-\hypertarget{a00103_gae3f68614153df18fabd1c7d148ce826b_gae3f68614153df18fabd1c7d148ce826b}{}\index{framework\+\_\+api.\+h@{framework\+\_\+api.\+h}!knet\+\_\+framework\+\_\+acceptor\+\_\+start@{knet\+\_\+framework\+\_\+acceptor\+\_\+start}}
-\index{knet\+\_\+framework\+\_\+acceptor\+\_\+start@{knet\+\_\+framework\+\_\+acceptor\+\_\+start}!framework\+\_\+api.\+h@{framework\+\_\+api.\+h}}
+\hypertarget{a00054_a9c5bb6308c754d2a46ade4c7fef5907f_a9c5bb6308c754d2a46ade4c7fef5907f}{}\index{framework.\+c@{framework.\+c}!\+\_\+cleanup\+\_\+all\+\_\+threads@{\+\_\+cleanup\+\_\+all\+\_\+threads}}
+\index{\+\_\+cleanup\+\_\+all\+\_\+threads@{\+\_\+cleanup\+\_\+all\+\_\+threads}!framework.\+c@{framework.\+c}}
+\subsubsection[{\+\_\+cleanup\+\_\+all\+\_\+threads}]{\setlength{\rightskip}{0pt plus 5cm}void \+\_\+cleanup\+\_\+all\+\_\+threads (
+\begin{DoxyParamCaption}
+\item[{{\bf kframework\+\_\+t} $\ast$}]{f}
+\end{DoxyParamCaption}
+)}\label{a00054_a9c5bb6308c754d2a46ade4c7fef5907f_a9c5bb6308c754d2a46ade4c7fef5907f}
+
+
+关闭并销毁所有线程 
+
+
+\begin{DoxyParams}{参数}
+{\em f} & kframework\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00054_a23f8160552bd4b1a0bca4c2779d49a4d_a23f8160552bd4b1a0bca4c2779d49a4d}{}\index{framework.\+c@{framework.\+c}!\+\_\+start\+\_\+raiser\+\_\+thread@{\+\_\+start\+\_\+raiser\+\_\+thread}}
+\index{\+\_\+start\+\_\+raiser\+\_\+thread@{\+\_\+start\+\_\+raiser\+\_\+thread}!framework.\+c@{framework.\+c}}
+\subsubsection[{\+\_\+start\+\_\+raiser\+\_\+thread}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+start\+\_\+raiser\+\_\+thread (
+\begin{DoxyParamCaption}
+\item[{{\bf kframework\+\_\+t} $\ast$}]{f}
+\end{DoxyParamCaption}
+)}\label{a00054_a23f8160552bd4b1a0bca4c2779d49a4d_a23f8160552bd4b1a0bca4c2779d49a4d}
+
+
+启动监听器/连接器发起线程 
+
+
+\begin{DoxyParams}{参数}
+{\em f} & kframework\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{a00054_a1ff0491ef03493e3d3b299f4d8f64d0d_a1ff0491ef03493e3d3b299f4d8f64d0d}{}\index{framework.\+c@{framework.\+c}!\+\_\+start\+\_\+worker\+\_\+threads@{\+\_\+start\+\_\+worker\+\_\+threads}}
+\index{\+\_\+start\+\_\+worker\+\_\+threads@{\+\_\+start\+\_\+worker\+\_\+threads}!framework.\+c@{framework.\+c}}
+\subsubsection[{\+\_\+start\+\_\+worker\+\_\+threads}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+start\+\_\+worker\+\_\+threads (
+\begin{DoxyParamCaption}
+\item[{{\bf kframework\+\_\+t} $\ast$}]{f}
+\end{DoxyParamCaption}
+)}\label{a00054_a1ff0491ef03493e3d3b299f4d8f64d0d_a1ff0491ef03493e3d3b299f4d8f64d0d}
+
+
+启动工作线程 
+
+
+\begin{DoxyParams}{参数}
+{\em f} & kframework\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{a00106_gae3f68614153df18fabd1c7d148ce826b_gae3f68614153df18fabd1c7d148ce826b}{}\index{framework.\+c@{framework.\+c}!knet\+\_\+framework\+\_\+acceptor\+\_\+start@{knet\+\_\+framework\+\_\+acceptor\+\_\+start}}
+\index{knet\+\_\+framework\+\_\+acceptor\+\_\+start@{knet\+\_\+framework\+\_\+acceptor\+\_\+start}!framework.\+c@{framework.\+c}}
 \subsubsection[{knet\+\_\+framework\+\_\+acceptor\+\_\+start}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+framework\+\_\+acceptor\+\_\+start (
 \begin{DoxyParamCaption}
 \item[{{\bf kframework\+\_\+t} $\ast$}]{f, }
 \item[{{\bf kframework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$}]{c}
 \end{DoxyParamCaption}
-)}\label{a00103_gae3f68614153df18fabd1c7d148ce826b_gae3f68614153df18fabd1c7d148ce826b}
+)}\label{a00106_gae3f68614153df18fabd1c7d148ce826b_gae3f68614153df18fabd1c7d148ce826b}
 
 
 启动监听器 
@@ -57,14 +140,14 @@ int \hyperlink{a00103_ga28cdba2072f2c191547c0450d040d536_ga28cdba2072f2c191547c0
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00103_ga28cdba2072f2c191547c0450d040d536_ga28cdba2072f2c191547c0450d040d536}{}\index{framework\+\_\+api.\+h@{framework\+\_\+api.\+h}!knet\+\_\+framework\+\_\+connector\+\_\+start@{knet\+\_\+framework\+\_\+connector\+\_\+start}}
-\index{knet\+\_\+framework\+\_\+connector\+\_\+start@{knet\+\_\+framework\+\_\+connector\+\_\+start}!framework\+\_\+api.\+h@{framework\+\_\+api.\+h}}
+\hypertarget{a00106_ga28cdba2072f2c191547c0450d040d536_ga28cdba2072f2c191547c0450d040d536}{}\index{framework.\+c@{framework.\+c}!knet\+\_\+framework\+\_\+connector\+\_\+start@{knet\+\_\+framework\+\_\+connector\+\_\+start}}
+\index{knet\+\_\+framework\+\_\+connector\+\_\+start@{knet\+\_\+framework\+\_\+connector\+\_\+start}!framework.\+c@{framework.\+c}}
 \subsubsection[{knet\+\_\+framework\+\_\+connector\+\_\+start}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+framework\+\_\+connector\+\_\+start (
 \begin{DoxyParamCaption}
 \item[{{\bf kframework\+\_\+t} $\ast$}]{f, }
 \item[{{\bf kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$}]{c}
 \end{DoxyParamCaption}
-)}\label{a00103_ga28cdba2072f2c191547c0450d040d536_ga28cdba2072f2c191547c0450d040d536}
+)}\label{a00106_ga28cdba2072f2c191547c0450d040d536_ga28cdba2072f2c191547c0450d040d536}
 
 
 启动连接器 
@@ -83,13 +166,13 @@ int \hyperlink{a00103_ga28cdba2072f2c191547c0450d040d536_ga28cdba2072f2c191547c0
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00103_ga066683c6d9defb4121552b439d11d7ba_ga066683c6d9defb4121552b439d11d7ba}{}\index{framework\+\_\+api.\+h@{framework\+\_\+api.\+h}!knet\+\_\+framework\+\_\+create@{knet\+\_\+framework\+\_\+create}}
-\index{knet\+\_\+framework\+\_\+create@{knet\+\_\+framework\+\_\+create}!framework\+\_\+api.\+h@{framework\+\_\+api.\+h}}
+\hypertarget{a00106_ga066683c6d9defb4121552b439d11d7ba_ga066683c6d9defb4121552b439d11d7ba}{}\index{framework.\+c@{framework.\+c}!knet\+\_\+framework\+\_\+create@{knet\+\_\+framework\+\_\+create}}
+\index{knet\+\_\+framework\+\_\+create@{knet\+\_\+framework\+\_\+create}!framework.\+c@{framework.\+c}}
 \subsubsection[{knet\+\_\+framework\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kframework\+\_\+t}$\ast$ knet\+\_\+framework\+\_\+create (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\label{a00103_ga066683c6d9defb4121552b439d11d7ba_ga066683c6d9defb4121552b439d11d7ba}
+)}\label{a00106_ga066683c6d9defb4121552b439d11d7ba_ga066683c6d9defb4121552b439d11d7ba}
 
 
 建立框架 
@@ -97,13 +180,13 @@ int \hyperlink{a00103_ga28cdba2072f2c191547c0450d040d536_ga28cdba2072f2c191547c0
 \begin{DoxyReturn}{返回}
 kframework\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00103_gaf740887dd472ce5bb57263e156e3e75e_gaf740887dd472ce5bb57263e156e3e75e}{}\index{framework\+\_\+api.\+h@{framework\+\_\+api.\+h}!knet\+\_\+framework\+\_\+create\+\_\+worker\+\_\+timer@{knet\+\_\+framework\+\_\+create\+\_\+worker\+\_\+timer}}
-\index{knet\+\_\+framework\+\_\+create\+\_\+worker\+\_\+timer@{knet\+\_\+framework\+\_\+create\+\_\+worker\+\_\+timer}!framework\+\_\+api.\+h@{framework\+\_\+api.\+h}}
+\hypertarget{a00106_gaf740887dd472ce5bb57263e156e3e75e_gaf740887dd472ce5bb57263e156e3e75e}{}\index{framework.\+c@{framework.\+c}!knet\+\_\+framework\+\_\+create\+\_\+worker\+\_\+timer@{knet\+\_\+framework\+\_\+create\+\_\+worker\+\_\+timer}}
+\index{knet\+\_\+framework\+\_\+create\+\_\+worker\+\_\+timer@{knet\+\_\+framework\+\_\+create\+\_\+worker\+\_\+timer}!framework.\+c@{framework.\+c}}
 \subsubsection[{knet\+\_\+framework\+\_\+create\+\_\+worker\+\_\+timer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ktimer\+\_\+t}$\ast$ knet\+\_\+framework\+\_\+create\+\_\+worker\+\_\+timer (
 \begin{DoxyParamCaption}
 \item[{{\bf kframework\+\_\+t} $\ast$}]{f}
 \end{DoxyParamCaption}
-)}\label{a00103_gaf740887dd472ce5bb57263e156e3e75e_gaf740887dd472ce5bb57263e156e3e75e}
+)}\label{a00106_gaf740887dd472ce5bb57263e156e3e75e_gaf740887dd472ce5bb57263e156e3e75e}
 
 
 建立一个工作线程定时器 只能在工作线程内建立定时器，如果在非工作线程内建立定时器则失败 
@@ -116,13 +199,13 @@ kframework\+\_\+t实例
 \begin{DoxyReturn}{返回}
 ktimer\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00103_gaee7016dea12793dae5e6732fb86ee8d0_gaee7016dea12793dae5e6732fb86ee8d0}{}\index{framework\+\_\+api.\+h@{framework\+\_\+api.\+h}!knet\+\_\+framework\+\_\+destroy@{knet\+\_\+framework\+\_\+destroy}}
-\index{knet\+\_\+framework\+\_\+destroy@{knet\+\_\+framework\+\_\+destroy}!framework\+\_\+api.\+h@{framework\+\_\+api.\+h}}
+\hypertarget{a00106_gaee7016dea12793dae5e6732fb86ee8d0_gaee7016dea12793dae5e6732fb86ee8d0}{}\index{framework.\+c@{framework.\+c}!knet\+\_\+framework\+\_\+destroy@{knet\+\_\+framework\+\_\+destroy}}
+\index{knet\+\_\+framework\+\_\+destroy@{knet\+\_\+framework\+\_\+destroy}!framework.\+c@{framework.\+c}}
 \subsubsection[{knet\+\_\+framework\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+framework\+\_\+destroy (
 \begin{DoxyParamCaption}
 \item[{{\bf kframework\+\_\+t} $\ast$}]{f}
 \end{DoxyParamCaption}
-)}\label{a00103_gaee7016dea12793dae5e6732fb86ee8d0_gaee7016dea12793dae5e6732fb86ee8d0}
+)}\label{a00106_gaee7016dea12793dae5e6732fb86ee8d0_gaee7016dea12793dae5e6732fb86ee8d0}
 
 
 销毁框架 
@@ -132,13 +215,32 @@ ktimer\+\_\+t实例
 {\em f} & kframework\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
-\hypertarget{a00103_ga2fcd8c172557a78fe7edbba0e7f9da40_ga2fcd8c172557a78fe7edbba0e7f9da40}{}\index{framework\+\_\+api.\+h@{framework\+\_\+api.\+h}!knet\+\_\+framework\+\_\+get\+\_\+config@{knet\+\_\+framework\+\_\+get\+\_\+config}}
-\index{knet\+\_\+framework\+\_\+get\+\_\+config@{knet\+\_\+framework\+\_\+get\+\_\+config}!framework\+\_\+api.\+h@{framework\+\_\+api.\+h}}
+\hypertarget{a00054_a5bda21127c93214014579d21f6efd643_a5bda21127c93214014579d21f6efd643}{}\index{framework.\+c@{framework.\+c}!knet\+\_\+framework\+\_\+get\+\_\+balancer@{knet\+\_\+framework\+\_\+get\+\_\+balancer}}
+\index{knet\+\_\+framework\+\_\+get\+\_\+balancer@{knet\+\_\+framework\+\_\+get\+\_\+balancer}!framework.\+c@{framework.\+c}}
+\subsubsection[{knet\+\_\+framework\+\_\+get\+\_\+balancer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kloop\+\_\+balancer\+\_\+t}$\ast$ knet\+\_\+framework\+\_\+get\+\_\+balancer (
+\begin{DoxyParamCaption}
+\item[{{\bf kframework\+\_\+t} $\ast$}]{f}
+\end{DoxyParamCaption}
+)}\label{a00054_a5bda21127c93214014579d21f6efd643_a5bda21127c93214014579d21f6efd643}
+
+
+获取负载均衡器 
+
+
+\begin{DoxyParams}{参数}
+{\em f} & kframework\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+kloop\+\_\+balancer\+\_\+t实例 
+\end{DoxyReturn}
+\hypertarget{a00106_ga2fcd8c172557a78fe7edbba0e7f9da40_ga2fcd8c172557a78fe7edbba0e7f9da40}{}\index{framework.\+c@{framework.\+c}!knet\+\_\+framework\+\_\+get\+\_\+config@{knet\+\_\+framework\+\_\+get\+\_\+config}}
+\index{knet\+\_\+framework\+\_\+get\+\_\+config@{knet\+\_\+framework\+\_\+get\+\_\+config}!framework.\+c@{framework.\+c}}
 \subsubsection[{knet\+\_\+framework\+\_\+get\+\_\+config}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kframework\+\_\+config\+\_\+t}$\ast$ knet\+\_\+framework\+\_\+get\+\_\+config (
 \begin{DoxyParamCaption}
 \item[{{\bf kframework\+\_\+t} $\ast$}]{f}
 \end{DoxyParamCaption}
-)}\label{a00103_ga2fcd8c172557a78fe7edbba0e7f9da40_ga2fcd8c172557a78fe7edbba0e7f9da40}
+)}\label{a00106_ga2fcd8c172557a78fe7edbba0e7f9da40_ga2fcd8c172557a78fe7edbba0e7f9da40}
 
 
 取得框架配置 
@@ -151,13 +253,13 @@ ktimer\+\_\+t实例
 \begin{DoxyReturn}{返回}
 kframework\+\_\+config\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00103_gae2bea4af82f4cdce2f4efbf68aa8054c_gae2bea4af82f4cdce2f4efbf68aa8054c}{}\index{framework\+\_\+api.\+h@{framework\+\_\+api.\+h}!knet\+\_\+framework\+\_\+start@{knet\+\_\+framework\+\_\+start}}
-\index{knet\+\_\+framework\+\_\+start@{knet\+\_\+framework\+\_\+start}!framework\+\_\+api.\+h@{framework\+\_\+api.\+h}}
+\hypertarget{a00106_gae2bea4af82f4cdce2f4efbf68aa8054c_gae2bea4af82f4cdce2f4efbf68aa8054c}{}\index{framework.\+c@{framework.\+c}!knet\+\_\+framework\+\_\+start@{knet\+\_\+framework\+\_\+start}}
+\index{knet\+\_\+framework\+\_\+start@{knet\+\_\+framework\+\_\+start}!framework.\+c@{framework.\+c}}
 \subsubsection[{knet\+\_\+framework\+\_\+start}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+framework\+\_\+start (
 \begin{DoxyParamCaption}
 \item[{{\bf kframework\+\_\+t} $\ast$}]{f}
 \end{DoxyParamCaption}
-)}\label{a00103_gae2bea4af82f4cdce2f4efbf68aa8054c_gae2bea4af82f4cdce2f4efbf68aa8054c}
+)}\label{a00106_gae2bea4af82f4cdce2f4efbf68aa8054c_gae2bea4af82f4cdce2f4efbf68aa8054c}
 
 
 启动框架 
@@ -174,13 +276,13 @@ kframework\+\_\+config\+\_\+t实例
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00103_ga5eda19f3b32bb48578cf735e877aac2e_ga5eda19f3b32bb48578cf735e877aac2e}{}\index{framework\+\_\+api.\+h@{framework\+\_\+api.\+h}!knet\+\_\+framework\+\_\+start\+\_\+wait@{knet\+\_\+framework\+\_\+start\+\_\+wait}}
-\index{knet\+\_\+framework\+\_\+start\+\_\+wait@{knet\+\_\+framework\+\_\+start\+\_\+wait}!framework\+\_\+api.\+h@{framework\+\_\+api.\+h}}
+\hypertarget{a00106_ga5eda19f3b32bb48578cf735e877aac2e_ga5eda19f3b32bb48578cf735e877aac2e}{}\index{framework.\+c@{framework.\+c}!knet\+\_\+framework\+\_\+start\+\_\+wait@{knet\+\_\+framework\+\_\+start\+\_\+wait}}
+\index{knet\+\_\+framework\+\_\+start\+\_\+wait@{knet\+\_\+framework\+\_\+start\+\_\+wait}!framework.\+c@{framework.\+c}}
 \subsubsection[{knet\+\_\+framework\+\_\+start\+\_\+wait}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+framework\+\_\+start\+\_\+wait (
 \begin{DoxyParamCaption}
 \item[{{\bf kframework\+\_\+t} $\ast$}]{f}
 \end{DoxyParamCaption}
-)}\label{a00103_ga5eda19f3b32bb48578cf735e877aac2e_ga5eda19f3b32bb48578cf735e877aac2e}
+)}\label{a00106_ga5eda19f3b32bb48578cf735e877aac2e_ga5eda19f3b32bb48578cf735e877aac2e}
 
 
 启动框架并等待框架关闭 
@@ -197,13 +299,13 @@ kframework\+\_\+config\+\_\+t实例
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00103_gab44f183a42eda626fe6ec1e6d35bb859_gab44f183a42eda626fe6ec1e6d35bb859}{}\index{framework\+\_\+api.\+h@{framework\+\_\+api.\+h}!knet\+\_\+framework\+\_\+start\+\_\+wait\+\_\+destroy@{knet\+\_\+framework\+\_\+start\+\_\+wait\+\_\+destroy}}
-\index{knet\+\_\+framework\+\_\+start\+\_\+wait\+\_\+destroy@{knet\+\_\+framework\+\_\+start\+\_\+wait\+\_\+destroy}!framework\+\_\+api.\+h@{framework\+\_\+api.\+h}}
+\hypertarget{a00106_gab44f183a42eda626fe6ec1e6d35bb859_gab44f183a42eda626fe6ec1e6d35bb859}{}\index{framework.\+c@{framework.\+c}!knet\+\_\+framework\+\_\+start\+\_\+wait\+\_\+destroy@{knet\+\_\+framework\+\_\+start\+\_\+wait\+\_\+destroy}}
+\index{knet\+\_\+framework\+\_\+start\+\_\+wait\+\_\+destroy@{knet\+\_\+framework\+\_\+start\+\_\+wait\+\_\+destroy}!framework.\+c@{framework.\+c}}
 \subsubsection[{knet\+\_\+framework\+\_\+start\+\_\+wait\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+framework\+\_\+start\+\_\+wait\+\_\+destroy (
 \begin{DoxyParamCaption}
 \item[{{\bf kframework\+\_\+t} $\ast$}]{f}
 \end{DoxyParamCaption}
-)}\label{a00103_gab44f183a42eda626fe6ec1e6d35bb859_gab44f183a42eda626fe6ec1e6d35bb859}
+)}\label{a00106_gab44f183a42eda626fe6ec1e6d35bb859_gab44f183a42eda626fe6ec1e6d35bb859}
 
 
 启动框架并等待框架关闭，如果启动失败或者框架关闭则销毁 
@@ -220,13 +322,13 @@ kframework\+\_\+config\+\_\+t实例
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00103_gac8f76fe72392bc5103b70fb5b3280839_gac8f76fe72392bc5103b70fb5b3280839}{}\index{framework\+\_\+api.\+h@{framework\+\_\+api.\+h}!knet\+\_\+framework\+\_\+stop@{knet\+\_\+framework\+\_\+stop}}
-\index{knet\+\_\+framework\+\_\+stop@{knet\+\_\+framework\+\_\+stop}!framework\+\_\+api.\+h@{framework\+\_\+api.\+h}}
+\hypertarget{a00106_gac8f76fe72392bc5103b70fb5b3280839_gac8f76fe72392bc5103b70fb5b3280839}{}\index{framework.\+c@{framework.\+c}!knet\+\_\+framework\+\_\+stop@{knet\+\_\+framework\+\_\+stop}}
+\index{knet\+\_\+framework\+\_\+stop@{knet\+\_\+framework\+\_\+stop}!framework.\+c@{framework.\+c}}
 \subsubsection[{knet\+\_\+framework\+\_\+stop}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+framework\+\_\+stop (
 \begin{DoxyParamCaption}
 \item[{{\bf kframework\+\_\+t} $\ast$}]{f}
 \end{DoxyParamCaption}
-)}\label{a00103_gac8f76fe72392bc5103b70fb5b3280839_gac8f76fe72392bc5103b70fb5b3280839}
+)}\label{a00106_gac8f76fe72392bc5103b70fb5b3280839_gac8f76fe72392bc5103b70fb5b3280839}
 
 
 关闭框架 
@@ -243,13 +345,13 @@ kframework\+\_\+config\+\_\+t实例
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00103_gacff434cca9ce60fa5a3597348ee4360b_gacff434cca9ce60fa5a3597348ee4360b}{}\index{framework\+\_\+api.\+h@{framework\+\_\+api.\+h}!knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop@{knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop}}
-\index{knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop@{knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop}!framework\+\_\+api.\+h@{framework\+\_\+api.\+h}}
+\hypertarget{a00106_gacff434cca9ce60fa5a3597348ee4360b_gacff434cca9ce60fa5a3597348ee4360b}{}\index{framework.\+c@{framework.\+c}!knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop@{knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop}}
+\index{knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop@{knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop}!framework.\+c@{framework.\+c}}
 \subsubsection[{knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop (
 \begin{DoxyParamCaption}
 \item[{{\bf kframework\+\_\+t} $\ast$}]{f}
 \end{DoxyParamCaption}
-)}\label{a00103_gacff434cca9ce60fa5a3597348ee4360b_gacff434cca9ce60fa5a3597348ee4360b}
+)}\label{a00106_gacff434cca9ce60fa5a3597348ee4360b_gacff434cca9ce60fa5a3597348ee4360b}
 
 
 等待框架停止 
@@ -259,13 +361,13 @@ kframework\+\_\+config\+\_\+t实例
 {\em f} & kframework\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
-\hypertarget{a00103_ga5936d2ece03511c366b19bc7616ac8be_ga5936d2ece03511c366b19bc7616ac8be}{}\index{framework\+\_\+api.\+h@{framework\+\_\+api.\+h}!knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop\+\_\+destroy@{knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop\+\_\+destroy}}
-\index{knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop\+\_\+destroy@{knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop\+\_\+destroy}!framework\+\_\+api.\+h@{framework\+\_\+api.\+h}}
+\hypertarget{a00106_ga5936d2ece03511c366b19bc7616ac8be_ga5936d2ece03511c366b19bc7616ac8be}{}\index{framework.\+c@{framework.\+c}!knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop\+\_\+destroy@{knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop\+\_\+destroy}}
+\index{knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop\+\_\+destroy@{knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop\+\_\+destroy}!framework.\+c@{framework.\+c}}
 \subsubsection[{knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop\+\_\+destroy (
 \begin{DoxyParamCaption}
 \item[{{\bf kframework\+\_\+t} $\ast$}]{f}
 \end{DoxyParamCaption}
-)}\label{a00103_ga5936d2ece03511c366b19bc7616ac8be_ga5936d2ece03511c366b19bc7616ac8be}
+)}\label{a00106_ga5936d2ece03511c366b19bc7616ac8be_ga5936d2ece03511c366b19bc7616ac8be}
 
 
 等待框架停止并销毁 

@@ -25,8 +25,6 @@
 #ifndef RPC_OBJECT_H
 #define RPC_OBJECT_H
 
-/* TODO ´ý²âÊÔ */
-
 #include "config.h"
 #include "rpc_object_api.h"
 

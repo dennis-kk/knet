@@ -22,8 +22,6 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-/* TODO ´ý²âÊÔ */
-
 #include "rpc_object.h"
 #include "hash.h"
 #include "stream.h"

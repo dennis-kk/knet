@@ -1,7 +1,31 @@
-\hypertarget{a00075}{}\section{E\+:/knet-\/git/knet/knet/loop\+\_\+epoll.c 文件参考}
-\label{a00075}\index{E\+:/knet-\/git/knet/knet/loop\+\_\+epoll.\+c@{E\+:/knet-\/git/knet/knet/loop\+\_\+epoll.\+c}}
-{\ttfamily \#include \char`\"{}loop.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}list.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}channel\+\_\+ref.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}channel.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}logger.\+h\char`\"{}}\\*
+\hypertarget{a00075}{}\section{E\+:/knet-\/git/knet/knet/loop\+\_\+balancer.h 文件参考}
+\label{a00075}\index{E\+:/knet-\/git/knet/knet/loop\+\_\+balancer.\+h@{E\+:/knet-\/git/knet/knet/loop\+\_\+balancer.\+h}}
+{\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}loop\+\_\+balancer\+\_\+api.\+h\char`\"{}}\\*
+\subsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00053_a97fc76209a58362019f1ded9169e397f_a97fc76209a58362019f1ded9169e397f}{kloop\+\_\+t} $\ast$ \hyperlink{a00075_ab16d1483a612eba09677784480b5e1e7_ab16d1483a612eba09677784480b5e1e7}{knet\+\_\+loop\+\_\+balancer\+\_\+choose} (\hyperlink{a00053_abd3f964265beb2f8984e76f44fb5ea33_abd3f964265beb2f8984e76f44fb5ea33}{kloop\+\_\+balancer\+\_\+t} $\ast$balancer)
+\begin{DoxyCompactList}\small\item\em 负载均衡 -\/ 选取一个kloop\+\_\+t实例 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{函数说明}
+\hypertarget{a00075_ab16d1483a612eba09677784480b5e1e7_ab16d1483a612eba09677784480b5e1e7}{}\index{loop\+\_\+balancer.\+h@{loop\+\_\+balancer.\+h}!knet\+\_\+loop\+\_\+balancer\+\_\+choose@{knet\+\_\+loop\+\_\+balancer\+\_\+choose}}
+\index{knet\+\_\+loop\+\_\+balancer\+\_\+choose@{knet\+\_\+loop\+\_\+balancer\+\_\+choose}!loop\+\_\+balancer.\+h@{loop\+\_\+balancer.\+h}}
+\subsubsection[{knet\+\_\+loop\+\_\+balancer\+\_\+choose}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kloop\+\_\+t}$\ast$ knet\+\_\+loop\+\_\+balancer\+\_\+choose (
+\begin{DoxyParamCaption}
+\item[{{\bf kloop\+\_\+balancer\+\_\+t} $\ast$}]{balancer}
+\end{DoxyParamCaption}
+)}\label{a00075_ab16d1483a612eba09677784480b5e1e7_ab16d1483a612eba09677784480b5e1e7}
+
+
+负载均衡 -\/ 选取一个kloop\+\_\+t实例 
+
+
+\begin{DoxyParams}{参数}
+{\em balancer} & kloop\+\_\+balancer\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+kloop\+\_\+t实例 
+\end{DoxyReturn}

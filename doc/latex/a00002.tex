@@ -1,28 +1,188 @@
-\hypertarget{a00002}{}\section{\+\_\+broadcast\+\_\+t结构体 参考}
-\label{a00002}\index{\+\_\+broadcast\+\_\+t@{\+\_\+broadcast\+\_\+t}}
-\subsection*{成员变量}
-\begin{DoxyCompactItemize}
-\item 
-uint64\+\_\+t \hyperlink{a00002_a887426648129995bc262be3e38374701_a887426648129995bc262be3e38374701}{domain\+\_\+id}
-\item 
-\hyperlink{a00051_ae098586334a621a23cef7cb17590b618_ae098586334a621a23cef7cb17590b618}{kdlist\+\_\+t} $\ast$ \hyperlink{a00002_ae174c357652d393f059cc8feacdbbbc9_ae174c357652d393f059cc8feacdbbbc9}{channels}
-\item 
-\hyperlink{a00051_a4c2f62ab63ab1fd49c71e52bbda0f393_a4c2f62ab63ab1fd49c71e52bbda0f393}{klock\+\_\+t} $\ast$ \hyperlink{a00002_a5694557c50d8861d557e922d5a49203b_a5694557c50d8861d557e922d5a49203b}{lock}
-\end{DoxyCompactItemize}
+\subsection*{}
+
+{\bfseries knet} is cross-\/platform multi-\/threading light-\/weight T\+C\+P transport library, for now, knet support {\bfseries I\+O\+C\+P}, {\bfseries select}, {\bfseries epoll} model on {\bfseries Windows} and {\bfseries Cent\+O\+S}. it will testing under more Linux and Unix O\+S version, more model will be implemented like\+: kqueue(kevent) etc. {\bfseries knet} is not a event loop like {\bfseries libevent}, {\bfseries knet} focus on transport only.
+
+\subsubsection*{Loop}
+
+\subsection*{}
+
+{\ttfamily kloop\+\_\+t} is the wrapper of different implemented model, it\textquotesingle{}s easy to use {\ttfamily kloop\+\_\+t} to build a loop. \begin{DoxyVerb}#include "knet.h"
+kloop_t* loop = knet_loop_create();
+\end{DoxyVerb}
 
 
-\subsection{结构体成员变量说明}
-\hypertarget{a00002_ae174c357652d393f059cc8feacdbbbc9_ae174c357652d393f059cc8feacdbbbc9}{}\index{\+\_\+broadcast\+\_\+t@{\+\_\+broadcast\+\_\+t}!channels@{channels}}
-\index{channels@{channels}!\+\_\+broadcast\+\_\+t@{\+\_\+broadcast\+\_\+t}}
-\subsubsection[{channels}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kdlist\+\_\+t}$\ast$ \+\_\+broadcast\+\_\+t\+::channels}\label{a00002_ae174c357652d393f059cc8feacdbbbc9_ae174c357652d393f059cc8feacdbbbc9}
-\hypertarget{a00002_a887426648129995bc262be3e38374701_a887426648129995bc262be3e38374701}{}\index{\+\_\+broadcast\+\_\+t@{\+\_\+broadcast\+\_\+t}!domain\+\_\+id@{domain\+\_\+id}}
-\index{domain\+\_\+id@{domain\+\_\+id}!\+\_\+broadcast\+\_\+t@{\+\_\+broadcast\+\_\+t}}
-\subsubsection[{domain\+\_\+id}]{\setlength{\rightskip}{0pt plus 5cm}uint64\+\_\+t \+\_\+broadcast\+\_\+t\+::domain\+\_\+id}\label{a00002_a887426648129995bc262be3e38374701_a887426648129995bc262be3e38374701}
-\hypertarget{a00002_a5694557c50d8861d557e922d5a49203b_a5694557c50d8861d557e922d5a49203b}{}\index{\+\_\+broadcast\+\_\+t@{\+\_\+broadcast\+\_\+t}!lock@{lock}}
-\index{lock@{lock}!\+\_\+broadcast\+\_\+t@{\+\_\+broadcast\+\_\+t}}
-\subsubsection[{lock}]{\setlength{\rightskip}{0pt plus 5cm}{\bf klock\+\_\+t}$\ast$ \+\_\+broadcast\+\_\+t\+::lock}\label{a00002_a5694557c50d8861d557e922d5a49203b_a5694557c50d8861d557e922d5a49203b}
+For now, a loop is ready for run, we create a {\ttfamily channel\+\_\+ref\+\_\+t} as acceptor. \begin{DoxyVerb}kchannel_ref_t* channel = knet_loop_create_channel(loop, 0, 1024);
+kchannel_ref_accept(channel, "127.0.0.1", 80);
+\end{DoxyVerb}
 
 
-该结构体的文档由以下文件生成\+:\begin{DoxyCompactItemize}
-\item 
-E\+:/knet-\/git/knet/knet/\hyperlink{a00042}{broadcast.\+c}\end{DoxyCompactItemize}
+We built a acceptor channel with infinite send chain size and maximal read buffer size 1024, after that run endless loop. \begin{DoxyVerb}knet_loop_run(loop);
+knet_loop_destroy(loop);
+\end{DoxyVerb}
+
+
+The program just holds your screen, we should add some code for new client coming. \begin{DoxyVerb}void acceptor_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
+    if (e & channel_cb_event_accept) {
+        /* TODO do job here */
+    }
+}
+\end{DoxyVerb}
+
+
+The whole story\+: \begin{DoxyVerb}#include "knet.h"
+
+void acceptor_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
+    if (e & channel_cb_event_accept) { /* the new client coming */
+        /* TODO do job here */
+    }
+}
+
+int main() {
+    kloop_t* loop = knet_loop_create();
+    kchannel_ref_t* channel = knet_loop_create_channel(loop, 0, 1024);
+    knet_channel_ref_accept(channel, "127.0.0.1", 80);
+    knet_channel_ref_set_cb(channel, acceptor_cb);
+    knet_loop_run(loop);
+    knet_loop_destroy(loop);
+    return 0;
+}
+\end{DoxyVerb}
+
+
+For more detail, see {\ttfamily examples/basic.\+c}
+
+\paragraph*{\hyperlink{a00053}{config.\+h}}
+
+\subsection*{}
+
+\begin{DoxyVerb}#if defined(WIN32)
+    #define LOOP_IOCP 1    /* IOCP */
+    #define LOOP_SELECT 0  /* select */
+#else
+    #define LOOP_EPOLL 1   /* epoll */
+    #define LOOP_SELECT 0  /* select */
+#endif /* defined(WIN32) */
+\end{DoxyVerb}
+
+
+In header file {\ttfamily \hyperlink{a00053}{knet/config.\+h}}, change the macro value to tell compiler choose specific implement, I\+O\+C\+P on Windows, epoll on Linux by default, more implement will be appended in the future release. \begin{DoxyVerb}#define LOGGER_ON 0 /* the switch of internal logger */
+#define LOGGER_MODE (logger_mode_file | logger_mode_console | logger_mode_flush | logger_mode_override) /* the mode of logger */
+#define LOGGER_LEVEL logger_level_verbose /* the level of logger */
+\end{DoxyVerb}
+
+
+{\ttfamily L\+O\+G\+G\+E\+R\+\_\+\+O\+N} is the switch of {\bfseries knet} internal logger, the macro {\ttfamily L\+O\+G\+G\+E\+R\+\_\+\+M\+O\+D\+E} and {\ttfamily L\+O\+G\+G\+E\+R\+\_\+\+L\+E\+V\+E\+L} can change the mode and the level of logger. Internal logger may help developer find the problom A\+S\+A\+P, {\ttfamily L\+O\+G\+G\+E\+R\+\_\+\+O\+N} should be set to 0 in release version.
+
+\subsubsection*{Balancer}
+
+\subsection*{}
+
+{\ttfamily kloop\+\_\+t} runs at the thread which calling {\ttfamily knet\+\_\+loop\+\_\+run} or {\ttfamily knet\+\_\+loop\+\_\+run\+\_\+once}, each {\ttfamily loop\+\_\+t} knows nothing about others. {\ttfamily kloop\+\_\+balancer\+\_\+t} coordinates all attached {\ttfamily kloop\+\_\+t}({\ttfamily knet\+\_\+loop\+\_\+balance\+\_\+attach}) and try to balance load for them.
+
+{\ttfamily kloop\+\_\+balancer\+\_\+t} conceal the details and sophisticated for developer, the process of balancing is thread-\/safety and highly efficent. {\bfseries knet} offers a simple thread A\+P\+I to run internally {\ttfamily knet\+\_\+loop\+\_\+run}, the interact among loops are also transparent for developers.
+
+For more detail, see {\ttfamily examples/multi\+\_\+loop.\+c}
+
+\subsubsection*{Framework}
+
+\subsection*{}
+
+{\ttfamily framework\+\_\+t} offers a general interface of multi-\/loop under multi-\/threading environment.
+
+
+\begin{DoxyItemize}
+\item framework starts a standalone acceptor/connector thread
+\item a thread pool to operate accepted channels
+\item use the same callback type as the parameter of function {\ttfamily channel\+\_\+ref\+\_\+set\+\_\+cb}
+\end{DoxyItemize}
+
+The framework extremely simplifies code line for the startup and cleanup of loop under multi-\/threading environment. \begin{DoxyVerb}kframework_t* f = knet_framework_create();
+kframework_config_t* c = knet_framework_get_config(f);
+/* fork a new acceptor */
+kframework_acceptor_config_t* ac = knet_framework_config_new_acceptor(c);
+knet_framework_acceptor_config_set_local_address(ac, 0, 23);
+knet_framework_acceptor_config_set_client_cb(ac, client_cb);
+/* start framework, wait stop & destroy*/
+knet_framework_start_wait_destroy(f);
+\end{DoxyVerb}
+
+
+After framework started, you also can start additional acceptor or connector. \begin{DoxyVerb}kframework_acceptor_config_t* ac = knet_framework_config_new_acceptor(c);
+knet_framework_acceptor_config_set_local_address(ac, 0, 23);
+knet_framework_acceptor_config_set_client_cb(ac, client_cb);
+knet_framework_acceptor_start(f, ac);
+\end{DoxyVerb}
+
+
+The callback function you set will be invoked in multiple threads(more than one worker), make sure the function thread-\/safety.
+
+For more detail, see {\ttfamily examples/framework.\+c}
+
+\subsubsection*{R\+P\+C}
+
+\subsection*{}
+
+{\bfseries knet} offers a low level {\bfseries R\+P\+C} object framework for developer. {\ttfamily krpc\+\_\+t} is the base for the next version(1.\+5.\+x), developers may develop handwriting code by {\ttfamily krpc\+\_\+t}, but its not a good way to maintain code for future development.
+
+For more detail, see {\ttfamily examples/rpc.\+c}
+
+\subsubsection*{R\+P\+C code generating}
+
+\subsection*{}
+
+{\bfseries krpc} is a command line tool to generate R\+P\+C code for developes. The generated code utilizes R\+P\+C object framework to marshal/unmarshal the R\+P\+C method parameters, and a simple singleton R\+P\+C entry class.
+
+{\ttfamily krpc -\/d output-\/directory -\/f input\+\_\+rpc\+\_\+file -\/n rpc\+\_\+class\+\_\+name -\/l the\+\_\+language\+\_\+to\+\_\+generate}
+
+After run the command, you\textquotesingle{}ll find two files in the output-\/directory, {\ttfamily rpc\+\_\+class\+\_\+name.\+h} and {\ttfamily rpc\+\_\+class\+\_\+name.\+cpp}. For now, {\ttfamily krpc} supports C++ only.
+
+For more detail, see
+
+
+\begin{DoxyItemize}
+\item {\ttfamily krpc/examples/rpc\+\_\+sample.\+rpc}
+\item {\ttfamily krpc/examples/rpc\+\_\+sample\+\_\+object.\+rpc}
+\item {\ttfamily krpc/examples/rpc.\+cpp}
+\item {\ttfamily krpc/examples/rpc\+\_\+sample.\+h}
+\item {\ttfamily krpc/examples/rpc\+\_\+sample.\+cpp}
+\end{DoxyItemize}
+
+\subsubsection*{Document}
+
+\subsection*{}
+
+see {\ttfamily doc/knet.\+pptx} for big picture of {\bfseries knet} see {\ttfamily doc/html/index.\+html} for dev doc.
+
+\subsubsection*{Build}
+
+\subsection*{}
+
+
+\begin{DoxyEnumerate}
+\item Windows see {\ttfamily knet/win-\/proj/knet-\/vs2010.\+sln}
+\item Linux see {\ttfamily knet/\+C\+Make\+Lists.\+txt} {\ttfamily cmake C\+Make\+Lists.\+txt} {\ttfamily make}
+\end{DoxyEnumerate}
+
+The build result in folder {\ttfamily knet/bin}.
+
+\subsubsection*{Test}
+
+see {\ttfamily knet/bin}.
+
+
+\begin{DoxyEnumerate}
+\item Windows {\ttfamily test\+\_\+client-\/vs2010.\+exe} {\ttfamily test\+\_\+server-\/vs2010.\+exe}
+\item Linux {\ttfamily test\+\_\+client} {\ttfamily test\+\_\+server}
+\item The command line of client
+\begin{DoxyEnumerate}
+\item {\ttfamily -\/ip} server listening I\+P
+\item {\ttfamily -\/port} server listening port
+\item {\ttfamily -\/n} connector count
+\end{DoxyEnumerate}
+\item the command line of server
+\begin{DoxyEnumerate}
+\item {\ttfamily -\/ip} server listening I\+P
+\item {\ttfamily -\/port} server listening port
+\item {\ttfamily -\/w} worker count 
+\end{DoxyEnumerate}
+\end{DoxyEnumerate}

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/stream.h 源文件</title>
+<title>knet: E:/knet-git/knet/knet/rpc_object.h 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -39,6 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="pages.html"><span>相关页面</span></a></li>
       <li><a href="modules.html"><span>模块</span></a></li>
       <li><a href="annotated.html"><span>结构体</span></a></li>
       <li class="current"><a href="files.html"><span>文件</span></a></li>
@@ -87,7 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">stream.h</div>  </div>
+<div class="title">rpc_object.h</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00092.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
@@ -114,27 +115,34 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef STREAM_H</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define STREAM_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef RPC_OBJECT_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define RPC_OBJECT_H</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00051.html">config.h</a>&quot;</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00093.html">stream_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<a class="code" href="a00034.html">kstream_t</a>* <a class="code" href="a00092_a6bd4317031384f8711bacd24ea59be47.html#a6bd4317031384f8711bacd24ea59be47">stream_create</a>(<a class="code" href="a00005.html">kchannel_ref_t</a>* channel_ref);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00092_ad8aa700d37115d60d17bd80078ae4d4c.html#ad8aa700d37115d60d17bd80078ae4d4c">stream_destroy</a>(<a class="code" href="a00034.html">kstream_t</a>* stream);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* STREAM_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="a00093_html"><div class="ttname"><a href="a00093.html">stream_api.h</a></div></div>
-<div class="ttc" id="a00092_a6bd4317031384f8711bacd24ea59be47_html_a6bd4317031384f8711bacd24ea59be47"><div class="ttname"><a href="a00092_a6bd4317031384f8711bacd24ea59be47.html#a6bd4317031384f8711bacd24ea59be47">stream_create</a></div><div class="ttdeci">kstream_t * stream_create(kchannel_ref_t *channel_ref)</div><div class="ttdoc">建立管道流 </div><div class="ttdef"><b>Definition:</b> stream.c:37</div></div>
-<div class="ttc" id="a00034_html"><div class="ttname"><a href="a00034.html">_stream_t</a></div><div class="ttdef"><b>Definition:</b> stream.c:33</div></div>
-<div class="ttc" id="a00005_html"><div class="ttname"><a href="a00005.html">_channel_ref_t</a></div><div class="ttdef"><b>Definition:</b> channel_ref.c:61</div></div>
-<div class="ttc" id="a00092_ad8aa700d37115d60d17bd80078ae4d4c_html_ad8aa700d37115d60d17bd80078ae4d4c"><div class="ttname"><a href="a00092_ad8aa700d37115d60d17bd80078ae4d4c.html#ad8aa700d37115d60d17bd80078ae4d4c">stream_destroy</a></div><div class="ttdeci">void stream_destroy(kstream_t *stream)</div><div class="ttdoc">销毁管道流 </div><div class="ttdef"><b>Definition:</b> stream.c:47</div></div>
-<div class="ttc" id="a00051_html"><div class="ttname"><a href="a00051.html">config.h</a></div></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">/* TODO 待测试 */</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00053.html">config.h</a>&quot;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00093.html">rpc_object_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;uint16_t <a class="code" href="a00092_aaa8a155df38de3bbf2a876b94686d195.html#aaa8a155df38de3bbf2a876b94686d195">krpc_number_get_marshal_size</a>(<a class="code" href="a00021.html">krpc_object_t</a>* o);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00092_af0d124108915f859d85fccd58facf12f.html#af0d124108915f859d85fccd58facf12f">krpc_string_set_size</a>(<a class="code" href="a00021.html">krpc_object_t</a>* o, uint16_t size);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00092_a13be7946c84baeebe93977ef511e125f.html#a13be7946c84baeebe93977ef511e125f">krpc_vector_enlarge</a>(<a class="code" href="a00021.html">krpc_object_t</a>* o);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00092_a79b7c0edd0ee7a8c462d19881589f701.html#a79b7c0edd0ee7a8c462d19881589f701">hash_value_dtor</a>(<span class="keywordtype">void</span>* v);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* RPC_OBJECT_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a00093_html"><div class="ttname"><a href="a00093.html">rpc_object_api.h</a></div></div>
+<div class="ttc" id="a00021_html"><div class="ttname"><a href="a00021.html">_krpc_object_t</a></div><div class="ttdef"><b>Definition:</b> rpc_object.c:88</div></div>
+<div class="ttc" id="a00092_af0d124108915f859d85fccd58facf12f_html_af0d124108915f859d85fccd58facf12f"><div class="ttname"><a href="a00092_af0d124108915f859d85fccd58facf12f.html#af0d124108915f859d85fccd58facf12f">krpc_string_set_size</a></div><div class="ttdeci">int krpc_string_set_size(krpc_object_t *o, uint16_t size)</div><div class="ttdoc">设置字符串长度 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:782</div></div>
+<div class="ttc" id="a00092_a79b7c0edd0ee7a8c462d19881589f701_html_a79b7c0edd0ee7a8c462d19881589f701"><div class="ttname"><a href="a00092_a79b7c0edd0ee7a8c462d19881589f701.html#a79b7c0edd0ee7a8c462d19881589f701">hash_value_dtor</a></div><div class="ttdeci">void hash_value_dtor(void *v)</div><div class="ttdoc">表值销毁函数 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:894</div></div>
+<div class="ttc" id="a00092_aaa8a155df38de3bbf2a876b94686d195_html_aaa8a155df38de3bbf2a876b94686d195"><div class="ttname"><a href="a00092_aaa8a155df38de3bbf2a876b94686d195.html#aaa8a155df38de3bbf2a876b94686d195">krpc_number_get_marshal_size</a></div><div class="ttdeci">uint16_t krpc_number_get_marshal_size(krpc_object_t *o)</div><div class="ttdoc">获取数字对象序列化长度 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:140</div></div>
+<div class="ttc" id="a00053_html"><div class="ttname"><a href="a00053.html">config.h</a></div></div>
+<div class="ttc" id="a00092_a13be7946c84baeebe93977ef511e125f_html_a13be7946c84baeebe93977ef511e125f"><div class="ttname"><a href="a00092_a13be7946c84baeebe93977ef511e125f.html#a13be7946c84baeebe93977ef511e125f">krpc_vector_enlarge</a></div><div class="ttdeci">void krpc_vector_enlarge(krpc_object_t *o)</div><div class="ttdoc">扩展数组 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:811</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 21日 星期二 13:46:16 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 22日 星期三 10:41:03 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

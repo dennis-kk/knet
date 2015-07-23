@@ -32,10 +32,10 @@
 
 struct _channel_t {
     kdlist_t*      send_buffer_list;  /* 发送链表 */
-    uint32_t      max_send_list_len; /* 发送链表最大长度 */
+    uint32_t       max_send_list_len; /* 发送链表最大长度 */
     kringbuffer_t* recv_ringbuffer;   /* 读环形缓冲区 */
-    socket_t      socket_fd;         /* 套接字 */
-    uint64_t      uuid;              /* 管道UUID */
+    socket_t       socket_fd;         /* 套接字 */
+    uint64_t       uuid;              /* 管道UUID */
 };
 
 kchannel_t* knet_channel_create(uint32_t max_send_list_len, uint32_t recv_ring_len) {

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: _broadcast_t结构体 参考</title>
+<title>knet: knet 1.4.x</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -39,8 +39,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>首页</span></a></li>
+      <li class="current"><a href="pages.html"><span>相关页面</span></a></li>
       <li><a href="modules.html"><span>模块</span></a></li>
-      <li class="current"><a href="annotated.html"><span>结构体</span></a></li>
+      <li><a href="annotated.html"><span>结构体</span></a></li>
       <li><a href="files.html"><span>文件</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -60,13 +61,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
       </li>
     </ul>
   </div>
-  <div id="navrow2" class="tabs2">
-    <ul class="tablist">
-      <li><a href="annotated.html"><span>结构体</span></a></li>
-      <li><a href="classes.html"><span>结构体索引</span></a></li>
-      <li><a href="functions.html"><span>成员变量</span></a></li>
-    </ul>
-  </div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -83,29 +77,132 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 
 </div><!-- top -->
 <div class="header">
-  <div class="summary">
-<a href="#pub-attribs">成员变量</a>  </div>
   <div class="headertitle">
-<div class="title">_broadcast_t结构体 参考</div>  </div>
+<div class="title">knet 1.4.x </div>  </div>
 </div><!--header-->
 <div class="contents">
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-成员变量</h2></td></tr>
-<tr class="memitem:a887426648129995bc262be3e38374701"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00002_a887426648129995bc262be3e38374701.html#a887426648129995bc262be3e38374701">domain_id</a></td></tr>
-<tr class="separator:a887426648129995bc262be3e38374701"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae174c357652d393f059cc8feacdbbbc9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00051_ae098586334a621a23cef7cb17590b618.html#ae098586334a621a23cef7cb17590b618">kdlist_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00002_ae174c357652d393f059cc8feacdbbbc9.html#ae174c357652d393f059cc8feacdbbbc9">channels</a></td></tr>
-<tr class="separator:ae174c357652d393f059cc8feacdbbbc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5694557c50d8861d557e922d5a49203b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00051_a4c2f62ab63ab1fd49c71e52bbda0f393.html#a4c2f62ab63ab1fd49c71e52bbda0f393">klock_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00002_a5694557c50d8861d557e922d5a49203b.html#a5694557c50d8861d557e922d5a49203b">lock</a></td></tr>
-<tr class="separator:a5694557c50d8861d557e922d5a49203b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-<hr/>该结构体的文档由以下文件生成:<ul>
-<li>E:/knet-git/knet/knet/<a class="el" href="a00042.html">broadcast.c</a></li>
+<div class="textblock"><h2></h2>
+<p><b>knet</b> is cross-platform multi-threading light-weight TCP transport library, for now, knet support <b>IOCP</b>, <b>select</b>, <b>epoll</b> model on <b>Windows</b> and <b>CentOS</b>. it will testing under more Linux and Unix OS version, more model will be implemented like: kqueue(kevent) etc. <b>knet</b> is not a event loop like <b>libevent</b>, <b>knet</b> focus on transport only.</p>
+<h3>Loop</h3>
+<h2></h2>
+<p><code>kloop_t</code> is the wrapper of different implemented model, it's easy to use <code>kloop_t</code> to build a loop. </p><pre class="fragment">#include "knet.h"
+kloop_t* loop = knet_loop_create();
+</pre><p>For now, a loop is ready for run, we create a <code>channel_ref_t</code> as acceptor. </p><pre class="fragment">kchannel_ref_t* channel = knet_loop_create_channel(loop, 0, 1024);
+kchannel_ref_accept(channel, "127.0.0.1", 80);
+</pre><p>We built a acceptor channel with infinite send chain size and maximal read buffer size 1024, after that run endless loop. </p><pre class="fragment">knet_loop_run(loop);
+knet_loop_destroy(loop);
+</pre><p>The program just holds your screen, we should add some code for new client coming. </p><pre class="fragment">void acceptor_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
+    if (e &amp; channel_cb_event_accept) {
+        /* TODO do job here */
+    }
+}
+</pre><p>The whole story: </p><pre class="fragment">#include "knet.h"
+
+void acceptor_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
+    if (e &amp; channel_cb_event_accept) { /* the new client coming */
+        /* TODO do job here */
+    }
+}
+
+int main() {
+    kloop_t* loop = knet_loop_create();
+    kchannel_ref_t* channel = knet_loop_create_channel(loop, 0, 1024);
+    knet_channel_ref_accept(channel, "127.0.0.1", 80);
+    knet_channel_ref_set_cb(channel, acceptor_cb);
+    knet_loop_run(loop);
+    knet_loop_destroy(loop);
+    return 0;
+}
+</pre><p>For more detail, see <code>examples/basic.c</code></p>
+<h4><a class="el" href="a00053.html">config.h</a></h4>
+<h2></h2>
+<pre class="fragment">#if defined(WIN32)
+    #define LOOP_IOCP 1    /* IOCP */
+    #define LOOP_SELECT 0  /* select */
+#else
+    #define LOOP_EPOLL 1   /* epoll */
+    #define LOOP_SELECT 0  /* select */
+#endif /* defined(WIN32) */
+</pre><p>In header file <code><a class="el" href="a00053.html">knet/config.h</a></code>, change the macro value to tell compiler choose specific implement, IOCP on Windows, epoll on Linux by default, more implement will be appended in the future release. </p><pre class="fragment">#define LOGGER_ON 0 /* the switch of internal logger */
+#define LOGGER_MODE (logger_mode_file | logger_mode_console | logger_mode_flush | logger_mode_override) /* the mode of logger */
+#define LOGGER_LEVEL logger_level_verbose /* the level of logger */
+</pre><p><code>LOGGER_ON</code> is the switch of <b>knet</b> internal logger, the macro <code>LOGGER_MODE</code> and <code>LOGGER_LEVEL</code> can change the mode and the level of logger. Internal logger may help developer find the problom ASAP, <code>LOGGER_ON</code> should be set to 0 in release version.</p>
+<h3>Balancer</h3>
+<h2></h2>
+<p><code>kloop_t</code> runs at the thread which calling <code>knet_loop_run</code> or <code>knet_loop_run_once</code>, each <code>loop_t</code> knows nothing about others. <code>kloop_balancer_t</code> coordinates all attached <code>kloop_t</code>(<code>knet_loop_balance_attach</code>) and try to balance load for them.</p>
+<p><code>kloop_balancer_t</code> conceal the details and sophisticated for developer, the process of balancing is thread-safety and highly efficent. <b>knet</b> offers a simple thread API to run internally <code>knet_loop_run</code>, the interact among loops are also transparent for developers.</p>
+<p>For more detail, see <code>examples/multi_loop.c</code></p>
+<h3>Framework</h3>
+<h2></h2>
+<p><code>framework_t</code> offers a general interface of multi-loop under multi-threading environment.</p>
+<ul>
+<li>framework starts a standalone acceptor/connector thread</li>
+<li>a thread pool to operate accepted channels</li>
+<li>use the same callback type as the parameter of function <code>channel_ref_set_cb</code></li>
 </ul>
-</div><!-- contents -->
+<p>The framework extremely simplifies code line for the startup and cleanup of loop under multi-threading environment. </p><pre class="fragment">kframework_t* f = knet_framework_create();
+kframework_config_t* c = knet_framework_get_config(f);
+/* fork a new acceptor */
+kframework_acceptor_config_t* ac = knet_framework_config_new_acceptor(c);
+knet_framework_acceptor_config_set_local_address(ac, 0, 23);
+knet_framework_acceptor_config_set_client_cb(ac, client_cb);
+/* start framework, wait stop &amp; destroy*/
+knet_framework_start_wait_destroy(f);
+</pre><p>After framework started, you also can start additional acceptor or connector. </p><pre class="fragment">kframework_acceptor_config_t* ac = knet_framework_config_new_acceptor(c);
+knet_framework_acceptor_config_set_local_address(ac, 0, 23);
+knet_framework_acceptor_config_set_client_cb(ac, client_cb);
+knet_framework_acceptor_start(f, ac);
+</pre><p>The callback function you set will be invoked in multiple threads(more than one worker), make sure the function thread-safety.</p>
+<p>For more detail, see <code>examples/framework.c</code></p>
+<h3>RPC</h3>
+<h2></h2>
+<p><b>knet</b> offers a low level <b>RPC</b> object framework for developer. <code>krpc_t</code> is the base for the next version(1.5.x), developers may develop handwriting code by <code>krpc_t</code>, but its not a good way to maintain code for future development.</p>
+<p>For more detail, see <code>examples/rpc.c</code></p>
+<h3>RPC code generating</h3>
+<h2></h2>
+<p><b>krpc</b> is a command line tool to generate RPC code for developes. The generated code utilizes RPC object framework to marshal/unmarshal the RPC method parameters, and a simple singleton RPC entry class.</p>
+<p><code>krpc -d output-directory -f input_rpc_file -n rpc_class_name -l the_language_to_generate</code></p>
+<p>After run the command, you'll find two files in the output-directory, <code>rpc_class_name.h</code> and <code>rpc_class_name.cpp</code>. For now, <code>krpc</code> supports C++ only.</p>
+<p>For more detail, see</p>
+<ul>
+<li><code>krpc/examples/rpc_sample.rpc</code></li>
+<li><code>krpc/examples/rpc_sample_object.rpc</code></li>
+<li><code>krpc/examples/rpc.cpp</code></li>
+<li><code>krpc/examples/rpc_sample.h</code></li>
+<li><code>krpc/examples/rpc_sample.cpp</code></li>
+</ul>
+<h3>Document</h3>
+<h2></h2>
+<p>see <code>doc/knet.pptx</code> for big picture of <b>knet</b> see <code>doc/html/index.html</code> for dev doc.</p>
+<h3>Build</h3>
+<h2></h2>
+<ol type="1">
+<li>Windows see <code>knet/win-proj/knet-vs2010.sln</code></li>
+<li>Linux see <code>knet/CMakeLists.txt</code> <code>cmake CMakeLists.txt</code> <code>make</code></li>
+</ol>
+<p>The build result in folder <code>knet/bin</code>.</p>
+<h3>Test</h3>
+<p>see <code>knet/bin</code>.</p>
+<ol type="1">
+<li>Windows <code>test_client-vs2010.exe</code> <code>test_server-vs2010.exe</code></li>
+<li>Linux <code>test_client</code> <code>test_server</code></li>
+<li>The command line of client<ol type="a">
+<li><code>-ip</code> server listening IP</li>
+<li><code>-port</code> server listening port</li>
+<li><code>-n</code> connector count</li>
+</ol>
+</li>
+<li>the command line of server<ol type="a">
+<li><code>-ip</code> server listening IP</li>
+<li><code>-port</code> server listening port</li>
+<li><code>-w</code> worker count </li>
+</ol>
+</li>
+</ol>
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 21日 星期二 13:46:17 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 22日 星期三 10:41:04 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

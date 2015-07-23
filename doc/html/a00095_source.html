@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/timer.h 源文件</title>
+<title>knet: E:/knet-git/knet/knet/stream.h 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -39,6 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="pages.html"><span>相关页面</span></a></li>
       <li><a href="modules.html"><span>模块</span></a></li>
       <li><a href="annotated.html"><span>结构体</span></a></li>
       <li class="current"><a href="files.html"><span>文件</span></a></li>
@@ -87,7 +88,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">timer.h</div>  </div>
+<div class="title">stream.h</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00095.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
@@ -114,40 +115,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef TIMER_H</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define TIMER_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef STREAM_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define STREAM_H</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00050.html">config.h</a>&quot;</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00096.html">timer_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00053.html">config.h</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00096.html">stream_api.h</a>&quot;</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00095_af64f93b32c31cd222c02f0ad40bb642c.html#af64f93b32c31cd222c02f0ad40bb642c">ktimer_destroy</a>(<a class="code" href="a00025.html">ktimer_t</a>* timer);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00095_a6e263963404ff40c8d7865ba117d3446.html#a6e263963404ff40c8d7865ba117d3446">ktimer_check_timeout</a>(<a class="code" href="a00025.html">ktimer_t</a>* timer, time_t ms);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00095_a7c448e677f3022e5e7d910d3961dda61.html#a7c448e677f3022e5e7d910d3961dda61">ktimer_set_current_list</a>(<a class="code" href="a00025.html">ktimer_t</a>* timer, <a class="code" href="a00008.html">dlist_t</a>* list);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<a class="code" href="a00008.html">dlist_t</a>* <a class="code" href="a00095_ad43b4e56bb273f1559d13143a783c974.html#ad43b4e56bb273f1559d13143a783c974">ktimer_get_current_list</a>(<a class="code" href="a00025.html">ktimer_t</a>* timer);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00095_a9d06164f71d9a170962ba64e2cb7b79f.html#a9d06164f71d9a170962ba64e2cb7b79f">ktimer_set_current_list_node</a>(<a class="code" href="a00025.html">ktimer_t</a>* timer, <a class="code" href="a00007.html">dlist_node_t</a>* node);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<a class="code" href="a00007.html">dlist_node_t</a>* <a class="code" href="a00095_afdfb2aec56b4e94af90f3befcef9b223.html#afdfb2aec56b4e94af90f3befcef9b223">ktimer_get_current_list_node</a>(<a class="code" href="a00025.html">ktimer_t</a>* timer);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* TIMER_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="a00050_html"><div class="ttname"><a href="a00050.html">config.h</a></div></div>
-<div class="ttc" id="a00096_html"><div class="ttname"><a href="a00096.html">timer_api.h</a></div></div>
-<div class="ttc" id="a00095_afdfb2aec56b4e94af90f3befcef9b223_html_afdfb2aec56b4e94af90f3befcef9b223"><div class="ttname"><a href="a00095_afdfb2aec56b4e94af90f3befcef9b223.html#afdfb2aec56b4e94af90f3befcef9b223">ktimer_get_current_list_node</a></div><div class="ttdeci">dlist_node_t * ktimer_get_current_list_node(ktimer_t *timer)</div><div class="ttdoc">取得当前链表节点 </div><div class="ttdef"><b>Definition:</b> timer.c:190</div></div>
-<div class="ttc" id="a00095_af64f93b32c31cd222c02f0ad40bb642c_html_af64f93b32c31cd222c02f0ad40bb642c"><div class="ttname"><a href="a00095_af64f93b32c31cd222c02f0ad40bb642c.html#af64f93b32c31cd222c02f0ad40bb642c">ktimer_destroy</a></div><div class="ttdeci">void ktimer_destroy(ktimer_t *timer)</div><div class="ttdoc">销毁定时器 </div><div class="ttdef"><b>Definition:</b> timer.c:205</div></div>
-<div class="ttc" id="a00095_a6e263963404ff40c8d7865ba117d3446_html_a6e263963404ff40c8d7865ba117d3446"><div class="ttname"><a href="a00095_a6e263963404ff40c8d7865ba117d3446.html#a6e263963404ff40c8d7865ba117d3446">ktimer_check_timeout</a></div><div class="ttdeci">int ktimer_check_timeout(ktimer_t *timer, time_t ms)</div><div class="ttdoc">检查定时器是否超时 </div><div class="ttdef"><b>Definition:</b> timer.c:228</div></div>
-<div class="ttc" id="a00025_html"><div class="ttname"><a href="a00025.html">_ktimer_t</a></div><div class="ttdef"><b>Definition:</b> timer.c:30</div></div>
-<div class="ttc" id="a00008_html"><div class="ttname"><a href="a00008.html">_dlist_t</a></div><div class="ttdef"><b>Definition:</b> list.c:39</div></div>
-<div class="ttc" id="a00095_a9d06164f71d9a170962ba64e2cb7b79f_html_a9d06164f71d9a170962ba64e2cb7b79f"><div class="ttname"><a href="a00095_a9d06164f71d9a170962ba64e2cb7b79f.html#a9d06164f71d9a170962ba64e2cb7b79f">ktimer_set_current_list_node</a></div><div class="ttdeci">void ktimer_set_current_list_node(ktimer_t *timer, dlist_node_t *node)</div><div class="ttdoc">设置定时器所在的当前链表的链表节点 </div><div class="ttdef"><b>Definition:</b> timer.c:179</div></div>
-<div class="ttc" id="a00095_a7c448e677f3022e5e7d910d3961dda61_html_a7c448e677f3022e5e7d910d3961dda61"><div class="ttname"><a href="a00095_a7c448e677f3022e5e7d910d3961dda61.html#a7c448e677f3022e5e7d910d3961dda61">ktimer_set_current_list</a></div><div class="ttdeci">void ktimer_set_current_list(ktimer_t *timer, dlist_t *list)</div><div class="ttdoc">设置定时器所在的当前链表 </div><div class="ttdef"><b>Definition:</b> timer.c:174</div></div>
-<div class="ttc" id="a00095_ad43b4e56bb273f1559d13143a783c974_html_ad43b4e56bb273f1559d13143a783c974"><div class="ttname"><a href="a00095_ad43b4e56bb273f1559d13143a783c974.html#ad43b4e56bb273f1559d13143a783c974">ktimer_get_current_list</a></div><div class="ttdeci">dlist_t * ktimer_get_current_list(ktimer_t *timer)</div><div class="ttdoc">取得当前所属链表 </div><div class="ttdef"><b>Definition:</b> timer.c:185</div></div>
-<div class="ttc" id="a00007_html"><div class="ttname"><a href="a00007.html">_dlist_node_t</a></div><div class="ttdef"><b>Definition:</b> list.c:31</div></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<a class="code" href="a00036.html">kstream_t</a>* <a class="code" href="a00095_a6bd4317031384f8711bacd24ea59be47.html#a6bd4317031384f8711bacd24ea59be47">stream_create</a>(<a class="code" href="a00007.html">kchannel_ref_t</a>* channel_ref);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00095_ad8aa700d37115d60d17bd80078ae4d4c.html#ad8aa700d37115d60d17bd80078ae4d4c">stream_destroy</a>(<a class="code" href="a00036.html">kstream_t</a>* stream);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* STREAM_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a00096_html"><div class="ttname"><a href="a00096.html">stream_api.h</a></div></div>
+<div class="ttc" id="a00095_a6bd4317031384f8711bacd24ea59be47_html_a6bd4317031384f8711bacd24ea59be47"><div class="ttname"><a href="a00095_a6bd4317031384f8711bacd24ea59be47.html#a6bd4317031384f8711bacd24ea59be47">stream_create</a></div><div class="ttdeci">kstream_t * stream_create(kchannel_ref_t *channel_ref)</div><div class="ttdoc">建立管道流 </div><div class="ttdef"><b>Definition:</b> stream.c:37</div></div>
+<div class="ttc" id="a00095_ad8aa700d37115d60d17bd80078ae4d4c_html_ad8aa700d37115d60d17bd80078ae4d4c"><div class="ttname"><a href="a00095_ad8aa700d37115d60d17bd80078ae4d4c.html#ad8aa700d37115d60d17bd80078ae4d4c">stream_destroy</a></div><div class="ttdeci">void stream_destroy(kstream_t *stream)</div><div class="ttdoc">销毁管道流 </div><div class="ttdef"><b>Definition:</b> stream.c:47</div></div>
+<div class="ttc" id="a00053_html"><div class="ttname"><a href="a00053.html">config.h</a></div></div>
+<div class="ttc" id="a00036_html"><div class="ttname"><a href="a00036.html">_stream_t</a></div><div class="ttdef"><b>Definition:</b> stream.c:33</div></div>
+<div class="ttc" id="a00007_html"><div class="ttname"><a href="a00007.html">_channel_ref_t</a></div><div class="ttdef"><b>Definition:</b> channel_ref.c:61</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 20日 星期一 11:17:40 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 22日 星期三 10:41:03 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

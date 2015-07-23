@@ -31,7 +31,7 @@
  *
  * <pre>
  * 地址接口通过knet_channel_ref_get_local_address或knet_channel_ref_get_peer_address
- * 获取本地或对端的地址
+ * 获取本地或对端的地址，未建立连接的管道也可以获取地址，但获取的地址是无效的.
  * </pre>
  * @sa knet_channel_ref_get_local_address
  * @sa knet_channel_ref_get_peer_address

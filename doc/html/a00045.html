@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/buffer.h 文件参考</title>
+<title>knet: E:/knet-git/knet/knet/broadcast_api.h 文件参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -39,6 +39,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="pages.html"><span>相关页面</span></a></li>
       <li><a href="modules.html"><span>模块</span></a></li>
       <li><a href="annotated.html"><span>结构体</span></a></li>
       <li class="current"><a href="files.html"><span>文件</span></a></li>
@@ -89,47 +90,38 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
   <div class="summary">
 <a href="#func-members">函数</a>  </div>
   <div class="headertitle">
-<div class="title">buffer.h 文件参考</div>  </div>
+<div class="title">broadcast_api.h 文件参考</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="a00051_source.html">config.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="a00053_source.html">config.h</a>&quot;</code><br />
 </div>
 <p><a href="a00045_source.html">浏览源代码.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 函数</h2></td></tr>
-<tr class="memitem:ab7c640d7d31868f39679942dafd12175"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00051_a4b09a7574cd440f9b94285ab73c81b4e.html#a4b09a7574cd440f9b94285ab73c81b4e">kbuffer_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00045_ab7c640d7d31868f39679942dafd12175.html#ab7c640d7d31868f39679942dafd12175">knet_buffer_create</a> (uint32_t size)</td></tr>
-<tr class="memdesc:ab7c640d7d31868f39679942dafd12175"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个固定长度的缓冲区  <a href="a00045_ab7c640d7d31868f39679942dafd12175.html#ab7c640d7d31868f39679942dafd12175">更多...</a><br /></td></tr>
-<tr class="separator:ab7c640d7d31868f39679942dafd12175"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7934fdee7f0eea3f1581b5dd94736e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00045_ad7934fdee7f0eea3f1581b5dd94736e2.html#ad7934fdee7f0eea3f1581b5dd94736e2">knet_buffer_destroy</a> (<a class="el" href="a00051_a4b09a7574cd440f9b94285ab73c81b4e.html#a4b09a7574cd440f9b94285ab73c81b4e">kbuffer_t</a> *sb)</td></tr>
-<tr class="memdesc:ad7934fdee7f0eea3f1581b5dd94736e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁缓冲区  <a href="a00045_ad7934fdee7f0eea3f1581b5dd94736e2.html#ad7934fdee7f0eea3f1581b5dd94736e2">更多...</a><br /></td></tr>
-<tr class="separator:ad7934fdee7f0eea3f1581b5dd94736e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf453d69e41199e1f64314d31ff23a69"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00045_abf453d69e41199e1f64314d31ff23a69.html#abf453d69e41199e1f64314d31ff23a69">knet_buffer_put</a> (<a class="el" href="a00051_a4b09a7574cd440f9b94285ab73c81b4e.html#a4b09a7574cd440f9b94285ab73c81b4e">kbuffer_t</a> *sb, const char *temp, uint32_t size)</td></tr>
-<tr class="memdesc:abf453d69e41199e1f64314d31ff23a69"><td class="mdescLeft">&#160;</td><td class="mdescRight">写入  <a href="a00045_abf453d69e41199e1f64314d31ff23a69.html#abf453d69e41199e1f64314d31ff23a69">更多...</a><br /></td></tr>
-<tr class="separator:abf453d69e41199e1f64314d31ff23a69"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d22cd2f8625aee29cbf263e0fba8cef"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00045_a8d22cd2f8625aee29cbf263e0fba8cef.html#a8d22cd2f8625aee29cbf263e0fba8cef">knet_buffer_get_length</a> (<a class="el" href="a00051_a4b09a7574cd440f9b94285ab73c81b4e.html#a4b09a7574cd440f9b94285ab73c81b4e">kbuffer_t</a> *sb)</td></tr>
-<tr class="memdesc:a8d22cd2f8625aee29cbf263e0fba8cef"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得缓冲区内数据长度  <a href="a00045_a8d22cd2f8625aee29cbf263e0fba8cef.html#a8d22cd2f8625aee29cbf263e0fba8cef">更多...</a><br /></td></tr>
-<tr class="separator:a8d22cd2f8625aee29cbf263e0fba8cef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8eee118becbc822b85b0459ece43b944"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00045_a8eee118becbc822b85b0459ece43b944.html#a8eee118becbc822b85b0459ece43b944">knet_buffer_get_max_size</a> (<a class="el" href="a00051_a4b09a7574cd440f9b94285ab73c81b4e.html#a4b09a7574cd440f9b94285ab73c81b4e">kbuffer_t</a> *sb)</td></tr>
-<tr class="memdesc:a8eee118becbc822b85b0459ece43b944"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得缓冲区内最大长度  <a href="a00045_a8eee118becbc822b85b0459ece43b944.html#a8eee118becbc822b85b0459ece43b944">更多...</a><br /></td></tr>
-<tr class="separator:a8eee118becbc822b85b0459ece43b944"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab52a4b25cb665848167e2e3a57ad38f4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00045_ab52a4b25cb665848167e2e3a57ad38f4.html#ab52a4b25cb665848167e2e3a57ad38f4">knet_buffer_enough</a> (<a class="el" href="a00051_a4b09a7574cd440f9b94285ab73c81b4e.html#a4b09a7574cd440f9b94285ab73c81b4e">kbuffer_t</a> *sb, uint32_t size)</td></tr>
-<tr class="memdesc:ab52a4b25cb665848167e2e3a57ad38f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">测试缓冲区内是否有足够空间  <a href="a00045_ab52a4b25cb665848167e2e3a57ad38f4.html#ab52a4b25cb665848167e2e3a57ad38f4">更多...</a><br /></td></tr>
-<tr class="separator:ab52a4b25cb665848167e2e3a57ad38f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aad25b6a27ca6270b4cffb9c45daea697"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00045_aad25b6a27ca6270b4cffb9c45daea697.html#aad25b6a27ca6270b4cffb9c45daea697">knet_buffer_get_ptr</a> (<a class="el" href="a00051_a4b09a7574cd440f9b94285ab73c81b4e.html#a4b09a7574cd440f9b94285ab73c81b4e">kbuffer_t</a> *sb)</td></tr>
-<tr class="memdesc:aad25b6a27ca6270b4cffb9c45daea697"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得缓冲区数据起始地址  <a href="a00045_aad25b6a27ca6270b4cffb9c45daea697.html#aad25b6a27ca6270b4cffb9c45daea697">更多...</a><br /></td></tr>
-<tr class="separator:aad25b6a27ca6270b4cffb9c45daea697"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace8a684108f818eab5d956235b0bce77"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00045_ace8a684108f818eab5d956235b0bce77.html#ace8a684108f818eab5d956235b0bce77">knet_buffer_adjust</a> (<a class="el" href="a00051_a4b09a7574cd440f9b94285ab73c81b4e.html#a4b09a7574cd440f9b94285ab73c81b4e">kbuffer_t</a> *sb, uint32_t gap)</td></tr>
-<tr class="memdesc:ace8a684108f818eab5d956235b0bce77"><td class="mdescLeft">&#160;</td><td class="mdescRight">调整数据起始地址  <a href="a00045_ace8a684108f818eab5d956235b0bce77.html#ace8a684108f818eab5d956235b0bce77">更多...</a><br /></td></tr>
-<tr class="separator:ace8a684108f818eab5d956235b0bce77"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac787e1b4f944728f621d7f59b67eb0aa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00045_ac787e1b4f944728f621d7f59b67eb0aa.html#ac787e1b4f944728f621d7f59b67eb0aa">knet_buffer_clear</a> (<a class="el" href="a00051_a4b09a7574cd440f9b94285ab73c81b4e.html#a4b09a7574cd440f9b94285ab73c81b4e">kbuffer_t</a> *sb)</td></tr>
-<tr class="memdesc:ac787e1b4f944728f621d7f59b67eb0aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">清空缓冲区  <a href="a00045_ac787e1b4f944728f621d7f59b67eb0aa.html#ac787e1b4f944728f621d7f59b67eb0aa">更多...</a><br /></td></tr>
-<tr class="separator:ac787e1b4f944728f621d7f59b67eb0aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga41a1258d2f4ae75120f26ab7f2326111"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00053_a1b551151864af85fa6cce57058153d04.html#a1b551151864af85fa6cce57058153d04">kbroadcast_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00104_ga41a1258d2f4ae75120f26ab7f2326111.html#ga41a1258d2f4ae75120f26ab7f2326111">knet_broadcast_create</a> ()</td></tr>
+<tr class="memdesc:ga41a1258d2f4ae75120f26ab7f2326111"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建广播域  <a href="a00104_ga41a1258d2f4ae75120f26ab7f2326111.html#ga41a1258d2f4ae75120f26ab7f2326111">更多...</a><br /></td></tr>
+<tr class="separator:ga41a1258d2f4ae75120f26ab7f2326111"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4b13b2545278c2324f4171ef0bbf990a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00104_ga4b13b2545278c2324f4171ef0bbf990a.html#ga4b13b2545278c2324f4171ef0bbf990a">knet_broadcast_destroy</a> (<a class="el" href="a00053_a1b551151864af85fa6cce57058153d04.html#a1b551151864af85fa6cce57058153d04">kbroadcast_t</a> *broadcast)</td></tr>
+<tr class="memdesc:ga4b13b2545278c2324f4171ef0bbf990a"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁广播域  <a href="a00104_ga4b13b2545278c2324f4171ef0bbf990a.html#ga4b13b2545278c2324f4171ef0bbf990a">更多...</a><br /></td></tr>
+<tr class="separator:ga4b13b2545278c2324f4171ef0bbf990a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1355d3863db663680b1c74363d3a5745"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00053_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00104_ga1355d3863db663680b1c74363d3a5745.html#ga1355d3863db663680b1c74363d3a5745">knet_broadcast_join</a> (<a class="el" href="a00053_a1b551151864af85fa6cce57058153d04.html#a1b551151864af85fa6cce57058153d04">kbroadcast_t</a> *broadcast, <a class="el" href="a00053_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *channel_ref)</td></tr>
+<tr class="memdesc:ga1355d3863db663680b1c74363d3a5745"><td class="mdescLeft">&#160;</td><td class="mdescRight">加入广播域  <a href="a00104_ga1355d3863db663680b1c74363d3a5745.html#ga1355d3863db663680b1c74363d3a5745">更多...</a><br /></td></tr>
+<tr class="separator:ga1355d3863db663680b1c74363d3a5745"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3bb02208a76f18bb2eee61955b3781cd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00104_ga3bb02208a76f18bb2eee61955b3781cd.html#ga3bb02208a76f18bb2eee61955b3781cd">knet_broadcast_leave</a> (<a class="el" href="a00053_a1b551151864af85fa6cce57058153d04.html#a1b551151864af85fa6cce57058153d04">kbroadcast_t</a> *broadcast, <a class="el" href="a00053_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *channel_ref)</td></tr>
+<tr class="memdesc:ga3bb02208a76f18bb2eee61955b3781cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">离开广播域  <a href="a00104_ga3bb02208a76f18bb2eee61955b3781cd.html#ga3bb02208a76f18bb2eee61955b3781cd">更多...</a><br /></td></tr>
+<tr class="separator:ga3bb02208a76f18bb2eee61955b3781cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabf0b20b2490b3508e58a77314812f1a5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00104_gabf0b20b2490b3508e58a77314812f1a5.html#gabf0b20b2490b3508e58a77314812f1a5">knet_broadcast_get_count</a> (<a class="el" href="a00053_a1b551151864af85fa6cce57058153d04.html#a1b551151864af85fa6cce57058153d04">kbroadcast_t</a> *broadcast)</td></tr>
+<tr class="memdesc:gabf0b20b2490b3508e58a77314812f1a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得广播域内管道数量  <a href="a00104_gabf0b20b2490b3508e58a77314812f1a5.html#gabf0b20b2490b3508e58a77314812f1a5">更多...</a><br /></td></tr>
+<tr class="separator:gabf0b20b2490b3508e58a77314812f1a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafd3ac5d785687d729047a51724104060"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00104_gafd3ac5d785687d729047a51724104060.html#gafd3ac5d785687d729047a51724104060">knet_broadcast_write</a> (<a class="el" href="a00053_a1b551151864af85fa6cce57058153d04.html#a1b551151864af85fa6cce57058153d04">kbroadcast_t</a> *broadcast, char *buffer, uint32_t size)</td></tr>
+<tr class="memdesc:gafd3ac5d785687d729047a51724104060"><td class="mdescLeft">&#160;</td><td class="mdescRight">广播  <a href="a00104_gafd3ac5d785687d729047a51724104060.html#gafd3ac5d785687d729047a51724104060">更多...</a><br /></td></tr>
+<tr class="separator:gafd3ac5d785687d729047a51724104060"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 21日 星期二 13:46:16 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 22日 星期三 10:41:03 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

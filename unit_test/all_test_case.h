@@ -33,5 +33,6 @@
 #include "timer_case.h"
 #include "framework_case.h"
 #include "loop_profile_case.h"
+#include "trie_case.h"
 
 #endif // ALL_TEST_CASE_H

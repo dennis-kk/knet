@@ -9,7 +9,8 @@ var indexSectionsWithContent =
   6: "_",
   7: "ceklr",
   8: "acdfghiklmprstv",
-  9: "äåæçè"
+  9: "äåæçè",
+  10: "k"
 };
 
 var indexSectionNames =
@@ -23,7 +24,8 @@ var indexSectionNames =
   6: "enums",
   7: "enumvalues",
   8: "defines",
-  9: "groups"
+  9: "groups",
+  10: "pages"
 };
 
 var indexSectionLabels =
@@ -37,6 +39,7 @@ var indexSectionLabels =
   6: "枚举",
   7: "枚举值",
   8: "宏定义",
-  9: "组"
+  9: "组",
+  10: "页"
 };
 

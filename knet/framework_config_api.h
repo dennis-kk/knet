@@ -66,6 +66,24 @@
  */
 
 /**
+ * 从文件加载配置
+ * @param c kframework_config_t实例
+ * @param path 文件路径
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int knet_framework_config_load_config_file(kframework_config_t* c, const char* path);
+
+/**
+ * 从配置字符串加载配置
+ * @param c kframework_config_t实例
+ * @param config_string 配置字符串
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int knet_framework_config_load_config_string(kframework_config_t* c, const char* config_string);
+
+/**
  * 设置工作线程数量，默认为单线程
  * @param c kframework_config_t实例
  * @param worker_thread_count 工作线程数量

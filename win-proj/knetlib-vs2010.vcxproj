@@ -57,6 +57,7 @@
     <ClCompile Include="..\knet\framework.c" />
     <ClCompile Include="..\knet\stream.c" />
     <ClCompile Include="..\knet\timer.c" />
+    <ClCompile Include="..\knet\trie.c" />
     <ClCompile Include="..\knet\version.c" />
   </ItemGroup>
   <ItemGroup>
@@ -94,6 +95,7 @@
     <ClInclude Include="..\knet\thread_api.h" />
     <ClInclude Include="..\knet\timer.h" />
     <ClInclude Include="..\knet\timer_api.h" />
+    <ClInclude Include="..\knet\trie_api.h" />
     <ClInclude Include="..\knet\version.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -213,6 +215,10 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /e /y  ..\knet\*_api.h ..\include\
+xcopy /e /y  ..\knet\knet.h ..\include\</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -245,6 +251,10 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /e /y  ..\knet\*_api.h ..\include\
+xcopy /e /y  ..\knet\knet.h ..\include\</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug-Win64|x64'">
     <ClCompile>
@@ -281,6 +291,10 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /e /y  ..\knet\*_api.h ..\include\
+xcopy /e /y  ..\knet\knet.h ..\include\</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release-Win64|Win32'">
     <ClCompile>
@@ -301,6 +315,10 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /e /y  ..\knet\*_api.h ..\include\
+xcopy /e /y  ..\knet\knet.h ..\include\</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>

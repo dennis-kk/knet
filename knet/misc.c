@@ -37,10 +37,10 @@
 
 struct _thread_runner_t {
     knet_thread_func_t func;
-    void*         params;
-    kdlist_t*      multi_params;
-    volatile int  running;
-    thread_id_t   thread_id;
+    void*              params;
+    kdlist_t*          multi_params;
+    volatile int       running;
+    thread_id_t        thread_id;
 #if defined(WIN32)
     HANDLE thread_handle;
     DWORD  tls_key;

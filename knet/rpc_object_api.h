@@ -66,8 +66,6 @@
  * @{
  */
 
-/* TODO ดýฒโสิ */
-
 #include "config.h"
 
 /**

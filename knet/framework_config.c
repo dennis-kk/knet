@@ -88,6 +88,12 @@ void framework_config_destroy(kframework_config_t* c) {
     destroy(c);
 }
 
+int knet_framework_config_load_config_file(kframework_config_t* c, const char* path) {
+    verify(c);
+    verify(path);
+    return error_ok;
+}
+
 void knet_framework_config_set_worker_thread_count(kframework_config_t* c, int worker_thread_count) {
     verify(c);
     verify(worker_thread_count);

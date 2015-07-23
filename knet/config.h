@@ -142,6 +142,7 @@ typedef struct _framework_raiser_t kframework_raiser_t;
 typedef struct _framework_worker_t kframework_worker_t;
 typedef struct _framework_timer_config_t kframework_timer_config_t;
 typedef struct _loop_profile_t kloop_profile_t;
+typedef struct _trie_t ktrie_t;
 
 /* 管道可投递事件 */
 typedef enum _channel_event_e {
@@ -225,6 +226,8 @@ typedef enum _error_e {
     error_stream_disable,
     error_stream_flush,
     error_stream_buffer_overflow,
+    error_trie_not_found,
+    error_trie_key_exist,
 } knet_error_e;
 
 /*! 管道回调事件 */
@@ -295,6 +298,8 @@ typedef uint16_t (*krpc_encrypt_t)(void*, uint16_t, void*, uint16_t);
 typedef uint16_t (*krpc_decrypt_t)(void*, uint16_t, void*, uint16_t);
 /*! 哈希表元素销毁函数 */
 typedef void (*knet_hash_dtor_t)(void*);
+/*! trie元素销毁函数 */
+typedef void (*knet_trie_dtor_t)(void*);
 
 /* 根据需要， 开启不同选取器 */
 #if defined(WIN32)

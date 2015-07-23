@@ -42,6 +42,7 @@
 #include "thread_api.h"
 #include "rpc_api.h"
 #include "rpc_object_api.h"
+#include "trie_api.h"
 #include "version.h"
 
 #ifdef __cplusplus

@@ -26,7 +26,7 @@
 
 #define MAJOR 1 /* 主版本 */
 #define MINOR 4 /* 次版本 */
-#define PATCH 5 /* 补丁 */
+#define PATCH 6 /* 补丁 */
 
 #define KNET_MAJOR(major) #major
 #define KNET_MINOR(minor) #minor
