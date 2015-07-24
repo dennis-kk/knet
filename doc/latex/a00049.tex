@@ -1,46 +1,56 @@
-\hypertarget{a00049}{}\section{E\+:/knet-\/git/knet/knet/channel.h 文件参考}
-\label{a00049}\index{E\+:/knet-\/git/knet/knet/channel.\+h@{E\+:/knet-\/git/knet/knet/channel.\+h}}
-{\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\\*
+\hypertarget{a00049}{}\section{E\+:/knet-\/git/knet/knet/channel.c 文件参考}
+\label{a00049}\index{E\+:/knet-\/git/knet/knet/channel.\+c@{E\+:/knet-\/git/knet/knet/channel.\+c}}
+{\ttfamily \#include \char`\"{}channel.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}buffer.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}list.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}ringbuffer.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}loop.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}misc.\+h\char`\"{}}\\*
+\subsection*{结构体}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{a00006}{\+\_\+channel\+\_\+t}
+\end{DoxyCompactItemize}
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00053_aca9cd34897582aa9969245a93cc62fb5_aca9cd34897582aa9969245a93cc62fb5}{kchannel\+\_\+t} $\ast$ \hyperlink{a00049_af1bfbfb5240375789fcc89b087280ad8_af1bfbfb5240375789fcc89b087280ad8}{knet\+\_\+channel\+\_\+create} (uint32\+\_\+t max\+\_\+send\+\_\+list\+\_\+len, uint32\+\_\+t recv\+\_\+ring\+\_\+len)
+\hyperlink{a00054_aca9cd34897582aa9969245a93cc62fb5_aca9cd34897582aa9969245a93cc62fb5}{kchannel\+\_\+t} $\ast$ \hyperlink{a00049_af1bfbfb5240375789fcc89b087280ad8_af1bfbfb5240375789fcc89b087280ad8}{knet\+\_\+channel\+\_\+create} (uint32\+\_\+t max\+\_\+send\+\_\+list\+\_\+len, uint32\+\_\+t recv\+\_\+ring\+\_\+len)
 \begin{DoxyCompactList}\small\item\em 创建一个kchannel\+\_\+t实例 \end{DoxyCompactList}\item 
-\hyperlink{a00053_aca9cd34897582aa9969245a93cc62fb5_aca9cd34897582aa9969245a93cc62fb5}{kchannel\+\_\+t} $\ast$ \hyperlink{a00049_a6cfbae713bcd155703df7871a978dda6_a6cfbae713bcd155703df7871a978dda6}{knet\+\_\+channel\+\_\+create\+\_\+exist\+\_\+socket\+\_\+fd} (\hyperlink{a00053_a0d9e0afbf02fb6ed6c5b1415dce51b05_a0d9e0afbf02fb6ed6c5b1415dce51b05}{socket\+\_\+t} socket\+\_\+fd, uint32\+\_\+t max\+\_\+send\+\_\+list\+\_\+len, uint32\+\_\+t recv\+\_\+ring\+\_\+len)
+\hyperlink{a00054_aca9cd34897582aa9969245a93cc62fb5_aca9cd34897582aa9969245a93cc62fb5}{kchannel\+\_\+t} $\ast$ \hyperlink{a00049_a6cfbae713bcd155703df7871a978dda6_a6cfbae713bcd155703df7871a978dda6}{knet\+\_\+channel\+\_\+create\+\_\+exist\+\_\+socket\+\_\+fd} (\hyperlink{a00054_a0d9e0afbf02fb6ed6c5b1415dce51b05_a0d9e0afbf02fb6ed6c5b1415dce51b05}{socket\+\_\+t} socket\+\_\+fd, uint32\+\_\+t max\+\_\+send\+\_\+list\+\_\+len, uint32\+\_\+t recv\+\_\+ring\+\_\+len)
 \begin{DoxyCompactList}\small\item\em 创建一个kchannel\+\_\+t实例 \end{DoxyCompactList}\item 
-void \hyperlink{a00049_ad6e14ad79303e00c50f1231bdf2447ff_ad6e14ad79303e00c50f1231bdf2447ff}{knet\+\_\+channel\+\_\+destroy} (\hyperlink{a00053_aca9cd34897582aa9969245a93cc62fb5_aca9cd34897582aa9969245a93cc62fb5}{kchannel\+\_\+t} $\ast$channel)
+void \hyperlink{a00049_ad6e14ad79303e00c50f1231bdf2447ff_ad6e14ad79303e00c50f1231bdf2447ff}{knet\+\_\+channel\+\_\+destroy} (\hyperlink{a00054_aca9cd34897582aa9969245a93cc62fb5_aca9cd34897582aa9969245a93cc62fb5}{kchannel\+\_\+t} $\ast$channel)
 \begin{DoxyCompactList}\small\item\em 销毁kchannel\+\_\+t实例 \end{DoxyCompactList}\item 
-int \hyperlink{a00049_a0b4008dc5d3faa3a445942b1eabe499f_a0b4008dc5d3faa3a445942b1eabe499f}{knet\+\_\+channel\+\_\+connect} (\hyperlink{a00053_aca9cd34897582aa9969245a93cc62fb5_aca9cd34897582aa9969245a93cc62fb5}{kchannel\+\_\+t} $\ast$channel, const char $\ast$ip, int port)
+int \hyperlink{a00049_a0b4008dc5d3faa3a445942b1eabe499f_a0b4008dc5d3faa3a445942b1eabe499f}{knet\+\_\+channel\+\_\+connect} (\hyperlink{a00054_aca9cd34897582aa9969245a93cc62fb5_aca9cd34897582aa9969245a93cc62fb5}{kchannel\+\_\+t} $\ast$channel, const char $\ast$ip, int port)
 \begin{DoxyCompactList}\small\item\em 连接监听器 \end{DoxyCompactList}\item 
-int \hyperlink{a00049_a719cb5a1d455fe1af74348effd93ec6f_a719cb5a1d455fe1af74348effd93ec6f}{knet\+\_\+channel\+\_\+accept} (\hyperlink{a00053_aca9cd34897582aa9969245a93cc62fb5_aca9cd34897582aa9969245a93cc62fb5}{kchannel\+\_\+t} $\ast$channel, const char $\ast$ip, int port, int backlog)
+int \hyperlink{a00049_a719cb5a1d455fe1af74348effd93ec6f_a719cb5a1d455fe1af74348effd93ec6f}{knet\+\_\+channel\+\_\+accept} (\hyperlink{a00054_aca9cd34897582aa9969245a93cc62fb5_aca9cd34897582aa9969245a93cc62fb5}{kchannel\+\_\+t} $\ast$channel, const char $\ast$ip, int port, int backlog)
 \begin{DoxyCompactList}\small\item\em 监听 \end{DoxyCompactList}\item 
-void \hyperlink{a00049_ad9ce907288d44a762a93ff54c4a4a7af_ad9ce907288d44a762a93ff54c4a4a7af}{knet\+\_\+channel\+\_\+close} (\hyperlink{a00053_aca9cd34897582aa9969245a93cc62fb5_aca9cd34897582aa9969245a93cc62fb5}{kchannel\+\_\+t} $\ast$channel)
-\begin{DoxyCompactList}\small\item\em 关闭 \end{DoxyCompactList}\item 
-int \hyperlink{a00049_ad7d429bb2a30ded75493a9ccf22bad63_ad7d429bb2a30ded75493a9ccf22bad63}{knet\+\_\+channel\+\_\+send} (\hyperlink{a00053_aca9cd34897582aa9969245a93cc62fb5_aca9cd34897582aa9969245a93cc62fb5}{kchannel\+\_\+t} $\ast$channel, const char $\ast$data, int size)
-\begin{DoxyCompactList}\small\item\em 发送 当发送链表为空的时候，会首先尝试直接发送到套接字缓冲区(zero copy)，否则会放到发送链表末尾等待 适当时机发送. \end{DoxyCompactList}\item 
-int \hyperlink{a00049_aeef6af4f8e4d97905640ade15dc13c33_aeef6af4f8e4d97905640ade15dc13c33}{knet\+\_\+channel\+\_\+send\+\_\+buffer} (\hyperlink{a00053_aca9cd34897582aa9969245a93cc62fb5_aca9cd34897582aa9969245a93cc62fb5}{kchannel\+\_\+t} $\ast$channel, \hyperlink{a00053_a4b09a7574cd440f9b94285ab73c81b4e_a4b09a7574cd440f9b94285ab73c81b4e}{kbuffer\+\_\+t} $\ast$send\+\_\+buffer)
+int \hyperlink{a00049_aeef6af4f8e4d97905640ade15dc13c33_aeef6af4f8e4d97905640ade15dc13c33}{knet\+\_\+channel\+\_\+send\+\_\+buffer} (\hyperlink{a00054_aca9cd34897582aa9969245a93cc62fb5_aca9cd34897582aa9969245a93cc62fb5}{kchannel\+\_\+t} $\ast$channel, \hyperlink{a00054_a4b09a7574cd440f9b94285ab73c81b4e_a4b09a7574cd440f9b94285ab73c81b4e}{kbuffer\+\_\+t} $\ast$send\+\_\+buffer)
 \begin{DoxyCompactList}\small\item\em 发送 放到发送链表末尾等待适当时机发送. \end{DoxyCompactList}\item 
-int \hyperlink{a00049_a6b94f1431ad03b1bc7497d5680f2c8fe_a6b94f1431ad03b1bc7497d5680f2c8fe}{knet\+\_\+channel\+\_\+update\+\_\+send} (\hyperlink{a00053_aca9cd34897582aa9969245a93cc62fb5_aca9cd34897582aa9969245a93cc62fb5}{kchannel\+\_\+t} $\ast$channel)
+int \hyperlink{a00049_ad7d429bb2a30ded75493a9ccf22bad63_ad7d429bb2a30ded75493a9ccf22bad63}{knet\+\_\+channel\+\_\+send} (\hyperlink{a00054_aca9cd34897582aa9969245a93cc62fb5_aca9cd34897582aa9969245a93cc62fb5}{kchannel\+\_\+t} $\ast$channel, const char $\ast$data, int size)
+\begin{DoxyCompactList}\small\item\em 发送 当发送链表为空的时候，会首先尝试直接发送到套接字缓冲区(zero copy)，否则会放到发送链表末尾等待 适当时机发送. \end{DoxyCompactList}\item 
+int \hyperlink{a00049_a6b94f1431ad03b1bc7497d5680f2c8fe_a6b94f1431ad03b1bc7497d5680f2c8fe}{knet\+\_\+channel\+\_\+update\+\_\+send} (\hyperlink{a00054_aca9cd34897582aa9969245a93cc62fb5_aca9cd34897582aa9969245a93cc62fb5}{kchannel\+\_\+t} $\ast$channel)
 \begin{DoxyCompactList}\small\item\em 可写事件通知 \end{DoxyCompactList}\item 
-int \hyperlink{a00049_a0e79d45ab68ec6cc5c85425231f3e9a1_a0e79d45ab68ec6cc5c85425231f3e9a1}{knet\+\_\+channel\+\_\+update\+\_\+recv} (\hyperlink{a00053_aca9cd34897582aa9969245a93cc62fb5_aca9cd34897582aa9969245a93cc62fb5}{kchannel\+\_\+t} $\ast$channel)
+int \hyperlink{a00049_a0e79d45ab68ec6cc5c85425231f3e9a1_a0e79d45ab68ec6cc5c85425231f3e9a1}{knet\+\_\+channel\+\_\+update\+\_\+recv} (\hyperlink{a00054_aca9cd34897582aa9969245a93cc62fb5_aca9cd34897582aa9969245a93cc62fb5}{kchannel\+\_\+t} $\ast$channel)
 \begin{DoxyCompactList}\small\item\em 可读事件通知 \end{DoxyCompactList}\item 
-\hyperlink{a00053_a0d9e0afbf02fb6ed6c5b1415dce51b05_a0d9e0afbf02fb6ed6c5b1415dce51b05}{socket\+\_\+t} \hyperlink{a00049_aac1ff10cb6b113a65e108e4c7422c149_aac1ff10cb6b113a65e108e4c7422c149}{knet\+\_\+channel\+\_\+get\+\_\+socket\+\_\+fd} (\hyperlink{a00053_aca9cd34897582aa9969245a93cc62fb5_aca9cd34897582aa9969245a93cc62fb5}{kchannel\+\_\+t} $\ast$channel)
+void \hyperlink{a00049_ad9ce907288d44a762a93ff54c4a4a7af_ad9ce907288d44a762a93ff54c4a4a7af}{knet\+\_\+channel\+\_\+close} (\hyperlink{a00054_aca9cd34897582aa9969245a93cc62fb5_aca9cd34897582aa9969245a93cc62fb5}{kchannel\+\_\+t} $\ast$channel)
+\begin{DoxyCompactList}\small\item\em 关闭 \end{DoxyCompactList}\item 
+\hyperlink{a00054_a0d9e0afbf02fb6ed6c5b1415dce51b05_a0d9e0afbf02fb6ed6c5b1415dce51b05}{socket\+\_\+t} \hyperlink{a00049_aac1ff10cb6b113a65e108e4c7422c149_aac1ff10cb6b113a65e108e4c7422c149}{knet\+\_\+channel\+\_\+get\+\_\+socket\+\_\+fd} (\hyperlink{a00054_aca9cd34897582aa9969245a93cc62fb5_aca9cd34897582aa9969245a93cc62fb5}{kchannel\+\_\+t} $\ast$channel)
 \begin{DoxyCompactList}\small\item\em 取得套接字 \end{DoxyCompactList}\item 
-\hyperlink{a00053_a66d91f7667db1f0b2983fc25e1a20f1c_a66d91f7667db1f0b2983fc25e1a20f1c}{kringbuffer\+\_\+t} $\ast$ \hyperlink{a00049_ad289fcea4095b519b0ced40cfb89f693_ad289fcea4095b519b0ced40cfb89f693}{knet\+\_\+channel\+\_\+get\+\_\+ringbuffer} (\hyperlink{a00053_aca9cd34897582aa9969245a93cc62fb5_aca9cd34897582aa9969245a93cc62fb5}{kchannel\+\_\+t} $\ast$channel)
+\hyperlink{a00054_a66d91f7667db1f0b2983fc25e1a20f1c_a66d91f7667db1f0b2983fc25e1a20f1c}{kringbuffer\+\_\+t} $\ast$ \hyperlink{a00049_ad289fcea4095b519b0ced40cfb89f693_ad289fcea4095b519b0ced40cfb89f693}{knet\+\_\+channel\+\_\+get\+\_\+ringbuffer} (\hyperlink{a00054_aca9cd34897582aa9969245a93cc62fb5_aca9cd34897582aa9969245a93cc62fb5}{kchannel\+\_\+t} $\ast$channel)
 \begin{DoxyCompactList}\small\item\em 取得读缓冲区 \end{DoxyCompactList}\item 
-uint32\+\_\+t \hyperlink{a00049_a26e5ba64b710a168b780e2b845ba3cca_a26e5ba64b710a168b780e2b845ba3cca}{knet\+\_\+channel\+\_\+get\+\_\+max\+\_\+send\+\_\+list\+\_\+len} (\hyperlink{a00053_aca9cd34897582aa9969245a93cc62fb5_aca9cd34897582aa9969245a93cc62fb5}{kchannel\+\_\+t} $\ast$channel)
+uint32\+\_\+t \hyperlink{a00049_a26e5ba64b710a168b780e2b845ba3cca_a26e5ba64b710a168b780e2b845ba3cca}{knet\+\_\+channel\+\_\+get\+\_\+max\+\_\+send\+\_\+list\+\_\+len} (\hyperlink{a00054_aca9cd34897582aa9969245a93cc62fb5_aca9cd34897582aa9969245a93cc62fb5}{kchannel\+\_\+t} $\ast$channel)
 \begin{DoxyCompactList}\small\item\em 取得发送链表最大长度限制 \end{DoxyCompactList}\item 
-uint32\+\_\+t \hyperlink{a00049_aba9f33720ab9f2d3ae59a75cf4f7841a_aba9f33720ab9f2d3ae59a75cf4f7841a}{knet\+\_\+channel\+\_\+get\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+len} (\hyperlink{a00053_aca9cd34897582aa9969245a93cc62fb5_aca9cd34897582aa9969245a93cc62fb5}{kchannel\+\_\+t} $\ast$channel)
+uint32\+\_\+t \hyperlink{a00049_aba9f33720ab9f2d3ae59a75cf4f7841a_aba9f33720ab9f2d3ae59a75cf4f7841a}{knet\+\_\+channel\+\_\+get\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+len} (\hyperlink{a00054_aca9cd34897582aa9969245a93cc62fb5_aca9cd34897582aa9969245a93cc62fb5}{kchannel\+\_\+t} $\ast$channel)
 \begin{DoxyCompactList}\small\item\em 取得接收缓冲区最大长度限制 \end{DoxyCompactList}\item 
-uint64\+\_\+t \hyperlink{a00049_a232548ee5a65b9cdcd0475cefe8f9095_a232548ee5a65b9cdcd0475cefe8f9095}{knet\+\_\+channel\+\_\+get\+\_\+uuid} (\hyperlink{a00053_aca9cd34897582aa9969245a93cc62fb5_aca9cd34897582aa9969245a93cc62fb5}{kchannel\+\_\+t} $\ast$channel)
+uint64\+\_\+t \hyperlink{a00049_a232548ee5a65b9cdcd0475cefe8f9095_a232548ee5a65b9cdcd0475cefe8f9095}{knet\+\_\+channel\+\_\+get\+\_\+uuid} (\hyperlink{a00054_aca9cd34897582aa9969245a93cc62fb5_aca9cd34897582aa9969245a93cc62fb5}{kchannel\+\_\+t} $\ast$channel)
 \begin{DoxyCompactList}\small\item\em 获取管道\+U\+U\+I\+D \end{DoxyCompactList}\item 
-int \hyperlink{a00049_ae6143bef17287b6d365eada1a28cc134_ae6143bef17287b6d365eada1a28cc134}{knet\+\_\+channel\+\_\+ref\+\_\+send\+\_\+list\+\_\+reach\+\_\+max} (\hyperlink{a00053_aca9cd34897582aa9969245a93cc62fb5_aca9cd34897582aa9969245a93cc62fb5}{kchannel\+\_\+t} $\ast$channel)
+int \hyperlink{a00049_ae6143bef17287b6d365eada1a28cc134_ae6143bef17287b6d365eada1a28cc134}{knet\+\_\+channel\+\_\+ref\+\_\+send\+\_\+list\+\_\+reach\+\_\+max} (\hyperlink{a00054_aca9cd34897582aa9969245a93cc62fb5_aca9cd34897582aa9969245a93cc62fb5}{kchannel\+\_\+t} $\ast$channel)
 \begin{DoxyCompactList}\small\item\em 发送链表内缓冲区数量是否达到最大 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{函数说明}
-\hypertarget{a00049_a719cb5a1d455fe1af74348effd93ec6f_a719cb5a1d455fe1af74348effd93ec6f}{}\index{channel.\+h@{channel.\+h}!knet\+\_\+channel\+\_\+accept@{knet\+\_\+channel\+\_\+accept}}
-\index{knet\+\_\+channel\+\_\+accept@{knet\+\_\+channel\+\_\+accept}!channel.\+h@{channel.\+h}}
+\hypertarget{a00049_a719cb5a1d455fe1af74348effd93ec6f_a719cb5a1d455fe1af74348effd93ec6f}{}\index{channel.\+c@{channel.\+c}!knet\+\_\+channel\+\_\+accept@{knet\+\_\+channel\+\_\+accept}}
+\index{knet\+\_\+channel\+\_\+accept@{knet\+\_\+channel\+\_\+accept}!channel.\+c@{channel.\+c}}
 \subsubsection[{knet\+\_\+channel\+\_\+accept}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+channel\+\_\+accept (
 \begin{DoxyParamCaption}
 \item[{{\bf kchannel\+\_\+t} $\ast$}]{channel, }
@@ -71,8 +81,8 @@ int \hyperlink{a00049_ae6143bef17287b6d365eada1a28cc134_ae6143bef17287b6d365eada
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00049_ad9ce907288d44a762a93ff54c4a4a7af_ad9ce907288d44a762a93ff54c4a4a7af}{}\index{channel.\+h@{channel.\+h}!knet\+\_\+channel\+\_\+close@{knet\+\_\+channel\+\_\+close}}
-\index{knet\+\_\+channel\+\_\+close@{knet\+\_\+channel\+\_\+close}!channel.\+h@{channel.\+h}}
+\hypertarget{a00049_ad9ce907288d44a762a93ff54c4a4a7af_ad9ce907288d44a762a93ff54c4a4a7af}{}\index{channel.\+c@{channel.\+c}!knet\+\_\+channel\+\_\+close@{knet\+\_\+channel\+\_\+close}}
+\index{knet\+\_\+channel\+\_\+close@{knet\+\_\+channel\+\_\+close}!channel.\+c@{channel.\+c}}
 \subsubsection[{knet\+\_\+channel\+\_\+close}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+channel\+\_\+close (
 \begin{DoxyParamCaption}
 \item[{{\bf kchannel\+\_\+t} $\ast$}]{channel}
@@ -87,8 +97,8 @@ int \hyperlink{a00049_ae6143bef17287b6d365eada1a28cc134_ae6143bef17287b6d365eada
 {\em channel} & kchannel\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
-\hypertarget{a00049_a0b4008dc5d3faa3a445942b1eabe499f_a0b4008dc5d3faa3a445942b1eabe499f}{}\index{channel.\+h@{channel.\+h}!knet\+\_\+channel\+\_\+connect@{knet\+\_\+channel\+\_\+connect}}
-\index{knet\+\_\+channel\+\_\+connect@{knet\+\_\+channel\+\_\+connect}!channel.\+h@{channel.\+h}}
+\hypertarget{a00049_a0b4008dc5d3faa3a445942b1eabe499f_a0b4008dc5d3faa3a445942b1eabe499f}{}\index{channel.\+c@{channel.\+c}!knet\+\_\+channel\+\_\+connect@{knet\+\_\+channel\+\_\+connect}}
+\index{knet\+\_\+channel\+\_\+connect@{knet\+\_\+channel\+\_\+connect}!channel.\+c@{channel.\+c}}
 \subsubsection[{knet\+\_\+channel\+\_\+connect}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+channel\+\_\+connect (
 \begin{DoxyParamCaption}
 \item[{{\bf kchannel\+\_\+t} $\ast$}]{channel, }
@@ -116,8 +126,8 @@ int \hyperlink{a00049_ae6143bef17287b6d365eada1a28cc134_ae6143bef17287b6d365eada
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00049_af1bfbfb5240375789fcc89b087280ad8_af1bfbfb5240375789fcc89b087280ad8}{}\index{channel.\+h@{channel.\+h}!knet\+\_\+channel\+\_\+create@{knet\+\_\+channel\+\_\+create}}
-\index{knet\+\_\+channel\+\_\+create@{knet\+\_\+channel\+\_\+create}!channel.\+h@{channel.\+h}}
+\hypertarget{a00049_af1bfbfb5240375789fcc89b087280ad8_af1bfbfb5240375789fcc89b087280ad8}{}\index{channel.\+c@{channel.\+c}!knet\+\_\+channel\+\_\+create@{knet\+\_\+channel\+\_\+create}}
+\index{knet\+\_\+channel\+\_\+create@{knet\+\_\+channel\+\_\+create}!channel.\+c@{channel.\+c}}
 \subsubsection[{knet\+\_\+channel\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kchannel\+\_\+t}$\ast$ knet\+\_\+channel\+\_\+create (
 \begin{DoxyParamCaption}
 \item[{uint32\+\_\+t}]{max\+\_\+send\+\_\+list\+\_\+len, }
@@ -138,8 +148,8 @@ int \hyperlink{a00049_ae6143bef17287b6d365eada1a28cc134_ae6143bef17287b6d365eada
 \begin{DoxyReturn}{返回}
 kchannel\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00049_a6cfbae713bcd155703df7871a978dda6_a6cfbae713bcd155703df7871a978dda6}{}\index{channel.\+h@{channel.\+h}!knet\+\_\+channel\+\_\+create\+\_\+exist\+\_\+socket\+\_\+fd@{knet\+\_\+channel\+\_\+create\+\_\+exist\+\_\+socket\+\_\+fd}}
-\index{knet\+\_\+channel\+\_\+create\+\_\+exist\+\_\+socket\+\_\+fd@{knet\+\_\+channel\+\_\+create\+\_\+exist\+\_\+socket\+\_\+fd}!channel.\+h@{channel.\+h}}
+\hypertarget{a00049_a6cfbae713bcd155703df7871a978dda6_a6cfbae713bcd155703df7871a978dda6}{}\index{channel.\+c@{channel.\+c}!knet\+\_\+channel\+\_\+create\+\_\+exist\+\_\+socket\+\_\+fd@{knet\+\_\+channel\+\_\+create\+\_\+exist\+\_\+socket\+\_\+fd}}
+\index{knet\+\_\+channel\+\_\+create\+\_\+exist\+\_\+socket\+\_\+fd@{knet\+\_\+channel\+\_\+create\+\_\+exist\+\_\+socket\+\_\+fd}!channel.\+c@{channel.\+c}}
 \subsubsection[{knet\+\_\+channel\+\_\+create\+\_\+exist\+\_\+socket\+\_\+fd}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kchannel\+\_\+t}$\ast$ knet\+\_\+channel\+\_\+create\+\_\+exist\+\_\+socket\+\_\+fd (
 \begin{DoxyParamCaption}
 \item[{{\bf socket\+\_\+t}}]{socket\+\_\+fd, }
@@ -163,8 +173,8 @@ kchannel\+\_\+t实例
 \begin{DoxyReturn}{返回}
 kchannel\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00049_ad6e14ad79303e00c50f1231bdf2447ff_ad6e14ad79303e00c50f1231bdf2447ff}{}\index{channel.\+h@{channel.\+h}!knet\+\_\+channel\+\_\+destroy@{knet\+\_\+channel\+\_\+destroy}}
-\index{knet\+\_\+channel\+\_\+destroy@{knet\+\_\+channel\+\_\+destroy}!channel.\+h@{channel.\+h}}
+\hypertarget{a00049_ad6e14ad79303e00c50f1231bdf2447ff_ad6e14ad79303e00c50f1231bdf2447ff}{}\index{channel.\+c@{channel.\+c}!knet\+\_\+channel\+\_\+destroy@{knet\+\_\+channel\+\_\+destroy}}
+\index{knet\+\_\+channel\+\_\+destroy@{knet\+\_\+channel\+\_\+destroy}!channel.\+c@{channel.\+c}}
 \subsubsection[{knet\+\_\+channel\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+channel\+\_\+destroy (
 \begin{DoxyParamCaption}
 \item[{{\bf kchannel\+\_\+t} $\ast$}]{channel}
@@ -179,8 +189,8 @@ kchannel\+\_\+t实例
 {\em channel} & kchannel\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
-\hypertarget{a00049_aba9f33720ab9f2d3ae59a75cf4f7841a_aba9f33720ab9f2d3ae59a75cf4f7841a}{}\index{channel.\+h@{channel.\+h}!knet\+\_\+channel\+\_\+get\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+len@{knet\+\_\+channel\+\_\+get\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+len}}
-\index{knet\+\_\+channel\+\_\+get\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+len@{knet\+\_\+channel\+\_\+get\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+len}!channel.\+h@{channel.\+h}}
+\hypertarget{a00049_aba9f33720ab9f2d3ae59a75cf4f7841a_aba9f33720ab9f2d3ae59a75cf4f7841a}{}\index{channel.\+c@{channel.\+c}!knet\+\_\+channel\+\_\+get\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+len@{knet\+\_\+channel\+\_\+get\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+len}}
+\index{knet\+\_\+channel\+\_\+get\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+len@{knet\+\_\+channel\+\_\+get\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+len}!channel.\+c@{channel.\+c}}
 \subsubsection[{knet\+\_\+channel\+\_\+get\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+len}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t knet\+\_\+channel\+\_\+get\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+len (
 \begin{DoxyParamCaption}
 \item[{{\bf kchannel\+\_\+t} $\ast$}]{channel}
@@ -198,8 +208,8 @@ kchannel\+\_\+t实例
 \begin{DoxyReturn}{返回}
 接收缓冲区最大长度限制 
 \end{DoxyReturn}
-\hypertarget{a00049_a26e5ba64b710a168b780e2b845ba3cca_a26e5ba64b710a168b780e2b845ba3cca}{}\index{channel.\+h@{channel.\+h}!knet\+\_\+channel\+\_\+get\+\_\+max\+\_\+send\+\_\+list\+\_\+len@{knet\+\_\+channel\+\_\+get\+\_\+max\+\_\+send\+\_\+list\+\_\+len}}
-\index{knet\+\_\+channel\+\_\+get\+\_\+max\+\_\+send\+\_\+list\+\_\+len@{knet\+\_\+channel\+\_\+get\+\_\+max\+\_\+send\+\_\+list\+\_\+len}!channel.\+h@{channel.\+h}}
+\hypertarget{a00049_a26e5ba64b710a168b780e2b845ba3cca_a26e5ba64b710a168b780e2b845ba3cca}{}\index{channel.\+c@{channel.\+c}!knet\+\_\+channel\+\_\+get\+\_\+max\+\_\+send\+\_\+list\+\_\+len@{knet\+\_\+channel\+\_\+get\+\_\+max\+\_\+send\+\_\+list\+\_\+len}}
+\index{knet\+\_\+channel\+\_\+get\+\_\+max\+\_\+send\+\_\+list\+\_\+len@{knet\+\_\+channel\+\_\+get\+\_\+max\+\_\+send\+\_\+list\+\_\+len}!channel.\+c@{channel.\+c}}
 \subsubsection[{knet\+\_\+channel\+\_\+get\+\_\+max\+\_\+send\+\_\+list\+\_\+len}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t knet\+\_\+channel\+\_\+get\+\_\+max\+\_\+send\+\_\+list\+\_\+len (
 \begin{DoxyParamCaption}
 \item[{{\bf kchannel\+\_\+t} $\ast$}]{channel}
@@ -217,8 +227,8 @@ kchannel\+\_\+t实例
 \begin{DoxyReturn}{返回}
 发送链表最大长度限制 
 \end{DoxyReturn}
-\hypertarget{a00049_ad289fcea4095b519b0ced40cfb89f693_ad289fcea4095b519b0ced40cfb89f693}{}\index{channel.\+h@{channel.\+h}!knet\+\_\+channel\+\_\+get\+\_\+ringbuffer@{knet\+\_\+channel\+\_\+get\+\_\+ringbuffer}}
-\index{knet\+\_\+channel\+\_\+get\+\_\+ringbuffer@{knet\+\_\+channel\+\_\+get\+\_\+ringbuffer}!channel.\+h@{channel.\+h}}
+\hypertarget{a00049_ad289fcea4095b519b0ced40cfb89f693_ad289fcea4095b519b0ced40cfb89f693}{}\index{channel.\+c@{channel.\+c}!knet\+\_\+channel\+\_\+get\+\_\+ringbuffer@{knet\+\_\+channel\+\_\+get\+\_\+ringbuffer}}
+\index{knet\+\_\+channel\+\_\+get\+\_\+ringbuffer@{knet\+\_\+channel\+\_\+get\+\_\+ringbuffer}!channel.\+c@{channel.\+c}}
 \subsubsection[{knet\+\_\+channel\+\_\+get\+\_\+ringbuffer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kringbuffer\+\_\+t}$\ast$ knet\+\_\+channel\+\_\+get\+\_\+ringbuffer (
 \begin{DoxyParamCaption}
 \item[{{\bf kchannel\+\_\+t} $\ast$}]{channel}
@@ -236,8 +246,8 @@ kchannel\+\_\+t实例
 \begin{DoxyReturn}{返回}
 kringbuffer\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00049_aac1ff10cb6b113a65e108e4c7422c149_aac1ff10cb6b113a65e108e4c7422c149}{}\index{channel.\+h@{channel.\+h}!knet\+\_\+channel\+\_\+get\+\_\+socket\+\_\+fd@{knet\+\_\+channel\+\_\+get\+\_\+socket\+\_\+fd}}
-\index{knet\+\_\+channel\+\_\+get\+\_\+socket\+\_\+fd@{knet\+\_\+channel\+\_\+get\+\_\+socket\+\_\+fd}!channel.\+h@{channel.\+h}}
+\hypertarget{a00049_aac1ff10cb6b113a65e108e4c7422c149_aac1ff10cb6b113a65e108e4c7422c149}{}\index{channel.\+c@{channel.\+c}!knet\+\_\+channel\+\_\+get\+\_\+socket\+\_\+fd@{knet\+\_\+channel\+\_\+get\+\_\+socket\+\_\+fd}}
+\index{knet\+\_\+channel\+\_\+get\+\_\+socket\+\_\+fd@{knet\+\_\+channel\+\_\+get\+\_\+socket\+\_\+fd}!channel.\+c@{channel.\+c}}
 \subsubsection[{knet\+\_\+channel\+\_\+get\+\_\+socket\+\_\+fd}]{\setlength{\rightskip}{0pt plus 5cm}{\bf socket\+\_\+t} knet\+\_\+channel\+\_\+get\+\_\+socket\+\_\+fd (
 \begin{DoxyParamCaption}
 \item[{{\bf kchannel\+\_\+t} $\ast$}]{channel}
@@ -255,8 +265,8 @@ kringbuffer\+\_\+t实例
 \begin{DoxyReturn}{返回}
 套接字 
 \end{DoxyReturn}
-\hypertarget{a00049_a232548ee5a65b9cdcd0475cefe8f9095_a232548ee5a65b9cdcd0475cefe8f9095}{}\index{channel.\+h@{channel.\+h}!knet\+\_\+channel\+\_\+get\+\_\+uuid@{knet\+\_\+channel\+\_\+get\+\_\+uuid}}
-\index{knet\+\_\+channel\+\_\+get\+\_\+uuid@{knet\+\_\+channel\+\_\+get\+\_\+uuid}!channel.\+h@{channel.\+h}}
+\hypertarget{a00049_a232548ee5a65b9cdcd0475cefe8f9095_a232548ee5a65b9cdcd0475cefe8f9095}{}\index{channel.\+c@{channel.\+c}!knet\+\_\+channel\+\_\+get\+\_\+uuid@{knet\+\_\+channel\+\_\+get\+\_\+uuid}}
+\index{knet\+\_\+channel\+\_\+get\+\_\+uuid@{knet\+\_\+channel\+\_\+get\+\_\+uuid}!channel.\+c@{channel.\+c}}
 \subsubsection[{knet\+\_\+channel\+\_\+get\+\_\+uuid}]{\setlength{\rightskip}{0pt plus 5cm}uint64\+\_\+t knet\+\_\+channel\+\_\+get\+\_\+uuid (
 \begin{DoxyParamCaption}
 \item[{{\bf kchannel\+\_\+t} $\ast$}]{channel}
@@ -274,8 +284,8 @@ kringbuffer\+\_\+t实例
 \begin{DoxyReturn}{返回}
 管道\+U\+U\+I\+D 
 \end{DoxyReturn}
-\hypertarget{a00049_ae6143bef17287b6d365eada1a28cc134_ae6143bef17287b6d365eada1a28cc134}{}\index{channel.\+h@{channel.\+h}!knet\+\_\+channel\+\_\+ref\+\_\+send\+\_\+list\+\_\+reach\+\_\+max@{knet\+\_\+channel\+\_\+ref\+\_\+send\+\_\+list\+\_\+reach\+\_\+max}}
-\index{knet\+\_\+channel\+\_\+ref\+\_\+send\+\_\+list\+\_\+reach\+\_\+max@{knet\+\_\+channel\+\_\+ref\+\_\+send\+\_\+list\+\_\+reach\+\_\+max}!channel.\+h@{channel.\+h}}
+\hypertarget{a00049_ae6143bef17287b6d365eada1a28cc134_ae6143bef17287b6d365eada1a28cc134}{}\index{channel.\+c@{channel.\+c}!knet\+\_\+channel\+\_\+ref\+\_\+send\+\_\+list\+\_\+reach\+\_\+max@{knet\+\_\+channel\+\_\+ref\+\_\+send\+\_\+list\+\_\+reach\+\_\+max}}
+\index{knet\+\_\+channel\+\_\+ref\+\_\+send\+\_\+list\+\_\+reach\+\_\+max@{knet\+\_\+channel\+\_\+ref\+\_\+send\+\_\+list\+\_\+reach\+\_\+max}!channel.\+c@{channel.\+c}}
 \subsubsection[{knet\+\_\+channel\+\_\+ref\+\_\+send\+\_\+list\+\_\+reach\+\_\+max}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+channel\+\_\+ref\+\_\+send\+\_\+list\+\_\+reach\+\_\+max (
 \begin{DoxyParamCaption}
 \item[{{\bf kchannel\+\_\+t} $\ast$}]{channel}
@@ -297,8 +307,8 @@ kringbuffer\+\_\+t实例
 {\em 非零} & 是 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00049_ad7d429bb2a30ded75493a9ccf22bad63_ad7d429bb2a30ded75493a9ccf22bad63}{}\index{channel.\+h@{channel.\+h}!knet\+\_\+channel\+\_\+send@{knet\+\_\+channel\+\_\+send}}
-\index{knet\+\_\+channel\+\_\+send@{knet\+\_\+channel\+\_\+send}!channel.\+h@{channel.\+h}}
+\hypertarget{a00049_ad7d429bb2a30ded75493a9ccf22bad63_ad7d429bb2a30ded75493a9ccf22bad63}{}\index{channel.\+c@{channel.\+c}!knet\+\_\+channel\+\_\+send@{knet\+\_\+channel\+\_\+send}}
+\index{knet\+\_\+channel\+\_\+send@{knet\+\_\+channel\+\_\+send}!channel.\+c@{channel.\+c}}
 \subsubsection[{knet\+\_\+channel\+\_\+send}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+channel\+\_\+send (
 \begin{DoxyParamCaption}
 \item[{{\bf kchannel\+\_\+t} $\ast$}]{channel, }
@@ -326,8 +336,8 @@ kringbuffer\+\_\+t实例
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00049_aeef6af4f8e4d97905640ade15dc13c33_aeef6af4f8e4d97905640ade15dc13c33}{}\index{channel.\+h@{channel.\+h}!knet\+\_\+channel\+\_\+send\+\_\+buffer@{knet\+\_\+channel\+\_\+send\+\_\+buffer}}
-\index{knet\+\_\+channel\+\_\+send\+\_\+buffer@{knet\+\_\+channel\+\_\+send\+\_\+buffer}!channel.\+h@{channel.\+h}}
+\hypertarget{a00049_aeef6af4f8e4d97905640ade15dc13c33_aeef6af4f8e4d97905640ade15dc13c33}{}\index{channel.\+c@{channel.\+c}!knet\+\_\+channel\+\_\+send\+\_\+buffer@{knet\+\_\+channel\+\_\+send\+\_\+buffer}}
+\index{knet\+\_\+channel\+\_\+send\+\_\+buffer@{knet\+\_\+channel\+\_\+send\+\_\+buffer}!channel.\+c@{channel.\+c}}
 \subsubsection[{knet\+\_\+channel\+\_\+send\+\_\+buffer}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+channel\+\_\+send\+\_\+buffer (
 \begin{DoxyParamCaption}
 \item[{{\bf kchannel\+\_\+t} $\ast$}]{channel, }
@@ -352,8 +362,8 @@ kringbuffer\+\_\+t实例
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00049_a0e79d45ab68ec6cc5c85425231f3e9a1_a0e79d45ab68ec6cc5c85425231f3e9a1}{}\index{channel.\+h@{channel.\+h}!knet\+\_\+channel\+\_\+update\+\_\+recv@{knet\+\_\+channel\+\_\+update\+\_\+recv}}
-\index{knet\+\_\+channel\+\_\+update\+\_\+recv@{knet\+\_\+channel\+\_\+update\+\_\+recv}!channel.\+h@{channel.\+h}}
+\hypertarget{a00049_a0e79d45ab68ec6cc5c85425231f3e9a1_a0e79d45ab68ec6cc5c85425231f3e9a1}{}\index{channel.\+c@{channel.\+c}!knet\+\_\+channel\+\_\+update\+\_\+recv@{knet\+\_\+channel\+\_\+update\+\_\+recv}}
+\index{knet\+\_\+channel\+\_\+update\+\_\+recv@{knet\+\_\+channel\+\_\+update\+\_\+recv}!channel.\+c@{channel.\+c}}
 \subsubsection[{knet\+\_\+channel\+\_\+update\+\_\+recv}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+channel\+\_\+update\+\_\+recv (
 \begin{DoxyParamCaption}
 \item[{{\bf kchannel\+\_\+t} $\ast$}]{channel}
@@ -375,8 +385,8 @@ kringbuffer\+\_\+t实例
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00049_a6b94f1431ad03b1bc7497d5680f2c8fe_a6b94f1431ad03b1bc7497d5680f2c8fe}{}\index{channel.\+h@{channel.\+h}!knet\+\_\+channel\+\_\+update\+\_\+send@{knet\+\_\+channel\+\_\+update\+\_\+send}}
-\index{knet\+\_\+channel\+\_\+update\+\_\+send@{knet\+\_\+channel\+\_\+update\+\_\+send}!channel.\+h@{channel.\+h}}
+\hypertarget{a00049_a6b94f1431ad03b1bc7497d5680f2c8fe_a6b94f1431ad03b1bc7497d5680f2c8fe}{}\index{channel.\+c@{channel.\+c}!knet\+\_\+channel\+\_\+update\+\_\+send@{knet\+\_\+channel\+\_\+update\+\_\+send}}
+\index{knet\+\_\+channel\+\_\+update\+\_\+send@{knet\+\_\+channel\+\_\+update\+\_\+send}!channel.\+c@{channel.\+c}}
 \subsubsection[{knet\+\_\+channel\+\_\+update\+\_\+send}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+channel\+\_\+update\+\_\+send (
 \begin{DoxyParamCaption}
 \item[{{\bf kchannel\+\_\+t} $\ast$}]{channel}

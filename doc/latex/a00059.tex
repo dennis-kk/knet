@@ -1,230 +1,230 @@
-\hypertarget{a00059}{}\section{E\+:/knet-\/git/knet/knet/framework\+\_\+config\+\_\+api.h 文件参考}
-\label{a00059}\index{E\+:/knet-\/git/knet/knet/framework\+\_\+config\+\_\+api.\+h@{E\+:/knet-\/git/knet/knet/framework\+\_\+config\+\_\+api.\+h}}
+\hypertarget{a00059}{}\section{E\+:/knet-\/git/knet/knet/framework\+\_\+config.h 文件参考}
+\label{a00059}\index{E\+:/knet-\/git/knet/knet/framework\+\_\+config.\+h@{E\+:/knet-\/git/knet/knet/framework\+\_\+config.\+h}}
+{\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}framework\+\_\+config\+\_\+api.\+h\char`\"{}}\\*
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-int \hyperlink{a00107_ga45b64d2f395031b60dd33412f55242b4_ga45b64d2f395031b60dd33412f55242b4}{knet\+\_\+framework\+\_\+config\+\_\+load\+\_\+config\+\_\+file} (\hyperlink{a00053_adeaf952e0f0887507ff836385bf54874_adeaf952e0f0887507ff836385bf54874}{kframework\+\_\+config\+\_\+t} $\ast$c, const char $\ast$path)
-\begin{DoxyCompactList}\small\item\em 从文件加载配置 \end{DoxyCompactList}\item 
-int \hyperlink{a00107_gad468ed615a958baef04c26eb8fe53efd_gad468ed615a958baef04c26eb8fe53efd}{knet\+\_\+framework\+\_\+config\+\_\+load\+\_\+config\+\_\+string} (\hyperlink{a00053_adeaf952e0f0887507ff836385bf54874_adeaf952e0f0887507ff836385bf54874}{kframework\+\_\+config\+\_\+t} $\ast$c, const char $\ast$config\+\_\+string)
-\begin{DoxyCompactList}\small\item\em 从配置字符串加载配置 \end{DoxyCompactList}\item 
-void \hyperlink{a00107_ga470f4acf8c70060852d435753375fa3b_ga470f4acf8c70060852d435753375fa3b}{knet\+\_\+framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+thread\+\_\+count} (\hyperlink{a00053_adeaf952e0f0887507ff836385bf54874_adeaf952e0f0887507ff836385bf54874}{kframework\+\_\+config\+\_\+t} $\ast$c, int worker\+\_\+thread\+\_\+count)
-\begin{DoxyCompactList}\small\item\em 设置工作线程数量，默认为单线程 \end{DoxyCompactList}\item 
-void \hyperlink{a00107_ga42497b09d9d0c4039a062ff750ead0a9_ga42497b09d9d0c4039a062ff750ead0a9}{knet\+\_\+framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+timer\+\_\+freq} (\hyperlink{a00053_adeaf952e0f0887507ff836385bf54874_adeaf952e0f0887507ff836385bf54874}{kframework\+\_\+config\+\_\+t} $\ast$c, time\+\_\+t freq)
-\begin{DoxyCompactList}\small\item\em 设置工作线程内定时器分辨率 \end{DoxyCompactList}\item 
-void \hyperlink{a00107_gae0c5bc540a44a88d64390845744f736f_gae0c5bc540a44a88d64390845744f736f}{knet\+\_\+framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+timer\+\_\+slot} (\hyperlink{a00053_adeaf952e0f0887507ff836385bf54874_adeaf952e0f0887507ff836385bf54874}{kframework\+\_\+config\+\_\+t} $\ast$c, int slot)
-\begin{DoxyCompactList}\small\item\em 设置工作线程内定时器槽位数量 \end{DoxyCompactList}\item 
-\hyperlink{a00053_a39c993eb450173e4fde04498d757f9b6_a39c993eb450173e4fde04498d757f9b6}{kframework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$ \hyperlink{a00107_ga681a7f8e071507cc60f8f56043fe4443_ga681a7f8e071507cc60f8f56043fe4443}{knet\+\_\+framework\+\_\+config\+\_\+new\+\_\+acceptor} (\hyperlink{a00053_adeaf952e0f0887507ff836385bf54874_adeaf952e0f0887507ff836385bf54874}{kframework\+\_\+config\+\_\+t} $\ast$c)
-\begin{DoxyCompactList}\small\item\em 建立监听器配置 \end{DoxyCompactList}\item 
-\hyperlink{a00053_a44d3033eba5a4fd784a741700a7a2521_a44d3033eba5a4fd784a741700a7a2521}{kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$ \hyperlink{a00107_ga135342b1a0a31db4d614ee96a76d3e46_ga135342b1a0a31db4d614ee96a76d3e46}{knet\+\_\+framework\+\_\+config\+\_\+new\+\_\+connector} (\hyperlink{a00053_adeaf952e0f0887507ff836385bf54874_adeaf952e0f0887507ff836385bf54874}{kframework\+\_\+config\+\_\+t} $\ast$c)
-\begin{DoxyCompactList}\small\item\em 建立连接器配置 \end{DoxyCompactList}\item 
-void \hyperlink{a00107_gae13e628b69405ef9a338980da9475b53_gae13e628b69405ef9a338980da9475b53}{knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+local\+\_\+address} (\hyperlink{a00053_a39c993eb450173e4fde04498d757f9b6_a39c993eb450173e4fde04498d757f9b6}{kframework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$c, const char $\ast$ip, int port)
-\begin{DoxyCompactList}\small\item\em 设置监听器本地地址 \end{DoxyCompactList}\item 
-void \hyperlink{a00107_gab236e9cd130017f98625904439052b30_gab236e9cd130017f98625904439052b30}{knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+backlog} (\hyperlink{a00053_a39c993eb450173e4fde04498d757f9b6_a39c993eb450173e4fde04498d757f9b6}{kframework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$c, int backlog)
-\begin{DoxyCompactList}\small\item\em 设置监听器等待队列长度 \end{DoxyCompactList}\item 
-void \hyperlink{a00107_ga0f1a47656155b56aa812b07d44a8aa81_ga0f1a47656155b56aa812b07d44a8aa81}{knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+heartbeat\+\_\+timeout} (\hyperlink{a00053_a39c993eb450173e4fde04498d757f9b6_a39c993eb450173e4fde04498d757f9b6}{kframework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$c, int timeout)
-\begin{DoxyCompactList}\small\item\em 设置客户端心跳超时 \end{DoxyCompactList}\item 
-void \hyperlink{a00107_ga03a86f8b8fc13e6fb8f1ca75e7f14d7a_ga03a86f8b8fc13e6fb8f1ca75e7f14d7a}{knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+cb} (\hyperlink{a00053_a39c993eb450173e4fde04498d757f9b6_a39c993eb450173e4fde04498d757f9b6}{kframework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$c, \hyperlink{a00053_a8a7d96123ef4565c6d08fe58a10476a9_a8a7d96123ef4565c6d08fe58a10476a9}{knet\+\_\+channel\+\_\+ref\+\_\+cb\+\_\+t} cb)
-\begin{DoxyCompactList}\small\item\em 设置客户端回调函数 \end{DoxyCompactList}\item 
-void \hyperlink{a00107_ga23b21427272c85b9730304add2cbd054_ga23b21427272c85b9730304add2cbd054}{knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count} (\hyperlink{a00053_a39c993eb450173e4fde04498d757f9b6_a39c993eb450173e4fde04498d757f9b6}{kframework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$c, int max\+\_\+send\+\_\+list\+\_\+count)
-\begin{DoxyCompactList}\small\item\em 设置客户端发送链表最大长度 \end{DoxyCompactList}\item 
-void \hyperlink{a00107_ga44e90ae8fe6b358dbcd77c447ead94fc_ga44e90ae8fe6b358dbcd77c447ead94fc}{knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length} (\hyperlink{a00053_a39c993eb450173e4fde04498d757f9b6_a39c993eb450173e4fde04498d757f9b6}{kframework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$c, int max\+\_\+recv\+\_\+buffer\+\_\+length)
-\begin{DoxyCompactList}\small\item\em 设置客户端接收缓冲区最大长度 \end{DoxyCompactList}\item 
-void \hyperlink{a00107_gae677441ee9bcc61da7c7728ce3ae773e_gae677441ee9bcc61da7c7728ce3ae773e}{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+remote\+\_\+address} (\hyperlink{a00053_a44d3033eba5a4fd784a741700a7a2521_a44d3033eba5a4fd784a741700a7a2521}{kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$c, const char $\ast$ip, int port)
-\begin{DoxyCompactList}\small\item\em 设置连接器需要连接的地址 \end{DoxyCompactList}\item 
-void \hyperlink{a00107_ga186f2fb032c5b2350e990c63b5aa628e_ga186f2fb032c5b2350e990c63b5aa628e}{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+heartbeat\+\_\+timeout} (\hyperlink{a00053_a44d3033eba5a4fd784a741700a7a2521_a44d3033eba5a4fd784a741700a7a2521}{kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$c, int timeout)
-\begin{DoxyCompactList}\small\item\em 设置连接器心跳超时 \end{DoxyCompactList}\item 
-void \hyperlink{a00107_gacf0d08bb6f135c12326d30acad7456f1_gacf0d08bb6f135c12326d30acad7456f1}{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+connect\+\_\+timeout} (\hyperlink{a00053_a44d3033eba5a4fd784a741700a7a2521_a44d3033eba5a4fd784a741700a7a2521}{kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$c, int timeout)
-\begin{DoxyCompactList}\small\item\em 设置连接器连接超时 \end{DoxyCompactList}\item 
-void \hyperlink{a00107_ga984a212938eb7d5b79fae88c5eeb1644_ga984a212938eb7d5b79fae88c5eeb1644}{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+auto\+\_\+reconnect} (\hyperlink{a00053_a44d3033eba5a4fd784a741700a7a2521_a44d3033eba5a4fd784a741700a7a2521}{kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$c, int auto\+\_\+reconnect)
-\begin{DoxyCompactList}\small\item\em 设置连接器自动重连 \end{DoxyCompactList}\item 
-void \hyperlink{a00107_ga03024112cca453db282a4aa4af7bedc8_ga03024112cca453db282a4aa4af7bedc8}{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+cb} (\hyperlink{a00053_a44d3033eba5a4fd784a741700a7a2521_a44d3033eba5a4fd784a741700a7a2521}{kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$c, \hyperlink{a00053_a8a7d96123ef4565c6d08fe58a10476a9_a8a7d96123ef4565c6d08fe58a10476a9}{knet\+\_\+channel\+\_\+ref\+\_\+cb\+\_\+t} cb)
-\begin{DoxyCompactList}\small\item\em 设置连接器回调函数 \end{DoxyCompactList}\item 
-void \hyperlink{a00107_ga32b058fe0a17d4a609097157761bb9f1_ga32b058fe0a17d4a609097157761bb9f1}{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count} (\hyperlink{a00053_a44d3033eba5a4fd784a741700a7a2521_a44d3033eba5a4fd784a741700a7a2521}{kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$c, int max\+\_\+send\+\_\+list\+\_\+count)
-\begin{DoxyCompactList}\small\item\em 设置连接器发送链表最大长度 \end{DoxyCompactList}\item 
-void \hyperlink{a00107_ga671b44cb682198b418b21749e6b2fdbe_ga671b44cb682198b418b21749e6b2fdbe}{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length} (\hyperlink{a00053_a44d3033eba5a4fd784a741700a7a2521_a44d3033eba5a4fd784a741700a7a2521}{kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$c, int max\+\_\+recv\+\_\+buffer\+\_\+length)
-\begin{DoxyCompactList}\small\item\em 设置连接器接收缓冲区最大长度 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{a00054_adeaf952e0f0887507ff836385bf54874_adeaf952e0f0887507ff836385bf54874}{kframework\+\_\+config\+\_\+t} $\ast$ \hyperlink{a00059_abb53b259903568ee8684e2979d5419cb_abb53b259903568ee8684e2979d5419cb}{framework\+\_\+config\+\_\+create} ()
+\begin{DoxyCompactList}\small\item\em 建立框架配置器 \end{DoxyCompactList}\item 
+void \hyperlink{a00059_a94f3ef660e9dd4e8c9b4a4f113c35833_a94f3ef660e9dd4e8c9b4a4f113c35833}{framework\+\_\+config\+\_\+destroy} (\hyperlink{a00054_adeaf952e0f0887507ff836385bf54874_adeaf952e0f0887507ff836385bf54874}{kframework\+\_\+config\+\_\+t} $\ast$c)
+\begin{DoxyCompactList}\small\item\em 销毁框架配置器 \end{DoxyCompactList}\item 
+int \hyperlink{a00059_aafb4c7a8913ed48592037da43edd8e39_aafb4c7a8913ed48592037da43edd8e39}{framework\+\_\+config\+\_\+get\+\_\+worker\+\_\+thread\+\_\+count} (\hyperlink{a00054_adeaf952e0f0887507ff836385bf54874_adeaf952e0f0887507ff836385bf54874}{kframework\+\_\+config\+\_\+t} $\ast$c)
+\begin{DoxyCompactList}\small\item\em 取得工作线程数量 \end{DoxyCompactList}\item 
+time\+\_\+t \hyperlink{a00059_ab0815a3aff5ee221ba2870899e25f045_ab0815a3aff5ee221ba2870899e25f045}{framework\+\_\+config\+\_\+get\+\_\+worker\+\_\+timer\+\_\+freq} (\hyperlink{a00054_adeaf952e0f0887507ff836385bf54874_adeaf952e0f0887507ff836385bf54874}{kframework\+\_\+config\+\_\+t} $\ast$c)
+\begin{DoxyCompactList}\small\item\em 取得工作线程内定时器分辨率 \end{DoxyCompactList}\item 
+int \hyperlink{a00059_a012d9b9ae0e167f8b3c8b591947d6103_a012d9b9ae0e167f8b3c8b591947d6103}{framework\+\_\+config\+\_\+get\+\_\+worker\+\_\+timer\+\_\+slot} (\hyperlink{a00054_adeaf952e0f0887507ff836385bf54874_adeaf952e0f0887507ff836385bf54874}{kframework\+\_\+config\+\_\+t} $\ast$c)
+\begin{DoxyCompactList}\small\item\em 取得工作线程内定时器槽位数量 \end{DoxyCompactList}\item 
+\hyperlink{a00054_ae098586334a621a23cef7cb17590b618_ae098586334a621a23cef7cb17590b618}{kdlist\+\_\+t} $\ast$ \hyperlink{a00059_a660d53704c3d74635e2641821805f585_a660d53704c3d74635e2641821805f585}{framework\+\_\+config\+\_\+get\+\_\+acceptor\+\_\+config} (\hyperlink{a00054_adeaf952e0f0887507ff836385bf54874_adeaf952e0f0887507ff836385bf54874}{kframework\+\_\+config\+\_\+t} $\ast$c)
+\begin{DoxyCompactList}\small\item\em 取得监听器配置链表 \end{DoxyCompactList}\item 
+\hyperlink{a00054_ae098586334a621a23cef7cb17590b618_ae098586334a621a23cef7cb17590b618}{kdlist\+\_\+t} $\ast$ \hyperlink{a00059_aceca26164a0fb95ab1169ac8691f71a3_aceca26164a0fb95ab1169ac8691f71a3}{framework\+\_\+config\+\_\+get\+\_\+connector\+\_\+config} (\hyperlink{a00054_adeaf952e0f0887507ff836385bf54874_adeaf952e0f0887507ff836385bf54874}{kframework\+\_\+config\+\_\+t} $\ast$c)
+\begin{DoxyCompactList}\small\item\em 取得连接器配置链表 \end{DoxyCompactList}\item 
+const char $\ast$ \hyperlink{a00059_a54b4504dea6ef523ee1023b413920b45_a54b4504dea6ef523ee1023b413920b45}{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+ip} (\hyperlink{a00054_a39c993eb450173e4fde04498d757f9b6_a39c993eb450173e4fde04498d757f9b6}{kframework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$c)
+\begin{DoxyCompactList}\small\item\em 取得监听器\+I\+P \end{DoxyCompactList}\item 
+int \hyperlink{a00059_a49fd3b40a9fc89570bcf35aae84d5c37_a49fd3b40a9fc89570bcf35aae84d5c37}{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+port} (\hyperlink{a00054_a39c993eb450173e4fde04498d757f9b6_a39c993eb450173e4fde04498d757f9b6}{kframework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$c)
+\begin{DoxyCompactList}\small\item\em 取得监听器端口 \end{DoxyCompactList}\item 
+int \hyperlink{a00059_a14fc02ffc3312c17a64b291d0deb96f7_a14fc02ffc3312c17a64b291d0deb96f7}{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+backlog} (\hyperlink{a00054_a39c993eb450173e4fde04498d757f9b6_a39c993eb450173e4fde04498d757f9b6}{kframework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$c)
+\begin{DoxyCompactList}\small\item\em 取得监听器等待队列长度 \end{DoxyCompactList}\item 
+int \hyperlink{a00059_a85d4bdd476ca52582bb9386a1880aef7_a85d4bdd476ca52582bb9386a1880aef7}{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+client\+\_\+heartbeat\+\_\+timeout} (\hyperlink{a00054_a39c993eb450173e4fde04498d757f9b6_a39c993eb450173e4fde04498d757f9b6}{kframework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$c)
+\begin{DoxyCompactList}\small\item\em 取得监听器客户端心跳(秒) \end{DoxyCompactList}\item 
+\hyperlink{a00054_a8a7d96123ef4565c6d08fe58a10476a9_a8a7d96123ef4565c6d08fe58a10476a9}{knet\+\_\+channel\+\_\+ref\+\_\+cb\+\_\+t} \hyperlink{a00059_a653ea2310b6c0dc7a071cd8949989164_a653ea2310b6c0dc7a071cd8949989164}{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+client\+\_\+cb} (\hyperlink{a00054_a39c993eb450173e4fde04498d757f9b6_a39c993eb450173e4fde04498d757f9b6}{kframework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$c)
+\begin{DoxyCompactList}\small\item\em 取得监听器客户端回调函数 \end{DoxyCompactList}\item 
+int \hyperlink{a00059_afb4285e18540ef7f4cba90b3618a9a38_afb4285e18540ef7f4cba90b3618a9a38}{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count} (\hyperlink{a00054_a39c993eb450173e4fde04498d757f9b6_a39c993eb450173e4fde04498d757f9b6}{kframework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$c)
+\begin{DoxyCompactList}\small\item\em 取得监听器客户端发送队列最大长度 \end{DoxyCompactList}\item 
+int \hyperlink{a00059_a9685742fdadb7786054b64158f2f3957_a9685742fdadb7786054b64158f2f3957}{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length} (\hyperlink{a00054_a39c993eb450173e4fde04498d757f9b6_a39c993eb450173e4fde04498d757f9b6}{kframework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$c)
+\begin{DoxyCompactList}\small\item\em 取得监听器客户端接收缓冲区最大长度 \end{DoxyCompactList}\item 
+const char $\ast$ \hyperlink{a00059_ae0e3797a6b6b907d233c7edabed36bf1_ae0e3797a6b6b907d233c7edabed36bf1}{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+remote\+\_\+ip} (\hyperlink{a00054_a44d3033eba5a4fd784a741700a7a2521_a44d3033eba5a4fd784a741700a7a2521}{kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$c)
+\begin{DoxyCompactList}\small\item\em 取得连接器对端\+I\+P \end{DoxyCompactList}\item 
+int \hyperlink{a00059_a55707c9637479a001e71bc4572f71f2c_a55707c9637479a001e71bc4572f71f2c}{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+remote\+\_\+port} (\hyperlink{a00054_a44d3033eba5a4fd784a741700a7a2521_a44d3033eba5a4fd784a741700a7a2521}{kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$c)
+\begin{DoxyCompactList}\small\item\em 取得连接器对端端口 \end{DoxyCompactList}\item 
+int \hyperlink{a00059_a2c4b9be08ca46cedca68b89c6f11f49f_a2c4b9be08ca46cedca68b89c6f11f49f}{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+heartbeat\+\_\+timeout} (\hyperlink{a00054_a44d3033eba5a4fd784a741700a7a2521_a44d3033eba5a4fd784a741700a7a2521}{kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$c)
+\begin{DoxyCompactList}\small\item\em 取得连接器心跳超时(秒) \end{DoxyCompactList}\item 
+int \hyperlink{a00059_ac68772cc33b88a22813e697d95888017_ac68772cc33b88a22813e697d95888017}{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+connect\+\_\+timeout} (\hyperlink{a00054_a44d3033eba5a4fd784a741700a7a2521_a44d3033eba5a4fd784a741700a7a2521}{kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$c)
+\begin{DoxyCompactList}\small\item\em 取得连接器连接超时(秒) \end{DoxyCompactList}\item 
+int \hyperlink{a00059_a5f7bfd9325348609aeb606b1e0b97193_a5f7bfd9325348609aeb606b1e0b97193}{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+auto\+\_\+reconnect} (\hyperlink{a00054_a44d3033eba5a4fd784a741700a7a2521_a44d3033eba5a4fd784a741700a7a2521}{kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$c)
+\begin{DoxyCompactList}\small\item\em 取得连接器自动重连标志 \end{DoxyCompactList}\item 
+\hyperlink{a00054_a8a7d96123ef4565c6d08fe58a10476a9_a8a7d96123ef4565c6d08fe58a10476a9}{knet\+\_\+channel\+\_\+ref\+\_\+cb\+\_\+t} \hyperlink{a00059_a6898deb7c3de795887164182fdfcf1e4_a6898deb7c3de795887164182fdfcf1e4}{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+cb} (\hyperlink{a00054_a44d3033eba5a4fd784a741700a7a2521_a44d3033eba5a4fd784a741700a7a2521}{kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$c)
+\begin{DoxyCompactList}\small\item\em 取得连接器回调函数 \end{DoxyCompactList}\item 
+int \hyperlink{a00059_a60303490cfa82253a2fcd6ccbe6be25a_a60303490cfa82253a2fcd6ccbe6be25a}{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+max\+\_\+send\+\_\+list\+\_\+count} (\hyperlink{a00054_a44d3033eba5a4fd784a741700a7a2521_a44d3033eba5a4fd784a741700a7a2521}{kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$c)
+\begin{DoxyCompactList}\small\item\em 取得连接器发送链表最大长度 \end{DoxyCompactList}\item 
+int \hyperlink{a00059_a5a2f5598ed8e267376ffb1a3da51f88b_a5a2f5598ed8e267376ffb1a3da51f88b}{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length} (\hyperlink{a00054_a44d3033eba5a4fd784a741700a7a2521_a44d3033eba5a4fd784a741700a7a2521}{kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$c)
+\begin{DoxyCompactList}\small\item\em 取得连接器接收缓冲区最大长度 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{函数说明}
-\hypertarget{a00107_gab236e9cd130017f98625904439052b30_gab236e9cd130017f98625904439052b30}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+backlog@{knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+backlog}}
-\index{knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+backlog@{knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+backlog}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
-\subsubsection[{knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+backlog}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+backlog (
+\hypertarget{a00059_a14fc02ffc3312c17a64b291d0deb96f7_a14fc02ffc3312c17a64b291d0deb96f7}{}\index{framework\+\_\+config.\+h@{framework\+\_\+config.\+h}!framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+backlog@{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+backlog}}
+\index{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+backlog@{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+backlog}!framework\+\_\+config.\+h@{framework\+\_\+config.\+h}}
+\subsubsection[{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+backlog}]{\setlength{\rightskip}{0pt plus 5cm}int framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+backlog (
 \begin{DoxyParamCaption}
-\item[{{\bf kframework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$}]{c, }
-\item[{int}]{backlog}
+\item[{{\bf kframework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$}]{c}
 \end{DoxyParamCaption}
-)}\label{a00107_gab236e9cd130017f98625904439052b30_gab236e9cd130017f98625904439052b30}
+)}\label{a00059_a14fc02ffc3312c17a64b291d0deb96f7_a14fc02ffc3312c17a64b291d0deb96f7}
 
 
-设置监听器等待队列长度 
+取得监听器等待队列长度 
 
 
 \begin{DoxyParams}{参数}
 {\em c} & kframework\+\_\+acceptor\+\_\+config\+\_\+t实例 \\
 \hline
-{\em backlog} & 等待队列长度 \\
-\hline
 \end{DoxyParams}
-\hypertarget{a00107_ga03a86f8b8fc13e6fb8f1ca75e7f14d7a_ga03a86f8b8fc13e6fb8f1ca75e7f14d7a}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+cb@{knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+cb}}
-\index{knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+cb@{knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+cb}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
-\subsubsection[{knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+cb}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+cb (
+\begin{DoxyReturn}{返回}
+监听器等待队列长度 
+\end{DoxyReturn}
+\hypertarget{a00059_a653ea2310b6c0dc7a071cd8949989164_a653ea2310b6c0dc7a071cd8949989164}{}\index{framework\+\_\+config.\+h@{framework\+\_\+config.\+h}!framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+client\+\_\+cb@{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+client\+\_\+cb}}
+\index{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+client\+\_\+cb@{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+client\+\_\+cb}!framework\+\_\+config.\+h@{framework\+\_\+config.\+h}}
+\subsubsection[{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+client\+\_\+cb}]{\setlength{\rightskip}{0pt plus 5cm}{\bf knet\+\_\+channel\+\_\+ref\+\_\+cb\+\_\+t} framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+client\+\_\+cb (
 \begin{DoxyParamCaption}
-\item[{{\bf kframework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$}]{c, }
-\item[{{\bf knet\+\_\+channel\+\_\+ref\+\_\+cb\+\_\+t}}]{cb}
+\item[{{\bf kframework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$}]{c}
 \end{DoxyParamCaption}
-)}\label{a00107_ga03a86f8b8fc13e6fb8f1ca75e7f14d7a_ga03a86f8b8fc13e6fb8f1ca75e7f14d7a}
+)}\label{a00059_a653ea2310b6c0dc7a071cd8949989164_a653ea2310b6c0dc7a071cd8949989164}
 
 
-设置客户端回调函数 
+取得监听器客户端回调函数 
 
 
 \begin{DoxyParams}{参数}
 {\em c} & kframework\+\_\+acceptor\+\_\+config\+\_\+t实例 \\
 \hline
-{\em cb} & 客户端回调函数 \\
-\hline
 \end{DoxyParams}
-\hypertarget{a00107_ga0f1a47656155b56aa812b07d44a8aa81_ga0f1a47656155b56aa812b07d44a8aa81}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+heartbeat\+\_\+timeout@{knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+heartbeat\+\_\+timeout}}
-\index{knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+heartbeat\+\_\+timeout@{knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+heartbeat\+\_\+timeout}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
-\subsubsection[{knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+heartbeat\+\_\+timeout}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+heartbeat\+\_\+timeout (
+\begin{DoxyReturn}{返回}
+客户端回调函数 
+\end{DoxyReturn}
+\hypertarget{a00059_a85d4bdd476ca52582bb9386a1880aef7_a85d4bdd476ca52582bb9386a1880aef7}{}\index{framework\+\_\+config.\+h@{framework\+\_\+config.\+h}!framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+client\+\_\+heartbeat\+\_\+timeout@{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+client\+\_\+heartbeat\+\_\+timeout}}
+\index{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+client\+\_\+heartbeat\+\_\+timeout@{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+client\+\_\+heartbeat\+\_\+timeout}!framework\+\_\+config.\+h@{framework\+\_\+config.\+h}}
+\subsubsection[{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+client\+\_\+heartbeat\+\_\+timeout}]{\setlength{\rightskip}{0pt plus 5cm}int framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+client\+\_\+heartbeat\+\_\+timeout (
 \begin{DoxyParamCaption}
-\item[{{\bf kframework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$}]{c, }
-\item[{int}]{timeout}
+\item[{{\bf kframework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$}]{c}
 \end{DoxyParamCaption}
-)}\label{a00107_ga0f1a47656155b56aa812b07d44a8aa81_ga0f1a47656155b56aa812b07d44a8aa81}
+)}\label{a00059_a85d4bdd476ca52582bb9386a1880aef7_a85d4bdd476ca52582bb9386a1880aef7}
 
 
-设置客户端心跳超时 
+取得监听器客户端心跳(秒) 
 
 
 \begin{DoxyParams}{参数}
 {\em c} & kframework\+\_\+acceptor\+\_\+config\+\_\+t实例 \\
 \hline
-{\em timeout} & 客户端心跳超时(秒) \\
-\hline
 \end{DoxyParams}
-\hypertarget{a00107_ga44e90ae8fe6b358dbcd77c447ead94fc_ga44e90ae8fe6b358dbcd77c447ead94fc}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length@{knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length}}
-\index{knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length@{knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
-\subsubsection[{knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length (
+\begin{DoxyReturn}{返回}
+客户端心跳(秒) 
+\end{DoxyReturn}
+\hypertarget{a00059_a9685742fdadb7786054b64158f2f3957_a9685742fdadb7786054b64158f2f3957}{}\index{framework\+\_\+config.\+h@{framework\+\_\+config.\+h}!framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length@{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length}}
+\index{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length@{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length}!framework\+\_\+config.\+h@{framework\+\_\+config.\+h}}
+\subsubsection[{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length}]{\setlength{\rightskip}{0pt plus 5cm}int framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length (
 \begin{DoxyParamCaption}
-\item[{{\bf kframework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$}]{c, }
-\item[{int}]{max\+\_\+recv\+\_\+buffer\+\_\+length}
+\item[{{\bf kframework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$}]{c}
 \end{DoxyParamCaption}
-)}\label{a00107_ga44e90ae8fe6b358dbcd77c447ead94fc_ga44e90ae8fe6b358dbcd77c447ead94fc}
+)}\label{a00059_a9685742fdadb7786054b64158f2f3957_a9685742fdadb7786054b64158f2f3957}
 
 
-设置客户端接收缓冲区最大长度 
+取得监听器客户端接收缓冲区最大长度 
 
 
 \begin{DoxyParams}{参数}
 {\em c} & kframework\+\_\+acceptor\+\_\+config\+\_\+t实例 \\
 \hline
-{\em max\+\_\+recv\+\_\+buffer\+\_\+length} & 接收缓冲区最大长度(字节) \\
-\hline
 \end{DoxyParams}
-\hypertarget{a00107_ga23b21427272c85b9730304add2cbd054_ga23b21427272c85b9730304add2cbd054}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count@{knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count}}
-\index{knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count@{knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
-\subsubsection[{knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count (
+\begin{DoxyReturn}{返回}
+客户端接收缓冲区最大长度 
+\end{DoxyReturn}
+\hypertarget{a00059_afb4285e18540ef7f4cba90b3618a9a38_afb4285e18540ef7f4cba90b3618a9a38}{}\index{framework\+\_\+config.\+h@{framework\+\_\+config.\+h}!framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count@{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count}}
+\index{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count@{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count}!framework\+\_\+config.\+h@{framework\+\_\+config.\+h}}
+\subsubsection[{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}int framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count (
 \begin{DoxyParamCaption}
-\item[{{\bf kframework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$}]{c, }
-\item[{int}]{max\+\_\+send\+\_\+list\+\_\+count}
+\item[{{\bf kframework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$}]{c}
 \end{DoxyParamCaption}
-)}\label{a00107_ga23b21427272c85b9730304add2cbd054_ga23b21427272c85b9730304add2cbd054}
+)}\label{a00059_afb4285e18540ef7f4cba90b3618a9a38_afb4285e18540ef7f4cba90b3618a9a38}
 
 
-设置客户端发送链表最大长度 
+取得监听器客户端发送队列最大长度 
 
 
 \begin{DoxyParams}{参数}
 {\em c} & kframework\+\_\+acceptor\+\_\+config\+\_\+t实例 \\
 \hline
-{\em max\+\_\+send\+\_\+list\+\_\+count} & 发送链表最大长度(字节) \\
-\hline
 \end{DoxyParams}
-\hypertarget{a00107_gae13e628b69405ef9a338980da9475b53_gae13e628b69405ef9a338980da9475b53}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+local\+\_\+address@{knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+local\+\_\+address}}
-\index{knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+local\+\_\+address@{knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+local\+\_\+address}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
-\subsubsection[{knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+local\+\_\+address}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+framework\+\_\+acceptor\+\_\+config\+\_\+set\+\_\+local\+\_\+address (
+\begin{DoxyReturn}{返回}
+客户端发送队列最大长度 
+\end{DoxyReturn}
+\hypertarget{a00059_a54b4504dea6ef523ee1023b413920b45_a54b4504dea6ef523ee1023b413920b45}{}\index{framework\+\_\+config.\+h@{framework\+\_\+config.\+h}!framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+ip@{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+ip}}
+\index{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+ip@{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+ip}!framework\+\_\+config.\+h@{framework\+\_\+config.\+h}}
+\subsubsection[{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+ip}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+ip (
 \begin{DoxyParamCaption}
-\item[{{\bf kframework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$}]{c, }
-\item[{const char $\ast$}]{ip, }
-\item[{int}]{port}
+\item[{{\bf kframework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$}]{c}
 \end{DoxyParamCaption}
-)}\label{a00107_gae13e628b69405ef9a338980da9475b53_gae13e628b69405ef9a338980da9475b53}
+)}\label{a00059_a54b4504dea6ef523ee1023b413920b45_a54b4504dea6ef523ee1023b413920b45}
 
 
-设置监听器本地地址 
+取得监听器\+I\+P 
 
 
 \begin{DoxyParams}{参数}
 {\em c} & kframework\+\_\+acceptor\+\_\+config\+\_\+t实例 \\
 \hline
-{\em ip} & I\+P \\
-\hline
-{\em port} & 地址 \\
-\hline
 \end{DoxyParams}
-\hypertarget{a00107_ga45b64d2f395031b60dd33412f55242b4_ga45b64d2f395031b60dd33412f55242b4}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!knet\+\_\+framework\+\_\+config\+\_\+load\+\_\+config\+\_\+file@{knet\+\_\+framework\+\_\+config\+\_\+load\+\_\+config\+\_\+file}}
-\index{knet\+\_\+framework\+\_\+config\+\_\+load\+\_\+config\+\_\+file@{knet\+\_\+framework\+\_\+config\+\_\+load\+\_\+config\+\_\+file}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
-\subsubsection[{knet\+\_\+framework\+\_\+config\+\_\+load\+\_\+config\+\_\+file}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+framework\+\_\+config\+\_\+load\+\_\+config\+\_\+file (
+\begin{DoxyReturn}{返回}
+监听器\+I\+P 
+\end{DoxyReturn}
+\hypertarget{a00059_a49fd3b40a9fc89570bcf35aae84d5c37_a49fd3b40a9fc89570bcf35aae84d5c37}{}\index{framework\+\_\+config.\+h@{framework\+\_\+config.\+h}!framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+port@{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+port}}
+\index{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+port@{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+port}!framework\+\_\+config.\+h@{framework\+\_\+config.\+h}}
+\subsubsection[{framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+port}]{\setlength{\rightskip}{0pt plus 5cm}int framework\+\_\+acceptor\+\_\+config\+\_\+get\+\_\+port (
 \begin{DoxyParamCaption}
-\item[{{\bf kframework\+\_\+config\+\_\+t} $\ast$}]{c, }
-\item[{const char $\ast$}]{path}
+\item[{{\bf kframework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$}]{c}
 \end{DoxyParamCaption}
-)}\label{a00107_ga45b64d2f395031b60dd33412f55242b4_ga45b64d2f395031b60dd33412f55242b4}
+)}\label{a00059_a49fd3b40a9fc89570bcf35aae84d5c37_a49fd3b40a9fc89570bcf35aae84d5c37}
 
 
-从文件加载配置 
+取得监听器端口 
 
 
 \begin{DoxyParams}{参数}
-{\em c} & kframework\+\_\+config\+\_\+t实例 \\
-\hline
-{\em path} & 文件路径 \\
+{\em c} & kframework\+\_\+acceptor\+\_\+config\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00107_gad468ed615a958baef04c26eb8fe53efd_gad468ed615a958baef04c26eb8fe53efd}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!knet\+\_\+framework\+\_\+config\+\_\+load\+\_\+config\+\_\+string@{knet\+\_\+framework\+\_\+config\+\_\+load\+\_\+config\+\_\+string}}
-\index{knet\+\_\+framework\+\_\+config\+\_\+load\+\_\+config\+\_\+string@{knet\+\_\+framework\+\_\+config\+\_\+load\+\_\+config\+\_\+string}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
-\subsubsection[{knet\+\_\+framework\+\_\+config\+\_\+load\+\_\+config\+\_\+string}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+framework\+\_\+config\+\_\+load\+\_\+config\+\_\+string (
+\begin{DoxyReturn}{返回}
+监听器端口 
+\end{DoxyReturn}
+\hypertarget{a00059_abb53b259903568ee8684e2979d5419cb_abb53b259903568ee8684e2979d5419cb}{}\index{framework\+\_\+config.\+h@{framework\+\_\+config.\+h}!framework\+\_\+config\+\_\+create@{framework\+\_\+config\+\_\+create}}
+\index{framework\+\_\+config\+\_\+create@{framework\+\_\+config\+\_\+create}!framework\+\_\+config.\+h@{framework\+\_\+config.\+h}}
+\subsubsection[{framework\+\_\+config\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kframework\+\_\+config\+\_\+t}$\ast$ framework\+\_\+config\+\_\+create (
 \begin{DoxyParamCaption}
-\item[{{\bf kframework\+\_\+config\+\_\+t} $\ast$}]{c, }
-\item[{const char $\ast$}]{config\+\_\+string}
+{}
 \end{DoxyParamCaption}
-)}\label{a00107_gad468ed615a958baef04c26eb8fe53efd_gad468ed615a958baef04c26eb8fe53efd}
+)}\label{a00059_abb53b259903568ee8684e2979d5419cb_abb53b259903568ee8684e2979d5419cb}
 
 
-从配置字符串加载配置 
+建立框架配置器 
 
-
-\begin{DoxyParams}{参数}
-{\em c} & kframework\+\_\+config\+\_\+t实例 \\
-\hline
-{\em config\+\_\+string} & 配置字符串 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00107_ga681a7f8e071507cc60f8f56043fe4443_ga681a7f8e071507cc60f8f56043fe4443}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!knet\+\_\+framework\+\_\+config\+\_\+new\+\_\+acceptor@{knet\+\_\+framework\+\_\+config\+\_\+new\+\_\+acceptor}}
-\index{knet\+\_\+framework\+\_\+config\+\_\+new\+\_\+acceptor@{knet\+\_\+framework\+\_\+config\+\_\+new\+\_\+acceptor}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
-\subsubsection[{knet\+\_\+framework\+\_\+config\+\_\+new\+\_\+acceptor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kframework\+\_\+acceptor\+\_\+config\+\_\+t}$\ast$ knet\+\_\+framework\+\_\+config\+\_\+new\+\_\+acceptor (
+\begin{DoxyReturn}{返回}
+kframework\+\_\+config\+\_\+t实例 
+\end{DoxyReturn}
+\hypertarget{a00059_a94f3ef660e9dd4e8c9b4a4f113c35833_a94f3ef660e9dd4e8c9b4a4f113c35833}{}\index{framework\+\_\+config.\+h@{framework\+\_\+config.\+h}!framework\+\_\+config\+\_\+destroy@{framework\+\_\+config\+\_\+destroy}}
+\index{framework\+\_\+config\+\_\+destroy@{framework\+\_\+config\+\_\+destroy}!framework\+\_\+config.\+h@{framework\+\_\+config.\+h}}
+\subsubsection[{framework\+\_\+config\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void framework\+\_\+config\+\_\+destroy (
 \begin{DoxyParamCaption}
 \item[{{\bf kframework\+\_\+config\+\_\+t} $\ast$}]{c}
 \end{DoxyParamCaption}
-)}\label{a00107_ga681a7f8e071507cc60f8f56043fe4443_ga681a7f8e071507cc60f8f56043fe4443}
+)}\label{a00059_a94f3ef660e9dd4e8c9b4a4f113c35833_a94f3ef660e9dd4e8c9b4a4f113c35833}
 
 
-建立监听器配置 
+销毁框架配置器 
+
+
+\begin{DoxyParams}{参数}
+{\em c} & kframework\+\_\+config\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00059_a660d53704c3d74635e2641821805f585_a660d53704c3d74635e2641821805f585}{}\index{framework\+\_\+config.\+h@{framework\+\_\+config.\+h}!framework\+\_\+config\+\_\+get\+\_\+acceptor\+\_\+config@{framework\+\_\+config\+\_\+get\+\_\+acceptor\+\_\+config}}
+\index{framework\+\_\+config\+\_\+get\+\_\+acceptor\+\_\+config@{framework\+\_\+config\+\_\+get\+\_\+acceptor\+\_\+config}!framework\+\_\+config.\+h@{framework\+\_\+config.\+h}}
+\subsubsection[{framework\+\_\+config\+\_\+get\+\_\+acceptor\+\_\+config}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kdlist\+\_\+t}$\ast$ framework\+\_\+config\+\_\+get\+\_\+acceptor\+\_\+config (
+\begin{DoxyParamCaption}
+\item[{{\bf kframework\+\_\+config\+\_\+t} $\ast$}]{c}
+\end{DoxyParamCaption}
+)}\label{a00059_a660d53704c3d74635e2641821805f585_a660d53704c3d74635e2641821805f585}
+
+
+取得监听器配置链表 
 
 
 \begin{DoxyParams}{参数}
@@ -232,18 +232,18 @@ void \hyperlink{a00107_ga671b44cb682198b418b21749e6b2fdbe_ga671b44cb682198b418b2
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-kframework\+\_\+acceptor\+\_\+config\+\_\+t实例 
+监听器配置链表 
 \end{DoxyReturn}
-\hypertarget{a00107_ga135342b1a0a31db4d614ee96a76d3e46_ga135342b1a0a31db4d614ee96a76d3e46}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!knet\+\_\+framework\+\_\+config\+\_\+new\+\_\+connector@{knet\+\_\+framework\+\_\+config\+\_\+new\+\_\+connector}}
-\index{knet\+\_\+framework\+\_\+config\+\_\+new\+\_\+connector@{knet\+\_\+framework\+\_\+config\+\_\+new\+\_\+connector}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
-\subsubsection[{knet\+\_\+framework\+\_\+config\+\_\+new\+\_\+connector}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kframework\+\_\+connector\+\_\+config\+\_\+t}$\ast$ knet\+\_\+framework\+\_\+config\+\_\+new\+\_\+connector (
+\hypertarget{a00059_aceca26164a0fb95ab1169ac8691f71a3_aceca26164a0fb95ab1169ac8691f71a3}{}\index{framework\+\_\+config.\+h@{framework\+\_\+config.\+h}!framework\+\_\+config\+\_\+get\+\_\+connector\+\_\+config@{framework\+\_\+config\+\_\+get\+\_\+connector\+\_\+config}}
+\index{framework\+\_\+config\+\_\+get\+\_\+connector\+\_\+config@{framework\+\_\+config\+\_\+get\+\_\+connector\+\_\+config}!framework\+\_\+config.\+h@{framework\+\_\+config.\+h}}
+\subsubsection[{framework\+\_\+config\+\_\+get\+\_\+connector\+\_\+config}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kdlist\+\_\+t}$\ast$ framework\+\_\+config\+\_\+get\+\_\+connector\+\_\+config (
 \begin{DoxyParamCaption}
 \item[{{\bf kframework\+\_\+config\+\_\+t} $\ast$}]{c}
 \end{DoxyParamCaption}
-)}\label{a00107_ga135342b1a0a31db4d614ee96a76d3e46_ga135342b1a0a31db4d614ee96a76d3e46}
+)}\label{a00059_aceca26164a0fb95ab1169ac8691f71a3_aceca26164a0fb95ab1169ac8691f71a3}
 
 
-建立连接器配置 
+取得连接器配置链表 
 
 
 \begin{DoxyParams}{参数}
@@ -251,198 +251,214 @@ kframework\+\_\+acceptor\+\_\+config\+\_\+t实例
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-kframework\+\_\+connector\+\_\+config\+\_\+t实例 
+连接器配置链表 
 \end{DoxyReturn}
-\hypertarget{a00107_ga470f4acf8c70060852d435753375fa3b_ga470f4acf8c70060852d435753375fa3b}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!knet\+\_\+framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+thread\+\_\+count@{knet\+\_\+framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+thread\+\_\+count}}
-\index{knet\+\_\+framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+thread\+\_\+count@{knet\+\_\+framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+thread\+\_\+count}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
-\subsubsection[{knet\+\_\+framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+thread\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+thread\+\_\+count (
+\hypertarget{a00059_aafb4c7a8913ed48592037da43edd8e39_aafb4c7a8913ed48592037da43edd8e39}{}\index{framework\+\_\+config.\+h@{framework\+\_\+config.\+h}!framework\+\_\+config\+\_\+get\+\_\+worker\+\_\+thread\+\_\+count@{framework\+\_\+config\+\_\+get\+\_\+worker\+\_\+thread\+\_\+count}}
+\index{framework\+\_\+config\+\_\+get\+\_\+worker\+\_\+thread\+\_\+count@{framework\+\_\+config\+\_\+get\+\_\+worker\+\_\+thread\+\_\+count}!framework\+\_\+config.\+h@{framework\+\_\+config.\+h}}
+\subsubsection[{framework\+\_\+config\+\_\+get\+\_\+worker\+\_\+thread\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}int framework\+\_\+config\+\_\+get\+\_\+worker\+\_\+thread\+\_\+count (
 \begin{DoxyParamCaption}
-\item[{{\bf kframework\+\_\+config\+\_\+t} $\ast$}]{c, }
-\item[{int}]{worker\+\_\+thread\+\_\+count}
+\item[{{\bf kframework\+\_\+config\+\_\+t} $\ast$}]{c}
 \end{DoxyParamCaption}
-)}\label{a00107_ga470f4acf8c70060852d435753375fa3b_ga470f4acf8c70060852d435753375fa3b}
+)}\label{a00059_aafb4c7a8913ed48592037da43edd8e39_aafb4c7a8913ed48592037da43edd8e39}
 
 
-设置工作线程数量，默认为单线程 
+取得工作线程数量 
 
 
 \begin{DoxyParams}{参数}
 {\em c} & kframework\+\_\+config\+\_\+t实例 \\
 \hline
-{\em worker\+\_\+thread\+\_\+count} & 工作线程数量 \\
-\hline
 \end{DoxyParams}
-\hypertarget{a00107_ga42497b09d9d0c4039a062ff750ead0a9_ga42497b09d9d0c4039a062ff750ead0a9}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!knet\+\_\+framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+timer\+\_\+freq@{knet\+\_\+framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+timer\+\_\+freq}}
-\index{knet\+\_\+framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+timer\+\_\+freq@{knet\+\_\+framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+timer\+\_\+freq}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
-\subsubsection[{knet\+\_\+framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+timer\+\_\+freq}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+timer\+\_\+freq (
+\begin{DoxyReturn}{返回}
+工作线程数量 
+\end{DoxyReturn}
+\hypertarget{a00059_ab0815a3aff5ee221ba2870899e25f045_ab0815a3aff5ee221ba2870899e25f045}{}\index{framework\+\_\+config.\+h@{framework\+\_\+config.\+h}!framework\+\_\+config\+\_\+get\+\_\+worker\+\_\+timer\+\_\+freq@{framework\+\_\+config\+\_\+get\+\_\+worker\+\_\+timer\+\_\+freq}}
+\index{framework\+\_\+config\+\_\+get\+\_\+worker\+\_\+timer\+\_\+freq@{framework\+\_\+config\+\_\+get\+\_\+worker\+\_\+timer\+\_\+freq}!framework\+\_\+config.\+h@{framework\+\_\+config.\+h}}
+\subsubsection[{framework\+\_\+config\+\_\+get\+\_\+worker\+\_\+timer\+\_\+freq}]{\setlength{\rightskip}{0pt plus 5cm}time\+\_\+t framework\+\_\+config\+\_\+get\+\_\+worker\+\_\+timer\+\_\+freq (
 \begin{DoxyParamCaption}
-\item[{{\bf kframework\+\_\+config\+\_\+t} $\ast$}]{c, }
-\item[{time\+\_\+t}]{freq}
+\item[{{\bf kframework\+\_\+config\+\_\+t} $\ast$}]{c}
 \end{DoxyParamCaption}
-)}\label{a00107_ga42497b09d9d0c4039a062ff750ead0a9_ga42497b09d9d0c4039a062ff750ead0a9}
+)}\label{a00059_ab0815a3aff5ee221ba2870899e25f045_ab0815a3aff5ee221ba2870899e25f045}
 
 
-设置工作线程内定时器分辨率 
+取得工作线程内定时器分辨率 
 
 
 \begin{DoxyParams}{参数}
 {\em c} & kframework\+\_\+config\+\_\+t实例 \\
 \hline
-{\em freq} & 工作线程内定时器分辨率（毫秒） \\
-\hline
 \end{DoxyParams}
-\hypertarget{a00107_gae0c5bc540a44a88d64390845744f736f_gae0c5bc540a44a88d64390845744f736f}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!knet\+\_\+framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+timer\+\_\+slot@{knet\+\_\+framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+timer\+\_\+slot}}
-\index{knet\+\_\+framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+timer\+\_\+slot@{knet\+\_\+framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+timer\+\_\+slot}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
-\subsubsection[{knet\+\_\+framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+timer\+\_\+slot}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+framework\+\_\+config\+\_\+set\+\_\+worker\+\_\+timer\+\_\+slot (
+\begin{DoxyReturn}{返回}
+工作线程内定时器分辨率（毫秒） 
+\end{DoxyReturn}
+\hypertarget{a00059_a012d9b9ae0e167f8b3c8b591947d6103_a012d9b9ae0e167f8b3c8b591947d6103}{}\index{framework\+\_\+config.\+h@{framework\+\_\+config.\+h}!framework\+\_\+config\+\_\+get\+\_\+worker\+\_\+timer\+\_\+slot@{framework\+\_\+config\+\_\+get\+\_\+worker\+\_\+timer\+\_\+slot}}
+\index{framework\+\_\+config\+\_\+get\+\_\+worker\+\_\+timer\+\_\+slot@{framework\+\_\+config\+\_\+get\+\_\+worker\+\_\+timer\+\_\+slot}!framework\+\_\+config.\+h@{framework\+\_\+config.\+h}}
+\subsubsection[{framework\+\_\+config\+\_\+get\+\_\+worker\+\_\+timer\+\_\+slot}]{\setlength{\rightskip}{0pt plus 5cm}int framework\+\_\+config\+\_\+get\+\_\+worker\+\_\+timer\+\_\+slot (
 \begin{DoxyParamCaption}
-\item[{{\bf kframework\+\_\+config\+\_\+t} $\ast$}]{c, }
-\item[{int}]{slot}
+\item[{{\bf kframework\+\_\+config\+\_\+t} $\ast$}]{c}
 \end{DoxyParamCaption}
-)}\label{a00107_gae0c5bc540a44a88d64390845744f736f_gae0c5bc540a44a88d64390845744f736f}
+)}\label{a00059_a012d9b9ae0e167f8b3c8b591947d6103_a012d9b9ae0e167f8b3c8b591947d6103}
 
 
-设置工作线程内定时器槽位数量 
+取得工作线程内定时器槽位数量 
 
 
 \begin{DoxyParams}{参数}
 {\em c} & kframework\+\_\+config\+\_\+t实例 \\
 \hline
-{\em slot} & 定时器槽位数量 \\
-\hline
 \end{DoxyParams}
-\hypertarget{a00107_ga984a212938eb7d5b79fae88c5eeb1644_ga984a212938eb7d5b79fae88c5eeb1644}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+auto\+\_\+reconnect@{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+auto\+\_\+reconnect}}
-\index{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+auto\+\_\+reconnect@{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+auto\+\_\+reconnect}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
-\subsubsection[{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+auto\+\_\+reconnect}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+auto\+\_\+reconnect (
+\begin{DoxyReturn}{返回}
+定时器槽位数量 
+\end{DoxyReturn}
+\hypertarget{a00059_a5f7bfd9325348609aeb606b1e0b97193_a5f7bfd9325348609aeb606b1e0b97193}{}\index{framework\+\_\+config.\+h@{framework\+\_\+config.\+h}!framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+auto\+\_\+reconnect@{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+auto\+\_\+reconnect}}
+\index{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+auto\+\_\+reconnect@{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+auto\+\_\+reconnect}!framework\+\_\+config.\+h@{framework\+\_\+config.\+h}}
+\subsubsection[{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+auto\+\_\+reconnect}]{\setlength{\rightskip}{0pt plus 5cm}int framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+auto\+\_\+reconnect (
 \begin{DoxyParamCaption}
-\item[{{\bf kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$}]{c, }
-\item[{int}]{auto\+\_\+reconnect}
+\item[{{\bf kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$}]{c}
 \end{DoxyParamCaption}
-)}\label{a00107_ga984a212938eb7d5b79fae88c5eeb1644_ga984a212938eb7d5b79fae88c5eeb1644}
+)}\label{a00059_a5f7bfd9325348609aeb606b1e0b97193_a5f7bfd9325348609aeb606b1e0b97193}
 
 
-设置连接器自动重连 
+取得连接器自动重连标志 
 
 
 \begin{DoxyParams}{参数}
 {\em c} & kframework\+\_\+connector\+\_\+config\+\_\+t实例 \\
 \hline
-{\em auto\+\_\+reconnect} & 自动重连标志 \\
-\hline
 \end{DoxyParams}
-\hypertarget{a00107_ga03024112cca453db282a4aa4af7bedc8_ga03024112cca453db282a4aa4af7bedc8}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+cb@{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+cb}}
-\index{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+cb@{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+cb}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
-\subsubsection[{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+cb}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+cb (
+\begin{DoxyReturn}{返回}
+连接器自动重连标志 
+\end{DoxyReturn}
+\hypertarget{a00059_a6898deb7c3de795887164182fdfcf1e4_a6898deb7c3de795887164182fdfcf1e4}{}\index{framework\+\_\+config.\+h@{framework\+\_\+config.\+h}!framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+cb@{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+cb}}
+\index{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+cb@{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+cb}!framework\+\_\+config.\+h@{framework\+\_\+config.\+h}}
+\subsubsection[{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+cb}]{\setlength{\rightskip}{0pt plus 5cm}{\bf knet\+\_\+channel\+\_\+ref\+\_\+cb\+\_\+t} framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+cb (
 \begin{DoxyParamCaption}
-\item[{{\bf kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$}]{c, }
-\item[{{\bf knet\+\_\+channel\+\_\+ref\+\_\+cb\+\_\+t}}]{cb}
+\item[{{\bf kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$}]{c}
 \end{DoxyParamCaption}
-)}\label{a00107_ga03024112cca453db282a4aa4af7bedc8_ga03024112cca453db282a4aa4af7bedc8}
+)}\label{a00059_a6898deb7c3de795887164182fdfcf1e4_a6898deb7c3de795887164182fdfcf1e4}
 
 
-设置连接器回调函数 
+取得连接器回调函数 
 
 
 \begin{DoxyParams}{参数}
 {\em c} & kframework\+\_\+connector\+\_\+config\+\_\+t实例 \\
 \hline
-{\em cb} & 连接器回调函数 \\
-\hline
 \end{DoxyParams}
-\hypertarget{a00107_ga671b44cb682198b418b21749e6b2fdbe_ga671b44cb682198b418b21749e6b2fdbe}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length@{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length}}
-\index{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length@{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
-\subsubsection[{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length (
+\begin{DoxyReturn}{返回}
+连接器回调函数 
+\end{DoxyReturn}
+\hypertarget{a00059_ac68772cc33b88a22813e697d95888017_ac68772cc33b88a22813e697d95888017}{}\index{framework\+\_\+config.\+h@{framework\+\_\+config.\+h}!framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+connect\+\_\+timeout@{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+connect\+\_\+timeout}}
+\index{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+connect\+\_\+timeout@{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+connect\+\_\+timeout}!framework\+\_\+config.\+h@{framework\+\_\+config.\+h}}
+\subsubsection[{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+connect\+\_\+timeout}]{\setlength{\rightskip}{0pt plus 5cm}int framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+connect\+\_\+timeout (
 \begin{DoxyParamCaption}
-\item[{{\bf kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$}]{c, }
-\item[{int}]{max\+\_\+recv\+\_\+buffer\+\_\+length}
+\item[{{\bf kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$}]{c}
 \end{DoxyParamCaption}
-)}\label{a00107_ga671b44cb682198b418b21749e6b2fdbe_ga671b44cb682198b418b21749e6b2fdbe}
+)}\label{a00059_ac68772cc33b88a22813e697d95888017_ac68772cc33b88a22813e697d95888017}
 
 
-设置连接器接收缓冲区最大长度 
+取得连接器连接超时(秒) 
 
 
 \begin{DoxyParams}{参数}
 {\em c} & kframework\+\_\+connector\+\_\+config\+\_\+t实例 \\
 \hline
-{\em max\+\_\+recv\+\_\+buffer\+\_\+length} & 接收缓冲区最大长度(字节) \\
-\hline
 \end{DoxyParams}
-\hypertarget{a00107_ga32b058fe0a17d4a609097157761bb9f1_ga32b058fe0a17d4a609097157761bb9f1}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count@{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count}}
-\index{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count@{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
-\subsubsection[{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+client\+\_\+max\+\_\+send\+\_\+list\+\_\+count (
+\begin{DoxyReturn}{返回}
+连接器连接超时(秒) 
+\end{DoxyReturn}
+\hypertarget{a00059_a2c4b9be08ca46cedca68b89c6f11f49f_a2c4b9be08ca46cedca68b89c6f11f49f}{}\index{framework\+\_\+config.\+h@{framework\+\_\+config.\+h}!framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+heartbeat\+\_\+timeout@{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+heartbeat\+\_\+timeout}}
+\index{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+heartbeat\+\_\+timeout@{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+heartbeat\+\_\+timeout}!framework\+\_\+config.\+h@{framework\+\_\+config.\+h}}
+\subsubsection[{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+heartbeat\+\_\+timeout}]{\setlength{\rightskip}{0pt plus 5cm}int framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+heartbeat\+\_\+timeout (
 \begin{DoxyParamCaption}
-\item[{{\bf kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$}]{c, }
-\item[{int}]{max\+\_\+send\+\_\+list\+\_\+count}
+\item[{{\bf kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$}]{c}
 \end{DoxyParamCaption}
-)}\label{a00107_ga32b058fe0a17d4a609097157761bb9f1_ga32b058fe0a17d4a609097157761bb9f1}
+)}\label{a00059_a2c4b9be08ca46cedca68b89c6f11f49f_a2c4b9be08ca46cedca68b89c6f11f49f}
 
 
-设置连接器发送链表最大长度 
+取得连接器心跳超时(秒) 
 
 
 \begin{DoxyParams}{参数}
 {\em c} & kframework\+\_\+connector\+\_\+config\+\_\+t实例 \\
 \hline
-{\em max\+\_\+send\+\_\+list\+\_\+count} & 发送链表最大长度(字节) \\
-\hline
 \end{DoxyParams}
-\hypertarget{a00107_gacf0d08bb6f135c12326d30acad7456f1_gacf0d08bb6f135c12326d30acad7456f1}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+connect\+\_\+timeout@{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+connect\+\_\+timeout}}
-\index{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+connect\+\_\+timeout@{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+connect\+\_\+timeout}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
-\subsubsection[{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+connect\+\_\+timeout}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+connect\+\_\+timeout (
+\begin{DoxyReturn}{返回}
+连接器心跳超时(秒) 
+\end{DoxyReturn}
+\hypertarget{a00059_a5a2f5598ed8e267376ffb1a3da51f88b_a5a2f5598ed8e267376ffb1a3da51f88b}{}\index{framework\+\_\+config.\+h@{framework\+\_\+config.\+h}!framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length@{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length}}
+\index{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length@{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length}!framework\+\_\+config.\+h@{framework\+\_\+config.\+h}}
+\subsubsection[{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length}]{\setlength{\rightskip}{0pt plus 5cm}int framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+max\+\_\+recv\+\_\+buffer\+\_\+length (
 \begin{DoxyParamCaption}
-\item[{{\bf kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$}]{c, }
-\item[{int}]{timeout}
+\item[{{\bf kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$}]{c}
 \end{DoxyParamCaption}
-)}\label{a00107_gacf0d08bb6f135c12326d30acad7456f1_gacf0d08bb6f135c12326d30acad7456f1}
+)}\label{a00059_a5a2f5598ed8e267376ffb1a3da51f88b_a5a2f5598ed8e267376ffb1a3da51f88b}
 
 
-设置连接器连接超时 
+取得连接器接收缓冲区最大长度 
 
 
 \begin{DoxyParams}{参数}
 {\em c} & kframework\+\_\+connector\+\_\+config\+\_\+t实例 \\
 \hline
-{\em timeout} & 连接超时(秒) \\
-\hline
 \end{DoxyParams}
-\hypertarget{a00107_ga186f2fb032c5b2350e990c63b5aa628e_ga186f2fb032c5b2350e990c63b5aa628e}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+heartbeat\+\_\+timeout@{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+heartbeat\+\_\+timeout}}
-\index{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+heartbeat\+\_\+timeout@{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+heartbeat\+\_\+timeout}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
-\subsubsection[{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+heartbeat\+\_\+timeout}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+heartbeat\+\_\+timeout (
+\begin{DoxyReturn}{返回}
+连接器接收缓冲区最大长度 
+\end{DoxyReturn}
+\hypertarget{a00059_a60303490cfa82253a2fcd6ccbe6be25a_a60303490cfa82253a2fcd6ccbe6be25a}{}\index{framework\+\_\+config.\+h@{framework\+\_\+config.\+h}!framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+max\+\_\+send\+\_\+list\+\_\+count@{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+max\+\_\+send\+\_\+list\+\_\+count}}
+\index{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+max\+\_\+send\+\_\+list\+\_\+count@{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+max\+\_\+send\+\_\+list\+\_\+count}!framework\+\_\+config.\+h@{framework\+\_\+config.\+h}}
+\subsubsection[{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+max\+\_\+send\+\_\+list\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}int framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+max\+\_\+send\+\_\+list\+\_\+count (
 \begin{DoxyParamCaption}
-\item[{{\bf kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$}]{c, }
-\item[{int}]{timeout}
+\item[{{\bf kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$}]{c}
 \end{DoxyParamCaption}
-)}\label{a00107_ga186f2fb032c5b2350e990c63b5aa628e_ga186f2fb032c5b2350e990c63b5aa628e}
+)}\label{a00059_a60303490cfa82253a2fcd6ccbe6be25a_a60303490cfa82253a2fcd6ccbe6be25a}
 
 
-设置连接器心跳超时 
+取得连接器发送链表最大长度 
 
 
 \begin{DoxyParams}{参数}
 {\em c} & kframework\+\_\+connector\+\_\+config\+\_\+t实例 \\
 \hline
-{\em timeout} & 客户端心跳超时(秒) \\
-\hline
 \end{DoxyParams}
-\hypertarget{a00107_gae677441ee9bcc61da7c7728ce3ae773e_gae677441ee9bcc61da7c7728ce3ae773e}{}\index{framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}!knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+remote\+\_\+address@{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+remote\+\_\+address}}
-\index{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+remote\+\_\+address@{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+remote\+\_\+address}!framework\+\_\+config\+\_\+api.\+h@{framework\+\_\+config\+\_\+api.\+h}}
-\subsubsection[{knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+remote\+\_\+address}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+framework\+\_\+connector\+\_\+config\+\_\+set\+\_\+remote\+\_\+address (
+\begin{DoxyReturn}{返回}
+连接器发送链表最大长度 
+\end{DoxyReturn}
+\hypertarget{a00059_ae0e3797a6b6b907d233c7edabed36bf1_ae0e3797a6b6b907d233c7edabed36bf1}{}\index{framework\+\_\+config.\+h@{framework\+\_\+config.\+h}!framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+remote\+\_\+ip@{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+remote\+\_\+ip}}
+\index{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+remote\+\_\+ip@{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+remote\+\_\+ip}!framework\+\_\+config.\+h@{framework\+\_\+config.\+h}}
+\subsubsection[{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+remote\+\_\+ip}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+remote\+\_\+ip (
 \begin{DoxyParamCaption}
-\item[{{\bf kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$}]{c, }
-\item[{const char $\ast$}]{ip, }
-\item[{int}]{port}
+\item[{{\bf kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$}]{c}
 \end{DoxyParamCaption}
-)}\label{a00107_gae677441ee9bcc61da7c7728ce3ae773e_gae677441ee9bcc61da7c7728ce3ae773e}
+)}\label{a00059_ae0e3797a6b6b907d233c7edabed36bf1_ae0e3797a6b6b907d233c7edabed36bf1}
 
 
-设置连接器需要连接的地址 
+取得连接器对端\+I\+P 
 
 
 \begin{DoxyParams}{参数}
 {\em c} & kframework\+\_\+connector\+\_\+config\+\_\+t实例 \\
 \hline
-{\em ip} & I\+P \\
-\hline
-{\em port} & 端口 \\
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+连接器对端\+I\+P 
+\end{DoxyReturn}
+\hypertarget{a00059_a55707c9637479a001e71bc4572f71f2c_a55707c9637479a001e71bc4572f71f2c}{}\index{framework\+\_\+config.\+h@{framework\+\_\+config.\+h}!framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+remote\+\_\+port@{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+remote\+\_\+port}}
+\index{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+remote\+\_\+port@{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+remote\+\_\+port}!framework\+\_\+config.\+h@{framework\+\_\+config.\+h}}
+\subsubsection[{framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+remote\+\_\+port}]{\setlength{\rightskip}{0pt plus 5cm}int framework\+\_\+connector\+\_\+config\+\_\+get\+\_\+remote\+\_\+port (
+\begin{DoxyParamCaption}
+\item[{{\bf kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$}]{c}
+\end{DoxyParamCaption}
+)}\label{a00059_a55707c9637479a001e71bc4572f71f2c_a55707c9637479a001e71bc4572f71f2c}
+
+
+取得连接器对端端口 
+
+
+\begin{DoxyParams}{参数}
+{\em c} & kframework\+\_\+connector\+\_\+config\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{返回}
+连接器对端端口 
+\end{DoxyReturn}

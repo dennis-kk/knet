@@ -37,9 +37,6 @@ void connector_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
 
 /* 服务端 - 客户端回调 */
 void client_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
-    char buffer[32] = {0};
-    /* 获取对端地址 */
-    kaddress_t* peer_addr = knet_channel_ref_get_peer_address(channel);
     kstream_t* stream = knet_channel_ref_get_stream(channel);
     if (e & channel_cb_event_recv) { /* 有数据可以读 */
         if (error_ok == krpc_proc(rpc, stream)) {

@@ -1,316 +1,72 @@
-\hypertarget{a00106}{}\section{框架}
-\label{a00106}\index{框架@{框架}}
-
-
-网络框架  
-
-
+\hypertarget{a00106}{}\section{E\+:/knet-\/git/knet/knet/version.h 文件参考}
+\label{a00106}\index{E\+:/knet-\/git/knet/knet/version.\+h@{E\+:/knet-\/git/knet/knet/version.\+h}}
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00053_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$ \hyperlink{a00106_ga066683c6d9defb4121552b439d11d7ba_ga066683c6d9defb4121552b439d11d7ba}{knet\+\_\+framework\+\_\+create} ()
-\begin{DoxyCompactList}\small\item\em 建立框架 \end{DoxyCompactList}\item 
-void \hyperlink{a00106_gaee7016dea12793dae5e6732fb86ee8d0_gaee7016dea12793dae5e6732fb86ee8d0}{knet\+\_\+framework\+\_\+destroy} (\hyperlink{a00053_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f)
-\begin{DoxyCompactList}\small\item\em 销毁框架 \end{DoxyCompactList}\item 
-int \hyperlink{a00106_gae2bea4af82f4cdce2f4efbf68aa8054c_gae2bea4af82f4cdce2f4efbf68aa8054c}{knet\+\_\+framework\+\_\+start} (\hyperlink{a00053_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f)
-\begin{DoxyCompactList}\small\item\em 启动框架 \end{DoxyCompactList}\item 
-int \hyperlink{a00106_ga5eda19f3b32bb48578cf735e877aac2e_ga5eda19f3b32bb48578cf735e877aac2e}{knet\+\_\+framework\+\_\+start\+\_\+wait} (\hyperlink{a00053_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f)
-\begin{DoxyCompactList}\small\item\em 启动框架并等待框架关闭 \end{DoxyCompactList}\item 
-int \hyperlink{a00106_gab44f183a42eda626fe6ec1e6d35bb859_gab44f183a42eda626fe6ec1e6d35bb859}{knet\+\_\+framework\+\_\+start\+\_\+wait\+\_\+destroy} (\hyperlink{a00053_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f)
-\begin{DoxyCompactList}\small\item\em 启动框架并等待框架关闭，如果启动失败或者框架关闭则销毁 \end{DoxyCompactList}\item 
-void \hyperlink{a00106_gacff434cca9ce60fa5a3597348ee4360b_gacff434cca9ce60fa5a3597348ee4360b}{knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop} (\hyperlink{a00053_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f)
-\begin{DoxyCompactList}\small\item\em 等待框架停止 \end{DoxyCompactList}\item 
-void \hyperlink{a00106_ga5936d2ece03511c366b19bc7616ac8be_ga5936d2ece03511c366b19bc7616ac8be}{knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop\+\_\+destroy} (\hyperlink{a00053_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f)
-\begin{DoxyCompactList}\small\item\em 等待框架停止并销毁 \end{DoxyCompactList}\item 
-int \hyperlink{a00106_gac8f76fe72392bc5103b70fb5b3280839_gac8f76fe72392bc5103b70fb5b3280839}{knet\+\_\+framework\+\_\+stop} (\hyperlink{a00053_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f)
-\begin{DoxyCompactList}\small\item\em 关闭框架 \end{DoxyCompactList}\item 
-\hyperlink{a00053_adeaf952e0f0887507ff836385bf54874_adeaf952e0f0887507ff836385bf54874}{kframework\+\_\+config\+\_\+t} $\ast$ \hyperlink{a00106_ga2fcd8c172557a78fe7edbba0e7f9da40_ga2fcd8c172557a78fe7edbba0e7f9da40}{knet\+\_\+framework\+\_\+get\+\_\+config} (\hyperlink{a00053_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f)
-\begin{DoxyCompactList}\small\item\em 取得框架配置 \end{DoxyCompactList}\item 
-int \hyperlink{a00106_gae3f68614153df18fabd1c7d148ce826b_gae3f68614153df18fabd1c7d148ce826b}{knet\+\_\+framework\+\_\+acceptor\+\_\+start} (\hyperlink{a00053_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f, \hyperlink{a00053_a39c993eb450173e4fde04498d757f9b6_a39c993eb450173e4fde04498d757f9b6}{kframework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$c)
-\begin{DoxyCompactList}\small\item\em 启动监听器 \end{DoxyCompactList}\item 
-int \hyperlink{a00106_ga28cdba2072f2c191547c0450d040d536_ga28cdba2072f2c191547c0450d040d536}{knet\+\_\+framework\+\_\+connector\+\_\+start} (\hyperlink{a00053_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f, \hyperlink{a00053_a44d3033eba5a4fd784a741700a7a2521_a44d3033eba5a4fd784a741700a7a2521}{kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$c)
-\begin{DoxyCompactList}\small\item\em 启动连接器 \end{DoxyCompactList}\item 
-\hyperlink{a00053_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$ \hyperlink{a00106_gaf740887dd472ce5bb57263e156e3e75e_gaf740887dd472ce5bb57263e156e3e75e}{knet\+\_\+framework\+\_\+create\+\_\+worker\+\_\+timer} (\hyperlink{a00053_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f)
-\begin{DoxyCompactList}\small\item\em 建立一个工作线程定时器 只能在工作线程内建立定时器，如果在非工作线程内建立定时器则失败 \end{DoxyCompactList}\end{DoxyCompactItemize}
+const char $\ast$ \hyperlink{a00106_a3b6e0e802bbb0f81da8bcef8e757066a_a3b6e0e802bbb0f81da8bcef8e757066a}{knet\+\_\+get\+\_\+version\+\_\+string} ()
+\begin{DoxyCompactList}\small\item\em 取得当前版本号字符串 \end{DoxyCompactList}\item 
+int \hyperlink{a00106_ad86dd4bf914796aa945a02faac4ae52e_ad86dd4bf914796aa945a02faac4ae52e}{knet\+\_\+get\+\_\+version\+\_\+major} ()
+\begin{DoxyCompactList}\small\item\em 取得主版本号 \end{DoxyCompactList}\item 
+int \hyperlink{a00106_abedac37db9a6c72670cad32bdc2dedcd_abedac37db9a6c72670cad32bdc2dedcd}{knet\+\_\+get\+\_\+version\+\_\+minor} ()
+\begin{DoxyCompactList}\small\item\em 取得次版本号 \end{DoxyCompactList}\item 
+int \hyperlink{a00106_a6fb5e77c44c774a9d017ba43dea51672_a6fb5e77c44c774a9d017ba43dea51672}{knet\+\_\+get\+\_\+version\+\_\+path} ()
+\begin{DoxyCompactList}\small\item\em 取得补丁版本号 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
-
-\subsection{详细描述}
-网络框架 
-
-
-\begin{DoxyPre}
-为方便使用提供了kframework\_t接口，对多线程模式(也包含单逻辑线程)提供了包装：\end{DoxyPre}
-
-
-
-\begin{DoxyPre}1. 独立的监听线程，处理channel\_cb\_event\_accept事件，监听线程不处理管道读写
-2. 提供了一个工作线程池，使用kloop\_balancer\_t(负载均衡器)来分派管道
-3. 提供了统一的配置接口方便建立多个连接器或者监听器\end{DoxyPre}
-
-
-
-\begin{DoxyPre}默认情况下工作线程池内只有一个线程，可以通过配置接口函数knet\_framework\_config\_set\_worker\_thread\_count
-进行配置. 框架默认会启动两个线程，一个监听线程，一个工作线程(工作线程池内唯一线程)，所有accept或者
-connect的管道都会被分派到不同的工作线程处理，监听线程只负责连接的建立不负责读写.\end{DoxyPre}
-
-
-
-\begin{DoxyPre}kframework\_config\_t提供了统一的配置接口，在kframework\_t建立后可以获取kframework\_config\_t
-接口进行配置，调用knet\_framework\_start启动成功后将不能更改已经建立的配置，但可以在运行中增加新的监听器和连接器.\end{DoxyPre}
-
-
-
-\begin{DoxyPre}框架的回调函数将在线程池内被回调，如果有多个工作线程的情况下，应该保证回调函数内的代码是线程安全的，
-为了方便使用，框架的回调函数也会通知channel\_cb\_event\_accept事件.\end{DoxyPre}
-
-
-
-\begin{DoxyPre}可以在工作线程内调用knet\_framework\_create\_worker\_timer启动定时器，不能在工作线程外创建工作线程定时器.
-\end{DoxyPre}
- 
 
 \subsection{函数说明}
-\hypertarget{a00106_gae3f68614153df18fabd1c7d148ce826b_gae3f68614153df18fabd1c7d148ce826b}{}\index{框架@{框架}!knet\+\_\+framework\+\_\+acceptor\+\_\+start@{knet\+\_\+framework\+\_\+acceptor\+\_\+start}}
-\index{knet\+\_\+framework\+\_\+acceptor\+\_\+start@{knet\+\_\+framework\+\_\+acceptor\+\_\+start}!框架@{框架}}
-\subsubsection[{knet\+\_\+framework\+\_\+acceptor\+\_\+start}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+framework\+\_\+acceptor\+\_\+start (
-\begin{DoxyParamCaption}
-\item[{{\bf kframework\+\_\+t} $\ast$}]{f, }
-\item[{{\bf kframework\+\_\+acceptor\+\_\+config\+\_\+t} $\ast$}]{c}
-\end{DoxyParamCaption}
-)}\label{a00106_gae3f68614153df18fabd1c7d148ce826b_gae3f68614153df18fabd1c7d148ce826b}
-
-
-启动监听器 
-
-
-\begin{DoxyParams}{参数}
-{\em f} & kframework\+\_\+t实例 \\
-\hline
-{\em c} & kframework\+\_\+acceptor\+\_\+config\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00106_ga28cdba2072f2c191547c0450d040d536_ga28cdba2072f2c191547c0450d040d536}{}\index{框架@{框架}!knet\+\_\+framework\+\_\+connector\+\_\+start@{knet\+\_\+framework\+\_\+connector\+\_\+start}}
-\index{knet\+\_\+framework\+\_\+connector\+\_\+start@{knet\+\_\+framework\+\_\+connector\+\_\+start}!框架@{框架}}
-\subsubsection[{knet\+\_\+framework\+\_\+connector\+\_\+start}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+framework\+\_\+connector\+\_\+start (
-\begin{DoxyParamCaption}
-\item[{{\bf kframework\+\_\+t} $\ast$}]{f, }
-\item[{{\bf kframework\+\_\+connector\+\_\+config\+\_\+t} $\ast$}]{c}
-\end{DoxyParamCaption}
-)}\label{a00106_ga28cdba2072f2c191547c0450d040d536_ga28cdba2072f2c191547c0450d040d536}
-
-
-启动连接器 
-
-
-\begin{DoxyParams}{参数}
-{\em f} & kframework\+\_\+t实例 \\
-\hline
-{\em c} & kframework\+\_\+connector\+\_\+config\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00106_ga066683c6d9defb4121552b439d11d7ba_ga066683c6d9defb4121552b439d11d7ba}{}\index{框架@{框架}!knet\+\_\+framework\+\_\+create@{knet\+\_\+framework\+\_\+create}}
-\index{knet\+\_\+framework\+\_\+create@{knet\+\_\+framework\+\_\+create}!框架@{框架}}
-\subsubsection[{knet\+\_\+framework\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kframework\+\_\+t}$\ast$ knet\+\_\+framework\+\_\+create (
+\hypertarget{a00106_ad86dd4bf914796aa945a02faac4ae52e_ad86dd4bf914796aa945a02faac4ae52e}{}\index{version.\+h@{version.\+h}!knet\+\_\+get\+\_\+version\+\_\+major@{knet\+\_\+get\+\_\+version\+\_\+major}}
+\index{knet\+\_\+get\+\_\+version\+\_\+major@{knet\+\_\+get\+\_\+version\+\_\+major}!version.\+h@{version.\+h}}
+\subsubsection[{knet\+\_\+get\+\_\+version\+\_\+major}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+get\+\_\+version\+\_\+major (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\label{a00106_ga066683c6d9defb4121552b439d11d7ba_ga066683c6d9defb4121552b439d11d7ba}
+)}\label{a00106_ad86dd4bf914796aa945a02faac4ae52e_ad86dd4bf914796aa945a02faac4ae52e}
 
 
-建立框架 
+取得主版本号 
 
 \begin{DoxyReturn}{返回}
-kframework\+\_\+t实例 
+主版本号 
 \end{DoxyReturn}
-\hypertarget{a00106_gaf740887dd472ce5bb57263e156e3e75e_gaf740887dd472ce5bb57263e156e3e75e}{}\index{框架@{框架}!knet\+\_\+framework\+\_\+create\+\_\+worker\+\_\+timer@{knet\+\_\+framework\+\_\+create\+\_\+worker\+\_\+timer}}
-\index{knet\+\_\+framework\+\_\+create\+\_\+worker\+\_\+timer@{knet\+\_\+framework\+\_\+create\+\_\+worker\+\_\+timer}!框架@{框架}}
-\subsubsection[{knet\+\_\+framework\+\_\+create\+\_\+worker\+\_\+timer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ktimer\+\_\+t}$\ast$ knet\+\_\+framework\+\_\+create\+\_\+worker\+\_\+timer (
+\hypertarget{a00106_abedac37db9a6c72670cad32bdc2dedcd_abedac37db9a6c72670cad32bdc2dedcd}{}\index{version.\+h@{version.\+h}!knet\+\_\+get\+\_\+version\+\_\+minor@{knet\+\_\+get\+\_\+version\+\_\+minor}}
+\index{knet\+\_\+get\+\_\+version\+\_\+minor@{knet\+\_\+get\+\_\+version\+\_\+minor}!version.\+h@{version.\+h}}
+\subsubsection[{knet\+\_\+get\+\_\+version\+\_\+minor}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+get\+\_\+version\+\_\+minor (
 \begin{DoxyParamCaption}
-\item[{{\bf kframework\+\_\+t} $\ast$}]{f}
+{}
 \end{DoxyParamCaption}
-)}\label{a00106_gaf740887dd472ce5bb57263e156e3e75e_gaf740887dd472ce5bb57263e156e3e75e}
+)}\label{a00106_abedac37db9a6c72670cad32bdc2dedcd_abedac37db9a6c72670cad32bdc2dedcd}
 
 
-建立一个工作线程定时器 只能在工作线程内建立定时器，如果在非工作线程内建立定时器则失败 
+取得次版本号 
 
-
-\begin{DoxyParams}{参数}
-{\em f} & kframework\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
 \begin{DoxyReturn}{返回}
-ktimer\+\_\+t实例 
+次版本号 
 \end{DoxyReturn}
-\hypertarget{a00106_gaee7016dea12793dae5e6732fb86ee8d0_gaee7016dea12793dae5e6732fb86ee8d0}{}\index{框架@{框架}!knet\+\_\+framework\+\_\+destroy@{knet\+\_\+framework\+\_\+destroy}}
-\index{knet\+\_\+framework\+\_\+destroy@{knet\+\_\+framework\+\_\+destroy}!框架@{框架}}
-\subsubsection[{knet\+\_\+framework\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+framework\+\_\+destroy (
+\hypertarget{a00106_a6fb5e77c44c774a9d017ba43dea51672_a6fb5e77c44c774a9d017ba43dea51672}{}\index{version.\+h@{version.\+h}!knet\+\_\+get\+\_\+version\+\_\+path@{knet\+\_\+get\+\_\+version\+\_\+path}}
+\index{knet\+\_\+get\+\_\+version\+\_\+path@{knet\+\_\+get\+\_\+version\+\_\+path}!version.\+h@{version.\+h}}
+\subsubsection[{knet\+\_\+get\+\_\+version\+\_\+path}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+get\+\_\+version\+\_\+path (
 \begin{DoxyParamCaption}
-\item[{{\bf kframework\+\_\+t} $\ast$}]{f}
+{}
 \end{DoxyParamCaption}
-)}\label{a00106_gaee7016dea12793dae5e6732fb86ee8d0_gaee7016dea12793dae5e6732fb86ee8d0}
+)}\label{a00106_a6fb5e77c44c774a9d017ba43dea51672_a6fb5e77c44c774a9d017ba43dea51672}
 
 
-销毁框架 
+取得补丁版本号 
 
-
-\begin{DoxyParams}{参数}
-{\em f} & kframework\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00106_ga2fcd8c172557a78fe7edbba0e7f9da40_ga2fcd8c172557a78fe7edbba0e7f9da40}{}\index{框架@{框架}!knet\+\_\+framework\+\_\+get\+\_\+config@{knet\+\_\+framework\+\_\+get\+\_\+config}}
-\index{knet\+\_\+framework\+\_\+get\+\_\+config@{knet\+\_\+framework\+\_\+get\+\_\+config}!框架@{框架}}
-\subsubsection[{knet\+\_\+framework\+\_\+get\+\_\+config}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kframework\+\_\+config\+\_\+t}$\ast$ knet\+\_\+framework\+\_\+get\+\_\+config (
-\begin{DoxyParamCaption}
-\item[{{\bf kframework\+\_\+t} $\ast$}]{f}
-\end{DoxyParamCaption}
-)}\label{a00106_ga2fcd8c172557a78fe7edbba0e7f9da40_ga2fcd8c172557a78fe7edbba0e7f9da40}
-
-
-取得框架配置 
-
-
-\begin{DoxyParams}{参数}
-{\em f} & kframework\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
 \begin{DoxyReturn}{返回}
-kframework\+\_\+config\+\_\+t实例 
+补丁版本号 
 \end{DoxyReturn}
-\hypertarget{a00106_gae2bea4af82f4cdce2f4efbf68aa8054c_gae2bea4af82f4cdce2f4efbf68aa8054c}{}\index{框架@{框架}!knet\+\_\+framework\+\_\+start@{knet\+\_\+framework\+\_\+start}}
-\index{knet\+\_\+framework\+\_\+start@{knet\+\_\+framework\+\_\+start}!框架@{框架}}
-\subsubsection[{knet\+\_\+framework\+\_\+start}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+framework\+\_\+start (
+\hypertarget{a00106_a3b6e0e802bbb0f81da8bcef8e757066a_a3b6e0e802bbb0f81da8bcef8e757066a}{}\index{version.\+h@{version.\+h}!knet\+\_\+get\+\_\+version\+\_\+string@{knet\+\_\+get\+\_\+version\+\_\+string}}
+\index{knet\+\_\+get\+\_\+version\+\_\+string@{knet\+\_\+get\+\_\+version\+\_\+string}!version.\+h@{version.\+h}}
+\subsubsection[{knet\+\_\+get\+\_\+version\+\_\+string}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ knet\+\_\+get\+\_\+version\+\_\+string (
 \begin{DoxyParamCaption}
-\item[{{\bf kframework\+\_\+t} $\ast$}]{f}
+{}
 \end{DoxyParamCaption}
-)}\label{a00106_gae2bea4af82f4cdce2f4efbf68aa8054c_gae2bea4af82f4cdce2f4efbf68aa8054c}
+)}\label{a00106_a3b6e0e802bbb0f81da8bcef8e757066a_a3b6e0e802bbb0f81da8bcef8e757066a}
 
 
-启动框架 
+取得当前版本号字符串 
 
-
-\begin{DoxyParams}{参数}
-{\em f} & kframework\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00106_ga5eda19f3b32bb48578cf735e877aac2e_ga5eda19f3b32bb48578cf735e877aac2e}{}\index{框架@{框架}!knet\+\_\+framework\+\_\+start\+\_\+wait@{knet\+\_\+framework\+\_\+start\+\_\+wait}}
-\index{knet\+\_\+framework\+\_\+start\+\_\+wait@{knet\+\_\+framework\+\_\+start\+\_\+wait}!框架@{框架}}
-\subsubsection[{knet\+\_\+framework\+\_\+start\+\_\+wait}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+framework\+\_\+start\+\_\+wait (
-\begin{DoxyParamCaption}
-\item[{{\bf kframework\+\_\+t} $\ast$}]{f}
-\end{DoxyParamCaption}
-)}\label{a00106_ga5eda19f3b32bb48578cf735e877aac2e_ga5eda19f3b32bb48578cf735e877aac2e}
-
-
-启动框架并等待框架关闭 
-
-
-\begin{DoxyParams}{参数}
-{\em f} & kframework\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00106_gab44f183a42eda626fe6ec1e6d35bb859_gab44f183a42eda626fe6ec1e6d35bb859}{}\index{框架@{框架}!knet\+\_\+framework\+\_\+start\+\_\+wait\+\_\+destroy@{knet\+\_\+framework\+\_\+start\+\_\+wait\+\_\+destroy}}
-\index{knet\+\_\+framework\+\_\+start\+\_\+wait\+\_\+destroy@{knet\+\_\+framework\+\_\+start\+\_\+wait\+\_\+destroy}!框架@{框架}}
-\subsubsection[{knet\+\_\+framework\+\_\+start\+\_\+wait\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+framework\+\_\+start\+\_\+wait\+\_\+destroy (
-\begin{DoxyParamCaption}
-\item[{{\bf kframework\+\_\+t} $\ast$}]{f}
-\end{DoxyParamCaption}
-)}\label{a00106_gab44f183a42eda626fe6ec1e6d35bb859_gab44f183a42eda626fe6ec1e6d35bb859}
-
-
-启动框架并等待框架关闭，如果启动失败或者框架关闭则销毁 
-
-
-\begin{DoxyParams}{参数}
-{\em f} & kframework\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00106_gac8f76fe72392bc5103b70fb5b3280839_gac8f76fe72392bc5103b70fb5b3280839}{}\index{框架@{框架}!knet\+\_\+framework\+\_\+stop@{knet\+\_\+framework\+\_\+stop}}
-\index{knet\+\_\+framework\+\_\+stop@{knet\+\_\+framework\+\_\+stop}!框架@{框架}}
-\subsubsection[{knet\+\_\+framework\+\_\+stop}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+framework\+\_\+stop (
-\begin{DoxyParamCaption}
-\item[{{\bf kframework\+\_\+t} $\ast$}]{f}
-\end{DoxyParamCaption}
-)}\label{a00106_gac8f76fe72392bc5103b70fb5b3280839_gac8f76fe72392bc5103b70fb5b3280839}
-
-
-关闭框架 
-
-
-\begin{DoxyParams}{参数}
-{\em f} & kframework\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00106_gacff434cca9ce60fa5a3597348ee4360b_gacff434cca9ce60fa5a3597348ee4360b}{}\index{框架@{框架}!knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop@{knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop}}
-\index{knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop@{knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop}!框架@{框架}}
-\subsubsection[{knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop (
-\begin{DoxyParamCaption}
-\item[{{\bf kframework\+\_\+t} $\ast$}]{f}
-\end{DoxyParamCaption}
-)}\label{a00106_gacff434cca9ce60fa5a3597348ee4360b_gacff434cca9ce60fa5a3597348ee4360b}
-
-
-等待框架停止 
-
-
-\begin{DoxyParams}{参数}
-{\em f} & kframework\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00106_ga5936d2ece03511c366b19bc7616ac8be_ga5936d2ece03511c366b19bc7616ac8be}{}\index{框架@{框架}!knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop\+\_\+destroy@{knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop\+\_\+destroy}}
-\index{knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop\+\_\+destroy@{knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop\+\_\+destroy}!框架@{框架}}
-\subsubsection[{knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+framework\+\_\+wait\+\_\+for\+\_\+stop\+\_\+destroy (
-\begin{DoxyParamCaption}
-\item[{{\bf kframework\+\_\+t} $\ast$}]{f}
-\end{DoxyParamCaption}
-)}\label{a00106_ga5936d2ece03511c366b19bc7616ac8be_ga5936d2ece03511c366b19bc7616ac8be}
-
-
-等待框架停止并销毁 
-
-
-\begin{DoxyParams}{参数}
-{\em f} & kframework\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+当前版本号字符串 
+\end{DoxyReturn}

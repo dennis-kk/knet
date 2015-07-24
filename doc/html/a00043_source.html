@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/address_api.h 源文件</title>
+<title>knet: E:/knet-git/knet/knet/address.h 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -39,7 +39,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>首页</span></a></li>
-      <li><a href="pages.html"><span>相关页面</span></a></li>
       <li><a href="modules.html"><span>模块</span></a></li>
       <li><a href="annotated.html"><span>结构体</span></a></li>
       <li class="current"><a href="files.html"><span>文件</span></a></li>
@@ -88,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">address_api.h</div>  </div>
+<div class="title">address.h</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00043.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
@@ -115,21 +114,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef ADDRESS_API_H</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define ADDRESS_API_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef ADDRESS_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define ADDRESS_H</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="a00103_gaa1ea22192168bb6baea88feeb20eb601.html#gaa1ea22192168bb6baea88feeb20eb601">address_get_ip</a>(<a class="code" href="a00003.html">kaddress_t</a>* address);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00103_ga9acaa00fe11bcecadea350baf9da7172.html#ga9acaa00fe11bcecadea350baf9da7172">address_get_port</a>(<a class="code" href="a00003.html">kaddress_t</a>* address);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* ADDRESS_API_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="a00003_html"><div class="ttname"><a href="a00003.html">_address_t</a></div><div class="ttdef"><b>Definition:</b> address.c:27</div></div>
-<div class="ttc" id="a00103_ga9acaa00fe11bcecadea350baf9da7172_html_ga9acaa00fe11bcecadea350baf9da7172"><div class="ttname"><a href="a00103_ga9acaa00fe11bcecadea350baf9da7172.html#ga9acaa00fe11bcecadea350baf9da7172">address_get_port</a></div><div class="ttdeci">int address_get_port(kaddress_t *address)</div><div class="ttdoc">取得port </div><div class="ttdef"><b>Definition:</b> address.c:60</div></div>
-<div class="ttc" id="a00103_gaa1ea22192168bb6baea88feeb20eb601_html_gaa1ea22192168bb6baea88feeb20eb601"><div class="ttname"><a href="a00103_gaa1ea22192168bb6baea88feeb20eb601.html#gaa1ea22192168bb6baea88feeb20eb601">address_get_ip</a></div><div class="ttdeci">const char * address_get_ip(kaddress_t *address)</div><div class="ttdoc">取得IP </div><div class="ttdef"><b>Definition:</b> address.c:55</div></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00054.html">config.h</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00044.html">address_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<a class="code" href="a00001.html">kaddress_t</a>* <a class="code" href="a00043_a1a1e0dffc03ea50995d5db10e17865f5.html#a1a1e0dffc03ea50995d5db10e17865f5">knet_address_create</a>();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00043_a6d8753e0c57b30294243ee26881e7650.html#a6d8753e0c57b30294243ee26881e7650">knet_address_destroy</a>(<a class="code" href="a00001.html">kaddress_t</a>* address);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00043_a929d17892b34acdbdbc1ff8e8d0f9c71.html#a929d17892b34acdbdbc1ff8e8d0f9c71">knet_address_set</a>(<a class="code" href="a00001.html">kaddress_t</a>* address, <span class="keyword">const</span> <span class="keywordtype">char</span>* ip, <span class="keywordtype">int</span> port);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* ADDRESS_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a00044_html"><div class="ttname"><a href="a00044.html">address_api.h</a></div></div>
+<div class="ttc" id="a00043_a929d17892b34acdbdbc1ff8e8d0f9c71_html_a929d17892b34acdbdbc1ff8e8d0f9c71"><div class="ttname"><a href="a00043_a929d17892b34acdbdbc1ff8e8d0f9c71.html#a929d17892b34acdbdbc1ff8e8d0f9c71">knet_address_set</a></div><div class="ttdeci">void knet_address_set(kaddress_t *address, const char *ip, int port)</div><div class="ttdoc">设置IP和端口 </div><div class="ttdef"><b>Definition:</b> address.c:47</div></div>
+<div class="ttc" id="a00001_html"><div class="ttname"><a href="a00001.html">_address_t</a></div><div class="ttdef"><b>Definition:</b> address.c:27</div></div>
+<div class="ttc" id="a00043_a6d8753e0c57b30294243ee26881e7650_html_a6d8753e0c57b30294243ee26881e7650"><div class="ttname"><a href="a00043_a6d8753e0c57b30294243ee26881e7650.html#a6d8753e0c57b30294243ee26881e7650">knet_address_destroy</a></div><div class="ttdeci">void knet_address_destroy(kaddress_t *address)</div><div class="ttdoc">销毁一个kaddress_t实例 </div><div class="ttdef"><b>Definition:</b> address.c:40</div></div>
+<div class="ttc" id="a00043_a1a1e0dffc03ea50995d5db10e17865f5_html_a1a1e0dffc03ea50995d5db10e17865f5"><div class="ttname"><a href="a00043_a1a1e0dffc03ea50995d5db10e17865f5.html#a1a1e0dffc03ea50995d5db10e17865f5">knet_address_create</a></div><div class="ttdeci">kaddress_t * knet_address_create()</div><div class="ttdoc">创建一个kaddress_t实例 </div><div class="ttdef"><b>Definition:</b> address.c:32</div></div>
+<div class="ttc" id="a00054_html"><div class="ttname"><a href="a00054.html">config.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 22日 星期三 10:41:03 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 24日 星期五 11:53:43 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

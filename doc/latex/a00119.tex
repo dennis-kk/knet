@@ -1,0 +1,179 @@
+\hypertarget{a00119}{}\section{字符串\+K\+V树}
+\label{a00119}\index{字符串\+K\+V树@{字符串\+K\+V树}}
+
+
+字符串树  
+
+
+\subsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00054_a6b38314f31c4ed3eb36896383425a381_a6b38314f31c4ed3eb36896383425a381}{ktrie\+\_\+t} $\ast$ \hyperlink{a00119_ga40c34f3f3eed953a77e3df2927a24d0c_ga40c34f3f3eed953a77e3df2927a24d0c}{trie\+\_\+create} ()
+\begin{DoxyCompactList}\small\item\em 建立trie \end{DoxyCompactList}\item 
+void \hyperlink{a00119_ga1d3fcf14bbc77f4b3221ddb1121c21a0_ga1d3fcf14bbc77f4b3221ddb1121c21a0}{trie\+\_\+destroy} (\hyperlink{a00054_a6b38314f31c4ed3eb36896383425a381_a6b38314f31c4ed3eb36896383425a381}{ktrie\+\_\+t} $\ast$trie, \hyperlink{a00054_a46741b0dab7bbb26d611c429ee64d78c_a46741b0dab7bbb26d611c429ee64d78c}{knet\+\_\+trie\+\_\+dtor\+\_\+t} dtor)
+\begin{DoxyCompactList}\small\item\em 销毁trie \end{DoxyCompactList}\item 
+int \hyperlink{a00119_ga05e43d257d3626377de3340b6cd542fa_ga05e43d257d3626377de3340b6cd542fa}{trie\+\_\+insert} (\hyperlink{a00054_a6b38314f31c4ed3eb36896383425a381_a6b38314f31c4ed3eb36896383425a381}{ktrie\+\_\+t} $\ast$trie, const char $\ast$s, void $\ast$value)
+\begin{DoxyCompactList}\small\item\em 销毁trie \end{DoxyCompactList}\item 
+int \hyperlink{a00119_gae9c0f01c6b0eaf828710de2999601a11_gae9c0f01c6b0eaf828710de2999601a11}{trie\+\_\+find} (\hyperlink{a00054_a6b38314f31c4ed3eb36896383425a381_a6b38314f31c4ed3eb36896383425a381}{ktrie\+\_\+t} $\ast$trie, const char $\ast$s, void $\ast$$\ast$value)
+\begin{DoxyCompactList}\small\item\em 查找 \end{DoxyCompactList}\item 
+int \hyperlink{a00119_ga3d0e5d60984fac9b8053e8f8605d79e0_ga3d0e5d60984fac9b8053e8f8605d79e0}{trie\+\_\+remove} (\hyperlink{a00054_a6b38314f31c4ed3eb36896383425a381_a6b38314f31c4ed3eb36896383425a381}{ktrie\+\_\+t} $\ast$trie, const char $\ast$s, void $\ast$$\ast$value)
+\begin{DoxyCompactList}\small\item\em 删除 \end{DoxyCompactList}\item 
+int \hyperlink{a00119_ga0169ae53516f82a8aa435466a3d55678_ga0169ae53516f82a8aa435466a3d55678}{trie\+\_\+for\+\_\+each} (\hyperlink{a00054_a6b38314f31c4ed3eb36896383425a381_a6b38314f31c4ed3eb36896383425a381}{ktrie\+\_\+t} $\ast$trie, \hyperlink{a00054_ad77af676ce15810f8f713bb3eaa91fe8_ad77af676ce15810f8f713bb3eaa91fe8}{knet\+\_\+trie\+\_\+for\+\_\+each\+\_\+func\+\_\+t} func, void $\ast$param)
+\begin{DoxyCompactList}\small\item\em 遍历 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{详细描述}
+字符串树 
+
+
+\begin{DoxyPre}
+提供一个三路树结构用于快速查找字符串，三路树分别为\{left, center, right\}，
+满足left < center < right，查找，删除，插入效率为O(n)，n为字符串长度.
+字符串树使用字符串作为键，void*类型作为值，也可以作为哈希表使用，用户可以提供
+一个值销毁函数用于trie树销毁时的自定义值清理回调.
+\end{DoxyPre}
+ 
+
+\subsection{函数说明}
+\hypertarget{a00119_ga40c34f3f3eed953a77e3df2927a24d0c_ga40c34f3f3eed953a77e3df2927a24d0c}{}\index{字符串\+K\+V树@{字符串\+K\+V树}!trie\+\_\+create@{trie\+\_\+create}}
+\index{trie\+\_\+create@{trie\+\_\+create}!字符串\+K\+V树@{字符串\+K\+V树}}
+\subsubsection[{trie\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ktrie\+\_\+t}$\ast$ trie\+\_\+create (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{a00119_ga40c34f3f3eed953a77e3df2927a24d0c_ga40c34f3f3eed953a77e3df2927a24d0c}
+
+
+建立trie 
+
+\begin{DoxyReturn}{返回}
+ktrie\+\_\+t实例 
+\end{DoxyReturn}
+\hypertarget{a00119_ga1d3fcf14bbc77f4b3221ddb1121c21a0_ga1d3fcf14bbc77f4b3221ddb1121c21a0}{}\index{字符串\+K\+V树@{字符串\+K\+V树}!trie\+\_\+destroy@{trie\+\_\+destroy}}
+\index{trie\+\_\+destroy@{trie\+\_\+destroy}!字符串\+K\+V树@{字符串\+K\+V树}}
+\subsubsection[{trie\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void trie\+\_\+destroy (
+\begin{DoxyParamCaption}
+\item[{{\bf ktrie\+\_\+t} $\ast$}]{trie, }
+\item[{{\bf knet\+\_\+trie\+\_\+dtor\+\_\+t}}]{dtor}
+\end{DoxyParamCaption}
+)}\label{a00119_ga1d3fcf14bbc77f4b3221ddb1121c21a0_ga1d3fcf14bbc77f4b3221ddb1121c21a0}
+
+
+销毁trie 
+
+
+\begin{DoxyParams}{参数}
+{\em trie} & ktrie\+\_\+t实例 \\
+\hline
+{\em dtor} & 销毁函数 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00119_gae9c0f01c6b0eaf828710de2999601a11_gae9c0f01c6b0eaf828710de2999601a11}{}\index{字符串\+K\+V树@{字符串\+K\+V树}!trie\+\_\+find@{trie\+\_\+find}}
+\index{trie\+\_\+find@{trie\+\_\+find}!字符串\+K\+V树@{字符串\+K\+V树}}
+\subsubsection[{trie\+\_\+find}]{\setlength{\rightskip}{0pt plus 5cm}int trie\+\_\+find (
+\begin{DoxyParamCaption}
+\item[{{\bf ktrie\+\_\+t} $\ast$}]{trie, }
+\item[{const char $\ast$}]{s, }
+\item[{void $\ast$$\ast$}]{value}
+\end{DoxyParamCaption}
+)}\label{a00119_gae9c0f01c6b0eaf828710de2999601a11_gae9c0f01c6b0eaf828710de2999601a11}
+
+
+查找 
+
+
+\begin{DoxyParams}{参数}
+{\em trie} & ktrie\+\_\+t实例 \\
+\hline
+{\em s} & 键 \\
+\hline
+{\em value} & 值 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{a00119_ga0169ae53516f82a8aa435466a3d55678_ga0169ae53516f82a8aa435466a3d55678}{}\index{字符串\+K\+V树@{字符串\+K\+V树}!trie\+\_\+for\+\_\+each@{trie\+\_\+for\+\_\+each}}
+\index{trie\+\_\+for\+\_\+each@{trie\+\_\+for\+\_\+each}!字符串\+K\+V树@{字符串\+K\+V树}}
+\subsubsection[{trie\+\_\+for\+\_\+each}]{\setlength{\rightskip}{0pt plus 5cm}int trie\+\_\+for\+\_\+each (
+\begin{DoxyParamCaption}
+\item[{{\bf ktrie\+\_\+t} $\ast$}]{trie, }
+\item[{{\bf knet\+\_\+trie\+\_\+for\+\_\+each\+\_\+func\+\_\+t}}]{func, }
+\item[{void $\ast$}]{param}
+\end{DoxyParamCaption}
+)}\label{a00119_ga0169ae53516f82a8aa435466a3d55678_ga0169ae53516f82a8aa435466a3d55678}
+
+
+遍历 
+
+
+\begin{DoxyParams}{参数}
+{\em trie} & ktrie\+\_\+t实例 \\
+\hline
+{\em func} & 遍历函数 \\
+\hline
+{\em param} & 遍历函数参数 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00119_ga05e43d257d3626377de3340b6cd542fa_ga05e43d257d3626377de3340b6cd542fa}{}\index{字符串\+K\+V树@{字符串\+K\+V树}!trie\+\_\+insert@{trie\+\_\+insert}}
+\index{trie\+\_\+insert@{trie\+\_\+insert}!字符串\+K\+V树@{字符串\+K\+V树}}
+\subsubsection[{trie\+\_\+insert}]{\setlength{\rightskip}{0pt plus 5cm}int trie\+\_\+insert (
+\begin{DoxyParamCaption}
+\item[{{\bf ktrie\+\_\+t} $\ast$}]{trie, }
+\item[{const char $\ast$}]{s, }
+\item[{void $\ast$}]{value}
+\end{DoxyParamCaption}
+)}\label{a00119_ga05e43d257d3626377de3340b6cd542fa_ga05e43d257d3626377de3340b6cd542fa}
+
+
+销毁trie 
+
+
+\begin{DoxyParams}{参数}
+{\em trie} & ktrie\+\_\+t实例 \\
+\hline
+{\em s} & 键 \\
+\hline
+{\em value} & 值 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{a00119_ga3d0e5d60984fac9b8053e8f8605d79e0_ga3d0e5d60984fac9b8053e8f8605d79e0}{}\index{字符串\+K\+V树@{字符串\+K\+V树}!trie\+\_\+remove@{trie\+\_\+remove}}
+\index{trie\+\_\+remove@{trie\+\_\+remove}!字符串\+K\+V树@{字符串\+K\+V树}}
+\subsubsection[{trie\+\_\+remove}]{\setlength{\rightskip}{0pt plus 5cm}int trie\+\_\+remove (
+\begin{DoxyParamCaption}
+\item[{{\bf ktrie\+\_\+t} $\ast$}]{trie, }
+\item[{const char $\ast$}]{s, }
+\item[{void $\ast$$\ast$}]{value}
+\end{DoxyParamCaption}
+)}\label{a00119_ga3d0e5d60984fac9b8053e8f8605d79e0_ga3d0e5d60984fac9b8053e8f8605d79e0}
+
+
+删除 
+
+
+\begin{DoxyParams}{参数}
+{\em trie} & ktrie\+\_\+t实例 \\
+\hline
+{\em s} & 键 \\
+\hline
+{\em value} & 值 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}

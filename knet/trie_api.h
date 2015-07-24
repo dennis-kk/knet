@@ -28,6 +28,18 @@
 #include "config.h"
 
 /**
+ * @defgroup trie 字符串KV树
+ * 字符串树
+ * <pre>
+ * 提供一个三路树结构用于快速查找字符串，三路树分别为{left, center, right}，
+ * 满足left < center < right，查找，删除，插入效率为O(n)，n为字符串长度.
+ * 字符串树使用字符串作为键，void*类型作为值，也可以作为哈希表使用，用户可以提供
+ * 一个值销毁函数用于trie树销毁时的自定义值清理回调.
+ * </pre>
+ * @{
+ */
+
+/**
  * 建立trie
  * @return ktrie_t实例
  */
@@ -69,5 +81,15 @@ extern int trie_find(ktrie_t* trie, const char* s, void** value);
  * @retval 其他 失败
  */
 extern int trie_remove(ktrie_t* trie, const char* s, void** value);
+
+/**
+ * 遍历
+ * @param trie ktrie_t实例
+ * @param func 遍历函数
+ * @param param 遍历函数参数
+ */
+extern int trie_for_each(ktrie_t* trie, knet_trie_for_each_func_t func, void* param);
+
+/** @} */
 
 #endif /* TRIE_API_H */

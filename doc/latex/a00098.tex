@@ -1,416 +1,71 @@
-\hypertarget{a00098}{}\section{E\+:/knet-\/git/knet/knet/timer.c 文件参考}
-\label{a00098}\index{E\+:/knet-\/git/knet/knet/timer.\+c@{E\+:/knet-\/git/knet/knet/timer.\+c}}
-{\ttfamily \#include \char`\"{}timer.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}list.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}misc.\+h\char`\"{}}\\*
-\subsection*{结构体}
-\begin{DoxyCompactItemize}
-\item 
-struct \hyperlink{a00027}{\+\_\+ktimer\+\_\+t}
-\item 
-struct \hyperlink{a00026}{\+\_\+ktimer\+\_\+loop\+\_\+t}
-\end{DoxyCompactItemize}
+\hypertarget{a00098}{}\section{E\+:/knet-\/git/knet/knet/stream\+\_\+api.h 文件参考}
+\label{a00098}\index{E\+:/knet-\/git/knet/knet/stream\+\_\+api.\+h@{E\+:/knet-\/git/knet/knet/stream\+\_\+api.\+h}}
+{\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\\*
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-int \hyperlink{a00098_a0da724208f00bf918c6a211978987564_a0da724208f00bf918c6a211978987564}{\+\_\+ktimer\+\_\+loop\+\_\+select\+\_\+slot} (\hyperlink{a00053_a024af2aa29615e7a811ea6c45438157d_a024af2aa29615e7a811ea6c45438157d}{ktimer\+\_\+loop\+\_\+t} $\ast$ktimer\+\_\+loop, time\+\_\+t ms)
-\item 
-void \hyperlink{a00098_a24405f7d3c813580ab995e6dd8d35871_a24405f7d3c813580ab995e6dd8d35871}{\+\_\+ktimer\+\_\+loop\+\_\+add\+\_\+timer} (\hyperlink{a00053_a024af2aa29615e7a811ea6c45438157d_a024af2aa29615e7a811ea6c45438157d}{ktimer\+\_\+loop\+\_\+t} $\ast$ktimer\+\_\+loop, \hyperlink{a00053_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer)
-\item 
-void \hyperlink{a00098_a41c9ade9ebc11e8b1fc4f28260bc3e15_a41c9ade9ebc11e8b1fc4f28260bc3e15}{\+\_\+ktimer\+\_\+loop\+\_\+add\+\_\+ktimer\+\_\+node} (\hyperlink{a00053_a024af2aa29615e7a811ea6c45438157d_a024af2aa29615e7a811ea6c45438157d}{ktimer\+\_\+loop\+\_\+t} $\ast$ktimer\+\_\+loop, \hyperlink{a00053_ac701f00a0851c97467ae35c382b316b7_ac701f00a0851c97467ae35c382b316b7}{kdlist\+\_\+node\+\_\+t} $\ast$node, time\+\_\+t ms)
-\item 
-\hyperlink{a00053_ac701f00a0851c97467ae35c382b316b7_ac701f00a0851c97467ae35c382b316b7}{kdlist\+\_\+node\+\_\+t} $\ast$ \hyperlink{a00098_aac86769c38adf7cde5ab3649d2f7f906_aac86769c38adf7cde5ab3649d2f7f906}{\+\_\+ktimer\+\_\+loop\+\_\+remove\+\_\+timer} (\hyperlink{a00053_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer)
-\item 
-int \hyperlink{a00098_a16dfe04af38883e142c0a6583c1ea664_a16dfe04af38883e142c0a6583c1ea664}{\+\_\+ktimer\+\_\+check\+\_\+stop} (\hyperlink{a00053_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer)
-\item 
-\hyperlink{a00053_a024af2aa29615e7a811ea6c45438157d_a024af2aa29615e7a811ea6c45438157d}{ktimer\+\_\+loop\+\_\+t} $\ast$ \hyperlink{a00113_gaef96e7c368db456236a2121e3d75c49c_gaef96e7c368db456236a2121e3d75c49c}{ktimer\+\_\+loop\+\_\+create} (time\+\_\+t freq, int slot)
-\begin{DoxyCompactList}\small\item\em 创建定时器循环 \end{DoxyCompactList}\item 
-void \hyperlink{a00113_gad3dafe93f5b45424bd5983ef0c163687_gad3dafe93f5b45424bd5983ef0c163687}{ktimer\+\_\+loop\+\_\+destroy} (\hyperlink{a00053_a024af2aa29615e7a811ea6c45438157d_a024af2aa29615e7a811ea6c45438157d}{ktimer\+\_\+loop\+\_\+t} $\ast$ktimer\+\_\+loop)
-\begin{DoxyCompactList}\small\item\em 销毁定时器循环 \end{DoxyCompactList}\item 
-void \hyperlink{a00113_ga5e31b2fc26af005e97b09804c5a98099_ga5e31b2fc26af005e97b09804c5a98099}{ktimer\+\_\+loop\+\_\+run} (\hyperlink{a00053_a024af2aa29615e7a811ea6c45438157d_a024af2aa29615e7a811ea6c45438157d}{ktimer\+\_\+loop\+\_\+t} $\ast$ktimer\+\_\+loop)
-\begin{DoxyCompactList}\small\item\em 循环检查定时器超时，调用ktimer\+\_\+loop\+\_\+exit()退出 \end{DoxyCompactList}\item 
-void \hyperlink{a00113_ga9d51f5fa5d9609d783eb4b0e05101079_ga9d51f5fa5d9609d783eb4b0e05101079}{ktimer\+\_\+loop\+\_\+exit} (\hyperlink{a00053_a024af2aa29615e7a811ea6c45438157d_a024af2aa29615e7a811ea6c45438157d}{ktimer\+\_\+loop\+\_\+t} $\ast$ktimer\+\_\+loop)
-\begin{DoxyCompactList}\small\item\em 退出ktimer\+\_\+loop\+\_\+run() \end{DoxyCompactList}\item 
-int \hyperlink{a00113_gaf195cf4006bced494e99242c36ad36c0_gaf195cf4006bced494e99242c36ad36c0}{ktimer\+\_\+loop\+\_\+run\+\_\+once} (\hyperlink{a00053_a024af2aa29615e7a811ea6c45438157d_a024af2aa29615e7a811ea6c45438157d}{ktimer\+\_\+loop\+\_\+t} $\ast$ktimer\+\_\+loop)
-\begin{DoxyCompactList}\small\item\em 检查定时器超时，如果超时调用定时器回调 \end{DoxyCompactList}\item 
-\hyperlink{a00053_a024af2aa29615e7a811ea6c45438157d_a024af2aa29615e7a811ea6c45438157d}{ktimer\+\_\+loop\+\_\+t} $\ast$ \hyperlink{a00113_gad2c8d1024db56a0bef97ea47fb07a920_gad2c8d1024db56a0bef97ea47fb07a920}{ktimer\+\_\+get\+\_\+loop} (\hyperlink{a00053_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer)
-\begin{DoxyCompactList}\small\item\em 取得ktimer\+\_\+loop\+\_\+t实例 \end{DoxyCompactList}\item 
-void \hyperlink{a00098_a03cfe3f98b0537ccb1aba830ccee3991_a03cfe3f98b0537ccb1aba830ccee3991}{ktimer\+\_\+set\+\_\+current\+\_\+list} (\hyperlink{a00053_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer, \hyperlink{a00053_ae098586334a621a23cef7cb17590b618_ae098586334a621a23cef7cb17590b618}{kdlist\+\_\+t} $\ast$list)
-\begin{DoxyCompactList}\small\item\em 设置定时器所在的当前链表 \end{DoxyCompactList}\item 
-void \hyperlink{a00098_a10748c7e8540fef8a8948da8662f7889_a10748c7e8540fef8a8948da8662f7889}{ktimer\+\_\+set\+\_\+current\+\_\+list\+\_\+node} (\hyperlink{a00053_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer, \hyperlink{a00053_ac701f00a0851c97467ae35c382b316b7_ac701f00a0851c97467ae35c382b316b7}{kdlist\+\_\+node\+\_\+t} $\ast$node)
-\begin{DoxyCompactList}\small\item\em 设置定时器所在的当前链表的链表节点 \end{DoxyCompactList}\item 
-\hyperlink{a00053_ae098586334a621a23cef7cb17590b618_ae098586334a621a23cef7cb17590b618}{kdlist\+\_\+t} $\ast$ \hyperlink{a00098_a189b9239e148c4eeec1ec910261a3389_a189b9239e148c4eeec1ec910261a3389}{ktimer\+\_\+get\+\_\+current\+\_\+list} (\hyperlink{a00053_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer)
-\begin{DoxyCompactList}\small\item\em 取得当前所属链表 \end{DoxyCompactList}\item 
-\hyperlink{a00053_ac701f00a0851c97467ae35c382b316b7_ac701f00a0851c97467ae35c382b316b7}{kdlist\+\_\+node\+\_\+t} $\ast$ \hyperlink{a00098_a6c3c91cc707a108fc5e01e441bc3513e_a6c3c91cc707a108fc5e01e441bc3513e}{ktimer\+\_\+get\+\_\+current\+\_\+list\+\_\+node} (\hyperlink{a00053_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer)
-\begin{DoxyCompactList}\small\item\em 取得当前链表节点 \end{DoxyCompactList}\item 
-\hyperlink{a00053_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$ \hyperlink{a00113_ga37901569361ae2a726a1973d7da2d6e5_ga37901569361ae2a726a1973d7da2d6e5}{ktimer\+\_\+create} (\hyperlink{a00053_a024af2aa29615e7a811ea6c45438157d_a024af2aa29615e7a811ea6c45438157d}{ktimer\+\_\+loop\+\_\+t} $\ast$ktimer\+\_\+loop)
-\begin{DoxyCompactList}\small\item\em 创建一个定时器 \end{DoxyCompactList}\item 
-void \hyperlink{a00098_af64f93b32c31cd222c02f0ad40bb642c_af64f93b32c31cd222c02f0ad40bb642c}{ktimer\+\_\+destroy} (\hyperlink{a00053_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer)
-\begin{DoxyCompactList}\small\item\em 销毁定时器 \end{DoxyCompactList}\item 
-int \hyperlink{a00113_ga9387b99ff760183fe8b61c8c46d6efc8_ga9387b99ff760183fe8b61c8c46d6efc8}{ktimer\+\_\+check\+\_\+dead} (\hyperlink{a00053_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer)
-\begin{DoxyCompactList}\small\item\em 检查定时器是否在回调函数返回即将被销毁 \end{DoxyCompactList}\item 
-time\+\_\+t \hyperlink{a00113_ga71282c2dc8bac0935617b1271f4066e6_ga71282c2dc8bac0935617b1271f4066e6}{ktimer\+\_\+loop\+\_\+get\+\_\+tick\+\_\+intval} (\hyperlink{a00053_a024af2aa29615e7a811ea6c45438157d_a024af2aa29615e7a811ea6c45438157d}{ktimer\+\_\+loop\+\_\+t} $\ast$ktimer\+\_\+loop)
-\begin{DoxyCompactList}\small\item\em 取得滴答间隔 \end{DoxyCompactList}\item 
-int \hyperlink{a00098_a6e263963404ff40c8d7865ba117d3446_a6e263963404ff40c8d7865ba117d3446}{ktimer\+\_\+check\+\_\+timeout} (\hyperlink{a00053_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer, time\+\_\+t ms)
-\begin{DoxyCompactList}\small\item\em 检查定时器是否超时 \end{DoxyCompactList}\item 
-int \hyperlink{a00113_ga1465f5ddec41fa81c429d1647dc5e7a9_ga1465f5ddec41fa81c429d1647dc5e7a9}{ktimer\+\_\+stop} (\hyperlink{a00053_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer)
-\begin{DoxyCompactList}\small\item\em 停止并销毁定时器 \end{DoxyCompactList}\item 
-int \hyperlink{a00113_ga8c5900fb62a63dc71cc9f38ac6427ad1_ga8c5900fb62a63dc71cc9f38ac6427ad1}{ktimer\+\_\+start} (\hyperlink{a00053_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer, \hyperlink{a00053_a2333fd0f2c3a85faf586300ca40deed4_a2333fd0f2c3a85faf586300ca40deed4}{ktimer\+\_\+cb\+\_\+t} cb, void $\ast$data, time\+\_\+t ms)
-\begin{DoxyCompactList}\small\item\em 启动一个无限次数的定时器 \end{DoxyCompactList}\item 
-int \hyperlink{a00113_ga9c37409260a72e3218ae4fcaf44d79bc_ga9c37409260a72e3218ae4fcaf44d79bc}{ktimer\+\_\+start\+\_\+once} (\hyperlink{a00053_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer, \hyperlink{a00053_a2333fd0f2c3a85faf586300ca40deed4_a2333fd0f2c3a85faf586300ca40deed4}{ktimer\+\_\+cb\+\_\+t} cb, void $\ast$data, time\+\_\+t ms)
-\begin{DoxyCompactList}\small\item\em 启动一个只超时一次的定时器，超时后将自动销毁 \end{DoxyCompactList}\item 
-int \hyperlink{a00113_ga285936846760d9f325e588d2e2105fe5_ga285936846760d9f325e588d2e2105fe5}{ktimer\+\_\+start\+\_\+times} (\hyperlink{a00053_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer, \hyperlink{a00053_a2333fd0f2c3a85faf586300ca40deed4_a2333fd0f2c3a85faf586300ca40deed4}{ktimer\+\_\+cb\+\_\+t} cb, void $\ast$data, time\+\_\+t ms, int times)
-\begin{DoxyCompactList}\small\item\em 启动一个有限次数的定时器，达到times次数后将自动销毁 \end{DoxyCompactList}\end{DoxyCompactItemize}
+int \hyperlink{a00116_gaf8953f6ed7542a6144dbc5461d2c8402_gaf8953f6ed7542a6144dbc5461d2c8402}{knet\+\_\+stream\+\_\+available} (\hyperlink{a00054_acc208c4c40c875eebbfef88f00fffacf_acc208c4c40c875eebbfef88f00fffacf}{kstream\+\_\+t} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em 取得数据流内可读字节数 \end{DoxyCompactList}\item 
+int \hyperlink{a00116_gad1526d745b7bfbb53d0a97e47237bc67_gad1526d745b7bfbb53d0a97e47237bc67}{knet\+\_\+stream\+\_\+eat\+\_\+all} (\hyperlink{a00054_acc208c4c40c875eebbfef88f00fffacf_acc208c4c40c875eebbfef88f00fffacf}{kstream\+\_\+t} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em 清空数据流 \end{DoxyCompactList}\item 
+int \hyperlink{a00116_ga61026724ef09e2ca4bf2a652372411e2_ga61026724ef09e2ca4bf2a652372411e2}{knet\+\_\+stream\+\_\+eat} (\hyperlink{a00054_acc208c4c40c875eebbfef88f00fffacf_acc208c4c40c875eebbfef88f00fffacf}{kstream\+\_\+t} $\ast$stream, int size)
+\begin{DoxyCompactList}\small\item\em 删除指定长度数据 \end{DoxyCompactList}\item 
+int \hyperlink{a00116_gac6fbd27fc2e9a756c3debfc11cd31904_gac6fbd27fc2e9a756c3debfc11cd31904}{knet\+\_\+stream\+\_\+pop} (\hyperlink{a00054_acc208c4c40c875eebbfef88f00fffacf_acc208c4c40c875eebbfef88f00fffacf}{kstream\+\_\+t} $\ast$stream, void $\ast$buffer, int size)
+\begin{DoxyCompactList}\small\item\em 从数据流内读取数据并清除数据 \end{DoxyCompactList}\item 
+int \hyperlink{a00116_gae342abfa7489dac8cd0676ae54763034_gae342abfa7489dac8cd0676ae54763034}{knet\+\_\+stream\+\_\+push} (\hyperlink{a00054_acc208c4c40c875eebbfef88f00fffacf_acc208c4c40c875eebbfef88f00fffacf}{kstream\+\_\+t} $\ast$stream, const void $\ast$buffer, int size)
+\begin{DoxyCompactList}\small\item\em 向数据流内写数据 \end{DoxyCompactList}\item 
+int \hyperlink{a00116_ga5385c5f448246089a80f0ca38de23e0d_ga5385c5f448246089a80f0ca38de23e0d}{knet\+\_\+stream\+\_\+push\+\_\+varg} (\hyperlink{a00054_acc208c4c40c875eebbfef88f00fffacf_acc208c4c40c875eebbfef88f00fffacf}{kstream\+\_\+t} $\ast$stream, const char $\ast$format,...)
+\begin{DoxyCompactList}\small\item\em 向数据流写数据，可变参数字符串 \end{DoxyCompactList}\item 
+int \hyperlink{a00116_ga6a338066a7df103ed2c7a46dc0a5b3c4_ga6a338066a7df103ed2c7a46dc0a5b3c4}{knet\+\_\+stream\+\_\+copy} (\hyperlink{a00054_acc208c4c40c875eebbfef88f00fffacf_acc208c4c40c875eebbfef88f00fffacf}{kstream\+\_\+t} $\ast$stream, void $\ast$buffer, int size)
+\begin{DoxyCompactList}\small\item\em 从数据流内拷贝数据，但不清除数据流内数据 \end{DoxyCompactList}\item 
+int \hyperlink{a00116_ga57debea3be18e64784e417edcc191673_ga57debea3be18e64784e417edcc191673}{knet\+\_\+stream\+\_\+push\+\_\+stream} (\hyperlink{a00054_acc208c4c40c875eebbfef88f00fffacf_acc208c4c40c875eebbfef88f00fffacf}{kstream\+\_\+t} $\ast$stream, \hyperlink{a00054_acc208c4c40c875eebbfef88f00fffacf_acc208c4c40c875eebbfef88f00fffacf}{kstream\+\_\+t} $\ast$target)
+\begin{DoxyCompactList}\small\item\em 将stream内数据写入target, 并清除stream内数据 \end{DoxyCompactList}\item 
+int \hyperlink{a00116_gae6aa07ada933f68fb4ed6e19ffd310b4_gae6aa07ada933f68fb4ed6e19ffd310b4}{knet\+\_\+stream\+\_\+copy\+\_\+stream} (\hyperlink{a00054_acc208c4c40c875eebbfef88f00fffacf_acc208c4c40c875eebbfef88f00fffacf}{kstream\+\_\+t} $\ast$stream, \hyperlink{a00054_acc208c4c40c875eebbfef88f00fffacf_acc208c4c40c875eebbfef88f00fffacf}{kstream\+\_\+t} $\ast$target)
+\begin{DoxyCompactList}\small\item\em 将stream内数据写入target, 但不清除stream内数据 \end{DoxyCompactList}\item 
+\hyperlink{a00054_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$ \hyperlink{a00116_ga6ec1754b28f693f5a5c047aef8cda3a8_ga6ec1754b28f693f5a5c047aef8cda3a8}{knet\+\_\+stream\+\_\+get\+\_\+channel\+\_\+ref} (\hyperlink{a00054_acc208c4c40c875eebbfef88f00fffacf_acc208c4c40c875eebbfef88f00fffacf}{kstream\+\_\+t} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em 获取流所属的管道引用 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{函数说明}
-\hypertarget{a00098_a16dfe04af38883e142c0a6583c1ea664_a16dfe04af38883e142c0a6583c1ea664}{}\index{timer.\+c@{timer.\+c}!\+\_\+ktimer\+\_\+check\+\_\+stop@{\+\_\+ktimer\+\_\+check\+\_\+stop}}
-\index{\+\_\+ktimer\+\_\+check\+\_\+stop@{\+\_\+ktimer\+\_\+check\+\_\+stop}!timer.\+c@{timer.\+c}}
-\subsubsection[{\+\_\+ktimer\+\_\+check\+\_\+stop}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+ktimer\+\_\+check\+\_\+stop (
+\hypertarget{a00116_gaf8953f6ed7542a6144dbc5461d2c8402_gaf8953f6ed7542a6144dbc5461d2c8402}{}\index{stream\+\_\+api.\+h@{stream\+\_\+api.\+h}!knet\+\_\+stream\+\_\+available@{knet\+\_\+stream\+\_\+available}}
+\index{knet\+\_\+stream\+\_\+available@{knet\+\_\+stream\+\_\+available}!stream\+\_\+api.\+h@{stream\+\_\+api.\+h}}
+\subsubsection[{knet\+\_\+stream\+\_\+available}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+stream\+\_\+available (
 \begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer}
+\item[{{\bf kstream\+\_\+t} $\ast$}]{stream}
 \end{DoxyParamCaption}
-)}\label{a00098_a16dfe04af38883e142c0a6583c1ea664_a16dfe04af38883e142c0a6583c1ea664}
-\hypertarget{a00098_a41c9ade9ebc11e8b1fc4f28260bc3e15_a41c9ade9ebc11e8b1fc4f28260bc3e15}{}\index{timer.\+c@{timer.\+c}!\+\_\+ktimer\+\_\+loop\+\_\+add\+\_\+ktimer\+\_\+node@{\+\_\+ktimer\+\_\+loop\+\_\+add\+\_\+ktimer\+\_\+node}}
-\index{\+\_\+ktimer\+\_\+loop\+\_\+add\+\_\+ktimer\+\_\+node@{\+\_\+ktimer\+\_\+loop\+\_\+add\+\_\+ktimer\+\_\+node}!timer.\+c@{timer.\+c}}
-\subsubsection[{\+\_\+ktimer\+\_\+loop\+\_\+add\+\_\+ktimer\+\_\+node}]{\setlength{\rightskip}{0pt plus 5cm}void \+\_\+ktimer\+\_\+loop\+\_\+add\+\_\+ktimer\+\_\+node (
-\begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+loop\+\_\+t} $\ast$}]{ktimer\+\_\+loop, }
-\item[{{\bf kdlist\+\_\+node\+\_\+t} $\ast$}]{node, }
-\item[{time\+\_\+t}]{ms}
-\end{DoxyParamCaption}
-)}\label{a00098_a41c9ade9ebc11e8b1fc4f28260bc3e15_a41c9ade9ebc11e8b1fc4f28260bc3e15}
-\hypertarget{a00098_a24405f7d3c813580ab995e6dd8d35871_a24405f7d3c813580ab995e6dd8d35871}{}\index{timer.\+c@{timer.\+c}!\+\_\+ktimer\+\_\+loop\+\_\+add\+\_\+timer@{\+\_\+ktimer\+\_\+loop\+\_\+add\+\_\+timer}}
-\index{\+\_\+ktimer\+\_\+loop\+\_\+add\+\_\+timer@{\+\_\+ktimer\+\_\+loop\+\_\+add\+\_\+timer}!timer.\+c@{timer.\+c}}
-\subsubsection[{\+\_\+ktimer\+\_\+loop\+\_\+add\+\_\+timer}]{\setlength{\rightskip}{0pt plus 5cm}void \+\_\+ktimer\+\_\+loop\+\_\+add\+\_\+timer (
-\begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+loop\+\_\+t} $\ast$}]{ktimer\+\_\+loop, }
-\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer}
-\end{DoxyParamCaption}
-)}\label{a00098_a24405f7d3c813580ab995e6dd8d35871_a24405f7d3c813580ab995e6dd8d35871}
-\hypertarget{a00098_aac86769c38adf7cde5ab3649d2f7f906_aac86769c38adf7cde5ab3649d2f7f906}{}\index{timer.\+c@{timer.\+c}!\+\_\+ktimer\+\_\+loop\+\_\+remove\+\_\+timer@{\+\_\+ktimer\+\_\+loop\+\_\+remove\+\_\+timer}}
-\index{\+\_\+ktimer\+\_\+loop\+\_\+remove\+\_\+timer@{\+\_\+ktimer\+\_\+loop\+\_\+remove\+\_\+timer}!timer.\+c@{timer.\+c}}
-\subsubsection[{\+\_\+ktimer\+\_\+loop\+\_\+remove\+\_\+timer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kdlist\+\_\+node\+\_\+t} $\ast$ \+\_\+ktimer\+\_\+loop\+\_\+remove\+\_\+timer (
-\begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer}
-\end{DoxyParamCaption}
-)}\label{a00098_aac86769c38adf7cde5ab3649d2f7f906_aac86769c38adf7cde5ab3649d2f7f906}
-\hypertarget{a00098_a0da724208f00bf918c6a211978987564_a0da724208f00bf918c6a211978987564}{}\index{timer.\+c@{timer.\+c}!\+\_\+ktimer\+\_\+loop\+\_\+select\+\_\+slot@{\+\_\+ktimer\+\_\+loop\+\_\+select\+\_\+slot}}
-\index{\+\_\+ktimer\+\_\+loop\+\_\+select\+\_\+slot@{\+\_\+ktimer\+\_\+loop\+\_\+select\+\_\+slot}!timer.\+c@{timer.\+c}}
-\subsubsection[{\+\_\+ktimer\+\_\+loop\+\_\+select\+\_\+slot}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+ktimer\+\_\+loop\+\_\+select\+\_\+slot (
-\begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+loop\+\_\+t} $\ast$}]{ktimer\+\_\+loop, }
-\item[{time\+\_\+t}]{ms}
-\end{DoxyParamCaption}
-)}\label{a00098_a0da724208f00bf918c6a211978987564_a0da724208f00bf918c6a211978987564}
-\hypertarget{a00113_ga9387b99ff760183fe8b61c8c46d6efc8_ga9387b99ff760183fe8b61c8c46d6efc8}{}\index{timer.\+c@{timer.\+c}!ktimer\+\_\+check\+\_\+dead@{ktimer\+\_\+check\+\_\+dead}}
-\index{ktimer\+\_\+check\+\_\+dead@{ktimer\+\_\+check\+\_\+dead}!timer.\+c@{timer.\+c}}
-\subsubsection[{ktimer\+\_\+check\+\_\+dead}]{\setlength{\rightskip}{0pt plus 5cm}int ktimer\+\_\+check\+\_\+dead (
-\begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer}
-\end{DoxyParamCaption}
-)}\label{a00113_ga9387b99ff760183fe8b61c8c46d6efc8_ga9387b99ff760183fe8b61c8c46d6efc8}
+)}\label{a00116_gaf8953f6ed7542a6144dbc5461d2c8402_gaf8953f6ed7542a6144dbc5461d2c8402}
 
 
-检查定时器是否在回调函数返回即将被销毁 
+取得数据流内可读字节数 
 
 
 \begin{DoxyParams}{参数}
-{\em timer} & ktimer\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em 0} & 不是 \\
-\hline
-{\em 非零} & 是 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00098_a6e263963404ff40c8d7865ba117d3446_a6e263963404ff40c8d7865ba117d3446}{}\index{timer.\+c@{timer.\+c}!ktimer\+\_\+check\+\_\+timeout@{ktimer\+\_\+check\+\_\+timeout}}
-\index{ktimer\+\_\+check\+\_\+timeout@{ktimer\+\_\+check\+\_\+timeout}!timer.\+c@{timer.\+c}}
-\subsubsection[{ktimer\+\_\+check\+\_\+timeout}]{\setlength{\rightskip}{0pt plus 5cm}int ktimer\+\_\+check\+\_\+timeout (
-\begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer, }
-\item[{time\+\_\+t}]{ms}
-\end{DoxyParamCaption}
-)}\label{a00098_a6e263963404ff40c8d7865ba117d3446_a6e263963404ff40c8d7865ba117d3446}
-
-
-检查定时器是否超时 
-
-
-\begin{DoxyParams}{参数}
-{\em timer} & ktimer\+\_\+t实例 \\
-\hline
-{\em ms} & 当前时间戳 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em 0} & 没有超时 \\
-\hline
-{\em 非零} & 超时 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00113_ga37901569361ae2a726a1973d7da2d6e5_ga37901569361ae2a726a1973d7da2d6e5}{}\index{timer.\+c@{timer.\+c}!ktimer\+\_\+create@{ktimer\+\_\+create}}
-\index{ktimer\+\_\+create@{ktimer\+\_\+create}!timer.\+c@{timer.\+c}}
-\subsubsection[{ktimer\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ktimer\+\_\+t}$\ast$ ktimer\+\_\+create (
-\begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+loop\+\_\+t} $\ast$}]{ktimer\+\_\+loop}
-\end{DoxyParamCaption}
-)}\label{a00113_ga37901569361ae2a726a1973d7da2d6e5_ga37901569361ae2a726a1973d7da2d6e5}
-
-
-创建一个定时器 
-
-
-\begin{DoxyParams}{参数}
-{\em ktimer\+\_\+loop} & ktimer\+\_\+loop\+\_\+t实例 \\
+{\em stream} & kstream\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-ktimer\+\_\+t实例 
+可读字节数 
 \end{DoxyReturn}
-\hypertarget{a00098_af64f93b32c31cd222c02f0ad40bb642c_af64f93b32c31cd222c02f0ad40bb642c}{}\index{timer.\+c@{timer.\+c}!ktimer\+\_\+destroy@{ktimer\+\_\+destroy}}
-\index{ktimer\+\_\+destroy@{ktimer\+\_\+destroy}!timer.\+c@{timer.\+c}}
-\subsubsection[{ktimer\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void ktimer\+\_\+destroy (
+\hypertarget{a00116_ga6a338066a7df103ed2c7a46dc0a5b3c4_ga6a338066a7df103ed2c7a46dc0a5b3c4}{}\index{stream\+\_\+api.\+h@{stream\+\_\+api.\+h}!knet\+\_\+stream\+\_\+copy@{knet\+\_\+stream\+\_\+copy}}
+\index{knet\+\_\+stream\+\_\+copy@{knet\+\_\+stream\+\_\+copy}!stream\+\_\+api.\+h@{stream\+\_\+api.\+h}}
+\subsubsection[{knet\+\_\+stream\+\_\+copy}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+stream\+\_\+copy (
 \begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer}
+\item[{{\bf kstream\+\_\+t} $\ast$}]{stream, }
+\item[{void $\ast$}]{buffer, }
+\item[{int}]{size}
 \end{DoxyParamCaption}
-)}\label{a00098_af64f93b32c31cd222c02f0ad40bb642c_af64f93b32c31cd222c02f0ad40bb642c}
+)}\label{a00116_ga6a338066a7df103ed2c7a46dc0a5b3c4_ga6a338066a7df103ed2c7a46dc0a5b3c4}
 
 
-销毁定时器 
+从数据流内拷贝数据，但不清除数据流内数据 
 
 
 \begin{DoxyParams}{参数}
-{\em timer} & ktimer\+\_\+t实例 \\
+{\em stream} & kstream\+\_\+t实例 \\
 \hline
-\end{DoxyParams}
-\hypertarget{a00098_a189b9239e148c4eeec1ec910261a3389_a189b9239e148c4eeec1ec910261a3389}{}\index{timer.\+c@{timer.\+c}!ktimer\+\_\+get\+\_\+current\+\_\+list@{ktimer\+\_\+get\+\_\+current\+\_\+list}}
-\index{ktimer\+\_\+get\+\_\+current\+\_\+list@{ktimer\+\_\+get\+\_\+current\+\_\+list}!timer.\+c@{timer.\+c}}
-\subsubsection[{ktimer\+\_\+get\+\_\+current\+\_\+list}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kdlist\+\_\+t}$\ast$ ktimer\+\_\+get\+\_\+current\+\_\+list (
-\begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer}
-\end{DoxyParamCaption}
-)}\label{a00098_a189b9239e148c4eeec1ec910261a3389_a189b9239e148c4eeec1ec910261a3389}
-
-
-取得当前所属链表 
-
-
-\begin{DoxyParams}{参数}
-{\em timer} & ktimer\+\_\+t实例 \\
+{\em buffer} & 缓冲区 \\
 \hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-kdlist\+\_\+t实例 
-\end{DoxyReturn}
-\hypertarget{a00098_a6c3c91cc707a108fc5e01e441bc3513e_a6c3c91cc707a108fc5e01e441bc3513e}{}\index{timer.\+c@{timer.\+c}!ktimer\+\_\+get\+\_\+current\+\_\+list\+\_\+node@{ktimer\+\_\+get\+\_\+current\+\_\+list\+\_\+node}}
-\index{ktimer\+\_\+get\+\_\+current\+\_\+list\+\_\+node@{ktimer\+\_\+get\+\_\+current\+\_\+list\+\_\+node}!timer.\+c@{timer.\+c}}
-\subsubsection[{ktimer\+\_\+get\+\_\+current\+\_\+list\+\_\+node}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kdlist\+\_\+node\+\_\+t}$\ast$ ktimer\+\_\+get\+\_\+current\+\_\+list\+\_\+node (
-\begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer}
-\end{DoxyParamCaption}
-)}\label{a00098_a6c3c91cc707a108fc5e01e441bc3513e_a6c3c91cc707a108fc5e01e441bc3513e}
-
-
-取得当前链表节点 
-
-
-\begin{DoxyParams}{参数}
-{\em timer} & ktimer\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-kdlist\+\_\+node\+\_\+t实例 
-\end{DoxyReturn}
-\hypertarget{a00113_gad2c8d1024db56a0bef97ea47fb07a920_gad2c8d1024db56a0bef97ea47fb07a920}{}\index{timer.\+c@{timer.\+c}!ktimer\+\_\+get\+\_\+loop@{ktimer\+\_\+get\+\_\+loop}}
-\index{ktimer\+\_\+get\+\_\+loop@{ktimer\+\_\+get\+\_\+loop}!timer.\+c@{timer.\+c}}
-\subsubsection[{ktimer\+\_\+get\+\_\+loop}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ktimer\+\_\+loop\+\_\+t}$\ast$ ktimer\+\_\+get\+\_\+loop (
-\begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer}
-\end{DoxyParamCaption}
-)}\label{a00113_gad2c8d1024db56a0bef97ea47fb07a920_gad2c8d1024db56a0bef97ea47fb07a920}
-
-
-取得ktimer\+\_\+loop\+\_\+t实例 
-
-
-\begin{DoxyParams}{参数}
-{\em timer} & ktimer\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-ktimer\+\_\+loop\+\_\+t实例 
-\end{DoxyReturn}
-\hypertarget{a00113_gaef96e7c368db456236a2121e3d75c49c_gaef96e7c368db456236a2121e3d75c49c}{}\index{timer.\+c@{timer.\+c}!ktimer\+\_\+loop\+\_\+create@{ktimer\+\_\+loop\+\_\+create}}
-\index{ktimer\+\_\+loop\+\_\+create@{ktimer\+\_\+loop\+\_\+create}!timer.\+c@{timer.\+c}}
-\subsubsection[{ktimer\+\_\+loop\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ktimer\+\_\+loop\+\_\+t}$\ast$ ktimer\+\_\+loop\+\_\+create (
-\begin{DoxyParamCaption}
-\item[{time\+\_\+t}]{freq, }
-\item[{int}]{slot}
-\end{DoxyParamCaption}
-)}\label{a00113_gaef96e7c368db456236a2121e3d75c49c_gaef96e7c368db456236a2121e3d75c49c}
-
-
-创建定时器循环 
-
-
-\begin{DoxyParams}{参数}
-{\em freq} & 最小分辨率（毫秒） \\
-\hline
-{\em slot} & 时间轮槽位数量 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-ktimer\+\_\+loop\+\_\+t实例 
-\end{DoxyReturn}
-\hypertarget{a00113_gad3dafe93f5b45424bd5983ef0c163687_gad3dafe93f5b45424bd5983ef0c163687}{}\index{timer.\+c@{timer.\+c}!ktimer\+\_\+loop\+\_\+destroy@{ktimer\+\_\+loop\+\_\+destroy}}
-\index{ktimer\+\_\+loop\+\_\+destroy@{ktimer\+\_\+loop\+\_\+destroy}!timer.\+c@{timer.\+c}}
-\subsubsection[{ktimer\+\_\+loop\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void ktimer\+\_\+loop\+\_\+destroy (
-\begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+loop\+\_\+t} $\ast$}]{ktimer\+\_\+loop}
-\end{DoxyParamCaption}
-)}\label{a00113_gad3dafe93f5b45424bd5983ef0c163687_gad3dafe93f5b45424bd5983ef0c163687}
-
-
-销毁定时器循环 
-
-\begin{DoxyReturn}{返回}
-ktimer\+\_\+loop\+\_\+t实例 
-\end{DoxyReturn}
-\hypertarget{a00113_ga9d51f5fa5d9609d783eb4b0e05101079_ga9d51f5fa5d9609d783eb4b0e05101079}{}\index{timer.\+c@{timer.\+c}!ktimer\+\_\+loop\+\_\+exit@{ktimer\+\_\+loop\+\_\+exit}}
-\index{ktimer\+\_\+loop\+\_\+exit@{ktimer\+\_\+loop\+\_\+exit}!timer.\+c@{timer.\+c}}
-\subsubsection[{ktimer\+\_\+loop\+\_\+exit}]{\setlength{\rightskip}{0pt plus 5cm}void ktimer\+\_\+loop\+\_\+exit (
-\begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+loop\+\_\+t} $\ast$}]{ktimer\+\_\+loop}
-\end{DoxyParamCaption}
-)}\label{a00113_ga9d51f5fa5d9609d783eb4b0e05101079_ga9d51f5fa5d9609d783eb4b0e05101079}
-
-
-退出ktimer\+\_\+loop\+\_\+run() 
-
-
-\begin{DoxyParams}{参数}
-{\em ktimer\+\_\+loop} & ktimer\+\_\+loop\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00113_ga71282c2dc8bac0935617b1271f4066e6_ga71282c2dc8bac0935617b1271f4066e6}{}\index{timer.\+c@{timer.\+c}!ktimer\+\_\+loop\+\_\+get\+\_\+tick\+\_\+intval@{ktimer\+\_\+loop\+\_\+get\+\_\+tick\+\_\+intval}}
-\index{ktimer\+\_\+loop\+\_\+get\+\_\+tick\+\_\+intval@{ktimer\+\_\+loop\+\_\+get\+\_\+tick\+\_\+intval}!timer.\+c@{timer.\+c}}
-\subsubsection[{ktimer\+\_\+loop\+\_\+get\+\_\+tick\+\_\+intval}]{\setlength{\rightskip}{0pt plus 5cm}time\+\_\+t ktimer\+\_\+loop\+\_\+get\+\_\+tick\+\_\+intval (
-\begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+loop\+\_\+t} $\ast$}]{ktimer\+\_\+loop}
-\end{DoxyParamCaption}
-)}\label{a00113_ga71282c2dc8bac0935617b1271f4066e6_ga71282c2dc8bac0935617b1271f4066e6}
-
-
-取得滴答间隔 
-
-
-\begin{DoxyParams}{参数}
-{\em ktimer\+\_\+loop} & ktimer\+\_\+loop\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-滴答间隔 
-\end{DoxyReturn}
-\hypertarget{a00113_ga5e31b2fc26af005e97b09804c5a98099_ga5e31b2fc26af005e97b09804c5a98099}{}\index{timer.\+c@{timer.\+c}!ktimer\+\_\+loop\+\_\+run@{ktimer\+\_\+loop\+\_\+run}}
-\index{ktimer\+\_\+loop\+\_\+run@{ktimer\+\_\+loop\+\_\+run}!timer.\+c@{timer.\+c}}
-\subsubsection[{ktimer\+\_\+loop\+\_\+run}]{\setlength{\rightskip}{0pt plus 5cm}void ktimer\+\_\+loop\+\_\+run (
-\begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+loop\+\_\+t} $\ast$}]{ktimer\+\_\+loop}
-\end{DoxyParamCaption}
-)}\label{a00113_ga5e31b2fc26af005e97b09804c5a98099_ga5e31b2fc26af005e97b09804c5a98099}
-
-
-循环检查定时器超时，调用ktimer\+\_\+loop\+\_\+exit()退出 
-
-
-\begin{DoxyParams}{参数}
-{\em ktimer\+\_\+loop} & ktimer\+\_\+loop\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00113_gaf195cf4006bced494e99242c36ad36c0_gaf195cf4006bced494e99242c36ad36c0}{}\index{timer.\+c@{timer.\+c}!ktimer\+\_\+loop\+\_\+run\+\_\+once@{ktimer\+\_\+loop\+\_\+run\+\_\+once}}
-\index{ktimer\+\_\+loop\+\_\+run\+\_\+once@{ktimer\+\_\+loop\+\_\+run\+\_\+once}!timer.\+c@{timer.\+c}}
-\subsubsection[{ktimer\+\_\+loop\+\_\+run\+\_\+once}]{\setlength{\rightskip}{0pt plus 5cm}int ktimer\+\_\+loop\+\_\+run\+\_\+once (
-\begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+loop\+\_\+t} $\ast$}]{ktimer\+\_\+loop}
-\end{DoxyParamCaption}
-)}\label{a00113_gaf195cf4006bced494e99242c36ad36c0_gaf195cf4006bced494e99242c36ad36c0}
-
-
-检查定时器超时，如果超时调用定时器回调 
-
-
-\begin{DoxyParams}{参数}
-{\em ktimer\+\_\+loop} & ktimer\+\_\+loop\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-定时器超时的数量 
-\end{DoxyReturn}
-\hypertarget{a00098_a03cfe3f98b0537ccb1aba830ccee3991_a03cfe3f98b0537ccb1aba830ccee3991}{}\index{timer.\+c@{timer.\+c}!ktimer\+\_\+set\+\_\+current\+\_\+list@{ktimer\+\_\+set\+\_\+current\+\_\+list}}
-\index{ktimer\+\_\+set\+\_\+current\+\_\+list@{ktimer\+\_\+set\+\_\+current\+\_\+list}!timer.\+c@{timer.\+c}}
-\subsubsection[{ktimer\+\_\+set\+\_\+current\+\_\+list}]{\setlength{\rightskip}{0pt plus 5cm}void ktimer\+\_\+set\+\_\+current\+\_\+list (
-\begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer, }
-\item[{{\bf kdlist\+\_\+t} $\ast$}]{list}
-\end{DoxyParamCaption}
-)}\label{a00098_a03cfe3f98b0537ccb1aba830ccee3991_a03cfe3f98b0537ccb1aba830ccee3991}
-
-
-设置定时器所在的当前链表 
-
-
-\begin{DoxyParams}{参数}
-{\em timer} & ktimer\+\_\+t实例 \\
-\hline
-{\em list} & 链表 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00098_a10748c7e8540fef8a8948da8662f7889_a10748c7e8540fef8a8948da8662f7889}{}\index{timer.\+c@{timer.\+c}!ktimer\+\_\+set\+\_\+current\+\_\+list\+\_\+node@{ktimer\+\_\+set\+\_\+current\+\_\+list\+\_\+node}}
-\index{ktimer\+\_\+set\+\_\+current\+\_\+list\+\_\+node@{ktimer\+\_\+set\+\_\+current\+\_\+list\+\_\+node}!timer.\+c@{timer.\+c}}
-\subsubsection[{ktimer\+\_\+set\+\_\+current\+\_\+list\+\_\+node}]{\setlength{\rightskip}{0pt plus 5cm}void ktimer\+\_\+set\+\_\+current\+\_\+list\+\_\+node (
-\begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer, }
-\item[{{\bf kdlist\+\_\+node\+\_\+t} $\ast$}]{node}
-\end{DoxyParamCaption}
-)}\label{a00098_a10748c7e8540fef8a8948da8662f7889_a10748c7e8540fef8a8948da8662f7889}
-
-
-设置定时器所在的当前链表的链表节点 
-
-
-\begin{DoxyParams}{参数}
-{\em timer} & ktimer\+\_\+t实例 \\
-\hline
-{\em node} & 链表节点 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00113_ga8c5900fb62a63dc71cc9f38ac6427ad1_ga8c5900fb62a63dc71cc9f38ac6427ad1}{}\index{timer.\+c@{timer.\+c}!ktimer\+\_\+start@{ktimer\+\_\+start}}
-\index{ktimer\+\_\+start@{ktimer\+\_\+start}!timer.\+c@{timer.\+c}}
-\subsubsection[{ktimer\+\_\+start}]{\setlength{\rightskip}{0pt plus 5cm}int ktimer\+\_\+start (
-\begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer, }
-\item[{{\bf ktimer\+\_\+cb\+\_\+t}}]{cb, }
-\item[{void $\ast$}]{data, }
-\item[{time\+\_\+t}]{ms}
-\end{DoxyParamCaption}
-)}\label{a00113_ga8c5900fb62a63dc71cc9f38ac6427ad1_ga8c5900fb62a63dc71cc9f38ac6427ad1}
-
-
-启动一个无限次数的定时器 
-
-
-\begin{DoxyParams}{参数}
-{\em timer} & ktimer\+\_\+t实例 \\
-\hline
-{\em cb} & 超时回调函数 \\
-\hline
-{\em data} & 回调函数参数 \\
-\hline
-{\em ms} & 定时器超时间隔 \\
+{\em size} & 缓冲区大小 \\
 \hline
 \end{DoxyParams}
 
@@ -420,29 +75,23 @@ ktimer\+\_\+loop\+\_\+t实例
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00113_ga9c37409260a72e3218ae4fcaf44d79bc_ga9c37409260a72e3218ae4fcaf44d79bc}{}\index{timer.\+c@{timer.\+c}!ktimer\+\_\+start\+\_\+once@{ktimer\+\_\+start\+\_\+once}}
-\index{ktimer\+\_\+start\+\_\+once@{ktimer\+\_\+start\+\_\+once}!timer.\+c@{timer.\+c}}
-\subsubsection[{ktimer\+\_\+start\+\_\+once}]{\setlength{\rightskip}{0pt plus 5cm}int ktimer\+\_\+start\+\_\+once (
+\hypertarget{a00116_gae6aa07ada933f68fb4ed6e19ffd310b4_gae6aa07ada933f68fb4ed6e19ffd310b4}{}\index{stream\+\_\+api.\+h@{stream\+\_\+api.\+h}!knet\+\_\+stream\+\_\+copy\+\_\+stream@{knet\+\_\+stream\+\_\+copy\+\_\+stream}}
+\index{knet\+\_\+stream\+\_\+copy\+\_\+stream@{knet\+\_\+stream\+\_\+copy\+\_\+stream}!stream\+\_\+api.\+h@{stream\+\_\+api.\+h}}
+\subsubsection[{knet\+\_\+stream\+\_\+copy\+\_\+stream}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+stream\+\_\+copy\+\_\+stream (
 \begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer, }
-\item[{{\bf ktimer\+\_\+cb\+\_\+t}}]{cb, }
-\item[{void $\ast$}]{data, }
-\item[{time\+\_\+t}]{ms}
+\item[{{\bf kstream\+\_\+t} $\ast$}]{stream, }
+\item[{{\bf kstream\+\_\+t} $\ast$}]{target}
 \end{DoxyParamCaption}
-)}\label{a00113_ga9c37409260a72e3218ae4fcaf44d79bc_ga9c37409260a72e3218ae4fcaf44d79bc}
+)}\label{a00116_gae6aa07ada933f68fb4ed6e19ffd310b4_gae6aa07ada933f68fb4ed6e19ffd310b4}
 
 
-启动一个只超时一次的定时器，超时后将自动销毁 
+将stream内数据写入target, 但不清除stream内数据 
 
 
 \begin{DoxyParams}{参数}
-{\em timer} & ktimer\+\_\+t实例 \\
+{\em stream} & kstream\+\_\+t实例 \\
 \hline
-{\em cb} & 超时回调函数 \\
-\hline
-{\em data} & 回调函数参数 \\
-\hline
-{\em ms} & 定时器超时间隔 \\
+{\em target} & kstream\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 
@@ -452,32 +101,23 @@ ktimer\+\_\+loop\+\_\+t实例
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00113_ga285936846760d9f325e588d2e2105fe5_ga285936846760d9f325e588d2e2105fe5}{}\index{timer.\+c@{timer.\+c}!ktimer\+\_\+start\+\_\+times@{ktimer\+\_\+start\+\_\+times}}
-\index{ktimer\+\_\+start\+\_\+times@{ktimer\+\_\+start\+\_\+times}!timer.\+c@{timer.\+c}}
-\subsubsection[{ktimer\+\_\+start\+\_\+times}]{\setlength{\rightskip}{0pt plus 5cm}int ktimer\+\_\+start\+\_\+times (
+\hypertarget{a00116_ga61026724ef09e2ca4bf2a652372411e2_ga61026724ef09e2ca4bf2a652372411e2}{}\index{stream\+\_\+api.\+h@{stream\+\_\+api.\+h}!knet\+\_\+stream\+\_\+eat@{knet\+\_\+stream\+\_\+eat}}
+\index{knet\+\_\+stream\+\_\+eat@{knet\+\_\+stream\+\_\+eat}!stream\+\_\+api.\+h@{stream\+\_\+api.\+h}}
+\subsubsection[{knet\+\_\+stream\+\_\+eat}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+stream\+\_\+eat (
 \begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer, }
-\item[{{\bf ktimer\+\_\+cb\+\_\+t}}]{cb, }
-\item[{void $\ast$}]{data, }
-\item[{time\+\_\+t}]{ms, }
-\item[{int}]{times}
+\item[{{\bf kstream\+\_\+t} $\ast$}]{stream, }
+\item[{int}]{size}
 \end{DoxyParamCaption}
-)}\label{a00113_ga285936846760d9f325e588d2e2105fe5_ga285936846760d9f325e588d2e2105fe5}
+)}\label{a00116_ga61026724ef09e2ca4bf2a652372411e2_ga61026724ef09e2ca4bf2a652372411e2}
 
 
-启动一个有限次数的定时器，达到times次数后将自动销毁 
+删除指定长度数据 
 
 
 \begin{DoxyParams}{参数}
-{\em timer} & ktimer\+\_\+t实例 \\
+{\em stream} & kstream\+\_\+t实例 \\
 \hline
-{\em cb} & 超时回调函数 \\
-\hline
-{\em data} & 回调函数参数 \\
-\hline
-{\em ms} & 定时器超时间隔 \\
-\hline
-{\em times} & 次数 \\
+{\em size} & 需要删除的长度 \\
 \hline
 \end{DoxyParams}
 
@@ -487,20 +127,150 @@ ktimer\+\_\+loop\+\_\+t实例
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00113_ga1465f5ddec41fa81c429d1647dc5e7a9_ga1465f5ddec41fa81c429d1647dc5e7a9}{}\index{timer.\+c@{timer.\+c}!ktimer\+\_\+stop@{ktimer\+\_\+stop}}
-\index{ktimer\+\_\+stop@{ktimer\+\_\+stop}!timer.\+c@{timer.\+c}}
-\subsubsection[{ktimer\+\_\+stop}]{\setlength{\rightskip}{0pt plus 5cm}int ktimer\+\_\+stop (
+\hypertarget{a00116_gad1526d745b7bfbb53d0a97e47237bc67_gad1526d745b7bfbb53d0a97e47237bc67}{}\index{stream\+\_\+api.\+h@{stream\+\_\+api.\+h}!knet\+\_\+stream\+\_\+eat\+\_\+all@{knet\+\_\+stream\+\_\+eat\+\_\+all}}
+\index{knet\+\_\+stream\+\_\+eat\+\_\+all@{knet\+\_\+stream\+\_\+eat\+\_\+all}!stream\+\_\+api.\+h@{stream\+\_\+api.\+h}}
+\subsubsection[{knet\+\_\+stream\+\_\+eat\+\_\+all}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+stream\+\_\+eat\+\_\+all (
 \begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer}
+\item[{{\bf kstream\+\_\+t} $\ast$}]{stream}
 \end{DoxyParamCaption}
-)}\label{a00113_ga1465f5ddec41fa81c429d1647dc5e7a9_ga1465f5ddec41fa81c429d1647dc5e7a9}
+)}\label{a00116_gad1526d745b7bfbb53d0a97e47237bc67_gad1526d745b7bfbb53d0a97e47237bc67}
 
 
-停止并销毁定时器 
+清空数据流 
 
 
 \begin{DoxyParams}{参数}
-{\em timer} & ktimer\+\_\+t实例 \\
+{\em stream} & kstream\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{a00116_ga6ec1754b28f693f5a5c047aef8cda3a8_ga6ec1754b28f693f5a5c047aef8cda3a8}{}\index{stream\+\_\+api.\+h@{stream\+\_\+api.\+h}!knet\+\_\+stream\+\_\+get\+\_\+channel\+\_\+ref@{knet\+\_\+stream\+\_\+get\+\_\+channel\+\_\+ref}}
+\index{knet\+\_\+stream\+\_\+get\+\_\+channel\+\_\+ref@{knet\+\_\+stream\+\_\+get\+\_\+channel\+\_\+ref}!stream\+\_\+api.\+h@{stream\+\_\+api.\+h}}
+\subsubsection[{knet\+\_\+stream\+\_\+get\+\_\+channel\+\_\+ref}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kchannel\+\_\+ref\+\_\+t}$\ast$ knet\+\_\+stream\+\_\+get\+\_\+channel\+\_\+ref (
+\begin{DoxyParamCaption}
+\item[{{\bf kstream\+\_\+t} $\ast$}]{stream}
+\end{DoxyParamCaption}
+)}\label{a00116_ga6ec1754b28f693f5a5c047aef8cda3a8_ga6ec1754b28f693f5a5c047aef8cda3a8}
+
+
+获取流所属的管道引用 
+
+
+\begin{DoxyParams}{参数}
+{\em stream} & kstream\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+kchannel\+\_\+ref\+\_\+t实例 
+\end{DoxyReturn}
+\hypertarget{a00116_gac6fbd27fc2e9a756c3debfc11cd31904_gac6fbd27fc2e9a756c3debfc11cd31904}{}\index{stream\+\_\+api.\+h@{stream\+\_\+api.\+h}!knet\+\_\+stream\+\_\+pop@{knet\+\_\+stream\+\_\+pop}}
+\index{knet\+\_\+stream\+\_\+pop@{knet\+\_\+stream\+\_\+pop}!stream\+\_\+api.\+h@{stream\+\_\+api.\+h}}
+\subsubsection[{knet\+\_\+stream\+\_\+pop}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+stream\+\_\+pop (
+\begin{DoxyParamCaption}
+\item[{{\bf kstream\+\_\+t} $\ast$}]{stream, }
+\item[{void $\ast$}]{buffer, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}\label{a00116_gac6fbd27fc2e9a756c3debfc11cd31904_gac6fbd27fc2e9a756c3debfc11cd31904}
+
+
+从数据流内读取数据并清除数据 
+
+
+\begin{DoxyParams}{参数}
+{\em stream} & kstream\+\_\+t实例 \\
+\hline
+{\em buffer} & 缓冲区 \\
+\hline
+{\em size} & 缓冲区大小 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{a00116_gae342abfa7489dac8cd0676ae54763034_gae342abfa7489dac8cd0676ae54763034}{}\index{stream\+\_\+api.\+h@{stream\+\_\+api.\+h}!knet\+\_\+stream\+\_\+push@{knet\+\_\+stream\+\_\+push}}
+\index{knet\+\_\+stream\+\_\+push@{knet\+\_\+stream\+\_\+push}!stream\+\_\+api.\+h@{stream\+\_\+api.\+h}}
+\subsubsection[{knet\+\_\+stream\+\_\+push}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+stream\+\_\+push (
+\begin{DoxyParamCaption}
+\item[{{\bf kstream\+\_\+t} $\ast$}]{stream, }
+\item[{const void $\ast$}]{buffer, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}\label{a00116_gae342abfa7489dac8cd0676ae54763034_gae342abfa7489dac8cd0676ae54763034}
+
+
+向数据流内写数据 
+
+
+\begin{DoxyParams}{参数}
+{\em stream} & kstream\+\_\+t实例 \\
+\hline
+{\em buffer} & 缓冲区 \\
+\hline
+{\em size} & 缓冲区大小 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{a00116_ga57debea3be18e64784e417edcc191673_ga57debea3be18e64784e417edcc191673}{}\index{stream\+\_\+api.\+h@{stream\+\_\+api.\+h}!knet\+\_\+stream\+\_\+push\+\_\+stream@{knet\+\_\+stream\+\_\+push\+\_\+stream}}
+\index{knet\+\_\+stream\+\_\+push\+\_\+stream@{knet\+\_\+stream\+\_\+push\+\_\+stream}!stream\+\_\+api.\+h@{stream\+\_\+api.\+h}}
+\subsubsection[{knet\+\_\+stream\+\_\+push\+\_\+stream}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+stream\+\_\+push\+\_\+stream (
+\begin{DoxyParamCaption}
+\item[{{\bf kstream\+\_\+t} $\ast$}]{stream, }
+\item[{{\bf kstream\+\_\+t} $\ast$}]{target}
+\end{DoxyParamCaption}
+)}\label{a00116_ga57debea3be18e64784e417edcc191673_ga57debea3be18e64784e417edcc191673}
+
+
+将stream内数据写入target, 并清除stream内数据 
+
+
+\begin{DoxyParams}{参数}
+{\em stream} & kstream\+\_\+t实例 \\
+\hline
+{\em target} & kstream\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{a00116_ga5385c5f448246089a80f0ca38de23e0d_ga5385c5f448246089a80f0ca38de23e0d}{}\index{stream\+\_\+api.\+h@{stream\+\_\+api.\+h}!knet\+\_\+stream\+\_\+push\+\_\+varg@{knet\+\_\+stream\+\_\+push\+\_\+varg}}
+\index{knet\+\_\+stream\+\_\+push\+\_\+varg@{knet\+\_\+stream\+\_\+push\+\_\+varg}!stream\+\_\+api.\+h@{stream\+\_\+api.\+h}}
+\subsubsection[{knet\+\_\+stream\+\_\+push\+\_\+varg}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+stream\+\_\+push\+\_\+varg (
+\begin{DoxyParamCaption}
+\item[{{\bf kstream\+\_\+t} $\ast$}]{stream, }
+\item[{const char $\ast$}]{format, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}\label{a00116_ga5385c5f448246089a80f0ca38de23e0d_ga5385c5f448246089a80f0ca38de23e0d}
+
+
+向数据流写数据，可变参数字符串 
+
+一次写入的长度不能超过1024 
+\begin{DoxyParams}{参数}
+{\em stream} & kstream\+\_\+t实例 \\
+\hline
+{\em format} & 字符串格式 \\
 \hline
 \end{DoxyParams}
 

@@ -1,28 +1,43 @@
-\hypertarget{a00010}{}\section{\+\_\+dlist\+\_\+t结构体 参考}
-\label{a00010}\index{\+\_\+dlist\+\_\+t@{\+\_\+dlist\+\_\+t}}
+\hypertarget{a00010}{}\section{\+\_\+framework\+\_\+config\+\_\+t结构体 参考}
+\label{a00010}\index{\+\_\+framework\+\_\+config\+\_\+t@{\+\_\+framework\+\_\+config\+\_\+t}}
 \subsection*{成员变量}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00053_ac701f00a0851c97467ae35c382b316b7_ac701f00a0851c97467ae35c382b316b7}{kdlist\+\_\+node\+\_\+t} $\ast$ \hyperlink{a00010_ac0085f1a32046ce4c412673ae3affd36_ac0085f1a32046ce4c412673ae3affd36}{head}
+\hyperlink{a00054_a4c2f62ab63ab1fd49c71e52bbda0f393_a4c2f62ab63ab1fd49c71e52bbda0f393}{klock\+\_\+t} $\ast$ \hyperlink{a00010_ac52fb7a1dd31dc57cd7a1268eb72f2f1_ac52fb7a1dd31dc57cd7a1268eb72f2f1}{lock}
 \item 
-\hyperlink{a00053_a0d043bbb6b8db19fea54ab9271d352b6_a0d043bbb6b8db19fea54ab9271d352b6}{atomic\+\_\+counter\+\_\+t} \hyperlink{a00010_aa38de0ef086624e66baf0aa28accb45f_aa38de0ef086624e66baf0aa28accb45f}{count}
+\hyperlink{a00054_ae098586334a621a23cef7cb17590b618_ae098586334a621a23cef7cb17590b618}{kdlist\+\_\+t} $\ast$ \hyperlink{a00010_aa9684fe41cf8bd820ab33f64074d62d7_aa9684fe41cf8bd820ab33f64074d62d7}{acceptor\+\_\+config\+\_\+list}
 \item 
-int \hyperlink{a00010_a3de2609af755cf6408f8d450b9bd7252_a3de2609af755cf6408f8d450b9bd7252}{init}
+\hyperlink{a00054_ae098586334a621a23cef7cb17590b618_ae098586334a621a23cef7cb17590b618}{kdlist\+\_\+t} $\ast$ \hyperlink{a00010_a8357cb200b0a8623d835f8a2367e9277_a8357cb200b0a8623d835f8a2367e9277}{connector\+\_\+config\+\_\+list}
+\item 
+int \hyperlink{a00010_a9a064afbac56ea11a4ec150bb4df152e_a9a064afbac56ea11a4ec150bb4df152e}{worker\+\_\+thread\+\_\+count}
+\item 
+time\+\_\+t \hyperlink{a00010_a069819672805007308b35d0553051a15_a069819672805007308b35d0553051a15}{worker\+\_\+timer\+\_\+intval}
+\item 
+int \hyperlink{a00010_aa1e13d29f85dbf6a0430c43313e2ec79_aa1e13d29f85dbf6a0430c43313e2ec79}{worker\+\_\+timer\+\_\+slot}
 \end{DoxyCompactItemize}
 
 
 \subsection{结构体成员变量说明}
-\hypertarget{a00010_aa38de0ef086624e66baf0aa28accb45f_aa38de0ef086624e66baf0aa28accb45f}{}\index{\+\_\+dlist\+\_\+t@{\+\_\+dlist\+\_\+t}!count@{count}}
-\index{count@{count}!\+\_\+dlist\+\_\+t@{\+\_\+dlist\+\_\+t}}
-\subsubsection[{count}]{\setlength{\rightskip}{0pt plus 5cm}{\bf atomic\+\_\+counter\+\_\+t} \+\_\+dlist\+\_\+t\+::count}\label{a00010_aa38de0ef086624e66baf0aa28accb45f_aa38de0ef086624e66baf0aa28accb45f}
-\hypertarget{a00010_ac0085f1a32046ce4c412673ae3affd36_ac0085f1a32046ce4c412673ae3affd36}{}\index{\+\_\+dlist\+\_\+t@{\+\_\+dlist\+\_\+t}!head@{head}}
-\index{head@{head}!\+\_\+dlist\+\_\+t@{\+\_\+dlist\+\_\+t}}
-\subsubsection[{head}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kdlist\+\_\+node\+\_\+t}$\ast$ \+\_\+dlist\+\_\+t\+::head}\label{a00010_ac0085f1a32046ce4c412673ae3affd36_ac0085f1a32046ce4c412673ae3affd36}
-\hypertarget{a00010_a3de2609af755cf6408f8d450b9bd7252_a3de2609af755cf6408f8d450b9bd7252}{}\index{\+\_\+dlist\+\_\+t@{\+\_\+dlist\+\_\+t}!init@{init}}
-\index{init@{init}!\+\_\+dlist\+\_\+t@{\+\_\+dlist\+\_\+t}}
-\subsubsection[{init}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+dlist\+\_\+t\+::init}\label{a00010_a3de2609af755cf6408f8d450b9bd7252_a3de2609af755cf6408f8d450b9bd7252}
+\hypertarget{a00010_aa9684fe41cf8bd820ab33f64074d62d7_aa9684fe41cf8bd820ab33f64074d62d7}{}\index{\+\_\+framework\+\_\+config\+\_\+t@{\+\_\+framework\+\_\+config\+\_\+t}!acceptor\+\_\+config\+\_\+list@{acceptor\+\_\+config\+\_\+list}}
+\index{acceptor\+\_\+config\+\_\+list@{acceptor\+\_\+config\+\_\+list}!\+\_\+framework\+\_\+config\+\_\+t@{\+\_\+framework\+\_\+config\+\_\+t}}
+\subsubsection[{acceptor\+\_\+config\+\_\+list}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kdlist\+\_\+t}$\ast$ \+\_\+framework\+\_\+config\+\_\+t\+::acceptor\+\_\+config\+\_\+list}\label{a00010_aa9684fe41cf8bd820ab33f64074d62d7_aa9684fe41cf8bd820ab33f64074d62d7}
+\hypertarget{a00010_a8357cb200b0a8623d835f8a2367e9277_a8357cb200b0a8623d835f8a2367e9277}{}\index{\+\_\+framework\+\_\+config\+\_\+t@{\+\_\+framework\+\_\+config\+\_\+t}!connector\+\_\+config\+\_\+list@{connector\+\_\+config\+\_\+list}}
+\index{connector\+\_\+config\+\_\+list@{connector\+\_\+config\+\_\+list}!\+\_\+framework\+\_\+config\+\_\+t@{\+\_\+framework\+\_\+config\+\_\+t}}
+\subsubsection[{connector\+\_\+config\+\_\+list}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kdlist\+\_\+t}$\ast$ \+\_\+framework\+\_\+config\+\_\+t\+::connector\+\_\+config\+\_\+list}\label{a00010_a8357cb200b0a8623d835f8a2367e9277_a8357cb200b0a8623d835f8a2367e9277}
+\hypertarget{a00010_ac52fb7a1dd31dc57cd7a1268eb72f2f1_ac52fb7a1dd31dc57cd7a1268eb72f2f1}{}\index{\+\_\+framework\+\_\+config\+\_\+t@{\+\_\+framework\+\_\+config\+\_\+t}!lock@{lock}}
+\index{lock@{lock}!\+\_\+framework\+\_\+config\+\_\+t@{\+\_\+framework\+\_\+config\+\_\+t}}
+\subsubsection[{lock}]{\setlength{\rightskip}{0pt plus 5cm}{\bf klock\+\_\+t}$\ast$ \+\_\+framework\+\_\+config\+\_\+t\+::lock}\label{a00010_ac52fb7a1dd31dc57cd7a1268eb72f2f1_ac52fb7a1dd31dc57cd7a1268eb72f2f1}
+\hypertarget{a00010_a9a064afbac56ea11a4ec150bb4df152e_a9a064afbac56ea11a4ec150bb4df152e}{}\index{\+\_\+framework\+\_\+config\+\_\+t@{\+\_\+framework\+\_\+config\+\_\+t}!worker\+\_\+thread\+\_\+count@{worker\+\_\+thread\+\_\+count}}
+\index{worker\+\_\+thread\+\_\+count@{worker\+\_\+thread\+\_\+count}!\+\_\+framework\+\_\+config\+\_\+t@{\+\_\+framework\+\_\+config\+\_\+t}}
+\subsubsection[{worker\+\_\+thread\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+framework\+\_\+config\+\_\+t\+::worker\+\_\+thread\+\_\+count}\label{a00010_a9a064afbac56ea11a4ec150bb4df152e_a9a064afbac56ea11a4ec150bb4df152e}
+\hypertarget{a00010_a069819672805007308b35d0553051a15_a069819672805007308b35d0553051a15}{}\index{\+\_\+framework\+\_\+config\+\_\+t@{\+\_\+framework\+\_\+config\+\_\+t}!worker\+\_\+timer\+\_\+intval@{worker\+\_\+timer\+\_\+intval}}
+\index{worker\+\_\+timer\+\_\+intval@{worker\+\_\+timer\+\_\+intval}!\+\_\+framework\+\_\+config\+\_\+t@{\+\_\+framework\+\_\+config\+\_\+t}}
+\subsubsection[{worker\+\_\+timer\+\_\+intval}]{\setlength{\rightskip}{0pt plus 5cm}time\+\_\+t \+\_\+framework\+\_\+config\+\_\+t\+::worker\+\_\+timer\+\_\+intval}\label{a00010_a069819672805007308b35d0553051a15_a069819672805007308b35d0553051a15}
+\hypertarget{a00010_aa1e13d29f85dbf6a0430c43313e2ec79_aa1e13d29f85dbf6a0430c43313e2ec79}{}\index{\+\_\+framework\+\_\+config\+\_\+t@{\+\_\+framework\+\_\+config\+\_\+t}!worker\+\_\+timer\+\_\+slot@{worker\+\_\+timer\+\_\+slot}}
+\index{worker\+\_\+timer\+\_\+slot@{worker\+\_\+timer\+\_\+slot}!\+\_\+framework\+\_\+config\+\_\+t@{\+\_\+framework\+\_\+config\+\_\+t}}
+\subsubsection[{worker\+\_\+timer\+\_\+slot}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+framework\+\_\+config\+\_\+t\+::worker\+\_\+timer\+\_\+slot}\label{a00010_aa1e13d29f85dbf6a0430c43313e2ec79_aa1e13d29f85dbf6a0430c43313e2ec79}
 
 
 该结构体的文档由以下文件生成\+:\begin{DoxyCompactItemize}
 \item 
-E\+:/knet-\/git/knet/knet/\hyperlink{a00067}{list.\+c}\end{DoxyCompactItemize}
+E\+:/knet-\/git/knet/knet/\hyperlink{a00058}{framework\+\_\+config.\+c}\end{DoxyCompactItemize}

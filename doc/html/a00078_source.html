@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/loop_profile.h 源文件</title>
+<title>knet: E:/knet-git/knet/knet/loop_balancer.h 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">loop_profile.h</div>  </div>
+<div class="title">loop_balancer.h</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00078.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
@@ -114,54 +114,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef LOOP_PROFILE_H</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define LOOP_PROFILE_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef LOOP_BALANCER_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define LOOP_BALANCER_H</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00050.html">config.h</a>&quot;</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00079.html">loop_profile_api.h</a>&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00054.html">config.h</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00079.html">loop_balancer_api.h</a>&quot;</span></div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<a class="code" href="a00031.html">loop_profile_t</a>* <a class="code" href="a00078_adb276ec4e5559b1e167dc9045fa499bb.html#adb276ec4e5559b1e167dc9045fa499bb">loop_profile_create</a>(<a class="code" href="a00032.html">loop_t</a>* <a class="code" href="a00031_a980ff537ba150044fae36b625ad23461.html#a980ff537ba150044fae36b625ad23461">loop</a>);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<a class="code" href="a00033.html">kloop_t</a>* <a class="code" href="a00078_ab16d1483a612eba09677784480b5e1e7.html#ab16d1483a612eba09677784480b5e1e7">knet_loop_balancer_choose</a>(<a class="code" href="a00029.html">kloop_balancer_t</a>* balancer);</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00078_a737f9f904afe15e70f56886c44372e5d.html#a737f9f904afe15e70f56886c44372e5d">loop_profile_destroy</a>(<a class="code" href="a00031.html">loop_profile_t</a>* profile);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;uint32_t <a class="code" href="a00078_af388f071a9558df8049c51205d33361a.html#af388f071a9558df8049c51205d33361a">loop_profile_increase_established_channel_count</a>(<a class="code" href="a00031.html">loop_profile_t</a>* profile);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;uint32_t <a class="code" href="a00078_a7cfc0ba3d4b5083413f330b519e38eec.html#a7cfc0ba3d4b5083413f330b519e38eec">loop_profile_decrease_established_channel_count</a>(<a class="code" href="a00031.html">loop_profile_t</a>* profile);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;uint32_t <a class="code" href="a00078_a60b6b1d29dcb8746bc44c90b8b438544.html#a60b6b1d29dcb8746bc44c90b8b438544">loop_profile_increase_active_channel_count</a>(<a class="code" href="a00031.html">loop_profile_t</a>* profile);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;uint32_t <a class="code" href="a00078_ab1bcbe8b5c4c4618605821581cdcaacd.html#ab1bcbe8b5c4c4618605821581cdcaacd">loop_profile_decrease_active_channel_count</a>(<a class="code" href="a00031.html">loop_profile_t</a>* profile);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;uint32_t <a class="code" href="a00078_ae06a8af9d1d8e3b32a3ae6220aa904b2.html#ae06a8af9d1d8e3b32a3ae6220aa904b2">loop_profile_increase_close_channel_count</a>(<a class="code" href="a00031.html">loop_profile_t</a>* profile);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;uint32_t <a class="code" href="a00078_abae75de750f7969632e5e8087eb6c778.html#abae75de750f7969632e5e8087eb6c778">loop_profile_decrease_close_channel_count</a>(<a class="code" href="a00031.html">loop_profile_t</a>* profile);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;uint64_t <a class="code" href="a00078_a04e566a4074bb91aa86119c34157c440.html#a04e566a4074bb91aa86119c34157c440">loop_profile_add_send_bytes</a>(<a class="code" href="a00031.html">loop_profile_t</a>* profile, uint64_t <a class="code" href="a00031_a1c6ce181c5e47d5aa0692e380dae50b9.html#a1c6ce181c5e47d5aa0692e380dae50b9">send_bytes</a>);</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;uint64_t <a class="code" href="a00078_ac826bfebabc5f965c6906ce83400f1de.html#ac826bfebabc5f965c6906ce83400f1de">loop_profile_add_recv_bytes</a>(<a class="code" href="a00031.html">loop_profile_t</a>* profile, uint64_t <a class="code" href="a00031_a65c0413fffa7982e7a7c99e630e2d94b.html#a65c0413fffa7982e7a7c99e630e2d94b">recv_bytes</a>);</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* LOOP_PROFILE_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="a00078_af388f071a9558df8049c51205d33361a_html_af388f071a9558df8049c51205d33361a"><div class="ttname"><a href="a00078_af388f071a9558df8049c51205d33361a.html#af388f071a9558df8049c51205d33361a">loop_profile_increase_established_channel_count</a></div><div class="ttdeci">uint32_t loop_profile_increase_established_channel_count(loop_profile_t *profile)</div><div class="ttdoc">增加已建立连接的管道数量 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:60</div></div>
-<div class="ttc" id="a00031_a65c0413fffa7982e7a7c99e630e2d94b_html_a65c0413fffa7982e7a7c99e630e2d94b"><div class="ttname"><a href="a00031_a65c0413fffa7982e7a7c99e630e2d94b.html#a65c0413fffa7982e7a7c99e630e2d94b">_loop_profile_t::recv_bytes</a></div><div class="ttdeci">uint64_t recv_bytes</div><div class="ttdef"><b>Definition:</b> loop_profile.c:32</div></div>
-<div class="ttc" id="a00050_html"><div class="ttname"><a href="a00050.html">config.h</a></div></div>
-<div class="ttc" id="a00079_html"><div class="ttname"><a href="a00079.html">loop_profile_api.h</a></div></div>
-<div class="ttc" id="a00078_ac826bfebabc5f965c6906ce83400f1de_html_ac826bfebabc5f965c6906ce83400f1de"><div class="ttname"><a href="a00078_ac826bfebabc5f965c6906ce83400f1de.html#ac826bfebabc5f965c6906ce83400f1de">loop_profile_add_recv_bytes</a></div><div class="ttdeci">uint64_t loop_profile_add_recv_bytes(loop_profile_t *profile, uint64_t recv_bytes)</div><div class="ttdoc">增加接收字节数 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:115</div></div>
-<div class="ttc" id="a00078_a737f9f904afe15e70f56886c44372e5d_html_a737f9f904afe15e70f56886c44372e5d"><div class="ttname"><a href="a00078_a737f9f904afe15e70f56886c44372e5d.html#a737f9f904afe15e70f56886c44372e5d">loop_profile_destroy</a></div><div class="ttdeci">void loop_profile_destroy(loop_profile_t *profile)</div><div class="ttdoc">销毁统计器 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:56</div></div>
-<div class="ttc" id="a00078_abae75de750f7969632e5e8087eb6c778_html_abae75de750f7969632e5e8087eb6c778"><div class="ttname"><a href="a00078_abae75de750f7969632e5e8087eb6c778.html#abae75de750f7969632e5e8087eb6c778">loop_profile_decrease_close_channel_count</a></div><div class="ttdeci">uint32_t loop_profile_decrease_close_channel_count(loop_profile_t *profile)</div><div class="ttdoc">减少已关闭管道数量 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:95</div></div>
-<div class="ttc" id="a00078_a7cfc0ba3d4b5083413f330b519e38eec_html_a7cfc0ba3d4b5083413f330b519e38eec"><div class="ttname"><a href="a00078_a7cfc0ba3d4b5083413f330b519e38eec.html#a7cfc0ba3d4b5083413f330b519e38eec">loop_profile_decrease_established_channel_count</a></div><div class="ttdeci">uint32_t loop_profile_decrease_established_channel_count(loop_profile_t *profile)</div><div class="ttdoc">减少已建立连接的管道数量 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:65</div></div>
-<div class="ttc" id="a00078_adb276ec4e5559b1e167dc9045fa499bb_html_adb276ec4e5559b1e167dc9045fa499bb"><div class="ttname"><a href="a00078_adb276ec4e5559b1e167dc9045fa499bb.html#adb276ec4e5559b1e167dc9045fa499bb">loop_profile_create</a></div><div class="ttdeci">loop_profile_t * loop_profile_create(loop_t *loop)</div><div class="ttdoc">建立loop_t统计器 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:44</div></div>
-<div class="ttc" id="a00032_html"><div class="ttname"><a href="a00032.html">_loop_t</a></div><div class="ttdef"><b>Definition:</b> loop.c:36</div></div>
-<div class="ttc" id="a00078_a60b6b1d29dcb8746bc44c90b8b438544_html_a60b6b1d29dcb8746bc44c90b8b438544"><div class="ttname"><a href="a00078_a60b6b1d29dcb8746bc44c90b8b438544.html#a60b6b1d29dcb8746bc44c90b8b438544">loop_profile_increase_active_channel_count</a></div><div class="ttdeci">uint32_t loop_profile_increase_active_channel_count(loop_profile_t *profile)</div><div class="ttdoc">增加已建立但未连接的管道数量 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:75</div></div>
-<div class="ttc" id="a00078_a04e566a4074bb91aa86119c34157c440_html_a04e566a4074bb91aa86119c34157c440"><div class="ttname"><a href="a00078_a04e566a4074bb91aa86119c34157c440.html#a04e566a4074bb91aa86119c34157c440">loop_profile_add_send_bytes</a></div><div class="ttdeci">uint64_t loop_profile_add_send_bytes(loop_profile_t *profile, uint64_t send_bytes)</div><div class="ttdoc">增加发送字节数 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:105</div></div>
-<div class="ttc" id="a00078_ab1bcbe8b5c4c4618605821581cdcaacd_html_ab1bcbe8b5c4c4618605821581cdcaacd"><div class="ttname"><a href="a00078_ab1bcbe8b5c4c4618605821581cdcaacd.html#ab1bcbe8b5c4c4618605821581cdcaacd">loop_profile_decrease_active_channel_count</a></div><div class="ttdeci">uint32_t loop_profile_decrease_active_channel_count(loop_profile_t *profile)</div><div class="ttdoc">减少已建立但未连接的管道数量 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:80</div></div>
-<div class="ttc" id="a00031_html"><div class="ttname"><a href="a00031.html">_loop_profile_t</a></div><div class="ttdef"><b>Definition:</b> loop_profile.c:30</div></div>
-<div class="ttc" id="a00031_a980ff537ba150044fae36b625ad23461_html_a980ff537ba150044fae36b625ad23461"><div class="ttname"><a href="a00031_a980ff537ba150044fae36b625ad23461.html#a980ff537ba150044fae36b625ad23461">_loop_profile_t::loop</a></div><div class="ttdeci">loop_t * loop</div><div class="ttdef"><b>Definition:</b> loop_profile.c:31</div></div>
-<div class="ttc" id="a00078_ae06a8af9d1d8e3b32a3ae6220aa904b2_html_ae06a8af9d1d8e3b32a3ae6220aa904b2"><div class="ttname"><a href="a00078_ae06a8af9d1d8e3b32a3ae6220aa904b2.html#ae06a8af9d1d8e3b32a3ae6220aa904b2">loop_profile_increase_close_channel_count</a></div><div class="ttdeci">uint32_t loop_profile_increase_close_channel_count(loop_profile_t *profile)</div><div class="ttdoc">增加已关闭管道数量 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:90</div></div>
-<div class="ttc" id="a00031_a1c6ce181c5e47d5aa0692e380dae50b9_html_a1c6ce181c5e47d5aa0692e380dae50b9"><div class="ttname"><a href="a00031_a1c6ce181c5e47d5aa0692e380dae50b9.html#a1c6ce181c5e47d5aa0692e380dae50b9">_loop_profile_t::send_bytes</a></div><div class="ttdeci">uint64_t send_bytes</div><div class="ttdef"><b>Definition:</b> loop_profile.c:33</div></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* LOOP_BALANCER_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a00079_html"><div class="ttname"><a href="a00079.html">loop_balancer_api.h</a></div></div>
+<div class="ttc" id="a00029_html"><div class="ttname"><a href="a00029.html">_loop_balancer_t</a></div><div class="ttdef"><b>Definition:</b> loop_balancer.c:36</div></div>
+<div class="ttc" id="a00078_ab16d1483a612eba09677784480b5e1e7_html_ab16d1483a612eba09677784480b5e1e7"><div class="ttname"><a href="a00078_ab16d1483a612eba09677784480b5e1e7.html#ab16d1483a612eba09677784480b5e1e7">knet_loop_balancer_choose</a></div><div class="ttdeci">kloop_t * knet_loop_balancer_choose(kloop_balancer_t *balancer)</div><div class="ttdoc">负载均衡 - 选取一个kloop_t实例 </div><div class="ttdef"><b>Definition:</b> loop_balancer.c:118</div></div>
+<div class="ttc" id="a00054_html"><div class="ttname"><a href="a00054.html">config.h</a></div></div>
+<div class="ttc" id="a00033_html"><div class="ttname"><a href="a00033.html">_loop_t</a></div><div class="ttdef"><b>Definition:</b> loop.c:36</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 20日 星期一 11:17:40 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 24日 星期五 11:53:43 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

@@ -25,6 +25,7 @@
 #ifndef HELPER_H
 #define HELPER_H
 
+#include <cstdio>
 #include <sstream>
 
 #define CASE(name) \
@@ -101,9 +102,19 @@ inline static std::ostream& white(std::ostream &s) {
     return s;
 }
 
+inline std::string getBinaryPath() {
+    char path[MAX_PATH] = {0};
+    GetModuleFileNameA(0, path, sizeof(path));
+    int i = MAX_PATH - 1;
+    for (; (path[i] != '\\') && (path[i] != '/'); i--);
+    path[i] = 0;
+    return path;
+}
+
 #else
 
 #include <cstdio>
+#include <limits.h>
 
 inline static std::ostream& blue(std::ostream &s) {
     printf("\033[1;34m");
@@ -128,6 +139,17 @@ inline static std::ostream& yellow(std::ostream &s) {
 inline static std::ostream& white(std::ostream &s) {
     printf("\033[30m");
     return s;
+}
+
+inline std::string getBinaryPath() {
+    char link[PATH_MAX] = {0};
+    char path[PATH_MAX] = {0};
+    sprintf(link, "/proc/%d/exe", getpid());
+    readlink(link, path, sizeof(path));
+    int i = PATH_MAX - 1;
+    for (; (i != '\\') || (i != '/'); i--);
+    path[i] = 0;
+    return path;
 }
 
 #endif // WIN32

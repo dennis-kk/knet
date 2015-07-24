@@ -144,6 +144,14 @@ int _trie_node_decref_path(ktrie_node_t* node, ktrie_node_t** start_node, const 
  */
 void _trie_node_delete_path(ktrie_node_t* node, const char* s);
 
+/**
+ * 遍历节点
+ * @param node ktrie_node_t实例
+ * @param func 遍历函数
+ * @param param 遍历函数参数
+ */
+int _trie_node_for_each(ktrie_node_t* node, knet_trie_for_each_func_t func, void* param);
+
 ktrie_t* trie_create() {
     ktrie_t* trie = create(ktrie_t);
     verify(trie);
@@ -184,6 +192,15 @@ int trie_remove(ktrie_t* trie, const char* s, void** value) {
         *value = 0;
     }
     return _trie_node_remove(trie->root, s, value);
+}
+
+int trie_for_each(ktrie_t* trie, knet_trie_for_each_func_t func, void* param) {
+    verify(trie);
+    verify(func);
+    if (_trie_node_for_each(trie->root, func, param)) {
+        return error_trie_for_each_fail;
+    }
+    return error_ok;
 }
 
 ktrie_node_t* _trie_node_create(ktrie_node_t* parent) {
@@ -240,7 +257,7 @@ int _trie_node_find(ktrie_node_t* node, const char* key, const char* s, void** v
         return error_trie_not_found;
     }
     c = *s;
-    if (node->key == c) {
+    if (node->key == c) { /* 中间节点 */
         s += 1;
         n = *s;
         if (!n) {
@@ -258,11 +275,11 @@ int _trie_node_find(ktrie_node_t* node, const char* key, const char* s, void** v
         if (node->center) {
             return _trie_node_find(node->center, key, s, value);
         }
-    } else if (node->key > c) {
+    } else if (node->key > c) { /* 左边节点 */
         if (node->left) {
             return _trie_node_find(node->left, key, s, value);
         }
-    } else if (node->key < c) {
+    } else if (node->key < c) { /* 右边节点 */
         if (node->right) {
             return _trie_node_find(node->right, key, s, value);
         }
@@ -461,4 +478,25 @@ void _trie_node_delete_path(ktrie_node_t* node, const char* s) {
             node->right = 0;
         }
     }
+}
+
+int _trie_node_for_each(ktrie_node_t* node, knet_trie_for_each_func_t func, void* param) {
+    verify(node);
+    verify(func);
+    if (node->left) {
+        if (_trie_node_for_each(node->left, func, param)) {
+            return 1;
+        }
+    }
+    if (node->center) {
+        if (_trie_node_for_each(node->center, func, param)) {
+            return 1;
+        }
+    }
+    if (node->right) {
+        if (_trie_node_for_each(node->right, func, param)) {
+            return 1;
+        }
+    }
+    return func(node->real_key, param);
 }

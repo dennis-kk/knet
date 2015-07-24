@@ -62,6 +62,9 @@
       <AdditionalLibraryDirectories>..\lib\debug\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>knetlib-vs2010.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /e /y  ..\unit_test\ip_filter.ipf $(TargetDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -83,6 +86,9 @@
       <AdditionalLibraryDirectories>..\lib\debug\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>knetlib-vs2010.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /e /y  ..\unit_test\ip_filter.ipf $(TargetDir)</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\unit_test\address_case.h" />
@@ -90,6 +96,7 @@
     <ClInclude Include="..\unit_test\channel_ref_case.h" />
     <ClInclude Include="..\unit_test\framework_case.h" />
     <ClInclude Include="..\unit_test\helper.h" />
+    <ClInclude Include="..\unit_test\ip_filter_case.h" />
     <ClInclude Include="..\unit_test\loop_profile_case.h" />
     <ClInclude Include="..\unit_test\rpc_object_case.h" />
     <ClInclude Include="..\unit_test\stream_case.h" />

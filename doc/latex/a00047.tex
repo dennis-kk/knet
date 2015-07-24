@@ -1,32 +1,37 @@
-\hypertarget{a00047}{}\section{E\+:/knet-\/git/knet/knet/buffer.h 文件参考}
-\label{a00047}\index{E\+:/knet-\/git/knet/knet/buffer.\+h@{E\+:/knet-\/git/knet/knet/buffer.\+h}}
-{\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\\*
+\hypertarget{a00047}{}\section{E\+:/knet-\/git/knet/knet/buffer.c 文件参考}
+\label{a00047}\index{E\+:/knet-\/git/knet/knet/buffer.\+c@{E\+:/knet-\/git/knet/knet/buffer.\+c}}
+{\ttfamily \#include \char`\"{}buffer.\+h\char`\"{}}\\*
+\subsection*{结构体}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{a00003}{\+\_\+buffer\+\_\+t}
+\end{DoxyCompactItemize}
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00053_a4b09a7574cd440f9b94285ab73c81b4e_a4b09a7574cd440f9b94285ab73c81b4e}{kbuffer\+\_\+t} $\ast$ \hyperlink{a00047_ab7c640d7d31868f39679942dafd12175_ab7c640d7d31868f39679942dafd12175}{knet\+\_\+buffer\+\_\+create} (uint32\+\_\+t size)
+\hyperlink{a00054_a4b09a7574cd440f9b94285ab73c81b4e_a4b09a7574cd440f9b94285ab73c81b4e}{kbuffer\+\_\+t} $\ast$ \hyperlink{a00047_ab7c640d7d31868f39679942dafd12175_ab7c640d7d31868f39679942dafd12175}{knet\+\_\+buffer\+\_\+create} (uint32\+\_\+t size)
 \begin{DoxyCompactList}\small\item\em 创建一个固定长度的缓冲区 \end{DoxyCompactList}\item 
-void \hyperlink{a00047_ad7934fdee7f0eea3f1581b5dd94736e2_ad7934fdee7f0eea3f1581b5dd94736e2}{knet\+\_\+buffer\+\_\+destroy} (\hyperlink{a00053_a4b09a7574cd440f9b94285ab73c81b4e_a4b09a7574cd440f9b94285ab73c81b4e}{kbuffer\+\_\+t} $\ast$sb)
+void \hyperlink{a00047_ad7934fdee7f0eea3f1581b5dd94736e2_ad7934fdee7f0eea3f1581b5dd94736e2}{knet\+\_\+buffer\+\_\+destroy} (\hyperlink{a00054_a4b09a7574cd440f9b94285ab73c81b4e_a4b09a7574cd440f9b94285ab73c81b4e}{kbuffer\+\_\+t} $\ast$sb)
 \begin{DoxyCompactList}\small\item\em 销毁缓冲区 \end{DoxyCompactList}\item 
-uint32\+\_\+t \hyperlink{a00047_abf453d69e41199e1f64314d31ff23a69_abf453d69e41199e1f64314d31ff23a69}{knet\+\_\+buffer\+\_\+put} (\hyperlink{a00053_a4b09a7574cd440f9b94285ab73c81b4e_a4b09a7574cd440f9b94285ab73c81b4e}{kbuffer\+\_\+t} $\ast$sb, const char $\ast$temp, uint32\+\_\+t size)
+uint32\+\_\+t \hyperlink{a00047_abf453d69e41199e1f64314d31ff23a69_abf453d69e41199e1f64314d31ff23a69}{knet\+\_\+buffer\+\_\+put} (\hyperlink{a00054_a4b09a7574cd440f9b94285ab73c81b4e_a4b09a7574cd440f9b94285ab73c81b4e}{kbuffer\+\_\+t} $\ast$sb, const char $\ast$temp, uint32\+\_\+t size)
 \begin{DoxyCompactList}\small\item\em 写入 \end{DoxyCompactList}\item 
-uint32\+\_\+t \hyperlink{a00047_a8d22cd2f8625aee29cbf263e0fba8cef_a8d22cd2f8625aee29cbf263e0fba8cef}{knet\+\_\+buffer\+\_\+get\+\_\+length} (\hyperlink{a00053_a4b09a7574cd440f9b94285ab73c81b4e_a4b09a7574cd440f9b94285ab73c81b4e}{kbuffer\+\_\+t} $\ast$sb)
+uint32\+\_\+t \hyperlink{a00047_a8d22cd2f8625aee29cbf263e0fba8cef_a8d22cd2f8625aee29cbf263e0fba8cef}{knet\+\_\+buffer\+\_\+get\+\_\+length} (\hyperlink{a00054_a4b09a7574cd440f9b94285ab73c81b4e_a4b09a7574cd440f9b94285ab73c81b4e}{kbuffer\+\_\+t} $\ast$sb)
 \begin{DoxyCompactList}\small\item\em 取得缓冲区内数据长度 \end{DoxyCompactList}\item 
-uint32\+\_\+t \hyperlink{a00047_a8eee118becbc822b85b0459ece43b944_a8eee118becbc822b85b0459ece43b944}{knet\+\_\+buffer\+\_\+get\+\_\+max\+\_\+size} (\hyperlink{a00053_a4b09a7574cd440f9b94285ab73c81b4e_a4b09a7574cd440f9b94285ab73c81b4e}{kbuffer\+\_\+t} $\ast$sb)
+uint32\+\_\+t \hyperlink{a00047_a8eee118becbc822b85b0459ece43b944_a8eee118becbc822b85b0459ece43b944}{knet\+\_\+buffer\+\_\+get\+\_\+max\+\_\+size} (\hyperlink{a00054_a4b09a7574cd440f9b94285ab73c81b4e_a4b09a7574cd440f9b94285ab73c81b4e}{kbuffer\+\_\+t} $\ast$sb)
 \begin{DoxyCompactList}\small\item\em 取得缓冲区内最大长度 \end{DoxyCompactList}\item 
-int \hyperlink{a00047_ab52a4b25cb665848167e2e3a57ad38f4_ab52a4b25cb665848167e2e3a57ad38f4}{knet\+\_\+buffer\+\_\+enough} (\hyperlink{a00053_a4b09a7574cd440f9b94285ab73c81b4e_a4b09a7574cd440f9b94285ab73c81b4e}{kbuffer\+\_\+t} $\ast$sb, uint32\+\_\+t size)
+int \hyperlink{a00047_ab52a4b25cb665848167e2e3a57ad38f4_ab52a4b25cb665848167e2e3a57ad38f4}{knet\+\_\+buffer\+\_\+enough} (\hyperlink{a00054_a4b09a7574cd440f9b94285ab73c81b4e_a4b09a7574cd440f9b94285ab73c81b4e}{kbuffer\+\_\+t} $\ast$sb, uint32\+\_\+t size)
 \begin{DoxyCompactList}\small\item\em 测试缓冲区内是否有足够空间 \end{DoxyCompactList}\item 
-char $\ast$ \hyperlink{a00047_aad25b6a27ca6270b4cffb9c45daea697_aad25b6a27ca6270b4cffb9c45daea697}{knet\+\_\+buffer\+\_\+get\+\_\+ptr} (\hyperlink{a00053_a4b09a7574cd440f9b94285ab73c81b4e_a4b09a7574cd440f9b94285ab73c81b4e}{kbuffer\+\_\+t} $\ast$sb)
+char $\ast$ \hyperlink{a00047_aad25b6a27ca6270b4cffb9c45daea697_aad25b6a27ca6270b4cffb9c45daea697}{knet\+\_\+buffer\+\_\+get\+\_\+ptr} (\hyperlink{a00054_a4b09a7574cd440f9b94285ab73c81b4e_a4b09a7574cd440f9b94285ab73c81b4e}{kbuffer\+\_\+t} $\ast$sb)
 \begin{DoxyCompactList}\small\item\em 取得缓冲区数据起始地址 \end{DoxyCompactList}\item 
-void \hyperlink{a00047_ace8a684108f818eab5d956235b0bce77_ace8a684108f818eab5d956235b0bce77}{knet\+\_\+buffer\+\_\+adjust} (\hyperlink{a00053_a4b09a7574cd440f9b94285ab73c81b4e_a4b09a7574cd440f9b94285ab73c81b4e}{kbuffer\+\_\+t} $\ast$sb, uint32\+\_\+t gap)
+void \hyperlink{a00047_ace8a684108f818eab5d956235b0bce77_ace8a684108f818eab5d956235b0bce77}{knet\+\_\+buffer\+\_\+adjust} (\hyperlink{a00054_a4b09a7574cd440f9b94285ab73c81b4e_a4b09a7574cd440f9b94285ab73c81b4e}{kbuffer\+\_\+t} $\ast$sb, uint32\+\_\+t gap)
 \begin{DoxyCompactList}\small\item\em 调整数据起始地址 \end{DoxyCompactList}\item 
-void \hyperlink{a00047_ac787e1b4f944728f621d7f59b67eb0aa_ac787e1b4f944728f621d7f59b67eb0aa}{knet\+\_\+buffer\+\_\+clear} (\hyperlink{a00053_a4b09a7574cd440f9b94285ab73c81b4e_a4b09a7574cd440f9b94285ab73c81b4e}{kbuffer\+\_\+t} $\ast$sb)
+void \hyperlink{a00047_ac787e1b4f944728f621d7f59b67eb0aa_ac787e1b4f944728f621d7f59b67eb0aa}{knet\+\_\+buffer\+\_\+clear} (\hyperlink{a00054_a4b09a7574cd440f9b94285ab73c81b4e_a4b09a7574cd440f9b94285ab73c81b4e}{kbuffer\+\_\+t} $\ast$sb)
 \begin{DoxyCompactList}\small\item\em 清空缓冲区 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{函数说明}
-\hypertarget{a00047_ace8a684108f818eab5d956235b0bce77_ace8a684108f818eab5d956235b0bce77}{}\index{buffer.\+h@{buffer.\+h}!knet\+\_\+buffer\+\_\+adjust@{knet\+\_\+buffer\+\_\+adjust}}
-\index{knet\+\_\+buffer\+\_\+adjust@{knet\+\_\+buffer\+\_\+adjust}!buffer.\+h@{buffer.\+h}}
+\hypertarget{a00047_ace8a684108f818eab5d956235b0bce77_ace8a684108f818eab5d956235b0bce77}{}\index{buffer.\+c@{buffer.\+c}!knet\+\_\+buffer\+\_\+adjust@{knet\+\_\+buffer\+\_\+adjust}}
+\index{knet\+\_\+buffer\+\_\+adjust@{knet\+\_\+buffer\+\_\+adjust}!buffer.\+c@{buffer.\+c}}
 \subsubsection[{knet\+\_\+buffer\+\_\+adjust}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+buffer\+\_\+adjust (
 \begin{DoxyParamCaption}
 \item[{{\bf kbuffer\+\_\+t} $\ast$}]{sb, }
@@ -44,8 +49,8 @@ void \hyperlink{a00047_ac787e1b4f944728f621d7f59b67eb0aa_ac787e1b4f944728f621d7f
 {\em gap} & 调整的长度 \\
 \hline
 \end{DoxyParams}
-\hypertarget{a00047_ac787e1b4f944728f621d7f59b67eb0aa_ac787e1b4f944728f621d7f59b67eb0aa}{}\index{buffer.\+h@{buffer.\+h}!knet\+\_\+buffer\+\_\+clear@{knet\+\_\+buffer\+\_\+clear}}
-\index{knet\+\_\+buffer\+\_\+clear@{knet\+\_\+buffer\+\_\+clear}!buffer.\+h@{buffer.\+h}}
+\hypertarget{a00047_ac787e1b4f944728f621d7f59b67eb0aa_ac787e1b4f944728f621d7f59b67eb0aa}{}\index{buffer.\+c@{buffer.\+c}!knet\+\_\+buffer\+\_\+clear@{knet\+\_\+buffer\+\_\+clear}}
+\index{knet\+\_\+buffer\+\_\+clear@{knet\+\_\+buffer\+\_\+clear}!buffer.\+c@{buffer.\+c}}
 \subsubsection[{knet\+\_\+buffer\+\_\+clear}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+buffer\+\_\+clear (
 \begin{DoxyParamCaption}
 \item[{{\bf kbuffer\+\_\+t} $\ast$}]{sb}
@@ -60,8 +65,8 @@ void \hyperlink{a00047_ac787e1b4f944728f621d7f59b67eb0aa_ac787e1b4f944728f621d7f
 {\em sb} & kbuffer\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
-\hypertarget{a00047_ab7c640d7d31868f39679942dafd12175_ab7c640d7d31868f39679942dafd12175}{}\index{buffer.\+h@{buffer.\+h}!knet\+\_\+buffer\+\_\+create@{knet\+\_\+buffer\+\_\+create}}
-\index{knet\+\_\+buffer\+\_\+create@{knet\+\_\+buffer\+\_\+create}!buffer.\+h@{buffer.\+h}}
+\hypertarget{a00047_ab7c640d7d31868f39679942dafd12175_ab7c640d7d31868f39679942dafd12175}{}\index{buffer.\+c@{buffer.\+c}!knet\+\_\+buffer\+\_\+create@{knet\+\_\+buffer\+\_\+create}}
+\index{knet\+\_\+buffer\+\_\+create@{knet\+\_\+buffer\+\_\+create}!buffer.\+c@{buffer.\+c}}
 \subsubsection[{knet\+\_\+buffer\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kbuffer\+\_\+t}$\ast$ knet\+\_\+buffer\+\_\+create (
 \begin{DoxyParamCaption}
 \item[{uint32\+\_\+t}]{size}
@@ -79,8 +84,8 @@ void \hyperlink{a00047_ac787e1b4f944728f621d7f59b67eb0aa_ac787e1b4f944728f621d7f
 \begin{DoxyReturn}{返回}
 kbuffer\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00047_ad7934fdee7f0eea3f1581b5dd94736e2_ad7934fdee7f0eea3f1581b5dd94736e2}{}\index{buffer.\+h@{buffer.\+h}!knet\+\_\+buffer\+\_\+destroy@{knet\+\_\+buffer\+\_\+destroy}}
-\index{knet\+\_\+buffer\+\_\+destroy@{knet\+\_\+buffer\+\_\+destroy}!buffer.\+h@{buffer.\+h}}
+\hypertarget{a00047_ad7934fdee7f0eea3f1581b5dd94736e2_ad7934fdee7f0eea3f1581b5dd94736e2}{}\index{buffer.\+c@{buffer.\+c}!knet\+\_\+buffer\+\_\+destroy@{knet\+\_\+buffer\+\_\+destroy}}
+\index{knet\+\_\+buffer\+\_\+destroy@{knet\+\_\+buffer\+\_\+destroy}!buffer.\+c@{buffer.\+c}}
 \subsubsection[{knet\+\_\+buffer\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+buffer\+\_\+destroy (
 \begin{DoxyParamCaption}
 \item[{{\bf kbuffer\+\_\+t} $\ast$}]{sb}
@@ -95,8 +100,8 @@ kbuffer\+\_\+t实例
 {\em sb} & kbuffer\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
-\hypertarget{a00047_ab52a4b25cb665848167e2e3a57ad38f4_ab52a4b25cb665848167e2e3a57ad38f4}{}\index{buffer.\+h@{buffer.\+h}!knet\+\_\+buffer\+\_\+enough@{knet\+\_\+buffer\+\_\+enough}}
-\index{knet\+\_\+buffer\+\_\+enough@{knet\+\_\+buffer\+\_\+enough}!buffer.\+h@{buffer.\+h}}
+\hypertarget{a00047_ab52a4b25cb665848167e2e3a57ad38f4_ab52a4b25cb665848167e2e3a57ad38f4}{}\index{buffer.\+c@{buffer.\+c}!knet\+\_\+buffer\+\_\+enough@{knet\+\_\+buffer\+\_\+enough}}
+\index{knet\+\_\+buffer\+\_\+enough@{knet\+\_\+buffer\+\_\+enough}!buffer.\+c@{buffer.\+c}}
 \subsubsection[{knet\+\_\+buffer\+\_\+enough}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+buffer\+\_\+enough (
 \begin{DoxyParamCaption}
 \item[{{\bf kbuffer\+\_\+t} $\ast$}]{sb, }
@@ -121,8 +126,8 @@ kbuffer\+\_\+t实例
 {\em 非零} & 有足够空间 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00047_a8d22cd2f8625aee29cbf263e0fba8cef_a8d22cd2f8625aee29cbf263e0fba8cef}{}\index{buffer.\+h@{buffer.\+h}!knet\+\_\+buffer\+\_\+get\+\_\+length@{knet\+\_\+buffer\+\_\+get\+\_\+length}}
-\index{knet\+\_\+buffer\+\_\+get\+\_\+length@{knet\+\_\+buffer\+\_\+get\+\_\+length}!buffer.\+h@{buffer.\+h}}
+\hypertarget{a00047_a8d22cd2f8625aee29cbf263e0fba8cef_a8d22cd2f8625aee29cbf263e0fba8cef}{}\index{buffer.\+c@{buffer.\+c}!knet\+\_\+buffer\+\_\+get\+\_\+length@{knet\+\_\+buffer\+\_\+get\+\_\+length}}
+\index{knet\+\_\+buffer\+\_\+get\+\_\+length@{knet\+\_\+buffer\+\_\+get\+\_\+length}!buffer.\+c@{buffer.\+c}}
 \subsubsection[{knet\+\_\+buffer\+\_\+get\+\_\+length}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t knet\+\_\+buffer\+\_\+get\+\_\+length (
 \begin{DoxyParamCaption}
 \item[{{\bf kbuffer\+\_\+t} $\ast$}]{sb}
@@ -140,8 +145,8 @@ kbuffer\+\_\+t实例
 \begin{DoxyReturn}{返回}
 数据长度 
 \end{DoxyReturn}
-\hypertarget{a00047_a8eee118becbc822b85b0459ece43b944_a8eee118becbc822b85b0459ece43b944}{}\index{buffer.\+h@{buffer.\+h}!knet\+\_\+buffer\+\_\+get\+\_\+max\+\_\+size@{knet\+\_\+buffer\+\_\+get\+\_\+max\+\_\+size}}
-\index{knet\+\_\+buffer\+\_\+get\+\_\+max\+\_\+size@{knet\+\_\+buffer\+\_\+get\+\_\+max\+\_\+size}!buffer.\+h@{buffer.\+h}}
+\hypertarget{a00047_a8eee118becbc822b85b0459ece43b944_a8eee118becbc822b85b0459ece43b944}{}\index{buffer.\+c@{buffer.\+c}!knet\+\_\+buffer\+\_\+get\+\_\+max\+\_\+size@{knet\+\_\+buffer\+\_\+get\+\_\+max\+\_\+size}}
+\index{knet\+\_\+buffer\+\_\+get\+\_\+max\+\_\+size@{knet\+\_\+buffer\+\_\+get\+\_\+max\+\_\+size}!buffer.\+c@{buffer.\+c}}
 \subsubsection[{knet\+\_\+buffer\+\_\+get\+\_\+max\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t knet\+\_\+buffer\+\_\+get\+\_\+max\+\_\+size (
 \begin{DoxyParamCaption}
 \item[{{\bf kbuffer\+\_\+t} $\ast$}]{sb}
@@ -159,8 +164,8 @@ kbuffer\+\_\+t实例
 \begin{DoxyReturn}{返回}
 最大长度 
 \end{DoxyReturn}
-\hypertarget{a00047_aad25b6a27ca6270b4cffb9c45daea697_aad25b6a27ca6270b4cffb9c45daea697}{}\index{buffer.\+h@{buffer.\+h}!knet\+\_\+buffer\+\_\+get\+\_\+ptr@{knet\+\_\+buffer\+\_\+get\+\_\+ptr}}
-\index{knet\+\_\+buffer\+\_\+get\+\_\+ptr@{knet\+\_\+buffer\+\_\+get\+\_\+ptr}!buffer.\+h@{buffer.\+h}}
+\hypertarget{a00047_aad25b6a27ca6270b4cffb9c45daea697_aad25b6a27ca6270b4cffb9c45daea697}{}\index{buffer.\+c@{buffer.\+c}!knet\+\_\+buffer\+\_\+get\+\_\+ptr@{knet\+\_\+buffer\+\_\+get\+\_\+ptr}}
+\index{knet\+\_\+buffer\+\_\+get\+\_\+ptr@{knet\+\_\+buffer\+\_\+get\+\_\+ptr}!buffer.\+c@{buffer.\+c}}
 \subsubsection[{knet\+\_\+buffer\+\_\+get\+\_\+ptr}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ knet\+\_\+buffer\+\_\+get\+\_\+ptr (
 \begin{DoxyParamCaption}
 \item[{{\bf kbuffer\+\_\+t} $\ast$}]{sb}
@@ -178,8 +183,8 @@ kbuffer\+\_\+t实例
 \begin{DoxyReturn}{返回}
 数据长度 
 \end{DoxyReturn}
-\hypertarget{a00047_abf453d69e41199e1f64314d31ff23a69_abf453d69e41199e1f64314d31ff23a69}{}\index{buffer.\+h@{buffer.\+h}!knet\+\_\+buffer\+\_\+put@{knet\+\_\+buffer\+\_\+put}}
-\index{knet\+\_\+buffer\+\_\+put@{knet\+\_\+buffer\+\_\+put}!buffer.\+h@{buffer.\+h}}
+\hypertarget{a00047_abf453d69e41199e1f64314d31ff23a69_abf453d69e41199e1f64314d31ff23a69}{}\index{buffer.\+c@{buffer.\+c}!knet\+\_\+buffer\+\_\+put@{knet\+\_\+buffer\+\_\+put}}
+\index{knet\+\_\+buffer\+\_\+put@{knet\+\_\+buffer\+\_\+put}!buffer.\+c@{buffer.\+c}}
 \subsubsection[{knet\+\_\+buffer\+\_\+put}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t knet\+\_\+buffer\+\_\+put (
 \begin{DoxyParamCaption}
 \item[{{\bf kbuffer\+\_\+t} $\ast$}]{sb, }

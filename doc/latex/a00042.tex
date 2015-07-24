@@ -1,21 +1,75 @@
-\hypertarget{a00042}{}\section{E\+:/knet-\/git/knet/knet/address.h 文件参考}
-\label{a00042}\index{E\+:/knet-\/git/knet/knet/address.\+h@{E\+:/knet-\/git/knet/knet/address.\+h}}
-{\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}address\+\_\+api.\+h\char`\"{}}\\*
+\hypertarget{a00042}{}\section{E\+:/knet-\/git/knet/knet/address.c 文件参考}
+\label{a00042}\index{E\+:/knet-\/git/knet/knet/address.\+c@{E\+:/knet-\/git/knet/knet/address.\+c}}
+{\ttfamily \#include \char`\"{}address.\+h\char`\"{}}\\*
+\subsection*{结构体}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{a00001}{\+\_\+address\+\_\+t}
+\end{DoxyCompactItemize}
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00053_a44e99fab0348ec54cfee119ddd9ceed6_a44e99fab0348ec54cfee119ddd9ceed6}{kaddress\+\_\+t} $\ast$ \hyperlink{a00042_a1a1e0dffc03ea50995d5db10e17865f5_a1a1e0dffc03ea50995d5db10e17865f5}{knet\+\_\+address\+\_\+create} ()
+\hyperlink{a00054_a44e99fab0348ec54cfee119ddd9ceed6_a44e99fab0348ec54cfee119ddd9ceed6}{kaddress\+\_\+t} $\ast$ \hyperlink{a00042_a1a1e0dffc03ea50995d5db10e17865f5_a1a1e0dffc03ea50995d5db10e17865f5}{knet\+\_\+address\+\_\+create} ()
 \begin{DoxyCompactList}\small\item\em 创建一个kaddress\+\_\+t实例 \end{DoxyCompactList}\item 
-void \hyperlink{a00042_a6d8753e0c57b30294243ee26881e7650_a6d8753e0c57b30294243ee26881e7650}{knet\+\_\+address\+\_\+destroy} (\hyperlink{a00053_a44e99fab0348ec54cfee119ddd9ceed6_a44e99fab0348ec54cfee119ddd9ceed6}{kaddress\+\_\+t} $\ast$address)
+void \hyperlink{a00042_a6d8753e0c57b30294243ee26881e7650_a6d8753e0c57b30294243ee26881e7650}{knet\+\_\+address\+\_\+destroy} (\hyperlink{a00054_a44e99fab0348ec54cfee119ddd9ceed6_a44e99fab0348ec54cfee119ddd9ceed6}{kaddress\+\_\+t} $\ast$address)
 \begin{DoxyCompactList}\small\item\em 销毁一个kaddress\+\_\+t实例 \end{DoxyCompactList}\item 
-void \hyperlink{a00042_a929d17892b34acdbdbc1ff8e8d0f9c71_a929d17892b34acdbdbc1ff8e8d0f9c71}{knet\+\_\+address\+\_\+set} (\hyperlink{a00053_a44e99fab0348ec54cfee119ddd9ceed6_a44e99fab0348ec54cfee119ddd9ceed6}{kaddress\+\_\+t} $\ast$address, const char $\ast$ip, int port)
-\begin{DoxyCompactList}\small\item\em 设置\+I\+P和端口 \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \hyperlink{a00042_a929d17892b34acdbdbc1ff8e8d0f9c71_a929d17892b34acdbdbc1ff8e8d0f9c71}{knet\+\_\+address\+\_\+set} (\hyperlink{a00054_a44e99fab0348ec54cfee119ddd9ceed6_a44e99fab0348ec54cfee119ddd9ceed6}{kaddress\+\_\+t} $\ast$address, const char $\ast$ip, int port)
+\begin{DoxyCompactList}\small\item\em 设置\+I\+P和端口 \end{DoxyCompactList}\item 
+const char $\ast$ \hyperlink{a00107_gaa1ea22192168bb6baea88feeb20eb601_gaa1ea22192168bb6baea88feeb20eb601}{address\+\_\+get\+\_\+ip} (\hyperlink{a00054_a44e99fab0348ec54cfee119ddd9ceed6_a44e99fab0348ec54cfee119ddd9ceed6}{kaddress\+\_\+t} $\ast$address)
+\begin{DoxyCompactList}\small\item\em 取得\+I\+P \end{DoxyCompactList}\item 
+int \hyperlink{a00107_ga9acaa00fe11bcecadea350baf9da7172_ga9acaa00fe11bcecadea350baf9da7172}{address\+\_\+get\+\_\+port} (\hyperlink{a00054_a44e99fab0348ec54cfee119ddd9ceed6_a44e99fab0348ec54cfee119ddd9ceed6}{kaddress\+\_\+t} $\ast$address)
+\begin{DoxyCompactList}\small\item\em 取得port \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{函数说明}
-\hypertarget{a00042_a1a1e0dffc03ea50995d5db10e17865f5_a1a1e0dffc03ea50995d5db10e17865f5}{}\index{address.\+h@{address.\+h}!knet\+\_\+address\+\_\+create@{knet\+\_\+address\+\_\+create}}
-\index{knet\+\_\+address\+\_\+create@{knet\+\_\+address\+\_\+create}!address.\+h@{address.\+h}}
+\hypertarget{a00107_gaa1ea22192168bb6baea88feeb20eb601_gaa1ea22192168bb6baea88feeb20eb601}{}\index{address.\+c@{address.\+c}!address\+\_\+get\+\_\+ip@{address\+\_\+get\+\_\+ip}}
+\index{address\+\_\+get\+\_\+ip@{address\+\_\+get\+\_\+ip}!address.\+c@{address.\+c}}
+\subsubsection[{address\+\_\+get\+\_\+ip}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ address\+\_\+get\+\_\+ip (
+\begin{DoxyParamCaption}
+\item[{{\bf kaddress\+\_\+t} $\ast$}]{address}
+\end{DoxyParamCaption}
+)}\label{a00107_gaa1ea22192168bb6baea88feeb20eb601_gaa1ea22192168bb6baea88feeb20eb601}
+
+
+取得\+I\+P 
+
+
+\begin{DoxyParams}{参数}
+{\em address} & kaddress\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em 有效的指针} & I\+P字符串 \\
+\hline
+{\em 0} & 管道连接未建立 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{a00107_ga9acaa00fe11bcecadea350baf9da7172_ga9acaa00fe11bcecadea350baf9da7172}{}\index{address.\+c@{address.\+c}!address\+\_\+get\+\_\+port@{address\+\_\+get\+\_\+port}}
+\index{address\+\_\+get\+\_\+port@{address\+\_\+get\+\_\+port}!address.\+c@{address.\+c}}
+\subsubsection[{address\+\_\+get\+\_\+port}]{\setlength{\rightskip}{0pt plus 5cm}int address\+\_\+get\+\_\+port (
+\begin{DoxyParamCaption}
+\item[{{\bf kaddress\+\_\+t} $\ast$}]{address}
+\end{DoxyParamCaption}
+)}\label{a00107_ga9acaa00fe11bcecadea350baf9da7172_ga9acaa00fe11bcecadea350baf9da7172}
+
+
+取得port 
+
+
+\begin{DoxyParams}{参数}
+{\em address} & kaddress\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em 有效的端口号} & 端口号 \\
+\hline
+{\em 0} & 管道连接未建立 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{a00042_a1a1e0dffc03ea50995d5db10e17865f5_a1a1e0dffc03ea50995d5db10e17865f5}{}\index{address.\+c@{address.\+c}!knet\+\_\+address\+\_\+create@{knet\+\_\+address\+\_\+create}}
+\index{knet\+\_\+address\+\_\+create@{knet\+\_\+address\+\_\+create}!address.\+c@{address.\+c}}
 \subsubsection[{knet\+\_\+address\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kaddress\+\_\+t}$\ast$ knet\+\_\+address\+\_\+create (
 \begin{DoxyParamCaption}
 {}
@@ -28,8 +82,8 @@ void \hyperlink{a00042_a929d17892b34acdbdbc1ff8e8d0f9c71_a929d17892b34acdbdbc1ff
 \begin{DoxyReturn}{返回}
 kaddress\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00042_a6d8753e0c57b30294243ee26881e7650_a6d8753e0c57b30294243ee26881e7650}{}\index{address.\+h@{address.\+h}!knet\+\_\+address\+\_\+destroy@{knet\+\_\+address\+\_\+destroy}}
-\index{knet\+\_\+address\+\_\+destroy@{knet\+\_\+address\+\_\+destroy}!address.\+h@{address.\+h}}
+\hypertarget{a00042_a6d8753e0c57b30294243ee26881e7650_a6d8753e0c57b30294243ee26881e7650}{}\index{address.\+c@{address.\+c}!knet\+\_\+address\+\_\+destroy@{knet\+\_\+address\+\_\+destroy}}
+\index{knet\+\_\+address\+\_\+destroy@{knet\+\_\+address\+\_\+destroy}!address.\+c@{address.\+c}}
 \subsubsection[{knet\+\_\+address\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+address\+\_\+destroy (
 \begin{DoxyParamCaption}
 \item[{{\bf kaddress\+\_\+t} $\ast$}]{address}
@@ -44,8 +98,8 @@ kaddress\+\_\+t实例
 {\em address} & kaddress\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
-\hypertarget{a00042_a929d17892b34acdbdbc1ff8e8d0f9c71_a929d17892b34acdbdbc1ff8e8d0f9c71}{}\index{address.\+h@{address.\+h}!knet\+\_\+address\+\_\+set@{knet\+\_\+address\+\_\+set}}
-\index{knet\+\_\+address\+\_\+set@{knet\+\_\+address\+\_\+set}!address.\+h@{address.\+h}}
+\hypertarget{a00042_a929d17892b34acdbdbc1ff8e8d0f9c71_a929d17892b34acdbdbc1ff8e8d0f9c71}{}\index{address.\+c@{address.\+c}!knet\+\_\+address\+\_\+set@{knet\+\_\+address\+\_\+set}}
+\index{knet\+\_\+address\+\_\+set@{knet\+\_\+address\+\_\+set}!address.\+c@{address.\+c}}
 \subsubsection[{knet\+\_\+address\+\_\+set}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+address\+\_\+set (
 \begin{DoxyParamCaption}
 \item[{{\bf kaddress\+\_\+t} $\ast$}]{address, }
