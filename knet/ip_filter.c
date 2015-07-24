@@ -165,7 +165,6 @@ int knet_ip_filter_check_address(kip_filter_t* ip_filter, kaddress_t* address) {
 }
 
 int knet_ip_filter_check_channel(kip_filter_t* ip_filter, kchannel_ref_t* channel) {
-    kaddress_t* peer_address = 0;
     verify(ip_filter);
     verify(channel);
     return knet_ip_filter_check_address(ip_filter,

@@ -38,7 +38,6 @@ CASE(Test_Framework) {
             } else if (e & channel_cb_event_recv) {
                 Test_Framework_Echo = true;
                 knet_channel_ref_close(channel);
-            } else if (e & channel_cb_event_close) {
                 knet_framework_stop(Test_Framework_Framework);
             }
         }
@@ -85,7 +84,6 @@ CASE(Test_Framework_Async) {
             } else if (e & channel_cb_event_recv) {
                 Test_Framework_Echo = true;
                 knet_channel_ref_close(channel);
-            } else if (e & channel_cb_event_close) {
                 knet_framework_stop(Test_Framework_Framework);
             }
         }
