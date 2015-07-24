@@ -117,6 +117,17 @@ extern int knet_ip_filter_check(kip_filter_t* ip_filter, const char* ip);
  */
 extern int knet_ip_filter_check_address(kip_filter_t* ip_filter, kaddress_t* address);
 
+/**
+ * 检查IP是否被过滤
+ *
+ * 过滤对端地址(peer address);
+ * @param ip_filter kip_filter_t实例
+ * @param channel kchannel_ref_t实例
+ * @retval 0 未被过滤
+ * @retval 其他 被过滤
+ */
+extern int knet_ip_filter_check_channel(kip_filter_t* ip_filter, kchannel_ref_t* channel);
+
 /** @} */
 
 #endif /* IP_FILTER_API_H */

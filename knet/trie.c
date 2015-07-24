@@ -29,7 +29,7 @@ typedef struct _trie_node_t {
     struct _trie_node_t* left;     /* 左子树 */
     struct _trie_node_t* center;   /* 中子树 */
     struct _trie_node_t* right;    /* 右子树 */
-    uint32_t             ref;      /* 节点引用计数 */
+    uint32_t             ref;      /* 节点引用计数, 计数为零才可以销毁节点 */
     char                 key;      /* 键 */
     char*                real_key; /* 末端节点 */
     void*                value;    /* 值 */

@@ -147,7 +147,7 @@ inline std::string getBinaryPath() {
     sprintf(link, "/proc/%d/exe", getpid());
     readlink(link, path, sizeof(path));
     int i = PATH_MAX - 1;
-    for (; (i != '\\') || (i != '/'); i--);
+    for (; (path[i] != '\\') && (path[i] != '/'); i--);
     path[i] = 0;
     return path;
 }
