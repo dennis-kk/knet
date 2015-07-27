@@ -144,6 +144,8 @@ typedef struct _framework_timer_config_t kframework_timer_config_t;
 typedef struct _loop_profile_t kloop_profile_t;
 typedef struct _trie_t ktrie_t;
 typedef struct _ip_filter_t kip_filter_t;
+typedef struct _vrouter_t kvrouter_t;
+typedef struct _router_path_t krouter_path_t;
 
 /* 管道可投递事件 */
 typedef enum _channel_event_e {
@@ -231,6 +233,8 @@ typedef enum _error_e {
     error_trie_key_exist,
     error_trie_for_each_fail,
     error_ip_filter_open_fail,
+    error_router_wire_not_found,
+    error_router_wire_exist,
 } knet_error_e;
 
 /*! 管道回调事件 */

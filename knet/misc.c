@@ -1032,6 +1032,10 @@ uint64_t uuid_create() {
     return uuid;
 }
 
+uint32_t uuid_get_high32(uint64_t uuid) {
+    return (uint32_t)(uuid >> 32);
+}
+
 char* path_getcwd(char* buffer, int size) {
 #if defined(WIN32)
     if (!GetCurrentDirectoryA(size, buffer)) {

@@ -44,6 +44,7 @@
 #include "rpc_object_api.h"
 #include "trie_api.h"
 #include "ip_filter_api.h"
+#include "vrouter_api.h"
 #include "version.h"
 
 #ifdef __cplusplus

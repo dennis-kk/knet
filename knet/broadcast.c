@@ -132,10 +132,7 @@ int knet_broadcast_write(kbroadcast_t* broadcast, char* buffer, uint32_t size) {
     dlist_for_each_safe(broadcast->channels, node, temp) {
         channel_ref = (kchannel_ref_t*)dlist_node_get_data(node);
         error = knet_channel_ref_write(channel_ref, buffer, size);
-        if (error != error_ok) {
-            /* 销毁发送失败的管道 */
-            knet_broadcast_leave(broadcast, channel_ref);
-        } else {
+        if (error == error_ok) {
             count++;
         }
     }

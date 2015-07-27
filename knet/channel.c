@@ -113,7 +113,7 @@ int knet_channel_send_buffer(kchannel_t* channel, kbuffer_t* send_buffer) {
     verify(send_buffer);
     verify(channel->send_buffer_list);
     /* 始终无法发送 */
-    if (knet_channel_ref_send_list_reach_max(channel)) {
+    if (knet_channel_send_list_reach_max(channel)) {
         knet_buffer_destroy(send_buffer);
         return error_send_fail;
     }
@@ -131,7 +131,7 @@ int knet_channel_send(kchannel_t* channel, const char* data, int size) {
     verify(size);
     verify(channel->send_buffer_list);
     /* 始终无法发送 */
-    if (knet_channel_ref_send_list_reach_max(channel)) {
+    if (knet_channel_send_list_reach_max(channel)) {
         return error_send_fail;
     }
     if (dlist_empty(channel->send_buffer_list)) {
@@ -246,7 +246,7 @@ uint64_t knet_channel_get_uuid(kchannel_t* channel) {
     return channel->uuid;
 }
 
-int knet_channel_ref_send_list_reach_max(kchannel_t* channel) {
+int knet_channel_send_list_reach_max(kchannel_t* channel) {
     verify(channel);
     return (dlist_get_count(channel->send_buffer_list) > (int)channel->max_send_list_len);
 }

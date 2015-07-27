@@ -39,7 +39,7 @@
  *
  * 调用knet_broadcast_leave时应该使用这个返回值而不是使用knet_broadcast_join的第二个参数，新创建
  * 的管道引用会提升管道的引用计数，如果你关闭了这个管道你可以通过调用knet_broadcast_leave减少管
- * 道的引用计数，从而可以让kloop_t真正销毁管道，或者在调用knet_broadcast_write时自动销毁.
+ * 道的引用计数，从而可以让kloop_t真正销毁管道.
  *
  * 调用knet_broadcast_get_count可以得知广播域内的管道引用数量，调用knet_broadcast_write发起一个
  * 广播操作，所有域内管道都会收到你广播的数据.
@@ -91,8 +91,6 @@ extern int knet_broadcast_get_count(kbroadcast_t* broadcast);
 
 /**
  * 广播
- *
- * 所有已经被关闭的管道在本函数调用时会被自动销毁
  * @param broadcast kbroadcast_t实例
  * @param buffer 缓冲区指针
  * @param size 缓冲区长度

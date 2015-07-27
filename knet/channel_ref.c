@@ -36,32 +36,32 @@
 
 typedef struct _channel_ref_info_t {
     /* 基础数据成员 */
-    int                      balance;              /* 是否被负载均衡标志 */
-    kchannel_t*               channel;              /* 内部管道 */
-    kdlist_node_t*            loop_node;            /* 管道链表节点 */
-    kstream_t*                stream;               /* 管道(读/写)数据流 */
-    kloop_t*                  loop;                 /* 管道所关联的kloop_t */
-    kaddress_t*               peer_address;         /* 对端地址 */
-    kaddress_t*               local_address;        /* 本地地址 */
+    int                           balance;              /* 是否被负载均衡标志 */
+    kchannel_t*                   channel;              /* 内部管道 */
+    kdlist_node_t*                loop_node;            /* 管道链表节点 */
+    kstream_t*                    stream;               /* 管道(读/写)数据流 */
+    kloop_t*                      loop;                 /* 管道所关联的kloop_t */
+    kaddress_t*                   peer_address;         /* 对端地址 */
+    kaddress_t*                   local_address;        /* 本地地址 */
     knet_channel_event_e          event;                /* 管道投递事件 */
     volatile knet_channel_state_e state;                /* 管道状态 */
-    atomic_counter_t         ref_count;            /* 引用计数 */
+    atomic_counter_t              ref_count;            /* 引用计数 */
     knet_channel_ref_cb_t         cb;                   /* 回调 */
-    time_t                   last_recv_ts;         /* 最后一次读操作时间戳（秒） */
-    time_t                   timeout;              /* 读空闲超时（秒） */
-    time_t                   last_connect_timeout; /* 最后一次connect()超时（秒） */
-    time_t                   connect_timeout;      /* connect()超时间隔（秒） */
-    int                      auto_reconnect;       /* 自动重连标志 */
-    int                      flag;                 /* 选取器所使用自定义标志位 */
-    void*                    data;                 /* 选取器所使用自定义数据 */
-    void*                    user_data;            /* 用户数据指针 */
+    time_t                        last_recv_ts;         /* 最后一次读操作时间戳（秒） */
+    time_t                        timeout;              /* 读空闲超时（秒） */
+    time_t                        last_connect_timeout; /* 最后一次connect()超时（秒） */
+    time_t                        connect_timeout;      /* connect()超时间隔（秒） */
+    int                           auto_reconnect;       /* 自动重连标志 */
+    int                           flag;                 /* 选取器所使用自定义标志位 */
+    void*                         data;                 /* 选取器所使用自定义数据 */
+    void*                         user_data;            /* 用户数据指针 */
     /* 扩展数据成员 */
 } channel_ref_info_t;
 
 struct _channel_ref_t {
     int                 share;     /* 是否通过knet_channel_ref_share()创建 */
     uint64_t            domain_id; /* 域ID */
-    kdlist_node_t*       list_node; /* 域链表节点 */
+    kdlist_node_t*      list_node; /* 域链表节点 */
     channel_ref_info_t* ref_info;  /* 管道信息 */
 };
 

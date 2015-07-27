@@ -30,6 +30,7 @@ add_library(knet
 	loop_profile.c
 	trie.c
 	ip_filter.c
+	vrouter.c
 )
 
 target_link_libraries(knet -lpthread)

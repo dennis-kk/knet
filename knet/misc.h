@@ -169,6 +169,13 @@ char* time_get_string(char* buffer, int size);
 uint64_t uuid_create();
 
 /**
+ * 取得UUID高32位
+ * @param uuid UUID
+ * @return 高32位
+ */
+uint32_t uuid_get_high32(uint64_t uuid);
+
+/**
  * 取得当前工作目录
  * @param buffer 路径缓冲区指针
  * @param size 缓冲区大小

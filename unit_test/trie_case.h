@@ -63,5 +63,6 @@ CASE(Test_Trie_Remove) {
     EXPECT_TRUE(error_ok == trie_insert(t, "abcdef", 0));
     EXPECT_TRUE(error_ok == trie_insert(t, "def", 0));
     EXPECT_TRUE(error_ok == trie_remove(t, "def", 0));
+    EXPECT_TRUE(error_ok == trie_remove(t, "abcdef", 0));
     trie_destroy(t, 0);
 }

@@ -156,6 +156,6 @@ uint64_t knet_channel_get_uuid(kchannel_t* channel);
  * @retval 0 不是
  * @retval 非零 是
  */
-int knet_channel_ref_send_list_reach_max(kchannel_t* channel);
+int knet_channel_send_list_reach_max(kchannel_t* channel);
 
 #endif /* CHANNEL_H */
