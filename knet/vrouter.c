@@ -27,6 +27,7 @@
 #include "misc.h"
 #include "channel_ref.h"
 #include "stream.h"
+#include "misc.h"
 
 typedef struct _wire_t {
     kchannel_ref_t* c1; /* 起始管道 */
@@ -34,6 +35,7 @@ typedef struct _wire_t {
 } wire_t;
 
 struct _vrouter_t {
+    klock_t* lock;  /* 锁 */
     khash_t* table; /* 查找表 */
 };
 
@@ -48,13 +50,17 @@ kvrouter_t* knet_vrouter_create() {
     memset(router, 0, sizeof(kvrouter_t));
     router->table = hash_create(1024, _hash_dtor);
     verify(router->table);
+    router->lock  = lock_create();
+    verify(router->lock);
     return router;
 }
 
 void knet_vrouter_destroy(kvrouter_t* router) {
     verify(router);
     verify(router->table);
+    verify(router->lock);
     hash_destroy(router->table);
+    lock_destroy(router->lock);
     destroy(router);
 }
 
@@ -65,11 +71,13 @@ int knet_vrouter_add_wire(kvrouter_t* router,  kchannel_ref_t* c1, kchannel_ref_
     verify(router);
     verify(c1);
     verify(c2);
+    lock_lock(router->lock);
     /* 取高32位自增长ID */
     id = uuid_get_high32(knet_channel_ref_get_uuid(c1));
     if (hash_get(router->table, id)) {
         /* 作为键只能出现一次 */
-        return error_router_wire_exist;
+        error = error_router_wire_exist;
+        goto error_return;
     }
     w = create(wire_t);
     w->c1 = knet_channel_ref_share(c1);
@@ -80,8 +88,10 @@ int knet_vrouter_add_wire(kvrouter_t* router,  kchannel_ref_t* c1, kchannel_ref_
     if (error_ok != error) {
         goto error_return;
     }
+    lock_unlock(router->lock);
     return error;
 error_return:
+    lock_unlock(router->lock);
     if (w) {
         if (w->c1) {
             knet_channel_ref_leave(w->c1);
@@ -100,36 +110,45 @@ int knet_vrouter_remove_wire(kvrouter_t* router, kchannel_ref_t* c) {
     int      error = 0;
     verify(router);
     verify(c);
+    lock_lock(router->lock);
     id = uuid_get_high32(knet_channel_ref_get_uuid(c));
     w = (wire_t*)hash_get(router->table, id);
     if (!w) {
+        lock_unlock(router->lock);
         return error_router_wire_not_found;
     }
     error = hash_delete(router->table, id);
     if (error_ok != error) {
+        lock_unlock(router->lock);
         verify(0);
     }
+    lock_unlock(router->lock);
     return error;
 }
 
 int knet_vrouter_route(kvrouter_t* router, kchannel_ref_t* c, void* buffer, int size) {
-    uint32_t   id = 0;
-    wire_t*    w  = 0;
-    kstream_t* s  = 0;
+    uint32_t   id    = 0;
+    wire_t*    w     = 0;
+    kstream_t* s     = 0;
+    int        error = error_ok;
     verify(router);
     verify(c);
     verify(buffer);
     verify(size);
+    lock_lock(router->lock);
     id = uuid_get_high32(knet_channel_ref_get_uuid(c));
     w = (wire_t*)hash_get(router->table, id);
     if (!w) {
+        lock_unlock(router->lock);
         return error_router_wire_not_found;
     }
     verify(w->c2);
     s = knet_channel_ref_get_stream(w->c2);
-    verify(s);
+    verify(s);    
     /* 发送 */
-    return knet_stream_push(s, buffer, size);
+    error = knet_stream_push(s, buffer, size);
+    lock_unlock(router->lock);
+    return error;
 }
 
 void _hash_dtor(void* v) {

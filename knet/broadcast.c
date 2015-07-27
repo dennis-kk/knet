@@ -82,9 +82,9 @@ kchannel_ref_t* knet_broadcast_join(kbroadcast_t* broadcast, kchannel_ref_t* cha
     lock_lock(broadcast->lock);
     /* 添加到广播域链表，设置链表节点（快速删除） */
     node = dlist_add_tail_node(broadcast->channels, channel_shared);
-    lock_unlock(broadcast->lock);
     knet_channel_ref_set_domain_node(channel_shared, node);
     knet_channel_ref_set_domain_id(channel_shared, broadcast->domain_id);
+    lock_unlock(broadcast->lock);
     return channel_shared;
 }
 
@@ -100,9 +100,9 @@ int knet_broadcast_leave(kbroadcast_t* broadcast, kchannel_ref_t* channel_ref) {
     }
     lock_lock(broadcast->lock);
     dlist_delete(broadcast->channels, node);
-    lock_unlock(broadcast->lock);
     /* 销毁引用 */
     knet_channel_ref_leave(channel_ref);
+    lock_unlock(broadcast->lock);
     return error_ok;
 }
 
