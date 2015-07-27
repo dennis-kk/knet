@@ -56,7 +56,7 @@ extern kvrouter_t* knet_vrouter_create();
 extern void knet_vrouter_destroy(kvrouter_t* router);
 
 /**
- * 建立一条转发转发关系
+ * 建立一条转发关系
  * @param router kvrouter_t实例
  * @param c1 kchannel_ref_t实例，源管道
  * @param c2 kchannel_ref_t实例，目的管道
