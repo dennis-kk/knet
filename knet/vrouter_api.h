@@ -57,7 +57,7 @@ extern void knet_vrouter_destroy(kvrouter_t* router);
 
 /**
  * 建立一条转发转发关系
- * @return kvrouter_t实例
+ * @param router kvrouter_t实例
  * @param c1 kchannel_ref_t实例，源管道
  * @param c2 kchannel_ref_t实例，目的管道
  * @retval error_ok 成功
@@ -67,7 +67,7 @@ extern int knet_vrouter_add_wire(kvrouter_t* router, kchannel_ref_t* c1, kchanne
 
 /**
  * 删除一条转发关系
- * @return kvrouter_t实例
+ * @param router kvrouter_t实例
  * @param c kchannel_ref_t实例，源管道(knet_vrouter_add_wire第二个参数)
  * @retval error_ok 成功
  * @retval 其他 失败
@@ -76,7 +76,7 @@ extern int knet_vrouter_remove_wire(kvrouter_t* router, kchannel_ref_t* c);
 
 /**
  * 转发数据
- * @return kvrouter_t实例
+ * @param router kvrouter_t实例
  * @param c kchannel_ref_t实例，源管道(knet_vrouter_add_wire第二个参数)
  * @param buffer 数据缓冲区
  * @param size 缓冲区长度

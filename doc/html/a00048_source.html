@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/buffer.h 源文件</title>
+<title>knet: E:/knet-git/knet/knet/broadcast_api.h 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">buffer.h</div>  </div>
+<div class="title">broadcast_api.h</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00048.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
@@ -105,7 +105,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> * DISCLAIMED. IN NO EVENT SHALL dennis wang BE LIABLE FOR ANY</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> * DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment"> * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND</span></div>
@@ -114,45 +114,37 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef BUFFER_H</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define BUFFER_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef BROADCAST_API_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define BROADCAST_API_H</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00054.html">config.h</a>&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00056.html">config.h</a>&quot;</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<a class="code" href="a00003.html">kbuffer_t</a>* <a class="code" href="a00048_ab7c640d7d31868f39679942dafd12175.html#ab7c640d7d31868f39679942dafd12175">knet_buffer_create</a>(uint32_t size);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00048_ad7934fdee7f0eea3f1581b5dd94736e2.html#ad7934fdee7f0eea3f1581b5dd94736e2">knet_buffer_destroy</a>(<a class="code" href="a00003.html">kbuffer_t</a>* sb);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;uint32_t <a class="code" href="a00048_abf453d69e41199e1f64314d31ff23a69.html#abf453d69e41199e1f64314d31ff23a69">knet_buffer_put</a>(<a class="code" href="a00003.html">kbuffer_t</a>* sb, <span class="keyword">const</span> <span class="keywordtype">char</span>* temp, uint32_t size);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;uint32_t <a class="code" href="a00048_a8d22cd2f8625aee29cbf263e0fba8cef.html#a8d22cd2f8625aee29cbf263e0fba8cef">knet_buffer_get_length</a>(<a class="code" href="a00003.html">kbuffer_t</a>* sb);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;uint32_t <a class="code" href="a00048_a8eee118becbc822b85b0459ece43b944.html#a8eee118becbc822b85b0459ece43b944">knet_buffer_get_max_size</a>(<a class="code" href="a00003.html">kbuffer_t</a>* sb);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00048_ab52a4b25cb665848167e2e3a57ad38f4.html#ab52a4b25cb665848167e2e3a57ad38f4">knet_buffer_enough</a>(<a class="code" href="a00003.html">kbuffer_t</a>* sb, uint32_t size);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keywordtype">char</span>* <a class="code" href="a00048_aad25b6a27ca6270b4cffb9c45daea697.html#aad25b6a27ca6270b4cffb9c45daea697">knet_buffer_get_ptr</a>(<a class="code" href="a00003.html">kbuffer_t</a>* sb);</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00048_ace8a684108f818eab5d956235b0bce77.html#ace8a684108f818eab5d956235b0bce77">knet_buffer_adjust</a>(<a class="code" href="a00003.html">kbuffer_t</a>* sb, uint32_t gap);</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00048_ac787e1b4f944728f621d7f59b67eb0aa.html#ac787e1b4f944728f621d7f59b67eb0aa">knet_buffer_clear</a>(<a class="code" href="a00003.html">kbuffer_t</a>* sb);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* BUFFER_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="a00048_abf453d69e41199e1f64314d31ff23a69_html_abf453d69e41199e1f64314d31ff23a69"><div class="ttname"><a href="a00048_abf453d69e41199e1f64314d31ff23a69.html#abf453d69e41199e1f64314d31ff23a69">knet_buffer_put</a></div><div class="ttdeci">uint32_t knet_buffer_put(kbuffer_t *sb, const char *temp, uint32_t size)</div><div class="ttdoc">写入 </div><div class="ttdef"><b>Definition:</b> buffer.c:63</div></div>
-<div class="ttc" id="a00048_a8d22cd2f8625aee29cbf263e0fba8cef_html_a8d22cd2f8625aee29cbf263e0fba8cef"><div class="ttname"><a href="a00048_a8d22cd2f8625aee29cbf263e0fba8cef.html#a8d22cd2f8625aee29cbf263e0fba8cef">knet_buffer_get_length</a></div><div class="ttdeci">uint32_t knet_buffer_get_length(kbuffer_t *sb)</div><div class="ttdoc">取得缓冲区内数据长度 </div><div class="ttdef"><b>Definition:</b> buffer.c:78</div></div>
-<div class="ttc" id="a00003_html"><div class="ttname"><a href="a00003.html">_buffer_t</a></div><div class="ttdef"><b>Definition:</b> buffer.c:28</div></div>
-<div class="ttc" id="a00048_a8eee118becbc822b85b0459ece43b944_html_a8eee118becbc822b85b0459ece43b944"><div class="ttname"><a href="a00048_a8eee118becbc822b85b0459ece43b944.html#a8eee118becbc822b85b0459ece43b944">knet_buffer_get_max_size</a></div><div class="ttdeci">uint32_t knet_buffer_get_max_size(kbuffer_t *sb)</div><div class="ttdoc">取得缓冲区内最大长度 </div><div class="ttdef"><b>Definition:</b> buffer.c:86</div></div>
-<div class="ttc" id="a00048_ab52a4b25cb665848167e2e3a57ad38f4_html_ab52a4b25cb665848167e2e3a57ad38f4"><div class="ttname"><a href="a00048_ab52a4b25cb665848167e2e3a57ad38f4.html#ab52a4b25cb665848167e2e3a57ad38f4">knet_buffer_enough</a></div><div class="ttdeci">int knet_buffer_enough(kbuffer_t *sb, uint32_t size)</div><div class="ttdoc">测试缓冲区内是否有足够空间 </div><div class="ttdef"><b>Definition:</b> buffer.c:94</div></div>
-<div class="ttc" id="a00048_ad7934fdee7f0eea3f1581b5dd94736e2_html_ad7934fdee7f0eea3f1581b5dd94736e2"><div class="ttname"><a href="a00048_ad7934fdee7f0eea3f1581b5dd94736e2.html#ad7934fdee7f0eea3f1581b5dd94736e2">knet_buffer_destroy</a></div><div class="ttdeci">void knet_buffer_destroy(kbuffer_t *sb)</div><div class="ttdoc">销毁缓冲区 </div><div class="ttdef"><b>Definition:</b> buffer.c:50</div></div>
-<div class="ttc" id="a00048_aad25b6a27ca6270b4cffb9c45daea697_html_aad25b6a27ca6270b4cffb9c45daea697"><div class="ttname"><a href="a00048_aad25b6a27ca6270b4cffb9c45daea697.html#aad25b6a27ca6270b4cffb9c45daea697">knet_buffer_get_ptr</a></div><div class="ttdeci">char * knet_buffer_get_ptr(kbuffer_t *sb)</div><div class="ttdoc">取得缓冲区数据起始地址 </div><div class="ttdef"><b>Definition:</b> buffer.c:102</div></div>
-<div class="ttc" id="a00048_ace8a684108f818eab5d956235b0bce77_html_ace8a684108f818eab5d956235b0bce77"><div class="ttname"><a href="a00048_ace8a684108f818eab5d956235b0bce77.html#ace8a684108f818eab5d956235b0bce77">knet_buffer_adjust</a></div><div class="ttdeci">void knet_buffer_adjust(kbuffer_t *sb, uint32_t gap)</div><div class="ttdoc">调整数据起始地址 </div><div class="ttdef"><b>Definition:</b> buffer.c:110</div></div>
-<div class="ttc" id="a00048_ab7c640d7d31868f39679942dafd12175_html_ab7c640d7d31868f39679942dafd12175"><div class="ttname"><a href="a00048_ab7c640d7d31868f39679942dafd12175.html#ab7c640d7d31868f39679942dafd12175">knet_buffer_create</a></div><div class="ttdeci">kbuffer_t * knet_buffer_create(uint32_t size)</div><div class="ttdoc">创建一个固定长度的缓冲区 </div><div class="ttdef"><b>Definition:</b> buffer.c:34</div></div>
-<div class="ttc" id="a00054_html"><div class="ttname"><a href="a00054.html">config.h</a></div></div>
-<div class="ttc" id="a00048_ac787e1b4f944728f621d7f59b67eb0aa_html_ac787e1b4f944728f621d7f59b67eb0aa"><div class="ttname"><a href="a00048_ac787e1b4f944728f621d7f59b67eb0aa.html#ac787e1b4f944728f621d7f59b67eb0aa">knet_buffer_clear</a></div><div class="ttdeci">void knet_buffer_clear(kbuffer_t *sb)</div><div class="ttdoc">清空缓冲区 </div><div class="ttdef"><b>Definition:</b> buffer.c:118</div></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00002.html">kbroadcast_t</a>* <a class="code" href="a00112_ga41a1258d2f4ae75120f26ab7f2326111.html#ga41a1258d2f4ae75120f26ab7f2326111">knet_broadcast_create</a>();</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00112_ga4b13b2545278c2324f4171ef0bbf990a.html#ga4b13b2545278c2324f4171ef0bbf990a">knet_broadcast_destroy</a>(<a class="code" href="a00002.html">kbroadcast_t</a>* broadcast);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00005.html">kchannel_ref_t</a>* <a class="code" href="a00112_ga1355d3863db663680b1c74363d3a5745.html#ga1355d3863db663680b1c74363d3a5745">knet_broadcast_join</a>(<a class="code" href="a00002.html">kbroadcast_t</a>* broadcast, <a class="code" href="a00005.html">kchannel_ref_t</a>* channel_ref);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00112_ga3bb02208a76f18bb2eee61955b3781cd.html#ga3bb02208a76f18bb2eee61955b3781cd">knet_broadcast_leave</a>(<a class="code" href="a00002.html">kbroadcast_t</a>* broadcast, <a class="code" href="a00005.html">kchannel_ref_t</a>* channel_ref);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00112_gabf0b20b2490b3508e58a77314812f1a5.html#gabf0b20b2490b3508e58a77314812f1a5">knet_broadcast_get_count</a>(<a class="code" href="a00002.html">kbroadcast_t</a>* broadcast);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00112_gafd3ac5d785687d729047a51724104060.html#gafd3ac5d785687d729047a51724104060">knet_broadcast_write</a>(<a class="code" href="a00002.html">kbroadcast_t</a>* broadcast, <span class="keywordtype">char</span>* buffer, uint32_t size);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* BROADCAST_API_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a00056_html"><div class="ttname"><a href="a00056.html">config.h</a></div></div>
+<div class="ttc" id="a00112_ga1355d3863db663680b1c74363d3a5745_html_ga1355d3863db663680b1c74363d3a5745"><div class="ttname"><a href="a00112_ga1355d3863db663680b1c74363d3a5745.html#ga1355d3863db663680b1c74363d3a5745">knet_broadcast_join</a></div><div class="ttdeci">kchannel_ref_t * knet_broadcast_join(kbroadcast_t *broadcast, kchannel_ref_t *channel_ref)</div><div class="ttdoc">加入广播域 </div><div class="ttdef"><b>Definition:</b> broadcast.c:74</div></div>
+<div class="ttc" id="a00112_ga3bb02208a76f18bb2eee61955b3781cd_html_ga3bb02208a76f18bb2eee61955b3781cd"><div class="ttname"><a href="a00112_ga3bb02208a76f18bb2eee61955b3781cd.html#ga3bb02208a76f18bb2eee61955b3781cd">knet_broadcast_leave</a></div><div class="ttdeci">int knet_broadcast_leave(kbroadcast_t *broadcast, kchannel_ref_t *channel_ref)</div><div class="ttdoc">离开广播域 </div><div class="ttdef"><b>Definition:</b> broadcast.c:91</div></div>
+<div class="ttc" id="a00112_gabf0b20b2490b3508e58a77314812f1a5_html_gabf0b20b2490b3508e58a77314812f1a5"><div class="ttname"><a href="a00112_gabf0b20b2490b3508e58a77314812f1a5.html#gabf0b20b2490b3508e58a77314812f1a5">knet_broadcast_get_count</a></div><div class="ttdeci">int knet_broadcast_get_count(kbroadcast_t *broadcast)</div><div class="ttdoc">取得广播域内管道数量 </div><div class="ttdef"><b>Definition:</b> broadcast.c:109</div></div>
+<div class="ttc" id="a00005_html"><div class="ttname"><a href="a00005.html">_channel_ref_t</a></div><div class="ttdef"><b>Definition:</b> channel_ref.c:61</div></div>
+<div class="ttc" id="a00112_gafd3ac5d785687d729047a51724104060_html_gafd3ac5d785687d729047a51724104060"><div class="ttname"><a href="a00112_gafd3ac5d785687d729047a51724104060.html#gafd3ac5d785687d729047a51724104060">knet_broadcast_write</a></div><div class="ttdeci">int knet_broadcast_write(kbroadcast_t *broadcast, char *buffer, uint32_t size)</div><div class="ttdoc">广播 </div><div class="ttdef"><b>Definition:</b> broadcast.c:120</div></div>
+<div class="ttc" id="a00112_ga4b13b2545278c2324f4171ef0bbf990a_html_ga4b13b2545278c2324f4171ef0bbf990a"><div class="ttname"><a href="a00112_ga4b13b2545278c2324f4171ef0bbf990a.html#ga4b13b2545278c2324f4171ef0bbf990a">knet_broadcast_destroy</a></div><div class="ttdeci">void knet_broadcast_destroy(kbroadcast_t *broadcast)</div><div class="ttdoc">销毁广播域 </div><div class="ttdef"><b>Definition:</b> broadcast.c:55</div></div>
+<div class="ttc" id="a00112_ga41a1258d2f4ae75120f26ab7f2326111_html_ga41a1258d2f4ae75120f26ab7f2326111"><div class="ttname"><a href="a00112_ga41a1258d2f4ae75120f26ab7f2326111.html#ga41a1258d2f4ae75120f26ab7f2326111">knet_broadcast_create</a></div><div class="ttdeci">kbroadcast_t * knet_broadcast_create()</div><div class="ttdoc">创建广播域 </div><div class="ttdef"><b>Definition:</b> broadcast.c:36</div></div>
+<div class="ttc" id="a00002_html"><div class="ttname"><a href="a00002.html">_broadcast_t</a></div><div class="ttdef"><b>Definition:</b> broadcast.c:30</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 24日 星期五 11:53:43 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 27日 星期一 14:33:19 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

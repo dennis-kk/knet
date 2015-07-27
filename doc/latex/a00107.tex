@@ -1,78 +1,132 @@
-\hypertarget{a00107}{}\section{地址}
-\label{a00107}\index{地址@{地址}}
-
-
-地址  
-
-
+\hypertarget{a00107}{}\section{E\+:/knet-\/git/knet/knet/version.c 文件参考}
+\label{a00107}\index{E\+:/knet-\/git/knet/knet/version.\+c@{E\+:/knet-\/git/knet/knet/version.\+c}}
+{\ttfamily \#include \char`\"{}version.\+h\char`\"{}}\\*
+\subsection*{宏定义}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{a00107_a877cce34f3e58fd7f9194fab90724cb8_a877cce34f3e58fd7f9194fab90724cb8}{M\+A\+J\+O\+R}~1 /$\ast$ 主版本 $\ast$/
+\item 
+\#define \hyperlink{a00107_a4e10915d93013542d442d78de0e02e9a_a4e10915d93013542d442d78de0e02e9a}{M\+I\+N\+O\+R}~4 /$\ast$ 次版本 $\ast$/
+\item 
+\#define \hyperlink{a00107_af59c44c1f3ff875c35393428624473aa_af59c44c1f3ff875c35393428624473aa}{P\+A\+T\+C\+H}~6 /$\ast$ 补丁 $\ast$/
+\item 
+\#define \hyperlink{a00107_ad4c134c968cc4fc0cc700567eb39c675_ad4c134c968cc4fc0cc700567eb39c675}{K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R}(major)~\#major
+\item 
+\#define \hyperlink{a00107_a70224fafcaea5102f9cd726ba926684f_a70224fafcaea5102f9cd726ba926684f}{K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R}(minor)~\#minor
+\item 
+\#define \hyperlink{a00107_ae9af7a95a483a187a37d3e9828c6ac1c_ae9af7a95a483a187a37d3e9828c6ac1c}{K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H}(patch)~\#patch
+\item 
+\#define \hyperlink{a00107_a96eb274e34ccfa0c0505ca99f2e09a82_a96eb274e34ccfa0c0505ca99f2e09a82}{K\+N\+E\+T\+\_\+\+V\+E\+R\+S\+I\+O\+N}(major,  minor,  patch)~\hyperlink{a00107_ad4c134c968cc4fc0cc700567eb39c675_ad4c134c968cc4fc0cc700567eb39c675}{K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R}(major)\char`\"{}.\char`\"{}\hyperlink{a00107_a70224fafcaea5102f9cd726ba926684f_a70224fafcaea5102f9cd726ba926684f}{K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R}(minor)\char`\"{}.\char`\"{}\hyperlink{a00107_ae9af7a95a483a187a37d3e9828c6ac1c_ae9af7a95a483a187a37d3e9828c6ac1c}{K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H}(patch)
+\end{DoxyCompactItemize}
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-const char $\ast$ \hyperlink{a00107_gaa1ea22192168bb6baea88feeb20eb601_gaa1ea22192168bb6baea88feeb20eb601}{address\+\_\+get\+\_\+ip} (\hyperlink{a00054_a44e99fab0348ec54cfee119ddd9ceed6_a44e99fab0348ec54cfee119ddd9ceed6}{kaddress\+\_\+t} $\ast$address)
-\begin{DoxyCompactList}\small\item\em 取得\+I\+P \end{DoxyCompactList}\item 
-int \hyperlink{a00107_ga9acaa00fe11bcecadea350baf9da7172_ga9acaa00fe11bcecadea350baf9da7172}{address\+\_\+get\+\_\+port} (\hyperlink{a00054_a44e99fab0348ec54cfee119ddd9ceed6_a44e99fab0348ec54cfee119ddd9ceed6}{kaddress\+\_\+t} $\ast$address)
-\begin{DoxyCompactList}\small\item\em 取得port \end{DoxyCompactList}\end{DoxyCompactItemize}
+const char $\ast$ \hyperlink{a00107_a3b6e0e802bbb0f81da8bcef8e757066a_a3b6e0e802bbb0f81da8bcef8e757066a}{knet\+\_\+get\+\_\+version\+\_\+string} ()
+\begin{DoxyCompactList}\small\item\em 取得当前版本号字符串 \end{DoxyCompactList}\item 
+int \hyperlink{a00107_ad86dd4bf914796aa945a02faac4ae52e_ad86dd4bf914796aa945a02faac4ae52e}{knet\+\_\+get\+\_\+version\+\_\+major} ()
+\begin{DoxyCompactList}\small\item\em 取得主版本号 \end{DoxyCompactList}\item 
+int \hyperlink{a00107_abedac37db9a6c72670cad32bdc2dedcd_abedac37db9a6c72670cad32bdc2dedcd}{knet\+\_\+get\+\_\+version\+\_\+minor} ()
+\begin{DoxyCompactList}\small\item\em 取得次版本号 \end{DoxyCompactList}\item 
+int \hyperlink{a00107_a6fb5e77c44c774a9d017ba43dea51672_a6fb5e77c44c774a9d017ba43dea51672}{knet\+\_\+get\+\_\+version\+\_\+path} ()
+\begin{DoxyCompactList}\small\item\em 取得补丁版本号 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\subsection{详细描述}
-地址 
-
-
-\begin{DoxyPre}
-地址接口通过knet\_channel\_ref\_get\_local\_address或knet\_channel\_ref\_get\_peer\_address
-获取本地或对端的地址，未建立连接的管道也可以获取地址，但获取的地址是无效的.
-\end{DoxyPre}
- \begin{DoxySeeAlso}{参见}
-\hyperlink{a00109_gaddc78bbbcee3974d351c2c1ec0340e3e_gaddc78bbbcee3974d351c2c1ec0340e3e}{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+local\+\_\+address} 
-
-\hyperlink{a00109_gac54b0999f21b2f481f7b8ebd17699655_gac54b0999f21b2f481f7b8ebd17699655}{knet\+\_\+channel\+\_\+ref\+\_\+get\+\_\+peer\+\_\+address} 
-\end{DoxySeeAlso}
+\subsection{宏定义说明}
+\hypertarget{a00107_ad4c134c968cc4fc0cc700567eb39c675_ad4c134c968cc4fc0cc700567eb39c675}{}\index{version.\+c@{version.\+c}!K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R@{K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R}}
+\index{K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R@{K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R}!version.\+c@{version.\+c}}
+\subsubsection[{K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R(
+\begin{DoxyParamCaption}
+\item[{}]{major}
+\end{DoxyParamCaption}
+)~\#major}\label{a00107_ad4c134c968cc4fc0cc700567eb39c675_ad4c134c968cc4fc0cc700567eb39c675}
+\hypertarget{a00107_a70224fafcaea5102f9cd726ba926684f_a70224fafcaea5102f9cd726ba926684f}{}\index{version.\+c@{version.\+c}!K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R@{K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R}}
+\index{K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R@{K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R}!version.\+c@{version.\+c}}
+\subsubsection[{K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R(
+\begin{DoxyParamCaption}
+\item[{}]{minor}
+\end{DoxyParamCaption}
+)~\#minor}\label{a00107_a70224fafcaea5102f9cd726ba926684f_a70224fafcaea5102f9cd726ba926684f}
+\hypertarget{a00107_ae9af7a95a483a187a37d3e9828c6ac1c_ae9af7a95a483a187a37d3e9828c6ac1c}{}\index{version.\+c@{version.\+c}!K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H@{K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H}}
+\index{K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H@{K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H}!version.\+c@{version.\+c}}
+\subsubsection[{K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H}]{\setlength{\rightskip}{0pt plus 5cm}\#define K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H(
+\begin{DoxyParamCaption}
+\item[{}]{patch}
+\end{DoxyParamCaption}
+)~\#patch}\label{a00107_ae9af7a95a483a187a37d3e9828c6ac1c_ae9af7a95a483a187a37d3e9828c6ac1c}
+\hypertarget{a00107_a96eb274e34ccfa0c0505ca99f2e09a82_a96eb274e34ccfa0c0505ca99f2e09a82}{}\index{version.\+c@{version.\+c}!K\+N\+E\+T\+\_\+\+V\+E\+R\+S\+I\+O\+N@{K\+N\+E\+T\+\_\+\+V\+E\+R\+S\+I\+O\+N}}
+\index{K\+N\+E\+T\+\_\+\+V\+E\+R\+S\+I\+O\+N@{K\+N\+E\+T\+\_\+\+V\+E\+R\+S\+I\+O\+N}!version.\+c@{version.\+c}}
+\subsubsection[{K\+N\+E\+T\+\_\+\+V\+E\+R\+S\+I\+O\+N}]{\setlength{\rightskip}{0pt plus 5cm}\#define K\+N\+E\+T\+\_\+\+V\+E\+R\+S\+I\+O\+N(
+\begin{DoxyParamCaption}
+\item[{}]{major, }
+\item[{}]{minor, }
+\item[{}]{patch}
+\end{DoxyParamCaption}
+)~{\bf K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R}(major)\char`\"{}.\char`\"{}{\bf K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R}(minor)\char`\"{}.\char`\"{}{\bf K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H}(patch)}\label{a00107_a96eb274e34ccfa0c0505ca99f2e09a82_a96eb274e34ccfa0c0505ca99f2e09a82}
+\hypertarget{a00107_a877cce34f3e58fd7f9194fab90724cb8_a877cce34f3e58fd7f9194fab90724cb8}{}\index{version.\+c@{version.\+c}!M\+A\+J\+O\+R@{M\+A\+J\+O\+R}}
+\index{M\+A\+J\+O\+R@{M\+A\+J\+O\+R}!version.\+c@{version.\+c}}
+\subsubsection[{M\+A\+J\+O\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+J\+O\+R~1 /$\ast$ 主版本 $\ast$/}\label{a00107_a877cce34f3e58fd7f9194fab90724cb8_a877cce34f3e58fd7f9194fab90724cb8}
+\hypertarget{a00107_a4e10915d93013542d442d78de0e02e9a_a4e10915d93013542d442d78de0e02e9a}{}\index{version.\+c@{version.\+c}!M\+I\+N\+O\+R@{M\+I\+N\+O\+R}}
+\index{M\+I\+N\+O\+R@{M\+I\+N\+O\+R}!version.\+c@{version.\+c}}
+\subsubsection[{M\+I\+N\+O\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+I\+N\+O\+R~4 /$\ast$ 次版本 $\ast$/}\label{a00107_a4e10915d93013542d442d78de0e02e9a_a4e10915d93013542d442d78de0e02e9a}
+\hypertarget{a00107_af59c44c1f3ff875c35393428624473aa_af59c44c1f3ff875c35393428624473aa}{}\index{version.\+c@{version.\+c}!P\+A\+T\+C\+H@{P\+A\+T\+C\+H}}
+\index{P\+A\+T\+C\+H@{P\+A\+T\+C\+H}!version.\+c@{version.\+c}}
+\subsubsection[{P\+A\+T\+C\+H}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+A\+T\+C\+H~6 /$\ast$ 补丁 $\ast$/}\label{a00107_af59c44c1f3ff875c35393428624473aa_af59c44c1f3ff875c35393428624473aa}
 
 
 \subsection{函数说明}
-\hypertarget{a00107_gaa1ea22192168bb6baea88feeb20eb601_gaa1ea22192168bb6baea88feeb20eb601}{}\index{地址@{地址}!address\+\_\+get\+\_\+ip@{address\+\_\+get\+\_\+ip}}
-\index{address\+\_\+get\+\_\+ip@{address\+\_\+get\+\_\+ip}!地址@{地址}}
-\subsubsection[{address\+\_\+get\+\_\+ip}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ address\+\_\+get\+\_\+ip (
+\hypertarget{a00107_ad86dd4bf914796aa945a02faac4ae52e_ad86dd4bf914796aa945a02faac4ae52e}{}\index{version.\+c@{version.\+c}!knet\+\_\+get\+\_\+version\+\_\+major@{knet\+\_\+get\+\_\+version\+\_\+major}}
+\index{knet\+\_\+get\+\_\+version\+\_\+major@{knet\+\_\+get\+\_\+version\+\_\+major}!version.\+c@{version.\+c}}
+\subsubsection[{knet\+\_\+get\+\_\+version\+\_\+major}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+get\+\_\+version\+\_\+major (
 \begin{DoxyParamCaption}
-\item[{{\bf kaddress\+\_\+t} $\ast$}]{address}
+{}
 \end{DoxyParamCaption}
-)}\label{a00107_gaa1ea22192168bb6baea88feeb20eb601_gaa1ea22192168bb6baea88feeb20eb601}
+)}\label{a00107_ad86dd4bf914796aa945a02faac4ae52e_ad86dd4bf914796aa945a02faac4ae52e}
 
 
-取得\+I\+P 
+取得主版本号 
 
-
-\begin{DoxyParams}{参数}
-{\em address} & kaddress\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em 有效的指针} & I\+P字符串 \\
-\hline
-{\em 0} & 管道连接未建立 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00107_ga9acaa00fe11bcecadea350baf9da7172_ga9acaa00fe11bcecadea350baf9da7172}{}\index{地址@{地址}!address\+\_\+get\+\_\+port@{address\+\_\+get\+\_\+port}}
-\index{address\+\_\+get\+\_\+port@{address\+\_\+get\+\_\+port}!地址@{地址}}
-\subsubsection[{address\+\_\+get\+\_\+port}]{\setlength{\rightskip}{0pt plus 5cm}int address\+\_\+get\+\_\+port (
+\begin{DoxyReturn}{返回}
+主版本号 
+\end{DoxyReturn}
+\hypertarget{a00107_abedac37db9a6c72670cad32bdc2dedcd_abedac37db9a6c72670cad32bdc2dedcd}{}\index{version.\+c@{version.\+c}!knet\+\_\+get\+\_\+version\+\_\+minor@{knet\+\_\+get\+\_\+version\+\_\+minor}}
+\index{knet\+\_\+get\+\_\+version\+\_\+minor@{knet\+\_\+get\+\_\+version\+\_\+minor}!version.\+c@{version.\+c}}
+\subsubsection[{knet\+\_\+get\+\_\+version\+\_\+minor}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+get\+\_\+version\+\_\+minor (
 \begin{DoxyParamCaption}
-\item[{{\bf kaddress\+\_\+t} $\ast$}]{address}
+{}
 \end{DoxyParamCaption}
-)}\label{a00107_ga9acaa00fe11bcecadea350baf9da7172_ga9acaa00fe11bcecadea350baf9da7172}
+)}\label{a00107_abedac37db9a6c72670cad32bdc2dedcd_abedac37db9a6c72670cad32bdc2dedcd}
 
 
-取得port 
+取得次版本号 
+
+\begin{DoxyReturn}{返回}
+次版本号 
+\end{DoxyReturn}
+\hypertarget{a00107_a6fb5e77c44c774a9d017ba43dea51672_a6fb5e77c44c774a9d017ba43dea51672}{}\index{version.\+c@{version.\+c}!knet\+\_\+get\+\_\+version\+\_\+path@{knet\+\_\+get\+\_\+version\+\_\+path}}
+\index{knet\+\_\+get\+\_\+version\+\_\+path@{knet\+\_\+get\+\_\+version\+\_\+path}!version.\+c@{version.\+c}}
+\subsubsection[{knet\+\_\+get\+\_\+version\+\_\+path}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+get\+\_\+version\+\_\+path (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{a00107_a6fb5e77c44c774a9d017ba43dea51672_a6fb5e77c44c774a9d017ba43dea51672}
 
 
-\begin{DoxyParams}{参数}
-{\em address} & kaddress\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
+取得补丁版本号 
 
-\begin{DoxyRetVals}{返回值}
-{\em 有效的端口号} & 端口号 \\
-\hline
-{\em 0} & 管道连接未建立 \\
-\hline
-\end{DoxyRetVals}
+\begin{DoxyReturn}{返回}
+补丁版本号 
+\end{DoxyReturn}
+\hypertarget{a00107_a3b6e0e802bbb0f81da8bcef8e757066a_a3b6e0e802bbb0f81da8bcef8e757066a}{}\index{version.\+c@{version.\+c}!knet\+\_\+get\+\_\+version\+\_\+string@{knet\+\_\+get\+\_\+version\+\_\+string}}
+\index{knet\+\_\+get\+\_\+version\+\_\+string@{knet\+\_\+get\+\_\+version\+\_\+string}!version.\+c@{version.\+c}}
+\subsubsection[{knet\+\_\+get\+\_\+version\+\_\+string}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ knet\+\_\+get\+\_\+version\+\_\+string (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{a00107_a3b6e0e802bbb0f81da8bcef8e757066a_a3b6e0e802bbb0f81da8bcef8e757066a}
+
+
+取得当前版本号字符串 
+
+\begin{DoxyReturn}{返回}
+当前版本号字符串 
+\end{DoxyReturn}

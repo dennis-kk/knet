@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/framework.h 文件参考</title>
+<title>knet: E:/knet-git/knet/knet/config.h 文件参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,29 +87,356 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#func-members">函数</a>  </div>
+<a href="#define-members">宏定义</a> &#124;
+<a href="#typedef-members">类型定义</a> &#124;
+<a href="#enum-members">枚举</a>  </div>
   <div class="headertitle">
-<div class="title">framework.h 文件参考</div>  </div>
+<div class="title">config.h 文件参考</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="a00057_source.html">framework_api.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00059_source.html">framework_config.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;time.h&gt;</code><br />
+<code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;limits.h&gt;</code><br />
+<code>#include &lt;assert.h&gt;</code><br />
+<code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;errno.h&gt;</code><br />
+<code>#include &lt;netdb.h&gt;</code><br />
+<code>#include &lt;sys/types.h&gt;</code><br />
+<code>#include &lt;sys/time.h&gt;</code><br />
+<code>#include &lt;netinet/in.h&gt;</code><br />
+<code>#include &lt;sys/socket.h&gt;</code><br />
+<code>#include &lt;arpa/inet.h&gt;</code><br />
+<code>#include &lt;fcntl.h&gt;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
+<code>#include &lt;pthread.h&gt;</code><br />
+<code>#include &lt;sys/epoll.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="a00075_source.html">logger.h</a>&quot;</code><br />
 </div>
 <p><a href="a00056_source.html">浏览源代码.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-函数</h2></td></tr>
-<tr class="memitem:ac31f510b72c39d3b0611b9500789577b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_ac31f510b72c39d3b0611b9500789577b.html#ac31f510b72c39d3b0611b9500789577b">acceptor_cb</a> (<a class="el" href="a00054_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *channel, <a class="el" href="a00054_a2fd2faf971268f5b682ab375c455f7c9.html#a2fd2faf971268f5b682ab375c455f7c9">knet_channel_cb_event_e</a> e)</td></tr>
-<tr class="memdesc:ac31f510b72c39d3b0611b9500789577b"><td class="mdescLeft">&#160;</td><td class="mdescRight">事件channel_cb_event_accept处理函数  <a href="a00056_ac31f510b72c39d3b0611b9500789577b.html#ac31f510b72c39d3b0611b9500789577b">更多...</a><br /></td></tr>
-<tr class="separator:ac31f510b72c39d3b0611b9500789577b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5bda21127c93214014579d21f6efd643"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00054_abd3f964265beb2f8984e76f44fb5ea33.html#abd3f964265beb2f8984e76f44fb5ea33">kloop_balancer_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a5bda21127c93214014579d21f6efd643.html#a5bda21127c93214014579d21f6efd643">knet_framework_get_balancer</a> (<a class="el" href="a00054_a3195a3be35782fc1efb920c811be111d.html#a3195a3be35782fc1efb920c811be111d">kframework_t</a> *f)</td></tr>
-<tr class="memdesc:a5bda21127c93214014579d21f6efd643"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取负载均衡器  <a href="a00056_a5bda21127c93214014579d21f6efd643.html#a5bda21127c93214014579d21f6efd643">更多...</a><br /></td></tr>
-<tr class="separator:a5bda21127c93214014579d21f6efd643"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+宏定义</h2></td></tr>
+<tr class="memitem:ac028763a18d262183fcec0a047727b41"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_ac028763a18d262183fcec0a047727b41.html#ac028763a18d262183fcec0a047727b41">socket_len_t</a>&#160;&#160;&#160;socklen_t</td></tr>
+<tr class="separator:ac028763a18d262183fcec0a047727b41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0ada5642d10ce71bdd90816182f9b79"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_ad0ada5642d10ce71bdd90816182f9b79.html#ad0ada5642d10ce71bdd90816182f9b79">thread_id_t</a>&#160;&#160;&#160;pthread_t</td></tr>
+<tr class="separator:ad0ada5642d10ce71bdd90816182f9b79"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d9e0afbf02fb6ed6c5b1415dce51b05"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a>&#160;&#160;&#160;int</td></tr>
+<tr class="separator:a0d9e0afbf02fb6ed6c5b1415dce51b05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeaea39e7ef5adeec1efaee3eee6b12ff"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_aeaea39e7ef5adeec1efaee3eee6b12ff.html#aeaea39e7ef5adeec1efaee3eee6b12ff">sys_error_t</a>&#160;&#160;&#160;int</td></tr>
+<tr class="separator:aeaea39e7ef5adeec1efaee3eee6b12ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d043bbb6b8db19fea54ab9271d352b6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a0d043bbb6b8db19fea54ab9271d352b6.html#a0d043bbb6b8db19fea54ab9271d352b6">atomic_counter_t</a>&#160;&#160;&#160;volatile int</td></tr>
+<tr class="separator:a0d043bbb6b8db19fea54ab9271d352b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24938fa843048398799e12d52d3e3693"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a24938fa843048398799e12d52d3e3693.html#a24938fa843048398799e12d52d3e3693">float32_t</a>&#160;&#160;&#160;float</td></tr>
+<tr class="separator:a24938fa843048398799e12d52d3e3693"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a584460dce5c6f292dfffb0e7fbca0842"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a584460dce5c6f292dfffb0e7fbca0842.html#a584460dce5c6f292dfffb0e7fbca0842">float64_t</a>&#160;&#160;&#160;double</td></tr>
+<tr class="separator:a584460dce5c6f292dfffb0e7fbca0842"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ec306f36d50c7375e74f0d1c55a3a67"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a9ec306f36d50c7375e74f0d1c55a3a67.html#a9ec306f36d50c7375e74f0d1c55a3a67">INT_MAX</a>&#160;&#160;&#160;2147483647 /* maximum (signed) int value */</td></tr>
+<tr class="separator:a9ec306f36d50c7375e74f0d1c55a3a67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab079e894d07566f511f1a5046a1eefe5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_ab079e894d07566f511f1a5046a1eefe5.html#ab079e894d07566f511f1a5046a1eefe5">create</a>(type)&#160;&#160;&#160;(type*)malloc(sizeof(type))</td></tr>
+<tr class="separator:ab079e894d07566f511f1a5046a1eefe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac51313f7018a7879123a0c5e43707f58"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_ac51313f7018a7879123a0c5e43707f58.html#ac51313f7018a7879123a0c5e43707f58">create_raw</a>(size)&#160;&#160;&#160;(char*)malloc(size)</td></tr>
+<tr class="separator:ac51313f7018a7879123a0c5e43707f58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73e5ea936513264f9b838f33dc3eace9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a73e5ea936513264f9b838f33dc3eace9.html#a73e5ea936513264f9b838f33dc3eace9">create_type</a>(type,  size)&#160;&#160;&#160;(type*)malloc(size)</td></tr>
+<tr class="separator:a73e5ea936513264f9b838f33dc3eace9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d7e1c9a67c51360b3d552297f259dd4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a7d7e1c9a67c51360b3d552297f259dd4.html#a7d7e1c9a67c51360b3d552297f259dd4">rcreate_raw</a>(ptr,  size)&#160;&#160;&#160;(char*)realloc(ptr, size)</td></tr>
+<tr class="separator:a7d7e1c9a67c51360b3d552297f259dd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33ffe212819f3b8ee27c3cdfc9ab1907"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a33ffe212819f3b8ee27c3cdfc9ab1907.html#a33ffe212819f3b8ee27c3cdfc9ab1907">rcreate_type</a>(type,  ptr,  size)&#160;&#160;&#160;(type*)realloc(ptr, size)</td></tr>
+<tr class="separator:a33ffe212819f3b8ee27c3cdfc9ab1907"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7bb0b359ffebe8a540dded73bd47417a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a7bb0b359ffebe8a540dded73bd47417a.html#a7bb0b359ffebe8a540dded73bd47417a">destroy</a>(ptr)&#160;&#160;&#160;do { if (ptr) { free(ptr); } } while(0);</td></tr>
+<tr class="separator:a7bb0b359ffebe8a540dded73bd47417a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6afabdc09a49a433ee19d8a9486056d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_ac6afabdc09a49a433ee19d8a9486056d.html#ac6afabdc09a49a433ee19d8a9486056d">min</a>(a,  b)&#160;&#160;&#160;((a) &lt; (b) ? (a) : (b))</td></tr>
+<tr class="separator:ac6afabdc09a49a433ee19d8a9486056d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ad6823dfac131cbd416a4e34c515983"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a5ad6823dfac131cbd416a4e34c515983.html#a5ad6823dfac131cbd416a4e34c515983">LOOP_EPOLL</a>&#160;&#160;&#160;1   /* epoll */</td></tr>
+<tr class="separator:a5ad6823dfac131cbd416a4e34c515983"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4e9bccd75209f31a3abeb5093ca24b9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_af4e9bccd75209f31a3abeb5093ca24b9.html#af4e9bccd75209f31a3abeb5093ca24b9">LOOP_SELECT</a>&#160;&#160;&#160;0  /* select */</td></tr>
+<tr class="separator:af4e9bccd75209f31a3abeb5093ca24b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a965aa36c859d7bd104a007179eff7d86"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a965aa36c859d7bd104a007179eff7d86.html#a965aa36c859d7bd104a007179eff7d86">LOGGER_ON</a>&#160;&#160;&#160;0 /* 发行版关闭日志 */</td></tr>
+<tr class="separator:a965aa36c859d7bd104a007179eff7d86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3df826d09b6b84228245d9f4ba52b21"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_ad3df826d09b6b84228245d9f4ba52b21.html#ad3df826d09b6b84228245d9f4ba52b21">LOGGER_MODE</a>&#160;&#160;&#160;(<a class="el" href="a00056_a95d677e6aef6e1699b92848e4497c23a.html#a95d677e6aef6e1699b92848e4497c23aaef6fc2e422d19b59b6eb3c72b304875e">logger_mode_file</a> | <a class="el" href="a00056_a95d677e6aef6e1699b92848e4497c23a.html#a95d677e6aef6e1699b92848e4497c23aa9bf951c628aede47462332d36e7ddf9b">logger_mode_console</a> | <a class="el" href="a00056_a95d677e6aef6e1699b92848e4497c23a.html#a95d677e6aef6e1699b92848e4497c23aa459c76aa60fcf471c36e5a404a52f1f2">logger_mode_flush</a> | <a class="el" href="a00056_a95d677e6aef6e1699b92848e4497c23a.html#a95d677e6aef6e1699b92848e4497c23aa60c0337ef674d928beebfc095194d9fb">logger_mode_override</a>) /* 日志模式 */</td></tr>
+<tr class="separator:ad3df826d09b6b84228245d9f4ba52b21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab89b260e9cc223630b78193c8fb31cea"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_ab89b260e9cc223630b78193c8fb31cea.html#ab89b260e9cc223630b78193c8fb31cea">LOGGER_LEVEL</a>&#160;&#160;&#160;<a class="el" href="a00056_a4e764c733cf98ee587ca17412fca9148.html#a4e764c733cf98ee587ca17412fca9148a20b7712a6e03c1820c297b36add74593">logger_level_verbose</a> /* 日志等级 */</td></tr>
+<tr class="separator:ab89b260e9cc223630b78193c8fb31cea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecaddce56c58fa07fb91249ea5de89ae"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_aecaddce56c58fa07fb91249ea5de89ae.html#aecaddce56c58fa07fb91249ea5de89ae">verify</a>(expr)</td></tr>
+<tr class="separator:aecaddce56c58fa07fb91249ea5de89ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+类型定义</h2></td></tr>
+<tr class="memitem:a97fc76209a58362019f1ded9169e397f"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00033.html">_loop_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a97fc76209a58362019f1ded9169e397f.html#a97fc76209a58362019f1ded9169e397f">kloop_t</a></td></tr>
+<tr class="separator:a97fc76209a58362019f1ded9169e397f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca9cd34897582aa9969245a93cc62fb5"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00006.html">_channel_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_aca9cd34897582aa9969245a93cc62fb5.html#aca9cd34897582aa9969245a93cc62fb5">kchannel_t</a></td></tr>
+<tr class="separator:aca9cd34897582aa9969245a93cc62fb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b7e82599367eade261456f60ebe2cd9"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00005.html">_channel_ref_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a></td></tr>
+<tr class="separator:a3b7e82599367eade261456f60ebe2cd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44e99fab0348ec54cfee119ddd9ceed6"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00001.html">_address_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a44e99fab0348ec54cfee119ddd9ceed6.html#a44e99fab0348ec54cfee119ddd9ceed6">kaddress_t</a></td></tr>
+<tr class="separator:a44e99fab0348ec54cfee119ddd9ceed6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c2f62ab63ab1fd49c71e52bbda0f393"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00027.html">_lock_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a4c2f62ab63ab1fd49c71e52bbda0f393.html#a4c2f62ab63ab1fd49c71e52bbda0f393">klock_t</a></td></tr>
+<tr class="separator:a4c2f62ab63ab1fd49c71e52bbda0f393"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd3f964265beb2f8984e76f44fb5ea33"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00029.html">_loop_balancer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_abd3f964265beb2f8984e76f44fb5ea33.html#abd3f964265beb2f8984e76f44fb5ea33">kloop_balancer_t</a></td></tr>
+<tr class="separator:abd3f964265beb2f8984e76f44fb5ea33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f78c259c9527c821f1a6f87495dd339"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00037.html">_thread_runner_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a4f78c259c9527c821f1a6f87495dd339.html#a4f78c259c9527c821f1a6f87495dd339">kthread_runner_t</a></td></tr>
+<tr class="separator:a4f78c259c9527c821f1a6f87495dd339"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc208c4c40c875eebbfef88f00fffacf"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00035.html">_stream_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_acc208c4c40c875eebbfef88f00fffacf.html#acc208c4c40c875eebbfef88f00fffacf">kstream_t</a></td></tr>
+<tr class="separator:acc208c4c40c875eebbfef88f00fffacf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae098586334a621a23cef7cb17590b618"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00008.html">_dlist_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_ae098586334a621a23cef7cb17590b618.html#ae098586334a621a23cef7cb17590b618">kdlist_t</a></td></tr>
+<tr class="separator:ae098586334a621a23cef7cb17590b618"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac701f00a0851c97467ae35c382b316b7"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00007.html">_dlist_node_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_ac701f00a0851c97467ae35c382b316b7.html#ac701f00a0851c97467ae35c382b316b7">kdlist_node_t</a></td></tr>
+<tr class="separator:ac701f00a0851c97467ae35c382b316b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66d91f7667db1f0b2983fc25e1a20f1c"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00034.html">_ringbuffer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a66d91f7667db1f0b2983fc25e1a20f1c.html#a66d91f7667db1f0b2983fc25e1a20f1c">kringbuffer_t</a></td></tr>
+<tr class="separator:a66d91f7667db1f0b2983fc25e1a20f1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b09a7574cd440f9b94285ab73c81b4e"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00003.html">_buffer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a4b09a7574cd440f9b94285ab73c81b4e.html#a4b09a7574cd440f9b94285ab73c81b4e">kbuffer_t</a></td></tr>
+<tr class="separator:a4b09a7574cd440f9b94285ab73c81b4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b551151864af85fa6cce57058153d04"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00002.html">_broadcast_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a1b551151864af85fa6cce57058153d04.html#a1b551151864af85fa6cce57058153d04">kbroadcast_t</a></td></tr>
+<tr class="separator:a1b551151864af85fa6cce57058153d04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a024af2aa29615e7a811ea6c45438157d"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00025.html">_ktimer_loop_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a024af2aa29615e7a811ea6c45438157d.html#a024af2aa29615e7a811ea6c45438157d">ktimer_loop_t</a></td></tr>
+<tr class="separator:a024af2aa29615e7a811ea6c45438157d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a846172ea4e8a86449eca41a3d8e074b7"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00026.html">_ktimer_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a846172ea4e8a86449eca41a3d8e074b7.html#a846172ea4e8a86449eca41a3d8e074b7">ktimer_t</a></td></tr>
+<tr class="separator:a846172ea4e8a86449eca41a3d8e074b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1926fbbc891c0da81a8e683ac83deb05"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00028.html">_logger_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a1926fbbc891c0da81a8e683ac83deb05.html#a1926fbbc891c0da81a8e683ac83deb05">klogger_t</a></td></tr>
+<tr class="separator:a1926fbbc891c0da81a8e683ac83deb05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e414ac6f6de24462ccf81e10f63428d"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00022.html">_krpc_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a1e414ac6f6de24462ccf81e10f63428d.html#a1e414ac6f6de24462ccf81e10f63428d">krpc_t</a></td></tr>
+<tr class="separator:a1e414ac6f6de24462ccf81e10f63428d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8908a2b782375965d6d55fa0bfe14a8f"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00019.html">_krpc_number_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a8908a2b782375965d6d55fa0bfe14a8f.html#a8908a2b782375965d6d55fa0bfe14a8f">krpc_number_t</a></td></tr>
+<tr class="separator:a8908a2b782375965d6d55fa0bfe14a8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a813bf05b2aa7582f20a142644e961e9b"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00021.html">_krpc_string_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a813bf05b2aa7582f20a142644e961e9b.html#a813bf05b2aa7582f20a142644e961e9b">krpc_string_t</a></td></tr>
+<tr class="separator:a813bf05b2aa7582f20a142644e961e9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9c53e08bd04353abcdf8e0720e4c4c8"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00024.html">_krpc_vector_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_af9c53e08bd04353abcdf8e0720e4c4c8.html#af9c53e08bd04353abcdf8e0720e4c4c8">krpc_vector_t</a></td></tr>
+<tr class="separator:af9c53e08bd04353abcdf8e0720e4c4c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c07dfc8c3b965f75b09f82fdb1bbb1e"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00020.html">_krpc_object_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e.html#a9c07dfc8c3b965f75b09f82fdb1bbb1e">krpc_object_t</a></td></tr>
+<tr class="separator:a9c07dfc8c3b965f75b09f82fdb1bbb1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc87d36519075f20746c9708a94d12d0"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00018.html">_krpc_map_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_acc87d36519075f20746c9708a94d12d0.html#acc87d36519075f20746c9708a94d12d0">krpc_map_t</a></td></tr>
+<tr class="separator:acc87d36519075f20746c9708a94d12d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a000feb7ef27197163529c0d6f539340b"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00023.html">_krpc_value_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a000feb7ef27197163529c0d6f539340b.html#a000feb7ef27197163529c0d6f539340b">krpc_value_t</a></td></tr>
+<tr class="separator:a000feb7ef27197163529c0d6f539340b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa242a9a673d8677076543d5768798f2c"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00015.html">_hash_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_aa242a9a673d8677076543d5768798f2c.html#aa242a9a673d8677076543d5768798f2c">khash_t</a></td></tr>
+<tr class="separator:aa242a9a673d8677076543d5768798f2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa13ac88a5567525fe44f3670134c3d96"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00016.html">_hash_value_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_aa13ac88a5567525fe44f3670134c3d96.html#aa13ac88a5567525fe44f3670134c3d96">khash_value_t</a></td></tr>
+<tr class="separator:aa13ac88a5567525fe44f3670134c3d96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3195a3be35782fc1efb920c811be111d"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00013.html">_framework_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a3195a3be35782fc1efb920c811be111d.html#a3195a3be35782fc1efb920c811be111d">kframework_t</a></td></tr>
+<tr class="separator:a3195a3be35782fc1efb920c811be111d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39c993eb450173e4fde04498d757f9b6"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00009.html">_framework_acceptor_config_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a39c993eb450173e4fde04498d757f9b6.html#a39c993eb450173e4fde04498d757f9b6">kframework_acceptor_config_t</a></td></tr>
+<tr class="separator:a39c993eb450173e4fde04498d757f9b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44d3033eba5a4fd784a741700a7a2521"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00011.html">_framework_connector_config_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a44d3033eba5a4fd784a741700a7a2521.html#a44d3033eba5a4fd784a741700a7a2521">kframework_connector_config_t</a></td></tr>
+<tr class="separator:a44d3033eba5a4fd784a741700a7a2521"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adeaf952e0f0887507ff836385bf54874"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00010.html">_framework_config_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_adeaf952e0f0887507ff836385bf54874.html#adeaf952e0f0887507ff836385bf54874">kframework_config_t</a></td></tr>
+<tr class="separator:adeaf952e0f0887507ff836385bf54874"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af10637001508cbbf3a84f95c71318532"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00012.html">_framework_raiser_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_af10637001508cbbf3a84f95c71318532.html#af10637001508cbbf3a84f95c71318532">kframework_raiser_t</a></td></tr>
+<tr class="separator:af10637001508cbbf3a84f95c71318532"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2a7f5b8406de73682f8bd4c2afee783"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00014.html">_framework_worker_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_af2a7f5b8406de73682f8bd4c2afee783.html#af2a7f5b8406de73682f8bd4c2afee783">kframework_worker_t</a></td></tr>
+<tr class="separator:af2a7f5b8406de73682f8bd4c2afee783"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b9282027a882fd53a0d7247e69bc1c1"><td class="memItemLeft" align="right" valign="top">typedef struct _framework_timer_config_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a6b9282027a882fd53a0d7247e69bc1c1.html#a6b9282027a882fd53a0d7247e69bc1c1">kframework_timer_config_t</a></td></tr>
+<tr class="separator:a6b9282027a882fd53a0d7247e69bc1c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab75a5c23099a6118c469ed160b277f28"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00032.html">_loop_profile_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_ab75a5c23099a6118c469ed160b277f28.html#ab75a5c23099a6118c469ed160b277f28">kloop_profile_t</a></td></tr>
+<tr class="separator:ab75a5c23099a6118c469ed160b277f28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b38314f31c4ed3eb36896383425a381"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00039.html">_trie_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a6b38314f31c4ed3eb36896383425a381.html#a6b38314f31c4ed3eb36896383425a381">ktrie_t</a></td></tr>
+<tr class="separator:a6b38314f31c4ed3eb36896383425a381"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c0c604eecd86fc8895cf4bbbba566af"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00017.html">_ip_filter_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a1c0c604eecd86fc8895cf4bbbba566af.html#a1c0c604eecd86fc8895cf4bbbba566af">kip_filter_t</a></td></tr>
+<tr class="separator:a1c0c604eecd86fc8895cf4bbbba566af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9863a6202df1fb40e2b32c673ad93267"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00040.html">_vrouter_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a9863a6202df1fb40e2b32c673ad93267.html#a9863a6202df1fb40e2b32c673ad93267">kvrouter_t</a></td></tr>
+<tr class="separator:a9863a6202df1fb40e2b32c673ad93267"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5d1b6283a02b9e8d64da3bdef0eb04c"><td class="memItemLeft" align="right" valign="top">typedef struct _router_path_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_aa5d1b6283a02b9e8d64da3bdef0eb04c.html#aa5d1b6283a02b9e8d64da3bdef0eb04c">krouter_path_t</a></td></tr>
+<tr class="separator:aa5d1b6283a02b9e8d64da3bdef0eb04c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accd62b4c787cfb91e81aa14210302863"><td class="memItemLeft" align="right" valign="top">typedef enum <a class="el" href="a00056_a1460362ccf3a6ba930a1a3ac2f73f3ea.html#a1460362ccf3a6ba930a1a3ac2f73f3ea">_channel_event_e</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_accd62b4c787cfb91e81aa14210302863.html#accd62b4c787cfb91e81aa14210302863">knet_channel_event_e</a></td></tr>
+<tr class="separator:accd62b4c787cfb91e81aa14210302863"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74ff83eaafca5c7093accdc65c6b0646"><td class="memItemLeft" align="right" valign="top">typedef enum <a class="el" href="a00056_a18bbc160902cdba0f52f5a3cd879b47f.html#a18bbc160902cdba0f52f5a3cd879b47f">_channel_state_e</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a74ff83eaafca5c7093accdc65c6b0646.html#a74ff83eaafca5c7093accdc65c6b0646">knet_channel_state_e</a></td></tr>
+<tr class="separator:a74ff83eaafca5c7093accdc65c6b0646"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42e924130e6eb3bd995344f6d3f3e918"><td class="memItemLeft" align="right" valign="top">typedef enum <a class="el" href="a00056_a7945681f6589a5f4f6cf55f4f4092d28.html#a7945681f6589a5f4f6cf55f4f4092d28">_ktimer_type_e</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a42e924130e6eb3bd995344f6d3f3e918.html#a42e924130e6eb3bd995344f6d3f3e918">ktimer_type_e</a></td></tr>
+<tr class="separator:a42e924130e6eb3bd995344f6d3f3e918"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa131da8fb72468b39b6ee0e2d46b17b2"><td class="memItemLeft" align="right" valign="top">typedef enum <a class="el" href="a00056_a0f82b35b603ffed92ea1a74205f10781.html#a0f82b35b603ffed92ea1a74205f10781">_loop_balance_option_e</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_aa131da8fb72468b39b6ee0e2d46b17b2.html#aa131da8fb72468b39b6ee0e2d46b17b2">knet_loop_balance_option_e</a></td></tr>
+<tr class="separator:aa131da8fb72468b39b6ee0e2d46b17b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc9a047a9545c201adf70e4793ed0689"><td class="memItemLeft" align="right" valign="top">typedef enum <a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5">_error_e</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_abc9a047a9545c201adf70e4793ed0689.html#abc9a047a9545c201adf70e4793ed0689">knet_error_e</a></td></tr>
+<tr class="separator:abc9a047a9545c201adf70e4793ed0689"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fd2faf971268f5b682ab375c455f7c9"><td class="memItemLeft" align="right" valign="top">typedef enum <a class="el" href="a00056_a2217ac7363dbae279d056a361d122915.html#a2217ac7363dbae279d056a361d122915">_channel_cb_event_e</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a2fd2faf971268f5b682ab375c455f7c9.html#a2fd2faf971268f5b682ab375c455f7c9">knet_channel_cb_event_e</a></td></tr>
+<tr class="separator:a2fd2faf971268f5b682ab375c455f7c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bb61ec2ff976625d0707a81c1ccc149"><td class="memItemLeft" align="right" valign="top">typedef enum <a class="el" href="a00056_a4e764c733cf98ee587ca17412fca9148.html#a4e764c733cf98ee587ca17412fca9148">_logger_level_e</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a8bb61ec2ff976625d0707a81c1ccc149.html#a8bb61ec2ff976625d0707a81c1ccc149">knet_logger_level_e</a></td></tr>
+<tr class="separator:a8bb61ec2ff976625d0707a81c1ccc149"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ad8e017e53143bca2ada78d2bfa30e1"><td class="memItemLeft" align="right" valign="top">typedef enum <a class="el" href="a00056_a95d677e6aef6e1699b92848e4497c23a.html#a95d677e6aef6e1699b92848e4497c23a">_logger_mode_e</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a3ad8e017e53143bca2ada78d2bfa30e1.html#a3ad8e017e53143bca2ada78d2bfa30e1">knet_logger_mode_e</a></td></tr>
+<tr class="separator:a3ad8e017e53143bca2ada78d2bfa30e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09f6be2164ffa374198a4ab2af2e1966"><td class="memItemLeft" align="right" valign="top">typedef enum <a class="el" href="a00056_a5a9afdfc8281994f0692b49499d731bf.html#a5a9afdfc8281994f0692b49499d731bf">_rpc_error_e</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a09f6be2164ffa374198a4ab2af2e1966.html#a09f6be2164ffa374198a4ab2af2e1966">knet_rpc_error_e</a></td></tr>
+<tr class="separator:a09f6be2164ffa374198a4ab2af2e1966"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fe1ebc0ddea56dd3c337115c1e10bc4"><td class="memItemLeft" align="right" valign="top">typedef enum <a class="el" href="a00056_aa250e66ac76155c15e3e1d24d0431931.html#aa250e66ac76155c15e3e1d24d0431931">_krpc_type_e</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a6fe1ebc0ddea56dd3c337115c1e10bc4.html#a6fe1ebc0ddea56dd3c337115c1e10bc4">knet_rpc_type_e</a></td></tr>
+<tr class="separator:a6fe1ebc0ddea56dd3c337115c1e10bc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8741dac4a9f8d97603eb3a30a3473b13"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a8741dac4a9f8d97603eb3a30a3473b13.html#a8741dac4a9f8d97603eb3a30a3473b13">knet_thread_func_t</a>) (<a class="el" href="a00056_a4f78c259c9527c821f1a6f87495dd339.html#a4f78c259c9527c821f1a6f87495dd339">kthread_runner_t</a> *)</td></tr>
+<tr class="separator:a8741dac4a9f8d97603eb3a30a3473b13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a7d96123ef4565c6d08fe58a10476a9"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a8a7d96123ef4565c6d08fe58a10476a9.html#a8a7d96123ef4565c6d08fe58a10476a9">knet_channel_ref_cb_t</a>) (<a class="el" href="a00056_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *, <a class="el" href="a00056_a2fd2faf971268f5b682ab375c455f7c9.html#a2fd2faf971268f5b682ab375c455f7c9">knet_channel_cb_event_e</a>)</td></tr>
+<tr class="separator:a8a7d96123ef4565c6d08fe58a10476a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2333fd0f2c3a85faf586300ca40deed4"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a2333fd0f2c3a85faf586300ca40deed4.html#a2333fd0f2c3a85faf586300ca40deed4">ktimer_cb_t</a>) (<a class="el" href="a00056_a846172ea4e8a86449eca41a3d8e074b7.html#a846172ea4e8a86449eca41a3d8e074b7">ktimer_t</a> *, void *)</td></tr>
+<tr class="separator:a2333fd0f2c3a85faf586300ca40deed4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06bb708c1b97445d3a5d0c1b32ad2ab6"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a06bb708c1b97445d3a5d0c1b32ad2ab6.html#a06bb708c1b97445d3a5d0c1b32ad2ab6">krpc_cb_t</a>) (<a class="el" href="a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e.html#a9c07dfc8c3b965f75b09f82fdb1bbb1e">krpc_object_t</a> *)</td></tr>
+<tr class="separator:a06bb708c1b97445d3a5d0c1b32ad2ab6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae41a67cc07f8dff897ca978e03b1f2d7"><td class="memItemLeft" align="right" valign="top">typedef uint16_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_ae41a67cc07f8dff897ca978e03b1f2d7.html#ae41a67cc07f8dff897ca978e03b1f2d7">krpc_encrypt_t</a>) (void *, uint16_t, void *, uint16_t)</td></tr>
+<tr class="separator:ae41a67cc07f8dff897ca978e03b1f2d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cf750f151c90f0589f68fe8c4421f1d"><td class="memItemLeft" align="right" valign="top">typedef uint16_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a5cf750f151c90f0589f68fe8c4421f1d.html#a5cf750f151c90f0589f68fe8c4421f1d">krpc_decrypt_t</a>) (void *, uint16_t, void *, uint16_t)</td></tr>
+<tr class="separator:a5cf750f151c90f0589f68fe8c4421f1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af806592520383146be2f3aac316beb45"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_af806592520383146be2f3aac316beb45.html#af806592520383146be2f3aac316beb45">knet_hash_dtor_t</a>) (void *)</td></tr>
+<tr class="separator:af806592520383146be2f3aac316beb45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46741b0dab7bbb26d611c429ee64d78c"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a46741b0dab7bbb26d611c429ee64d78c.html#a46741b0dab7bbb26d611c429ee64d78c">knet_trie_dtor_t</a>) (void *)</td></tr>
+<tr class="separator:a46741b0dab7bbb26d611c429ee64d78c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad77af676ce15810f8f713bb3eaa91fe8"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_ad77af676ce15810f8f713bb3eaa91fe8.html#ad77af676ce15810f8f713bb3eaa91fe8">knet_trie_for_each_func_t</a>) (const char *, void *)</td></tr>
+<tr class="separator:ad77af676ce15810f8f713bb3eaa91fe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+枚举</h2></td></tr>
+<tr class="memitem:a1460362ccf3a6ba930a1a3ac2f73f3ea"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a1460362ccf3a6ba930a1a3ac2f73f3ea.html#a1460362ccf3a6ba930a1a3ac2f73f3ea">_channel_event_e</a> { <a class="el" href="a00056_a1460362ccf3a6ba930a1a3ac2f73f3ea.html#a1460362ccf3a6ba930a1a3ac2f73f3eaa79eafb3852b5c4b325b91dab91e2695d">channel_event_recv</a> = 1, 
+<a class="el" href="a00056_a1460362ccf3a6ba930a1a3ac2f73f3ea.html#a1460362ccf3a6ba930a1a3ac2f73f3eaa32b3163b91ab5ee84fdf2838f360894f">channel_event_send</a> = 2
+ }</td></tr>
+<tr class="separator:a1460362ccf3a6ba930a1a3ac2f73f3ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18bbc160902cdba0f52f5a3cd879b47f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a18bbc160902cdba0f52f5a3cd879b47f.html#a18bbc160902cdba0f52f5a3cd879b47f">_channel_state_e</a> { <br />
+&#160;&#160;<a class="el" href="a00056_a18bbc160902cdba0f52f5a3cd879b47f.html#a18bbc160902cdba0f52f5a3cd879b47facb41aa62d7b96cf4330a4495af2fc913">channel_state_connect</a> = 1, 
+<a class="el" href="a00056_a18bbc160902cdba0f52f5a3cd879b47f.html#a18bbc160902cdba0f52f5a3cd879b47fa46f5ffedfda753e71a63b476b2064b79">channel_state_accept</a> = 2, 
+<a class="el" href="a00056_a18bbc160902cdba0f52f5a3cd879b47f.html#a18bbc160902cdba0f52f5a3cd879b47faee238ca240c163789547b84215bd73a0">channel_state_close</a> = 4, 
+<a class="el" href="a00056_a18bbc160902cdba0f52f5a3cd879b47f.html#a18bbc160902cdba0f52f5a3cd879b47fa32fd0ade75874b93c0b4c120d988b202">channel_state_active</a> = 8, 
+<br />
+&#160;&#160;<a class="el" href="a00056_a18bbc160902cdba0f52f5a3cd879b47f.html#a18bbc160902cdba0f52f5a3cd879b47fa8ec29f5d9635fdbde6f1214ff00adcc9">channel_state_init</a> = 16
+<br />
+ }</td></tr>
+<tr class="separator:a18bbc160902cdba0f52f5a3cd879b47f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7945681f6589a5f4f6cf55f4f4092d28"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a7945681f6589a5f4f6cf55f4f4092d28.html#a7945681f6589a5f4f6cf55f4f4092d28">_ktimer_type_e</a> { <a class="el" href="a00056_a7945681f6589a5f4f6cf55f4f4092d28.html#a7945681f6589a5f4f6cf55f4f4092d28a38f811140d9f2e24e4f0497b3cc98c12">ktimer_type_once</a> = 1, 
+<a class="el" href="a00056_a7945681f6589a5f4f6cf55f4f4092d28.html#a7945681f6589a5f4f6cf55f4f4092d28a3a34fc04caa1ae76860b989fa8b5033d">ktimer_type_period</a> = 2, 
+<a class="el" href="a00056_a7945681f6589a5f4f6cf55f4f4092d28.html#a7945681f6589a5f4f6cf55f4f4092d28a5177e187d996ae100c6a6f4664b213b4">ktimer_type_times</a> = 3
+ }</td></tr>
+<tr class="separator:a7945681f6589a5f4f6cf55f4f4092d28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f82b35b603ffed92ea1a74205f10781"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a0f82b35b603ffed92ea1a74205f10781.html#a0f82b35b603ffed92ea1a74205f10781">_loop_balance_option_e</a> { <a class="el" href="a00056_a0f82b35b603ffed92ea1a74205f10781.html#a0f82b35b603ffed92ea1a74205f10781a11dd0233ba7e160d5a1986befd9bdad1">loop_balancer_in</a> = 1, 
+<a class="el" href="a00056_a0f82b35b603ffed92ea1a74205f10781.html#a0f82b35b603ffed92ea1a74205f10781a88af8623d2c35e3eae34ee11b15d42df">loop_balancer_out</a> = 2
+ }</td></tr>
+<tr class="separator:a0f82b35b603ffed92ea1a74205f10781"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8bc998d415be9115a064a8307df0ed5"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5">_error_e</a> { <br />
+&#160;&#160;<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a722f316dc97e835ba613f7a505992dfd">error_ok</a> = 0, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a1fc783b4f64cce71ba2396f728703276">error_fail</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a36cb4d7a6a30ee77e293232d2ad71306">error_invalid_parameters</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a7e89168302853180230e6fe22b68aeaa">error_must_be_shared_channel_ref</a>, 
+<br />
+&#160;&#160;<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5ab70ac50ad485dd84ed9339999530aef0">error_invalid_channel</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a7674edae192b422bc74d1dcb79f19592">error_invalid_broadcast</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a226700b6c9b2aa587dd17e4c59075515">error_no_memory</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a025ed5d4630548560bb0130c3a366303">error_hash_not_found</a>, 
+<br />
+&#160;&#160;<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a13feab1a5cf2c4b8b2c23e255a17bdd3">error_recv_fail</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a6c9b0371b96f3dc10e2ef3cf2b440cb1">error_send_fail</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a4d483e0ade9d72db70f537e288c628a2">error_send_patial</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5aa78a3beca7b7a358e8995ab244d1feff">error_recv_buffer_full</a>, 
+<br />
+&#160;&#160;<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5af29ca07b94e9cb5d43ac76c155c75d82">error_recv_nothing</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a33e93368e2f8582da6b8fefd32617c16">error_connect_fail</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a109dd163cd60f4bc74496b6e1672c7f5">error_connect_in_progress</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a090f5020bf1d0a0c9f89e17a1400a255">error_channel_not_connect</a>, 
+<br />
+&#160;&#160;<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a9a1f1f635ba8d4081b6c5442381b4c9d">error_accept_in_progress</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5ad7900603bad2c052720094b489d659a7">error_bind_fail</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a12cbc1ed86e05222f80bf145ade32209">error_listen_fail</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a07978b808cdaecdfcf1c55eee9f45b71">error_ref_nonzero</a>, 
+<br />
+&#160;&#160;<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a32ce41a842de240c70407e5d7d17815d">error_loop_fail</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5acb2d9e534433520c7e92e0f82d1f043e">error_loop_attached</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a3d7be0f4451c846f1a753e4dbb22afc3">error_loop_not_found</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a0005c5a86332b0c8dd1e046798cad272">error_loop_impl_init_fail</a>, 
+<br />
+&#160;&#160;<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5ae71a38f8f323404444508a5264a6c92f">error_thread_start_fail</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a539e3210fafed98d714b021d484c6f15">error_already_close</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a28e8d376290004f78666ea7dcece3f76">error_impl_add_channel_ref_fail</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a72e859d152b89000f411da513c43e224">error_getpeername</a>, 
+<br />
+&#160;&#160;<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a766fb950881ff8cc851b6b1f087e59f6">error_getsockname</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a05af8d09ff20825822d7e95e4a154284">error_not_correct_domain</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5aa31d63fb607c438a0fc7f5fed4fec444">error_multiple_start</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a1bab538cb5431968b983fe729b59c9a9">error_not_connected</a>, 
+<br />
+&#160;&#160;<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a8663913063a6be476b2f55ca229295e5">error_logger_write</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a50baea6fc71ce436cdc85df4ec2a5ae0">error_set_tls_fail</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a646deab542b2aa9cab2f23b461dc4f49">error_rpc_dup_id</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5acd4974030d2e9b4a62737582242dbc9f">error_rpc_unknown_id</a>, 
+<br />
+&#160;&#160;<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a0d33599388a2986af1e703641dd03e9e">error_rpc_unknown_type</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a62ebca6a6d6bd962dc91fd772038d86c">error_rpc_cb_fail</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5aaa07ea697f19a975cbff0d4f4f6d7d26">error_rpc_cb_fail_close</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a6d296d5557f235881582cec0ea7b80bd">error_rpc_cb_close</a>, 
+<br />
+&#160;&#160;<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a53e5222cbf6e0399ae616a38a7f9e749">error_rpc_next</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a4cf6bef11018417c85202f5168744493">error_rpc_not_enough_bytes</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a0b1cbc39140947b1a725c740731d8030">error_rpc_vector_out_of_bound</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5aaf4f501964faeb597974997d44c02ec8">error_rpc_marshal_fail</a>, 
+<br />
+&#160;&#160;<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5af40141bb0bdda1e6ca73f234449366f2">error_rpc_unmarshal_fail</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a18fd6067767b599f425e44a8d23cee67">error_rpc_map_error_key_or_value</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a70d80c910205fc4fc0a60f490ae86b7b">error_recvbuffer_not_enough</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5af5cd4563f043d358cb7b09d628d0f0f6">error_recvbuffer_locked</a>, 
+<br />
+&#160;&#160;<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5aecde2ff2aefc1e84ece9d56a1b9ec774">error_stream_enable</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a766daeb17a4fb20e03847a29c7224427">error_stream_disable</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a90fe0c9db61e4545d29b25a00a96c940">error_stream_flush</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a233d0e2e6b5594d51466f0154d06eabc">error_stream_buffer_overflow</a>, 
+<br />
+&#160;&#160;<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a8076499b5239107a1bc706a64731deed">error_trie_not_found</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a0dce984d588cab862fca9ec57efc2adc">error_trie_key_exist</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5af21a3d4a80294ee99ae58934f83810be">error_trie_for_each_fail</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a8d9bd9062761dcb9ac23c58789f4f49e">error_ip_filter_open_fail</a>, 
+<br />
+&#160;&#160;<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a7fa281dc0681c9f87c69e629a6fce2ae">error_router_wire_not_found</a>, 
+<a class="el" href="a00056_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a59d4b89c4667ff508931083cb7dc7c4a">error_router_wire_exist</a>
+<br />
+ }</td></tr>
+<tr class="separator:ad8bc998d415be9115a064a8307df0ed5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2217ac7363dbae279d056a361d122915"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a2217ac7363dbae279d056a361d122915.html#a2217ac7363dbae279d056a361d122915">_channel_cb_event_e</a> { <br />
+&#160;&#160;<a class="el" href="a00056_a2217ac7363dbae279d056a361d122915.html#a2217ac7363dbae279d056a361d122915ab5e6d4ae4351ea845a0b0ec7b06524d9">channel_cb_event_connect</a> = 1, 
+<a class="el" href="a00056_a2217ac7363dbae279d056a361d122915.html#a2217ac7363dbae279d056a361d122915a337bcdd5a997178d2c2500c077e594a1">channel_cb_event_accept</a> = 2, 
+<a class="el" href="a00056_a2217ac7363dbae279d056a361d122915.html#a2217ac7363dbae279d056a361d122915ae7aa0d7fc417f5d1b3242e858ab23b82">channel_cb_event_recv</a> = 4, 
+<a class="el" href="a00056_a2217ac7363dbae279d056a361d122915.html#a2217ac7363dbae279d056a361d122915a9b507e24e8fdb8b209fbab76a24886bd">channel_cb_event_send</a> = 8, 
+<br />
+&#160;&#160;<a class="el" href="a00056_a2217ac7363dbae279d056a361d122915.html#a2217ac7363dbae279d056a361d122915a7bb5e8d7574bce246b68c022c06b91e6">channel_cb_event_close</a> = 16, 
+<a class="el" href="a00056_a2217ac7363dbae279d056a361d122915.html#a2217ac7363dbae279d056a361d122915ad307a6d5eae25c2c76488221a9e8aa06">channel_cb_event_timeout</a> = 32, 
+<a class="el" href="a00056_a2217ac7363dbae279d056a361d122915.html#a2217ac7363dbae279d056a361d122915a153321612f03055dd40d2d3a661ee0b0">channel_cb_event_connect_timeout</a> = 64
+<br />
+ }</td></tr>
+<tr class="separator:a2217ac7363dbae279d056a361d122915"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e764c733cf98ee587ca17412fca9148"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a4e764c733cf98ee587ca17412fca9148.html#a4e764c733cf98ee587ca17412fca9148">_logger_level_e</a> { <br />
+&#160;&#160;<a class="el" href="a00056_a4e764c733cf98ee587ca17412fca9148.html#a4e764c733cf98ee587ca17412fca9148a20b7712a6e03c1820c297b36add74593">logger_level_verbose</a> = 1, 
+<a class="el" href="a00056_a4e764c733cf98ee587ca17412fca9148.html#a4e764c733cf98ee587ca17412fca9148a40b6269b621931272a4da1c6af91477f">logger_level_information</a>, 
+<a class="el" href="a00056_a4e764c733cf98ee587ca17412fca9148.html#a4e764c733cf98ee587ca17412fca9148a6471d2c7c9d1ff538f9a897924a7b0f0">logger_level_warning</a>, 
+<a class="el" href="a00056_a4e764c733cf98ee587ca17412fca9148.html#a4e764c733cf98ee587ca17412fca9148a25ea4a675b2ac8ca563d9d99e8f664de">logger_level_error</a>, 
+<br />
+&#160;&#160;<a class="el" href="a00056_a4e764c733cf98ee587ca17412fca9148.html#a4e764c733cf98ee587ca17412fca9148acb38841901d30a0cd9349b9596c78d15">logger_level_fatal</a>
+<br />
+ }</td></tr>
+<tr class="separator:a4e764c733cf98ee587ca17412fca9148"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95d677e6aef6e1699b92848e4497c23a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a95d677e6aef6e1699b92848e4497c23a.html#a95d677e6aef6e1699b92848e4497c23a">_logger_mode_e</a> { <a class="el" href="a00056_a95d677e6aef6e1699b92848e4497c23a.html#a95d677e6aef6e1699b92848e4497c23aaef6fc2e422d19b59b6eb3c72b304875e">logger_mode_file</a> = 1, 
+<a class="el" href="a00056_a95d677e6aef6e1699b92848e4497c23a.html#a95d677e6aef6e1699b92848e4497c23aa9bf951c628aede47462332d36e7ddf9b">logger_mode_console</a> = 2, 
+<a class="el" href="a00056_a95d677e6aef6e1699b92848e4497c23a.html#a95d677e6aef6e1699b92848e4497c23aa459c76aa60fcf471c36e5a404a52f1f2">logger_mode_flush</a> = 4, 
+<a class="el" href="a00056_a95d677e6aef6e1699b92848e4497c23a.html#a95d677e6aef6e1699b92848e4497c23aa60c0337ef674d928beebfc095194d9fb">logger_mode_override</a> = 8
+ }</td></tr>
+<tr class="separator:a95d677e6aef6e1699b92848e4497c23a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a9afdfc8281994f0692b49499d731bf"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_a5a9afdfc8281994f0692b49499d731bf.html#a5a9afdfc8281994f0692b49499d731bf">_rpc_error_e</a> { <a class="el" href="a00056_a5a9afdfc8281994f0692b49499d731bf.html#a5a9afdfc8281994f0692b49499d731bfa178549cc0c8eafdae214948373a1f433">rpc_ok</a> = 0, 
+<a class="el" href="a00056_a5a9afdfc8281994f0692b49499d731bf.html#a5a9afdfc8281994f0692b49499d731bfa3cd3113679264640766b2ba5fe2f4969">rpc_close</a>, 
+<a class="el" href="a00056_a5a9afdfc8281994f0692b49499d731bf.html#a5a9afdfc8281994f0692b49499d731bfa79dece603dd2f9290808ea858503e5dd">rpc_error</a>, 
+<a class="el" href="a00056_a5a9afdfc8281994f0692b49499d731bf.html#a5a9afdfc8281994f0692b49499d731bfab5c4b107bde25138551d18ac230fe38e">rpc_error_close</a>
+ }</td></tr>
+<tr class="separator:a5a9afdfc8281994f0692b49499d731bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa250e66ac76155c15e3e1d24d0431931"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00056_aa250e66ac76155c15e3e1d24d0431931.html#aa250e66ac76155c15e3e1d24d0431931">_krpc_type_e</a> { <br />
+&#160;&#160;<a class="el" href="a00056_aa250e66ac76155c15e3e1d24d0431931.html#aa250e66ac76155c15e3e1d24d0431931ad365277372f56ded0a3d6f05cb25811c">krpc_type_i8</a> = 1, 
+<a class="el" href="a00056_aa250e66ac76155c15e3e1d24d0431931.html#aa250e66ac76155c15e3e1d24d0431931a40581030495456d66ede9f8cd44ddd37">krpc_type_ui8</a> = 2, 
+<a class="el" href="a00056_aa250e66ac76155c15e3e1d24d0431931.html#aa250e66ac76155c15e3e1d24d0431931a074886b8bcc652cc9b17286932bfd053">krpc_type_i16</a> = 4, 
+<a class="el" href="a00056_aa250e66ac76155c15e3e1d24d0431931.html#aa250e66ac76155c15e3e1d24d0431931ae879c19d765168a4fb1051c4ba82d67a">krpc_type_ui16</a> = 8, 
+<br />
+&#160;&#160;<a class="el" href="a00056_aa250e66ac76155c15e3e1d24d0431931.html#aa250e66ac76155c15e3e1d24d0431931a44e0cf583884f868e85d9dbd22e0e825">krpc_type_i32</a> = 16, 
+<a class="el" href="a00056_aa250e66ac76155c15e3e1d24d0431931.html#aa250e66ac76155c15e3e1d24d0431931a904ff4f77e47cb41be215eaba0273129">krpc_type_ui32</a> = 32, 
+<a class="el" href="a00056_aa250e66ac76155c15e3e1d24d0431931.html#aa250e66ac76155c15e3e1d24d0431931ade2d1e2a5d4fd95f86e882cccd2cc298">krpc_type_i64</a> = 64, 
+<a class="el" href="a00056_aa250e66ac76155c15e3e1d24d0431931.html#aa250e66ac76155c15e3e1d24d0431931ae9e0bfcded87688855324735173bfcd5">krpc_type_ui64</a> = 128, 
+<br />
+&#160;&#160;<a class="el" href="a00056_aa250e66ac76155c15e3e1d24d0431931.html#aa250e66ac76155c15e3e1d24d0431931a43ce997866e83eeaebdd1351f8db91bf">krpc_type_f32</a> = 256, 
+<a class="el" href="a00056_aa250e66ac76155c15e3e1d24d0431931.html#aa250e66ac76155c15e3e1d24d0431931aaf3011f21aee87c01c85a0501f61f00e">krpc_type_f64</a> = 512, 
+<a class="el" href="a00056_aa250e66ac76155c15e3e1d24d0431931.html#aa250e66ac76155c15e3e1d24d0431931ad82969ba9d249af7b2ac9758bc34291c">krpc_type_number</a> = 1024, 
+<a class="el" href="a00056_aa250e66ac76155c15e3e1d24d0431931.html#aa250e66ac76155c15e3e1d24d0431931a407f3b9d7e0e615dcf446bd8d9cc312c">krpc_type_string</a> = 2048, 
+<br />
+&#160;&#160;<a class="el" href="a00056_aa250e66ac76155c15e3e1d24d0431931.html#aa250e66ac76155c15e3e1d24d0431931ad898543626bfe3f5c2e197da5eabedcb">krpc_type_vector</a> = 4096, 
+<a class="el" href="a00056_aa250e66ac76155c15e3e1d24d0431931.html#aa250e66ac76155c15e3e1d24d0431931a69f479fc90c6ee4d29fc2b361c03c3b9">krpc_type_map</a> = 8192
+<br />
+ }</td></tr>
+<tr class="separator:aa250e66ac76155c15e3e1d24d0431931"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 24日 星期五 11:53:44 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 27日 星期一 14:33:19 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

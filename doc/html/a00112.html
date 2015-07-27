@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: IP过滤</title>
+<title>knet: 广播</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -79,56 +79,46 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
   <div class="summary">
 <a href="#func-members">函数</a>  </div>
   <div class="headertitle">
-<div class="title">IP过滤</div>  </div>
+<div class="title">广播</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>IP过滤  
+<p>广播域  
 <a href="#details">更多...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 函数</h2></td></tr>
-<tr class="memitem:ga14e6d1c3709870a082f203c8ba0ca9f4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00054_a1c0c604eecd86fc8895cf4bbbba566af.html#a1c0c604eecd86fc8895cf4bbbba566af">kip_filter_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00112_ga14e6d1c3709870a082f203c8ba0ca9f4.html#ga14e6d1c3709870a082f203c8ba0ca9f4">knet_ip_filter_create</a> ()</td></tr>
-<tr class="memdesc:ga14e6d1c3709870a082f203c8ba0ca9f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">建立IP过滤器  <a href="a00112_ga14e6d1c3709870a082f203c8ba0ca9f4.html#ga14e6d1c3709870a082f203c8ba0ca9f4">更多...</a><br /></td></tr>
-<tr class="separator:ga14e6d1c3709870a082f203c8ba0ca9f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae2d8c7b5356b36261f90f59bc49181e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00112_gae2d8c7b5356b36261f90f59bc49181e1.html#gae2d8c7b5356b36261f90f59bc49181e1">knet_ip_filter_destroy</a> (<a class="el" href="a00054_a1c0c604eecd86fc8895cf4bbbba566af.html#a1c0c604eecd86fc8895cf4bbbba566af">kip_filter_t</a> *ip_filter)</td></tr>
-<tr class="memdesc:gae2d8c7b5356b36261f90f59bc49181e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁IP过滤器  <a href="a00112_gae2d8c7b5356b36261f90f59bc49181e1.html#gae2d8c7b5356b36261f90f59bc49181e1">更多...</a><br /></td></tr>
-<tr class="separator:gae2d8c7b5356b36261f90f59bc49181e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga044a4fc59ee0910af3c2d030e025c536"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00112_ga044a4fc59ee0910af3c2d030e025c536.html#ga044a4fc59ee0910af3c2d030e025c536">knet_ip_filter_load_file</a> (<a class="el" href="a00054_a1c0c604eecd86fc8895cf4bbbba566af.html#a1c0c604eecd86fc8895cf4bbbba566af">kip_filter_t</a> *ip_filter, const char *path)</td></tr>
-<tr class="memdesc:ga044a4fc59ee0910af3c2d030e025c536"><td class="mdescLeft">&#160;</td><td class="mdescRight">加载IP过滤文件  <a href="a00112_ga044a4fc59ee0910af3c2d030e025c536.html#ga044a4fc59ee0910af3c2d030e025c536">更多...</a><br /></td></tr>
-<tr class="separator:ga044a4fc59ee0910af3c2d030e025c536"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga271a51fad46aa61d322b6c9da2d5ba1e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00112_ga271a51fad46aa61d322b6c9da2d5ba1e.html#ga271a51fad46aa61d322b6c9da2d5ba1e">knet_ip_filter_add</a> (<a class="el" href="a00054_a1c0c604eecd86fc8895cf4bbbba566af.html#a1c0c604eecd86fc8895cf4bbbba566af">kip_filter_t</a> *ip_filter, const char *ip)</td></tr>
-<tr class="memdesc:ga271a51fad46aa61d322b6c9da2d5ba1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">添加单个IP  <a href="a00112_ga271a51fad46aa61d322b6c9da2d5ba1e.html#ga271a51fad46aa61d322b6c9da2d5ba1e">更多...</a><br /></td></tr>
-<tr class="separator:ga271a51fad46aa61d322b6c9da2d5ba1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae03dc5307ec374e375c2313d27dd08ad"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00112_gae03dc5307ec374e375c2313d27dd08ad.html#gae03dc5307ec374e375c2313d27dd08ad">knet_ip_filter_remove</a> (<a class="el" href="a00054_a1c0c604eecd86fc8895cf4bbbba566af.html#a1c0c604eecd86fc8895cf4bbbba566af">kip_filter_t</a> *ip_filter, const char *ip)</td></tr>
-<tr class="memdesc:gae03dc5307ec374e375c2313d27dd08ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">删除单个IP  <a href="a00112_gae03dc5307ec374e375c2313d27dd08ad.html#gae03dc5307ec374e375c2313d27dd08ad">更多...</a><br /></td></tr>
-<tr class="separator:gae03dc5307ec374e375c2313d27dd08ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1425a397cc96d8a1cdf32bff3f1fe645"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00112_ga1425a397cc96d8a1cdf32bff3f1fe645.html#ga1425a397cc96d8a1cdf32bff3f1fe645">knet_ip_filter_save</a> (<a class="el" href="a00054_a1c0c604eecd86fc8895cf4bbbba566af.html#a1c0c604eecd86fc8895cf4bbbba566af">kip_filter_t</a> *ip_filter, const char *path)</td></tr>
-<tr class="memdesc:ga1425a397cc96d8a1cdf32bff3f1fe645"><td class="mdescLeft">&#160;</td><td class="mdescRight">保存到文件  <a href="a00112_ga1425a397cc96d8a1cdf32bff3f1fe645.html#ga1425a397cc96d8a1cdf32bff3f1fe645">更多...</a><br /></td></tr>
-<tr class="separator:ga1425a397cc96d8a1cdf32bff3f1fe645"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga6d722330898e2a29a8555d711aab8b01"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00112_ga6d722330898e2a29a8555d711aab8b01.html#ga6d722330898e2a29a8555d711aab8b01">knet_ip_filter_check</a> (<a class="el" href="a00054_a1c0c604eecd86fc8895cf4bbbba566af.html#a1c0c604eecd86fc8895cf4bbbba566af">kip_filter_t</a> *ip_filter, const char *ip)</td></tr>
-<tr class="memdesc:ga6d722330898e2a29a8555d711aab8b01"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查IP是否被过滤  <a href="a00112_ga6d722330898e2a29a8555d711aab8b01.html#ga6d722330898e2a29a8555d711aab8b01">更多...</a><br /></td></tr>
-<tr class="separator:ga6d722330898e2a29a8555d711aab8b01"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa42afdd4af32db13227e991ad457f229"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00112_gaa42afdd4af32db13227e991ad457f229.html#gaa42afdd4af32db13227e991ad457f229">knet_ip_filter_check_address</a> (<a class="el" href="a00054_a1c0c604eecd86fc8895cf4bbbba566af.html#a1c0c604eecd86fc8895cf4bbbba566af">kip_filter_t</a> *ip_filter, <a class="el" href="a00054_a44e99fab0348ec54cfee119ddd9ceed6.html#a44e99fab0348ec54cfee119ddd9ceed6">kaddress_t</a> *address)</td></tr>
-<tr class="memdesc:gaa42afdd4af32db13227e991ad457f229"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查IP是否被过滤  <a href="a00112_gaa42afdd4af32db13227e991ad457f229.html#gaa42afdd4af32db13227e991ad457f229">更多...</a><br /></td></tr>
-<tr class="separator:gaa42afdd4af32db13227e991ad457f229"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga41a1258d2f4ae75120f26ab7f2326111"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00056_a1b551151864af85fa6cce57058153d04.html#a1b551151864af85fa6cce57058153d04">kbroadcast_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00112_ga41a1258d2f4ae75120f26ab7f2326111.html#ga41a1258d2f4ae75120f26ab7f2326111">knet_broadcast_create</a> ()</td></tr>
+<tr class="memdesc:ga41a1258d2f4ae75120f26ab7f2326111"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建广播域  <a href="a00112_ga41a1258d2f4ae75120f26ab7f2326111.html#ga41a1258d2f4ae75120f26ab7f2326111">更多...</a><br /></td></tr>
+<tr class="separator:ga41a1258d2f4ae75120f26ab7f2326111"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4b13b2545278c2324f4171ef0bbf990a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00112_ga4b13b2545278c2324f4171ef0bbf990a.html#ga4b13b2545278c2324f4171ef0bbf990a">knet_broadcast_destroy</a> (<a class="el" href="a00056_a1b551151864af85fa6cce57058153d04.html#a1b551151864af85fa6cce57058153d04">kbroadcast_t</a> *broadcast)</td></tr>
+<tr class="memdesc:ga4b13b2545278c2324f4171ef0bbf990a"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁广播域  <a href="a00112_ga4b13b2545278c2324f4171ef0bbf990a.html#ga4b13b2545278c2324f4171ef0bbf990a">更多...</a><br /></td></tr>
+<tr class="separator:ga4b13b2545278c2324f4171ef0bbf990a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1355d3863db663680b1c74363d3a5745"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00056_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00112_ga1355d3863db663680b1c74363d3a5745.html#ga1355d3863db663680b1c74363d3a5745">knet_broadcast_join</a> (<a class="el" href="a00056_a1b551151864af85fa6cce57058153d04.html#a1b551151864af85fa6cce57058153d04">kbroadcast_t</a> *broadcast, <a class="el" href="a00056_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *channel_ref)</td></tr>
+<tr class="memdesc:ga1355d3863db663680b1c74363d3a5745"><td class="mdescLeft">&#160;</td><td class="mdescRight">加入广播域  <a href="a00112_ga1355d3863db663680b1c74363d3a5745.html#ga1355d3863db663680b1c74363d3a5745">更多...</a><br /></td></tr>
+<tr class="separator:ga1355d3863db663680b1c74363d3a5745"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3bb02208a76f18bb2eee61955b3781cd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00112_ga3bb02208a76f18bb2eee61955b3781cd.html#ga3bb02208a76f18bb2eee61955b3781cd">knet_broadcast_leave</a> (<a class="el" href="a00056_a1b551151864af85fa6cce57058153d04.html#a1b551151864af85fa6cce57058153d04">kbroadcast_t</a> *broadcast, <a class="el" href="a00056_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *channel_ref)</td></tr>
+<tr class="memdesc:ga3bb02208a76f18bb2eee61955b3781cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">离开广播域  <a href="a00112_ga3bb02208a76f18bb2eee61955b3781cd.html#ga3bb02208a76f18bb2eee61955b3781cd">更多...</a><br /></td></tr>
+<tr class="separator:ga3bb02208a76f18bb2eee61955b3781cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabf0b20b2490b3508e58a77314812f1a5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00112_gabf0b20b2490b3508e58a77314812f1a5.html#gabf0b20b2490b3508e58a77314812f1a5">knet_broadcast_get_count</a> (<a class="el" href="a00056_a1b551151864af85fa6cce57058153d04.html#a1b551151864af85fa6cce57058153d04">kbroadcast_t</a> *broadcast)</td></tr>
+<tr class="memdesc:gabf0b20b2490b3508e58a77314812f1a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得广播域内管道数量  <a href="a00112_gabf0b20b2490b3508e58a77314812f1a5.html#gabf0b20b2490b3508e58a77314812f1a5">更多...</a><br /></td></tr>
+<tr class="separator:gabf0b20b2490b3508e58a77314812f1a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafd3ac5d785687d729047a51724104060"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00112_gafd3ac5d785687d729047a51724104060.html#gafd3ac5d785687d729047a51724104060">knet_broadcast_write</a> (<a class="el" href="a00056_a1b551151864af85fa6cce57058153d04.html#a1b551151864af85fa6cce57058153d04">kbroadcast_t</a> *broadcast, char *buffer, uint32_t size)</td></tr>
+<tr class="memdesc:gafd3ac5d785687d729047a51724104060"><td class="mdescLeft">&#160;</td><td class="mdescRight">广播  <a href="a00112_gafd3ac5d785687d729047a51724104060.html#gafd3ac5d785687d729047a51724104060">更多...</a><br /></td></tr>
+<tr class="separator:gafd3ac5d785687d729047a51724104060"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
-<p>IP过滤 </p>
+<p>广播域 </p>
 <pre>
-提供了快速判定指定IP是否属于IP集合接口，可以用于IP黑名单或者白名单.
-ip_filter_t可以加载已经存在的IP过滤文件，同时也可以保存IP过滤文件，
-IP过滤文件的格式为：
-IP 换行
-IP 换行
-......
-可以使用任何文本编辑器手工编辑.
-也可以使用接口方法实时的向过滤器内添加新的IP项或删除IP项，过滤器内容
-通过保存方法即可以替换旧的IP库.
+管道可以加入广播域，加入后通过knet_broadcast_write方法可以发送数据到所有已经加入域内的管道.
+调用knet_broadcast_create创建一个广播域，knet_broadcast_destroy销毁广播域.</pre><pre>knet_broadcast_join加入一个广播域，knet_broadcast_join函数返回时创建了一个新的管道引用.</pre><pre>调用knet_broadcast_leave时应该使用这个返回值而不是使用knet_broadcast_join的第二个参数，新创建
+的管道引用会提升管道的引用计数，如果你关闭了这个管道你可以通过调用knet_broadcast_leave减少管
+道的引用计数，从而可以让kloop_t真正销毁管道.</pre><pre>调用knet_broadcast_get_count可以得知广播域内的管道引用数量，调用knet_broadcast_write发起一个
+广播操作，所有域内管道都会收到你广播的数据.
 </pre> </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 24日 星期五 11:53:44 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 27日 星期一 14:33:20 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

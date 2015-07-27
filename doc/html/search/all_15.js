@@ -2,6 +2,7 @@ var searchData=
 [
   ['window_5fread_5flock_5fsize',['window_read_lock_size',['../a00034_a8e6c75c56d0758af10593a6887813677.html#a8e6c75c56d0758af10593a6887813677',1,'_ringbuffer_t']]],
   ['window_5fread_5fpos',['window_read_pos',['../a00034_ac1922e150f751ca3d7698837e820065d.html#ac1922e150f751ca3d7698837e820065d',1,'_ringbuffer_t']]],
+  ['wire_5ft',['wire_t',['../a00109_a6e0ed659c10e22fd6106d24779e5ad5c.html#a6e0ed659c10e22fd6106d24779e5ad5c',1,'vrouter.c']]],
   ['worker_5fthread_5fcount',['worker_thread_count',['../a00010_a9a064afbac56ea11a4ec150bb4df152e.html#a9a064afbac56ea11a4ec150bb4df152e',1,'_framework_config_t']]],
   ['worker_5ftimer_5fintval',['worker_timer_intval',['../a00010_a069819672805007308b35d0553051a15.html#a069819672805007308b35d0553051a15',1,'_framework_config_t']]],
   ['worker_5ftimer_5fslot',['worker_timer_slot',['../a00010_aa1e13d29f85dbf6a0430c43313e2ec79.html#aa1e13d29f85dbf6a0430c43313e2ec79',1,'_framework_config_t']]],

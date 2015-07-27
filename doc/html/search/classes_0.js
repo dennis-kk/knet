@@ -38,5 +38,7 @@ var searchData=
   ['_5fthread_5fparam_5ft',['_thread_param_t',['../a00036.html',1,'']]],
   ['_5fthread_5frunner_5ft',['_thread_runner_t',['../a00037.html',1,'']]],
   ['_5ftrie_5fnode_5ft',['_trie_node_t',['../a00038.html',1,'']]],
-  ['_5ftrie_5ft',['_trie_t',['../a00039.html',1,'']]]
+  ['_5ftrie_5ft',['_trie_t',['../a00039.html',1,'']]],
+  ['_5fvrouter_5ft',['_vrouter_t',['../a00040.html',1,'']]],
+  ['_5fwire_5ft',['_wire_t',['../a00041.html',1,'']]]
 ];

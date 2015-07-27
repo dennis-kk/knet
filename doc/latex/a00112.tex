@@ -1,233 +1,141 @@
-\hypertarget{a00112}{}\section{I\+P过滤}
-\label{a00112}\index{I\+P过滤@{I\+P过滤}}
+\hypertarget{a00112}{}\section{广播}
+\label{a00112}\index{广播@{广播}}
 
 
-I\+P过滤  
+广播域  
 
 
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00054_a1c0c604eecd86fc8895cf4bbbba566af_a1c0c604eecd86fc8895cf4bbbba566af}{kip\+\_\+filter\+\_\+t} $\ast$ \hyperlink{a00112_ga14e6d1c3709870a082f203c8ba0ca9f4_ga14e6d1c3709870a082f203c8ba0ca9f4}{knet\+\_\+ip\+\_\+filter\+\_\+create} ()
-\begin{DoxyCompactList}\small\item\em 建立\+I\+P过滤器 \end{DoxyCompactList}\item 
-void \hyperlink{a00112_gae2d8c7b5356b36261f90f59bc49181e1_gae2d8c7b5356b36261f90f59bc49181e1}{knet\+\_\+ip\+\_\+filter\+\_\+destroy} (\hyperlink{a00054_a1c0c604eecd86fc8895cf4bbbba566af_a1c0c604eecd86fc8895cf4bbbba566af}{kip\+\_\+filter\+\_\+t} $\ast$ip\+\_\+filter)
-\begin{DoxyCompactList}\small\item\em 销毁\+I\+P过滤器 \end{DoxyCompactList}\item 
-int \hyperlink{a00112_ga044a4fc59ee0910af3c2d030e025c536_ga044a4fc59ee0910af3c2d030e025c536}{knet\+\_\+ip\+\_\+filter\+\_\+load\+\_\+file} (\hyperlink{a00054_a1c0c604eecd86fc8895cf4bbbba566af_a1c0c604eecd86fc8895cf4bbbba566af}{kip\+\_\+filter\+\_\+t} $\ast$ip\+\_\+filter, const char $\ast$path)
-\begin{DoxyCompactList}\small\item\em 加载\+I\+P过滤文件 \end{DoxyCompactList}\item 
-int \hyperlink{a00112_ga271a51fad46aa61d322b6c9da2d5ba1e_ga271a51fad46aa61d322b6c9da2d5ba1e}{knet\+\_\+ip\+\_\+filter\+\_\+add} (\hyperlink{a00054_a1c0c604eecd86fc8895cf4bbbba566af_a1c0c604eecd86fc8895cf4bbbba566af}{kip\+\_\+filter\+\_\+t} $\ast$ip\+\_\+filter, const char $\ast$ip)
-\begin{DoxyCompactList}\small\item\em 添加单个\+I\+P \end{DoxyCompactList}\item 
-int \hyperlink{a00112_gae03dc5307ec374e375c2313d27dd08ad_gae03dc5307ec374e375c2313d27dd08ad}{knet\+\_\+ip\+\_\+filter\+\_\+remove} (\hyperlink{a00054_a1c0c604eecd86fc8895cf4bbbba566af_a1c0c604eecd86fc8895cf4bbbba566af}{kip\+\_\+filter\+\_\+t} $\ast$ip\+\_\+filter, const char $\ast$ip)
-\begin{DoxyCompactList}\small\item\em 删除单个\+I\+P \end{DoxyCompactList}\item 
-int \hyperlink{a00112_ga1425a397cc96d8a1cdf32bff3f1fe645_ga1425a397cc96d8a1cdf32bff3f1fe645}{knet\+\_\+ip\+\_\+filter\+\_\+save} (\hyperlink{a00054_a1c0c604eecd86fc8895cf4bbbba566af_a1c0c604eecd86fc8895cf4bbbba566af}{kip\+\_\+filter\+\_\+t} $\ast$ip\+\_\+filter, const char $\ast$path)
-\begin{DoxyCompactList}\small\item\em 保存到文件 \end{DoxyCompactList}\item 
-int \hyperlink{a00112_ga6d722330898e2a29a8555d711aab8b01_ga6d722330898e2a29a8555d711aab8b01}{knet\+\_\+ip\+\_\+filter\+\_\+check} (\hyperlink{a00054_a1c0c604eecd86fc8895cf4bbbba566af_a1c0c604eecd86fc8895cf4bbbba566af}{kip\+\_\+filter\+\_\+t} $\ast$ip\+\_\+filter, const char $\ast$ip)
-\begin{DoxyCompactList}\small\item\em 检查\+I\+P是否被过滤 \end{DoxyCompactList}\item 
-int \hyperlink{a00112_gaa42afdd4af32db13227e991ad457f229_gaa42afdd4af32db13227e991ad457f229}{knet\+\_\+ip\+\_\+filter\+\_\+check\+\_\+address} (\hyperlink{a00054_a1c0c604eecd86fc8895cf4bbbba566af_a1c0c604eecd86fc8895cf4bbbba566af}{kip\+\_\+filter\+\_\+t} $\ast$ip\+\_\+filter, \hyperlink{a00054_a44e99fab0348ec54cfee119ddd9ceed6_a44e99fab0348ec54cfee119ddd9ceed6}{kaddress\+\_\+t} $\ast$address)
-\begin{DoxyCompactList}\small\item\em 检查\+I\+P是否被过滤 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{a00056_a1b551151864af85fa6cce57058153d04_a1b551151864af85fa6cce57058153d04}{kbroadcast\+\_\+t} $\ast$ \hyperlink{a00112_ga41a1258d2f4ae75120f26ab7f2326111_ga41a1258d2f4ae75120f26ab7f2326111}{knet\+\_\+broadcast\+\_\+create} ()
+\begin{DoxyCompactList}\small\item\em 创建广播域 \end{DoxyCompactList}\item 
+void \hyperlink{a00112_ga4b13b2545278c2324f4171ef0bbf990a_ga4b13b2545278c2324f4171ef0bbf990a}{knet\+\_\+broadcast\+\_\+destroy} (\hyperlink{a00056_a1b551151864af85fa6cce57058153d04_a1b551151864af85fa6cce57058153d04}{kbroadcast\+\_\+t} $\ast$broadcast)
+\begin{DoxyCompactList}\small\item\em 销毁广播域 \end{DoxyCompactList}\item 
+\hyperlink{a00056_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$ \hyperlink{a00112_ga1355d3863db663680b1c74363d3a5745_ga1355d3863db663680b1c74363d3a5745}{knet\+\_\+broadcast\+\_\+join} (\hyperlink{a00056_a1b551151864af85fa6cce57058153d04_a1b551151864af85fa6cce57058153d04}{kbroadcast\+\_\+t} $\ast$broadcast, \hyperlink{a00056_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\begin{DoxyCompactList}\small\item\em 加入广播域 \end{DoxyCompactList}\item 
+int \hyperlink{a00112_ga3bb02208a76f18bb2eee61955b3781cd_ga3bb02208a76f18bb2eee61955b3781cd}{knet\+\_\+broadcast\+\_\+leave} (\hyperlink{a00056_a1b551151864af85fa6cce57058153d04_a1b551151864af85fa6cce57058153d04}{kbroadcast\+\_\+t} $\ast$broadcast, \hyperlink{a00056_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
+\begin{DoxyCompactList}\small\item\em 离开广播域 \end{DoxyCompactList}\item 
+int \hyperlink{a00112_gabf0b20b2490b3508e58a77314812f1a5_gabf0b20b2490b3508e58a77314812f1a5}{knet\+\_\+broadcast\+\_\+get\+\_\+count} (\hyperlink{a00056_a1b551151864af85fa6cce57058153d04_a1b551151864af85fa6cce57058153d04}{kbroadcast\+\_\+t} $\ast$broadcast)
+\begin{DoxyCompactList}\small\item\em 取得广播域内管道数量 \end{DoxyCompactList}\item 
+int \hyperlink{a00112_gafd3ac5d785687d729047a51724104060_gafd3ac5d785687d729047a51724104060}{knet\+\_\+broadcast\+\_\+write} (\hyperlink{a00056_a1b551151864af85fa6cce57058153d04_a1b551151864af85fa6cce57058153d04}{kbroadcast\+\_\+t} $\ast$broadcast, char $\ast$buffer, uint32\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em 广播 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{详细描述}
-I\+P过滤 
+广播域 
 
 
 \begin{DoxyPre}
-提供了快速判定指定IP是否属于IP集合接口，可以用于IP黑名单或者白名单.
-ip\_filter\_t可以加载已经存在的IP过滤文件，同时也可以保存IP过滤文件，
-IP过滤文件的格式为：
-IP 换行
-IP 换行
-......
-可以使用任何文本编辑器手工编辑.
-也可以使用接口方法实时的向过滤器内添加新的IP项或删除IP项，过滤器内容
-通过保存方法即可以替换旧的IP库.
+管道可以加入广播域，加入后通过knet\_broadcast\_write方法可以发送数据到所有已经加入域内的管道.
+调用knet\_broadcast\_create创建一个广播域，knet\_broadcast\_destroy销毁广播域.\end{DoxyPre}
+
+
+
+\begin{DoxyPre}knet\_broadcast\_join加入一个广播域，knet\_broadcast\_join函数返回时创建了一个新的管道引用.\end{DoxyPre}
+
+
+
+\begin{DoxyPre}调用knet\_broadcast\_leave时应该使用这个返回值而不是使用knet\_broadcast\_join的第二个参数，新创建
+的管道引用会提升管道的引用计数，如果你关闭了这个管道你可以通过调用knet\_broadcast\_leave减少管
+道的引用计数，从而可以让kloop\_t真正销毁管道.\end{DoxyPre}
+
+
+
+\begin{DoxyPre}调用knet\_broadcast\_get\_count可以得知广播域内的管道引用数量，调用knet\_broadcast\_write发起一个
+广播操作，所有域内管道都会收到你广播的数据.
 \end{DoxyPre}
  
 
 \subsection{函数说明}
-\hypertarget{a00112_ga271a51fad46aa61d322b6c9da2d5ba1e_ga271a51fad46aa61d322b6c9da2d5ba1e}{}\index{I\+P过滤@{I\+P过滤}!knet\+\_\+ip\+\_\+filter\+\_\+add@{knet\+\_\+ip\+\_\+filter\+\_\+add}}
-\index{knet\+\_\+ip\+\_\+filter\+\_\+add@{knet\+\_\+ip\+\_\+filter\+\_\+add}!I\+P过滤@{I\+P过滤}}
-\subsubsection[{knet\+\_\+ip\+\_\+filter\+\_\+add}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+ip\+\_\+filter\+\_\+add (
-\begin{DoxyParamCaption}
-\item[{{\bf kip\+\_\+filter\+\_\+t} $\ast$}]{ip\+\_\+filter, }
-\item[{const char $\ast$}]{ip}
-\end{DoxyParamCaption}
-)}\label{a00112_ga271a51fad46aa61d322b6c9da2d5ba1e_ga271a51fad46aa61d322b6c9da2d5ba1e}
-
-
-添加单个\+I\+P 
-
-
-\begin{DoxyParams}{参数}
-{\em ip\+\_\+filter} & kip\+\_\+filter\+\_\+t实例 \\
-\hline
-{\em ip} & I\+P \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00112_ga6d722330898e2a29a8555d711aab8b01_ga6d722330898e2a29a8555d711aab8b01}{}\index{I\+P过滤@{I\+P过滤}!knet\+\_\+ip\+\_\+filter\+\_\+check@{knet\+\_\+ip\+\_\+filter\+\_\+check}}
-\index{knet\+\_\+ip\+\_\+filter\+\_\+check@{knet\+\_\+ip\+\_\+filter\+\_\+check}!I\+P过滤@{I\+P过滤}}
-\subsubsection[{knet\+\_\+ip\+\_\+filter\+\_\+check}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+ip\+\_\+filter\+\_\+check (
-\begin{DoxyParamCaption}
-\item[{{\bf kip\+\_\+filter\+\_\+t} $\ast$}]{ip\+\_\+filter, }
-\item[{const char $\ast$}]{ip}
-\end{DoxyParamCaption}
-)}\label{a00112_ga6d722330898e2a29a8555d711aab8b01_ga6d722330898e2a29a8555d711aab8b01}
-
-
-检查\+I\+P是否被过滤 
-
-
-\begin{DoxyParams}{参数}
-{\em ip\+\_\+filter} & kip\+\_\+filter\+\_\+t实例 \\
-\hline
-{\em ip} & I\+P \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em 0} & 未被过滤 \\
-\hline
-{\em 其他} & 被过滤 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00112_gaa42afdd4af32db13227e991ad457f229_gaa42afdd4af32db13227e991ad457f229}{}\index{I\+P过滤@{I\+P过滤}!knet\+\_\+ip\+\_\+filter\+\_\+check\+\_\+address@{knet\+\_\+ip\+\_\+filter\+\_\+check\+\_\+address}}
-\index{knet\+\_\+ip\+\_\+filter\+\_\+check\+\_\+address@{knet\+\_\+ip\+\_\+filter\+\_\+check\+\_\+address}!I\+P过滤@{I\+P过滤}}
-\subsubsection[{knet\+\_\+ip\+\_\+filter\+\_\+check\+\_\+address}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+ip\+\_\+filter\+\_\+check\+\_\+address (
-\begin{DoxyParamCaption}
-\item[{{\bf kip\+\_\+filter\+\_\+t} $\ast$}]{ip\+\_\+filter, }
-\item[{{\bf kaddress\+\_\+t} $\ast$}]{address}
-\end{DoxyParamCaption}
-)}\label{a00112_gaa42afdd4af32db13227e991ad457f229_gaa42afdd4af32db13227e991ad457f229}
-
-
-检查\+I\+P是否被过滤 
-
-
-\begin{DoxyParams}{参数}
-{\em ip\+\_\+filter} & kip\+\_\+filter\+\_\+t实例 \\
-\hline
-{\em address} & 地址 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em 0} & 未被过滤 \\
-\hline
-{\em 其他} & 被过滤 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00112_ga14e6d1c3709870a082f203c8ba0ca9f4_ga14e6d1c3709870a082f203c8ba0ca9f4}{}\index{I\+P过滤@{I\+P过滤}!knet\+\_\+ip\+\_\+filter\+\_\+create@{knet\+\_\+ip\+\_\+filter\+\_\+create}}
-\index{knet\+\_\+ip\+\_\+filter\+\_\+create@{knet\+\_\+ip\+\_\+filter\+\_\+create}!I\+P过滤@{I\+P过滤}}
-\subsubsection[{knet\+\_\+ip\+\_\+filter\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kip\+\_\+filter\+\_\+t}$\ast$ knet\+\_\+ip\+\_\+filter\+\_\+create (
+\hypertarget{a00112_ga41a1258d2f4ae75120f26ab7f2326111_ga41a1258d2f4ae75120f26ab7f2326111}{}\index{广播@{广播}!knet\+\_\+broadcast\+\_\+create@{knet\+\_\+broadcast\+\_\+create}}
+\index{knet\+\_\+broadcast\+\_\+create@{knet\+\_\+broadcast\+\_\+create}!广播@{广播}}
+\subsubsection[{knet\+\_\+broadcast\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kbroadcast\+\_\+t}$\ast$ knet\+\_\+broadcast\+\_\+create (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\label{a00112_ga14e6d1c3709870a082f203c8ba0ca9f4_ga14e6d1c3709870a082f203c8ba0ca9f4}
+)}\label{a00112_ga41a1258d2f4ae75120f26ab7f2326111_ga41a1258d2f4ae75120f26ab7f2326111}
 
 
-建立\+I\+P过滤器 
+创建广播域 
 
 \begin{DoxyReturn}{返回}
-kip\+\_\+filter\+\_\+t实例 
+kbroadcast\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00112_gae2d8c7b5356b36261f90f59bc49181e1_gae2d8c7b5356b36261f90f59bc49181e1}{}\index{I\+P过滤@{I\+P过滤}!knet\+\_\+ip\+\_\+filter\+\_\+destroy@{knet\+\_\+ip\+\_\+filter\+\_\+destroy}}
-\index{knet\+\_\+ip\+\_\+filter\+\_\+destroy@{knet\+\_\+ip\+\_\+filter\+\_\+destroy}!I\+P过滤@{I\+P过滤}}
-\subsubsection[{knet\+\_\+ip\+\_\+filter\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+ip\+\_\+filter\+\_\+destroy (
+\hypertarget{a00112_ga4b13b2545278c2324f4171ef0bbf990a_ga4b13b2545278c2324f4171ef0bbf990a}{}\index{广播@{广播}!knet\+\_\+broadcast\+\_\+destroy@{knet\+\_\+broadcast\+\_\+destroy}}
+\index{knet\+\_\+broadcast\+\_\+destroy@{knet\+\_\+broadcast\+\_\+destroy}!广播@{广播}}
+\subsubsection[{knet\+\_\+broadcast\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+broadcast\+\_\+destroy (
 \begin{DoxyParamCaption}
-\item[{{\bf kip\+\_\+filter\+\_\+t} $\ast$}]{ip\+\_\+filter}
+\item[{{\bf kbroadcast\+\_\+t} $\ast$}]{broadcast}
 \end{DoxyParamCaption}
-)}\label{a00112_gae2d8c7b5356b36261f90f59bc49181e1_gae2d8c7b5356b36261f90f59bc49181e1}
+)}\label{a00112_ga4b13b2545278c2324f4171ef0bbf990a_ga4b13b2545278c2324f4171ef0bbf990a}
 
 
-销毁\+I\+P过滤器 
+销毁广播域 
 
-
+销毁的同时会将所有还在域内的管道引用销毁 
 \begin{DoxyParams}{参数}
-{\em ip\+\_\+filter} & kip\+\_\+filter\+\_\+t实例 \\
+{\em broadcast} & kbroadcast\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
-\hypertarget{a00112_ga044a4fc59ee0910af3c2d030e025c536_ga044a4fc59ee0910af3c2d030e025c536}{}\index{I\+P过滤@{I\+P过滤}!knet\+\_\+ip\+\_\+filter\+\_\+load\+\_\+file@{knet\+\_\+ip\+\_\+filter\+\_\+load\+\_\+file}}
-\index{knet\+\_\+ip\+\_\+filter\+\_\+load\+\_\+file@{knet\+\_\+ip\+\_\+filter\+\_\+load\+\_\+file}!I\+P过滤@{I\+P过滤}}
-\subsubsection[{knet\+\_\+ip\+\_\+filter\+\_\+load\+\_\+file}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+ip\+\_\+filter\+\_\+load\+\_\+file (
+\hypertarget{a00112_gabf0b20b2490b3508e58a77314812f1a5_gabf0b20b2490b3508e58a77314812f1a5}{}\index{广播@{广播}!knet\+\_\+broadcast\+\_\+get\+\_\+count@{knet\+\_\+broadcast\+\_\+get\+\_\+count}}
+\index{knet\+\_\+broadcast\+\_\+get\+\_\+count@{knet\+\_\+broadcast\+\_\+get\+\_\+count}!广播@{广播}}
+\subsubsection[{knet\+\_\+broadcast\+\_\+get\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+broadcast\+\_\+get\+\_\+count (
 \begin{DoxyParamCaption}
-\item[{{\bf kip\+\_\+filter\+\_\+t} $\ast$}]{ip\+\_\+filter, }
-\item[{const char $\ast$}]{path}
+\item[{{\bf kbroadcast\+\_\+t} $\ast$}]{broadcast}
 \end{DoxyParamCaption}
-)}\label{a00112_ga044a4fc59ee0910af3c2d030e025c536_ga044a4fc59ee0910af3c2d030e025c536}
+)}\label{a00112_gabf0b20b2490b3508e58a77314812f1a5_gabf0b20b2490b3508e58a77314812f1a5}
 
 
-加载\+I\+P过滤文件 
+取得广播域内管道数量 
 
 
-\begin{DoxyPre}
-文件格式为:
-[IP]~\newline
-[IP]~\newline
-......
-\end{DoxyPre}
- 
 \begin{DoxyParams}{参数}
-{\em ip\+\_\+filter} & kip\+\_\+filter\+\_\+t实例 \\
-\hline
-{\em path} & 文件路径 \\
+{\em broadcast} & kbroadcast\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00112_gae03dc5307ec374e375c2313d27dd08ad_gae03dc5307ec374e375c2313d27dd08ad}{}\index{I\+P过滤@{I\+P过滤}!knet\+\_\+ip\+\_\+filter\+\_\+remove@{knet\+\_\+ip\+\_\+filter\+\_\+remove}}
-\index{knet\+\_\+ip\+\_\+filter\+\_\+remove@{knet\+\_\+ip\+\_\+filter\+\_\+remove}!I\+P过滤@{I\+P过滤}}
-\subsubsection[{knet\+\_\+ip\+\_\+filter\+\_\+remove}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+ip\+\_\+filter\+\_\+remove (
+\begin{DoxyReturn}{返回}
+管道数量 
+\end{DoxyReturn}
+\hypertarget{a00112_ga1355d3863db663680b1c74363d3a5745_ga1355d3863db663680b1c74363d3a5745}{}\index{广播@{广播}!knet\+\_\+broadcast\+\_\+join@{knet\+\_\+broadcast\+\_\+join}}
+\index{knet\+\_\+broadcast\+\_\+join@{knet\+\_\+broadcast\+\_\+join}!广播@{广播}}
+\subsubsection[{knet\+\_\+broadcast\+\_\+join}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kchannel\+\_\+ref\+\_\+t}$\ast$ knet\+\_\+broadcast\+\_\+join (
 \begin{DoxyParamCaption}
-\item[{{\bf kip\+\_\+filter\+\_\+t} $\ast$}]{ip\+\_\+filter, }
-\item[{const char $\ast$}]{ip}
+\item[{{\bf kbroadcast\+\_\+t} $\ast$}]{broadcast, }
+\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
 \end{DoxyParamCaption}
-)}\label{a00112_gae03dc5307ec374e375c2313d27dd08ad_gae03dc5307ec374e375c2313d27dd08ad}
+)}\label{a00112_ga1355d3863db663680b1c74363d3a5745_ga1355d3863db663680b1c74363d3a5745}
 
 
-删除单个\+I\+P 
+加入广播域 
 
-
+加入成功会生成一个新的引用 
 \begin{DoxyParams}{参数}
-{\em ip\+\_\+filter} & kip\+\_\+filter\+\_\+t实例 \\
+{\em broadcast} & kbroadcast\+\_\+t实例 \\
 \hline
-{\em ip} & I\+P \\
+{\em channel\+\_\+ref} & kchannel\+\_\+ref\+\_\+t \\
 \hline
 \end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00112_ga1425a397cc96d8a1cdf32bff3f1fe645_ga1425a397cc96d8a1cdf32bff3f1fe645}{}\index{I\+P过滤@{I\+P过滤}!knet\+\_\+ip\+\_\+filter\+\_\+save@{knet\+\_\+ip\+\_\+filter\+\_\+save}}
-\index{knet\+\_\+ip\+\_\+filter\+\_\+save@{knet\+\_\+ip\+\_\+filter\+\_\+save}!I\+P过滤@{I\+P过滤}}
-\subsubsection[{knet\+\_\+ip\+\_\+filter\+\_\+save}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+ip\+\_\+filter\+\_\+save (
+\begin{DoxyReturn}{返回}
+kchannel\+\_\+ref\+\_\+t实例，新的在广播域内的引用 
+\end{DoxyReturn}
+\hypertarget{a00112_ga3bb02208a76f18bb2eee61955b3781cd_ga3bb02208a76f18bb2eee61955b3781cd}{}\index{广播@{广播}!knet\+\_\+broadcast\+\_\+leave@{knet\+\_\+broadcast\+\_\+leave}}
+\index{knet\+\_\+broadcast\+\_\+leave@{knet\+\_\+broadcast\+\_\+leave}!广播@{广播}}
+\subsubsection[{knet\+\_\+broadcast\+\_\+leave}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+broadcast\+\_\+leave (
 \begin{DoxyParamCaption}
-\item[{{\bf kip\+\_\+filter\+\_\+t} $\ast$}]{ip\+\_\+filter, }
-\item[{const char $\ast$}]{path}
+\item[{{\bf kbroadcast\+\_\+t} $\ast$}]{broadcast, }
+\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
 \end{DoxyParamCaption}
-)}\label{a00112_ga1425a397cc96d8a1cdf32bff3f1fe645_ga1425a397cc96d8a1cdf32bff3f1fe645}
+)}\label{a00112_ga3bb02208a76f18bb2eee61955b3781cd_ga3bb02208a76f18bb2eee61955b3781cd}
 
 
-保存到文件 
+离开广播域 
 
-
+函数返回后管道引用已经被销毁，不要尝试再次访问这个引用 
 \begin{DoxyParams}{参数}
-{\em ip\+\_\+filter} & kip\+\_\+filter\+\_\+t实例 \\
+{\em broadcast} & kbroadcast\+\_\+t实例 \\
 \hline
-{\em path} & 文件路径 \\
+{\em channel\+\_\+ref} & kchannel\+\_\+ref\+\_\+t实例，由knet\+\_\+broadcast\+\_\+join()返回 \\
 \hline
 \end{DoxyParams}
 
@@ -237,3 +145,28 @@ kip\+\_\+filter\+\_\+t实例
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
+\hypertarget{a00112_gafd3ac5d785687d729047a51724104060_gafd3ac5d785687d729047a51724104060}{}\index{广播@{广播}!knet\+\_\+broadcast\+\_\+write@{knet\+\_\+broadcast\+\_\+write}}
+\index{knet\+\_\+broadcast\+\_\+write@{knet\+\_\+broadcast\+\_\+write}!广播@{广播}}
+\subsubsection[{knet\+\_\+broadcast\+\_\+write}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+broadcast\+\_\+write (
+\begin{DoxyParamCaption}
+\item[{{\bf kbroadcast\+\_\+t} $\ast$}]{broadcast, }
+\item[{char $\ast$}]{buffer, }
+\item[{uint32\+\_\+t}]{size}
+\end{DoxyParamCaption}
+)}\label{a00112_gafd3ac5d785687d729047a51724104060_gafd3ac5d785687d729047a51724104060}
+
+
+广播 
+
+
+\begin{DoxyParams}{参数}
+{\em broadcast} & kbroadcast\+\_\+t实例 \\
+\hline
+{\em buffer} & 缓冲区指针 \\
+\hline
+{\em size} & 缓冲区长度 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+发送成功管道的数量 
+\end{DoxyReturn}

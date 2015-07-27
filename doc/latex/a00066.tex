@@ -1,161 +1,116 @@
-\hypertarget{a00066}{}\section{E\+:/knet-\/git/knet/knet/hash.h 文件参考}
-\label{a00066}\index{E\+:/knet-\/git/knet/knet/hash.\+h@{E\+:/knet-\/git/knet/knet/hash.\+h}}
+\hypertarget{a00066}{}\section{E\+:/knet-\/git/knet/knet/framework\+\_\+worker.h 文件参考}
+\label{a00066}\index{E\+:/knet-\/git/knet/knet/framework\+\_\+worker.\+h@{E\+:/knet-\/git/knet/knet/framework\+\_\+worker.\+h}}
 {\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\\*
-\subsection*{宏定义}
-\begin{DoxyCompactItemize}
-\item 
-\#define \hyperlink{a00066_a1ad9a5e3743668c94c9fc4ccfd83dc78_a1ad9a5e3743668c94c9fc4ccfd83dc78}{hash\+\_\+for\+\_\+each\+\_\+safe}(hash,  value)~for (value = \hyperlink{a00066_ab9b8488e9e0eef3735144721f5adc625_ab9b8488e9e0eef3735144721f5adc625}{hash\+\_\+get\+\_\+first}(hash); (value); value = \hyperlink{a00066_a00daf47a1da21760919550dd144e1f2c_a00daf47a1da21760919550dd144e1f2c}{hash\+\_\+next}(hash))
-\end{DoxyCompactItemize}
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-void $\ast$ \hyperlink{a00066_aab909a28870f824900d55d4158ecf807_aab909a28870f824900d55d4158ecf807}{hash\+\_\+value\+\_\+get\+\_\+value} (\hyperlink{a00054_aa13ac88a5567525fe44f3670134c3d96_aa13ac88a5567525fe44f3670134c3d96}{khash\+\_\+value\+\_\+t} $\ast$hash\+\_\+value)
-\begin{DoxyCompactList}\small\item\em 内部使用，哈希表，同时支持数字或字符串作为key \end{DoxyCompactList}\item 
-uint32\+\_\+t \hyperlink{a00066_ae2eae4207ed7825a923eb744b1b03be0_ae2eae4207ed7825a923eb744b1b03be0}{hash\+\_\+value\+\_\+get\+\_\+key} (\hyperlink{a00054_aa13ac88a5567525fe44f3670134c3d96_aa13ac88a5567525fe44f3670134c3d96}{khash\+\_\+value\+\_\+t} $\ast$hash\+\_\+value)
-\begin{DoxyCompactList}\small\item\em 取得数字键 \end{DoxyCompactList}\item 
-const char $\ast$ \hyperlink{a00066_ae64de86e8fdc8f5e278cebe0f9856c09_ae64de86e8fdc8f5e278cebe0f9856c09}{hash\+\_\+value\+\_\+get\+\_\+string\+\_\+key} (\hyperlink{a00054_aa13ac88a5567525fe44f3670134c3d96_aa13ac88a5567525fe44f3670134c3d96}{khash\+\_\+value\+\_\+t} $\ast$hash\+\_\+value)
-\begin{DoxyCompactList}\small\item\em 取得字符串键 \end{DoxyCompactList}\item 
-\hyperlink{a00054_aa242a9a673d8677076543d5768798f2c_aa242a9a673d8677076543d5768798f2c}{khash\+\_\+t} $\ast$ \hyperlink{a00066_aa4a5b9547c52b16f292c317a41f69d24_aa4a5b9547c52b16f292c317a41f69d24}{hash\+\_\+create} (uint32\+\_\+t size, \hyperlink{a00054_af806592520383146be2f3aac316beb45_af806592520383146be2f3aac316beb45}{knet\+\_\+hash\+\_\+dtor\+\_\+t} dtor)
-\begin{DoxyCompactList}\small\item\em 建立哈希表 \end{DoxyCompactList}\item 
-void \hyperlink{a00066_a7c2257af49b4f207001c43e43514a226_a7c2257af49b4f207001c43e43514a226}{hash\+\_\+destroy} (\hyperlink{a00054_aa242a9a673d8677076543d5768798f2c_aa242a9a673d8677076543d5768798f2c}{khash\+\_\+t} $\ast$hash)
-\begin{DoxyCompactList}\small\item\em 销毁哈希表 \end{DoxyCompactList}\item 
-int \hyperlink{a00066_aff2221d277f95457bc2fdf4215bd196e_aff2221d277f95457bc2fdf4215bd196e}{hash\+\_\+add} (\hyperlink{a00054_aa242a9a673d8677076543d5768798f2c_aa242a9a673d8677076543d5768798f2c}{khash\+\_\+t} $\ast$hash, uint32\+\_\+t key, void $\ast$value)
-\begin{DoxyCompactList}\small\item\em 添加元素 \end{DoxyCompactList}\item 
-int \hyperlink{a00066_a9fd87e76680bcfb665a95535746c166d_a9fd87e76680bcfb665a95535746c166d}{hash\+\_\+add\+\_\+string\+\_\+key} (\hyperlink{a00054_aa242a9a673d8677076543d5768798f2c_aa242a9a673d8677076543d5768798f2c}{khash\+\_\+t} $\ast$hash, const char $\ast$key, void $\ast$value)
-\begin{DoxyCompactList}\small\item\em 添加元素 \end{DoxyCompactList}\item 
-void $\ast$ \hyperlink{a00066_a544058a99adc9150c308b0bf4a98cf07_a544058a99adc9150c308b0bf4a98cf07}{hash\+\_\+remove} (\hyperlink{a00054_aa242a9a673d8677076543d5768798f2c_aa242a9a673d8677076543d5768798f2c}{khash\+\_\+t} $\ast$hash, uint32\+\_\+t key)
-\begin{DoxyCompactList}\small\item\em 移除元素 \end{DoxyCompactList}\item 
-void $\ast$ \hyperlink{a00066_a319fdee63a99809c36438ea7200b0785_a319fdee63a99809c36438ea7200b0785}{hash\+\_\+remove\+\_\+string\+\_\+key} (\hyperlink{a00054_aa242a9a673d8677076543d5768798f2c_aa242a9a673d8677076543d5768798f2c}{khash\+\_\+t} $\ast$hash, const char $\ast$key)
-\begin{DoxyCompactList}\small\item\em 移除元素 \end{DoxyCompactList}\item 
-int \hyperlink{a00066_ad8391c6d9c70f03fde25994da030b0c5_ad8391c6d9c70f03fde25994da030b0c5}{hash\+\_\+delete} (\hyperlink{a00054_aa242a9a673d8677076543d5768798f2c_aa242a9a673d8677076543d5768798f2c}{khash\+\_\+t} $\ast$hash, uint32\+\_\+t key)
-\begin{DoxyCompactList}\small\item\em 销毁元素 \end{DoxyCompactList}\item 
-int \hyperlink{a00066_aa82d295b5298fc0f2e46d583ee83731b_aa82d295b5298fc0f2e46d583ee83731b}{hash\+\_\+replace} (\hyperlink{a00054_aa242a9a673d8677076543d5768798f2c_aa242a9a673d8677076543d5768798f2c}{khash\+\_\+t} $\ast$hash, uint32\+\_\+t key, void $\ast$value)
-\begin{DoxyCompactList}\small\item\em 替换 \end{DoxyCompactList}\item 
-int \hyperlink{a00066_a042aba69d8451fd5322e3fe28aa65306_a042aba69d8451fd5322e3fe28aa65306}{hash\+\_\+replace\+\_\+string\+\_\+key} (\hyperlink{a00054_aa242a9a673d8677076543d5768798f2c_aa242a9a673d8677076543d5768798f2c}{khash\+\_\+t} $\ast$hash, const char $\ast$key, void $\ast$value)
-\begin{DoxyCompactList}\small\item\em 替换 \end{DoxyCompactList}\item 
-int \hyperlink{a00066_a74d116a714c4a2078f3163d7943ad41e_a74d116a714c4a2078f3163d7943ad41e}{hash\+\_\+delete\+\_\+string\+\_\+key} (\hyperlink{a00054_aa242a9a673d8677076543d5768798f2c_aa242a9a673d8677076543d5768798f2c}{khash\+\_\+t} $\ast$hash, const char $\ast$key)
-\begin{DoxyCompactList}\small\item\em 销毁元素 \end{DoxyCompactList}\item 
-void $\ast$ \hyperlink{a00066_a0cb115747d9533d24341fd2620c3ffb9_a0cb115747d9533d24341fd2620c3ffb9}{hash\+\_\+get} (\hyperlink{a00054_aa242a9a673d8677076543d5768798f2c_aa242a9a673d8677076543d5768798f2c}{khash\+\_\+t} $\ast$hash, uint32\+\_\+t key)
-\begin{DoxyCompactList}\small\item\em 获取元素 \end{DoxyCompactList}\item 
-void $\ast$ \hyperlink{a00066_afdbec876fbce40dd8750d26bb7f59e5b_afdbec876fbce40dd8750d26bb7f59e5b}{hash\+\_\+get\+\_\+string\+\_\+key} (\hyperlink{a00054_aa242a9a673d8677076543d5768798f2c_aa242a9a673d8677076543d5768798f2c}{khash\+\_\+t} $\ast$hash, const char $\ast$key)
-\begin{DoxyCompactList}\small\item\em 获取元素 \end{DoxyCompactList}\item 
-uint32\+\_\+t \hyperlink{a00066_a5cd157b8d91524da9b9f4a07f9d07f39_a5cd157b8d91524da9b9f4a07f9d07f39}{hash\+\_\+get\+\_\+size} (\hyperlink{a00054_aa242a9a673d8677076543d5768798f2c_aa242a9a673d8677076543d5768798f2c}{khash\+\_\+t} $\ast$hash)
-\begin{DoxyCompactList}\small\item\em 取得元素数量 \end{DoxyCompactList}\item 
-\hyperlink{a00054_aa13ac88a5567525fe44f3670134c3d96_aa13ac88a5567525fe44f3670134c3d96}{khash\+\_\+value\+\_\+t} $\ast$ \hyperlink{a00066_ab9b8488e9e0eef3735144721f5adc625_ab9b8488e9e0eef3735144721f5adc625}{hash\+\_\+get\+\_\+first} (\hyperlink{a00054_aa242a9a673d8677076543d5768798f2c_aa242a9a673d8677076543d5768798f2c}{khash\+\_\+t} $\ast$hash)
-\begin{DoxyCompactList}\small\item\em 重置遍历器，取第一个元素 \end{DoxyCompactList}\item 
-\hyperlink{a00054_aa13ac88a5567525fe44f3670134c3d96_aa13ac88a5567525fe44f3670134c3d96}{khash\+\_\+value\+\_\+t} $\ast$ \hyperlink{a00066_a00daf47a1da21760919550dd144e1f2c_a00daf47a1da21760919550dd144e1f2c}{hash\+\_\+next} (\hyperlink{a00054_aa242a9a673d8677076543d5768798f2c_aa242a9a673d8677076543d5768798f2c}{khash\+\_\+t} $\ast$hash)
-\begin{DoxyCompactList}\small\item\em 哈希表遍历器的下一个元素 \end{DoxyCompactList}\end{DoxyCompactItemize}
-
-
-\subsection{宏定义说明}
-\hypertarget{a00066_a1ad9a5e3743668c94c9fc4ccfd83dc78_a1ad9a5e3743668c94c9fc4ccfd83dc78}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+for\+\_\+each\+\_\+safe@{hash\+\_\+for\+\_\+each\+\_\+safe}}
-\index{hash\+\_\+for\+\_\+each\+\_\+safe@{hash\+\_\+for\+\_\+each\+\_\+safe}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+for\+\_\+each\+\_\+safe}]{\setlength{\rightskip}{0pt plus 5cm}\#define hash\+\_\+for\+\_\+each\+\_\+safe(
-\begin{DoxyParamCaption}
-\item[{}]{hash, }
-\item[{}]{value}
-\end{DoxyParamCaption}
-)~for (value = {\bf hash\+\_\+get\+\_\+first}(hash); (value); value = {\bf hash\+\_\+next}(hash))}\label{a00066_a1ad9a5e3743668c94c9fc4ccfd83dc78_a1ad9a5e3743668c94c9fc4ccfd83dc78}
+\hyperlink{a00056_af2a7f5b8406de73682f8bd4c2afee783_af2a7f5b8406de73682f8bd4c2afee783}{kframework\+\_\+worker\+\_\+t} $\ast$ \hyperlink{a00066_a032b3c34db5de1a62a8bcf5ca9ebe1f8_a032b3c34db5de1a62a8bcf5ca9ebe1f8}{knet\+\_\+framework\+\_\+worker\+\_\+create} (\hyperlink{a00056_a3195a3be35782fc1efb920c811be111d_a3195a3be35782fc1efb920c811be111d}{kframework\+\_\+t} $\ast$f, \hyperlink{a00056_a97fc76209a58362019f1ded9169e397f_a97fc76209a58362019f1ded9169e397f}{kloop\+\_\+t} $\ast$loop)
+\begin{DoxyCompactList}\small\item\em 建立框架工作线程 \end{DoxyCompactList}\item 
+void \hyperlink{a00066_a062cc63d020aca69e4434f95ffe8403c_a062cc63d020aca69e4434f95ffe8403c}{knet\+\_\+framework\+\_\+worker\+\_\+destroy} (\hyperlink{a00056_af2a7f5b8406de73682f8bd4c2afee783_af2a7f5b8406de73682f8bd4c2afee783}{kframework\+\_\+worker\+\_\+t} $\ast$worker)
+\begin{DoxyCompactList}\small\item\em 销毁框架工作线程 \end{DoxyCompactList}\item 
+int \hyperlink{a00066_aeb6f9a3c96da0c33695534a460e8f756_aeb6f9a3c96da0c33695534a460e8f756}{knet\+\_\+framework\+\_\+worker\+\_\+start} (\hyperlink{a00056_af2a7f5b8406de73682f8bd4c2afee783_af2a7f5b8406de73682f8bd4c2afee783}{kframework\+\_\+worker\+\_\+t} $\ast$worker)
+\begin{DoxyCompactList}\small\item\em 启动框架工作线程 \end{DoxyCompactList}\item 
+void \hyperlink{a00066_a6465eaddfbf6bfa8c7d54b489eb43462_a6465eaddfbf6bfa8c7d54b489eb43462}{knet\+\_\+framework\+\_\+worker\+\_\+stop} (\hyperlink{a00056_af2a7f5b8406de73682f8bd4c2afee783_af2a7f5b8406de73682f8bd4c2afee783}{kframework\+\_\+worker\+\_\+t} $\ast$worker)
+\begin{DoxyCompactList}\small\item\em 关闭框架工作线程 \end{DoxyCompactList}\item 
+void \hyperlink{a00066_a74b264bfdb937045c6e1d72e12603403_a74b264bfdb937045c6e1d72e12603403}{knet\+\_\+framework\+\_\+worker\+\_\+wait\+\_\+for\+\_\+stop} (\hyperlink{a00056_af2a7f5b8406de73682f8bd4c2afee783_af2a7f5b8406de73682f8bd4c2afee783}{kframework\+\_\+worker\+\_\+t} $\ast$worker)
+\begin{DoxyCompactList}\small\item\em 等待框架工作线程关闭 \end{DoxyCompactList}\item 
+\hyperlink{a00056_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$ \hyperlink{a00066_a0599b3e991b6545e3070aa8414b9c0f3_a0599b3e991b6545e3070aa8414b9c0f3}{knet\+\_\+framework\+\_\+worker\+\_\+create\+\_\+timer} (\hyperlink{a00056_af2a7f5b8406de73682f8bd4c2afee783_af2a7f5b8406de73682f8bd4c2afee783}{kframework\+\_\+worker\+\_\+t} $\ast$worker)
+\begin{DoxyCompactList}\small\item\em 建立一个定时器 \end{DoxyCompactList}\item 
+\hyperlink{a00056_ad0ada5642d10ce71bdd90816182f9b79_ad0ada5642d10ce71bdd90816182f9b79}{thread\+\_\+id\+\_\+t} \hyperlink{a00066_a9697af110fe414bbf4031b3e06528b02_a9697af110fe414bbf4031b3e06528b02}{knet\+\_\+framework\+\_\+worker\+\_\+get\+\_\+id} (\hyperlink{a00056_af2a7f5b8406de73682f8bd4c2afee783_af2a7f5b8406de73682f8bd4c2afee783}{kframework\+\_\+worker\+\_\+t} $\ast$worker)
+\begin{DoxyCompactList}\small\item\em 取得工作线程\+I\+D \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{函数说明}
-\hypertarget{a00066_aff2221d277f95457bc2fdf4215bd196e_aff2221d277f95457bc2fdf4215bd196e}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+add@{hash\+\_\+add}}
-\index{hash\+\_\+add@{hash\+\_\+add}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+add}]{\setlength{\rightskip}{0pt plus 5cm}int hash\+\_\+add (
+\hypertarget{a00066_a032b3c34db5de1a62a8bcf5ca9ebe1f8_a032b3c34db5de1a62a8bcf5ca9ebe1f8}{}\index{framework\+\_\+worker.\+h@{framework\+\_\+worker.\+h}!knet\+\_\+framework\+\_\+worker\+\_\+create@{knet\+\_\+framework\+\_\+worker\+\_\+create}}
+\index{knet\+\_\+framework\+\_\+worker\+\_\+create@{knet\+\_\+framework\+\_\+worker\+\_\+create}!framework\+\_\+worker.\+h@{framework\+\_\+worker.\+h}}
+\subsubsection[{knet\+\_\+framework\+\_\+worker\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kframework\+\_\+worker\+\_\+t}$\ast$ knet\+\_\+framework\+\_\+worker\+\_\+create (
 \begin{DoxyParamCaption}
-\item[{{\bf khash\+\_\+t} $\ast$}]{hash, }
-\item[{uint32\+\_\+t}]{key, }
-\item[{void $\ast$}]{value}
+\item[{{\bf kframework\+\_\+t} $\ast$}]{f, }
+\item[{{\bf kloop\+\_\+t} $\ast$}]{loop}
 \end{DoxyParamCaption}
-)}\label{a00066_aff2221d277f95457bc2fdf4215bd196e_aff2221d277f95457bc2fdf4215bd196e}
+)}\label{a00066_a032b3c34db5de1a62a8bcf5ca9ebe1f8_a032b3c34db5de1a62a8bcf5ca9ebe1f8}
 
 
-添加元素 
+建立框架工作线程 
 
 
 \begin{DoxyParams}{参数}
-{\em hash} & khash\+\_\+t实例 \\
+{\em f} & kframework\+\_\+t实例 \\
 \hline
-{\em key} & 键 \\
-\hline
-{\em value} & 值 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00066_a9fd87e76680bcfb665a95535746c166d_a9fd87e76680bcfb665a95535746c166d}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+add\+\_\+string\+\_\+key@{hash\+\_\+add\+\_\+string\+\_\+key}}
-\index{hash\+\_\+add\+\_\+string\+\_\+key@{hash\+\_\+add\+\_\+string\+\_\+key}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+add\+\_\+string\+\_\+key}]{\setlength{\rightskip}{0pt plus 5cm}int hash\+\_\+add\+\_\+string\+\_\+key (
-\begin{DoxyParamCaption}
-\item[{{\bf khash\+\_\+t} $\ast$}]{hash, }
-\item[{const char $\ast$}]{key, }
-\item[{void $\ast$}]{value}
-\end{DoxyParamCaption}
-)}\label{a00066_a9fd87e76680bcfb665a95535746c166d_a9fd87e76680bcfb665a95535746c166d}
-
-
-添加元素 
-
-
-\begin{DoxyParams}{参数}
-{\em hash} & khash\+\_\+t实例 \\
-\hline
-{\em key} & 字符串键 \\
-\hline
-{\em value} & 值 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00066_aa4a5b9547c52b16f292c317a41f69d24_aa4a5b9547c52b16f292c317a41f69d24}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+create@{hash\+\_\+create}}
-\index{hash\+\_\+create@{hash\+\_\+create}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf khash\+\_\+t}$\ast$ hash\+\_\+create (
-\begin{DoxyParamCaption}
-\item[{uint32\+\_\+t}]{size, }
-\item[{{\bf knet\+\_\+hash\+\_\+dtor\+\_\+t}}]{dtor}
-\end{DoxyParamCaption}
-)}\label{a00066_aa4a5b9547c52b16f292c317a41f69d24_aa4a5b9547c52b16f292c317a41f69d24}
-
-
-建立哈希表 
-
-
-\begin{DoxyParams}{参数}
-{\em size} & 哈希表桶数量, 0将使用默认桶数量 \\
-\hline
-{\em dtor} & 用户自定义值销毁函数 \\
+{\em loop} & kloop\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-khash\+\_\+t实例 
+kframework\+\_\+worker\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00066_ad8391c6d9c70f03fde25994da030b0c5_ad8391c6d9c70f03fde25994da030b0c5}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+delete@{hash\+\_\+delete}}
-\index{hash\+\_\+delete@{hash\+\_\+delete}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+delete}]{\setlength{\rightskip}{0pt plus 5cm}int hash\+\_\+delete (
+\hypertarget{a00066_a0599b3e991b6545e3070aa8414b9c0f3_a0599b3e991b6545e3070aa8414b9c0f3}{}\index{framework\+\_\+worker.\+h@{framework\+\_\+worker.\+h}!knet\+\_\+framework\+\_\+worker\+\_\+create\+\_\+timer@{knet\+\_\+framework\+\_\+worker\+\_\+create\+\_\+timer}}
+\index{knet\+\_\+framework\+\_\+worker\+\_\+create\+\_\+timer@{knet\+\_\+framework\+\_\+worker\+\_\+create\+\_\+timer}!framework\+\_\+worker.\+h@{framework\+\_\+worker.\+h}}
+\subsubsection[{knet\+\_\+framework\+\_\+worker\+\_\+create\+\_\+timer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ktimer\+\_\+t}$\ast$ knet\+\_\+framework\+\_\+worker\+\_\+create\+\_\+timer (
 \begin{DoxyParamCaption}
-\item[{{\bf khash\+\_\+t} $\ast$}]{hash, }
-\item[{uint32\+\_\+t}]{key}
+\item[{{\bf kframework\+\_\+worker\+\_\+t} $\ast$}]{worker}
 \end{DoxyParamCaption}
-)}\label{a00066_ad8391c6d9c70f03fde25994da030b0c5_ad8391c6d9c70f03fde25994da030b0c5}
+)}\label{a00066_a0599b3e991b6545e3070aa8414b9c0f3_a0599b3e991b6545e3070aa8414b9c0f3}
 
 
-销毁元素 
+建立一个定时器 
 
 
 \begin{DoxyParams}{参数}
-{\em hash} & khash\+\_\+t实例 \\
+{\em worker} & kframework\+\_\+worker\+\_\+t实例 \\
 \hline
-{\em key} & 键 \\
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+ktimer\+\_\+t实例 
+\end{DoxyReturn}
+\hypertarget{a00066_a062cc63d020aca69e4434f95ffe8403c_a062cc63d020aca69e4434f95ffe8403c}{}\index{framework\+\_\+worker.\+h@{framework\+\_\+worker.\+h}!knet\+\_\+framework\+\_\+worker\+\_\+destroy@{knet\+\_\+framework\+\_\+worker\+\_\+destroy}}
+\index{knet\+\_\+framework\+\_\+worker\+\_\+destroy@{knet\+\_\+framework\+\_\+worker\+\_\+destroy}!framework\+\_\+worker.\+h@{framework\+\_\+worker.\+h}}
+\subsubsection[{knet\+\_\+framework\+\_\+worker\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+framework\+\_\+worker\+\_\+destroy (
+\begin{DoxyParamCaption}
+\item[{{\bf kframework\+\_\+worker\+\_\+t} $\ast$}]{worker}
+\end{DoxyParamCaption}
+)}\label{a00066_a062cc63d020aca69e4434f95ffe8403c_a062cc63d020aca69e4434f95ffe8403c}
+
+
+销毁框架工作线程 
+
+
+\begin{DoxyParams}{参数}
+{\em worker} & kframework\+\_\+worker\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00066_a9697af110fe414bbf4031b3e06528b02_a9697af110fe414bbf4031b3e06528b02}{}\index{framework\+\_\+worker.\+h@{framework\+\_\+worker.\+h}!knet\+\_\+framework\+\_\+worker\+\_\+get\+\_\+id@{knet\+\_\+framework\+\_\+worker\+\_\+get\+\_\+id}}
+\index{knet\+\_\+framework\+\_\+worker\+\_\+get\+\_\+id@{knet\+\_\+framework\+\_\+worker\+\_\+get\+\_\+id}!framework\+\_\+worker.\+h@{framework\+\_\+worker.\+h}}
+\subsubsection[{knet\+\_\+framework\+\_\+worker\+\_\+get\+\_\+id}]{\setlength{\rightskip}{0pt plus 5cm}{\bf thread\+\_\+id\+\_\+t} knet\+\_\+framework\+\_\+worker\+\_\+get\+\_\+id (
+\begin{DoxyParamCaption}
+\item[{{\bf kframework\+\_\+worker\+\_\+t} $\ast$}]{worker}
+\end{DoxyParamCaption}
+)}\label{a00066_a9697af110fe414bbf4031b3e06528b02_a9697af110fe414bbf4031b3e06528b02}
+
+
+取得工作线程\+I\+D 
+
+
+\begin{DoxyParams}{参数}
+{\em worker} & kframework\+\_\+worker\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+工作线程\+I\+D 
+\end{DoxyReturn}
+\hypertarget{a00066_aeb6f9a3c96da0c33695534a460e8f756_aeb6f9a3c96da0c33695534a460e8f756}{}\index{framework\+\_\+worker.\+h@{framework\+\_\+worker.\+h}!knet\+\_\+framework\+\_\+worker\+\_\+start@{knet\+\_\+framework\+\_\+worker\+\_\+start}}
+\index{knet\+\_\+framework\+\_\+worker\+\_\+start@{knet\+\_\+framework\+\_\+worker\+\_\+start}!framework\+\_\+worker.\+h@{framework\+\_\+worker.\+h}}
+\subsubsection[{knet\+\_\+framework\+\_\+worker\+\_\+start}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+framework\+\_\+worker\+\_\+start (
+\begin{DoxyParamCaption}
+\item[{{\bf kframework\+\_\+worker\+\_\+t} $\ast$}]{worker}
+\end{DoxyParamCaption}
+)}\label{a00066_aeb6f9a3c96da0c33695534a460e8f756_aeb6f9a3c96da0c33695534a460e8f756}
+
+
+启动框架工作线程 
+
+
+\begin{DoxyParams}{参数}
+{\em worker} & kframework\+\_\+worker\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 
@@ -165,329 +120,35 @@ khash\+\_\+t实例
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00066_a74d116a714c4a2078f3163d7943ad41e_a74d116a714c4a2078f3163d7943ad41e}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+delete\+\_\+string\+\_\+key@{hash\+\_\+delete\+\_\+string\+\_\+key}}
-\index{hash\+\_\+delete\+\_\+string\+\_\+key@{hash\+\_\+delete\+\_\+string\+\_\+key}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+delete\+\_\+string\+\_\+key}]{\setlength{\rightskip}{0pt plus 5cm}int hash\+\_\+delete\+\_\+string\+\_\+key (
+\hypertarget{a00066_a6465eaddfbf6bfa8c7d54b489eb43462_a6465eaddfbf6bfa8c7d54b489eb43462}{}\index{framework\+\_\+worker.\+h@{framework\+\_\+worker.\+h}!knet\+\_\+framework\+\_\+worker\+\_\+stop@{knet\+\_\+framework\+\_\+worker\+\_\+stop}}
+\index{knet\+\_\+framework\+\_\+worker\+\_\+stop@{knet\+\_\+framework\+\_\+worker\+\_\+stop}!framework\+\_\+worker.\+h@{framework\+\_\+worker.\+h}}
+\subsubsection[{knet\+\_\+framework\+\_\+worker\+\_\+stop}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+framework\+\_\+worker\+\_\+stop (
 \begin{DoxyParamCaption}
-\item[{{\bf khash\+\_\+t} $\ast$}]{hash, }
-\item[{const char $\ast$}]{key}
+\item[{{\bf kframework\+\_\+worker\+\_\+t} $\ast$}]{worker}
 \end{DoxyParamCaption}
-)}\label{a00066_a74d116a714c4a2078f3163d7943ad41e_a74d116a714c4a2078f3163d7943ad41e}
+)}\label{a00066_a6465eaddfbf6bfa8c7d54b489eb43462_a6465eaddfbf6bfa8c7d54b489eb43462}
 
 
-销毁元素 
+关闭框架工作线程 
 
 
 \begin{DoxyParams}{参数}
-{\em hash} & khash\+\_\+t实例 \\
-\hline
-{\em key} & 字符串键 \\
+{\em worker} & kframework\+\_\+worker\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00066_a7c2257af49b4f207001c43e43514a226_a7c2257af49b4f207001c43e43514a226}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+destroy@{hash\+\_\+destroy}}
-\index{hash\+\_\+destroy@{hash\+\_\+destroy}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void hash\+\_\+destroy (
+\hypertarget{a00066_a74b264bfdb937045c6e1d72e12603403_a74b264bfdb937045c6e1d72e12603403}{}\index{framework\+\_\+worker.\+h@{framework\+\_\+worker.\+h}!knet\+\_\+framework\+\_\+worker\+\_\+wait\+\_\+for\+\_\+stop@{knet\+\_\+framework\+\_\+worker\+\_\+wait\+\_\+for\+\_\+stop}}
+\index{knet\+\_\+framework\+\_\+worker\+\_\+wait\+\_\+for\+\_\+stop@{knet\+\_\+framework\+\_\+worker\+\_\+wait\+\_\+for\+\_\+stop}!framework\+\_\+worker.\+h@{framework\+\_\+worker.\+h}}
+\subsubsection[{knet\+\_\+framework\+\_\+worker\+\_\+wait\+\_\+for\+\_\+stop}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+framework\+\_\+worker\+\_\+wait\+\_\+for\+\_\+stop (
 \begin{DoxyParamCaption}
-\item[{{\bf khash\+\_\+t} $\ast$}]{hash}
+\item[{{\bf kframework\+\_\+worker\+\_\+t} $\ast$}]{worker}
 \end{DoxyParamCaption}
-)}\label{a00066_a7c2257af49b4f207001c43e43514a226_a7c2257af49b4f207001c43e43514a226}
+)}\label{a00066_a74b264bfdb937045c6e1d72e12603403_a74b264bfdb937045c6e1d72e12603403}
 
 
-销毁哈希表 
+等待框架工作线程关闭 
 
 
 \begin{DoxyParams}{参数}
-{\em hash} & khash\+\_\+t实例 \\
+{\em worker} & kframework\+\_\+worker\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
-\hypertarget{a00066_a0cb115747d9533d24341fd2620c3ffb9_a0cb115747d9533d24341fd2620c3ffb9}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+get@{hash\+\_\+get}}
-\index{hash\+\_\+get@{hash\+\_\+get}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+get}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ hash\+\_\+get (
-\begin{DoxyParamCaption}
-\item[{{\bf khash\+\_\+t} $\ast$}]{hash, }
-\item[{uint32\+\_\+t}]{key}
-\end{DoxyParamCaption}
-)}\label{a00066_a0cb115747d9533d24341fd2620c3ffb9_a0cb115747d9533d24341fd2620c3ffb9}
-
-
-获取元素 
-
-
-\begin{DoxyParams}{参数}
-{\em hash} & khash\+\_\+t实例 \\
-\hline
-{\em key} & 键 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em 0} & 未找到 \\
-\hline
-{\em 有效指针} & \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00066_ab9b8488e9e0eef3735144721f5adc625_ab9b8488e9e0eef3735144721f5adc625}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+get\+\_\+first@{hash\+\_\+get\+\_\+first}}
-\index{hash\+\_\+get\+\_\+first@{hash\+\_\+get\+\_\+first}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+get\+\_\+first}]{\setlength{\rightskip}{0pt plus 5cm}{\bf khash\+\_\+value\+\_\+t}$\ast$ hash\+\_\+get\+\_\+first (
-\begin{DoxyParamCaption}
-\item[{{\bf khash\+\_\+t} $\ast$}]{hash}
-\end{DoxyParamCaption}
-)}\label{a00066_ab9b8488e9e0eef3735144721f5adc625_ab9b8488e9e0eef3735144721f5adc625}
-
-
-重置遍历器，取第一个元素 
-
-
-\begin{DoxyParams}{参数}
-{\em hash} & khash\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em 0} & 没有元素 \\
-\hline
-{\em khash\+\_\+value\+\_\+t实例} & \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00066_a5cd157b8d91524da9b9f4a07f9d07f39_a5cd157b8d91524da9b9f4a07f9d07f39}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+get\+\_\+size@{hash\+\_\+get\+\_\+size}}
-\index{hash\+\_\+get\+\_\+size@{hash\+\_\+get\+\_\+size}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+get\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t hash\+\_\+get\+\_\+size (
-\begin{DoxyParamCaption}
-\item[{{\bf khash\+\_\+t} $\ast$}]{hash}
-\end{DoxyParamCaption}
-)}\label{a00066_a5cd157b8d91524da9b9f4a07f9d07f39_a5cd157b8d91524da9b9f4a07f9d07f39}
-
-
-取得元素数量 
-
-
-\begin{DoxyParams}{参数}
-{\em hash} & khash\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-元素数量 
-\end{DoxyReturn}
-\hypertarget{a00066_afdbec876fbce40dd8750d26bb7f59e5b_afdbec876fbce40dd8750d26bb7f59e5b}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+get\+\_\+string\+\_\+key@{hash\+\_\+get\+\_\+string\+\_\+key}}
-\index{hash\+\_\+get\+\_\+string\+\_\+key@{hash\+\_\+get\+\_\+string\+\_\+key}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+get\+\_\+string\+\_\+key}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ hash\+\_\+get\+\_\+string\+\_\+key (
-\begin{DoxyParamCaption}
-\item[{{\bf khash\+\_\+t} $\ast$}]{hash, }
-\item[{const char $\ast$}]{key}
-\end{DoxyParamCaption}
-)}\label{a00066_afdbec876fbce40dd8750d26bb7f59e5b_afdbec876fbce40dd8750d26bb7f59e5b}
-
-
-获取元素 
-
-
-\begin{DoxyParams}{参数}
-{\em hash} & khash\+\_\+t实例 \\
-\hline
-{\em key} & 字符串键 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em 0} & 未找到 \\
-\hline
-{\em 有效指针} & \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00066_a00daf47a1da21760919550dd144e1f2c_a00daf47a1da21760919550dd144e1f2c}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+next@{hash\+\_\+next}}
-\index{hash\+\_\+next@{hash\+\_\+next}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+next}]{\setlength{\rightskip}{0pt plus 5cm}{\bf khash\+\_\+value\+\_\+t}$\ast$ hash\+\_\+next (
-\begin{DoxyParamCaption}
-\item[{{\bf khash\+\_\+t} $\ast$}]{hash}
-\end{DoxyParamCaption}
-)}\label{a00066_a00daf47a1da21760919550dd144e1f2c_a00daf47a1da21760919550dd144e1f2c}
-
-
-哈希表遍历器的下一个元素 
-
-
-\begin{DoxyParams}{参数}
-{\em hash} & khash\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em 0} & 没有元素 \\
-\hline
-{\em khash\+\_\+value\+\_\+t实例} & \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00066_a544058a99adc9150c308b0bf4a98cf07_a544058a99adc9150c308b0bf4a98cf07}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+remove@{hash\+\_\+remove}}
-\index{hash\+\_\+remove@{hash\+\_\+remove}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+remove}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ hash\+\_\+remove (
-\begin{DoxyParamCaption}
-\item[{{\bf khash\+\_\+t} $\ast$}]{hash, }
-\item[{uint32\+\_\+t}]{key}
-\end{DoxyParamCaption}
-)}\label{a00066_a544058a99adc9150c308b0bf4a98cf07_a544058a99adc9150c308b0bf4a98cf07}
-
-
-移除元素 
-
-
-\begin{DoxyParams}{参数}
-{\em hash} & khash\+\_\+t实例 \\
-\hline
-{\em key} & 键 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em 0} & 未找到 \\
-\hline
-{\em 有效指针} & 值 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00066_a319fdee63a99809c36438ea7200b0785_a319fdee63a99809c36438ea7200b0785}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+remove\+\_\+string\+\_\+key@{hash\+\_\+remove\+\_\+string\+\_\+key}}
-\index{hash\+\_\+remove\+\_\+string\+\_\+key@{hash\+\_\+remove\+\_\+string\+\_\+key}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+remove\+\_\+string\+\_\+key}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ hash\+\_\+remove\+\_\+string\+\_\+key (
-\begin{DoxyParamCaption}
-\item[{{\bf khash\+\_\+t} $\ast$}]{hash, }
-\item[{const char $\ast$}]{key}
-\end{DoxyParamCaption}
-)}\label{a00066_a319fdee63a99809c36438ea7200b0785_a319fdee63a99809c36438ea7200b0785}
-
-
-移除元素 
-
-
-\begin{DoxyParams}{参数}
-{\em hash} & khash\+\_\+t实例 \\
-\hline
-{\em key} & 字符串键 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em 0} & 未找到 \\
-\hline
-{\em 有效指针} & 值 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00066_aa82d295b5298fc0f2e46d583ee83731b_aa82d295b5298fc0f2e46d583ee83731b}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+replace@{hash\+\_\+replace}}
-\index{hash\+\_\+replace@{hash\+\_\+replace}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+replace}]{\setlength{\rightskip}{0pt plus 5cm}int hash\+\_\+replace (
-\begin{DoxyParamCaption}
-\item[{{\bf khash\+\_\+t} $\ast$}]{hash, }
-\item[{uint32\+\_\+t}]{key, }
-\item[{void $\ast$}]{value}
-\end{DoxyParamCaption}
-)}\label{a00066_aa82d295b5298fc0f2e46d583ee83731b_aa82d295b5298fc0f2e46d583ee83731b}
-
-
-替换 
-
-
-\begin{DoxyParams}{参数}
-{\em hash} & khash\+\_\+t实例 \\
-\hline
-{\em key} & 键 \\
-\hline
-{\em value} & 值 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00066_a042aba69d8451fd5322e3fe28aa65306_a042aba69d8451fd5322e3fe28aa65306}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+replace\+\_\+string\+\_\+key@{hash\+\_\+replace\+\_\+string\+\_\+key}}
-\index{hash\+\_\+replace\+\_\+string\+\_\+key@{hash\+\_\+replace\+\_\+string\+\_\+key}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+replace\+\_\+string\+\_\+key}]{\setlength{\rightskip}{0pt plus 5cm}int hash\+\_\+replace\+\_\+string\+\_\+key (
-\begin{DoxyParamCaption}
-\item[{{\bf khash\+\_\+t} $\ast$}]{hash, }
-\item[{const char $\ast$}]{key, }
-\item[{void $\ast$}]{value}
-\end{DoxyParamCaption}
-)}\label{a00066_a042aba69d8451fd5322e3fe28aa65306_a042aba69d8451fd5322e3fe28aa65306}
-
-
-替换 
-
-
-\begin{DoxyParams}{参数}
-{\em hash} & khash\+\_\+t实例 \\
-\hline
-{\em key} & 字符串键 \\
-\hline
-{\em value} & 值 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00066_ae2eae4207ed7825a923eb744b1b03be0_ae2eae4207ed7825a923eb744b1b03be0}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+value\+\_\+get\+\_\+key@{hash\+\_\+value\+\_\+get\+\_\+key}}
-\index{hash\+\_\+value\+\_\+get\+\_\+key@{hash\+\_\+value\+\_\+get\+\_\+key}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+value\+\_\+get\+\_\+key}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t hash\+\_\+value\+\_\+get\+\_\+key (
-\begin{DoxyParamCaption}
-\item[{{\bf khash\+\_\+value\+\_\+t} $\ast$}]{hash\+\_\+value}
-\end{DoxyParamCaption}
-)}\label{a00066_ae2eae4207ed7825a923eb744b1b03be0_ae2eae4207ed7825a923eb744b1b03be0}
-
-
-取得数字键 
-
-
-\begin{DoxyParams}{参数}
-{\em hash\+\_\+value} & khash\+\_\+value\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-数字键 
-\end{DoxyReturn}
-\hypertarget{a00066_ae64de86e8fdc8f5e278cebe0f9856c09_ae64de86e8fdc8f5e278cebe0f9856c09}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+value\+\_\+get\+\_\+string\+\_\+key@{hash\+\_\+value\+\_\+get\+\_\+string\+\_\+key}}
-\index{hash\+\_\+value\+\_\+get\+\_\+string\+\_\+key@{hash\+\_\+value\+\_\+get\+\_\+string\+\_\+key}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+value\+\_\+get\+\_\+string\+\_\+key}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ hash\+\_\+value\+\_\+get\+\_\+string\+\_\+key (
-\begin{DoxyParamCaption}
-\item[{{\bf khash\+\_\+value\+\_\+t} $\ast$}]{hash\+\_\+value}
-\end{DoxyParamCaption}
-)}\label{a00066_ae64de86e8fdc8f5e278cebe0f9856c09_ae64de86e8fdc8f5e278cebe0f9856c09}
-
-
-取得字符串键 
-
-
-\begin{DoxyParams}{参数}
-{\em hash\+\_\+value} & khash\+\_\+value\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-字符串键 
-\end{DoxyReturn}
-\hypertarget{a00066_aab909a28870f824900d55d4158ecf807_aab909a28870f824900d55d4158ecf807}{}\index{hash.\+h@{hash.\+h}!hash\+\_\+value\+\_\+get\+\_\+value@{hash\+\_\+value\+\_\+get\+\_\+value}}
-\index{hash\+\_\+value\+\_\+get\+\_\+value@{hash\+\_\+value\+\_\+get\+\_\+value}!hash.\+h@{hash.\+h}}
-\subsubsection[{hash\+\_\+value\+\_\+get\+\_\+value}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ hash\+\_\+value\+\_\+get\+\_\+value (
-\begin{DoxyParamCaption}
-\item[{{\bf khash\+\_\+value\+\_\+t} $\ast$}]{hash\+\_\+value}
-\end{DoxyParamCaption}
-)}\label{a00066_aab909a28870f824900d55d4158ecf807_aab909a28870f824900d55d4158ecf807}
-
-
-内部使用，哈希表，同时支持数字或字符串作为key 
-
-取得自定义值 
-\begin{DoxyParams}{参数}
-{\em hash\+\_\+value} & khash\+\_\+value\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-自定义值 
-\end{DoxyReturn}

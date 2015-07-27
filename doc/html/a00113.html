@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: 事件循环</title>
+<title>knet: 管道引用</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -79,64 +79,104 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
   <div class="summary">
 <a href="#func-members">函数</a>  </div>
   <div class="headertitle">
-<div class="title">事件循环</div>  </div>
+<div class="title">管道引用</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>网络事件循环  
+<p>管道引用  
 <a href="#details">更多...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 函数</h2></td></tr>
-<tr class="memitem:ga2e4181ebe9c1769be90bb8dc0e5cdffe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00054_a97fc76209a58362019f1ded9169e397f.html#a97fc76209a58362019f1ded9169e397f">kloop_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_ga2e4181ebe9c1769be90bb8dc0e5cdffe.html#ga2e4181ebe9c1769be90bb8dc0e5cdffe">knet_loop_create</a> ()</td></tr>
-<tr class="memdesc:ga2e4181ebe9c1769be90bb8dc0e5cdffe"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建一个事件循环  <a href="a00113_ga2e4181ebe9c1769be90bb8dc0e5cdffe.html#ga2e4181ebe9c1769be90bb8dc0e5cdffe">更多...</a><br /></td></tr>
-<tr class="separator:ga2e4181ebe9c1769be90bb8dc0e5cdffe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga390ea3161f935d0d3a411df8752d8b9f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_ga390ea3161f935d0d3a411df8752d8b9f.html#ga390ea3161f935d0d3a411df8752d8b9f">knet_loop_destroy</a> (<a class="el" href="a00054_a97fc76209a58362019f1ded9169e397f.html#a97fc76209a58362019f1ded9169e397f">kloop_t</a> *loop)</td></tr>
-<tr class="memdesc:ga390ea3161f935d0d3a411df8752d8b9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁事件循环 事件循环内的所有管道也会被销毁  <a href="a00113_ga390ea3161f935d0d3a411df8752d8b9f.html#ga390ea3161f935d0d3a411df8752d8b9f">更多...</a><br /></td></tr>
-<tr class="separator:ga390ea3161f935d0d3a411df8752d8b9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac1f9a4848c06c2a6a2723d7b991b4394"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00054_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_gac1f9a4848c06c2a6a2723d7b991b4394.html#gac1f9a4848c06c2a6a2723d7b991b4394">knet_loop_create_channel</a> (<a class="el" href="a00054_a97fc76209a58362019f1ded9169e397f.html#a97fc76209a58362019f1ded9169e397f">kloop_t</a> *loop, uint32_t max_send_list_len, uint32_t recv_ring_len)</td></tr>
-<tr class="memdesc:gac1f9a4848c06c2a6a2723d7b991b4394"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建管道  <a href="a00113_gac1f9a4848c06c2a6a2723d7b991b4394.html#gac1f9a4848c06c2a6a2723d7b991b4394">更多...</a><br /></td></tr>
-<tr class="separator:gac1f9a4848c06c2a6a2723d7b991b4394"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaddfd5a2709d0c26ada8a2dd3fd6a5b62"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00054_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_gaddfd5a2709d0c26ada8a2dd3fd6a5b62.html#gaddfd5a2709d0c26ada8a2dd3fd6a5b62">knet_loop_create_channel_exist_socket_fd</a> (<a class="el" href="a00054_a97fc76209a58362019f1ded9169e397f.html#a97fc76209a58362019f1ded9169e397f">kloop_t</a> *loop, <a class="el" href="a00054_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd, uint32_t max_send_list_len, uint32_t recv_ring_len)</td></tr>
-<tr class="memdesc:gaddfd5a2709d0c26ada8a2dd3fd6a5b62"><td class="mdescLeft">&#160;</td><td class="mdescRight">使用已存在的套接字创建管道  <a href="a00113_gaddfd5a2709d0c26ada8a2dd3fd6a5b62.html#gaddfd5a2709d0c26ada8a2dd3fd6a5b62">更多...</a><br /></td></tr>
-<tr class="separator:gaddfd5a2709d0c26ada8a2dd3fd6a5b62"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga37ab03493fb1ed037815f2cd951d762a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_ga37ab03493fb1ed037815f2cd951d762a.html#ga37ab03493fb1ed037815f2cd951d762a">knet_loop_run_once</a> (<a class="el" href="a00054_a97fc76209a58362019f1ded9169e397f.html#a97fc76209a58362019f1ded9169e397f">kloop_t</a> *loop)</td></tr>
-<tr class="memdesc:ga37ab03493fb1ed037815f2cd951d762a"><td class="mdescLeft">&#160;</td><td class="mdescRight">运行一次事件循环 kloop_t不是线程安全的，不能在多个线程内同时对同一个kloop_t实例调用knet_loop_run_once  <a href="a00113_ga37ab03493fb1ed037815f2cd951d762a.html#ga37ab03493fb1ed037815f2cd951d762a">更多...</a><br /></td></tr>
-<tr class="separator:ga37ab03493fb1ed037815f2cd951d762a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaaf104ae1337c32415bd1aa8df545ae31"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_gaaf104ae1337c32415bd1aa8df545ae31.html#gaaf104ae1337c32415bd1aa8df545ae31">knet_loop_run</a> (<a class="el" href="a00054_a97fc76209a58362019f1ded9169e397f.html#a97fc76209a58362019f1ded9169e397f">kloop_t</a> *loop)</td></tr>
-<tr class="memdesc:gaaf104ae1337c32415bd1aa8df545ae31"><td class="mdescLeft">&#160;</td><td class="mdescRight">运行事件循环直到调用knet_loop_exit() kloop_t不是线程安全的，不能在多个线程内同时对同一个kloop_t实例调用knet_loop_run  <a href="a00113_gaaf104ae1337c32415bd1aa8df545ae31.html#gaaf104ae1337c32415bd1aa8df545ae31">更多...</a><br /></td></tr>
-<tr class="separator:gaaf104ae1337c32415bd1aa8df545ae31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga9e04a2d06c79405f444aa53a26eedd90"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_ga9e04a2d06c79405f444aa53a26eedd90.html#ga9e04a2d06c79405f444aa53a26eedd90">knet_loop_exit</a> (<a class="el" href="a00054_a97fc76209a58362019f1ded9169e397f.html#a97fc76209a58362019f1ded9169e397f">kloop_t</a> *loop)</td></tr>
-<tr class="memdesc:ga9e04a2d06c79405f444aa53a26eedd90"><td class="mdescLeft">&#160;</td><td class="mdescRight">退出函数knet_loop_run()  <a href="a00113_ga9e04a2d06c79405f444aa53a26eedd90.html#ga9e04a2d06c79405f444aa53a26eedd90">更多...</a><br /></td></tr>
-<tr class="separator:ga9e04a2d06c79405f444aa53a26eedd90"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1eca6d310350a4545182666db28fb91f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_ga1eca6d310350a4545182666db28fb91f.html#ga1eca6d310350a4545182666db28fb91f">knet_loop_get_active_channel_count</a> (<a class="el" href="a00054_a97fc76209a58362019f1ded9169e397f.html#a97fc76209a58362019f1ded9169e397f">kloop_t</a> *loop)</td></tr>
-<tr class="memdesc:ga1eca6d310350a4545182666db28fb91f"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取活跃管道数量  <a href="a00113_ga1eca6d310350a4545182666db28fb91f.html#ga1eca6d310350a4545182666db28fb91f">更多...</a><br /></td></tr>
-<tr class="separator:ga1eca6d310350a4545182666db28fb91f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga8a8c7aee4eed09d50062a5f464cdba7a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_ga8a8c7aee4eed09d50062a5f464cdba7a.html#ga8a8c7aee4eed09d50062a5f464cdba7a">knet_loop_get_close_channel_count</a> (<a class="el" href="a00054_a97fc76209a58362019f1ded9169e397f.html#a97fc76209a58362019f1ded9169e397f">kloop_t</a> *loop)</td></tr>
-<tr class="memdesc:ga8a8c7aee4eed09d50062a5f464cdba7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取已关闭管道数量  <a href="a00113_ga8a8c7aee4eed09d50062a5f464cdba7a.html#ga8a8c7aee4eed09d50062a5f464cdba7a">更多...</a><br /></td></tr>
-<tr class="separator:ga8a8c7aee4eed09d50062a5f464cdba7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf1239ea65307d7dc588175c45947437b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_gaf1239ea65307d7dc588175c45947437b.html#gaf1239ea65307d7dc588175c45947437b">knet_loop_set_data</a> (<a class="el" href="a00054_a97fc76209a58362019f1ded9169e397f.html#a97fc76209a58362019f1ded9169e397f">kloop_t</a> *loop, void *data)</td></tr>
-<tr class="memdesc:gaf1239ea65307d7dc588175c45947437b"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置用户数据指针  <a href="a00113_gaf1239ea65307d7dc588175c45947437b.html#gaf1239ea65307d7dc588175c45947437b">更多...</a><br /></td></tr>
-<tr class="separator:gaf1239ea65307d7dc588175c45947437b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gafc6a946f7c7fd4fb0508ac0f88969da1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00054_ab75a5c23099a6118c469ed160b277f28.html#ab75a5c23099a6118c469ed160b277f28">kloop_profile_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_gafc6a946f7c7fd4fb0508ac0f88969da1.html#gafc6a946f7c7fd4fb0508ac0f88969da1">knet_loop_get_profile</a> (<a class="el" href="a00054_a97fc76209a58362019f1ded9169e397f.html#a97fc76209a58362019f1ded9169e397f">kloop_t</a> *loop)</td></tr>
-<tr class="memdesc:gafc6a946f7c7fd4fb0508ac0f88969da1"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得统计器  <a href="a00113_gafc6a946f7c7fd4fb0508ac0f88969da1.html#gafc6a946f7c7fd4fb0508ac0f88969da1">更多...</a><br /></td></tr>
-<tr class="separator:gafc6a946f7c7fd4fb0508ac0f88969da1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga45710b87649c232603ae708616eddd85"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00056_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_ga45710b87649c232603ae708616eddd85.html#ga45710b87649c232603ae708616eddd85">knet_channel_ref_share</a> (<a class="el" href="a00056_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *channel_ref)</td></tr>
+<tr class="memdesc:ga45710b87649c232603ae708616eddd85"><td class="mdescLeft">&#160;</td><td class="mdescRight">增加管道引用计数，并创建与管道关联的新的kchannel_ref_t实例  <a href="a00113_ga45710b87649c232603ae708616eddd85.html#ga45710b87649c232603ae708616eddd85">更多...</a><br /></td></tr>
+<tr class="separator:ga45710b87649c232603ae708616eddd85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6eded28dc89d84e8ed33615bbd205bae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_ga6eded28dc89d84e8ed33615bbd205bae.html#ga6eded28dc89d84e8ed33615bbd205bae">knet_channel_ref_leave</a> (<a class="el" href="a00056_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *channel_ref)</td></tr>
+<tr class="memdesc:ga6eded28dc89d84e8ed33615bbd205bae"><td class="mdescLeft">&#160;</td><td class="mdescRight">减少管道引用计数，并销毁kchannel_ref_t实例  <a href="a00113_ga6eded28dc89d84e8ed33615bbd205bae.html#ga6eded28dc89d84e8ed33615bbd205bae">更多...</a><br /></td></tr>
+<tr class="separator:ga6eded28dc89d84e8ed33615bbd205bae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga92a683023f347ae7c4eb692180884a01"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_ga92a683023f347ae7c4eb692180884a01.html#ga92a683023f347ae7c4eb692180884a01">knet_channel_ref_accept</a> (<a class="el" href="a00056_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *channel_ref, const char *ip, int port, int backlog)</td></tr>
+<tr class="memdesc:ga92a683023f347ae7c4eb692180884a01"><td class="mdescLeft">&#160;</td><td class="mdescRight">将管道转换为监听管道  <a href="a00113_ga92a683023f347ae7c4eb692180884a01.html#ga92a683023f347ae7c4eb692180884a01">更多...</a><br /></td></tr>
+<tr class="separator:ga92a683023f347ae7c4eb692180884a01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad8fc0ffe3928e6914b3ec50810e2e79f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_gad8fc0ffe3928e6914b3ec50810e2e79f.html#gad8fc0ffe3928e6914b3ec50810e2e79f">knet_channel_ref_connect</a> (<a class="el" href="a00056_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *channel_ref, const char *ip, int port, int timeout)</td></tr>
+<tr class="memdesc:gad8fc0ffe3928e6914b3ec50810e2e79f"><td class="mdescLeft">&#160;</td><td class="mdescRight">主动连接  <a href="a00113_gad8fc0ffe3928e6914b3ec50810e2e79f.html#gad8fc0ffe3928e6914b3ec50810e2e79f">更多...</a><br /></td></tr>
+<tr class="separator:gad8fc0ffe3928e6914b3ec50810e2e79f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad63e9094fa461829bf91cf8b50d98f21"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_gad63e9094fa461829bf91cf8b50d98f21.html#gad63e9094fa461829bf91cf8b50d98f21">knet_channel_ref_reconnect</a> (<a class="el" href="a00056_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *channel_ref, int timeout)</td></tr>
+<tr class="memdesc:gad63e9094fa461829bf91cf8b50d98f21"><td class="mdescLeft">&#160;</td><td class="mdescRight">重新发起连接  <a href="a00113_gad63e9094fa461829bf91cf8b50d98f21.html#gad63e9094fa461829bf91cf8b50d98f21">更多...</a><br /></td></tr>
+<tr class="separator:gad63e9094fa461829bf91cf8b50d98f21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad86b8f0e35f643881f521a1c49f85c76"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_gad86b8f0e35f643881f521a1c49f85c76.html#gad86b8f0e35f643881f521a1c49f85c76">knet_channel_ref_set_auto_reconnect</a> (<a class="el" href="a00056_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *channel_ref, int auto_reconnect)</td></tr>
+<tr class="memdesc:gad86b8f0e35f643881f521a1c49f85c76"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置管道自动重连  <a href="a00113_gad86b8f0e35f643881f521a1c49f85c76.html#gad86b8f0e35f643881f521a1c49f85c76">更多...</a><br /></td></tr>
+<tr class="separator:gad86b8f0e35f643881f521a1c49f85c76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae0a3f38cfb6a397a4c810cd8c162c37f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_gae0a3f38cfb6a397a4c810cd8c162c37f.html#gae0a3f38cfb6a397a4c810cd8c162c37f">knet_channel_ref_check_auto_reconnect</a> (<a class="el" href="a00056_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *channel_ref)</td></tr>
+<tr class="memdesc:gae0a3f38cfb6a397a4c810cd8c162c37f"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查管道是否开启了自动重连  <a href="a00113_gae0a3f38cfb6a397a4c810cd8c162c37f.html#gae0a3f38cfb6a397a4c810cd8c162c37f">更多...</a><br /></td></tr>
+<tr class="separator:gae0a3f38cfb6a397a4c810cd8c162c37f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae6b27f8bb8c72932a086dc20a4582527"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_gae6b27f8bb8c72932a086dc20a4582527.html#gae6b27f8bb8c72932a086dc20a4582527">knet_channel_ref_check_balance</a> (<a class="el" href="a00056_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *channel_ref)</td></tr>
+<tr class="memdesc:gae6b27f8bb8c72932a086dc20a4582527"><td class="mdescLeft">&#160;</td><td class="mdescRight">检测管道是否是通过负载均衡关联到当前的kloop_t  <a href="a00113_gae6b27f8bb8c72932a086dc20a4582527.html#gae6b27f8bb8c72932a086dc20a4582527">更多...</a><br /></td></tr>
+<tr class="separator:gae6b27f8bb8c72932a086dc20a4582527"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga902f5bad47644b56ff5d9a4ecf152abb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_ga902f5bad47644b56ff5d9a4ecf152abb.html#ga902f5bad47644b56ff5d9a4ecf152abb">knet_channel_ref_check_state</a> (<a class="el" href="a00056_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *channel_ref, <a class="el" href="a00056_a74ff83eaafca5c7093accdc65c6b0646.html#a74ff83eaafca5c7093accdc65c6b0646">knet_channel_state_e</a> state)</td></tr>
+<tr class="memdesc:ga902f5bad47644b56ff5d9a4ecf152abb"><td class="mdescLeft">&#160;</td><td class="mdescRight">检测管道当前状态  <a href="a00113_ga902f5bad47644b56ff5d9a4ecf152abb.html#ga902f5bad47644b56ff5d9a4ecf152abb">更多...</a><br /></td></tr>
+<tr class="separator:ga902f5bad47644b56ff5d9a4ecf152abb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf7ce59d20d4e716707bea7dec42811c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_gaf7ce59d20d4e716707bea7dec42811c3.html#gaf7ce59d20d4e716707bea7dec42811c3">knet_channel_ref_close</a> (<a class="el" href="a00056_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *channel_ref)</td></tr>
+<tr class="memdesc:gaf7ce59d20d4e716707bea7dec42811c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">关闭管道  <a href="a00113_gaf7ce59d20d4e716707bea7dec42811c3.html#gaf7ce59d20d4e716707bea7dec42811c3">更多...</a><br /></td></tr>
+<tr class="separator:gaf7ce59d20d4e716707bea7dec42811c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad844fbd8ee19d3cbcc2ad7822b0d5a2c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_gad844fbd8ee19d3cbcc2ad7822b0d5a2c.html#gad844fbd8ee19d3cbcc2ad7822b0d5a2c">knet_channel_ref_check_close</a> (<a class="el" href="a00056_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *channel_ref)</td></tr>
+<tr class="memdesc:gad844fbd8ee19d3cbcc2ad7822b0d5a2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查管道是否已经关闭  <a href="a00113_gad844fbd8ee19d3cbcc2ad7822b0d5a2c.html#gad844fbd8ee19d3cbcc2ad7822b0d5a2c">更多...</a><br /></td></tr>
+<tr class="separator:gad844fbd8ee19d3cbcc2ad7822b0d5a2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga58380a92125ad1a79ecbae828b8e9755"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00056_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_ga58380a92125ad1a79ecbae828b8e9755.html#ga58380a92125ad1a79ecbae828b8e9755">knet_channel_ref_get_socket_fd</a> (<a class="el" href="a00056_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *channel_ref)</td></tr>
+<tr class="memdesc:ga58380a92125ad1a79ecbae828b8e9755"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得管道套接字  <a href="a00113_ga58380a92125ad1a79ecbae828b8e9755.html#ga58380a92125ad1a79ecbae828b8e9755">更多...</a><br /></td></tr>
+<tr class="separator:ga58380a92125ad1a79ecbae828b8e9755"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa96ef131ed8d43d529a76ce1c9aea1a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00056_acc208c4c40c875eebbfef88f00fffacf.html#acc208c4c40c875eebbfef88f00fffacf">kstream_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_gaa96ef131ed8d43d529a76ce1c9aea1a3.html#gaa96ef131ed8d43d529a76ce1c9aea1a3">knet_channel_ref_get_stream</a> (<a class="el" href="a00056_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *channel_ref)</td></tr>
+<tr class="memdesc:gaa96ef131ed8d43d529a76ce1c9aea1a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得管道数据流  <a href="a00113_gaa96ef131ed8d43d529a76ce1c9aea1a3.html#gaa96ef131ed8d43d529a76ce1c9aea1a3">更多...</a><br /></td></tr>
+<tr class="separator:gaa96ef131ed8d43d529a76ce1c9aea1a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga32ac938704d08913a296bf9a7443632e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00056_a97fc76209a58362019f1ded9169e397f.html#a97fc76209a58362019f1ded9169e397f">kloop_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_ga32ac938704d08913a296bf9a7443632e.html#ga32ac938704d08913a296bf9a7443632e">knet_channel_ref_get_loop</a> (<a class="el" href="a00056_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *channel_ref)</td></tr>
+<tr class="memdesc:ga32ac938704d08913a296bf9a7443632e"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得管道所关联的事件循环  <a href="a00113_ga32ac938704d08913a296bf9a7443632e.html#ga32ac938704d08913a296bf9a7443632e">更多...</a><br /></td></tr>
+<tr class="separator:ga32ac938704d08913a296bf9a7443632e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7c0a36ca7b0f62985b64915f2e5cd947"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_ga7c0a36ca7b0f62985b64915f2e5cd947.html#ga7c0a36ca7b0f62985b64915f2e5cd947">knet_channel_ref_set_cb</a> (<a class="el" href="a00056_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *channel_ref, <a class="el" href="a00056_a8a7d96123ef4565c6d08fe58a10476a9.html#a8a7d96123ef4565c6d08fe58a10476a9">knet_channel_ref_cb_t</a> cb)</td></tr>
+<tr class="memdesc:ga7c0a36ca7b0f62985b64915f2e5cd947"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置管道事件回调  <a href="a00113_ga7c0a36ca7b0f62985b64915f2e5cd947.html#ga7c0a36ca7b0f62985b64915f2e5cd947">更多...</a><br /></td></tr>
+<tr class="separator:ga7c0a36ca7b0f62985b64915f2e5cd947"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga81b273235ae5970b4642a961744315d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_ga81b273235ae5970b4642a961744315d6.html#ga81b273235ae5970b4642a961744315d6">knet_channel_ref_set_timeout</a> (<a class="el" href="a00056_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *channel_ref, int timeout)</td></tr>
+<tr class="memdesc:ga81b273235ae5970b4642a961744315d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置管道空闲超时  <a href="a00113_ga81b273235ae5970b4642a961744315d6.html#ga81b273235ae5970b4642a961744315d6">更多...</a><br /></td></tr>
+<tr class="separator:ga81b273235ae5970b4642a961744315d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac54b0999f21b2f481f7b8ebd17699655"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00056_a44e99fab0348ec54cfee119ddd9ceed6.html#a44e99fab0348ec54cfee119ddd9ceed6">kaddress_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_gac54b0999f21b2f481f7b8ebd17699655.html#gac54b0999f21b2f481f7b8ebd17699655">knet_channel_ref_get_peer_address</a> (<a class="el" href="a00056_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *channel_ref)</td></tr>
+<tr class="memdesc:gac54b0999f21b2f481f7b8ebd17699655"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得对端地址  <a href="a00113_gac54b0999f21b2f481f7b8ebd17699655.html#gac54b0999f21b2f481f7b8ebd17699655">更多...</a><br /></td></tr>
+<tr class="separator:gac54b0999f21b2f481f7b8ebd17699655"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaddc78bbbcee3974d351c2c1ec0340e3e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00056_a44e99fab0348ec54cfee119ddd9ceed6.html#a44e99fab0348ec54cfee119ddd9ceed6">kaddress_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_gaddc78bbbcee3974d351c2c1ec0340e3e.html#gaddc78bbbcee3974d351c2c1ec0340e3e">knet_channel_ref_get_local_address</a> (<a class="el" href="a00056_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *channel_ref)</td></tr>
+<tr class="memdesc:gaddc78bbbcee3974d351c2c1ec0340e3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得本地地址  <a href="a00113_gaddc78bbbcee3974d351c2c1ec0340e3e.html#gaddc78bbbcee3974d351c2c1ec0340e3e">更多...</a><br /></td></tr>
+<tr class="separator:gaddc78bbbcee3974d351c2c1ec0340e3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga33f0ef5b9b57ff12a51579e222807335"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_ga33f0ef5b9b57ff12a51579e222807335.html#ga33f0ef5b9b57ff12a51579e222807335">knet_channel_ref_get_uuid</a> (<a class="el" href="a00056_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *channel_ref)</td></tr>
+<tr class="memdesc:ga33f0ef5b9b57ff12a51579e222807335"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取管道UUID  <a href="a00113_ga33f0ef5b9b57ff12a51579e222807335.html#ga33f0ef5b9b57ff12a51579e222807335">更多...</a><br /></td></tr>
+<tr class="separator:ga33f0ef5b9b57ff12a51579e222807335"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga021034214898a7509914a336a1afb47a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_ga021034214898a7509914a336a1afb47a.html#ga021034214898a7509914a336a1afb47a">knet_channel_ref_equal</a> (<a class="el" href="a00056_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *a, <a class="el" href="a00056_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *b)</td></tr>
+<tr class="memdesc:ga021034214898a7509914a336a1afb47a"><td class="mdescLeft">&#160;</td><td class="mdescRight">测试两个管道引用是否指向同一个管道  <a href="a00113_ga021034214898a7509914a336a1afb47a.html#ga021034214898a7509914a336a1afb47a">更多...</a><br /></td></tr>
+<tr class="separator:ga021034214898a7509914a336a1afb47a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga21f85fcd9fe24484f3dbe368eac5e9bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_ga21f85fcd9fe24484f3dbe368eac5e9bb.html#ga21f85fcd9fe24484f3dbe368eac5e9bb">knet_channel_ref_set_user_data</a> (<a class="el" href="a00056_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *channel_ref, void *data)</td></tr>
+<tr class="memdesc:ga21f85fcd9fe24484f3dbe368eac5e9bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置管道用户数据  <a href="a00113_ga21f85fcd9fe24484f3dbe368eac5e9bb.html#ga21f85fcd9fe24484f3dbe368eac5e9bb">更多...</a><br /></td></tr>
+<tr class="separator:ga21f85fcd9fe24484f3dbe368eac5e9bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabd02f58cb58b94071796e06bad804369"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00113_gabd02f58cb58b94071796e06bad804369.html#gabd02f58cb58b94071796e06bad804369">knet_channel_ref_get_user_data</a> (<a class="el" href="a00056_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *channel_ref)</td></tr>
+<tr class="memdesc:gabd02f58cb58b94071796e06bad804369"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取管道用户数据  <a href="a00113_gabd02f58cb58b94071796e06bad804369.html#gabd02f58cb58b94071796e06bad804369">更多...</a><br /></td></tr>
+<tr class="separator:gabd02f58cb58b94071796e06bad804369"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
-<p>网络事件循环 </p>
+<p>管道引用 </p>
 <pre>
-网络事件API，作为各个不同操作系统网络选取器的包装，屏蔽了不同平台的具体实现，
-为你提供统一的调用接口.</pre><pre>管道引用kchannel_ref_t通过调用knet_loop_create_channel和knet_loop_create_channel_exist_socket_fd
-创建，knet_loop_run将启动事件循环并等待调用knet_loop_exit退出，你可以手动调用knet_loop_run_once运行一次事件
-循环自己控制循环的调用频率.</pre><pre>每个kloop_t内都维护了活跃管道和已关闭(未销毁)管道的双向链表，可以通过knet_loop_get_active_channel_count
-和knet_loop_get_close_channel_count来取得具体数量.</pre><pre>在创建管道时，要注意两个重要的配置参数：</pre><pre>1. max_send_list_len 发送链表最大元素个数
-2. recv_ring_len     接受缓冲区最大长度</pre><pre>通常向管道内发送数据(stream_push_系列)，管道会尝试直接发送，并不缓存要发送的数据，如果因为某种原因
-导致不能直接发送，数据会被缓存在发送链表内等待合适的时机发送，如果发送链表的长度达到上限，管道会被关闭.
-同样，接受缓冲区会从套接字内将数据读取出来，如果你一直不从kstream_t内取数据，那么早晚会被写满，管道也
-会被关闭.</pre><pre></pre> </div><!-- contents -->
+kchannel_ref_t作为kchannel_t的包装器，对于用户透明化了管道的内部实现，同时提供了引用计数用于
+管道的生命周期管理.</pre><pre>管道有3种类型：</pre><pre>1. 连接器
+2. 监听器
+3. 由监听器接受的新管道</pre><pre>管道有3种状态:</pre><pre>1. 新建立 刚建立但不确定是作为连接器或者监听器存在
+2. 活跃   已经确定了自己的角色
+3. 关闭   已经关闭，但还未销毁，引用计数不为零</pre><pre>在没有负载均衡器存在的情况下(kloop_t没有通过knet_loop_balancer_attach关联到kloop_balancer_t),
+所有连接器管道都会在当前kloop_t内运行，所有由监听器接受的管道也会在kloop_t内运行.
+如果kloop_t已经关联到负载均衡器，连接器/监听器接受的管道可能不在当前kloop_t内
+运行，负载均衡器会根据活跃管道的数量将这个管道分配到其他kloop_t运行，或者仍然在当前kloop_t内运行，
+结果取决于当前所有kloop_t负载的情况（活跃管道的数量）.</pre><pre>可以调用函数knet_channel_ref_check_balance确定管道是否被负载均衡调配，调用knet_channel_ref_check_state
+检查管道当前所处的状态，knet_channel_ref_close关闭管道，无论此时管道的引用计数是否为零，管道的套接字都会
+被关闭，当管道引用计数为零时，kloop_t才会真正销毁它.调用knet_channel_ref_equal可以判断两个管道引用是否
+指向同一个管道.</pre><pre>可以通过调用knet_channel_ref_set_timeout设置管道的读空闲超时（秒），这可以用做心跳包的处理，调用
+knet_channel_ref_connect时最后一个参数传递一个非零值可以设置连接器的连接超时（秒），这可以用于重连.
+调用knet_channel_ref_get_socket_fd得到管道套接字，调用knet_channel_ref_get_uuid的到管道UUID.
+</pre> </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 24日 星期五 11:53:45 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 七月 27日 星期一 14:33:20 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
