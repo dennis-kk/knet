@@ -126,7 +126,7 @@ int knet_vrouter_remove_wire(kvrouter_t* router, kchannel_ref_t* c) {
     return error;
 }
 
-int knet_vrouter_route(kvrouter_t* router, kchannel_ref_t* c, void* buffer, int size) {
+int knet_vrouter_route(kvrouter_t* router, kchannel_ref_t* c, const void* buffer, int size) {
     uint32_t   id    = 0;
     wire_t*    w     = 0;
     kstream_t* s     = 0;
