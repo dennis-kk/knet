@@ -33,7 +33,7 @@
  *
  * <pre>
  * 提供一个点对点单向的路由关系表，表内维护了管道路由的{c1, c2}的对应关系，
- * 但这个转发关系是单向的，即只支持c1到c2的转发，但不至此后c2到c1的转发，
+ * 但这个转发关系是单向的，即只支持c1到c2的转发，但不支持c2到c1的转发，
  * 如果要支持c2到c1的转发，需要添加新的转发关系{c2, c1}.
  * 表内使用源管道的UUID作为键，所以同一个管道作为起始管道只能出现一次,但
  * 作为目的管道可以出现N次.
@@ -56,8 +56,8 @@ extern kvrouter_t* knet_vrouter_create();
 extern void knet_vrouter_destroy(kvrouter_t* router);
 
 /**
- * 建立一条转发转发关系
- * @return kvrouter_t实例
+ * 建立一条转发关系
+ * @param router kvrouter_t实例
  * @param c1 kchannel_ref_t实例，源管道
  * @param c2 kchannel_ref_t实例，目的管道
  * @retval error_ok 成功
@@ -67,7 +67,7 @@ extern int knet_vrouter_add_wire(kvrouter_t* router, kchannel_ref_t* c1, kchanne
 
 /**
  * 删除一条转发关系
- * @return kvrouter_t实例
+ * @param router kvrouter_t实例
  * @param c kchannel_ref_t实例，源管道(knet_vrouter_add_wire第二个参数)
  * @retval error_ok 成功
  * @retval 其他 失败
@@ -76,14 +76,14 @@ extern int knet_vrouter_remove_wire(kvrouter_t* router, kchannel_ref_t* c);
 
 /**
  * 转发数据
- * @return kvrouter_t实例
+ * @param router kvrouter_t实例
  * @param c kchannel_ref_t实例，源管道(knet_vrouter_add_wire第二个参数)
  * @param buffer 数据缓冲区
  * @param size 缓冲区长度
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int knet_vrouter_route(kvrouter_t* router, kchannel_ref_t* c, void* buffer, int size);
+extern int knet_vrouter_route(kvrouter_t* router, kchannel_ref_t* c, const void* buffer, int size);
 
 /** @} */
 
