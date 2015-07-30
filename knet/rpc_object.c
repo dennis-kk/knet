@@ -680,7 +680,7 @@ uint32_t krpc_number_get_ui32(krpc_object_t* o) {
     return o->number.ui32;
 }
 
-void krpc_number_set_ui64(krpc_object_t* o, int64_t ui64) {
+void krpc_number_set_ui64(krpc_object_t* o, uint64_t ui64) {
     verify(o);
     if (!krpc_object_check_type(o, krpc_type_number)) {
         verify(0);
