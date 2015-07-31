@@ -68,6 +68,29 @@
 
 #include "config.h"
 
+#define KRPC_MEMBER_SET(type, key) \
+    void krpc_member_set(krpc_object_t* t, type node) { \
+        krpc_number_set_##key(t, node); \
+    }
+
+#define KRPC_MEMBER_GET(type, key) \
+    void krpc_member_get(krpc_object_t* t, type& node) { \
+        node = krpc_number_get_##key(t); \
+    }
+
+#define KRPC_MARSHAL_COMM(type) \
+    krpc_object_t* marshal(type node){ \
+        krpc_object_t* node_ptr = krpc_object_create(); \
+        krpc_member_set(node_ptr, node); \
+        return node_ptr; \
+    }
+
+#define KRPC_UNMARSHAL_COMM(type) \
+    bool unmarshal(krpc_object_t* v, type& node) { \
+        krpc_member_get(v, node); \
+        return true; \
+    }
+
 /**
  * 所有set类方法调用时确定krpc_object_t实际类型，类型一旦确定不能再次更改
  */
