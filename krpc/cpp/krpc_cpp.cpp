@@ -322,14 +322,8 @@ void krpc_gen_cpp_t::gen_struct_marshal_method_impls(krpc_ostream_t& source) {
 }
 
 void krpc_gen_cpp_t::gen_struct_marshal_field_impl(krpc_ostream_t& source, krpc_field_t* field) {
-    if (field->check_array()) {
-        gen_field_marshal_impl_array(field, source, false);
-    } else if (field->check_table()) {
-        gen_field_marshal_impl_table(field, source, false);
-    } else {
-        std::string holder = "o." + field->get_field_name();
-        gen_field_marshal_impl_not_array(field, source, holder, "v");
-    }
+	std::string holder = "o." + field->get_field_name();
+	gen_field_marshal_impl_not_array(field, source, holder, "v");
 }
 
 void krpc_gen_cpp_t::gen_struct_marshal_method_impl(krpc_ostream_t& source, krpc_attribute_t* object) {
@@ -363,13 +357,7 @@ void krpc_gen_cpp_t::gen_struct_unmarshal_method_impl(krpc_ostream_t& source, kr
 }
 
 void krpc_gen_cpp_t::gen_struct_unmarshal_field_impl(krpc_ostream_t& source, krpc_field_t* field, const std::string& name, int index) {
-    if (field->check_array()) {
-        gen_attribute_unmarshal_field_array(field, source, name, index);
-    } else if (field->check_table()) {
-        gen_struct_unmarshal_field_table(source, field, index);
-    } else {            
-        gen_attribute_unmarshal_field_not_array(field, source, name, index);
-    }
+	source.write("\tkrpc_unmarshal(krpc_vector_get(v, {{$index}}), o.{{@name}});\n", index, field->get_field_name().c_str());
 }
 
 void krpc_gen_cpp_t::gen_rpc_call_proxy_impls(krpc_ostream_t& source) {
@@ -484,23 +472,6 @@ void krpc_gen_cpp_t::gen_struct_method_impl(krpc_ostream_t& source, krpc_attribu
     gen_attribute_method_print_impl(object, source);
 }
 
-void krpc_gen_cpp_t::gen_struct_unmarshal_field_table(krpc_ostream_t& source, krpc_field_t* field, int index) {
-    source.write_template("cpp_tpl/source_struct_unmarshal_field_table_begin.tpl", index);
-    // ÊôÐÔunmarshal
-    if (field->check_value_type(krpc_field_type_attribute)) {
-        source.write_template("cpp_tpl/struct_unmarshal_field_table_object.tpl",
-            field->get_value_type_name().c_str(),
-            field->get_field_name().c_str(),
-            param_find_table_key_get_func_name(field).c_str());
-    } else {
-        source.write_template("cpp_tpl/struct_unmarshal_field_table_common.tpl",
-            field->get_field_name().c_str(),
-            param_find_table_key_get_func_name(field).c_str(),
-            param_find_table_value_get_func_name(field).c_str());
-    }
-    source.write_template("cpp_tpl/struct_unmarshal_field_table_end.tpl");
-}
-
 void krpc_gen_cpp_t::gen_source_file() {
     krpc_gen_t::option_map_t& options = _rpc_gen->get_options();
     krpc_ostream_t source(options["dir"] + options["name"] + ".cpp");
@@ -543,112 +514,18 @@ void krpc_gen_cpp_t::gen_field_unmarshal_impl_table(krpc_field_t* field,
     source.write_template("cpp_tpl/source_field_unmarshal_table_begin.tpl",
         field_find_type_name(field).c_str(),
         field_find_value_type_name(field).c_str(),
-        index,
         index);
-    std::string key_get_func = param_find_table_key_get_func_name(field);
-    std::string value_get_func = param_find_table_value_get_func_name(field);
-    if (field->check_value_type(krpc_field_type_attribute)) {
-        source.write_template("cpp_tpl/source_field_unmarshal_table_object.tpl",
-            field->get_value_type_name().c_str(),
-            index,
-            key_get_func.c_str());
-    } else {
-        source.write_template("cpp_tpl/source_field_unmarshal_table_common.tpl",
-            index,
-            key_get_func.c_str(),
-            value_get_func.c_str());
-    }
-    source << "\t\t\twhile (krpc_map_next(m_, &k_, &v_)) {\n";
-    key_get_func = param_find_table_key_get_func_name(field);
-    value_get_func = param_find_table_value_get_func_name(field);
-    if (field->check_value_type(krpc_field_type_attribute)) {
-        source.write_template("cpp_tpl/source_field_unmarshal_table_object_while.tpl",
-            field->get_value_type_name().c_str(),
-            index,
-            key_get_func.c_str());
-    } else {
-        source.write_template("cpp_tpl/source_field_unmarshal_table_common_while.tpl",
-            index,
-            key_get_func.c_str(),
-            value_get_func.c_str());
-    }
-    source.write_template("cpp_tpl/source_field_unmarshal_table_end.tpl");
+	source.write_template("cpp_tpl/source_field_unmarshal_common_get.tpl",
+		index, index);
 }
 
 void krpc_gen_cpp_t::gen_field_unmarshal_impl_array(krpc_field_t* field,
     krpc_ostream_t& source, int index) {
     source.write_template("cpp_tpl/source_field_unmarshal_array_begin.tpl",
         field_find_type_name(field).c_str(),
-        index,
         index);
-    gen_field_unmarshal_impl_not_array_inline(field, source, index);
-    source.write_template("cpp_tpl/source_field_unmarshal_array_end.tpl");
-}
-
-void krpc_gen_cpp_t::gen_field_unmarshal_impl_not_array_inline_get(
-    krpc_ostream_t& source, int index, const std::string& method_name) {
-    source.write_template("cpp_tpl/source_field_unmarshal_impl_not_array_inline_get.tpl",
-        index,
-        method_name.c_str());
-}
-
-void krpc_gen_cpp_t::gen_field_unmarshal_impl_not_array_inline_get_common(krpc_field_t* field, krpc_ostream_t& source,
-    int index) {
-    if (field->check_type(krpc_field_type_i8)) {
-        gen_field_unmarshal_impl_not_array_inline_get(source, index,
-            "krpc_number_get_i16");
-    } else if (field->check_type(krpc_field_type_i16)) {
-        gen_field_unmarshal_impl_not_array_inline_get(source, index,
-            "krpc_number_get_i16");
-    } else if (field->check_type(krpc_field_type_i32)) {
-        gen_field_unmarshal_impl_not_array_inline_get(source, index,
-            "krpc_number_get_i32");
-    } else if (field->check_type(krpc_field_type_i64)) {
-        gen_field_unmarshal_impl_not_array_inline_get(source, index,
-            "krpc_number_get_i64");
-    } else if (field->check_type(krpc_field_type_ui8)) {
-        gen_field_unmarshal_impl_not_array_inline_get(source, index,
-            "krpc_number_get_ui8");
-    } else if (field->check_type(krpc_field_type_ui16)) {
-        gen_field_unmarshal_impl_not_array_inline_get(source, index,
-            "krpc_number_get_ui16");
-    } else if (field->check_type(krpc_field_type_ui32)) {
-        gen_field_unmarshal_impl_not_array_inline_get(source, index,
-            "krpc_number_get_ui32");
-    } else if (field->check_type(krpc_field_type_ui64)) {
-        gen_field_unmarshal_impl_not_array_inline_get(source, index,
-            "krpc_number_get_ui64");
-    } else if (field->check_type(krpc_field_type_f32)) {
-        gen_field_unmarshal_impl_not_array_inline_get(source, index,
-            "krpc_number_get_f32");
-    } else if (field->check_type(krpc_field_type_f64)) {
-        gen_field_unmarshal_impl_not_array_inline_get(source, index,
-            "krpc_number_get_f64");
-    } else if (field->check_type(krpc_field_type_string)) {
-        gen_field_unmarshal_impl_not_array_inline_get(source, index,
-            "krpc_string_get");
-    }
-}
-
-void krpc_gen_cpp_t::gen_field_unmarshal_impl_not_array_inline(
-    krpc_field_t* field, krpc_ostream_t& source, int index) {
-    source << "\t\t\t";
-    if (field->check_type(krpc_field_type_attribute)) {
-        source.write_template("cpp_tpl/source_field_unmarshal_not_array_inline_attribute.tpl",
-            field_find_type_name(field).c_str(),
-            index);
-    } else {
-        gen_field_unmarshal_impl_not_array_inline_get_common(field, source, index);
-    }
-}
-
-void krpc_gen_cpp_t::gen_field_unmarshal_impl_not_array_get(
-    krpc_ostream_t& source, int index,
-        const std::string& method_name) {
-    source.write_template("cpp_tpl/source_field_unmarshal_not_array_get.tpl",
-        index,
-        method_name.c_str(),
-        index);
+    source.write_template("cpp_tpl/source_field_unmarshal_common_get.tpl",
+		index, index);
 }
 
 void krpc_gen_cpp_t::gen_field_unmarshal_impl_not_array(
@@ -656,308 +533,18 @@ void krpc_gen_cpp_t::gen_field_unmarshal_impl_not_array(
     source.write_template("cpp_tpl/source_field_unmarshal_not_array_begin.tpl",
         field_find_type_name(field).c_str(),
         index);
-    if (field->check_type(krpc_field_type_attribute)) {
-        source.write("\tunmarshal(krpc_vector_get(o, {{$index}}), p{{$index}});\n",
-            index, index);
-    } else if (field->check_type(krpc_field_type_i8)) {
-        gen_field_unmarshal_impl_not_array_get(source, index,
-            "krpc_number_get_i8");
-    } else if (field->check_type(krpc_field_type_i16)) {
-        gen_field_unmarshal_impl_not_array_get(source, index,
-            "krpc_number_get_i16");
-    } else if (field->check_type(krpc_field_type_i32)) {
-        gen_field_unmarshal_impl_not_array_get(source, index,
-            "krpc_number_get_i32");
-    } else if (field->check_type(krpc_field_type_i64)) {
-        gen_field_unmarshal_impl_not_array_get(source, index,
-            "krpc_number_get_i64");
-    } else if (field->check_type(krpc_field_type_ui8)) {
-        gen_field_unmarshal_impl_not_array_get(source, index,
-            "krpc_number_get_ui8");
-    } else if (field->check_type(krpc_field_type_ui16)) {
-        gen_field_unmarshal_impl_not_array_get(source, index,
-            "krpc_number_get_ui16");
-    } else if (field->check_type(krpc_field_type_ui32)) {
-        gen_field_unmarshal_impl_not_array_get(source, index,
-            "krpc_number_get_ui32");
-    } else if (field->check_type(krpc_field_type_ui64)) {
-        gen_field_unmarshal_impl_not_array_get(source, index,
-            "krpc_number_get_ui64");
-    } else if (field->check_type(krpc_field_type_f32)) {
-        gen_field_unmarshal_impl_not_array_get(source, index,
-            "krpc_number_get_f32");
-    } else if (field->check_type(krpc_field_type_f64)) {
-        gen_field_unmarshal_impl_not_array_get(source, index,
-            "krpc_number_get_f64");
-    } else if (field->check_type(krpc_field_type_string)) {
-        gen_field_unmarshal_impl_not_array_get(source, index,
-            "krpc_string_get");
-    }
+	source.write_template("cpp_tpl/source_field_unmarshal_common_get.tpl",
+		index, index);
 }
 
-void krpc_gen_cpp_t::gen_attribute_unmarshal_field_array_element(
-    krpc_ostream_t& source, const std::string& name,
-        const std::string& method_name) {
-    source.write("\t\t\t{{@name}}.push_back({{@method_name}}(krpc_vector_get(v_, i)));\n",
-        name.c_str(),
-        method_name.c_str());
-}
-
-void krpc_gen_cpp_t::gen_attribute_unmarshal_field_array(
-    krpc_field_t* field, krpc_ostream_t& source, const std::string& name,
-        int index) {
+void krpc_gen_cpp_t::gen_field_marshal_impl(krpc_field_t* field,
+	krpc_ostream_t& source, const std::string& holder, const std::string& v, 
+	const std::string& whites) {
     source.write(
-        "\tdo {\n"
-        "\t\tkrpc_object_t* v_ = 0;\n"
-        "\t\tv_ = krpc_vector_get(v, {{$index}});\n"
-        "\t\tfor (uint32_t i = 0; i < krpc_vector_get_size(v_); i++) {\n",
-        index);
-    if (field->check_type(krpc_field_type_attribute)) {
-        source.write(
-            "\t\t\t{{@file_type}} o_;\n"
-            "\t\t\tunmarshal(krpc_vector_get(v_, i), o_);\n"
-            "\t\t\t{{@name}}.push_back(o_);\n",
-            field->get_field_type_name().c_str(), name.c_str());
-    } else if (field->check_type(krpc_field_type_i8)) {
-        gen_attribute_unmarshal_field_array_element(source, name,
-            "krpc_number_get_i8");
-    } else if (field->check_type(krpc_field_type_i16)) {
-        gen_attribute_unmarshal_field_array_element(source, name,
-            "krpc_number_get_i16");
-    } else if (field->check_type(krpc_field_type_i32)) {
-        gen_attribute_unmarshal_field_array_element(source, name,
-            "krpc_number_get_i32");
-    } else if (field->check_type(krpc_field_type_i64)) {
-        gen_attribute_unmarshal_field_array_element(source, name,
-            "krpc_number_get_i64");
-    } else if (field->check_type(krpc_field_type_ui8)) {
-        gen_attribute_unmarshal_field_array_element(source, name,
-            "krpc_number_get_ui8");
-    } else if (field->check_type(krpc_field_type_ui16)) {
-        gen_attribute_unmarshal_field_array_element(source, name,
-            "krpc_number_get_ui16");
-    } else if (field->check_type(krpc_field_type_ui32)) {
-        gen_attribute_unmarshal_field_array_element(source, name,
-            "krpc_number_get_ui32");
-    } else if (field->check_type(krpc_field_type_ui64)) {
-        gen_attribute_unmarshal_field_array_element(source, name,
-            "krpc_number_get_ui64");
-    } else if (field->check_type(krpc_field_type_f32)) {
-        gen_attribute_unmarshal_field_array_element(source, name,
-            "krpc_number_get_f32");
-    } else if (field->check_type(krpc_field_type_f64)) {
-        gen_attribute_unmarshal_field_array_element(source, name,
-            "krpc_number_get_f64");
-    } else if (field->check_type(krpc_field_type_string)) {
-        gen_attribute_unmarshal_field_array_element(source, name,
-            "krpc_string_get");
-    }
-    source.write("\t\t}\n"
-                 "\t} while(0);\n");
-}
-
-void krpc_gen_cpp_t::gen_attribute_unmarshal_field_not_array_get(
-    krpc_ostream_t& source, const std::string& name,
-        const std::string& method_name, int index) {
-    source.write("\t{{@name}} = {{@method_name}}(krpc_vector_get(v, {{$index}}));\n",
-        name.c_str(), method_name.c_str(), index);
-}
-
-void krpc_gen_cpp_t::gen_attribute_unmarshal_field_not_array(
-    krpc_field_t* field, krpc_ostream_t& source, const std::string& name,
-        int index) {
-    if (field->check_type(krpc_field_type_attribute)) {
-        source.write("\tunmarshal(krpv_vector_get(v, {{$index}}), {{@name}});\n",
-            index, name.c_str());
-    } else if (field->check_type(krpc_field_type_i8)) {
-        gen_attribute_unmarshal_field_not_array_get(source, name,
-            "krpc_number_get_i8", index);
-    } else if (field->check_type(krpc_field_type_i16)) {
-        gen_attribute_unmarshal_field_not_array_get(source, name,
-            "krpc_number_get_i16", index);
-    } else if (field->check_type(krpc_field_type_i32)) {
-        gen_attribute_unmarshal_field_not_array_get(source, name,
-            "krpc_number_get_i32", index);
-    } else if (field->check_type(krpc_field_type_i64)) {
-        gen_attribute_unmarshal_field_not_array_get(source, name,
-            "krpc_number_get_i64", index);
-    } else if (field->check_type(krpc_field_type_ui8)) {
-        gen_attribute_unmarshal_field_not_array_get(source, name,
-            "krpc_number_get_ui8", index);
-    } else if (field->check_type(krpc_field_type_ui16)) {
-        gen_attribute_unmarshal_field_not_array_get(source, name,
-            "krpc_number_get_ui16", index);
-    } else if (field->check_type(krpc_field_type_ui32)) {
-        gen_attribute_unmarshal_field_not_array_get(source, name,
-            "krpc_number_get_ui32", index);
-    } else if (field->check_type(krpc_field_type_ui64)) {
-        gen_attribute_unmarshal_field_not_array_get(source, name,
-            "krpc_number_get_ui64", index);
-    } else if (field->check_type(krpc_field_type_f32)) {
-        gen_attribute_unmarshal_field_not_array_get(source, name,
-            "krpc_number_get_f32", index);
-    } else if (field->check_type(krpc_field_type_f64)) {
-        gen_attribute_unmarshal_field_not_array_get(source, name,
-            "krpc_number_get_f64", index);
-    } else if (field->check_type(krpc_field_type_string)) {
-        gen_attribute_unmarshal_field_not_array_get(source, name,
-            "krpc_string_get", index);
-    }
-}
-
-void krpc_gen_cpp_t::gen_field_marshal_impl_array(krpc_field_t* field,
-    krpc_ostream_t& source, bool param, const std::string& whites) {
-    source << whites << "\tdo {\n";
-    if (!param) {
-        source.write(
-            "{{@whites}}\t\tstd::vector<{{@type}}>::iterator guard = o.{{@name}}.begin();\n",
-            whites.c_str(),
-            field_find_type_name(field).c_str(),
-            field->get_field_name().c_str());
-    } else {
-        source.write(
-            "{{@whites}}\t\tstd::vector<{{@type}}>::iterator guard = {{@name}}.begin();\n",
-            whites.c_str(),
-            field_find_type_name(field).c_str(),
-            field->get_field_name().c_str());
-    }
-    source.write(
-        "{{@whites}}\t\tkrpc_object_t* v_ = krpc_object_create();\n"
-        "{{@whites}}\t\tkrpc_vector_clear(v_);\n",
+		"{{@whites}}\tkrpc_vector_push_back({{@v}}, krpc_marshal({{@holder}}));\n",
         whites.c_str(),
-        whites.c_str());
-    if (!param) {
-        source.write(
-            "{{@whites}}\t\tfor(; guard != o.{{@name}}.end(); guard++) {\n",
-            whites.c_str(),
-            field->get_field_name().c_str());
-    } else {
-        source.write(
-            "{{@whites}}\t\tfor(; guard != {{@name}}.end(); guard++) {\n",
-            whites.c_str(),
-            field->get_field_name().c_str());
-    }
-    gen_field_marshal_impl_not_array(field, source, "(*guard)", "v_",
-        whites + "\t\t");
-    source.write(
-        "{{@whites}}\t\t}\n"
-        "{{@whites}}\t\tkrpc_vector_push_back(v, v_);\n"
-        "{{@whites}}\t} while(0);\n",
-        whites.c_str(),
-        whites.c_str(),
-        whites.c_str());
-}
-
-void krpc_gen_cpp_t::gen_field_marshal_impl_table(krpc_field_t* field,
-    krpc_ostream_t& source, bool param, const std::string& whites) {
-    source << whites << "\tdo {\n";
-    if (!param) {
-        source.write(
-            "{{@whites}}\t\tstd::map<{{@key}}, {{@value}}>::iterator guard = o.{{@name}}.begin();\n",
-            whites.c_str(),
-            field_find_type_name(field).c_str(),
-            field_find_value_type_name(field).c_str(),
-            field->get_field_name().c_str());
-    } else {
-        source.write(
-            "{{@whites}}\t\tstd::map<{{@key}}, {{@value}}>::iterator guard = {{@name}}.begin();\n",
-            whites.c_str(),
-            field_find_type_name(field).c_str(),
-            field_find_value_type_name(field).c_str(),
-            field->get_field_name().c_str());
-    }
-    source.write(
-        "\t\tkrpc_object_t* m_ = krpc_object_create();\n"
-        "\t\tkrpc_map_clear(m_);\n");
-    if (!param) {
-        std::string key_get = "guard->first";
-        if (field->check_key_type(krpc_field_type_string)) {
-            key_get = "guard->first.c_str()";
-        }
-        source.write(
-            "{{@whites}}\t\tfor(; guard != o.{{@name}}.end(); guard++) {\n"
-            "\t\t\tkrpc_object_t* k_ = krpc_object_create();\n"
-            "\t\t\t{{@set_func}}(k_, {{@key_get}});\n",
-               whites.c_str(),
-               field->get_field_name().c_str(),
-               param_find_table_key_set_func_name(field).c_str(), 
-               key_get.c_str());
-        std::string func = param_find_table_value_set_func_name(field);
-        if (func.empty()) {
-            source << "\t\t\tkrpc_object_t* v_ = marshal(guard->second);\n";
-        } else {
-            std::string value_get = "guard->second";
-            if (field->check_value_type(krpc_field_type_string)) {
-                value_get = "guard->second.c_str()";
-            }
-            source.write(
-                "\t\t\tkrpc_object_t* v_ = krpc_object_create();\n"
-                "\t\t\t{{@set_func}}(v_, {{@value_get}});\n",
-                param_find_table_value_set_func_name(field).c_str(),
-                value_get.c_str());
-        }
-        source.write(
-            "\t\t\tkrpc_map_insert(m_, k_, v_);\n"
-            "{{@whites}}\t\t}\n",
-            whites.c_str());
-    } else {
-        std::string key_get = "guard->first";
-        if (field->check_key_type(krpc_field_type_string)) {
-            key_get = "guard->first.c_str()";
-        }
-        source.write(
-            "{{@whites}}\t\tfor(; guard != {{@name}}.end(); guard++) {\n"
-            "\t\t\tkrpc_object_t* k_ = krpc_object_create();\n"
-            "\t\t\t{{@set_func}}(k_, {{@key_get}});\n",
-            whites.c_str(),
-            field->get_field_name().c_str(),
-            param_find_table_key_set_func_name(field).c_str(),
-            key_get.c_str());
-        std::string func = param_find_table_value_set_func_name(field);
-        if (func.empty()) {
-            source << "\t\t\tkrpc_object_t* v_ = marshal(guard->second);\n";
-        } else {
-            std::string value_get = "guard->second";
-            if (field->check_value_type(krpc_field_type_string)) {
-                value_get = "guard->second.c_str()";
-            }
-            source.write(
-                "\t\t\tkrpc_object_t* v_ = krpc_object_create();\n"
-                "\t\t\t{{@set_func}}(v_, {{@value_get}});\n",
-                param_find_table_value_set_func_name(field).c_str(),
-                value_get.c_str());
-            }
-        source.write(
-            "\t\t\tkrpc_map_insert(m_, k_, v_);\n"
-            "{{@whites}}\t\t}\n",
-            whites.c_str());
-    }
-    source.replace(
-        "{{@whites}}\t\tkrpc_vector_push_back(v, m_);\n"
-        "{{@whites}}\t} while(0);\n",
-        whites.c_str());
-}
-
-void krpc_gen_cpp_t::gen_field_marshal_impl_not_array_set(
-    krpc_field_t* field, krpc_ostream_t& source, const std::string& holder,
-        const std::string& v, const std::string& method_name,
-            const std::string& suffix, const std::string& whites) {
-    source.write(
-        "{{@whites}}\tkrpc_object_t* {{@name}}_{{@suffix}} = krpc_object_create();\n"
-        "{{@whites}}\t{{@method}}({{@name}}_{{@suffix}}, {{@holder}});\n"
-        "{{@whites}}\tkrpc_vector_push_back({{@v}}, {{@name}}_{{@suffix}});\n",
-        whites.c_str(),
-        field->get_field_name().c_str(),
-        suffix.c_str(),
-        whites.c_str(),
-        method_name.c_str(),
-        field->get_field_name().c_str(),
-        suffix.c_str(),
-        holder.c_str(),
-        whites.c_str(),
-        v.c_str(),
-        field->get_field_name().c_str(),
-        suffix.c_str());
+		v.c_str(),
+        holder.c_str());
 }
 
 void krpc_gen_cpp_t::gen_field_marshal_impl_not_array(krpc_field_t* field,
@@ -973,62 +560,20 @@ void krpc_gen_cpp_t::gen_field_marshal_impl_not_array(krpc_field_t* field,
     }
     if (field->check_type(krpc_field_type_attribute)) {
         source << whites << "\t" << "krpc_vector_push_back(" << v
-               << ", marshal(" << holder << "));\n";
-    } else if (field->check_type(krpc_field_type_i8)) {
-        gen_field_marshal_impl_not_array_set(field, source, holder, v,
-            "krpc_number_set_i8", "i8", whites);
-    } else if (field->check_type(krpc_field_type_i16)) {
-        gen_field_marshal_impl_not_array_set(field, source, holder, v,
-            "krpc_number_set_i16", "i16", whites);
-    } else if (field->check_type(krpc_field_type_i32)) {
-        gen_field_marshal_impl_not_array_set(field, source, holder, v,
-            "krpc_number_set_i32", "i32", whites);
-    } else if (field->check_type(krpc_field_type_i64)) {
-        gen_field_marshal_impl_not_array_set(field, source, holder, v,
-            "krpc_number_set_i64", "i64", whites);
-    } else if (field->check_type(krpc_field_type_ui8)) {
-        gen_field_marshal_impl_not_array_set(field, source, holder, v,
-            "krpc_number_set_ui8", "ui8", whites);
-    } else if (field->check_type(krpc_field_type_ui16)) {
-        gen_field_marshal_impl_not_array_set(field, source, holder, v,
-            "krpc_number_set_ui16", "ui16", whites);
-    } else if (field->check_type(krpc_field_type_ui32)) {
-        gen_field_marshal_impl_not_array_set(field, source, holder, v,
-            "krpc_number_set_ui32", "ui32", whites);
-    } else if (field->check_type(krpc_field_type_ui64)) {
-        gen_field_marshal_impl_not_array_set(field, source, holder, v,
-            "krpc_number_set_ui64", "ui64", whites);
-    } else if (field->check_type(krpc_field_type_f32)) {
-        gen_field_marshal_impl_not_array_set(field, source, holder, v,
-            "krpc_number_set_f32", "f32", whites);
-    } else if (field->check_type(krpc_field_type_f64)) {
-        gen_field_marshal_impl_not_array_set(field, source, holder, v,
-            "krpc_number_set_f64", "f64", whites);
-    } else if (field->check_type(krpc_field_type_string)) {        
-        source.write(
-            "{{@whites}}\tkrpc_object_t* {{@name}}_string = krpc_object_create();\n"
-            "{{@whites}}\tkrpc_string_set({{@name}}_string, {{@hold}}.c_str());\n"
-            "{{@whites}}\tkrpc_vector_push_back({{@v}}, {{@name}}_string);\n",
-            whites.c_str(),
-            field->get_field_name().c_str(),
-            whites.c_str(),
-            field->get_field_name().c_str(),
-            holder.c_str(),
-            whites.c_str(),
-            v.c_str(),
-            field->get_field_name().c_str());
+               << ", krpc_marshal(" << holder << "));\n";
+	} else {
+		gen_field_marshal_impl(field, source, holder, v, whites);
     }
 }
 
 void krpc_gen_cpp_t::gen_field_marshal_impl(krpc_field_t* field,
     krpc_ostream_t& source, bool param) {
-    if (field->check_array()) {
-        gen_field_marshal_impl_array(field, source, param);
-    } else if (field->check_table()) {
-        gen_field_marshal_impl_table(field, source, param);
-    } else {
-        gen_field_marshal_impl_not_array(field, source);
-    }
+	std::string holder = field->get_field_name();
+	if(param){
+	}else{
+		holder = "o." + holder;
+	}
+	gen_field_marshal_impl_not_array(field, source, holder);
 }
 
 void krpc_gen_cpp_t::gen_attribute_method_print_impl_array(
@@ -1226,114 +771,6 @@ std::string krpc_gen_cpp_t::field_find_value_type_name(krpc_field_t* field) {
         return "std::string";
     }
     return field->get_value_type_name().c_str();
-}
-
-std::string krpc_gen_cpp_t::param_find_table_key_set_func_name(krpc_field_t* field) {
-    if (field->check_key_type(krpc_field_type_i8)) {
-        return "krpc_number_set_i8";
-    } else if (field->check_key_type(krpc_field_type_i16)) {
-        return "krpc_number_set_i16";
-    } else if (field->check_key_type(krpc_field_type_i32)) {
-        return "krpc_number_set_i32";
-    } else if (field->check_key_type(krpc_field_type_i64)) {
-        return "krpc_number_set_i64";
-    } else if (field->check_key_type(krpc_field_type_ui8)) {
-        return "krpc_number_set_ui8";
-    } else if (field->check_key_type(krpc_field_type_ui16)) {
-        return "krpc_number_set_ui16";
-    } else if (field->check_key_type(krpc_field_type_ui32)) {
-        return "krpc_number_set_ui32";
-    } else if (field->check_key_type(krpc_field_type_ui64)) {
-        return "krpc_number_set_ui64";
-    } else if (field->check_key_type(krpc_field_type_f32)) {
-        return "krpc_number_set_f32";
-    } else if (field->check_key_type(krpc_field_type_f64)) {
-        return "krpc_number_set_f64";
-    } else if (field->check_key_type(krpc_field_type_string)) {
-        return "krpc_string_set";
-    }
-    return "";
-}
-
-std::string krpc_gen_cpp_t::param_find_table_key_get_func_name(krpc_field_t* field) {
-    if (field->check_key_type(krpc_field_type_i8)) {
-        return "krpc_number_get_i8";
-    } else if (field->check_key_type(krpc_field_type_i16)) {
-        return "krpc_number_get_i16";
-    } else if (field->check_key_type(krpc_field_type_i32)) {
-        return "krpc_number_get_i32";
-    } else if (field->check_key_type(krpc_field_type_i64)) {
-        return "krpc_number_get_i64";
-    } else if (field->check_key_type(krpc_field_type_ui8)) {
-        return "krpc_number_get_ui8";
-    } else if (field->check_key_type(krpc_field_type_ui16)) {
-        return "krpc_number_get_ui16";
-    } else if (field->check_key_type(krpc_field_type_ui32)) {
-        return "krpc_number_get_ui32";
-    } else if (field->check_key_type(krpc_field_type_ui64)) {
-        return "krpc_number_get_ui64";
-    } else if (field->check_key_type(krpc_field_type_f32)) {
-        return "krpc_number_get_f32";
-    } else if (field->check_key_type(krpc_field_type_f64)) {
-        return "krpc_number_get_f64";
-    } else if (field->check_key_type(krpc_field_type_string)) {
-        return "krpc_string_get";
-    }
-    return "";
-}
-
-std::string krpc_gen_cpp_t::param_find_table_value_get_func_name(krpc_field_t* field) {
-    if (field->check_value_type(krpc_field_type_i8)) {
-        return "krpc_number_get_i8";
-    } else if (field->check_value_type(krpc_field_type_i16)) {
-        return "krpc_number_get_i16";
-    } else if (field->check_value_type(krpc_field_type_i32)) {
-        return "krpc_number_get_i32";
-    } else if (field->check_value_type(krpc_field_type_i64)) {
-        return "krpc_number_get_i64";
-    } else if (field->check_value_type(krpc_field_type_ui8)) {
-        return "krpc_number_get_ui8";
-    } else if (field->check_value_type(krpc_field_type_ui16)) {
-        return "krpc_number_get_ui16";
-    } else if (field->check_value_type(krpc_field_type_ui32)) {
-        return "krpc_number_get_ui32";
-    } else if (field->check_value_type(krpc_field_type_ui64)) {
-        return "krpc_number_get_ui64";
-    } else if (field->check_value_type(krpc_field_type_f32)) {
-        return "krpc_number_get_f32";
-    } else if (field->check_value_type(krpc_field_type_f64)) {
-        return "krpc_number_get_f64";
-    } else if (field->check_value_type(krpc_field_type_string)) {
-        return "krpc_string_get";
-    }
-    return "";
-}
-
-std::string krpc_gen_cpp_t::param_find_table_value_set_func_name(krpc_field_t* field) {
-    if (field->check_value_type(krpc_field_type_i8)) {
-        return "krpc_number_set_i8";
-    } else if (field->check_value_type(krpc_field_type_i16)) {
-        return "krpc_number_set_i16";
-    } else if (field->check_value_type(krpc_field_type_i32)) {
-        return "krpc_number_set_i32";
-    } else if (field->check_value_type(krpc_field_type_i64)) {
-        return "krpc_number_set_i64";
-    } else if (field->check_value_type(krpc_field_type_ui8)) {
-        return "krpc_number_set_ui8";
-    } else if (field->check_value_type(krpc_field_type_ui16)) {
-        return "krpc_number_set_ui16";
-    } else if (field->check_value_type(krpc_field_type_ui32)) {
-        return "krpc_number_set_ui32";
-    } else if (field->check_value_type(krpc_field_type_ui64)) {
-        return "krpc_number_set_ui64";
-    } else if (field->check_value_type(krpc_field_type_f32)) {
-        return "krpc_number_set_f32";
-    } else if (field->check_value_type(krpc_field_type_f64)) {
-        return "krpc_number_set_f64";
-    } else if (field->check_value_type(krpc_field_type_string)) {
-        return "krpc_string_set";
-    }
-    return "";
 }
 
 std::string krpc_gen_cpp_t::param_find_type_name(krpc_field_t* field) {

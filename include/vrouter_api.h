@@ -85,6 +85,6 @@ extern int knet_vrouter_remove_wire(kvrouter_t* router, kchannel_ref_t* c);
  */
 extern int knet_vrouter_route(kvrouter_t* router, kchannel_ref_t* c, const void* buffer, int size);
 
-/** @} */
+/** @} */ 
 
 #endif /* VROUTER_API_H */

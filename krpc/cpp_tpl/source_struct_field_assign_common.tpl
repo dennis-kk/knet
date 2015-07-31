@@ -1,1 +1,1 @@
-    {{@name}} = rht.{{@name}};
+	{{@name}} = rht.{{@name}};

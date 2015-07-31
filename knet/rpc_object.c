@@ -201,7 +201,7 @@ int krpc_object_marshal(krpc_object_t* o, kstream_t* stream, uint16_t* bytes) {
     krpc_object_header_t header;
     verify(o);
     verify(stream);
-    verify(bytes);
+    //verify(bytes);
     memset(&header, 0, sizeof(krpc_object_header_t));
     header.type   = o->type;
     header.length += krpc_object_get_marshal_size(o);
