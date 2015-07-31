@@ -346,27 +346,4 @@ typedef int (*knet_trie_for_each_func_t)(const char*, void*);
         }
 #endif /* defined(DEBUG) || defined(_DEBUG) */
 
-#define KRPC_MEMBER_SET(type, key)\
-	void	krpc_member_set(krpc_object_t* t, type node){\
-		krpc_number_set_##key(t, node);\
-	}
-
-#define KRPC_MEMBER_GET(type, key)\
-	void	krpc_member_get(krpc_object_t* t, type& node){\
-		node = krpc_number_get_##key(t);\
-	}
-
-#define KRPC_MARSHAL_COMM( type )\
-	krpc_object_t*	marshal(type node){\
-		krpc_object_t* pNode = krpc_object_create();\
-		krpc_member_set(pNode, node);\
-		return pNode;\
-	}
-
-#define KRPC_UNMARSHAL_COMM( type )\
-	bool unmarshal(krpc_object_t* v, type& node){\
-		krpc_member_get(v, node);\
-	return true;\
-}
-
 #endif /* CONFIG_H */
