@@ -1,1 +1,1 @@
-    {{@field_find_type_name}} p{{$index}};
+	{{@field_find_type_name}} p{{$index}};
