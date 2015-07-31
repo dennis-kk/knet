@@ -245,7 +245,7 @@ extern uint32_t krpc_number_get_ui32(krpc_object_t* o);
  * @param o krpc_object_t实例
  * @param ui64 无符号64位
  */
-extern void krpc_number_set_ui64(krpc_object_t* o, int64_t ui64);
+extern void krpc_number_set_ui64(krpc_object_t* o, uint64_t ui64);
 
 /**
  * 获取无符号64位
