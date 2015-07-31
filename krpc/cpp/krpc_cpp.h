@@ -97,7 +97,6 @@ private:
     void gen_struct_unmarshal_method_impls(krpc_ostream_t& source);
     void gen_struct_unmarshal_method_impl(krpc_ostream_t& source, krpc_attribute_t* object);
     void gen_struct_unmarshal_field_impl(krpc_ostream_t& source, krpc_field_t* field, const std::string& name, int index);
-    void gen_struct_unmarshal_field_table(krpc_ostream_t& source, krpc_field_t* field, int index);
     void gen_struct_method_impls(krpc_ostream_t& source);
     void gen_struct_method_impl(krpc_ostream_t& source, krpc_attribute_t* object);
     void gen_rpc_call_proxy_impls(krpc_ostream_t& source);
@@ -118,32 +117,6 @@ private:
         krpc_ostream_t& source);
 
     /**
-     * 属性对象 - 非数组 - unmarshal定义
-     */
-    void gen_attribute_unmarshal_field_not_array(krpc_field_t* field,
-        krpc_ostream_t& source, const std::string& name, int index);
-
-    /**
-     * 属性对象 - 非数组获取 - unmarshal定义
-     */
-    void gen_attribute_unmarshal_field_not_array_get(
-        krpc_ostream_t& source, const std::string& name,
-            const std::string& method_name, int index);
-
-    /**
-     * 属性对象 - 数组 - unmarshal定义
-     */
-    void gen_attribute_unmarshal_field_array(krpc_field_t* field,
-        krpc_ostream_t& source, const std::string& name, int index);
-
-    /**
-     * 属性对象 — 数组元素 - unmarshal
-     */
-    void gen_attribute_unmarshal_field_array_element(
-        krpc_ostream_t& source, const std::string& name,
-            const std::string& type_name);
-
-    /**
      * 字段 - marshal定义
      */
     void gen_field_marshal_impl(krpc_field_t* field,
@@ -160,23 +133,9 @@ private:
     /**
      * 字段 - 设置 - marshal定义
      */
-    void gen_field_marshal_impl_not_array_set(krpc_field_t* field,
-        krpc_ostream_t& source, const std::string& holder,
-            const std::string& v, const std::string& method_name,
-                const std::string& suffix, const std::string& whites);
-
-    /**
-     * 字段 - 数组 - marshal定义
-     */
-    void gen_field_marshal_impl_array(krpc_field_t* field,
-        krpc_ostream_t& source, bool param, const std::string& whites = "");
-
-    /**
-     * 字段 - 表 - marshal定义
-     */
-    void gen_field_marshal_impl_table(krpc_field_t* field,
-        krpc_ostream_t& source, bool param, const std::string& whites = "");
-
+	void gen_field_marshal_impl(krpc_field_t* field,
+		krpc_ostream_t& source, const std::string& holder, const std::string& v, 
+		const std::string& whites);
     /**
      * 字段 - unmarshal定义
      */
@@ -188,31 +147,6 @@ private:
      */
     void gen_field_unmarshal_impl_not_array(krpc_field_t* field,
         krpc_ostream_t& source, int index);
-
-    /**
-     * 字段 - 非数组, 作为函数参数内调用 - unmarshal定义
-     */
-    void gen_field_unmarshal_impl_not_array_inline(krpc_field_t* field,
-        krpc_ostream_t& source, int index);
-
-    /**
-     * 字段 - 非数组, 非object - unmarshal定义
-     */
-    void gen_field_unmarshal_impl_not_array_inline_get_common(krpc_field_t* field, krpc_ostream_t& source,
-        int index);
-
-    /**
-     * 字段 - 非数组获取, 作为函数参数内调用 - unmarshal定义
-     */
-    void gen_field_unmarshal_impl_not_array_inline_get(
-        krpc_ostream_t& source, int index,
-            const std::string& method_name);
-
-    /**
-     * 字段 - 非数组获取 - unmarshal定义
-     */
-    void gen_field_unmarshal_impl_not_array_get(krpc_ostream_t& source,
-        int index, const std::string& method_name);
 
     /**
      * 字段 - 数组 - unmarshal定义
@@ -258,26 +192,6 @@ private:
      * 取得参数字段类型名
      */
     std::string param_find_type_name(krpc_field_t* field);
-
-    /**
-     * 取得表键设置函数名
-     */
-    std::string param_find_table_key_set_func_name(krpc_field_t* field);
-
-    /**
-     * 取得表值设置函数名
-     */
-    std::string param_find_table_value_set_func_name(krpc_field_t* field);
-
-    /**
-     * 取得表键获取函数名
-     */
-    std::string param_find_table_key_get_func_name(krpc_field_t* field);
-
-    /**
-     * 取得表值获取函数名
-     */
-    std::string param_find_table_value_get_func_name(krpc_field_t* field);
 
 private:
     krpc_gen_t*    _rpc_gen; // 代码生成入口类

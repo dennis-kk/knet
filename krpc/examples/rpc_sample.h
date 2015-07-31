@@ -21,30 +21,30 @@ struct my_object_t;
  */
 struct my_object_other_t {
 	std::map<std::string,std::string> string_string_table; ///< 表
-    
+	
 	/**
-     * 构造函数
-     */
-    my_object_other_t();
+	 * 构造函数
+	 */
+	my_object_other_t();
 
-    /**
-     * 拷贝构造
-     * \param rht my_object_other_t引用
-     */
-    my_object_other_t(const my_object_other_t& rht);
+	/**
+	 * 拷贝构造
+	 * \param rht my_object_other_t引用
+	 */
+	my_object_other_t(const my_object_other_t& rht);
 
-    /**
-     * 赋值
-     * \param rht my_object_other_t引用
-     */
-    const my_object_other_t& operator=(const my_object_other_t& rht);
+	/**
+	 * 赋值
+	 * \param rht my_object_other_t引用
+	 */
+	const my_object_other_t& operator=(const my_object_other_t& rht);
 
-    /**
-     * 打印对象
-     * \param ss std::stringstream引用， 对象信息将输出到
-     * \param white 缩进空格
-     */
-    void print(std::stringstream& ss, std::string white = "");
+	/**
+	 * 打印对象
+	 * \param ss std::stringstream引用， 对象信息将输出到
+	 * \param white 缩进空格
+	 */
+	void print(std::stringstream& ss, std::string white = "");
 };
 
 /**
@@ -64,30 +64,30 @@ struct my_object_t {
 	std::string str; ///< 字符串
 	std::map<int8_t,std::string> int_string_table; ///< 表
 	std::map<int8_t,my_object_other_t> int_object_table; ///< 表
-    
+	
 	/**
-     * 构造函数
-     */
-    my_object_t();
+	 * 构造函数
+	 */
+	my_object_t();
 
-    /**
-     * 拷贝构造
-     * \param rht my_object_t引用
-     */
-    my_object_t(const my_object_t& rht);
+	/**
+	 * 拷贝构造
+	 * \param rht my_object_t引用
+	 */
+	my_object_t(const my_object_t& rht);
 
-    /**
-     * 赋值
-     * \param rht my_object_t引用
-     */
-    const my_object_t& operator=(const my_object_t& rht);
+	/**
+	 * 赋值
+	 * \param rht my_object_t引用
+	 */
+	const my_object_t& operator=(const my_object_t& rht);
 
-    /**
-     * 打印对象
-     * \param ss std::stringstream引用， 对象信息将输出到
-     * \param white 缩进空格
-     */
-    void print(std::stringstream& ss, std::string white = "");
+	/**
+	 * 打印对象
+	 * \param ss std::stringstream引用， 对象信息将输出到
+	 * \param white 缩进空格
+	 */
+	void print(std::stringstream& ss, std::string white = "");
 };
 
 /**
@@ -177,35 +177,35 @@ int my_rpc_func3(const std::string& my_str, int8_t my_i8);
  */
 class rpc_sample_t {
 public:
-    /**
-     * 析构
-     */
-    ~rpc_sample_t();
+	/**
+	 * 析构
+	 */
+	~rpc_sample_t();
 
-    /**
-     * 取得单件指针
-     * \return rpc_sample_t指针
-     */
-    static rpc_sample_t* instance();
+	/**
+	 * 取得单件指针
+	 * \return rpc_sample_t指针
+	 */
+	static rpc_sample_t* instance();
 
-    /**
-     * 销毁单件
-     */
-    static void finalize();
+	/**
+	 * 销毁单件
+	 */
+	static void finalize();
 
-    /**
-     * 从stream_t读取RPC调用请求
-     * \param stream kstream_t实例
-     * \retval error_ok 成功处理一次RPC调用
-     * \retval error_rpc_not_enough_bytes 没有完整的RPC可以处理
-     * \retval error_rpc_unmarshal_fail 处理RPC包字节流时读取失败
-     * \retval error_rpc_unknown_id 读取到RPC调用，但RPC ID未注册
-     * \retval error_rpc_cb_fail 调用RPC处理函数时，处理函数内部发生错误
-     * \retval error_rpc_cb_fail_close 调用RPC处理函数时，处理函数内部发生错误，处理函数要求关闭kstream_t相关联的管道
-     * \retval error_rpc_cb_close 调用RPC处理函数后，处理函数要求关闭kstream_t相关联的管道
-     * \retval error_rpc_unknown_type RPC类型错误
-     */
-    int rpc_proc(kstream_t* stream);
+	/**
+	 * 从stream_t读取RPC调用请求
+	 * \param stream kstream_t实例
+	 * \retval error_ok 成功处理一次RPC调用
+	 * \retval error_rpc_not_enough_bytes 没有完整的RPC可以处理
+	 * \retval error_rpc_unmarshal_fail 处理RPC包字节流时读取失败
+	 * \retval error_rpc_unknown_id 读取到RPC调用，但RPC ID未注册
+	 * \retval error_rpc_cb_fail 调用RPC处理函数时，处理函数内部发生错误
+	 * \retval error_rpc_cb_fail_close 调用RPC处理函数时，处理函数内部发生错误，处理函数要求关闭kstream_t相关联的管道
+	 * \retval error_rpc_cb_close 调用RPC处理函数后，处理函数要求关闭kstream_t相关联的管道
+	 * \retval error_rpc_unknown_type RPC类型错误
+	 */
+	int rpc_proc(kstream_t* stream);
 	
 	/**
 	 * 获取krpc_t实例
@@ -213,53 +213,53 @@ public:
 	 */
 	 krpc_t* get_rpc();
 
-    /**
-     * my_rpc_func1 RPC调用示例
+	/**
+	 * my_rpc_func1 RPC调用示例
 	 * \param stream kstream_t实例
-    * \param my_obj 参数1
-    * \retval error_ok 成功
-    * \retval error_rpc_marshal_fail 序列化RPC调用时失败
-    */
+	* \param my_obj 参数1
+	* \retval error_ok 成功
+	* \retval error_rpc_marshal_fail 序列化RPC调用时失败
+	*/
 	int my_rpc_func1(kstream_t* stream, my_object_t& my_obj);
 
-    /**
-     * my_rpc_func2 RPC调用示例
+	/**
+	 * my_rpc_func2 RPC调用示例
 	 * \param stream kstream_t实例
-    * \param my_objs 参数1
-    * \param my_i8 参数2
-    * \retval error_ok 成功
-    * \retval error_rpc_marshal_fail 序列化RPC调用时失败
-    */
+	* \param my_objs 参数1
+	* \param my_i8 参数2
+	* \retval error_ok 成功
+	* \retval error_rpc_marshal_fail 序列化RPC调用时失败
+	*/
 	int my_rpc_func2(kstream_t* stream, std::vector<my_object_t>& my_objs, int8_t my_i8);
 
-    /**
-     * my_rpc_func3 RPC调用示例
+	/**
+	 * my_rpc_func3 RPC调用示例
 	 * \param stream kstream_t实例
-    * \param my_str 参数1
-    * \param my_i8 参数2
-    * \retval error_ok 成功
-    * \retval error_rpc_marshal_fail 序列化RPC调用时失败
-    */
+	* \param my_str 参数1
+	* \param my_i8 参数2
+	* \retval error_ok 成功
+	* \retval error_rpc_marshal_fail 序列化RPC调用时失败
+	*/
 	int my_rpc_func3(kstream_t* stream, const std::string& my_str, int8_t my_i8);
 
 private:
-    /**
-     * 构造函数
-     */
-    rpc_sample_t();
+	/**
+	 * 构造函数
+	 */
+	rpc_sample_t();
 
-    /**
-     * 拷贝构造
-     */
-    rpc_sample_t(const rpc_sample_t&);
+	/**
+	 * 拷贝构造
+	 */
+	rpc_sample_t(const rpc_sample_t&);
 
 private:
-    static rpc_sample_t* _instance; // 单件指针
-    krpc_t* _rpc; // RPC实现类"
+	static rpc_sample_t* _instance; // 单件指针
+	krpc_t* _rpc; // RPC实现类"
 };
 
 /**
- * rpc_sample鍗曚欢璁块棶甯姪鍑芥暟
+ * rpc_sample单件访问帮助函数
  */
 inline static rpc_sample_t* rpc_sample_ptr() {
 	return rpc_sample_t::instance();
