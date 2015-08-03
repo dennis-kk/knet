@@ -180,4 +180,32 @@ int framework_connector_config_get_max_send_list_count(kframework_connector_conf
  */
 int framework_connector_config_get_max_recv_buffer_length(kframework_connector_config_t* c);
 
+/**
+ * 设置用户自定义数据指针
+ * @param c kframework_acceptor_config_t实例
+ * @param user_data 用户自定义数据指针
+ */
+void framework_acceptor_config_set_user_data(kframework_acceptor_config_t* c, void* user_data);
+
+/**
+ * 取得用户自定义数据指针
+ * @param c kframework_acceptor_config_t实例
+ * @return 用户自定义数据指针
+ */
+void* framework_acceptor_config_get_user_data(kframework_acceptor_config_t* c);
+
+/**
+ * 设置用户自定义数据指针
+ * @param c kframework_connector_config_t实例
+ * @param user_data 用户自定义数据指针
+ */
+void framework_connector_config_set_user_data(kframework_connector_config_t* c, void* user_data);
+
+/**
+ * 设置用户自定义数据指针
+ * @param c kframework_connector_config_t实例
+ * @return 用户自定义数据指针
+ */
+void* framework_connector_config_get_user_data(kframework_connector_config_t* c);
+
 #endif /* FRAMEWORK_CONFIG_H */

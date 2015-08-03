@@ -34,7 +34,7 @@
  * @param mode 日志模式
  * @return klogger_t实例
  */
-klogger_t* logger_create(const char* path, knet_logger_level_e level, knet_logger_mode_e mode);
+klogger_t* logger_create(const char* path, int level, int mode);
 
 /**
  * 销毁日志
@@ -50,7 +50,7 @@ void logger_destroy(klogger_t* logger);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int logger_write(klogger_t* logger, knet_logger_level_e level, const char* format, ...);
+int logger_write(klogger_t* logger, int level, const char* format, ...);
 
 /* 全局日志 */
 extern klogger_t* global_logger;

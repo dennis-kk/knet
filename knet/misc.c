@@ -36,22 +36,23 @@
 
 
 struct _thread_runner_t {
-    knet_thread_func_t func;
-    void*              params;
-    kdlist_t*          multi_params;
-    volatile int       running;
-    thread_id_t        thread_id;
+    knet_thread_func_t func;         /* 线程函数 */
+    void*              params;       /* 单参数 */
+    kdlist_t*          multi_params; /* 多参数 */
+    volatile int       running;      /* 运行标志 */
+    volatile int       stop;         /* 退出标志 */
+    thread_id_t        thread_id;    /* 线程ID */
 #if defined(WIN32)
-    HANDLE thread_handle;
-    DWORD  tls_key;
+    HANDLE thread_handle;            /* WIN32线程句柄 */
+    DWORD  tls_key;                  /* WIN32 TLS键 */
 #else
-    pthread_key_t tls_key;
+    pthread_key_t tls_key;           /* pthread TLS键 */
 #endif /* defined(WIN32) */
 };
 
 typedef enum _loop_type_e {
-    loop_type_loop = 1,
-    loop_type_timer,
+    loop_type_loop = 1, /* 网络循环 */
+    loop_type_timer,    /* 定时器循环 */
 } loop_type_e;
 
 typedef struct _thread_param_t {
@@ -601,6 +602,7 @@ void _thread_loop_func(void* params) {
             verify(0);
         }
     }
+    runner->stop = 1;
 }
 
 void _thread_timer_loop_func(void* params) {
@@ -611,6 +613,7 @@ void _thread_timer_loop_func(void* params) {
         thread_sleep_ms(tick);
         ktimer_loop_run_once(loop);
     }
+    runner->stop = 1;
 }
 
 void _thread_multi_loop_func(void* params) {
@@ -627,6 +630,7 @@ void _thread_multi_loop_func(void* params) {
             }
         }
     }
+    runner->stop = 1;
 }
 
 #if defined(WIN32)
@@ -848,29 +852,21 @@ thread_id_t thread_runner_get_id(kthread_runner_t* runner) {
 }
 
 void thread_runner_join(kthread_runner_t* runner) {
-#if defined(WIN32)
-    DWORD error = 0;
-#endif /* defined(WIN32) || defined(WIN64) */
     verify(runner);
     /* 建立但未启动或已经结束 */
-    if (!runner->thread_id) {
+    if (!runner->thread_id || runner->stop) {
         return;
     }
 #if defined(WIN32)
     if (!runner->thread_handle) {
         return;
     }
-    error = WaitForSingleObject(runner->thread_handle, INFINITE);
-    if ((error != WAIT_OBJECT_0) && (error != WAIT_ABANDONED)) {
-        log_error("WaitForSingleObject() failed, system error: %d", sys_get_errno());
-    } else {
-        runner->thread_id = 0;
-        runner->thread_handle = 0;
-    }
+    WaitForSingleObject(runner->thread_handle, INFINITE);
+    runner->thread_handle = 0;
 #else
     pthread_join(runner->thread_id, 0);
-    runner->thread_id = 0;
 #endif /* defined(WIN32) || defined(WIN64) */
+    runner->thread_id = 0;
 }
 
 int thread_runner_check_start(kthread_runner_t* runner) {
@@ -1143,4 +1139,66 @@ char* lltoa(long long ll, char* buffer, int size) {
 #endif /* WIN32 */
     buffer[size - 1] = 0;
     return buffer;
+}
+
+struct _rwlock_t {
+#if defined(WIN32)
+    SRWLOCK rwlock;
+#else
+    pthread_rwlock_t rwlock;
+#endif /* defined(WIN32) */
+};
+
+krwlock_t* rwlock_create() {
+    krwlock_t* rwlock = create(krwlock_t);
+    verify(rwlock);
+#if defined(WIN32)
+    InitializeSRWLock(&rwlock->rwlock);
+#else
+    pthread_rwlock_init(&rwlock->rwlock, 0);
+#endif /* defined(WIN32) */
+    return rwlock;
+}
+
+void rwlock_destroy(krwlock_t* rwlock) {
+    verify(rwlock);
+#if !defined(WIN32)
+    pthread_rwlock_destroy(&rwlock->rwlock);
+#endif /* defined(WIN32) */
+}
+
+void rwlock_rdlock(krwlock_t* rwlock) {
+    verify(rwlock);
+#if defined(WIN32)
+    AcquireSRWLockShared(&rwlock->rwlock);
+#else
+    pthread_rwlock_rdlock(&rwlock->rwlock);
+#endif /* defined(WIN32) */
+}
+
+void rwlock_rdunlock(krwlock_t* rwlock) {
+    verify(rwlock);
+#if defined(WIN32)
+    ReleaseSRWLockShared(&rwlock->rwlock);
+#else
+    pthread_rwlock_unlock(&rwlock->rwlock);
+#endif /* defined(WIN32) */
+}
+
+void rwlock_wrlock(krwlock_t* rwlock) {
+    verify(rwlock);
+#if defined(WIN32)
+    AcquireSRWLockExclusive(&rwlock->rwlock);
+#else
+    pthread_rwlock_wrlock(&rwlock->rwlock);
+#endif /* defined(WIN32) */
+}
+
+void rwlock_wrunlock(krwlock_t* rwlock) {
+    verify(rwlock);
+#if defined(WIN32)
+    ReleaseSRWLockExclusive(&rwlock->rwlock);
+#else
+    pthread_rwlock_unlock(&rwlock->rwlock);
+#endif /* defined(WIN32) */
 }

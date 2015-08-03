@@ -54,9 +54,9 @@ struct _node_proxy_t {
 
 typedef enum _node_msg_id_e {
     node_msg_resolve_req = 1, /* 请求 - 提交身份 */
-    node_msg_resolve_ack,     /* 响应 - 身份提交 */
+    node_msg_resolve_ack,     /* 应答 - 身份提交 */
     node_msg_heartbeat_req,   /* 请求 - 心跳 */
-    node_msg_heartbeat_ack,   /* 响应 - 心跳 */
+    node_msg_heartbeat_ack,   /* 应答 - 心跳 */
     node_msg_send,            /* 通知 - 发送节点间数据包 */
     node_msg_join,            /* 通知 - 有新节点加入集群 */
 } knode_msg_id_e;
@@ -94,7 +94,7 @@ typedef struct _node_login_req_t {
 } knode_login_req_t;
 
 /**
- * 响应 - 返回根节点的身份
+ * 应答 - 返回根节点的身份
  */
 typedef struct _node_login_ack_t {
     uint32_t type; /* 节点类型 */
@@ -122,28 +122,6 @@ typedef struct _node_join_t {
 #else
     #pragma pack()
 #endif /* defined(_MSC_VER) */
-
-/*! 节点协议头长度 */
-#define NODE_HEADER_SIZE sizeof(knode_header_t)
-
-int _node_login_req(kchannel_ref_t* channel);
-int _node_login_ack(kchannel_ref_t* channel);
-int _node_send(kchannel_ref_t* channel, const void* data, uint32_t size);
-int _node_broadcast_join(knode_t* node, const char* ip, int port, uint32_t type);
-int _node_send_heartbeat_req(kchannel_ref_t* channel);
-int _node_send_heartbeat_ack(kchannel_ref_t* channel);
-int _on_node_login_req(kchannel_ref_t* channel);
-int _on_node_login_ack(kchannel_ref_t* channel);
-int _on_node_join(kchannel_ref_t* channel);
-int _on_node_data(kchannel_ref_t* channel);
-int _on_node_connect(kchannel_ref_t* channel);
-int _on_node_accept(kchannel_ref_t* channel);
-int _on_node_recv(kchannel_ref_t* channel);
-int _on_node_disjoin(kchannel_ref_t* channel);
-int _on_node_timeout(kchannel_ref_t* channel);
-int _on_node_heartbeat_req(kchannel_ref_t* channel);
-int _on_node_heartbeat_ack(kchannel_ref_t* channel);
-uint32_t _proc_msg_id(kchannel_ref_t* channel);
 
 knode_t* knet_node_create() {
     knode_t* node = create(knode_t);
@@ -175,6 +153,9 @@ void knet_node_destroy(knode_t* node) {
         knet_framework_stop(node->f);
         knet_framework_wait_for_stop(node->f);
     }
+    if (node->f) {
+        knet_framework_destroy(node->f);
+    }
     /* 保存黑/白名单 */
     node_save_filter_files(node);
     if (node->black_ips) {
@@ -195,9 +176,6 @@ void knet_node_destroy(knode_t* node) {
     if (node->rwlock_node_hash) {
         hash_destroy(node->hash_node_id);
     }
-    if (node->f) {
-        knet_framework_destroy(node->f);
-    }
     destroy(node);
 }
 
@@ -214,17 +192,32 @@ int knet_node_start(knode_t* node) {
     verify(config);
     /* 加载IP黑/白名单 */
     error = node_open_filter_files(node);
-    if (error_ok == error) {
+    if (error_ok != error) {
         return error;
     }
     if (knet_node_config_check_root(node->c)) {
         /* 建立根节点监听器 */
         error = node_root_start(node);
+        log_info(
+            "start root node [%s:%d]",
+            knet_node_config_get_ip(node->c),
+            knet_node_config_get_port(node->c));
     } else {
+        /* 建立节点自身的监听器 */
+        error = node_local_start(node);
+        log_info(
+            "start node [%s:%d], type[%d], ID[%d]",
+            knet_node_config_get_ip(node->c),
+            knet_node_config_get_port(node->c), knet_node_config_get_type(node->c),
+            knet_node_config_get_id(node->c));
         /* 建立到根节点的连接器 */
         error = node_connect_root(node);
+        log_info(
+            "CONNECT root node [%s:%d]",
+            knet_node_config_get_root_ip(node->c),
+            knet_node_config_get_root_port(node->c));
     }
-    if (error_ok == error) {
+    if (error_ok != error) {
         return error;
     }
     /* 设置工作线程数量, 默认单线程 */
@@ -260,7 +253,7 @@ int knet_node_broadcast(knode_t* node, const void* msg, int size) {
         verify(proxy->channel);
         ret = _node_send(proxy->channel, msg, (uint32_t)size);
         if (error_ok != ret) { /* 只是告诉调用者发生了错误 */
-            log_error("sent bytes to node failed node-id[%ld], node-type[%ld]",
+            log_error("sent bytes to node failed node-ID[%d], node-type[%d]",
                 proxy->id, proxy->type);
             /* 关闭节点管道 */
             knet_channel_ref_close(proxy->channel);
@@ -288,7 +281,7 @@ int knet_node_broadcast_by_type(knode_t* node, uint32_t type, const void* msg, i
             verify(proxy->channel);
             ret = _node_send(proxy->channel, msg, (uint32_t)size);
             if (error_ok != ret) { /* 只是告诉调用者发生了错误 */
-                log_error("sent bytes to node failed node-id[%ld], node-type[%ld]",
+                log_error("sent bytes to node failed node-ID[%d], node-type[%d]",
                     proxy->id, proxy->type);
                 /* 关闭节点管道 */
                 knet_channel_ref_close(proxy->channel);
@@ -315,7 +308,7 @@ int knet_node_write(knode_t* node, uint32_t id, const void* msg, int size) {
     }
     error = _node_send(proxy->channel, msg, (uint32_t)size);
     if (error_ok != error) {
-        log_error("sent bytes to node failed node-id[%ld], node-type[%ld]",
+        log_error("sent bytes to node failed node-ID[%d], node-type[%d]",
             proxy->id, proxy->type);
         /* 关闭节点管道 */
         knet_channel_ref_close(proxy->channel);
@@ -340,11 +333,11 @@ int knet_node_add_node(knode_t* node, uint32_t type, uint32_t id, kchannel_ref_t
     uuid = knet_channel_ref_get_uuid(channel);
     rwlock_rdlock(node->rwlock_node_hash);
     if (hash_get(node->hash_node_id, id)) {
-        log_error("node ID exists", id);
+        log_error("node ID exists, ID[%D]", id);
         error = error_node_exist;
     }
     if (hash_get(node->hash_node_channel_id, uuid_get_high32(uuid))) {
-        log_error("channel ID exists", uuid);
+        log_error("channel ID exists, CHANNEL ID[%lld]", uuid);
         error = error_node_exist;
     }
     if (error_ok != error) {
@@ -357,7 +350,6 @@ int knet_node_add_node(knode_t* node, uint32_t type, uint32_t id, kchannel_ref_t
     proxy->type    = type;
     proxy->id      = id;
     proxy->channel = channel;
-    knet_channel_ref_incref(channel);
     rwlock_wrlock(node->rwlock_node_hash);
     error = hash_add(node->hash_node_id, id, proxy);
     if (error_ok != error) {
@@ -377,6 +369,7 @@ int knet_node_add_node(knode_t* node, uint32_t type, uint32_t id, kchannel_ref_t
         node_cb(proxy, channel, node_cb_event_join);
     }
     knet_channel_ref_decref(channel);
+    log_info("new node established, type[%d], ID[%d]", type, id);
     return error;
 error_return:
     rwlock_wrunlock(node->rwlock_node_hash);
@@ -387,10 +380,12 @@ error_return:
 }
 
 int knet_node_remove_node_by_channel_ref(knode_t* node, kchannel_ref_t* channel) {
-    knode_proxy_t*  proxy    = 0;
-    int            error   = error_ok;
-    uint64_t       uuid    = 0;
-    knet_node_cb_t node_cb = 0;
+    knode_proxy_t* proxy     = 0;
+    int            error     = error_ok;
+    uint64_t       uuid      = 0;
+    knet_node_cb_t node_cb   = 0;
+    uint32_t       node_id   = 0;
+    uint32_t       node_type = 0;
     verify(node);
     verify(channel);
     uuid = knet_channel_ref_get_uuid(channel);
@@ -400,24 +395,25 @@ int knet_node_remove_node_by_channel_ref(knode_t* node, kchannel_ref_t* channel)
         error = error_node_not_found;
         goto error_return;
     }
-    if (error_ok != hash_delete(node->hash_node_channel_id, uuid_get_high32(uuid))) {
-        error = error_node_not_found;
-        goto error_return;
-    }
-    if (error_ok != hash_delete(node->hash_node_id, proxy->id)) {
-        error = error_node_not_found;
-        goto error_return;
-    }
-    /* 增加引用计数，防止回调函数期间被销毁 */
-    knet_channel_ref_incref(channel);
-    rwlock_wrunlock(node->rwlock_node_hash);
     node_cb = knet_node_config_get_node_cb(node->c);
     if (node_cb) {
         /* 调用回调 - node_cb_event_disjoin */
         proxy->length = 0;
         node_cb(proxy, proxy->channel, node_cb_event_disjoin);
     }
-    knet_channel_ref_decref(channel);
+    node_id   = proxy->id;
+    node_type = proxy->type;
+    if (error_ok != hash_delete(node->hash_node_channel_id, uuid_get_high32(uuid))) {
+        error = error_node_not_found;
+        goto error_return;
+    }
+    if (error_ok != hash_delete(node->hash_node_id, node_id)) {
+        error = error_node_not_found;
+        goto error_return;
+    }
+    rwlock_wrunlock(node->rwlock_node_hash);
+    log_info("node DISCONNECT, self:type[%d], ID[%d], peer:type[%d], ID[%d]",
+        knet_node_config_get_type(node->c), knet_node_config_get_id(node->c), node_type, node_id);
     return error;
 error_return:
     rwlock_wrunlock(node->rwlock_node_hash);
@@ -429,6 +425,7 @@ int knet_node_remove_node_by_id(knode_t* node, uint32_t id) {
     int            error   = error_ok;
     uint64_t       uuid    = 0;
     knet_node_cb_t node_cb = 0;
+    uint32_t       node_id = 0;
     verify(node);
     verify(id);
     rwlock_wrlock(node->rwlock_node_hash);
@@ -437,25 +434,23 @@ int knet_node_remove_node_by_id(knode_t* node, uint32_t id) {
         error = error_node_not_found;
         goto error_return;
     }
-    uuid = knet_channel_ref_get_uuid(proxy->channel);
-    if (error_ok != hash_delete(node->hash_node_channel_id, uuid_get_high32(uuid))) {
-        error = error_node_not_found;
-        goto error_return;
-    }
-    if (error_ok != hash_delete(node->hash_node_id, proxy->id)) {
-        error = error_node_not_found;
-        goto error_return;
-    }
-    /* 增加引用计数，防止回调函数期间被销毁 */
-    knet_channel_ref_incref(proxy->channel);
-    rwlock_wrunlock(node->rwlock_node_hash);
     node_cb = knet_node_config_get_node_cb(node->c);
     if (node_cb) {
         /* 调用回调 - node_cb_event_disjoin */
         proxy->length = 0;
         node_cb(proxy, proxy->channel, node_cb_event_disjoin);
     }
-    knet_channel_ref_decref(proxy->channel);
+    node_id = proxy->id;
+    uuid = knet_channel_ref_get_uuid(proxy->channel);
+    if (error_ok != hash_delete(node->hash_node_channel_id, uuid_get_high32(uuid))) {
+        error = error_node_not_found;
+        goto error_return;
+    }
+    if (error_ok != hash_delete(node->hash_node_id, node_id)) {
+        error = error_node_not_found;
+        goto error_return;
+    }
+    rwlock_wrunlock(node->rwlock_node_hash);
     return error;
 error_return:
     rwlock_wrunlock(node->rwlock_node_hash);
@@ -509,7 +504,7 @@ void hash_node_channel_id_dtor(void* param) {
     node_proxy_destroy(proxy);
 }
 
-int node_root_start(knode_t* node) {
+int node_local_start(knode_t* node) {
     kframework_acceptor_config_t* acceptor = 0;
     kframework_config_t*          config   = 0;
     verify(node);
@@ -519,7 +514,7 @@ int node_root_start(knode_t* node) {
     verify(acceptor);
     knet_framework_acceptor_config_set_local_address(acceptor,
         knet_node_config_get_ip(node->c), knet_node_config_get_port(node->c));
-    knet_framework_acceptor_config_set_user_data(acceptor, node);
+    framework_acceptor_config_set_user_data(acceptor, node);
     knet_framework_acceptor_config_set_backlog(acceptor, 5000);
     knet_framework_acceptor_config_set_client_heartbeat_timeout(acceptor,
         knet_node_config_get_node_channel_idle_timeout(node->c));
@@ -531,6 +526,10 @@ int node_root_start(knode_t* node) {
     return error_ok;
 }
 
+int node_root_start(knode_t* node) {
+    return node_local_start(node);
+}
+
 int node_connect_root(knode_t* node) {
     kframework_connector_config_t* connector = 0;
     kframework_config_t*           config    = 0;
@@ -540,7 +539,7 @@ int node_connect_root(knode_t* node) {
     verify(connector);
     knet_framework_connector_config_set_remote_address(connector,
         knet_node_config_get_root_ip(node->c), knet_node_config_get_root_port(node->c));
-    knet_framework_connector_config_set_user_data(connector, node);
+    framework_connector_config_set_user_data(connector, node);
     knet_framework_connector_config_set_heartbeat_timeout(connector,
         knet_node_config_get_node_channel_idle_timeout(node->c));
     knet_framework_connector_config_set_client_max_send_list_count(connector,
@@ -651,8 +650,8 @@ int _on_node_recv(kchannel_ref_t* channel) {
 
 int _on_node_disjoin(kchannel_ref_t* channel) {
     knode_t* node = 0;
+    verify(channel);
     node = (knode_t*)knet_channel_ref_get_user_data(channel);
-    verify(node);
     return knet_node_remove_node_by_channel_ref(node, channel);
 }
 
@@ -763,6 +762,7 @@ void node_channel_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
     }
     if (error_ok != error) {
         knet_channel_ref_close(channel);
+        log_error("node_channel_cb error, ID[%d]", error);
     }
 }
 
@@ -774,7 +774,7 @@ uint32_t _proc_msg_id(kchannel_ref_t* channel) {
     if (error_ok != knet_stream_copy(stream, &msg, sizeof(knode_msg_t))) {
         return 0;
     }
-    if (msg.header.length < (uint32_t)knet_stream_available(stream)) {
+    if (msg.header.length > (uint32_t)knet_stream_available(stream)) {
         return 0;
     }
     return msg.header.msg_id;
@@ -785,7 +785,7 @@ int _node_login_req(kchannel_ref_t* channel) {
     char               holder[128] = {0};
     knode_t*           node        = 0;
     knode_msg_t*       msg         = (knode_msg_t*)holder;
-    knode_login_req_t* req         = (knode_login_req_t*)(holder + NODE_HEADER_SIZE);
+    knode_login_req_t* req         = (knode_login_req_t*)(holder + sizeof(knode_msg_t));
     verify(channel);
     node = (knode_t*)knet_channel_ref_get_user_data(channel);
     verify(node);
@@ -806,7 +806,7 @@ int _node_login_ack(kchannel_ref_t* channel) {
     knode_t*           node        = 0;
     char               holder[128] = {0};
     knode_msg_t*       msg         = (knode_msg_t*)holder;
-    knode_login_ack_t* ack         = (knode_login_ack_t*)(holder + NODE_HEADER_SIZE);
+    knode_login_ack_t* ack         = (knode_login_ack_t*)(holder + sizeof(knode_msg_t));
     verify(channel);
     node = knet_channel_ref_get_user_data(channel);
     verify(node);
@@ -821,13 +821,17 @@ int _node_login_ack(kchannel_ref_t* channel) {
 }
 
 int _on_node_login_req(kchannel_ref_t* channel) {
-    kstream_t*  stream = 0;
-    knode_t*    node   = 0;
-    int         error  = error_ok;
+    kstream_t*      stream  = 0;
+    knode_t*        node    = 0;
+    int             error   = error_ok;
+    knode_proxy_t*  proxy   = 0;
+    knet_node_cb_t  node_cb = 0;
+    uint64_t        uuid    = 0;
     knode_login_req_t req;
     knode_msg_t msg;
     verify(channel);
-    node   = knet_channel_ref_get_user_data(channel);
+    node = knet_channel_ref_get_user_data(channel);
+    uuid = knet_channel_ref_get_uuid(channel);
     verify(node);
     stream = knet_channel_ref_get_stream(channel);
     error = knet_stream_pop(stream, &msg, sizeof(knode_msg_t));
@@ -846,18 +850,38 @@ int _on_node_login_req(kchannel_ref_t* channel) {
     if (error_ok != error) {
         return error;
     }
-    /* 广播join消息 */
-    return _node_broadcast_join(node, req.ip, req.port, req.type);
+    node_cb = knet_node_config_get_node_cb(node->c);
+    rwlock_rdlock(node->rwlock_node_hash);
+    /* 调用节点回调 */
+    if (node_cb) {
+        proxy = (knode_proxy_t*)hash_get(node->hash_node_channel_id, uuid_get_high32(uuid));
+        if (proxy) {
+            node_cb(proxy, channel, node_cb_event_join);
+        } else {
+            error = error_node_not_found;
+        }
+    }
+    rwlock_rdunlock(node->rwlock_node_hash);
+    log_info("node login, IP[%s], port[%d], type[%d], ID[%d]", req.ip, req.port, req.type, req.id);
+    /* 根节点广播join消息 */
+    if (knet_node_config_check_root(node->c)) {
+        return _node_broadcast_join(node, req.ip, req.port, req.type, req.id);
+    }
+    return error;
 }
 
 int _on_node_login_ack(kchannel_ref_t* channel) {
-    kstream_t* stream = 0;
-    knode_t*   node   = 0;
-    int        error  = error_ok;
+    kstream_t*     stream  = 0;
+    knode_t*       node    = 0;
+    int            error   = error_ok;
+    knet_node_cb_t node_cb = 0;
+    uint64_t       uuid    = 0;
+    knode_proxy_t* proxy   = 0;
     knode_login_ack_t ack;
     knode_msg_t msg;
     verify(channel);
-    node   = knet_channel_ref_get_user_data(channel);
+    node = knet_channel_ref_get_user_data(channel);
+    uuid = knet_channel_ref_get_uuid(channel);
     verify(node);
     stream = knet_channel_ref_get_stream(channel);
     error = knet_stream_pop(stream, &msg, sizeof(knode_msg_t));
@@ -872,6 +896,19 @@ int _on_node_login_ack(kchannel_ref_t* channel) {
     if (error_ok != error) {
         return error;
     }
+    node_cb = knet_node_config_get_node_cb(node->c);
+    rwlock_rdlock(node->rwlock_node_hash);
+    /* 调用节点回调 */
+    if (node_cb) {        
+        proxy = (knode_proxy_t*)hash_get(node->hash_node_channel_id, uuid_get_high32(uuid));
+        if (proxy) {
+            node_cb(proxy, channel, node_cb_event_join);
+        } else {
+            error = error_node_not_found;
+        }
+    }
+    rwlock_rdunlock(node->rwlock_node_hash);
+    log_info("node logined, type[%d], ID[%d]", ack.type, ack.id);
     return error;
 }
 
@@ -883,7 +920,7 @@ int _on_node_join(kchannel_ref_t* channel) {
     knode_join_t join;
     knode_msg_t  msg;
     verify(channel);
-    node   = knet_channel_ref_get_user_data(channel);
+    node = knet_channel_ref_get_user_data(channel);
     verify(node);
     stream = knet_channel_ref_get_stream(channel);
     error = knet_stream_pop(stream, &msg, sizeof(knode_msg_t));
@@ -903,7 +940,9 @@ int _on_node_join(kchannel_ref_t* channel) {
     verify(connector);
     knet_framework_connector_config_set_remote_address(connector,
         join.ip, join.port);
-    knet_framework_connector_config_set_user_data(connector, node);
+    framework_connector_config_set_user_data(connector, node);
+    knet_framework_connector_config_set_cb(connector, node_channel_cb);
+    log_info("CONNECT new joined node, IP[%s], port[%d]", join.ip, join.port);
     return knet_framework_connector_start(node->f, connector);
 }
 
@@ -973,7 +1012,7 @@ int _node_send(kchannel_ref_t* channel, const void* data, uint32_t size) {
     return knet_stream_push(stream, data, size);
 }
 
-int _node_broadcast_join(knode_t* node, const char* ip, int port, uint32_t type) {
+int _node_broadcast_join(knode_t* node, const char* ip, int port, uint32_t type, uint32_t id) {
     int            error       = error_ok;
     int            ret         = error_ok;
     char           holder[128] = {0};
@@ -986,7 +1025,7 @@ int _node_broadcast_join(knode_t* node, const char* ip, int port, uint32_t type)
     verify(ip);
     verify(port);
     msg->header.msg_id = node_msg_join;
-    msg->header.length = sizeof(msg) + sizeof(join_req);
+    msg->header.length = sizeof(knode_msg_t) + sizeof(knode_join_t);
     strcpy(join_req->ip, ip);
     join_req->port = (uint16_t)port;
     join_req->type = type;
@@ -994,12 +1033,14 @@ int _node_broadcast_join(knode_t* node, const char* ip, int port, uint32_t type)
     hash_for_each_safe(node->hash_node_id, value) {
         proxy = (knode_proxy_t*)hash_value_get_value(value);
         verify(proxy);
-        verify(proxy->channel);
-        stream = knet_channel_ref_get_stream(proxy->channel);
-        verify(stream);
-        ret = knet_stream_push(stream, holder, msg->header.length);
-        if (error_ok != ret) { /* 只是告诉调用者发生了错误 */
-            error = ret;
+        if (proxy->id != id) {
+            verify(proxy->channel);
+            stream = knet_channel_ref_get_stream(proxy->channel);
+            verify(stream);
+            ret = knet_stream_push(stream, holder, msg->header.length);
+            if (error_ok != ret) { /* 只是告诉调用者发生了错误 */
+                error = ret;
+            }
         }
     }
     rwlock_rdunlock(node->rwlock_node_hash);

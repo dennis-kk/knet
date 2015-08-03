@@ -92,6 +92,14 @@ int node_root_start(knode_t* node);
 int node_connect_root(knode_t* node);
 
 /**
+ * 启动节点监听器
+ * @param node knode_t实例
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int node_local_start(knode_t* node);
+
+/**
  * 读取IP黑/白名单文件
  * @param node knode_t实例
  * @retval error_ok 成功
@@ -113,5 +121,154 @@ void node_save_filter_files(knode_t* node);
  * @param e 管道事件ID
  */
 void node_channel_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e);
+
+/**
+ * 发送节点身份验证请求
+ * @param channel kchannel_ref_t实例
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int _node_login_req(kchannel_ref_t* channel);
+
+/**
+ * 发送节点身份验证应答
+ * @param channel kchannel_ref_t实例
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int _node_login_ack(kchannel_ref_t* channel);
+
+/**
+ * 发送数据到其他节点
+ * @param channel kchannel_ref_t实例
+ * @param data 数据块指针
+ * @param size 数据长度
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int _node_send(kchannel_ref_t* channel, const void* data, uint32_t size);
+
+/**
+ * 根节点通知其他节点有新节点加入集群
+ * @param channel kchannel_ref_t实例
+ * @param ip 新加入节点IP
+ * @param port 新加入节点监听端口
+ * @param type 新加入节点类型
+ * @param id 新加入节点ID
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int _node_broadcast_join(knode_t* node, const char* ip, int port, uint32_t type, uint32_t id);
+
+/**
+ * 获取消息ID
+ * @param channel kchannel_ref_t实例
+ * @return 消息ID
+ */
+uint32_t _proc_msg_id(kchannel_ref_t* channel);
+
+/**
+ * 发送心跳请求
+ * @param channel kchannel_ref_t实例
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int _node_send_heartbeat_req(kchannel_ref_t* channel);
+
+/**
+ * 发送心跳应答
+ * @param channel kchannel_ref_t实例
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int _node_send_heartbeat_ack(kchannel_ref_t* channel);
+
+/**
+ * 身份验证请求处理函数
+ * @param channel kchannel_ref_t实例
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int _on_node_login_req(kchannel_ref_t* channel);
+
+/**
+ * 身份验证应答处理函数
+ * @param channel kchannel_ref_t实例
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int _on_node_login_ack(kchannel_ref_t* channel);
+
+/**
+ * 新节点加入通知处理函数
+ * @param channel kchannel_ref_t实例
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int _on_node_join(kchannel_ref_t* channel);
+
+/**
+ * 节点数据处理函数
+ * @param channel kchannel_ref_t实例
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int _on_node_data(kchannel_ref_t* channel);
+
+/**
+ * 节点管道成功处理函数 - 主动连接
+ * @param channel kchannel_ref_t实例
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int _on_node_connect(kchannel_ref_t* channel);
+
+/**
+ * 节点管道成功处理函数 - 监听
+ * @param channel kchannel_ref_t实例
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int _on_node_accept(kchannel_ref_t* channel);
+
+/**
+ * 节点管道数据处理函数
+ * @param channel kchannel_ref_t实例
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int _on_node_recv(kchannel_ref_t* channel);
+
+/**
+ * 节点内部协议处理入口函数
+ * @param channel kchannel_ref_t实例
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int _on_node_disjoin(kchannel_ref_t* channel);
+
+/**
+ * 节点管道超时处理函数
+ * @param channel kchannel_ref_t实例
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int _on_node_timeout(kchannel_ref_t* channel);
+
+/**
+ * 节点心跳请求处理函数
+ * @param channel kchannel_ref_t实例
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int _on_node_heartbeat_req(kchannel_ref_t* channel);
+
+/**
+ * 节点心跳应答处理函数
+ * @param channel kchannel_ref_t实例
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int _on_node_heartbeat_ack(kchannel_ref_t* channel);
 
 #endif /* NODE_H */

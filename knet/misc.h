@@ -238,4 +238,40 @@ char* ltoa(long l, char* buffer, int size);
  */
 char* lltoa(long long ll, char* buffer, int size);
 
+/**
+ * 建立读写锁
+ * @return krwlock_t实例
+ */
+krwlock_t* rwlock_create();
+
+/**
+ * 销毁读写锁
+ * @param rwlock krwlock_t实例
+ */
+void rwlock_destroy(krwlock_t* rwlock);
+
+/**
+ * 读者锁
+ * @param rwlock krwlock_t实例
+ */
+void rwlock_rdlock(krwlock_t* rwlock);
+
+/**
+ * 读者解锁
+ * @param rwlock krwlock_t实例
+ */
+void rwlock_rdunlock(krwlock_t* rwlock);
+
+/**
+ * 写者锁
+ * @param rwlock krwlock_t实例
+ */
+void rwlock_wrlock(krwlock_t* rwlock);
+
+/**
+ * 写者解锁
+ * @param rwlock krwlock_t实例
+ */
+void rwlock_wrunlock(krwlock_t* rwlock);
+
 #endif /* MISC_H */

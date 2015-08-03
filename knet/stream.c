@@ -110,7 +110,7 @@ int knet_stream_copy(kstream_t* stream, void* buffer, int size) {
     verify(stream);
     verify(buffer);
     verify(size);
-    if (0 > ringbuffer_copy(knet_channel_ref_get_ringbuffer(stream->channel_ref), (char*)buffer, size)) {
+    if (0 >= ringbuffer_copy(knet_channel_ref_get_ringbuffer(stream->channel_ref), (char*)buffer, size)) {
         return error_recv_fail;
     }
     return error_ok;

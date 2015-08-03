@@ -27,24 +27,26 @@
 #include "list.h"
 
 struct _framework_acceptor_config_t {
-    char             ip[32];                 /* IP */
-    int              port;                   /* 监听端口 */
-    int              backlog;                /* listen() backlog */
-    int              idle_timeout;           /* 心跳（秒） */
-    int              max_send_list_count;    /* 发送链表最大长度 */
-    int              max_recv_buffer_length; /* 接收缓冲区最大长度 */
+    char                  ip[32];                 /* IP */
+    int                   port;                   /* 监听端口 */
+    int                   backlog;                /* listen() backlog */
+    int                   idle_timeout;           /* 心跳（秒） */
+    int                   max_send_list_count;    /* 发送链表最大长度 */
+    int                   max_recv_buffer_length; /* 接收缓冲区最大长度 */
     knet_channel_ref_cb_t cb;                     /* 回调 */
+    void*                 user_data;              /* 用户数据指针 */
 };
 
 struct _framework_connector_config_t {
-    char             ip[32];                 /* IP */
-    int              port;                   /* 监听端口 */
-    int              idle_timeout;           /* 心跳（秒） */
-    int              connect_timeout;        /* 连接超时 */
-    int              max_send_list_count;    /* 发送链表最大长度 */
-    int              max_recv_buffer_length; /* 接收缓冲区最大长度 */
-    int              auto_reconnect;         /* 自动重连标志 */
+    char                  ip[32];                 /* IP */
+    int                   port;                   /* 监听端口 */
+    int                   idle_timeout;           /* 心跳（秒） */
+    int                   connect_timeout;        /* 连接超时 */
+    int                   max_send_list_count;    /* 发送链表最大长度 */
+    int                   max_recv_buffer_length; /* 接收缓冲区最大长度 */
+    int                   auto_reconnect;         /* 自动重连标志 */
     knet_channel_ref_cb_t cb;                     /* 回调 */
+    void*                 user_data;              /* 用户数据指针 */
 };
 
 struct _framework_config_t {
@@ -323,4 +325,24 @@ int framework_connector_config_get_max_send_list_count(kframework_connector_conf
 int framework_connector_config_get_max_recv_buffer_length(kframework_connector_config_t* c) {
     verify(c);
     return c->max_recv_buffer_length;
+}
+
+void framework_acceptor_config_set_user_data(kframework_acceptor_config_t* c, void* user_data) {
+    verify(c);
+    c->user_data = user_data;
+}
+
+void* framework_acceptor_config_get_user_data(kframework_acceptor_config_t* c) {
+    verify(c);
+    return c->user_data;
+}
+
+void framework_connector_config_set_user_data(kframework_connector_config_t* c, void* user_data) {
+    verify(c);
+    c->user_data = user_data;
+}
+
+void* framework_connector_config_get_user_data(kframework_connector_config_t* c) {
+    verify(c);
+    return c->user_data;
 }

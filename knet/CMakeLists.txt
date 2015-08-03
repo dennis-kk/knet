@@ -31,6 +31,8 @@ add_library(knet
 	trie.c
 	ip_filter.c
 	vrouter.c
+	node.c
+	node_config.c
 )
 
 target_link_libraries(knet -lpthread)

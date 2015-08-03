@@ -139,6 +139,7 @@ int knet_channel_ref_connect(kchannel_ref_t* channel_ref, const char* ip, int po
     if (error_ok != error) {
         return error;
     }
+    log_info("start connect to IP[%s], port[%d]", ip, port);
     /* 负载均衡 */
     loop = knet_channel_ref_choose_loop(channel_ref);
     if (loop) {
@@ -452,8 +453,8 @@ int knet_channel_ref_check_event(kchannel_ref_t* channel_ref, knet_channel_event
 
 kchannel_ref_t* knet_channel_ref_accept_from_socket_fd(kchannel_ref_t* channel_ref, kloop_t* loop, socket_t client_fd, int event) {
     kchannel_t*     acceptor_channel    = 0;
-    uint32_t       max_send_list_len   = 0;
-    uint32_t       max_ringbuffer_size = 0;
+    uint32_t        max_send_list_len   = 0;
+    uint32_t        max_ringbuffer_size = 0;
     kchannel_t*     client_channel      = 0;
     kchannel_ref_t* client_ref          = 0;
     verify(channel_ref);
@@ -462,9 +463,13 @@ kchannel_ref_t* knet_channel_ref_accept_from_socket_fd(kchannel_ref_t* channel_r
     acceptor_channel = channel_ref->ref_info->channel;
     verify(acceptor_channel);
     max_send_list_len = knet_channel_get_max_send_list_len(acceptor_channel);
-    verify(max_send_list_len);
+    if (!max_send_list_len) {
+        max_send_list_len = INT_MAX;
+    }
     max_ringbuffer_size = ringbuffer_get_max_size(knet_channel_get_ringbuffer(acceptor_channel));
-    verify(max_ringbuffer_size);
+    if (!max_ringbuffer_size) {
+        max_ringbuffer_size = 16 * 1024; /* 默认16K */
+    }
     client_channel = knet_channel_create_exist_socket_fd(client_fd, max_send_list_len, max_ringbuffer_size);
     verify(client_channel);
     client_ref = knet_channel_ref_create(loop, client_channel);
@@ -534,6 +539,7 @@ void knet_channel_ref_update_connect(kchannel_ref_t* channel_ref) {
     knet_channel_ref_set_state(channel_ref, channel_state_active);
     /* 调用回调 */
     if (channel_ref->ref_info->cb) {
+        log_verb("connected, invoke cb");
         channel_ref->ref_info->cb(channel_ref, channel_cb_event_connect);
     }
 }

@@ -343,7 +343,7 @@ int knet_impl_event_add(kchannel_ref_t* channel_ref, knet_channel_event_e e) {
 
 int knet_impl_event_remove(kchannel_ref_t* channel_ref, knet_channel_event_e e) {
     int flag = 0;
-    e;
+    verify(e);
     verify(channel_ref);
     flag = knet_channel_ref_get_flag(channel_ref);
     if (flag & io_type_recv) {

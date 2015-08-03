@@ -67,6 +67,7 @@
     typedef signed int int32_t;
     typedef unsigned long long uint64_t ;
     typedef signed long long int64_t;
+    #define vsnprintf _vsnprintf
     #ifndef PATH_MAX
         #define PATH_MAX MAX_PATH
     #endif /* PATH_MAX */
@@ -146,6 +147,10 @@ typedef struct _trie_t ktrie_t;
 typedef struct _ip_filter_t kip_filter_t;
 typedef struct _vrouter_t kvrouter_t;
 typedef struct _router_path_t krouter_path_t;
+typedef struct _node_config_t knode_config_t;
+typedef struct _node_t knode_t;
+typedef struct _node_proxy_t knode_proxy_t;
+typedef struct _rwlock_t krwlock_t;
 
 /* 管道可投递事件 */
 typedef enum _channel_event_e {
@@ -235,6 +240,11 @@ typedef enum _error_e {
     error_ip_filter_open_fail,
     error_router_wire_not_found,
     error_router_wire_exist,
+    error_node_not_found,
+    error_node_exist,
+    error_node_ip_filter,
+    error_node_invalid_msg,
+    error_node_timeout,
 } knet_error_e;
 
 /*! 管道回调事件 */
@@ -291,6 +301,12 @@ typedef enum _krpc_type_e {
     krpc_type_map    = 8192, /*! 表 */
 } knet_rpc_type_e;
 
+typedef enum _node_cb_event_e {
+    node_cb_event_join = 1,
+    node_cb_event_disjoin = 2,
+    node_cb_event_data = 4,
+} knet_node_cb_event_e;
+
 /*! 线程函数 */
 typedef void (*knet_thread_func_t)(kthread_runner_t*);
 /*! 管道事件回调函数 */
@@ -309,6 +325,12 @@ typedef void (*knet_hash_dtor_t)(void*);
 typedef void (*knet_trie_dtor_t)(void*);
 /*! trie遍历函数 */
 typedef int (*knet_trie_for_each_func_t)(const char*, void*);
+/*! 节点代理回调函数 */
+typedef void (*knet_node_cb_t)(knode_proxy_t*, kchannel_ref_t*, knet_node_cb_event_e);
+/*! 节点OS信号回调函数 */
+typedef void (*knet_node_signal_cb_t)(int s, knode_t*);
+/*! 节点管理命令回调函数 */
+typedef void (*knet_node_manage_cb_t)(const char*);
 
 /* 根据需要， 开启不同选取器 */
 #if defined(WIN32)

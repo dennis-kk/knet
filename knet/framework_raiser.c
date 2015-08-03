@@ -98,6 +98,7 @@ int _create_connector_channel(kframework_connector_config_t* cc, kloop_t* loop) 
         framework_connector_config_get_max_recv_buffer_length(cc));
     verify(channel);
     knet_channel_ref_set_cb(channel, framework_connector_config_get_cb(cc));
+    knet_channel_ref_set_user_data(channel, framework_connector_config_get_user_data(cc));
     knet_channel_ref_set_auto_reconnect(channel, framework_connector_config_get_auto_reconnect(cc));
     /* 连接 */
     error = knet_channel_ref_connect(channel, framework_connector_config_get_remote_ip(cc),
@@ -185,6 +186,7 @@ int knet_framework_raiser_new_connector(kframework_raiser_t* raiser, kframework_
     verify(channel);
     knet_channel_ref_set_cb(channel, framework_connector_config_get_cb(c));
     knet_channel_ref_set_timeout(channel, framework_connector_config_get_heartbeat_timeout(c));
+    knet_channel_ref_set_user_data(channel, framework_connector_config_get_user_data(c));
     return knet_channel_ref_connect(channel, framework_connector_config_get_remote_ip(c),
         framework_connector_config_get_remote_port(c), framework_connector_config_get_connect_timeout(c));
 }
@@ -198,6 +200,7 @@ void acceptor_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
         /* 设置心跳间隔 */
         knet_channel_ref_set_timeout(channel,
             framework_acceptor_config_get_client_heartbeat_timeout(ac));
+        knet_channel_ref_set_user_data(channel, framework_acceptor_config_get_user_data(ac));
         if (cb) {
             /* 调用一次用户回调，在用户回调内通知新连接建立 */
             cb(channel, e);

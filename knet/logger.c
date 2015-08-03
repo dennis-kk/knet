@@ -25,17 +25,18 @@
 #include <stdarg.h>
 
 #include "misc.h"
+#include "logger.h"
 
 klogger_t* global_logger = 0; /* 全局日志指针 */
 
 struct _logger_t {
-    FILE*          fd;    /* 文件 */
+    FILE*               fd;    /* 文件 */
     knet_logger_level_e level; /* 日志等级 */
-    knet_logger_mode_e  mode;  /* 日志模式 */
-    klock_t*        lock;  /* 锁 */
+    int                 mode;  /* 日志模式 */
+    klock_t*            lock;  /* 锁 */
 };
 
-klogger_t* logger_create(const char* path, knet_logger_level_e level, knet_logger_mode_e mode) {
+klogger_t* logger_create(const char* path, int level, int mode) {
     char temp[PATH_MAX] = {0};
     klogger_t* logger = create(klogger_t);
     verify(logger);
@@ -80,28 +81,25 @@ void logger_destroy(klogger_t* logger) {
     destroy(logger);
 }
 
-int logger_write(klogger_t* logger, knet_logger_level_e level, const char* format, ...) {
+int logger_write(klogger_t* logger, int level, const char* format, ...) {
     char buffer[64] = {0};
-    int  bytes = 0;
     static const char* logger_level_name[] = { 0, "VERB", "INFO", "WARN", "ERRO", "FATA" };
-    va_list arg_ptr;
+    va_list va_ptr_file;
+    va_list va_ptr_console;
     verify(logger);
     verify(format);
     if (logger->level > level) {
         /* 日志等级不足 */
         return error_ok;
     }
-    va_start(arg_ptr, format);
+    va_start(va_ptr_file, format);
+    va_start(va_ptr_console, format);
     time_get_string(buffer, sizeof(buffer));
     if (logger->mode & logger_mode_file) {
         /* 写入日志文件 */
         lock_lock(logger->lock);
         fprintf(logger->fd, "[%s][%s]", logger_level_name[level], buffer);
-        bytes = vfprintf(logger->fd, format, arg_ptr);
-        if (bytes <= 0) {
-            lock_unlock(logger->lock);
-            return error_logger_write;
-        }
+        vfprintf(logger->fd, format, va_ptr_file);
         fprintf(logger->fd, "\n");
         if (logger->mode & logger_mode_flush) {
             /* 立即写入 */
@@ -113,7 +111,7 @@ int logger_write(klogger_t* logger, knet_logger_level_e level, const char* forma
         /* 写入stderr */
         lock_lock(logger->lock);
         fprintf(stderr, "[%s][%s]", logger_level_name[level], buffer);
-        vfprintf(stderr, format, arg_ptr);
+        vfprintf(stderr, format, va_ptr_console);
         fprintf(stderr, "\n");
         if (logger->mode & logger_mode_flush) {
             /* 立即写入 */
@@ -121,6 +119,7 @@ int logger_write(klogger_t* logger, knet_logger_level_e level, const char* forma
         }
         lock_unlock(logger->lock);
     }
-    va_end(arg_ptr);
+    va_end(va_ptr_file);
+    va_end(va_ptr_console);
     return error_ok;
 }
