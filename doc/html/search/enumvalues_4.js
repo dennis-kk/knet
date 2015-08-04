@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['rpc_5fclose',['rpc_close',['../a00056_a5a9afdfc8281994f0692b49499d731bf.html#a5a9afdfc8281994f0692b49499d731bfa3cd3113679264640766b2ba5fe2f4969',1,'config.h']]],
-  ['rpc_5ferror',['rpc_error',['../a00056_a5a9afdfc8281994f0692b49499d731bf.html#a5a9afdfc8281994f0692b49499d731bfa79dece603dd2f9290808ea858503e5dd',1,'config.h']]],
-  ['rpc_5ferror_5fclose',['rpc_error_close',['../a00056_a5a9afdfc8281994f0692b49499d731bf.html#a5a9afdfc8281994f0692b49499d731bfab5c4b107bde25138551d18ac230fe38e',1,'config.h']]],
-  ['rpc_5fok',['rpc_ok',['../a00056_a5a9afdfc8281994f0692b49499d731bf.html#a5a9afdfc8281994f0692b49499d731bfa178549cc0c8eafdae214948373a1f433',1,'config.h']]]
+  ['manage_5fcb_5fclose',['manage_cb_close',['../a00066_a4675b62a807235136679f9360645725a.html#a4675b62a807235136679f9360645725aa8151d65d449f33eaa315f30113441c59',1,'config.h']]],
+  ['manage_5fcb_5fok',['manage_cb_ok',['../a00066_a4675b62a807235136679f9360645725a.html#a4675b62a807235136679f9360645725aad51b2bdf2a7dfd2574c5b0ffeb0ce3c5',1,'config.h']]]
 ];

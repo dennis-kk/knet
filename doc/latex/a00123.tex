@@ -1,179 +1,132 @@
-\hypertarget{a00123}{}\section{字符串\+K\+V树}
-\label{a00123}\index{字符串\+K\+V树@{字符串\+K\+V树}}
-
-
-字符串树  
-
-
+\hypertarget{a00123}{}\section{E\+:/knet-\/git/knet/knet/version.c 文件参考}
+\label{a00123}\index{E\+:/knet-\/git/knet/knet/version.\+c@{E\+:/knet-\/git/knet/knet/version.\+c}}
+{\ttfamily \#include \char`\"{}version.\+h\char`\"{}}\\*
+\subsection*{宏定义}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{a00123_a877cce34f3e58fd7f9194fab90724cb8_a877cce34f3e58fd7f9194fab90724cb8}{M\+A\+J\+O\+R}~1 /$\ast$ 主版本 $\ast$/
+\item 
+\#define \hyperlink{a00123_a4e10915d93013542d442d78de0e02e9a_a4e10915d93013542d442d78de0e02e9a}{M\+I\+N\+O\+R}~4 /$\ast$ 次版本 $\ast$/
+\item 
+\#define \hyperlink{a00123_af59c44c1f3ff875c35393428624473aa_af59c44c1f3ff875c35393428624473aa}{P\+A\+T\+C\+H}~8 /$\ast$ 补丁 $\ast$/
+\item 
+\#define \hyperlink{a00123_ad4c134c968cc4fc0cc700567eb39c675_ad4c134c968cc4fc0cc700567eb39c675}{K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R}(major)~\#major
+\item 
+\#define \hyperlink{a00123_a70224fafcaea5102f9cd726ba926684f_a70224fafcaea5102f9cd726ba926684f}{K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R}(minor)~\#minor
+\item 
+\#define \hyperlink{a00123_ae9af7a95a483a187a37d3e9828c6ac1c_ae9af7a95a483a187a37d3e9828c6ac1c}{K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H}(patch)~\#patch
+\item 
+\#define \hyperlink{a00123_a96eb274e34ccfa0c0505ca99f2e09a82_a96eb274e34ccfa0c0505ca99f2e09a82}{K\+N\+E\+T\+\_\+\+V\+E\+R\+S\+I\+O\+N}(major,  minor,  patch)~\hyperlink{a00123_ad4c134c968cc4fc0cc700567eb39c675_ad4c134c968cc4fc0cc700567eb39c675}{K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R}(major)\char`\"{}.\char`\"{}\hyperlink{a00123_a70224fafcaea5102f9cd726ba926684f_a70224fafcaea5102f9cd726ba926684f}{K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R}(minor)\char`\"{}.\char`\"{}\hyperlink{a00123_ae9af7a95a483a187a37d3e9828c6ac1c_ae9af7a95a483a187a37d3e9828c6ac1c}{K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H}(patch)
+\end{DoxyCompactItemize}
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00056_a6b38314f31c4ed3eb36896383425a381_a6b38314f31c4ed3eb36896383425a381}{ktrie\+\_\+t} $\ast$ \hyperlink{a00123_ga40c34f3f3eed953a77e3df2927a24d0c_ga40c34f3f3eed953a77e3df2927a24d0c}{trie\+\_\+create} ()
-\begin{DoxyCompactList}\small\item\em 建立trie \end{DoxyCompactList}\item 
-void \hyperlink{a00123_ga1d3fcf14bbc77f4b3221ddb1121c21a0_ga1d3fcf14bbc77f4b3221ddb1121c21a0}{trie\+\_\+destroy} (\hyperlink{a00056_a6b38314f31c4ed3eb36896383425a381_a6b38314f31c4ed3eb36896383425a381}{ktrie\+\_\+t} $\ast$trie, \hyperlink{a00056_a46741b0dab7bbb26d611c429ee64d78c_a46741b0dab7bbb26d611c429ee64d78c}{knet\+\_\+trie\+\_\+dtor\+\_\+t} dtor)
-\begin{DoxyCompactList}\small\item\em 销毁trie \end{DoxyCompactList}\item 
-int \hyperlink{a00123_ga05e43d257d3626377de3340b6cd542fa_ga05e43d257d3626377de3340b6cd542fa}{trie\+\_\+insert} (\hyperlink{a00056_a6b38314f31c4ed3eb36896383425a381_a6b38314f31c4ed3eb36896383425a381}{ktrie\+\_\+t} $\ast$trie, const char $\ast$s, void $\ast$value)
-\begin{DoxyCompactList}\small\item\em 销毁trie \end{DoxyCompactList}\item 
-int \hyperlink{a00123_gae9c0f01c6b0eaf828710de2999601a11_gae9c0f01c6b0eaf828710de2999601a11}{trie\+\_\+find} (\hyperlink{a00056_a6b38314f31c4ed3eb36896383425a381_a6b38314f31c4ed3eb36896383425a381}{ktrie\+\_\+t} $\ast$trie, const char $\ast$s, void $\ast$$\ast$value)
-\begin{DoxyCompactList}\small\item\em 查找 \end{DoxyCompactList}\item 
-int \hyperlink{a00123_ga3d0e5d60984fac9b8053e8f8605d79e0_ga3d0e5d60984fac9b8053e8f8605d79e0}{trie\+\_\+remove} (\hyperlink{a00056_a6b38314f31c4ed3eb36896383425a381_a6b38314f31c4ed3eb36896383425a381}{ktrie\+\_\+t} $\ast$trie, const char $\ast$s, void $\ast$$\ast$value)
-\begin{DoxyCompactList}\small\item\em 删除 \end{DoxyCompactList}\item 
-int \hyperlink{a00123_ga0169ae53516f82a8aa435466a3d55678_ga0169ae53516f82a8aa435466a3d55678}{trie\+\_\+for\+\_\+each} (\hyperlink{a00056_a6b38314f31c4ed3eb36896383425a381_a6b38314f31c4ed3eb36896383425a381}{ktrie\+\_\+t} $\ast$trie, \hyperlink{a00056_ad77af676ce15810f8f713bb3eaa91fe8_ad77af676ce15810f8f713bb3eaa91fe8}{knet\+\_\+trie\+\_\+for\+\_\+each\+\_\+func\+\_\+t} func, void $\ast$param)
-\begin{DoxyCompactList}\small\item\em 遍历 \end{DoxyCompactList}\end{DoxyCompactItemize}
+const char $\ast$ \hyperlink{a00123_a3b6e0e802bbb0f81da8bcef8e757066a_a3b6e0e802bbb0f81da8bcef8e757066a}{knet\+\_\+get\+\_\+version\+\_\+string} ()
+\begin{DoxyCompactList}\small\item\em 取得当前版本号字符串 \end{DoxyCompactList}\item 
+int \hyperlink{a00123_ad86dd4bf914796aa945a02faac4ae52e_ad86dd4bf914796aa945a02faac4ae52e}{knet\+\_\+get\+\_\+version\+\_\+major} ()
+\begin{DoxyCompactList}\small\item\em 取得主版本号 \end{DoxyCompactList}\item 
+int \hyperlink{a00123_abedac37db9a6c72670cad32bdc2dedcd_abedac37db9a6c72670cad32bdc2dedcd}{knet\+\_\+get\+\_\+version\+\_\+minor} ()
+\begin{DoxyCompactList}\small\item\em 取得次版本号 \end{DoxyCompactList}\item 
+int \hyperlink{a00123_a6fb5e77c44c774a9d017ba43dea51672_a6fb5e77c44c774a9d017ba43dea51672}{knet\+\_\+get\+\_\+version\+\_\+path} ()
+\begin{DoxyCompactList}\small\item\em 取得补丁版本号 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\subsection{详细描述}
-字符串树 
+\subsection{宏定义说明}
+\hypertarget{a00123_ad4c134c968cc4fc0cc700567eb39c675_ad4c134c968cc4fc0cc700567eb39c675}{}\index{version.\+c@{version.\+c}!K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R@{K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R}}
+\index{K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R@{K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R}!version.\+c@{version.\+c}}
+\subsubsection[{K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R(
+\begin{DoxyParamCaption}
+\item[{}]{major}
+\end{DoxyParamCaption}
+)~\#major}\label{a00123_ad4c134c968cc4fc0cc700567eb39c675_ad4c134c968cc4fc0cc700567eb39c675}
+\hypertarget{a00123_a70224fafcaea5102f9cd726ba926684f_a70224fafcaea5102f9cd726ba926684f}{}\index{version.\+c@{version.\+c}!K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R@{K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R}}
+\index{K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R@{K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R}!version.\+c@{version.\+c}}
+\subsubsection[{K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R(
+\begin{DoxyParamCaption}
+\item[{}]{minor}
+\end{DoxyParamCaption}
+)~\#minor}\label{a00123_a70224fafcaea5102f9cd726ba926684f_a70224fafcaea5102f9cd726ba926684f}
+\hypertarget{a00123_ae9af7a95a483a187a37d3e9828c6ac1c_ae9af7a95a483a187a37d3e9828c6ac1c}{}\index{version.\+c@{version.\+c}!K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H@{K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H}}
+\index{K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H@{K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H}!version.\+c@{version.\+c}}
+\subsubsection[{K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H}]{\setlength{\rightskip}{0pt plus 5cm}\#define K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H(
+\begin{DoxyParamCaption}
+\item[{}]{patch}
+\end{DoxyParamCaption}
+)~\#patch}\label{a00123_ae9af7a95a483a187a37d3e9828c6ac1c_ae9af7a95a483a187a37d3e9828c6ac1c}
+\hypertarget{a00123_a96eb274e34ccfa0c0505ca99f2e09a82_a96eb274e34ccfa0c0505ca99f2e09a82}{}\index{version.\+c@{version.\+c}!K\+N\+E\+T\+\_\+\+V\+E\+R\+S\+I\+O\+N@{K\+N\+E\+T\+\_\+\+V\+E\+R\+S\+I\+O\+N}}
+\index{K\+N\+E\+T\+\_\+\+V\+E\+R\+S\+I\+O\+N@{K\+N\+E\+T\+\_\+\+V\+E\+R\+S\+I\+O\+N}!version.\+c@{version.\+c}}
+\subsubsection[{K\+N\+E\+T\+\_\+\+V\+E\+R\+S\+I\+O\+N}]{\setlength{\rightskip}{0pt plus 5cm}\#define K\+N\+E\+T\+\_\+\+V\+E\+R\+S\+I\+O\+N(
+\begin{DoxyParamCaption}
+\item[{}]{major, }
+\item[{}]{minor, }
+\item[{}]{patch}
+\end{DoxyParamCaption}
+)~{\bf K\+N\+E\+T\+\_\+\+M\+A\+J\+O\+R}(major)\char`\"{}.\char`\"{}{\bf K\+N\+E\+T\+\_\+\+M\+I\+N\+O\+R}(minor)\char`\"{}.\char`\"{}{\bf K\+N\+E\+T\+\_\+\+P\+A\+T\+C\+H}(patch)}\label{a00123_a96eb274e34ccfa0c0505ca99f2e09a82_a96eb274e34ccfa0c0505ca99f2e09a82}
+\hypertarget{a00123_a877cce34f3e58fd7f9194fab90724cb8_a877cce34f3e58fd7f9194fab90724cb8}{}\index{version.\+c@{version.\+c}!M\+A\+J\+O\+R@{M\+A\+J\+O\+R}}
+\index{M\+A\+J\+O\+R@{M\+A\+J\+O\+R}!version.\+c@{version.\+c}}
+\subsubsection[{M\+A\+J\+O\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+A\+J\+O\+R~1 /$\ast$ 主版本 $\ast$/}\label{a00123_a877cce34f3e58fd7f9194fab90724cb8_a877cce34f3e58fd7f9194fab90724cb8}
+\hypertarget{a00123_a4e10915d93013542d442d78de0e02e9a_a4e10915d93013542d442d78de0e02e9a}{}\index{version.\+c@{version.\+c}!M\+I\+N\+O\+R@{M\+I\+N\+O\+R}}
+\index{M\+I\+N\+O\+R@{M\+I\+N\+O\+R}!version.\+c@{version.\+c}}
+\subsubsection[{M\+I\+N\+O\+R}]{\setlength{\rightskip}{0pt plus 5cm}\#define M\+I\+N\+O\+R~4 /$\ast$ 次版本 $\ast$/}\label{a00123_a4e10915d93013542d442d78de0e02e9a_a4e10915d93013542d442d78de0e02e9a}
+\hypertarget{a00123_af59c44c1f3ff875c35393428624473aa_af59c44c1f3ff875c35393428624473aa}{}\index{version.\+c@{version.\+c}!P\+A\+T\+C\+H@{P\+A\+T\+C\+H}}
+\index{P\+A\+T\+C\+H@{P\+A\+T\+C\+H}!version.\+c@{version.\+c}}
+\subsubsection[{P\+A\+T\+C\+H}]{\setlength{\rightskip}{0pt plus 5cm}\#define P\+A\+T\+C\+H~8 /$\ast$ 补丁 $\ast$/}\label{a00123_af59c44c1f3ff875c35393428624473aa_af59c44c1f3ff875c35393428624473aa}
 
-
-\begin{DoxyPre}
-提供一个三路树结构用于快速查找字符串，三路树分别为\{left, center, right\}，
-满足left < center < right，查找，删除，插入效率为O(n)，n为字符串长度.
-字符串树使用字符串作为键，void*类型作为值，也可以作为哈希表使用，用户可以提供
-一个值销毁函数用于trie树销毁时的自定义值清理回调.
-\end{DoxyPre}
- 
 
 \subsection{函数说明}
-\hypertarget{a00123_ga40c34f3f3eed953a77e3df2927a24d0c_ga40c34f3f3eed953a77e3df2927a24d0c}{}\index{字符串\+K\+V树@{字符串\+K\+V树}!trie\+\_\+create@{trie\+\_\+create}}
-\index{trie\+\_\+create@{trie\+\_\+create}!字符串\+K\+V树@{字符串\+K\+V树}}
-\subsubsection[{trie\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ktrie\+\_\+t}$\ast$ trie\+\_\+create (
+\hypertarget{a00123_ad86dd4bf914796aa945a02faac4ae52e_ad86dd4bf914796aa945a02faac4ae52e}{}\index{version.\+c@{version.\+c}!knet\+\_\+get\+\_\+version\+\_\+major@{knet\+\_\+get\+\_\+version\+\_\+major}}
+\index{knet\+\_\+get\+\_\+version\+\_\+major@{knet\+\_\+get\+\_\+version\+\_\+major}!version.\+c@{version.\+c}}
+\subsubsection[{knet\+\_\+get\+\_\+version\+\_\+major}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+get\+\_\+version\+\_\+major (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\label{a00123_ga40c34f3f3eed953a77e3df2927a24d0c_ga40c34f3f3eed953a77e3df2927a24d0c}
+)}\label{a00123_ad86dd4bf914796aa945a02faac4ae52e_ad86dd4bf914796aa945a02faac4ae52e}
 
 
-建立trie 
+取得主版本号 
 
 \begin{DoxyReturn}{返回}
-ktrie\+\_\+t实例 
+主版本号 
 \end{DoxyReturn}
-\hypertarget{a00123_ga1d3fcf14bbc77f4b3221ddb1121c21a0_ga1d3fcf14bbc77f4b3221ddb1121c21a0}{}\index{字符串\+K\+V树@{字符串\+K\+V树}!trie\+\_\+destroy@{trie\+\_\+destroy}}
-\index{trie\+\_\+destroy@{trie\+\_\+destroy}!字符串\+K\+V树@{字符串\+K\+V树}}
-\subsubsection[{trie\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void trie\+\_\+destroy (
+\hypertarget{a00123_abedac37db9a6c72670cad32bdc2dedcd_abedac37db9a6c72670cad32bdc2dedcd}{}\index{version.\+c@{version.\+c}!knet\+\_\+get\+\_\+version\+\_\+minor@{knet\+\_\+get\+\_\+version\+\_\+minor}}
+\index{knet\+\_\+get\+\_\+version\+\_\+minor@{knet\+\_\+get\+\_\+version\+\_\+minor}!version.\+c@{version.\+c}}
+\subsubsection[{knet\+\_\+get\+\_\+version\+\_\+minor}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+get\+\_\+version\+\_\+minor (
 \begin{DoxyParamCaption}
-\item[{{\bf ktrie\+\_\+t} $\ast$}]{trie, }
-\item[{{\bf knet\+\_\+trie\+\_\+dtor\+\_\+t}}]{dtor}
+{}
 \end{DoxyParamCaption}
-)}\label{a00123_ga1d3fcf14bbc77f4b3221ddb1121c21a0_ga1d3fcf14bbc77f4b3221ddb1121c21a0}
+)}\label{a00123_abedac37db9a6c72670cad32bdc2dedcd_abedac37db9a6c72670cad32bdc2dedcd}
 
 
-销毁trie 
+取得次版本号 
 
-
-\begin{DoxyParams}{参数}
-{\em trie} & ktrie\+\_\+t实例 \\
-\hline
-{\em dtor} & 销毁函数 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00123_gae9c0f01c6b0eaf828710de2999601a11_gae9c0f01c6b0eaf828710de2999601a11}{}\index{字符串\+K\+V树@{字符串\+K\+V树}!trie\+\_\+find@{trie\+\_\+find}}
-\index{trie\+\_\+find@{trie\+\_\+find}!字符串\+K\+V树@{字符串\+K\+V树}}
-\subsubsection[{trie\+\_\+find}]{\setlength{\rightskip}{0pt plus 5cm}int trie\+\_\+find (
+\begin{DoxyReturn}{返回}
+次版本号 
+\end{DoxyReturn}
+\hypertarget{a00123_a6fb5e77c44c774a9d017ba43dea51672_a6fb5e77c44c774a9d017ba43dea51672}{}\index{version.\+c@{version.\+c}!knet\+\_\+get\+\_\+version\+\_\+path@{knet\+\_\+get\+\_\+version\+\_\+path}}
+\index{knet\+\_\+get\+\_\+version\+\_\+path@{knet\+\_\+get\+\_\+version\+\_\+path}!version.\+c@{version.\+c}}
+\subsubsection[{knet\+\_\+get\+\_\+version\+\_\+path}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+get\+\_\+version\+\_\+path (
 \begin{DoxyParamCaption}
-\item[{{\bf ktrie\+\_\+t} $\ast$}]{trie, }
-\item[{const char $\ast$}]{s, }
-\item[{void $\ast$$\ast$}]{value}
+{}
 \end{DoxyParamCaption}
-)}\label{a00123_gae9c0f01c6b0eaf828710de2999601a11_gae9c0f01c6b0eaf828710de2999601a11}
+)}\label{a00123_a6fb5e77c44c774a9d017ba43dea51672_a6fb5e77c44c774a9d017ba43dea51672}
 
 
-查找 
+取得补丁版本号 
 
-
-\begin{DoxyParams}{参数}
-{\em trie} & ktrie\+\_\+t实例 \\
-\hline
-{\em s} & 键 \\
-\hline
-{\em value} & 值 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00123_ga0169ae53516f82a8aa435466a3d55678_ga0169ae53516f82a8aa435466a3d55678}{}\index{字符串\+K\+V树@{字符串\+K\+V树}!trie\+\_\+for\+\_\+each@{trie\+\_\+for\+\_\+each}}
-\index{trie\+\_\+for\+\_\+each@{trie\+\_\+for\+\_\+each}!字符串\+K\+V树@{字符串\+K\+V树}}
-\subsubsection[{trie\+\_\+for\+\_\+each}]{\setlength{\rightskip}{0pt plus 5cm}int trie\+\_\+for\+\_\+each (
+\begin{DoxyReturn}{返回}
+补丁版本号 
+\end{DoxyReturn}
+\hypertarget{a00123_a3b6e0e802bbb0f81da8bcef8e757066a_a3b6e0e802bbb0f81da8bcef8e757066a}{}\index{version.\+c@{version.\+c}!knet\+\_\+get\+\_\+version\+\_\+string@{knet\+\_\+get\+\_\+version\+\_\+string}}
+\index{knet\+\_\+get\+\_\+version\+\_\+string@{knet\+\_\+get\+\_\+version\+\_\+string}!version.\+c@{version.\+c}}
+\subsubsection[{knet\+\_\+get\+\_\+version\+\_\+string}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ knet\+\_\+get\+\_\+version\+\_\+string (
 \begin{DoxyParamCaption}
-\item[{{\bf ktrie\+\_\+t} $\ast$}]{trie, }
-\item[{{\bf knet\+\_\+trie\+\_\+for\+\_\+each\+\_\+func\+\_\+t}}]{func, }
-\item[{void $\ast$}]{param}
+{}
 \end{DoxyParamCaption}
-)}\label{a00123_ga0169ae53516f82a8aa435466a3d55678_ga0169ae53516f82a8aa435466a3d55678}
+)}\label{a00123_a3b6e0e802bbb0f81da8bcef8e757066a_a3b6e0e802bbb0f81da8bcef8e757066a}
 
 
-遍历 
+取得当前版本号字符串 
 
-
-\begin{DoxyParams}{参数}
-{\em trie} & ktrie\+\_\+t实例 \\
-\hline
-{\em func} & 遍历函数 \\
-\hline
-{\em param} & 遍历函数参数 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00123_ga05e43d257d3626377de3340b6cd542fa_ga05e43d257d3626377de3340b6cd542fa}{}\index{字符串\+K\+V树@{字符串\+K\+V树}!trie\+\_\+insert@{trie\+\_\+insert}}
-\index{trie\+\_\+insert@{trie\+\_\+insert}!字符串\+K\+V树@{字符串\+K\+V树}}
-\subsubsection[{trie\+\_\+insert}]{\setlength{\rightskip}{0pt plus 5cm}int trie\+\_\+insert (
-\begin{DoxyParamCaption}
-\item[{{\bf ktrie\+\_\+t} $\ast$}]{trie, }
-\item[{const char $\ast$}]{s, }
-\item[{void $\ast$}]{value}
-\end{DoxyParamCaption}
-)}\label{a00123_ga05e43d257d3626377de3340b6cd542fa_ga05e43d257d3626377de3340b6cd542fa}
-
-
-销毁trie 
-
-
-\begin{DoxyParams}{参数}
-{\em trie} & ktrie\+\_\+t实例 \\
-\hline
-{\em s} & 键 \\
-\hline
-{\em value} & 值 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00123_ga3d0e5d60984fac9b8053e8f8605d79e0_ga3d0e5d60984fac9b8053e8f8605d79e0}{}\index{字符串\+K\+V树@{字符串\+K\+V树}!trie\+\_\+remove@{trie\+\_\+remove}}
-\index{trie\+\_\+remove@{trie\+\_\+remove}!字符串\+K\+V树@{字符串\+K\+V树}}
-\subsubsection[{trie\+\_\+remove}]{\setlength{\rightskip}{0pt plus 5cm}int trie\+\_\+remove (
-\begin{DoxyParamCaption}
-\item[{{\bf ktrie\+\_\+t} $\ast$}]{trie, }
-\item[{const char $\ast$}]{s, }
-\item[{void $\ast$$\ast$}]{value}
-\end{DoxyParamCaption}
-)}\label{a00123_ga3d0e5d60984fac9b8053e8f8605d79e0_ga3d0e5d60984fac9b8053e8f8605d79e0}
-
-
-删除 
-
-
-\begin{DoxyParams}{参数}
-{\em trie} & ktrie\+\_\+t实例 \\
-\hline
-{\em s} & 键 \\
-\hline
-{\em value} & 值 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
+\begin{DoxyReturn}{返回}
+当前版本号字符串 
+\end{DoxyReturn}

@@ -1,0 +1,161 @@
+\hypertarget{a00134}{}\section{负载均衡器}
+\label{a00134}\index{负载均衡器@{负载均衡器}}
+
+
+负载均衡器  
+
+
+\subsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00066_abd3f964265beb2f8984e76f44fb5ea33_abd3f964265beb2f8984e76f44fb5ea33}{kloop\+\_\+balancer\+\_\+t} $\ast$ \hyperlink{a00134_ga4211b2d32e1a7447e479b9727dce61d4_ga4211b2d32e1a7447e479b9727dce61d4}{knet\+\_\+loop\+\_\+balancer\+\_\+create} ()
+\begin{DoxyCompactList}\small\item\em 创建负载均衡器 \end{DoxyCompactList}\item 
+void \hyperlink{a00134_ga6fcdd378027b0705cd2e279601985609_ga6fcdd378027b0705cd2e279601985609}{knet\+\_\+loop\+\_\+balancer\+\_\+destroy} (\hyperlink{a00066_abd3f964265beb2f8984e76f44fb5ea33_abd3f964265beb2f8984e76f44fb5ea33}{kloop\+\_\+balancer\+\_\+t} $\ast$balancer)
+\begin{DoxyCompactList}\small\item\em 销毁负载均衡器 \end{DoxyCompactList}\item 
+int \hyperlink{a00134_ga647f8a2d39c97c8759f8768ebc612b98_ga647f8a2d39c97c8759f8768ebc612b98}{knet\+\_\+loop\+\_\+balancer\+\_\+attach} (\hyperlink{a00066_abd3f964265beb2f8984e76f44fb5ea33_abd3f964265beb2f8984e76f44fb5ea33}{kloop\+\_\+balancer\+\_\+t} $\ast$balancer, \hyperlink{a00066_a97fc76209a58362019f1ded9169e397f_a97fc76209a58362019f1ded9169e397f}{kloop\+\_\+t} $\ast$loop)
+\begin{DoxyCompactList}\small\item\em 添加事件循环到负载均衡器 \end{DoxyCompactList}\item 
+int \hyperlink{a00134_ga705fd81a537d18cfe1b66df9d15b6c4e_ga705fd81a537d18cfe1b66df9d15b6c4e}{knet\+\_\+loop\+\_\+balancer\+\_\+detach} (\hyperlink{a00066_abd3f964265beb2f8984e76f44fb5ea33_abd3f964265beb2f8984e76f44fb5ea33}{kloop\+\_\+balancer\+\_\+t} $\ast$balancer, \hyperlink{a00066_a97fc76209a58362019f1ded9169e397f_a97fc76209a58362019f1ded9169e397f}{kloop\+\_\+t} $\ast$loop)
+\begin{DoxyCompactList}\small\item\em 从负载均衡器内删除事件循环 \end{DoxyCompactList}\item 
+void \hyperlink{a00134_ga476aeb9c1ab507c2af581b9ceb66b261_ga476aeb9c1ab507c2af581b9ceb66b261}{knet\+\_\+loop\+\_\+balancer\+\_\+set\+\_\+data} (\hyperlink{a00066_abd3f964265beb2f8984e76f44fb5ea33_abd3f964265beb2f8984e76f44fb5ea33}{kloop\+\_\+balancer\+\_\+t} $\ast$balancer, void $\ast$data)
+\begin{DoxyCompactList}\small\item\em 设置用户数据 \end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{a00134_gaf4fab99f76529f2381418ff4f0692a68_gaf4fab99f76529f2381418ff4f0692a68}{knet\+\_\+loop\+\_\+balancer\+\_\+get\+\_\+data} (\hyperlink{a00066_abd3f964265beb2f8984e76f44fb5ea33_abd3f964265beb2f8984e76f44fb5ea33}{kloop\+\_\+balancer\+\_\+t} $\ast$balancer)
+\begin{DoxyCompactList}\small\item\em 取得用户数据 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{详细描述}
+负载均衡器 
+
+
+\begin{DoxyPre}
+负载均衡器可以与任意数量的kloop\_t关联，关联后的kloop\_t内监听器接受到的新管道
+将参与负载均衡，负载均衡的策略是kloop\_t内活跃管道数量，kloop\_balancer\_t选择
+活跃管道最少的kloop\_t负载新接受的管道.\end{DoxyPre}
+
+
+
+\begin{DoxyPre}调用knet\_loop\_balancer\_attach让kloop\_balancer\_t与kloop\_t关联，调用knet\_loop\_balancer\_detach
+取消关联.
+\end{DoxyPre}
+ 
+
+\subsection{函数说明}
+\hypertarget{a00134_ga647f8a2d39c97c8759f8768ebc612b98_ga647f8a2d39c97c8759f8768ebc612b98}{}\index{负载均衡器@{负载均衡器}!knet\+\_\+loop\+\_\+balancer\+\_\+attach@{knet\+\_\+loop\+\_\+balancer\+\_\+attach}}
+\index{knet\+\_\+loop\+\_\+balancer\+\_\+attach@{knet\+\_\+loop\+\_\+balancer\+\_\+attach}!负载均衡器@{负载均衡器}}
+\subsubsection[{knet\+\_\+loop\+\_\+balancer\+\_\+attach}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+loop\+\_\+balancer\+\_\+attach (
+\begin{DoxyParamCaption}
+\item[{{\bf kloop\+\_\+balancer\+\_\+t} $\ast$}]{balancer, }
+\item[{{\bf kloop\+\_\+t} $\ast$}]{loop}
+\end{DoxyParamCaption}
+)}\label{a00134_ga647f8a2d39c97c8759f8768ebc612b98_ga647f8a2d39c97c8759f8768ebc612b98}
+
+
+添加事件循环到负载均衡器 
+
+
+\begin{DoxyParams}{参数}
+{\em balancer} & kloop\+\_\+balancer\+\_\+t实例 \\
+\hline
+{\em loop} & kloop\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{a00134_ga4211b2d32e1a7447e479b9727dce61d4_ga4211b2d32e1a7447e479b9727dce61d4}{}\index{负载均衡器@{负载均衡器}!knet\+\_\+loop\+\_\+balancer\+\_\+create@{knet\+\_\+loop\+\_\+balancer\+\_\+create}}
+\index{knet\+\_\+loop\+\_\+balancer\+\_\+create@{knet\+\_\+loop\+\_\+balancer\+\_\+create}!负载均衡器@{负载均衡器}}
+\subsubsection[{knet\+\_\+loop\+\_\+balancer\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kloop\+\_\+balancer\+\_\+t}$\ast$ knet\+\_\+loop\+\_\+balancer\+\_\+create (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{a00134_ga4211b2d32e1a7447e479b9727dce61d4_ga4211b2d32e1a7447e479b9727dce61d4}
+
+
+创建负载均衡器 
+
+\begin{DoxyReturn}{返回}
+kloop\+\_\+balancer\+\_\+t实例 
+\end{DoxyReturn}
+\hypertarget{a00134_ga6fcdd378027b0705cd2e279601985609_ga6fcdd378027b0705cd2e279601985609}{}\index{负载均衡器@{负载均衡器}!knet\+\_\+loop\+\_\+balancer\+\_\+destroy@{knet\+\_\+loop\+\_\+balancer\+\_\+destroy}}
+\index{knet\+\_\+loop\+\_\+balancer\+\_\+destroy@{knet\+\_\+loop\+\_\+balancer\+\_\+destroy}!负载均衡器@{负载均衡器}}
+\subsubsection[{knet\+\_\+loop\+\_\+balancer\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+loop\+\_\+balancer\+\_\+destroy (
+\begin{DoxyParamCaption}
+\item[{{\bf kloop\+\_\+balancer\+\_\+t} $\ast$}]{balancer}
+\end{DoxyParamCaption}
+)}\label{a00134_ga6fcdd378027b0705cd2e279601985609_ga6fcdd378027b0705cd2e279601985609}
+
+
+销毁负载均衡器 
+
+
+\begin{DoxyParams}{参数}
+{\em balancer} & kloop\+\_\+balancer\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00134_ga705fd81a537d18cfe1b66df9d15b6c4e_ga705fd81a537d18cfe1b66df9d15b6c4e}{}\index{负载均衡器@{负载均衡器}!knet\+\_\+loop\+\_\+balancer\+\_\+detach@{knet\+\_\+loop\+\_\+balancer\+\_\+detach}}
+\index{knet\+\_\+loop\+\_\+balancer\+\_\+detach@{knet\+\_\+loop\+\_\+balancer\+\_\+detach}!负载均衡器@{负载均衡器}}
+\subsubsection[{knet\+\_\+loop\+\_\+balancer\+\_\+detach}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+loop\+\_\+balancer\+\_\+detach (
+\begin{DoxyParamCaption}
+\item[{{\bf kloop\+\_\+balancer\+\_\+t} $\ast$}]{balancer, }
+\item[{{\bf kloop\+\_\+t} $\ast$}]{loop}
+\end{DoxyParamCaption}
+)}\label{a00134_ga705fd81a537d18cfe1b66df9d15b6c4e_ga705fd81a537d18cfe1b66df9d15b6c4e}
+
+
+从负载均衡器内删除事件循环 
+
+
+\begin{DoxyParams}{参数}
+{\em balancer} & kloop\+\_\+balancer\+\_\+t实例 \\
+\hline
+{\em loop} & kloop\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{a00134_gaf4fab99f76529f2381418ff4f0692a68_gaf4fab99f76529f2381418ff4f0692a68}{}\index{负载均衡器@{负载均衡器}!knet\+\_\+loop\+\_\+balancer\+\_\+get\+\_\+data@{knet\+\_\+loop\+\_\+balancer\+\_\+get\+\_\+data}}
+\index{knet\+\_\+loop\+\_\+balancer\+\_\+get\+\_\+data@{knet\+\_\+loop\+\_\+balancer\+\_\+get\+\_\+data}!负载均衡器@{负载均衡器}}
+\subsubsection[{knet\+\_\+loop\+\_\+balancer\+\_\+get\+\_\+data}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ knet\+\_\+loop\+\_\+balancer\+\_\+get\+\_\+data (
+\begin{DoxyParamCaption}
+\item[{{\bf kloop\+\_\+balancer\+\_\+t} $\ast$}]{balancer}
+\end{DoxyParamCaption}
+)}\label{a00134_gaf4fab99f76529f2381418ff4f0692a68_gaf4fab99f76529f2381418ff4f0692a68}
+
+
+取得用户数据 
+
+
+\begin{DoxyParams}{参数}
+{\em balancer} & kloop\+\_\+balancer\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+用户数据指针 
+\end{DoxyReturn}
+\hypertarget{a00134_ga476aeb9c1ab507c2af581b9ceb66b261_ga476aeb9c1ab507c2af581b9ceb66b261}{}\index{负载均衡器@{负载均衡器}!knet\+\_\+loop\+\_\+balancer\+\_\+set\+\_\+data@{knet\+\_\+loop\+\_\+balancer\+\_\+set\+\_\+data}}
+\index{knet\+\_\+loop\+\_\+balancer\+\_\+set\+\_\+data@{knet\+\_\+loop\+\_\+balancer\+\_\+set\+\_\+data}!负载均衡器@{负载均衡器}}
+\subsubsection[{knet\+\_\+loop\+\_\+balancer\+\_\+set\+\_\+data}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+loop\+\_\+balancer\+\_\+set\+\_\+data (
+\begin{DoxyParamCaption}
+\item[{{\bf kloop\+\_\+balancer\+\_\+t} $\ast$}]{balancer, }
+\item[{void $\ast$}]{data}
+\end{DoxyParamCaption}
+)}\label{a00134_ga476aeb9c1ab507c2af581b9ceb66b261_ga476aeb9c1ab507c2af581b9ceb66b261}
+
+
+设置用户数据 
+
+
+\begin{DoxyParams}{参数}
+{\em balancer} & kloop\+\_\+balancer\+\_\+t实例 \\
+\hline
+{\em data} & 用户数据指针 \\
+\hline
+\end{DoxyParams}

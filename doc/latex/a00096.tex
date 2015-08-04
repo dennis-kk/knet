@@ -1,90 +1,223 @@
-\hypertarget{a00096}{}\section{E\+:/knet-\/git/knet/knet/rpc\+\_\+object.h 文件参考}
-\label{a00096}\index{E\+:/knet-\/git/knet/knet/rpc\+\_\+object.\+h@{E\+:/knet-\/git/knet/knet/rpc\+\_\+object.\+h}}
+\hypertarget{a00096}{}\section{E\+:/knet-\/git/knet/knet/loop\+\_\+profile.h 文件参考}
+\label{a00096}\index{E\+:/knet-\/git/knet/knet/loop\+\_\+profile.\+h@{E\+:/knet-\/git/knet/knet/loop\+\_\+profile.\+h}}
 {\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\\*
-{\ttfamily \#include \char`\"{}rpc\+\_\+object\+\_\+api.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}loop\+\_\+profile\+\_\+api.\+h\char`\"{}}\\*
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-uint16\+\_\+t \hyperlink{a00096_aaa8a155df38de3bbf2a876b94686d195_aaa8a155df38de3bbf2a876b94686d195}{krpc\+\_\+number\+\_\+get\+\_\+marshal\+\_\+size} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
-\begin{DoxyCompactList}\small\item\em 获取数字对象序列化长度 \end{DoxyCompactList}\item 
-int \hyperlink{a00096_af0d124108915f859d85fccd58facf12f_af0d124108915f859d85fccd58facf12f}{krpc\+\_\+string\+\_\+set\+\_\+size} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, uint16\+\_\+t size)
-\begin{DoxyCompactList}\small\item\em 设置字符串长度 \end{DoxyCompactList}\item 
-void \hyperlink{a00096_a13be7946c84baeebe93977ef511e125f_a13be7946c84baeebe93977ef511e125f}{krpc\+\_\+vector\+\_\+enlarge} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
-\begin{DoxyCompactList}\small\item\em 扩展数组 \end{DoxyCompactList}\item 
-void \hyperlink{a00096_a79b7c0edd0ee7a8c462d19881589f701_a79b7c0edd0ee7a8c462d19881589f701}{hash\+\_\+value\+\_\+dtor} (void $\ast$v)
-\begin{DoxyCompactList}\small\item\em 表值销毁函数 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{a00066_ab75a5c23099a6118c469ed160b277f28_ab75a5c23099a6118c469ed160b277f28}{kloop\+\_\+profile\+\_\+t} $\ast$ \hyperlink{a00096_a2ceadcfacc62456cf26ac88ebe09fd50_a2ceadcfacc62456cf26ac88ebe09fd50}{knet\+\_\+loop\+\_\+profile\+\_\+create} (\hyperlink{a00066_a97fc76209a58362019f1ded9169e397f_a97fc76209a58362019f1ded9169e397f}{kloop\+\_\+t} $\ast$loop)
+\begin{DoxyCompactList}\small\item\em 建立kloop\+\_\+t统计器 \end{DoxyCompactList}\item 
+void \hyperlink{a00096_a760cc20cb3dc6a361e6b5f67576f2bbc_a760cc20cb3dc6a361e6b5f67576f2bbc}{knet\+\_\+loop\+\_\+profile\+\_\+destroy} (\hyperlink{a00066_ab75a5c23099a6118c469ed160b277f28_ab75a5c23099a6118c469ed160b277f28}{kloop\+\_\+profile\+\_\+t} $\ast$profile)
+\begin{DoxyCompactList}\small\item\em 销毁统计器 \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{a00096_ab75ba9cdc68d1b4ec059974df4b67165_ab75ba9cdc68d1b4ec059974df4b67165}{knet\+\_\+loop\+\_\+profile\+\_\+increase\+\_\+established\+\_\+channel\+\_\+count} (\hyperlink{a00066_ab75a5c23099a6118c469ed160b277f28_ab75a5c23099a6118c469ed160b277f28}{kloop\+\_\+profile\+\_\+t} $\ast$profile)
+\begin{DoxyCompactList}\small\item\em 增加已建立连接的管道数量 \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{a00096_ae34c1df8f99b26184f7380c90cc1e799_ae34c1df8f99b26184f7380c90cc1e799}{knet\+\_\+loop\+\_\+profile\+\_\+decrease\+\_\+established\+\_\+channel\+\_\+count} (\hyperlink{a00066_ab75a5c23099a6118c469ed160b277f28_ab75a5c23099a6118c469ed160b277f28}{kloop\+\_\+profile\+\_\+t} $\ast$profile)
+\begin{DoxyCompactList}\small\item\em 减少已建立连接的管道数量 \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{a00096_abb04cdf84772d003486afde6ee2f5234_abb04cdf84772d003486afde6ee2f5234}{knet\+\_\+loop\+\_\+profile\+\_\+increase\+\_\+active\+\_\+channel\+\_\+count} (\hyperlink{a00066_ab75a5c23099a6118c469ed160b277f28_ab75a5c23099a6118c469ed160b277f28}{kloop\+\_\+profile\+\_\+t} $\ast$profile)
+\begin{DoxyCompactList}\small\item\em 增加已建立但未连接的管道数量 \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{a00096_a2846784b57c724b18c09aa177c1d1905_a2846784b57c724b18c09aa177c1d1905}{knet\+\_\+loop\+\_\+profile\+\_\+decrease\+\_\+active\+\_\+channel\+\_\+count} (\hyperlink{a00066_ab75a5c23099a6118c469ed160b277f28_ab75a5c23099a6118c469ed160b277f28}{kloop\+\_\+profile\+\_\+t} $\ast$profile)
+\begin{DoxyCompactList}\small\item\em 减少已建立但未连接的管道数量 \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{a00096_a85fbddaf0bf20c228f7389ad2765ec57_a85fbddaf0bf20c228f7389ad2765ec57}{knet\+\_\+loop\+\_\+profile\+\_\+increase\+\_\+close\+\_\+channel\+\_\+count} (\hyperlink{a00066_ab75a5c23099a6118c469ed160b277f28_ab75a5c23099a6118c469ed160b277f28}{kloop\+\_\+profile\+\_\+t} $\ast$profile)
+\begin{DoxyCompactList}\small\item\em 增加已关闭管道数量 \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{a00096_a1c0e93ef936d34b9ed9eb0b8a949a888_a1c0e93ef936d34b9ed9eb0b8a949a888}{knet\+\_\+loop\+\_\+profile\+\_\+decrease\+\_\+close\+\_\+channel\+\_\+count} (\hyperlink{a00066_ab75a5c23099a6118c469ed160b277f28_ab75a5c23099a6118c469ed160b277f28}{kloop\+\_\+profile\+\_\+t} $\ast$profile)
+\begin{DoxyCompactList}\small\item\em 减少已关闭管道数量 \end{DoxyCompactList}\item 
+uint64\+\_\+t \hyperlink{a00096_abd775461437b9c394cf7b800953ea6d0_abd775461437b9c394cf7b800953ea6d0}{knet\+\_\+loop\+\_\+profile\+\_\+add\+\_\+send\+\_\+bytes} (\hyperlink{a00066_ab75a5c23099a6118c469ed160b277f28_ab75a5c23099a6118c469ed160b277f28}{kloop\+\_\+profile\+\_\+t} $\ast$profile, uint64\+\_\+t send\+\_\+bytes)
+\begin{DoxyCompactList}\small\item\em 增加发送字节数 \end{DoxyCompactList}\item 
+uint64\+\_\+t \hyperlink{a00096_a1d019265b963ca1a53492060b456d620_a1d019265b963ca1a53492060b456d620}{knet\+\_\+loop\+\_\+profile\+\_\+add\+\_\+recv\+\_\+bytes} (\hyperlink{a00066_ab75a5c23099a6118c469ed160b277f28_ab75a5c23099a6118c469ed160b277f28}{kloop\+\_\+profile\+\_\+t} $\ast$profile, uint64\+\_\+t recv\+\_\+bytes)
+\begin{DoxyCompactList}\small\item\em 增加接收字节数 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{函数说明}
-\hypertarget{a00096_a79b7c0edd0ee7a8c462d19881589f701_a79b7c0edd0ee7a8c462d19881589f701}{}\index{rpc\+\_\+object.\+h@{rpc\+\_\+object.\+h}!hash\+\_\+value\+\_\+dtor@{hash\+\_\+value\+\_\+dtor}}
-\index{hash\+\_\+value\+\_\+dtor@{hash\+\_\+value\+\_\+dtor}!rpc\+\_\+object.\+h@{rpc\+\_\+object.\+h}}
-\subsubsection[{hash\+\_\+value\+\_\+dtor}]{\setlength{\rightskip}{0pt plus 5cm}void hash\+\_\+value\+\_\+dtor (
+\hypertarget{a00096_a1d019265b963ca1a53492060b456d620_a1d019265b963ca1a53492060b456d620}{}\index{loop\+\_\+profile.\+h@{loop\+\_\+profile.\+h}!knet\+\_\+loop\+\_\+profile\+\_\+add\+\_\+recv\+\_\+bytes@{knet\+\_\+loop\+\_\+profile\+\_\+add\+\_\+recv\+\_\+bytes}}
+\index{knet\+\_\+loop\+\_\+profile\+\_\+add\+\_\+recv\+\_\+bytes@{knet\+\_\+loop\+\_\+profile\+\_\+add\+\_\+recv\+\_\+bytes}!loop\+\_\+profile.\+h@{loop\+\_\+profile.\+h}}
+\subsubsection[{knet\+\_\+loop\+\_\+profile\+\_\+add\+\_\+recv\+\_\+bytes}]{\setlength{\rightskip}{0pt plus 5cm}uint64\+\_\+t knet\+\_\+loop\+\_\+profile\+\_\+add\+\_\+recv\+\_\+bytes (
 \begin{DoxyParamCaption}
-\item[{void $\ast$}]{v}
+\item[{{\bf kloop\+\_\+profile\+\_\+t} $\ast$}]{profile, }
+\item[{uint64\+\_\+t}]{recv\+\_\+bytes}
 \end{DoxyParamCaption}
-)}\label{a00096_a79b7c0edd0ee7a8c462d19881589f701_a79b7c0edd0ee7a8c462d19881589f701}
+)}\label{a00096_a1d019265b963ca1a53492060b456d620_a1d019265b963ca1a53492060b456d620}
 
 
-表值销毁函数 
-
-\hypertarget{a00096_aaa8a155df38de3bbf2a876b94686d195_aaa8a155df38de3bbf2a876b94686d195}{}\index{rpc\+\_\+object.\+h@{rpc\+\_\+object.\+h}!krpc\+\_\+number\+\_\+get\+\_\+marshal\+\_\+size@{krpc\+\_\+number\+\_\+get\+\_\+marshal\+\_\+size}}
-\index{krpc\+\_\+number\+\_\+get\+\_\+marshal\+\_\+size@{krpc\+\_\+number\+\_\+get\+\_\+marshal\+\_\+size}!rpc\+\_\+object.\+h@{rpc\+\_\+object.\+h}}
-\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+marshal\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t krpc\+\_\+number\+\_\+get\+\_\+marshal\+\_\+size (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
-\end{DoxyParamCaption}
-)}\label{a00096_aaa8a155df38de3bbf2a876b94686d195_aaa8a155df38de3bbf2a876b94686d195}
-
-
-获取数字对象序列化长度 
+增加接收字节数 
 
 
 \begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+{\em profile} & kloop\+\_\+profile\+\_\+t实例 \\
+\hline
+{\em recv\+\_\+bytes} & 已接收的字节数 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-数字对象序列化长度 
+接收字节数 
 \end{DoxyReturn}
-\hypertarget{a00096_af0d124108915f859d85fccd58facf12f_af0d124108915f859d85fccd58facf12f}{}\index{rpc\+\_\+object.\+h@{rpc\+\_\+object.\+h}!krpc\+\_\+string\+\_\+set\+\_\+size@{krpc\+\_\+string\+\_\+set\+\_\+size}}
-\index{krpc\+\_\+string\+\_\+set\+\_\+size@{krpc\+\_\+string\+\_\+set\+\_\+size}!rpc\+\_\+object.\+h@{rpc\+\_\+object.\+h}}
-\subsubsection[{krpc\+\_\+string\+\_\+set\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+string\+\_\+set\+\_\+size (
+\hypertarget{a00096_abd775461437b9c394cf7b800953ea6d0_abd775461437b9c394cf7b800953ea6d0}{}\index{loop\+\_\+profile.\+h@{loop\+\_\+profile.\+h}!knet\+\_\+loop\+\_\+profile\+\_\+add\+\_\+send\+\_\+bytes@{knet\+\_\+loop\+\_\+profile\+\_\+add\+\_\+send\+\_\+bytes}}
+\index{knet\+\_\+loop\+\_\+profile\+\_\+add\+\_\+send\+\_\+bytes@{knet\+\_\+loop\+\_\+profile\+\_\+add\+\_\+send\+\_\+bytes}!loop\+\_\+profile.\+h@{loop\+\_\+profile.\+h}}
+\subsubsection[{knet\+\_\+loop\+\_\+profile\+\_\+add\+\_\+send\+\_\+bytes}]{\setlength{\rightskip}{0pt plus 5cm}uint64\+\_\+t knet\+\_\+loop\+\_\+profile\+\_\+add\+\_\+send\+\_\+bytes (
 \begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{uint16\+\_\+t}]{size}
+\item[{{\bf kloop\+\_\+profile\+\_\+t} $\ast$}]{profile, }
+\item[{uint64\+\_\+t}]{send\+\_\+bytes}
 \end{DoxyParamCaption}
-)}\label{a00096_af0d124108915f859d85fccd58facf12f_af0d124108915f859d85fccd58facf12f}
+)}\label{a00096_abd775461437b9c394cf7b800953ea6d0_abd775461437b9c394cf7b800953ea6d0}
 
 
-设置字符串长度 
+增加发送字节数 
 
 
 \begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+{\em profile} & kloop\+\_\+profile\+\_\+t实例 \\
 \hline
-{\em size} & 长度 \\
+{\em send\+\_\+bytes} & 已发送的字节数 \\
 \hline
 \end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00096_a13be7946c84baeebe93977ef511e125f_a13be7946c84baeebe93977ef511e125f}{}\index{rpc\+\_\+object.\+h@{rpc\+\_\+object.\+h}!krpc\+\_\+vector\+\_\+enlarge@{krpc\+\_\+vector\+\_\+enlarge}}
-\index{krpc\+\_\+vector\+\_\+enlarge@{krpc\+\_\+vector\+\_\+enlarge}!rpc\+\_\+object.\+h@{rpc\+\_\+object.\+h}}
-\subsubsection[{krpc\+\_\+vector\+\_\+enlarge}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+vector\+\_\+enlarge (
+\begin{DoxyReturn}{返回}
+发送字节数 
+\end{DoxyReturn}
+\hypertarget{a00096_a2ceadcfacc62456cf26ac88ebe09fd50_a2ceadcfacc62456cf26ac88ebe09fd50}{}\index{loop\+\_\+profile.\+h@{loop\+\_\+profile.\+h}!knet\+\_\+loop\+\_\+profile\+\_\+create@{knet\+\_\+loop\+\_\+profile\+\_\+create}}
+\index{knet\+\_\+loop\+\_\+profile\+\_\+create@{knet\+\_\+loop\+\_\+profile\+\_\+create}!loop\+\_\+profile.\+h@{loop\+\_\+profile.\+h}}
+\subsubsection[{knet\+\_\+loop\+\_\+profile\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kloop\+\_\+profile\+\_\+t}$\ast$ knet\+\_\+loop\+\_\+profile\+\_\+create (
 \begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
+\item[{{\bf kloop\+\_\+t} $\ast$}]{loop}
 \end{DoxyParamCaption}
-)}\label{a00096_a13be7946c84baeebe93977ef511e125f_a13be7946c84baeebe93977ef511e125f}
+)}\label{a00096_a2ceadcfacc62456cf26ac88ebe09fd50_a2ceadcfacc62456cf26ac88ebe09fd50}
 
 
-扩展数组 
+建立kloop\+\_\+t统计器 
 
 
 \begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+{\em loop} & kloop\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{返回}
+kloop\+\_\+profile\+\_\+t实例 
+\end{DoxyReturn}
+\hypertarget{a00096_a2846784b57c724b18c09aa177c1d1905_a2846784b57c724b18c09aa177c1d1905}{}\index{loop\+\_\+profile.\+h@{loop\+\_\+profile.\+h}!knet\+\_\+loop\+\_\+profile\+\_\+decrease\+\_\+active\+\_\+channel\+\_\+count@{knet\+\_\+loop\+\_\+profile\+\_\+decrease\+\_\+active\+\_\+channel\+\_\+count}}
+\index{knet\+\_\+loop\+\_\+profile\+\_\+decrease\+\_\+active\+\_\+channel\+\_\+count@{knet\+\_\+loop\+\_\+profile\+\_\+decrease\+\_\+active\+\_\+channel\+\_\+count}!loop\+\_\+profile.\+h@{loop\+\_\+profile.\+h}}
+\subsubsection[{knet\+\_\+loop\+\_\+profile\+\_\+decrease\+\_\+active\+\_\+channel\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t knet\+\_\+loop\+\_\+profile\+\_\+decrease\+\_\+active\+\_\+channel\+\_\+count (
+\begin{DoxyParamCaption}
+\item[{{\bf kloop\+\_\+profile\+\_\+t} $\ast$}]{profile}
+\end{DoxyParamCaption}
+)}\label{a00096_a2846784b57c724b18c09aa177c1d1905_a2846784b57c724b18c09aa177c1d1905}
+
+
+减少已建立但未连接的管道数量 
+
+
+\begin{DoxyParams}{参数}
+{\em profile} & kloop\+\_\+profile\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+已建立但未连接的管道数量 
+\end{DoxyReturn}
+\hypertarget{a00096_a1c0e93ef936d34b9ed9eb0b8a949a888_a1c0e93ef936d34b9ed9eb0b8a949a888}{}\index{loop\+\_\+profile.\+h@{loop\+\_\+profile.\+h}!knet\+\_\+loop\+\_\+profile\+\_\+decrease\+\_\+close\+\_\+channel\+\_\+count@{knet\+\_\+loop\+\_\+profile\+\_\+decrease\+\_\+close\+\_\+channel\+\_\+count}}
+\index{knet\+\_\+loop\+\_\+profile\+\_\+decrease\+\_\+close\+\_\+channel\+\_\+count@{knet\+\_\+loop\+\_\+profile\+\_\+decrease\+\_\+close\+\_\+channel\+\_\+count}!loop\+\_\+profile.\+h@{loop\+\_\+profile.\+h}}
+\subsubsection[{knet\+\_\+loop\+\_\+profile\+\_\+decrease\+\_\+close\+\_\+channel\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t knet\+\_\+loop\+\_\+profile\+\_\+decrease\+\_\+close\+\_\+channel\+\_\+count (
+\begin{DoxyParamCaption}
+\item[{{\bf kloop\+\_\+profile\+\_\+t} $\ast$}]{profile}
+\end{DoxyParamCaption}
+)}\label{a00096_a1c0e93ef936d34b9ed9eb0b8a949a888_a1c0e93ef936d34b9ed9eb0b8a949a888}
+
+
+减少已关闭管道数量 
+
+
+\begin{DoxyParams}{参数}
+{\em profile} & kloop\+\_\+profile\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+已关闭管道数量 
+\end{DoxyReturn}
+\hypertarget{a00096_ae34c1df8f99b26184f7380c90cc1e799_ae34c1df8f99b26184f7380c90cc1e799}{}\index{loop\+\_\+profile.\+h@{loop\+\_\+profile.\+h}!knet\+\_\+loop\+\_\+profile\+\_\+decrease\+\_\+established\+\_\+channel\+\_\+count@{knet\+\_\+loop\+\_\+profile\+\_\+decrease\+\_\+established\+\_\+channel\+\_\+count}}
+\index{knet\+\_\+loop\+\_\+profile\+\_\+decrease\+\_\+established\+\_\+channel\+\_\+count@{knet\+\_\+loop\+\_\+profile\+\_\+decrease\+\_\+established\+\_\+channel\+\_\+count}!loop\+\_\+profile.\+h@{loop\+\_\+profile.\+h}}
+\subsubsection[{knet\+\_\+loop\+\_\+profile\+\_\+decrease\+\_\+established\+\_\+channel\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t knet\+\_\+loop\+\_\+profile\+\_\+decrease\+\_\+established\+\_\+channel\+\_\+count (
+\begin{DoxyParamCaption}
+\item[{{\bf kloop\+\_\+profile\+\_\+t} $\ast$}]{profile}
+\end{DoxyParamCaption}
+)}\label{a00096_ae34c1df8f99b26184f7380c90cc1e799_ae34c1df8f99b26184f7380c90cc1e799}
+
+
+减少已建立连接的管道数量 
+
+
+\begin{DoxyParams}{参数}
+{\em profile} & kloop\+\_\+profile\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+已建立连接的管道数量 
+\end{DoxyReturn}
+\hypertarget{a00096_a760cc20cb3dc6a361e6b5f67576f2bbc_a760cc20cb3dc6a361e6b5f67576f2bbc}{}\index{loop\+\_\+profile.\+h@{loop\+\_\+profile.\+h}!knet\+\_\+loop\+\_\+profile\+\_\+destroy@{knet\+\_\+loop\+\_\+profile\+\_\+destroy}}
+\index{knet\+\_\+loop\+\_\+profile\+\_\+destroy@{knet\+\_\+loop\+\_\+profile\+\_\+destroy}!loop\+\_\+profile.\+h@{loop\+\_\+profile.\+h}}
+\subsubsection[{knet\+\_\+loop\+\_\+profile\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+loop\+\_\+profile\+\_\+destroy (
+\begin{DoxyParamCaption}
+\item[{{\bf kloop\+\_\+profile\+\_\+t} $\ast$}]{profile}
+\end{DoxyParamCaption}
+)}\label{a00096_a760cc20cb3dc6a361e6b5f67576f2bbc_a760cc20cb3dc6a361e6b5f67576f2bbc}
+
+
+销毁统计器 
+
+
+\begin{DoxyParams}{参数}
+{\em profile} & kloop\+\_\+profile\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00096_abb04cdf84772d003486afde6ee2f5234_abb04cdf84772d003486afde6ee2f5234}{}\index{loop\+\_\+profile.\+h@{loop\+\_\+profile.\+h}!knet\+\_\+loop\+\_\+profile\+\_\+increase\+\_\+active\+\_\+channel\+\_\+count@{knet\+\_\+loop\+\_\+profile\+\_\+increase\+\_\+active\+\_\+channel\+\_\+count}}
+\index{knet\+\_\+loop\+\_\+profile\+\_\+increase\+\_\+active\+\_\+channel\+\_\+count@{knet\+\_\+loop\+\_\+profile\+\_\+increase\+\_\+active\+\_\+channel\+\_\+count}!loop\+\_\+profile.\+h@{loop\+\_\+profile.\+h}}
+\subsubsection[{knet\+\_\+loop\+\_\+profile\+\_\+increase\+\_\+active\+\_\+channel\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t knet\+\_\+loop\+\_\+profile\+\_\+increase\+\_\+active\+\_\+channel\+\_\+count (
+\begin{DoxyParamCaption}
+\item[{{\bf kloop\+\_\+profile\+\_\+t} $\ast$}]{profile}
+\end{DoxyParamCaption}
+)}\label{a00096_abb04cdf84772d003486afde6ee2f5234_abb04cdf84772d003486afde6ee2f5234}
+
+
+增加已建立但未连接的管道数量 
+
+
+\begin{DoxyParams}{参数}
+{\em profile} & kloop\+\_\+profile\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+已建立但未连接的管道数量 
+\end{DoxyReturn}
+\hypertarget{a00096_a85fbddaf0bf20c228f7389ad2765ec57_a85fbddaf0bf20c228f7389ad2765ec57}{}\index{loop\+\_\+profile.\+h@{loop\+\_\+profile.\+h}!knet\+\_\+loop\+\_\+profile\+\_\+increase\+\_\+close\+\_\+channel\+\_\+count@{knet\+\_\+loop\+\_\+profile\+\_\+increase\+\_\+close\+\_\+channel\+\_\+count}}
+\index{knet\+\_\+loop\+\_\+profile\+\_\+increase\+\_\+close\+\_\+channel\+\_\+count@{knet\+\_\+loop\+\_\+profile\+\_\+increase\+\_\+close\+\_\+channel\+\_\+count}!loop\+\_\+profile.\+h@{loop\+\_\+profile.\+h}}
+\subsubsection[{knet\+\_\+loop\+\_\+profile\+\_\+increase\+\_\+close\+\_\+channel\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t knet\+\_\+loop\+\_\+profile\+\_\+increase\+\_\+close\+\_\+channel\+\_\+count (
+\begin{DoxyParamCaption}
+\item[{{\bf kloop\+\_\+profile\+\_\+t} $\ast$}]{profile}
+\end{DoxyParamCaption}
+)}\label{a00096_a85fbddaf0bf20c228f7389ad2765ec57_a85fbddaf0bf20c228f7389ad2765ec57}
+
+
+增加已关闭管道数量 
+
+
+\begin{DoxyParams}{参数}
+{\em profile} & kloop\+\_\+profile\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+已关闭管道数量 
+\end{DoxyReturn}
+\hypertarget{a00096_ab75ba9cdc68d1b4ec059974df4b67165_ab75ba9cdc68d1b4ec059974df4b67165}{}\index{loop\+\_\+profile.\+h@{loop\+\_\+profile.\+h}!knet\+\_\+loop\+\_\+profile\+\_\+increase\+\_\+established\+\_\+channel\+\_\+count@{knet\+\_\+loop\+\_\+profile\+\_\+increase\+\_\+established\+\_\+channel\+\_\+count}}
+\index{knet\+\_\+loop\+\_\+profile\+\_\+increase\+\_\+established\+\_\+channel\+\_\+count@{knet\+\_\+loop\+\_\+profile\+\_\+increase\+\_\+established\+\_\+channel\+\_\+count}!loop\+\_\+profile.\+h@{loop\+\_\+profile.\+h}}
+\subsubsection[{knet\+\_\+loop\+\_\+profile\+\_\+increase\+\_\+established\+\_\+channel\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t knet\+\_\+loop\+\_\+profile\+\_\+increase\+\_\+established\+\_\+channel\+\_\+count (
+\begin{DoxyParamCaption}
+\item[{{\bf kloop\+\_\+profile\+\_\+t} $\ast$}]{profile}
+\end{DoxyParamCaption}
+)}\label{a00096_ab75ba9cdc68d1b4ec059974df4b67165_ab75ba9cdc68d1b4ec059974df4b67165}
+
+
+增加已建立连接的管道数量 
+
+
+\begin{DoxyParams}{参数}
+{\em profile} & kloop\+\_\+profile\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+已建立连接的管道数量 
+\end{DoxyReturn}

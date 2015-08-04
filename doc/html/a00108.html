@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/version.h 文件参考</title>
+<title>knet: E:/knet-git/knet/knet/ringbuffer.h 文件参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -89,31 +89,80 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
   <div class="summary">
 <a href="#func-members">函数</a>  </div>
   <div class="headertitle">
-<div class="title">version.h 文件参考</div>  </div>
+<div class="title">ringbuffer.h 文件参考</div>  </div>
 </div><!--header-->
 <div class="contents">
-
+<div class="textblock"><code>#include &quot;<a class="el" href="a00066_source.html">config.h</a>&quot;</code><br />
+</div>
 <p><a href="a00108_source.html">浏览源代码.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 函数</h2></td></tr>
-<tr class="memitem:a3b6e0e802bbb0f81da8bcef8e757066a"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_a3b6e0e802bbb0f81da8bcef8e757066a.html#a3b6e0e802bbb0f81da8bcef8e757066a">knet_get_version_string</a> ()</td></tr>
-<tr class="memdesc:a3b6e0e802bbb0f81da8bcef8e757066a"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得当前版本号字符串  <a href="a00108_a3b6e0e802bbb0f81da8bcef8e757066a.html#a3b6e0e802bbb0f81da8bcef8e757066a">更多...</a><br /></td></tr>
-<tr class="separator:a3b6e0e802bbb0f81da8bcef8e757066a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad86dd4bf914796aa945a02faac4ae52e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_ad86dd4bf914796aa945a02faac4ae52e.html#ad86dd4bf914796aa945a02faac4ae52e">knet_get_version_major</a> ()</td></tr>
-<tr class="memdesc:ad86dd4bf914796aa945a02faac4ae52e"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得主版本号  <a href="a00108_ad86dd4bf914796aa945a02faac4ae52e.html#ad86dd4bf914796aa945a02faac4ae52e">更多...</a><br /></td></tr>
-<tr class="separator:ad86dd4bf914796aa945a02faac4ae52e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abedac37db9a6c72670cad32bdc2dedcd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_abedac37db9a6c72670cad32bdc2dedcd.html#abedac37db9a6c72670cad32bdc2dedcd">knet_get_version_minor</a> ()</td></tr>
-<tr class="memdesc:abedac37db9a6c72670cad32bdc2dedcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得次版本号  <a href="a00108_abedac37db9a6c72670cad32bdc2dedcd.html#abedac37db9a6c72670cad32bdc2dedcd">更多...</a><br /></td></tr>
-<tr class="separator:abedac37db9a6c72670cad32bdc2dedcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6fb5e77c44c774a9d017ba43dea51672"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_a6fb5e77c44c774a9d017ba43dea51672.html#a6fb5e77c44c774a9d017ba43dea51672">knet_get_version_path</a> ()</td></tr>
-<tr class="memdesc:a6fb5e77c44c774a9d017ba43dea51672"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得补丁版本号  <a href="a00108_a6fb5e77c44c774a9d017ba43dea51672.html#a6fb5e77c44c774a9d017ba43dea51672">更多...</a><br /></td></tr>
-<tr class="separator:a6fb5e77c44c774a9d017ba43dea51672"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81244fe21f0b4fdcf45e66ae6257afaf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00066_a66d91f7667db1f0b2983fc25e1a20f1c.html#a66d91f7667db1f0b2983fc25e1a20f1c">kringbuffer_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_a81244fe21f0b4fdcf45e66ae6257afaf.html#a81244fe21f0b4fdcf45e66ae6257afaf">ringbuffer_create</a> (uint32_t size)</td></tr>
+<tr class="memdesc:a81244fe21f0b4fdcf45e66ae6257afaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">建立一个ringbuffer  <a href="a00108_a81244fe21f0b4fdcf45e66ae6257afaf.html#a81244fe21f0b4fdcf45e66ae6257afaf">更多...</a><br /></td></tr>
+<tr class="separator:a81244fe21f0b4fdcf45e66ae6257afaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6135df0cc9bc827cae301626898dace"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_aa6135df0cc9bc827cae301626898dace.html#aa6135df0cc9bc827cae301626898dace">ringbuffer_destroy</a> (<a class="el" href="a00066_a66d91f7667db1f0b2983fc25e1a20f1c.html#a66d91f7667db1f0b2983fc25e1a20f1c">kringbuffer_t</a> *rb)</td></tr>
+<tr class="memdesc:aa6135df0cc9bc827cae301626898dace"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁ringbuffer  <a href="a00108_aa6135df0cc9bc827cae301626898dace.html#aa6135df0cc9bc827cae301626898dace">更多...</a><br /></td></tr>
+<tr class="separator:aa6135df0cc9bc827cae301626898dace"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acccb44d353cc569d1f39cf01125c88bf"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_acccb44d353cc569d1f39cf01125c88bf.html#acccb44d353cc569d1f39cf01125c88bf">ringbuffer_read</a> (<a class="el" href="a00066_a66d91f7667db1f0b2983fc25e1a20f1c.html#a66d91f7667db1f0b2983fc25e1a20f1c">kringbuffer_t</a> *rb, char *buffer, uint32_t size)</td></tr>
+<tr class="memdesc:acccb44d353cc569d1f39cf01125c88bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">读取并清除  <a href="a00108_acccb44d353cc569d1f39cf01125c88bf.html#acccb44d353cc569d1f39cf01125c88bf">更多...</a><br /></td></tr>
+<tr class="separator:acccb44d353cc569d1f39cf01125c88bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89fdbed1466be114d8200405db2e18a5"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_a89fdbed1466be114d8200405db2e18a5.html#a89fdbed1466be114d8200405db2e18a5">ringbuffer_copy</a> (<a class="el" href="a00066_a66d91f7667db1f0b2983fc25e1a20f1c.html#a66d91f7667db1f0b2983fc25e1a20f1c">kringbuffer_t</a> *rb, char *buffer, uint32_t size)</td></tr>
+<tr class="memdesc:a89fdbed1466be114d8200405db2e18a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">读取但不清除  <a href="a00108_a89fdbed1466be114d8200405db2e18a5.html#a89fdbed1466be114d8200405db2e18a5">更多...</a><br /></td></tr>
+<tr class="separator:a89fdbed1466be114d8200405db2e18a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a477c3142a4a35f33cfb92bf0b984fd71"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_a477c3142a4a35f33cfb92bf0b984fd71.html#a477c3142a4a35f33cfb92bf0b984fd71">ringbuffer_find</a> (<a class="el" href="a00066_a66d91f7667db1f0b2983fc25e1a20f1c.html#a66d91f7667db1f0b2983fc25e1a20f1c">kringbuffer_t</a> *rb, const char *target, uint32_t *size)</td></tr>
+<tr class="memdesc:a477c3142a4a35f33cfb92bf0b984fd71"><td class="mdescLeft">&#160;</td><td class="mdescRight">查找指定的目标，并返回位置  <a href="a00108_a477c3142a4a35f33cfb92bf0b984fd71.html#a477c3142a4a35f33cfb92bf0b984fd71">更多...</a><br /></td></tr>
+<tr class="separator:a477c3142a4a35f33cfb92bf0b984fd71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecd5c166ce42982ee434172cc555787d"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_aecd5c166ce42982ee434172cc555787d.html#aecd5c166ce42982ee434172cc555787d">ringbuffer_available</a> (<a class="el" href="a00066_a66d91f7667db1f0b2983fc25e1a20f1c.html#a66d91f7667db1f0b2983fc25e1a20f1c">kringbuffer_t</a> *rb)</td></tr>
+<tr class="memdesc:aecd5c166ce42982ee434172cc555787d"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得可读字节数  <a href="a00108_aecd5c166ce42982ee434172cc555787d.html#aecd5c166ce42982ee434172cc555787d">更多...</a><br /></td></tr>
+<tr class="separator:aecd5c166ce42982ee434172cc555787d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab74775801f1ad149ac0beb37336f92e3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_ab74775801f1ad149ac0beb37336f92e3.html#ab74775801f1ad149ac0beb37336f92e3">ringbuffer_eat_all</a> (<a class="el" href="a00066_a66d91f7667db1f0b2983fc25e1a20f1c.html#a66d91f7667db1f0b2983fc25e1a20f1c">kringbuffer_t</a> *rb)</td></tr>
+<tr class="memdesc:ab74775801f1ad149ac0beb37336f92e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">清除所有可读字节  <a href="a00108_ab74775801f1ad149ac0beb37336f92e3.html#ab74775801f1ad149ac0beb37336f92e3">更多...</a><br /></td></tr>
+<tr class="separator:ab74775801f1ad149ac0beb37336f92e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ee13a66a33b0d5648d7c95b48bd6536"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_a1ee13a66a33b0d5648d7c95b48bd6536.html#a1ee13a66a33b0d5648d7c95b48bd6536">ringbuffer_eat</a> (<a class="el" href="a00066_a66d91f7667db1f0b2983fc25e1a20f1c.html#a66d91f7667db1f0b2983fc25e1a20f1c">kringbuffer_t</a> *rb, uint32_t size)</td></tr>
+<tr class="memdesc:a1ee13a66a33b0d5648d7c95b48bd6536"><td class="mdescLeft">&#160;</td><td class="mdescRight">清除指定长度的可读字节  <a href="a00108_a1ee13a66a33b0d5648d7c95b48bd6536.html#a1ee13a66a33b0d5648d7c95b48bd6536">更多...</a><br /></td></tr>
+<tr class="separator:a1ee13a66a33b0d5648d7c95b48bd6536"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bd33ec2ce3cba490a6166c5eac88f5c"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_a4bd33ec2ce3cba490a6166c5eac88f5c.html#a4bd33ec2ce3cba490a6166c5eac88f5c">ringbuffer_read_lock_size</a> (<a class="el" href="a00066_a66d91f7667db1f0b2983fc25e1a20f1c.html#a66d91f7667db1f0b2983fc25e1a20f1c">kringbuffer_t</a> *rb)</td></tr>
+<tr class="memdesc:a4bd33ec2ce3cba490a6166c5eac88f5c"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得非绕回连续地址的最大可读字节数  <a href="a00108_a4bd33ec2ce3cba490a6166c5eac88f5c.html#a4bd33ec2ce3cba490a6166c5eac88f5c">更多...</a><br /></td></tr>
+<tr class="separator:a4bd33ec2ce3cba490a6166c5eac88f5c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51fd16b89396cbe6a3e4cf3d41b4dda5"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_a51fd16b89396cbe6a3e4cf3d41b4dda5.html#a51fd16b89396cbe6a3e4cf3d41b4dda5">ringbuffer_read_lock_ptr</a> (<a class="el" href="a00066_a66d91f7667db1f0b2983fc25e1a20f1c.html#a66d91f7667db1f0b2983fc25e1a20f1c">kringbuffer_t</a> *rb)</td></tr>
+<tr class="memdesc:a51fd16b89396cbe6a3e4cf3d41b4dda5"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得可读数据起止指针  <a href="a00108_a51fd16b89396cbe6a3e4cf3d41b4dda5.html#a51fd16b89396cbe6a3e4cf3d41b4dda5">更多...</a><br /></td></tr>
+<tr class="separator:a51fd16b89396cbe6a3e4cf3d41b4dda5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d0caeccb61acafaa4c5148b697dd927"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_a5d0caeccb61acafaa4c5148b697dd927.html#a5d0caeccb61acafaa4c5148b697dd927">ringbuffer_read_commit</a> (<a class="el" href="a00066_a66d91f7667db1f0b2983fc25e1a20f1c.html#a66d91f7667db1f0b2983fc25e1a20f1c">kringbuffer_t</a> *rb, uint32_t size)</td></tr>
+<tr class="memdesc:a5d0caeccb61acafaa4c5148b697dd927"><td class="mdescLeft">&#160;</td><td class="mdescRight">提交并清除已经读到的字节  <a href="a00108_a5d0caeccb61acafaa4c5148b697dd927.html#a5d0caeccb61acafaa4c5148b697dd927">更多...</a><br /></td></tr>
+<tr class="separator:a5d0caeccb61acafaa4c5148b697dd927"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae50358352ded17ea670e926a59250cd0"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_ae50358352ded17ea670e926a59250cd0.html#ae50358352ded17ea670e926a59250cd0">ringbuffer_window_read_lock_size</a> (<a class="el" href="a00066_a66d91f7667db1f0b2983fc25e1a20f1c.html#a66d91f7667db1f0b2983fc25e1a20f1c">kringbuffer_t</a> *rb)</td></tr>
+<tr class="memdesc:ae50358352ded17ea670e926a59250cd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">虚拟窗口 - 取得非绕回连续地址的最大可读字节数  <a href="a00108_ae50358352ded17ea670e926a59250cd0.html#ae50358352ded17ea670e926a59250cd0">更多...</a><br /></td></tr>
+<tr class="separator:ae50358352ded17ea670e926a59250cd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad11b70346a4c8b62b21b04d5b064aab4"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_ad11b70346a4c8b62b21b04d5b064aab4.html#ad11b70346a4c8b62b21b04d5b064aab4">ringbuffer_window_read_lock_ptr</a> (<a class="el" href="a00066_a66d91f7667db1f0b2983fc25e1a20f1c.html#a66d91f7667db1f0b2983fc25e1a20f1c">kringbuffer_t</a> *rb)</td></tr>
+<tr class="memdesc:ad11b70346a4c8b62b21b04d5b064aab4"><td class="mdescLeft">&#160;</td><td class="mdescRight">虚拟窗口 - 取得可读数据起止指针  <a href="a00108_ad11b70346a4c8b62b21b04d5b064aab4.html#ad11b70346a4c8b62b21b04d5b064aab4">更多...</a><br /></td></tr>
+<tr class="separator:ad11b70346a4c8b62b21b04d5b064aab4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97a9944a61a5323f80fb07f0fa4d8ff5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_a97a9944a61a5323f80fb07f0fa4d8ff5.html#a97a9944a61a5323f80fb07f0fa4d8ff5">ringbuffer_window_read_commit</a> (<a class="el" href="a00066_a66d91f7667db1f0b2983fc25e1a20f1c.html#a66d91f7667db1f0b2983fc25e1a20f1c">kringbuffer_t</a> *rb, uint32_t size)</td></tr>
+<tr class="memdesc:a97a9944a61a5323f80fb07f0fa4d8ff5"><td class="mdescLeft">&#160;</td><td class="mdescRight">虚拟窗口 - 提交已经读到的字节，但不清除  <a href="a00108_a97a9944a61a5323f80fb07f0fa4d8ff5.html#a97a9944a61a5323f80fb07f0fa4d8ff5">更多...</a><br /></td></tr>
+<tr class="separator:a97a9944a61a5323f80fb07f0fa4d8ff5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5b19df813e8df494a77c9a849ebffdd"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_aa5b19df813e8df494a77c9a849ebffdd.html#aa5b19df813e8df494a77c9a849ebffdd">ringbuffer_write_lock_size</a> (<a class="el" href="a00066_a66d91f7667db1f0b2983fc25e1a20f1c.html#a66d91f7667db1f0b2983fc25e1a20f1c">kringbuffer_t</a> *rb)</td></tr>
+<tr class="memdesc:aa5b19df813e8df494a77c9a849ebffdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得非绕回可连续写入的最大长度  <a href="a00108_aa5b19df813e8df494a77c9a849ebffdd.html#aa5b19df813e8df494a77c9a849ebffdd">更多...</a><br /></td></tr>
+<tr class="separator:aa5b19df813e8df494a77c9a849ebffdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af34961f27369651af41a96f736a813af"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_af34961f27369651af41a96f736a813af.html#af34961f27369651af41a96f736a813af">ringbuffer_write_lock_ptr</a> (<a class="el" href="a00066_a66d91f7667db1f0b2983fc25e1a20f1c.html#a66d91f7667db1f0b2983fc25e1a20f1c">kringbuffer_t</a> *rb)</td></tr>
+<tr class="memdesc:af34961f27369651af41a96f736a813af"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得可写起始指针  <a href="a00108_af34961f27369651af41a96f736a813af.html#af34961f27369651af41a96f736a813af">更多...</a><br /></td></tr>
+<tr class="separator:af34961f27369651af41a96f736a813af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92305d9585adf8fe35c059b04f635d30"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_a92305d9585adf8fe35c059b04f635d30.html#a92305d9585adf8fe35c059b04f635d30">ringbuffer_write_commit</a> (<a class="el" href="a00066_a66d91f7667db1f0b2983fc25e1a20f1c.html#a66d91f7667db1f0b2983fc25e1a20f1c">kringbuffer_t</a> *rb, uint32_t size)</td></tr>
+<tr class="memdesc:a92305d9585adf8fe35c059b04f635d30"><td class="mdescLeft">&#160;</td><td class="mdescRight">提交成功写入的字节数  <a href="a00108_a92305d9585adf8fe35c059b04f635d30.html#a92305d9585adf8fe35c059b04f635d30">更多...</a><br /></td></tr>
+<tr class="separator:a92305d9585adf8fe35c059b04f635d30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49e8fe0e7125070f1ff2bb05ea31b5f0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_a49e8fe0e7125070f1ff2bb05ea31b5f0.html#a49e8fe0e7125070f1ff2bb05ea31b5f0">ringbuffer_full</a> (<a class="el" href="a00066_a66d91f7667db1f0b2983fc25e1a20f1c.html#a66d91f7667db1f0b2983fc25e1a20f1c">kringbuffer_t</a> *rb)</td></tr>
+<tr class="memdesc:a49e8fe0e7125070f1ff2bb05ea31b5f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">满  <a href="a00108_a49e8fe0e7125070f1ff2bb05ea31b5f0.html#a49e8fe0e7125070f1ff2bb05ea31b5f0">更多...</a><br /></td></tr>
+<tr class="separator:a49e8fe0e7125070f1ff2bb05ea31b5f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c08364c473757fa8f33fc6a99ce7091"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_a3c08364c473757fa8f33fc6a99ce7091.html#a3c08364c473757fa8f33fc6a99ce7091">ringbuffer_empty</a> (<a class="el" href="a00066_a66d91f7667db1f0b2983fc25e1a20f1c.html#a66d91f7667db1f0b2983fc25e1a20f1c">kringbuffer_t</a> *rb)</td></tr>
+<tr class="memdesc:a3c08364c473757fa8f33fc6a99ce7091"><td class="mdescLeft">&#160;</td><td class="mdescRight">空  <a href="a00108_a3c08364c473757fa8f33fc6a99ce7091.html#a3c08364c473757fa8f33fc6a99ce7091">更多...</a><br /></td></tr>
+<tr class="separator:a3c08364c473757fa8f33fc6a99ce7091"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2862a8ab39436df6e7db4f6e7f23acf2"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00108_a2862a8ab39436df6e7db4f6e7f23acf2.html#a2862a8ab39436df6e7db4f6e7f23acf2">ringbuffer_get_max_size</a> (<a class="el" href="a00066_a66d91f7667db1f0b2983fc25e1a20f1c.html#a66d91f7667db1f0b2983fc25e1a20f1c">kringbuffer_t</a> *rb)</td></tr>
+<tr class="memdesc:a2862a8ab39436df6e7db4f6e7f23acf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得最大长度  <a href="a00108_a2862a8ab39436df6e7db4f6e7f23acf2.html#a2862a8ab39436df6e7db4f6e7f23acf2">更多...</a><br /></td></tr>
+<tr class="separator:a2862a8ab39436df6e7db4f6e7f23acf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 27日 星期一 14:33:20 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 八月 4日 星期二 14:40:24 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

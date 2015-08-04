@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/loop_profile_api.h 源文件</title>
+<title>knet: E:/knet-git/knet/knet/logger.h 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">loop_profile_api.h</div>  </div>
+<div class="title">logger.h</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00085.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
@@ -105,7 +105,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> * DISCLAIMED. IN NO EVENT SHALL dennis wang BE LIABLE FOR ANY</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> * DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment"> * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND</span></div>
@@ -114,49 +114,107 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef LOOP_PROFILE_API_H</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define LOOP_PROFILE_API_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef LOGGER_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define LOGGER_H</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00054.html">config.h</a>&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00066.html">config.h</a>&quot;</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">extern</span> uint32_t <a class="code" href="a00085_a30be8a49214eb1485429bdff63541dfc.html#a30be8a49214eb1485429bdff63541dfc">knet_loop_profile_get_established_channel_count</a>(<a class="code" href="a00032.html">kloop_profile_t</a>* profile);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">extern</span> uint32_t <a class="code" href="a00085_a9b4aceae0c7a1f1aa86c8db5996ec76a.html#a9b4aceae0c7a1f1aa86c8db5996ec76a">knet_loop_profile_get_active_channel_count</a>(<a class="code" href="a00032.html">kloop_profile_t</a>* profile);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">extern</span> uint32_t <a class="code" href="a00085_a6eaacce21d69455a4e70bd6da4927082.html#a6eaacce21d69455a4e70bd6da4927082">knet_loop_profile_get_close_channel_count</a>(<a class="code" href="a00032.html">kloop_profile_t</a>* profile);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">extern</span> uint64_t <a class="code" href="a00085_a5bb651c97109287f36481c70c4096d02.html#a5bb651c97109287f36481c70c4096d02">knet_loop_profile_get_sent_bytes</a>(<a class="code" href="a00032.html">kloop_profile_t</a>* profile);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<a class="code" href="a00028.html">klogger_t</a>* <a class="code" href="a00085_a90a43dbe09a661b50fad128da4ffce87.html#a90a43dbe09a661b50fad128da4ffce87">logger_create</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* path, <span class="keywordtype">int</span> level, <span class="keywordtype">int</span> mode);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00085_a4a445d874f7523df4fa17b909c47035c.html#a4a445d874f7523df4fa17b909c47035c">logger_destroy</a>(<a class="code" href="a00028.html">klogger_t</a>* logger);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00085_a863a5bcdd307b15bfb224afa4b4f9be1.html#a863a5bcdd307b15bfb224afa4b4f9be1">logger_write</a>(<a class="code" href="a00028.html">klogger_t</a>* logger, <span class="keywordtype">int</span> level, <span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">/* 全局日志 */</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00028.html">klogger_t</a>* <a class="code" href="a00085_a7c44bed9a57ca8f53baa72772e9a42a1.html#a7c44bed9a57ca8f53baa72772e9a42a1">global_logger</a>;</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keyword">extern</span> uint64_t <a class="code" href="a00085_a1ac76d26570c5973ca054d5d2be07596.html#a1ac76d26570c5973ca054d5d2be07596">knet_loop_profile_get_recv_bytes</a>(<a class="code" href="a00032.html">kloop_profile_t</a>* profile);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword">extern</span> uint32_t <a class="code" href="a00085_a61bab9d3f25b772c11067d7ad48e5591.html#a61bab9d3f25b772c11067d7ad48e5591">knet_loop_profile_get_sent_bandwidth</a>(<a class="code" href="a00032.html">kloop_profile_t</a>* profile);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keyword">extern</span> uint32_t <a class="code" href="a00085_a925853b256684e4d935f28d4c73a4832.html#a925853b256684e4d935f28d4c73a4832">knet_loop_profile_get_recv_bandwidth</a>(<a class="code" href="a00032.html">kloop_profile_t</a>* profile);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00085_ada601f1836bdb78ccd50be447559a101.html#ada601f1836bdb78ccd50be447559a101">knet_loop_profile_dump_file</a>(<a class="code" href="a00032.html">kloop_profile_t</a>* profile, FILE* fp);</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00085_a256be2a18ebf141d93f95cdce1975a9e.html#a256be2a18ebf141d93f95cdce1975a9e">knet_loop_profile_dump_stream</a>(<a class="code" href="a00032.html">kloop_profile_t</a>* profile, <a class="code" href="a00035.html">kstream_t</a>* stream);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00085_a256b0db051dd95a364c3ad5612cbff98.html#a256b0db051dd95a364c3ad5612cbff98">knet_loop_profile_dump_stdout</a>(<a class="code" href="a00032.html">kloop_profile_t</a>* profile);</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* LOOP_PROFILE_API_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="a00085_a61bab9d3f25b772c11067d7ad48e5591_html_a61bab9d3f25b772c11067d7ad48e5591"><div class="ttname"><a href="a00085_a61bab9d3f25b772c11067d7ad48e5591.html#a61bab9d3f25b772c11067d7ad48e5591">knet_loop_profile_get_sent_bandwidth</a></div><div class="ttdeci">uint32_t knet_loop_profile_get_sent_bandwidth(kloop_profile_t *profile)</div><div class="ttdoc">取得发送带宽 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:125</div></div>
-<div class="ttc" id="a00085_ada601f1836bdb78ccd50be447559a101_html_ada601f1836bdb78ccd50be447559a101"><div class="ttname"><a href="a00085_ada601f1836bdb78ccd50be447559a101.html#ada601f1836bdb78ccd50be447559a101">knet_loop_profile_dump_file</a></div><div class="ttdeci">int knet_loop_profile_dump_file(kloop_profile_t *profile, FILE *fp)</div><div class="ttdoc">将统计信息写入文件 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:163</div></div>
-<div class="ttc" id="a00085_a6eaacce21d69455a4e70bd6da4927082_html_a6eaacce21d69455a4e70bd6da4927082"><div class="ttname"><a href="a00085_a6eaacce21d69455a4e70bd6da4927082.html#a6eaacce21d69455a4e70bd6da4927082">knet_loop_profile_get_close_channel_count</a></div><div class="ttdeci">uint32_t knet_loop_profile_get_close_channel_count(kloop_profile_t *profile)</div><div class="ttdoc">取得已经关闭的管道数量 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:100</div></div>
-<div class="ttc" id="a00035_html"><div class="ttname"><a href="a00035.html">_stream_t</a></div><div class="ttdef"><b>Definition:</b> stream.c:33</div></div>
-<div class="ttc" id="a00085_a256b0db051dd95a364c3ad5612cbff98_html_a256b0db051dd95a364c3ad5612cbff98"><div class="ttname"><a href="a00085_a256b0db051dd95a364c3ad5612cbff98.html#a256b0db051dd95a364c3ad5612cbff98">knet_loop_profile_dump_stdout</a></div><div class="ttdeci">int knet_loop_profile_dump_stdout(kloop_profile_t *profile)</div><div class="ttdoc">将统计信息打印到标准输出 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:210</div></div>
-<div class="ttc" id="a00085_a30be8a49214eb1485429bdff63541dfc_html_a30be8a49214eb1485429bdff63541dfc"><div class="ttname"><a href="a00085_a30be8a49214eb1485429bdff63541dfc.html#a30be8a49214eb1485429bdff63541dfc">knet_loop_profile_get_established_channel_count</a></div><div class="ttdeci">uint32_t knet_loop_profile_get_established_channel_count(kloop_profile_t *profile)</div><div class="ttdoc">取得已经建立连接的管道数量 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:70</div></div>
-<div class="ttc" id="a00032_html"><div class="ttname"><a href="a00032.html">_loop_profile_t</a></div><div class="ttdef"><b>Definition:</b> loop_profile.c:30</div></div>
-<div class="ttc" id="a00054_html"><div class="ttname"><a href="a00054.html">config.h</a></div></div>
-<div class="ttc" id="a00085_a9b4aceae0c7a1f1aa86c8db5996ec76a_html_a9b4aceae0c7a1f1aa86c8db5996ec76a"><div class="ttname"><a href="a00085_a9b4aceae0c7a1f1aa86c8db5996ec76a.html#a9b4aceae0c7a1f1aa86c8db5996ec76a">knet_loop_profile_get_active_channel_count</a></div><div class="ttdeci">uint32_t knet_loop_profile_get_active_channel_count(kloop_profile_t *profile)</div><div class="ttdoc">取得已经建立但还未连接的管道数量 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:85</div></div>
-<div class="ttc" id="a00085_a5bb651c97109287f36481c70c4096d02_html_a5bb651c97109287f36481c70c4096d02"><div class="ttname"><a href="a00085_a5bb651c97109287f36481c70c4096d02.html#a5bb651c97109287f36481c70c4096d02">knet_loop_profile_get_sent_bytes</a></div><div class="ttdeci">uint64_t knet_loop_profile_get_sent_bytes(kloop_profile_t *profile)</div><div class="ttdoc">取得已经发送的字节数 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:110</div></div>
-<div class="ttc" id="a00085_a925853b256684e4d935f28d4c73a4832_html_a925853b256684e4d935f28d4c73a4832"><div class="ttname"><a href="a00085_a925853b256684e4d935f28d4c73a4832.html#a925853b256684e4d935f28d4c73a4832">knet_loop_profile_get_recv_bandwidth</a></div><div class="ttdeci">uint32_t knet_loop_profile_get_recv_bandwidth(kloop_profile_t *profile)</div><div class="ttdoc">取得接收带宽 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:144</div></div>
-<div class="ttc" id="a00085_a1ac76d26570c5973ca054d5d2be07596_html_a1ac76d26570c5973ca054d5d2be07596"><div class="ttname"><a href="a00085_a1ac76d26570c5973ca054d5d2be07596.html#a1ac76d26570c5973ca054d5d2be07596">knet_loop_profile_get_recv_bytes</a></div><div class="ttdeci">uint64_t knet_loop_profile_get_recv_bytes(kloop_profile_t *profile)</div><div class="ttdoc">取得已经接收的字节数 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:120</div></div>
-<div class="ttc" id="a00085_a256be2a18ebf141d93f95cdce1975a9e_html_a256be2a18ebf141d93f95cdce1975a9e"><div class="ttname"><a href="a00085_a256be2a18ebf141d93f95cdce1975a9e.html#a256be2a18ebf141d93f95cdce1975a9e">knet_loop_profile_dump_stream</a></div><div class="ttdeci">int knet_loop_profile_dump_stream(kloop_profile_t *profile, kstream_t *stream)</div><div class="ttdoc">将统计信息写入管道流 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:189</div></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">/* 建立全局日志实例 */</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="a00085_a652b2c371e63a4e5c83bfd4ccffdb5f6.html#a652b2c371e63a4e5c83bfd4ccffdb5f6">   59</a></span>&#160;<span class="preprocessor">#define GLOBAL_LOGGER_INITIALIZE() \</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">    do { \</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">        if (!global_logger) global_logger = logger_create(0, LOGGER_LEVEL, LOGGER_MODE); \</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">    } while(0);</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#ifdef LOGGER_ON</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">    #if defined(WIN32)</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">        #define log_verb(format, ...) \</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">            do { \</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">               GLOBAL_LOGGER_INITIALIZE(); \</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">               logger_write(global_logger, logger_level_verbose, format, ##__VA_ARGS__); \</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">            } while(0);</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor">        #define log_info(format, ...) \</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">            do { \</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">                GLOBAL_LOGGER_INITIALIZE(); \</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">                logger_write(global_logger, logger_level_information, format, ##__VA_ARGS__); \</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor">            } while(0);</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">        #define log_warn(format, ...) \</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor">            do { \</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">                GLOBAL_LOGGER_INITIALIZE(); \</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">                logger_write(global_logger, logger_level_warning, format, ##__VA_ARGS__); \</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="preprocessor">            } while(0);</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="preprocessor">        #define log_error(format, ...) \</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">            do { \</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">                GLOBAL_LOGGER_INITIALIZE(); \</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">                logger_write(global_logger, logger_level_error, format, ##__VA_ARGS__); \</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">            } while(0);</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">        #define log_fatal(format, ...) \</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">            do { \</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;<span class="preprocessor">                GLOBAL_LOGGER_INITIALIZE(); \</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">                logger_write(global_logger, logger_level_fatal, format, ##__VA_ARGS__); \</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">            } while(0);</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">    #else</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="a00085_a14cc328dca10f700057b63ef38b9b6d6.html#a14cc328dca10f700057b63ef38b9b6d6">   92</a></span>&#160;<span class="preprocessor">        #define log_verb(format, args...) \</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<span class="preprocessor">            do { \</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">                GLOBAL_LOGGER_INITIALIZE(); \</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor">                logger_write(global_logger, logger_level_verbose, format, ##args); \</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="preprocessor">            } while(0);</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="a00085_a315f98393b739fe47d2cf94ef0ffea0e.html#a315f98393b739fe47d2cf94ef0ffea0e">   97</a></span>&#160;<span class="preprocessor">        #define log_info(format, args...) \</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">            do { \</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="preprocessor">                GLOBAL_LOGGER_INITIALIZE(); \</span></div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="preprocessor">                logger_write(global_logger, logger_level_information, format, ##args); \</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;<span class="preprocessor">            } while(0);</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="a00085_a360bf0dfa3997b4f866d190f7051fd5e.html#a360bf0dfa3997b4f866d190f7051fd5e">  102</a></span>&#160;<span class="preprocessor">        #define log_warn(format, args...) \</span></div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="preprocessor">            do { \</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">                GLOBAL_LOGGER_INITIALIZE(); \</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">                logger_write(global_logger, logger_level_warning, format, ##args); \</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">            } while(0);</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="a00085_a2c8ee5a5093780a8501b01381981e413.html#a2c8ee5a5093780a8501b01381981e413">  107</a></span>&#160;<span class="preprocessor">        #define log_error(format, args...) \</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="preprocessor">            do { \</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="preprocessor">                GLOBAL_LOGGER_INITIALIZE(); \</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="preprocessor">                logger_write(global_logger, logger_level_error, format, ##args); \</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="preprocessor">            } while(0);</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="a00085_a2c5b6f385060b9e82d7aa34ccb8d7546.html#a2c5b6f385060b9e82d7aa34ccb8d7546">  112</a></span>&#160;<span class="preprocessor">        #define log_fatal(format, args...) \</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="preprocessor">            do { \</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="preprocessor">                GLOBAL_LOGGER_INITIALIZE(); \</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="preprocessor">                logger_write(global_logger, logger_level_fatal, format, ##args); \</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor">            } while(0);</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="preprocessor">    #endif </span><span class="comment">/* defined(WIN32) */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="preprocessor">#else </span><span class="comment">/* LOGGER_ON==0 */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="preprocessor">    #if defined(WIN32)</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="preprocessor">        #define log_verb(format, ...)</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="preprocessor">        #define log_info(format, ...)</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="preprocessor">        #define log_warn(format, ...)</span></div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="preprocessor">        #define log_error(format, ...)</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="preprocessor">        #define log_fatal(format, ...)</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="preprocessor">    #else</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="preprocessor">        #define log_verb(format, args...)</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;<span class="preprocessor">        #define log_info(format, args...)</span></div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="preprocessor">        #define log_warn(format, args...)</span></div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="preprocessor">        #define log_error(format, args...)</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<span class="preprocessor">        #define log_fatal(format, args...)</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;<span class="preprocessor">    #endif </span><span class="comment">/* defined(WIN32) */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* LOGGER_ON */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* LOGGER_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a00085_a7c44bed9a57ca8f53baa72772e9a42a1_html_a7c44bed9a57ca8f53baa72772e9a42a1"><div class="ttname"><a href="a00085_a7c44bed9a57ca8f53baa72772e9a42a1.html#a7c44bed9a57ca8f53baa72772e9a42a1">global_logger</a></div><div class="ttdeci">klogger_t * global_logger</div><div class="ttdef"><b>Definition:</b> logger.c:30</div></div>
+<div class="ttc" id="a00085_a863a5bcdd307b15bfb224afa4b4f9be1_html_a863a5bcdd307b15bfb224afa4b4f9be1"><div class="ttname"><a href="a00085_a863a5bcdd307b15bfb224afa4b4f9be1.html#a863a5bcdd307b15bfb224afa4b4f9be1">logger_write</a></div><div class="ttdeci">int logger_write(klogger_t *logger, int level, const char *format,...)</div><div class="ttdoc">写日志 </div><div class="ttdef"><b>Definition:</b> logger.c:84</div></div>
+<div class="ttc" id="a00085_a90a43dbe09a661b50fad128da4ffce87_html_a90a43dbe09a661b50fad128da4ffce87"><div class="ttname"><a href="a00085_a90a43dbe09a661b50fad128da4ffce87.html#a90a43dbe09a661b50fad128da4ffce87">logger_create</a></div><div class="ttdeci">klogger_t * logger_create(const char *path, int level, int mode)</div><div class="ttdoc">建立日志 </div><div class="ttdef"><b>Definition:</b> logger.c:39</div></div>
+<div class="ttc" id="a00066_html"><div class="ttname"><a href="a00066.html">config.h</a></div></div>
+<div class="ttc" id="a00085_a4a445d874f7523df4fa17b909c47035c_html_a4a445d874f7523df4fa17b909c47035c"><div class="ttname"><a href="a00085_a4a445d874f7523df4fa17b909c47035c.html#a4a445d874f7523df4fa17b909c47035c">logger_destroy</a></div><div class="ttdeci">void logger_destroy(klogger_t *logger)</div><div class="ttdoc">销毁日志 </div><div class="ttdef"><b>Definition:</b> logger.c:75</div></div>
+<div class="ttc" id="a00028_html"><div class="ttname"><a href="a00028.html">_logger_t</a></div><div class="ttdef"><b>Definition:</b> logger.c:32</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 24日 星期五 11:53:43 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 八月 4日 星期二 14:40:23 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

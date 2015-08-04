@@ -1,2 +1,104 @@
-\hypertarget{a00084}{}\section{E\+:/knet-\/git/knet/knet/loop\+\_\+iocp.c 文件参考}
-\label{a00084}\index{E\+:/knet-\/git/knet/knet/loop\+\_\+iocp.\+c@{E\+:/knet-\/git/knet/knet/loop\+\_\+iocp.\+c}}
+\hypertarget{a00084}{}\section{E\+:/knet-\/git/knet/knet/logger.c 文件参考}
+\label{a00084}\index{E\+:/knet-\/git/knet/knet/logger.\+c@{E\+:/knet-\/git/knet/knet/logger.\+c}}
+{\ttfamily \#include $<$stdarg.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}misc.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}logger.\+h\char`\"{}}\\*
+\subsection*{结构体}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{a00028}{\+\_\+logger\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00066_a1926fbbc891c0da81a8e683ac83deb05_a1926fbbc891c0da81a8e683ac83deb05}{klogger\+\_\+t} $\ast$ \hyperlink{a00084_a90a43dbe09a661b50fad128da4ffce87_a90a43dbe09a661b50fad128da4ffce87}{logger\+\_\+create} (const char $\ast$path, int level, int mode)
+\begin{DoxyCompactList}\small\item\em 建立日志 \end{DoxyCompactList}\item 
+void \hyperlink{a00084_a4a445d874f7523df4fa17b909c47035c_a4a445d874f7523df4fa17b909c47035c}{logger\+\_\+destroy} (\hyperlink{a00066_a1926fbbc891c0da81a8e683ac83deb05_a1926fbbc891c0da81a8e683ac83deb05}{klogger\+\_\+t} $\ast$logger)
+\begin{DoxyCompactList}\small\item\em 销毁日志 \end{DoxyCompactList}\item 
+int \hyperlink{a00084_a863a5bcdd307b15bfb224afa4b4f9be1_a863a5bcdd307b15bfb224afa4b4f9be1}{logger\+\_\+write} (\hyperlink{a00066_a1926fbbc891c0da81a8e683ac83deb05_a1926fbbc891c0da81a8e683ac83deb05}{klogger\+\_\+t} $\ast$logger, int level, const char $\ast$format,...)
+\begin{DoxyCompactList}\small\item\em 写日志 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{变量}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00066_a1926fbbc891c0da81a8e683ac83deb05_a1926fbbc891c0da81a8e683ac83deb05}{klogger\+\_\+t} $\ast$ \hyperlink{a00084_a7c44bed9a57ca8f53baa72772e9a42a1_a7c44bed9a57ca8f53baa72772e9a42a1}{global\+\_\+logger} = 0
+\end{DoxyCompactItemize}
+
+
+\subsection{函数说明}
+\hypertarget{a00084_a90a43dbe09a661b50fad128da4ffce87_a90a43dbe09a661b50fad128da4ffce87}{}\index{logger.\+c@{logger.\+c}!logger\+\_\+create@{logger\+\_\+create}}
+\index{logger\+\_\+create@{logger\+\_\+create}!logger.\+c@{logger.\+c}}
+\subsubsection[{logger\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf klogger\+\_\+t}$\ast$ logger\+\_\+create (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{path, }
+\item[{int}]{level, }
+\item[{int}]{mode}
+\end{DoxyParamCaption}
+)}\label{a00084_a90a43dbe09a661b50fad128da4ffce87_a90a43dbe09a661b50fad128da4ffce87}
+
+
+建立日志 
+
+
+\begin{DoxyParams}{参数}
+{\em path} & 日志文件路径, 如果为0将使用当前目录 \\
+\hline
+{\em level} & 日志等级 \\
+\hline
+{\em mode} & 日志模式 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+klogger\+\_\+t实例 
+\end{DoxyReturn}
+\hypertarget{a00084_a4a445d874f7523df4fa17b909c47035c_a4a445d874f7523df4fa17b909c47035c}{}\index{logger.\+c@{logger.\+c}!logger\+\_\+destroy@{logger\+\_\+destroy}}
+\index{logger\+\_\+destroy@{logger\+\_\+destroy}!logger.\+c@{logger.\+c}}
+\subsubsection[{logger\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void logger\+\_\+destroy (
+\begin{DoxyParamCaption}
+\item[{{\bf klogger\+\_\+t} $\ast$}]{logger}
+\end{DoxyParamCaption}
+)}\label{a00084_a4a445d874f7523df4fa17b909c47035c_a4a445d874f7523df4fa17b909c47035c}
+
+
+销毁日志 
+
+
+\begin{DoxyParams}{参数}
+{\em logger} & klogger\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00084_a863a5bcdd307b15bfb224afa4b4f9be1_a863a5bcdd307b15bfb224afa4b4f9be1}{}\index{logger.\+c@{logger.\+c}!logger\+\_\+write@{logger\+\_\+write}}
+\index{logger\+\_\+write@{logger\+\_\+write}!logger.\+c@{logger.\+c}}
+\subsubsection[{logger\+\_\+write}]{\setlength{\rightskip}{0pt plus 5cm}int logger\+\_\+write (
+\begin{DoxyParamCaption}
+\item[{{\bf klogger\+\_\+t} $\ast$}]{logger, }
+\item[{int}]{level, }
+\item[{const char $\ast$}]{format, }
+\item[{}]{...}
+\end{DoxyParamCaption}
+)}\label{a00084_a863a5bcdd307b15bfb224afa4b4f9be1_a863a5bcdd307b15bfb224afa4b4f9be1}
+
+
+写日志 
+
+
+\begin{DoxyParams}{参数}
+{\em logger} & klogger\+\_\+t实例 \\
+\hline
+{\em level} & 日志等级 \\
+\hline
+{\em format} & 日志格式 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+
+
+\subsection{变量说明}
+\hypertarget{a00084_a7c44bed9a57ca8f53baa72772e9a42a1_a7c44bed9a57ca8f53baa72772e9a42a1}{}\index{logger.\+c@{logger.\+c}!global\+\_\+logger@{global\+\_\+logger}}
+\index{global\+\_\+logger@{global\+\_\+logger}!logger.\+c@{logger.\+c}}
+\subsubsection[{global\+\_\+logger}]{\setlength{\rightskip}{0pt plus 5cm}{\bf klogger\+\_\+t}$\ast$ global\+\_\+logger = 0}\label{a00084_a7c44bed9a57ca8f53baa72772e9a42a1_a7c44bed9a57ca8f53baa72772e9a42a1}

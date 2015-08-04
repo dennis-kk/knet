@@ -1,307 +1,440 @@
-\hypertarget{a00121}{}\section{线程}
-\label{a00121}\index{线程@{线程}}
-
-
-线程相关  
-
-
+\hypertarget{a00121}{}\section{E\+:/knet-\/git/knet/knet/trie.c 文件参考}
+\label{a00121}\index{E\+:/knet-\/git/knet/knet/trie.\+c@{E\+:/knet-\/git/knet/knet/trie.\+c}}
+{\ttfamily \#include \char`\"{}trie\+\_\+api.\+h\char`\"{}}\\*
+\subsection*{结构体}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{a00048}{\+\_\+trie\+\_\+node\+\_\+t}
+\item 
+struct \hyperlink{a00049}{\+\_\+trie\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{类型定义}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \hyperlink{a00048}{\+\_\+trie\+\_\+node\+\_\+t} \hyperlink{a00121_a44bd5693a6afc3218520665f50504e3b_a44bd5693a6afc3218520665f50504e3b}{ktrie\+\_\+node\+\_\+t}
+\end{DoxyCompactItemize}
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00056_a4f78c259c9527c821f1a6f87495dd339_a4f78c259c9527c821f1a6f87495dd339}{kthread\+\_\+runner\+\_\+t} $\ast$ \hyperlink{a00121_gacc8838f250e5f685580a508e93d3f636_gacc8838f250e5f685580a508e93d3f636}{thread\+\_\+runner\+\_\+create} (\hyperlink{a00056_a8741dac4a9f8d97603eb3a30a3473b13_a8741dac4a9f8d97603eb3a30a3473b13}{knet\+\_\+thread\+\_\+func\+\_\+t} func, void $\ast$params)
-\begin{DoxyCompactList}\small\item\em 创建一个线程 \end{DoxyCompactList}\item 
-void \hyperlink{a00121_gaa9112d70f3e5a8dcf648ce531332f66a_gaa9112d70f3e5a8dcf648ce531332f66a}{thread\+\_\+runner\+\_\+destroy} (\hyperlink{a00056_a4f78c259c9527c821f1a6f87495dd339_a4f78c259c9527c821f1a6f87495dd339}{kthread\+\_\+runner\+\_\+t} $\ast$runner)
-\begin{DoxyCompactList}\small\item\em 销毁一个线程 \end{DoxyCompactList}\item 
-int \hyperlink{a00121_gae125061eb96b154766c0a414eb74065c_gae125061eb96b154766c0a414eb74065c}{thread\+\_\+runner\+\_\+start} (\hyperlink{a00056_a4f78c259c9527c821f1a6f87495dd339_a4f78c259c9527c821f1a6f87495dd339}{kthread\+\_\+runner\+\_\+t} $\ast$runner, int stack\+\_\+size)
-\begin{DoxyCompactList}\small\item\em 启动线程 \end{DoxyCompactList}\item 
-void \hyperlink{a00121_gac8644b2d2ca5580e0cac7378154ae2e0_gac8644b2d2ca5580e0cac7378154ae2e0}{thread\+\_\+runner\+\_\+stop} (\hyperlink{a00056_a4f78c259c9527c821f1a6f87495dd339_a4f78c259c9527c821f1a6f87495dd339}{kthread\+\_\+runner\+\_\+t} $\ast$runner)
-\begin{DoxyCompactList}\small\item\em 停止线程 \end{DoxyCompactList}\item 
-\hyperlink{a00056_ad0ada5642d10ce71bdd90816182f9b79_ad0ada5642d10ce71bdd90816182f9b79}{thread\+\_\+id\+\_\+t} \hyperlink{a00121_ga1f1e994ba4c42e91e4d4b120aa8eb970_ga1f1e994ba4c42e91e4d4b120aa8eb970}{thread\+\_\+runner\+\_\+get\+\_\+id} (\hyperlink{a00056_a4f78c259c9527c821f1a6f87495dd339_a4f78c259c9527c821f1a6f87495dd339}{kthread\+\_\+runner\+\_\+t} $\ast$runner)
-\begin{DoxyCompactList}\small\item\em 获取线程\+I\+D \end{DoxyCompactList}\item 
-int \hyperlink{a00121_ga4328cb11f2446f4da89374a1ae8a2f8e_ga4328cb11f2446f4da89374a1ae8a2f8e}{thread\+\_\+runner\+\_\+start\+\_\+loop} (\hyperlink{a00056_a4f78c259c9527c821f1a6f87495dd339_a4f78c259c9527c821f1a6f87495dd339}{kthread\+\_\+runner\+\_\+t} $\ast$runner, \hyperlink{a00056_a97fc76209a58362019f1ded9169e397f_a97fc76209a58362019f1ded9169e397f}{kloop\+\_\+t} $\ast$loop, int stack\+\_\+size)
-\begin{DoxyCompactList}\small\item\em 在线程内运行knet\+\_\+loop\+\_\+run() \end{DoxyCompactList}\item 
-int \hyperlink{a00121_ga943c1e0bc78abe3d7faae24ae3670d9a_ga943c1e0bc78abe3d7faae24ae3670d9a}{thread\+\_\+runner\+\_\+start\+\_\+timer\+\_\+loop} (\hyperlink{a00056_a4f78c259c9527c821f1a6f87495dd339_a4f78c259c9527c821f1a6f87495dd339}{kthread\+\_\+runner\+\_\+t} $\ast$runner, \hyperlink{a00056_a024af2aa29615e7a811ea6c45438157d_a024af2aa29615e7a811ea6c45438157d}{ktimer\+\_\+loop\+\_\+t} $\ast$timer\+\_\+loop, int stack\+\_\+size)
-\begin{DoxyCompactList}\small\item\em 在线程内运行timer\+\_\+loop\+\_\+run() \end{DoxyCompactList}\item 
-int \hyperlink{a00121_ga80fabbe64d1fc33e81053e51f69772d2_ga80fabbe64d1fc33e81053e51f69772d2}{thread\+\_\+runner\+\_\+start\+\_\+multi\+\_\+loop\+\_\+varg} (\hyperlink{a00056_a4f78c259c9527c821f1a6f87495dd339_a4f78c259c9527c821f1a6f87495dd339}{kthread\+\_\+runner\+\_\+t} $\ast$runner, int stack\+\_\+size, const char $\ast$format,...)
-\begin{DoxyCompactList}\small\item\em 在线程内启动多个kloop\+\_\+t或ktimer\+\_\+loop\+\_\+t \end{DoxyCompactList}\item 
-void \hyperlink{a00121_gad9d9269c695d6bd683c856479d525eb7_gad9d9269c695d6bd683c856479d525eb7}{thread\+\_\+runner\+\_\+join} (\hyperlink{a00056_a4f78c259c9527c821f1a6f87495dd339_a4f78c259c9527c821f1a6f87495dd339}{kthread\+\_\+runner\+\_\+t} $\ast$runner)
-\begin{DoxyCompactList}\small\item\em 等待线程终止 \end{DoxyCompactList}\item 
-int \hyperlink{a00121_ga3a56e5d1203f6697a6579202919aa048_ga3a56e5d1203f6697a6579202919aa048}{thread\+\_\+runner\+\_\+check\+\_\+start} (\hyperlink{a00056_a4f78c259c9527c821f1a6f87495dd339_a4f78c259c9527c821f1a6f87495dd339}{kthread\+\_\+runner\+\_\+t} $\ast$runner)
-\begin{DoxyCompactList}\small\item\em 检查线程是否正在运行 \end{DoxyCompactList}\item 
-void $\ast$ \hyperlink{a00121_ga2126b5da850ec506d0909eb81f9a50dc_ga2126b5da850ec506d0909eb81f9a50dc}{thread\+\_\+runner\+\_\+get\+\_\+params} (\hyperlink{a00056_a4f78c259c9527c821f1a6f87495dd339_a4f78c259c9527c821f1a6f87495dd339}{kthread\+\_\+runner\+\_\+t} $\ast$runner)
-\begin{DoxyCompactList}\small\item\em 取得线程运行参数，thread\+\_\+runner\+\_\+create()第二个参数 \end{DoxyCompactList}\item 
-\hyperlink{a00056_ad0ada5642d10ce71bdd90816182f9b79_ad0ada5642d10ce71bdd90816182f9b79}{thread\+\_\+id\+\_\+t} \hyperlink{a00121_gaecf10907eee00ec0e807271c906a6645_gaecf10907eee00ec0e807271c906a6645}{thread\+\_\+get\+\_\+self\+\_\+id} ()
-\begin{DoxyCompactList}\small\item\em 取得线程\+I\+D \end{DoxyCompactList}\item 
-void \hyperlink{a00121_gabddf3ac30aac3f22f8c53b7517e6eb35_gabddf3ac30aac3f22f8c53b7517e6eb35}{thread\+\_\+sleep\+\_\+ms} (int ms)
-\begin{DoxyCompactList}\small\item\em 睡眠 \end{DoxyCompactList}\item 
-int \hyperlink{a00121_ga76839139180a3f0d0b017a5f39801936_ga76839139180a3f0d0b017a5f39801936}{thread\+\_\+set\+\_\+tls\+\_\+data} (\hyperlink{a00056_a4f78c259c9527c821f1a6f87495dd339_a4f78c259c9527c821f1a6f87495dd339}{kthread\+\_\+runner\+\_\+t} $\ast$runner, void $\ast$data)
-\begin{DoxyCompactList}\small\item\em 设置线程本地存储 \end{DoxyCompactList}\item 
-void $\ast$ \hyperlink{a00121_gaf5bb2dd001c42fdbdcdcb2048f76ae89_gaf5bb2dd001c42fdbdcdcb2048f76ae89}{thread\+\_\+get\+\_\+tls\+\_\+data} (\hyperlink{a00056_a4f78c259c9527c821f1a6f87495dd339_a4f78c259c9527c821f1a6f87495dd339}{kthread\+\_\+runner\+\_\+t} $\ast$runner)
-\begin{DoxyCompactList}\small\item\em 取得线程本地存储 \end{DoxyCompactList}\item 
-\hyperlink{a00056_a0d043bbb6b8db19fea54ab9271d352b6_a0d043bbb6b8db19fea54ab9271d352b6}{atomic\+\_\+counter\+\_\+t} \hyperlink{a00121_gade4f41f1cd519f2719b5114ce7801232_gade4f41f1cd519f2719b5114ce7801232}{atomic\+\_\+counter\+\_\+inc} (\hyperlink{a00056_a0d043bbb6b8db19fea54ab9271d352b6_a0d043bbb6b8db19fea54ab9271d352b6}{atomic\+\_\+counter\+\_\+t} $\ast$counter)
-\begin{DoxyCompactList}\small\item\em 原子操作 -\/ 递增 \end{DoxyCompactList}\item 
-\hyperlink{a00056_a0d043bbb6b8db19fea54ab9271d352b6_a0d043bbb6b8db19fea54ab9271d352b6}{atomic\+\_\+counter\+\_\+t} \hyperlink{a00121_gafc2df03d75cf9168b72e8c5e11953437_gafc2df03d75cf9168b72e8c5e11953437}{atomic\+\_\+counter\+\_\+dec} (\hyperlink{a00056_a0d043bbb6b8db19fea54ab9271d352b6_a0d043bbb6b8db19fea54ab9271d352b6}{atomic\+\_\+counter\+\_\+t} $\ast$counter)
-\begin{DoxyCompactList}\small\item\em 原子操作 -\/ 递减 \end{DoxyCompactList}\item 
-int \hyperlink{a00121_ga141897cac9743394a99ff7780daa6a80_ga141897cac9743394a99ff7780daa6a80}{atomic\+\_\+counter\+\_\+zero} (\hyperlink{a00056_a0d043bbb6b8db19fea54ab9271d352b6_a0d043bbb6b8db19fea54ab9271d352b6}{atomic\+\_\+counter\+\_\+t} $\ast$counter)
-\begin{DoxyCompactList}\small\item\em 原子操作 -\/ 是否为零 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{a00121_a44bd5693a6afc3218520665f50504e3b_a44bd5693a6afc3218520665f50504e3b}{ktrie\+\_\+node\+\_\+t} $\ast$ \hyperlink{a00121_a68cf21227280dbfeb226c45503a8a84e_a68cf21227280dbfeb226c45503a8a84e}{\+\_\+trie\+\_\+node\+\_\+create} (\hyperlink{a00121_a44bd5693a6afc3218520665f50504e3b_a44bd5693a6afc3218520665f50504e3b}{ktrie\+\_\+node\+\_\+t} $\ast$parent)
+\begin{DoxyCompactList}\small\item\em 建立trie节点 \end{DoxyCompactList}\item 
+void \hyperlink{a00121_ae8afc9e595d26ec663bbbedcc38463b4_ae8afc9e595d26ec663bbbedcc38463b4}{\+\_\+trie\+\_\+node\+\_\+destroy} (\hyperlink{a00121_a44bd5693a6afc3218520665f50504e3b_a44bd5693a6afc3218520665f50504e3b}{ktrie\+\_\+node\+\_\+t} $\ast$node, \hyperlink{a00066_a46741b0dab7bbb26d611c429ee64d78c_a46741b0dab7bbb26d611c429ee64d78c}{knet\+\_\+trie\+\_\+dtor\+\_\+t} dtor)
+\begin{DoxyCompactList}\small\item\em 销毁trie节点，递归销毁子节点 \end{DoxyCompactList}\item 
+void \hyperlink{a00121_a91661120df87e49306ad91dcd9d4f6d1_a91661120df87e49306ad91dcd9d4f6d1}{\+\_\+trie\+\_\+node\+\_\+destroy\+\_\+self} (\hyperlink{a00121_a44bd5693a6afc3218520665f50504e3b_a44bd5693a6afc3218520665f50504e3b}{ktrie\+\_\+node\+\_\+t} $\ast$node, \hyperlink{a00066_a46741b0dab7bbb26d611c429ee64d78c_a46741b0dab7bbb26d611c429ee64d78c}{knet\+\_\+trie\+\_\+dtor\+\_\+t} dtor)
+\begin{DoxyCompactList}\small\item\em 销毁trie节点 \end{DoxyCompactList}\item 
+void \hyperlink{a00121_afdeb812c273aeb6ce05db8585c6f63b1_afdeb812c273aeb6ce05db8585c6f63b1}{\+\_\+trie\+\_\+node\+\_\+reset} (\hyperlink{a00121_a44bd5693a6afc3218520665f50504e3b_a44bd5693a6afc3218520665f50504e3b}{ktrie\+\_\+node\+\_\+t} $\ast$node)
+\begin{DoxyCompactList}\small\item\em 重置trie节点 \end{DoxyCompactList}\item 
+void \hyperlink{a00121_a10f334eb4f08fe5d5500ccad432913d3_a10f334eb4f08fe5d5500ccad432913d3}{\+\_\+trie\+\_\+node\+\_\+set\+\_\+real\+\_\+key} (\hyperlink{a00121_a44bd5693a6afc3218520665f50504e3b_a44bd5693a6afc3218520665f50504e3b}{ktrie\+\_\+node\+\_\+t} $\ast$node, const char $\ast$real\+\_\+key)
+\begin{DoxyCompactList}\small\item\em 设置real\+\_\+key字段 \end{DoxyCompactList}\item 
+int \hyperlink{a00121_a0edd023c4018a202b83e8d1df7301905_a0edd023c4018a202b83e8d1df7301905}{\+\_\+trie\+\_\+node\+\_\+insert} (\hyperlink{a00121_a44bd5693a6afc3218520665f50504e3b_a44bd5693a6afc3218520665f50504e3b}{ktrie\+\_\+node\+\_\+t} $\ast$node, const char $\ast$key, const char $\ast$s, void $\ast$value)
+\begin{DoxyCompactList}\small\item\em 建立trie节点 \end{DoxyCompactList}\item 
+int \hyperlink{a00121_ab04559de21104a3d6594632f19b704ce_ab04559de21104a3d6594632f19b704ce}{\+\_\+trie\+\_\+node\+\_\+find} (\hyperlink{a00121_a44bd5693a6afc3218520665f50504e3b_a44bd5693a6afc3218520665f50504e3b}{ktrie\+\_\+node\+\_\+t} $\ast$node, const char $\ast$key, const char $\ast$s, void $\ast$$\ast$value)
+\begin{DoxyCompactList}\small\item\em 查找trie节点 \end{DoxyCompactList}\item 
+int \hyperlink{a00121_ab9d48c8b471d0e3ff5aef156beb73b1f_ab9d48c8b471d0e3ff5aef156beb73b1f}{\+\_\+trie\+\_\+node\+\_\+remove} (\hyperlink{a00121_a44bd5693a6afc3218520665f50504e3b_a44bd5693a6afc3218520665f50504e3b}{ktrie\+\_\+node\+\_\+t} $\ast$node, const char $\ast$s, void $\ast$$\ast$value)
+\begin{DoxyCompactList}\small\item\em 删除trie节点 \end{DoxyCompactList}\item 
+int \hyperlink{a00121_add3914295c3e4301093b12eeb04f7673_add3914295c3e4301093b12eeb04f7673}{\+\_\+trie\+\_\+node\+\_\+insert\+\_\+new\+\_\+path} (\hyperlink{a00121_a44bd5693a6afc3218520665f50504e3b_a44bd5693a6afc3218520665f50504e3b}{ktrie\+\_\+node\+\_\+t} $\ast$node, const char $\ast$key, const char $\ast$s, void $\ast$value)
+\begin{DoxyCompactList}\small\item\em 插入trie节点，建立一个新的路径节点 \end{DoxyCompactList}\item 
+int \hyperlink{a00121_ab1d2e2fa70523033e199d4c4b1ab12ad_ab1d2e2fa70523033e199d4c4b1ab12ad}{\+\_\+trie\+\_\+node\+\_\+insert\+\_\+exist\+\_\+path} (\hyperlink{a00121_a44bd5693a6afc3218520665f50504e3b_a44bd5693a6afc3218520665f50504e3b}{ktrie\+\_\+node\+\_\+t} $\ast$node, const char $\ast$key, const char $\ast$s, void $\ast$value)
+\begin{DoxyCompactList}\small\item\em 插入trie节点，使用已有的路径节点 \end{DoxyCompactList}\item 
+int \hyperlink{a00121_a09a12e6afd708573d8ab7ba4f487178e_a09a12e6afd708573d8ab7ba4f487178e}{\+\_\+trie\+\_\+node\+\_\+decref\+\_\+path} (\hyperlink{a00121_a44bd5693a6afc3218520665f50504e3b_a44bd5693a6afc3218520665f50504e3b}{ktrie\+\_\+node\+\_\+t} $\ast$node, \hyperlink{a00121_a44bd5693a6afc3218520665f50504e3b_a44bd5693a6afc3218520665f50504e3b}{ktrie\+\_\+node\+\_\+t} $\ast$$\ast$start\+\_\+node, const char $\ast$s)
+\begin{DoxyCompactList}\small\item\em 减少路径节点的引用计数 \end{DoxyCompactList}\item 
+void \hyperlink{a00121_af4967b075437030003f8b00763f29ab3_af4967b075437030003f8b00763f29ab3}{\+\_\+trie\+\_\+node\+\_\+delete\+\_\+path} (\hyperlink{a00121_a44bd5693a6afc3218520665f50504e3b_a44bd5693a6afc3218520665f50504e3b}{ktrie\+\_\+node\+\_\+t} $\ast$node, const char $\ast$s)
+\begin{DoxyCompactList}\small\item\em 销毁路径节点 \end{DoxyCompactList}\item 
+int \hyperlink{a00121_a5fb8612efee05ff57bc24acc84976652_a5fb8612efee05ff57bc24acc84976652}{\+\_\+trie\+\_\+node\+\_\+for\+\_\+each} (\hyperlink{a00121_a44bd5693a6afc3218520665f50504e3b_a44bd5693a6afc3218520665f50504e3b}{ktrie\+\_\+node\+\_\+t} $\ast$node, \hyperlink{a00066_ad77af676ce15810f8f713bb3eaa91fe8_ad77af676ce15810f8f713bb3eaa91fe8}{knet\+\_\+trie\+\_\+for\+\_\+each\+\_\+func\+\_\+t} func, void $\ast$param)
+\begin{DoxyCompactList}\small\item\em 遍历节点 \end{DoxyCompactList}\item 
+\hyperlink{a00066_a6b38314f31c4ed3eb36896383425a381_a6b38314f31c4ed3eb36896383425a381}{ktrie\+\_\+t} $\ast$ \hyperlink{a00140_ga40c34f3f3eed953a77e3df2927a24d0c_ga40c34f3f3eed953a77e3df2927a24d0c}{trie\+\_\+create} ()
+\begin{DoxyCompactList}\small\item\em 建立trie \end{DoxyCompactList}\item 
+void \hyperlink{a00140_ga1d3fcf14bbc77f4b3221ddb1121c21a0_ga1d3fcf14bbc77f4b3221ddb1121c21a0}{trie\+\_\+destroy} (\hyperlink{a00066_a6b38314f31c4ed3eb36896383425a381_a6b38314f31c4ed3eb36896383425a381}{ktrie\+\_\+t} $\ast$trie, \hyperlink{a00066_a46741b0dab7bbb26d611c429ee64d78c_a46741b0dab7bbb26d611c429ee64d78c}{knet\+\_\+trie\+\_\+dtor\+\_\+t} dtor)
+\begin{DoxyCompactList}\small\item\em 销毁trie \end{DoxyCompactList}\item 
+int \hyperlink{a00140_ga05e43d257d3626377de3340b6cd542fa_ga05e43d257d3626377de3340b6cd542fa}{trie\+\_\+insert} (\hyperlink{a00066_a6b38314f31c4ed3eb36896383425a381_a6b38314f31c4ed3eb36896383425a381}{ktrie\+\_\+t} $\ast$trie, const char $\ast$s, void $\ast$value)
+\begin{DoxyCompactList}\small\item\em 销毁trie \end{DoxyCompactList}\item 
+int \hyperlink{a00140_gae9c0f01c6b0eaf828710de2999601a11_gae9c0f01c6b0eaf828710de2999601a11}{trie\+\_\+find} (\hyperlink{a00066_a6b38314f31c4ed3eb36896383425a381_a6b38314f31c4ed3eb36896383425a381}{ktrie\+\_\+t} $\ast$trie, const char $\ast$s, void $\ast$$\ast$value)
+\begin{DoxyCompactList}\small\item\em 查找 \end{DoxyCompactList}\item 
+int \hyperlink{a00140_ga3d0e5d60984fac9b8053e8f8605d79e0_ga3d0e5d60984fac9b8053e8f8605d79e0}{trie\+\_\+remove} (\hyperlink{a00066_a6b38314f31c4ed3eb36896383425a381_a6b38314f31c4ed3eb36896383425a381}{ktrie\+\_\+t} $\ast$trie, const char $\ast$s, void $\ast$$\ast$value)
+\begin{DoxyCompactList}\small\item\em 删除 \end{DoxyCompactList}\item 
+int \hyperlink{a00140_ga0169ae53516f82a8aa435466a3d55678_ga0169ae53516f82a8aa435466a3d55678}{trie\+\_\+for\+\_\+each} (\hyperlink{a00066_a6b38314f31c4ed3eb36896383425a381_a6b38314f31c4ed3eb36896383425a381}{ktrie\+\_\+t} $\ast$trie, \hyperlink{a00066_ad77af676ce15810f8f713bb3eaa91fe8_ad77af676ce15810f8f713bb3eaa91fe8}{knet\+\_\+trie\+\_\+for\+\_\+each\+\_\+func\+\_\+t} func, void $\ast$param)
+\begin{DoxyCompactList}\small\item\em 遍历 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
-\subsection{详细描述}
-线程相关 
+\subsection{类型定义说明}
+\hypertarget{a00121_a44bd5693a6afc3218520665f50504e3b_a44bd5693a6afc3218520665f50504e3b}{}\index{trie.\+c@{trie.\+c}!ktrie\+\_\+node\+\_\+t@{ktrie\+\_\+node\+\_\+t}}
+\index{ktrie\+\_\+node\+\_\+t@{ktrie\+\_\+node\+\_\+t}!trie.\+c@{trie.\+c}}
+\subsubsection[{ktrie\+\_\+node\+\_\+t}]{\setlength{\rightskip}{0pt plus 5cm}typedef struct {\bf \+\_\+trie\+\_\+node\+\_\+t}  {\bf ktrie\+\_\+node\+\_\+t}}\label{a00121_a44bd5693a6afc3218520665f50504e3b_a44bd5693a6afc3218520665f50504e3b}
 
-
-\begin{DoxyPre}
-线程\end{DoxyPre}
-
-
-
-\begin{DoxyPre}线程API提供了基本的线程相关操作:\end{DoxyPre}
-
-
-
-\begin{DoxyPre}1. 线程建立销毁
-2. TLS
-3. 原子操作\end{DoxyPre}
-
-
-
-\begin{DoxyPre}thread\_runner\_start\_loop可以直接以kloop\_t作为参数在线程内运行knet\_loop\_run\_once
-thread\_runner\_start\_timer\_loop可以直接以ktimer\_loop\_t作为参数在线程内运行ktimer\_loop\_run\_once
-thread\_runner\_start\_multi\_loop\_varg可以同时运行多个knet\_loop\_run\_once或者ktimer\_loop\_run\_once
-\end{DoxyPre}
- 
 
 \subsection{函数说明}
-\hypertarget{a00121_gafc2df03d75cf9168b72e8c5e11953437_gafc2df03d75cf9168b72e8c5e11953437}{}\index{线程@{线程}!atomic\+\_\+counter\+\_\+dec@{atomic\+\_\+counter\+\_\+dec}}
-\index{atomic\+\_\+counter\+\_\+dec@{atomic\+\_\+counter\+\_\+dec}!线程@{线程}}
-\subsubsection[{atomic\+\_\+counter\+\_\+dec}]{\setlength{\rightskip}{0pt plus 5cm}{\bf atomic\+\_\+counter\+\_\+t} atomic\+\_\+counter\+\_\+dec (
+\hypertarget{a00121_a68cf21227280dbfeb226c45503a8a84e_a68cf21227280dbfeb226c45503a8a84e}{}\index{trie.\+c@{trie.\+c}!\+\_\+trie\+\_\+node\+\_\+create@{\+\_\+trie\+\_\+node\+\_\+create}}
+\index{\+\_\+trie\+\_\+node\+\_\+create@{\+\_\+trie\+\_\+node\+\_\+create}!trie.\+c@{trie.\+c}}
+\subsubsection[{\+\_\+trie\+\_\+node\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ktrie\+\_\+node\+\_\+t} $\ast$ \+\_\+trie\+\_\+node\+\_\+create (
 \begin{DoxyParamCaption}
-\item[{{\bf atomic\+\_\+counter\+\_\+t} $\ast$}]{counter}
+\item[{{\bf ktrie\+\_\+node\+\_\+t} $\ast$}]{parent}
 \end{DoxyParamCaption}
-)}\label{a00121_gafc2df03d75cf9168b72e8c5e11953437_gafc2df03d75cf9168b72e8c5e11953437}
+)}\label{a00121_a68cf21227280dbfeb226c45503a8a84e_a68cf21227280dbfeb226c45503a8a84e}
 
 
-原子操作 -\/ 递减 
+建立trie节点 
 
 
 \begin{DoxyParams}{参数}
-{\em counter} & atomic\+\_\+counter\+\_\+t实例 \\
+{\em parent} & ktrie\+\_\+node\+\_\+t父节点 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-递减后的值 
+ktrie\+\_\+node\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00121_gade4f41f1cd519f2719b5114ce7801232_gade4f41f1cd519f2719b5114ce7801232}{}\index{线程@{线程}!atomic\+\_\+counter\+\_\+inc@{atomic\+\_\+counter\+\_\+inc}}
-\index{atomic\+\_\+counter\+\_\+inc@{atomic\+\_\+counter\+\_\+inc}!线程@{线程}}
-\subsubsection[{atomic\+\_\+counter\+\_\+inc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf atomic\+\_\+counter\+\_\+t} atomic\+\_\+counter\+\_\+inc (
+\hypertarget{a00121_a09a12e6afd708573d8ab7ba4f487178e_a09a12e6afd708573d8ab7ba4f487178e}{}\index{trie.\+c@{trie.\+c}!\+\_\+trie\+\_\+node\+\_\+decref\+\_\+path@{\+\_\+trie\+\_\+node\+\_\+decref\+\_\+path}}
+\index{\+\_\+trie\+\_\+node\+\_\+decref\+\_\+path@{\+\_\+trie\+\_\+node\+\_\+decref\+\_\+path}!trie.\+c@{trie.\+c}}
+\subsubsection[{\+\_\+trie\+\_\+node\+\_\+decref\+\_\+path}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+trie\+\_\+node\+\_\+decref\+\_\+path (
 \begin{DoxyParamCaption}
-\item[{{\bf atomic\+\_\+counter\+\_\+t} $\ast$}]{counter}
+\item[{{\bf ktrie\+\_\+node\+\_\+t} $\ast$}]{node, }
+\item[{{\bf ktrie\+\_\+node\+\_\+t} $\ast$$\ast$}]{start\+\_\+node, }
+\item[{const char $\ast$}]{s}
 \end{DoxyParamCaption}
-)}\label{a00121_gade4f41f1cd519f2719b5114ce7801232_gade4f41f1cd519f2719b5114ce7801232}
+)}\label{a00121_a09a12e6afd708573d8ab7ba4f487178e_a09a12e6afd708573d8ab7ba4f487178e}
 
 
-原子操作 -\/ 递增 
+减少路径节点的引用计数 
 
 
 \begin{DoxyParams}{参数}
-{\em counter} & atomic\+\_\+counter\+\_\+t实例 \\
+{\em node} & ktrie\+\_\+node\+\_\+t实例 \\
 \hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-递增后的值 
-\end{DoxyReturn}
-\hypertarget{a00121_ga141897cac9743394a99ff7780daa6a80_ga141897cac9743394a99ff7780daa6a80}{}\index{线程@{线程}!atomic\+\_\+counter\+\_\+zero@{atomic\+\_\+counter\+\_\+zero}}
-\index{atomic\+\_\+counter\+\_\+zero@{atomic\+\_\+counter\+\_\+zero}!线程@{线程}}
-\subsubsection[{atomic\+\_\+counter\+\_\+zero}]{\setlength{\rightskip}{0pt plus 5cm}int atomic\+\_\+counter\+\_\+zero (
-\begin{DoxyParamCaption}
-\item[{{\bf atomic\+\_\+counter\+\_\+t} $\ast$}]{counter}
-\end{DoxyParamCaption}
-)}\label{a00121_ga141897cac9743394a99ff7780daa6a80_ga141897cac9743394a99ff7780daa6a80}
-
-
-原子操作 -\/ 是否为零 
-
-
-\begin{DoxyParams}{参数}
-{\em counter} & atomic\+\_\+counter\+\_\+t实例 \\
+{\em s} & 子键 \\
+\hline
+{\em start\+\_\+node} & 返回的起始节点 \\
 \hline
 \end{DoxyParams}
 
 \begin{DoxyRetVals}{返回值}
-{\em 0} & 非零 \\
+{\em 0} & 不能销毁 \\
 \hline
-{\em 其他} & 零 \\
+{\em 非零} & 可以销毁 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00121_gaecf10907eee00ec0e807271c906a6645_gaecf10907eee00ec0e807271c906a6645}{}\index{线程@{线程}!thread\+\_\+get\+\_\+self\+\_\+id@{thread\+\_\+get\+\_\+self\+\_\+id}}
-\index{thread\+\_\+get\+\_\+self\+\_\+id@{thread\+\_\+get\+\_\+self\+\_\+id}!线程@{线程}}
-\subsubsection[{thread\+\_\+get\+\_\+self\+\_\+id}]{\setlength{\rightskip}{0pt plus 5cm}{\bf thread\+\_\+id\+\_\+t} thread\+\_\+get\+\_\+self\+\_\+id (
+\hypertarget{a00121_af4967b075437030003f8b00763f29ab3_af4967b075437030003f8b00763f29ab3}{}\index{trie.\+c@{trie.\+c}!\+\_\+trie\+\_\+node\+\_\+delete\+\_\+path@{\+\_\+trie\+\_\+node\+\_\+delete\+\_\+path}}
+\index{\+\_\+trie\+\_\+node\+\_\+delete\+\_\+path@{\+\_\+trie\+\_\+node\+\_\+delete\+\_\+path}!trie.\+c@{trie.\+c}}
+\subsubsection[{\+\_\+trie\+\_\+node\+\_\+delete\+\_\+path}]{\setlength{\rightskip}{0pt plus 5cm}void \+\_\+trie\+\_\+node\+\_\+delete\+\_\+path (
+\begin{DoxyParamCaption}
+\item[{{\bf ktrie\+\_\+node\+\_\+t} $\ast$}]{node, }
+\item[{const char $\ast$}]{s}
+\end{DoxyParamCaption}
+)}\label{a00121_af4967b075437030003f8b00763f29ab3_af4967b075437030003f8b00763f29ab3}
+
+
+销毁路径节点 
+
+
+\begin{DoxyParams}{参数}
+{\em node} & ktrie\+\_\+node\+\_\+t实例 \\
+\hline
+{\em s} & 子键 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00121_ae8afc9e595d26ec663bbbedcc38463b4_ae8afc9e595d26ec663bbbedcc38463b4}{}\index{trie.\+c@{trie.\+c}!\+\_\+trie\+\_\+node\+\_\+destroy@{\+\_\+trie\+\_\+node\+\_\+destroy}}
+\index{\+\_\+trie\+\_\+node\+\_\+destroy@{\+\_\+trie\+\_\+node\+\_\+destroy}!trie.\+c@{trie.\+c}}
+\subsubsection[{\+\_\+trie\+\_\+node\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void \+\_\+trie\+\_\+node\+\_\+destroy (
+\begin{DoxyParamCaption}
+\item[{{\bf ktrie\+\_\+node\+\_\+t} $\ast$}]{node, }
+\item[{{\bf knet\+\_\+trie\+\_\+dtor\+\_\+t}}]{dtor}
+\end{DoxyParamCaption}
+)}\label{a00121_ae8afc9e595d26ec663bbbedcc38463b4_ae8afc9e595d26ec663bbbedcc38463b4}
+
+
+销毁trie节点，递归销毁子节点 
+
+
+\begin{DoxyParams}{参数}
+{\em node} & ktrie\+\_\+node\+\_\+t实例 \\
+\hline
+{\em dtor} & 节点值销毁函数 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00121_a91661120df87e49306ad91dcd9d4f6d1_a91661120df87e49306ad91dcd9d4f6d1}{}\index{trie.\+c@{trie.\+c}!\+\_\+trie\+\_\+node\+\_\+destroy\+\_\+self@{\+\_\+trie\+\_\+node\+\_\+destroy\+\_\+self}}
+\index{\+\_\+trie\+\_\+node\+\_\+destroy\+\_\+self@{\+\_\+trie\+\_\+node\+\_\+destroy\+\_\+self}!trie.\+c@{trie.\+c}}
+\subsubsection[{\+\_\+trie\+\_\+node\+\_\+destroy\+\_\+self}]{\setlength{\rightskip}{0pt plus 5cm}void \+\_\+trie\+\_\+node\+\_\+destroy\+\_\+self (
+\begin{DoxyParamCaption}
+\item[{{\bf ktrie\+\_\+node\+\_\+t} $\ast$}]{node, }
+\item[{{\bf knet\+\_\+trie\+\_\+dtor\+\_\+t}}]{dtor}
+\end{DoxyParamCaption}
+)}\label{a00121_a91661120df87e49306ad91dcd9d4f6d1_a91661120df87e49306ad91dcd9d4f6d1}
+
+
+销毁trie节点 
+
+
+\begin{DoxyParams}{参数}
+{\em node} & ktrie\+\_\+node\+\_\+t实例 \\
+\hline
+{\em dtor} & 节点值销毁函数 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00121_ab04559de21104a3d6594632f19b704ce_ab04559de21104a3d6594632f19b704ce}{}\index{trie.\+c@{trie.\+c}!\+\_\+trie\+\_\+node\+\_\+find@{\+\_\+trie\+\_\+node\+\_\+find}}
+\index{\+\_\+trie\+\_\+node\+\_\+find@{\+\_\+trie\+\_\+node\+\_\+find}!trie.\+c@{trie.\+c}}
+\subsubsection[{\+\_\+trie\+\_\+node\+\_\+find}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+trie\+\_\+node\+\_\+find (
+\begin{DoxyParamCaption}
+\item[{{\bf ktrie\+\_\+node\+\_\+t} $\ast$}]{node, }
+\item[{const char $\ast$}]{key, }
+\item[{const char $\ast$}]{s, }
+\item[{void $\ast$$\ast$}]{value}
+\end{DoxyParamCaption}
+)}\label{a00121_ab04559de21104a3d6594632f19b704ce_ab04559de21104a3d6594632f19b704ce}
+
+
+查找trie节点 
+
+
+\begin{DoxyParams}{参数}
+{\em node} & ktrie\+\_\+node\+\_\+t实例 \\
+\hline
+{\em key} & 键 \\
+\hline
+{\em s} & 子键 \\
+\hline
+{\em value} & 值 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{a00121_a5fb8612efee05ff57bc24acc84976652_a5fb8612efee05ff57bc24acc84976652}{}\index{trie.\+c@{trie.\+c}!\+\_\+trie\+\_\+node\+\_\+for\+\_\+each@{\+\_\+trie\+\_\+node\+\_\+for\+\_\+each}}
+\index{\+\_\+trie\+\_\+node\+\_\+for\+\_\+each@{\+\_\+trie\+\_\+node\+\_\+for\+\_\+each}!trie.\+c@{trie.\+c}}
+\subsubsection[{\+\_\+trie\+\_\+node\+\_\+for\+\_\+each}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+trie\+\_\+node\+\_\+for\+\_\+each (
+\begin{DoxyParamCaption}
+\item[{{\bf ktrie\+\_\+node\+\_\+t} $\ast$}]{node, }
+\item[{{\bf knet\+\_\+trie\+\_\+for\+\_\+each\+\_\+func\+\_\+t}}]{func, }
+\item[{void $\ast$}]{param}
+\end{DoxyParamCaption}
+)}\label{a00121_a5fb8612efee05ff57bc24acc84976652_a5fb8612efee05ff57bc24acc84976652}
+
+
+遍历节点 
+
+
+\begin{DoxyParams}{参数}
+{\em node} & ktrie\+\_\+node\+\_\+t实例 \\
+\hline
+{\em func} & 遍历函数 \\
+\hline
+{\em param} & 遍历函数参数 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00121_a0edd023c4018a202b83e8d1df7301905_a0edd023c4018a202b83e8d1df7301905}{}\index{trie.\+c@{trie.\+c}!\+\_\+trie\+\_\+node\+\_\+insert@{\+\_\+trie\+\_\+node\+\_\+insert}}
+\index{\+\_\+trie\+\_\+node\+\_\+insert@{\+\_\+trie\+\_\+node\+\_\+insert}!trie.\+c@{trie.\+c}}
+\subsubsection[{\+\_\+trie\+\_\+node\+\_\+insert}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+trie\+\_\+node\+\_\+insert (
+\begin{DoxyParamCaption}
+\item[{{\bf ktrie\+\_\+node\+\_\+t} $\ast$}]{node, }
+\item[{const char $\ast$}]{key, }
+\item[{const char $\ast$}]{s, }
+\item[{void $\ast$}]{value}
+\end{DoxyParamCaption}
+)}\label{a00121_a0edd023c4018a202b83e8d1df7301905_a0edd023c4018a202b83e8d1df7301905}
+
+
+建立trie节点 
+
+
+\begin{DoxyParams}{参数}
+{\em node} & ktrie\+\_\+node\+\_\+t实例 \\
+\hline
+{\em key} & 键 \\
+\hline
+{\em s} & 子键 \\
+\hline
+{\em value} & 值 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{a00121_ab1d2e2fa70523033e199d4c4b1ab12ad_ab1d2e2fa70523033e199d4c4b1ab12ad}{}\index{trie.\+c@{trie.\+c}!\+\_\+trie\+\_\+node\+\_\+insert\+\_\+exist\+\_\+path@{\+\_\+trie\+\_\+node\+\_\+insert\+\_\+exist\+\_\+path}}
+\index{\+\_\+trie\+\_\+node\+\_\+insert\+\_\+exist\+\_\+path@{\+\_\+trie\+\_\+node\+\_\+insert\+\_\+exist\+\_\+path}!trie.\+c@{trie.\+c}}
+\subsubsection[{\+\_\+trie\+\_\+node\+\_\+insert\+\_\+exist\+\_\+path}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+trie\+\_\+node\+\_\+insert\+\_\+exist\+\_\+path (
+\begin{DoxyParamCaption}
+\item[{{\bf ktrie\+\_\+node\+\_\+t} $\ast$}]{node, }
+\item[{const char $\ast$}]{key, }
+\item[{const char $\ast$}]{s, }
+\item[{void $\ast$}]{value}
+\end{DoxyParamCaption}
+)}\label{a00121_ab1d2e2fa70523033e199d4c4b1ab12ad_ab1d2e2fa70523033e199d4c4b1ab12ad}
+
+
+插入trie节点，使用已有的路径节点 
+
+
+\begin{DoxyParams}{参数}
+{\em node} & ktrie\+\_\+node\+\_\+t实例 \\
+\hline
+{\em key} & 键 \\
+\hline
+{\em s} & 子键 \\
+\hline
+{\em value} & 值 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{a00121_add3914295c3e4301093b12eeb04f7673_add3914295c3e4301093b12eeb04f7673}{}\index{trie.\+c@{trie.\+c}!\+\_\+trie\+\_\+node\+\_\+insert\+\_\+new\+\_\+path@{\+\_\+trie\+\_\+node\+\_\+insert\+\_\+new\+\_\+path}}
+\index{\+\_\+trie\+\_\+node\+\_\+insert\+\_\+new\+\_\+path@{\+\_\+trie\+\_\+node\+\_\+insert\+\_\+new\+\_\+path}!trie.\+c@{trie.\+c}}
+\subsubsection[{\+\_\+trie\+\_\+node\+\_\+insert\+\_\+new\+\_\+path}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+trie\+\_\+node\+\_\+insert\+\_\+new\+\_\+path (
+\begin{DoxyParamCaption}
+\item[{{\bf ktrie\+\_\+node\+\_\+t} $\ast$}]{node, }
+\item[{const char $\ast$}]{key, }
+\item[{const char $\ast$}]{s, }
+\item[{void $\ast$}]{value}
+\end{DoxyParamCaption}
+)}\label{a00121_add3914295c3e4301093b12eeb04f7673_add3914295c3e4301093b12eeb04f7673}
+
+
+插入trie节点，建立一个新的路径节点 
+
+
+\begin{DoxyParams}{参数}
+{\em node} & ktrie\+\_\+node\+\_\+t实例 \\
+\hline
+{\em key} & 键 \\
+\hline
+{\em s} & 子键 \\
+\hline
+{\em value} & 值 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{a00121_ab9d48c8b471d0e3ff5aef156beb73b1f_ab9d48c8b471d0e3ff5aef156beb73b1f}{}\index{trie.\+c@{trie.\+c}!\+\_\+trie\+\_\+node\+\_\+remove@{\+\_\+trie\+\_\+node\+\_\+remove}}
+\index{\+\_\+trie\+\_\+node\+\_\+remove@{\+\_\+trie\+\_\+node\+\_\+remove}!trie.\+c@{trie.\+c}}
+\subsubsection[{\+\_\+trie\+\_\+node\+\_\+remove}]{\setlength{\rightskip}{0pt plus 5cm}int \+\_\+trie\+\_\+node\+\_\+remove (
+\begin{DoxyParamCaption}
+\item[{{\bf ktrie\+\_\+node\+\_\+t} $\ast$}]{node, }
+\item[{const char $\ast$}]{s, }
+\item[{void $\ast$$\ast$}]{value}
+\end{DoxyParamCaption}
+)}\label{a00121_ab9d48c8b471d0e3ff5aef156beb73b1f_ab9d48c8b471d0e3ff5aef156beb73b1f}
+
+
+删除trie节点 
+
+
+\begin{DoxyParams}{参数}
+{\em node} & ktrie\+\_\+node\+\_\+t实例 \\
+\hline
+{\em s} & 子键 \\
+\hline
+{\em value} & 值 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{a00121_afdeb812c273aeb6ce05db8585c6f63b1_afdeb812c273aeb6ce05db8585c6f63b1}{}\index{trie.\+c@{trie.\+c}!\+\_\+trie\+\_\+node\+\_\+reset@{\+\_\+trie\+\_\+node\+\_\+reset}}
+\index{\+\_\+trie\+\_\+node\+\_\+reset@{\+\_\+trie\+\_\+node\+\_\+reset}!trie.\+c@{trie.\+c}}
+\subsubsection[{\+\_\+trie\+\_\+node\+\_\+reset}]{\setlength{\rightskip}{0pt plus 5cm}void \+\_\+trie\+\_\+node\+\_\+reset (
+\begin{DoxyParamCaption}
+\item[{{\bf ktrie\+\_\+node\+\_\+t} $\ast$}]{node}
+\end{DoxyParamCaption}
+)}\label{a00121_afdeb812c273aeb6ce05db8585c6f63b1_afdeb812c273aeb6ce05db8585c6f63b1}
+
+
+重置trie节点 
+
+
+\begin{DoxyParams}{参数}
+{\em node} & ktrie\+\_\+node\+\_\+t实例 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00121_a10f334eb4f08fe5d5500ccad432913d3_a10f334eb4f08fe5d5500ccad432913d3}{}\index{trie.\+c@{trie.\+c}!\+\_\+trie\+\_\+node\+\_\+set\+\_\+real\+\_\+key@{\+\_\+trie\+\_\+node\+\_\+set\+\_\+real\+\_\+key}}
+\index{\+\_\+trie\+\_\+node\+\_\+set\+\_\+real\+\_\+key@{\+\_\+trie\+\_\+node\+\_\+set\+\_\+real\+\_\+key}!trie.\+c@{trie.\+c}}
+\subsubsection[{\+\_\+trie\+\_\+node\+\_\+set\+\_\+real\+\_\+key}]{\setlength{\rightskip}{0pt plus 5cm}void \+\_\+trie\+\_\+node\+\_\+set\+\_\+real\+\_\+key (
+\begin{DoxyParamCaption}
+\item[{{\bf ktrie\+\_\+node\+\_\+t} $\ast$}]{node, }
+\item[{const char $\ast$}]{real\+\_\+key}
+\end{DoxyParamCaption}
+)}\label{a00121_a10f334eb4f08fe5d5500ccad432913d3_a10f334eb4f08fe5d5500ccad432913d3}
+
+
+设置real\+\_\+key字段 
+
+
+\begin{DoxyParams}{参数}
+{\em node} & ktrie\+\_\+node\+\_\+t实例 \\
+\hline
+{\em real\+\_\+key} & 键 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00140_ga40c34f3f3eed953a77e3df2927a24d0c_ga40c34f3f3eed953a77e3df2927a24d0c}{}\index{trie.\+c@{trie.\+c}!trie\+\_\+create@{trie\+\_\+create}}
+\index{trie\+\_\+create@{trie\+\_\+create}!trie.\+c@{trie.\+c}}
+\subsubsection[{trie\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ktrie\+\_\+t}$\ast$ trie\+\_\+create (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\label{a00121_gaecf10907eee00ec0e807271c906a6645_gaecf10907eee00ec0e807271c906a6645}
+)}\label{a00140_ga40c34f3f3eed953a77e3df2927a24d0c_ga40c34f3f3eed953a77e3df2927a24d0c}
 
 
-取得线程\+I\+D 
+建立trie 
 
 \begin{DoxyReturn}{返回}
-线程\+I\+D 
+ktrie\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00121_gaf5bb2dd001c42fdbdcdcb2048f76ae89_gaf5bb2dd001c42fdbdcdcb2048f76ae89}{}\index{线程@{线程}!thread\+\_\+get\+\_\+tls\+\_\+data@{thread\+\_\+get\+\_\+tls\+\_\+data}}
-\index{thread\+\_\+get\+\_\+tls\+\_\+data@{thread\+\_\+get\+\_\+tls\+\_\+data}!线程@{线程}}
-\subsubsection[{thread\+\_\+get\+\_\+tls\+\_\+data}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ thread\+\_\+get\+\_\+tls\+\_\+data (
+\hypertarget{a00140_ga1d3fcf14bbc77f4b3221ddb1121c21a0_ga1d3fcf14bbc77f4b3221ddb1121c21a0}{}\index{trie.\+c@{trie.\+c}!trie\+\_\+destroy@{trie\+\_\+destroy}}
+\index{trie\+\_\+destroy@{trie\+\_\+destroy}!trie.\+c@{trie.\+c}}
+\subsubsection[{trie\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void trie\+\_\+destroy (
 \begin{DoxyParamCaption}
-\item[{{\bf kthread\+\_\+runner\+\_\+t} $\ast$}]{runner}
+\item[{{\bf ktrie\+\_\+t} $\ast$}]{trie, }
+\item[{{\bf knet\+\_\+trie\+\_\+dtor\+\_\+t}}]{dtor}
 \end{DoxyParamCaption}
-)}\label{a00121_gaf5bb2dd001c42fdbdcdcb2048f76ae89_gaf5bb2dd001c42fdbdcdcb2048f76ae89}
+)}\label{a00140_ga1d3fcf14bbc77f4b3221ddb1121c21a0_ga1d3fcf14bbc77f4b3221ddb1121c21a0}
 
 
-取得线程本地存储 
+销毁trie 
 
 
 \begin{DoxyParams}{参数}
-{\em runner} & kthread\+\_\+runner\+\_\+t实例 \\
+{\em trie} & ktrie\+\_\+t实例 \\
+\hline
+{\em dtor} & 销毁函数 \\
 \hline
 \end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em 0} & 获取失败或不存在 \\
-\hline
-{\em 有效指针} & \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00121_ga3a56e5d1203f6697a6579202919aa048_ga3a56e5d1203f6697a6579202919aa048}{}\index{线程@{线程}!thread\+\_\+runner\+\_\+check\+\_\+start@{thread\+\_\+runner\+\_\+check\+\_\+start}}
-\index{thread\+\_\+runner\+\_\+check\+\_\+start@{thread\+\_\+runner\+\_\+check\+\_\+start}!线程@{线程}}
-\subsubsection[{thread\+\_\+runner\+\_\+check\+\_\+start}]{\setlength{\rightskip}{0pt plus 5cm}int thread\+\_\+runner\+\_\+check\+\_\+start (
+\hypertarget{a00140_gae9c0f01c6b0eaf828710de2999601a11_gae9c0f01c6b0eaf828710de2999601a11}{}\index{trie.\+c@{trie.\+c}!trie\+\_\+find@{trie\+\_\+find}}
+\index{trie\+\_\+find@{trie\+\_\+find}!trie.\+c@{trie.\+c}}
+\subsubsection[{trie\+\_\+find}]{\setlength{\rightskip}{0pt plus 5cm}int trie\+\_\+find (
 \begin{DoxyParamCaption}
-\item[{{\bf kthread\+\_\+runner\+\_\+t} $\ast$}]{runner}
+\item[{{\bf ktrie\+\_\+t} $\ast$}]{trie, }
+\item[{const char $\ast$}]{s, }
+\item[{void $\ast$$\ast$}]{value}
 \end{DoxyParamCaption}
-)}\label{a00121_ga3a56e5d1203f6697a6579202919aa048_ga3a56e5d1203f6697a6579202919aa048}
+)}\label{a00140_gae9c0f01c6b0eaf828710de2999601a11_gae9c0f01c6b0eaf828710de2999601a11}
 
 
-检查线程是否正在运行 
+查找 
 
 
 \begin{DoxyParams}{参数}
-{\em runner} & kthread\+\_\+runner\+\_\+t实例 \\
+{\em trie} & ktrie\+\_\+t实例 \\
 \hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em 0} & 未运行 \\
+{\em s} & 键 \\
 \hline
-{\em 非零} & 正在运行 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00121_gacc8838f250e5f685580a508e93d3f636_gacc8838f250e5f685580a508e93d3f636}{}\index{线程@{线程}!thread\+\_\+runner\+\_\+create@{thread\+\_\+runner\+\_\+create}}
-\index{thread\+\_\+runner\+\_\+create@{thread\+\_\+runner\+\_\+create}!线程@{线程}}
-\subsubsection[{thread\+\_\+runner\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kthread\+\_\+runner\+\_\+t}$\ast$ thread\+\_\+runner\+\_\+create (
-\begin{DoxyParamCaption}
-\item[{{\bf knet\+\_\+thread\+\_\+func\+\_\+t}}]{func, }
-\item[{void $\ast$}]{params}
-\end{DoxyParamCaption}
-)}\label{a00121_gacc8838f250e5f685580a508e93d3f636_gacc8838f250e5f685580a508e93d3f636}
-
-
-创建一个线程 
-
-
-\begin{DoxyParams}{参数}
-{\em func} & 线程函数 \\
-\hline
-{\em params} & 参数 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-kthread\+\_\+runner\+\_\+t实例 
-\end{DoxyReturn}
-\hypertarget{a00121_gaa9112d70f3e5a8dcf648ce531332f66a_gaa9112d70f3e5a8dcf648ce531332f66a}{}\index{线程@{线程}!thread\+\_\+runner\+\_\+destroy@{thread\+\_\+runner\+\_\+destroy}}
-\index{thread\+\_\+runner\+\_\+destroy@{thread\+\_\+runner\+\_\+destroy}!线程@{线程}}
-\subsubsection[{thread\+\_\+runner\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void thread\+\_\+runner\+\_\+destroy (
-\begin{DoxyParamCaption}
-\item[{{\bf kthread\+\_\+runner\+\_\+t} $\ast$}]{runner}
-\end{DoxyParamCaption}
-)}\label{a00121_gaa9112d70f3e5a8dcf648ce531332f66a_gaa9112d70f3e5a8dcf648ce531332f66a}
-
-
-销毁一个线程 
-
-
-\begin{DoxyParams}{参数}
-{\em runner} & kthread\+\_\+runner\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00121_ga1f1e994ba4c42e91e4d4b120aa8eb970_ga1f1e994ba4c42e91e4d4b120aa8eb970}{}\index{线程@{线程}!thread\+\_\+runner\+\_\+get\+\_\+id@{thread\+\_\+runner\+\_\+get\+\_\+id}}
-\index{thread\+\_\+runner\+\_\+get\+\_\+id@{thread\+\_\+runner\+\_\+get\+\_\+id}!线程@{线程}}
-\subsubsection[{thread\+\_\+runner\+\_\+get\+\_\+id}]{\setlength{\rightskip}{0pt plus 5cm}{\bf thread\+\_\+id\+\_\+t} thread\+\_\+runner\+\_\+get\+\_\+id (
-\begin{DoxyParamCaption}
-\item[{{\bf kthread\+\_\+runner\+\_\+t} $\ast$}]{runner}
-\end{DoxyParamCaption}
-)}\label{a00121_ga1f1e994ba4c42e91e4d4b120aa8eb970_ga1f1e994ba4c42e91e4d4b120aa8eb970}
-
-
-获取线程\+I\+D 
-
-
-\begin{DoxyParams}{参数}
-{\em runner} & kthread\+\_\+runner\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-线程\+I\+D 
-\end{DoxyReturn}
-\hypertarget{a00121_ga2126b5da850ec506d0909eb81f9a50dc_ga2126b5da850ec506d0909eb81f9a50dc}{}\index{线程@{线程}!thread\+\_\+runner\+\_\+get\+\_\+params@{thread\+\_\+runner\+\_\+get\+\_\+params}}
-\index{thread\+\_\+runner\+\_\+get\+\_\+params@{thread\+\_\+runner\+\_\+get\+\_\+params}!线程@{线程}}
-\subsubsection[{thread\+\_\+runner\+\_\+get\+\_\+params}]{\setlength{\rightskip}{0pt plus 5cm}void$\ast$ thread\+\_\+runner\+\_\+get\+\_\+params (
-\begin{DoxyParamCaption}
-\item[{{\bf kthread\+\_\+runner\+\_\+t} $\ast$}]{runner}
-\end{DoxyParamCaption}
-)}\label{a00121_ga2126b5da850ec506d0909eb81f9a50dc_ga2126b5da850ec506d0909eb81f9a50dc}
-
-
-取得线程运行参数，thread\+\_\+runner\+\_\+create()第二个参数 
-
-
-\begin{DoxyParams}{参数}
-{\em runner} & kthread\+\_\+runner\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-线程运行参数 
-\end{DoxyReturn}
-\hypertarget{a00121_gad9d9269c695d6bd683c856479d525eb7_gad9d9269c695d6bd683c856479d525eb7}{}\index{线程@{线程}!thread\+\_\+runner\+\_\+join@{thread\+\_\+runner\+\_\+join}}
-\index{thread\+\_\+runner\+\_\+join@{thread\+\_\+runner\+\_\+join}!线程@{线程}}
-\subsubsection[{thread\+\_\+runner\+\_\+join}]{\setlength{\rightskip}{0pt plus 5cm}void thread\+\_\+runner\+\_\+join (
-\begin{DoxyParamCaption}
-\item[{{\bf kthread\+\_\+runner\+\_\+t} $\ast$}]{runner}
-\end{DoxyParamCaption}
-)}\label{a00121_gad9d9269c695d6bd683c856479d525eb7_gad9d9269c695d6bd683c856479d525eb7}
-
-
-等待线程终止 
-
-
-\begin{DoxyParams}{参数}
-{\em runner} & kthread\+\_\+runner\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00121_gae125061eb96b154766c0a414eb74065c_gae125061eb96b154766c0a414eb74065c}{}\index{线程@{线程}!thread\+\_\+runner\+\_\+start@{thread\+\_\+runner\+\_\+start}}
-\index{thread\+\_\+runner\+\_\+start@{thread\+\_\+runner\+\_\+start}!线程@{线程}}
-\subsubsection[{thread\+\_\+runner\+\_\+start}]{\setlength{\rightskip}{0pt plus 5cm}int thread\+\_\+runner\+\_\+start (
-\begin{DoxyParamCaption}
-\item[{{\bf kthread\+\_\+runner\+\_\+t} $\ast$}]{runner, }
-\item[{int}]{stack\+\_\+size}
-\end{DoxyParamCaption}
-)}\label{a00121_gae125061eb96b154766c0a414eb74065c_gae125061eb96b154766c0a414eb74065c}
-
-
-启动线程 
-
-
-\begin{DoxyParams}{参数}
-{\em runner} & kthread\+\_\+runner\+\_\+t实例 \\
-\hline
-{\em stack\+\_\+size} & 线程栈大小（字节） \\
+{\em value} & 值 \\
 \hline
 \end{DoxyParams}
 
@@ -311,26 +444,48 @@ kthread\+\_\+runner\+\_\+t实例
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00121_ga4328cb11f2446f4da89374a1ae8a2f8e_ga4328cb11f2446f4da89374a1ae8a2f8e}{}\index{线程@{线程}!thread\+\_\+runner\+\_\+start\+\_\+loop@{thread\+\_\+runner\+\_\+start\+\_\+loop}}
-\index{thread\+\_\+runner\+\_\+start\+\_\+loop@{thread\+\_\+runner\+\_\+start\+\_\+loop}!线程@{线程}}
-\subsubsection[{thread\+\_\+runner\+\_\+start\+\_\+loop}]{\setlength{\rightskip}{0pt plus 5cm}int thread\+\_\+runner\+\_\+start\+\_\+loop (
+\hypertarget{a00140_ga0169ae53516f82a8aa435466a3d55678_ga0169ae53516f82a8aa435466a3d55678}{}\index{trie.\+c@{trie.\+c}!trie\+\_\+for\+\_\+each@{trie\+\_\+for\+\_\+each}}
+\index{trie\+\_\+for\+\_\+each@{trie\+\_\+for\+\_\+each}!trie.\+c@{trie.\+c}}
+\subsubsection[{trie\+\_\+for\+\_\+each}]{\setlength{\rightskip}{0pt plus 5cm}int trie\+\_\+for\+\_\+each (
 \begin{DoxyParamCaption}
-\item[{{\bf kthread\+\_\+runner\+\_\+t} $\ast$}]{runner, }
-\item[{{\bf kloop\+\_\+t} $\ast$}]{loop, }
-\item[{int}]{stack\+\_\+size}
+\item[{{\bf ktrie\+\_\+t} $\ast$}]{trie, }
+\item[{{\bf knet\+\_\+trie\+\_\+for\+\_\+each\+\_\+func\+\_\+t}}]{func, }
+\item[{void $\ast$}]{param}
 \end{DoxyParamCaption}
-)}\label{a00121_ga4328cb11f2446f4da89374a1ae8a2f8e_ga4328cb11f2446f4da89374a1ae8a2f8e}
+)}\label{a00140_ga0169ae53516f82a8aa435466a3d55678_ga0169ae53516f82a8aa435466a3d55678}
 
 
-在线程内运行knet\+\_\+loop\+\_\+run() 
+遍历 
 
 
 \begin{DoxyParams}{参数}
-{\em runner} & kthread\+\_\+runner\+\_\+t实例 \\
+{\em trie} & ktrie\+\_\+t实例 \\
 \hline
-{\em loop} & kloop\+\_\+t实例 \\
+{\em func} & 遍历函数 \\
 \hline
-{\em stack\+\_\+size} & 线程栈大小（字节） \\
+{\em param} & 遍历函数参数 \\
+\hline
+\end{DoxyParams}
+\hypertarget{a00140_ga05e43d257d3626377de3340b6cd542fa_ga05e43d257d3626377de3340b6cd542fa}{}\index{trie.\+c@{trie.\+c}!trie\+\_\+insert@{trie\+\_\+insert}}
+\index{trie\+\_\+insert@{trie\+\_\+insert}!trie.\+c@{trie.\+c}}
+\subsubsection[{trie\+\_\+insert}]{\setlength{\rightskip}{0pt plus 5cm}int trie\+\_\+insert (
+\begin{DoxyParamCaption}
+\item[{{\bf ktrie\+\_\+t} $\ast$}]{trie, }
+\item[{const char $\ast$}]{s, }
+\item[{void $\ast$}]{value}
+\end{DoxyParamCaption}
+)}\label{a00140_ga05e43d257d3626377de3340b6cd542fa_ga05e43d257d3626377de3340b6cd542fa}
+
+
+销毁trie 
+
+
+\begin{DoxyParams}{参数}
+{\em trie} & ktrie\+\_\+t实例 \\
+\hline
+{\em s} & 键 \\
+\hline
+{\em value} & 值 \\
 \hline
 \end{DoxyParams}
 
@@ -340,27 +495,26 @@ kthread\+\_\+runner\+\_\+t实例
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00121_ga80fabbe64d1fc33e81053e51f69772d2_ga80fabbe64d1fc33e81053e51f69772d2}{}\index{线程@{线程}!thread\+\_\+runner\+\_\+start\+\_\+multi\+\_\+loop\+\_\+varg@{thread\+\_\+runner\+\_\+start\+\_\+multi\+\_\+loop\+\_\+varg}}
-\index{thread\+\_\+runner\+\_\+start\+\_\+multi\+\_\+loop\+\_\+varg@{thread\+\_\+runner\+\_\+start\+\_\+multi\+\_\+loop\+\_\+varg}!线程@{线程}}
-\subsubsection[{thread\+\_\+runner\+\_\+start\+\_\+multi\+\_\+loop\+\_\+varg}]{\setlength{\rightskip}{0pt plus 5cm}int thread\+\_\+runner\+\_\+start\+\_\+multi\+\_\+loop\+\_\+varg (
+\hypertarget{a00140_ga3d0e5d60984fac9b8053e8f8605d79e0_ga3d0e5d60984fac9b8053e8f8605d79e0}{}\index{trie.\+c@{trie.\+c}!trie\+\_\+remove@{trie\+\_\+remove}}
+\index{trie\+\_\+remove@{trie\+\_\+remove}!trie.\+c@{trie.\+c}}
+\subsubsection[{trie\+\_\+remove}]{\setlength{\rightskip}{0pt plus 5cm}int trie\+\_\+remove (
 \begin{DoxyParamCaption}
-\item[{{\bf kthread\+\_\+runner\+\_\+t} $\ast$}]{runner, }
-\item[{int}]{stack\+\_\+size, }
-\item[{const char $\ast$}]{format, }
-\item[{}]{...}
+\item[{{\bf ktrie\+\_\+t} $\ast$}]{trie, }
+\item[{const char $\ast$}]{s, }
+\item[{void $\ast$$\ast$}]{value}
 \end{DoxyParamCaption}
-)}\label{a00121_ga80fabbe64d1fc33e81053e51f69772d2_ga80fabbe64d1fc33e81053e51f69772d2}
+)}\label{a00140_ga3d0e5d60984fac9b8053e8f8605d79e0_ga3d0e5d60984fac9b8053e8f8605d79e0}
 
 
-在线程内启动多个kloop\+\_\+t或ktimer\+\_\+loop\+\_\+t 
+删除 
 
-format内可以有多个kloop\+\_\+t（l）或者ktimer\+\_\+loop\+\_\+t（t），譬如：lt，标识一个kloop\+\_\+t，一个ktimer\+\_\+loop\+\_\+t 
+
 \begin{DoxyParams}{参数}
-{\em runner} & kthread\+\_\+runner\+\_\+t实例 \\
+{\em trie} & ktrie\+\_\+t实例 \\
 \hline
-{\em stack\+\_\+size} & 栈大小 \\
+{\em s} & 键 \\
 \hline
-{\em format} & 启动字符串 \\
+{\em value} & 值 \\
 \hline
 \end{DoxyParams}
 
@@ -370,90 +524,3 @@ format内可以有多个kloop\+\_\+t（l）或者ktimer\+\_\+loop\+\_\+t（t）�
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00121_ga943c1e0bc78abe3d7faae24ae3670d9a_ga943c1e0bc78abe3d7faae24ae3670d9a}{}\index{线程@{线程}!thread\+\_\+runner\+\_\+start\+\_\+timer\+\_\+loop@{thread\+\_\+runner\+\_\+start\+\_\+timer\+\_\+loop}}
-\index{thread\+\_\+runner\+\_\+start\+\_\+timer\+\_\+loop@{thread\+\_\+runner\+\_\+start\+\_\+timer\+\_\+loop}!线程@{线程}}
-\subsubsection[{thread\+\_\+runner\+\_\+start\+\_\+timer\+\_\+loop}]{\setlength{\rightskip}{0pt plus 5cm}int thread\+\_\+runner\+\_\+start\+\_\+timer\+\_\+loop (
-\begin{DoxyParamCaption}
-\item[{{\bf kthread\+\_\+runner\+\_\+t} $\ast$}]{runner, }
-\item[{{\bf ktimer\+\_\+loop\+\_\+t} $\ast$}]{timer\+\_\+loop, }
-\item[{int}]{stack\+\_\+size}
-\end{DoxyParamCaption}
-)}\label{a00121_ga943c1e0bc78abe3d7faae24ae3670d9a_ga943c1e0bc78abe3d7faae24ae3670d9a}
-
-
-在线程内运行timer\+\_\+loop\+\_\+run() 
-
-
-\begin{DoxyParams}{参数}
-{\em runner} & kthread\+\_\+runner\+\_\+t实例 \\
-\hline
-{\em timer\+\_\+loop} & ktimer\+\_\+loop\+\_\+t实例 \\
-\hline
-{\em stack\+\_\+size} & 线程栈大小（字节） \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00121_gac8644b2d2ca5580e0cac7378154ae2e0_gac8644b2d2ca5580e0cac7378154ae2e0}{}\index{线程@{线程}!thread\+\_\+runner\+\_\+stop@{thread\+\_\+runner\+\_\+stop}}
-\index{thread\+\_\+runner\+\_\+stop@{thread\+\_\+runner\+\_\+stop}!线程@{线程}}
-\subsubsection[{thread\+\_\+runner\+\_\+stop}]{\setlength{\rightskip}{0pt plus 5cm}void thread\+\_\+runner\+\_\+stop (
-\begin{DoxyParamCaption}
-\item[{{\bf kthread\+\_\+runner\+\_\+t} $\ast$}]{runner}
-\end{DoxyParamCaption}
-)}\label{a00121_gac8644b2d2ca5580e0cac7378154ae2e0_gac8644b2d2ca5580e0cac7378154ae2e0}
-
-
-停止线程 
-
-
-\begin{DoxyParams}{参数}
-{\em runner} & kthread\+\_\+runner\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00121_ga76839139180a3f0d0b017a5f39801936_ga76839139180a3f0d0b017a5f39801936}{}\index{线程@{线程}!thread\+\_\+set\+\_\+tls\+\_\+data@{thread\+\_\+set\+\_\+tls\+\_\+data}}
-\index{thread\+\_\+set\+\_\+tls\+\_\+data@{thread\+\_\+set\+\_\+tls\+\_\+data}!线程@{线程}}
-\subsubsection[{thread\+\_\+set\+\_\+tls\+\_\+data}]{\setlength{\rightskip}{0pt plus 5cm}int thread\+\_\+set\+\_\+tls\+\_\+data (
-\begin{DoxyParamCaption}
-\item[{{\bf kthread\+\_\+runner\+\_\+t} $\ast$}]{runner, }
-\item[{void $\ast$}]{data}
-\end{DoxyParamCaption}
-)}\label{a00121_ga76839139180a3f0d0b017a5f39801936_ga76839139180a3f0d0b017a5f39801936}
-
-
-设置线程本地存储 
-
-
-\begin{DoxyParams}{参数}
-{\em runner} & kthread\+\_\+runner\+\_\+t实例 \\
-\hline
-{\em data} & 自定义数据指针 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00121_gabddf3ac30aac3f22f8c53b7517e6eb35_gabddf3ac30aac3f22f8c53b7517e6eb35}{}\index{线程@{线程}!thread\+\_\+sleep\+\_\+ms@{thread\+\_\+sleep\+\_\+ms}}
-\index{thread\+\_\+sleep\+\_\+ms@{thread\+\_\+sleep\+\_\+ms}!线程@{线程}}
-\subsubsection[{thread\+\_\+sleep\+\_\+ms}]{\setlength{\rightskip}{0pt plus 5cm}void thread\+\_\+sleep\+\_\+ms (
-\begin{DoxyParamCaption}
-\item[{int}]{ms}
-\end{DoxyParamCaption}
-)}\label{a00121_gabddf3ac30aac3f22f8c53b7517e6eb35_gabddf3ac30aac3f22f8c53b7517e6eb35}
-
-
-睡眠 
-
-
-\begin{DoxyParams}{参数}
-{\em ms} & 睡眠时间（毫秒） \\
-\hline
-\end{DoxyParams}

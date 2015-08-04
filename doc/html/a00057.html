@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/framework.c 文件参考</title>
+<title>knet: E:/knet-git/knet/knet/broadcast.c 文件参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -90,79 +90,44 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <a href="#nested-classes">结构体</a> &#124;
 <a href="#func-members">函数</a>  </div>
   <div class="headertitle">
-<div class="title">framework.c 文件参考</div>  </div>
+<div class="title">broadcast.c 文件参考</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="a00058_source.html">framework.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00077_source.html">loop.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00080_source.html">loop_balancer.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00054_source.html">channel_ref.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00064_source.html">framework_raiser.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00066_source.html">framework_worker.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00094_source.html">rpc_api.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00073_source.html">list.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00090_source.html">misc.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="a00058_source.html">broadcast_api.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00083_source.html">list.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00064_source.html">channel_ref.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00100_source.html">misc.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 结构体</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00013.html">_framework_t</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00002.html">_broadcast_t</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 函数</h2></td></tr>
-<tr class="memitem:a9c5bb6308c754d2a46ade4c7fef5907f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00057_a9c5bb6308c754d2a46ade4c7fef5907f.html#a9c5bb6308c754d2a46ade4c7fef5907f">_cleanup_all_threads</a> (<a class="el" href="a00056_a3195a3be35782fc1efb920c811be111d.html#a3195a3be35782fc1efb920c811be111d">kframework_t</a> *f)</td></tr>
-<tr class="memdesc:a9c5bb6308c754d2a46ade4c7fef5907f"><td class="mdescLeft">&#160;</td><td class="mdescRight">关闭并销毁所有线程  <a href="a00057_a9c5bb6308c754d2a46ade4c7fef5907f.html#a9c5bb6308c754d2a46ade4c7fef5907f">更多...</a><br /></td></tr>
-<tr class="separator:a9c5bb6308c754d2a46ade4c7fef5907f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ff0491ef03493e3d3b299f4d8f64d0d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00057_a1ff0491ef03493e3d3b299f4d8f64d0d.html#a1ff0491ef03493e3d3b299f4d8f64d0d">_start_worker_threads</a> (<a class="el" href="a00056_a3195a3be35782fc1efb920c811be111d.html#a3195a3be35782fc1efb920c811be111d">kframework_t</a> *f)</td></tr>
-<tr class="memdesc:a1ff0491ef03493e3d3b299f4d8f64d0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">启动工作线程  <a href="a00057_a1ff0491ef03493e3d3b299f4d8f64d0d.html#a1ff0491ef03493e3d3b299f4d8f64d0d">更多...</a><br /></td></tr>
-<tr class="separator:a1ff0491ef03493e3d3b299f4d8f64d0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23f8160552bd4b1a0bca4c2779d49a4d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00057_a23f8160552bd4b1a0bca4c2779d49a4d.html#a23f8160552bd4b1a0bca4c2779d49a4d">_start_raiser_thread</a> (<a class="el" href="a00056_a3195a3be35782fc1efb920c811be111d.html#a3195a3be35782fc1efb920c811be111d">kframework_t</a> *f)</td></tr>
-<tr class="memdesc:a23f8160552bd4b1a0bca4c2779d49a4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">启动监听器/连接器发起线程  <a href="a00057_a23f8160552bd4b1a0bca4c2779d49a4d.html#a23f8160552bd4b1a0bca4c2779d49a4d">更多...</a><br /></td></tr>
-<tr class="separator:a23f8160552bd4b1a0bca4c2779d49a4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga066683c6d9defb4121552b439d11d7ba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00056_a3195a3be35782fc1efb920c811be111d.html#a3195a3be35782fc1efb920c811be111d">kframework_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00114_ga066683c6d9defb4121552b439d11d7ba.html#ga066683c6d9defb4121552b439d11d7ba">knet_framework_create</a> ()</td></tr>
-<tr class="memdesc:ga066683c6d9defb4121552b439d11d7ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">建立框架  <a href="a00114_ga066683c6d9defb4121552b439d11d7ba.html#ga066683c6d9defb4121552b439d11d7ba">更多...</a><br /></td></tr>
-<tr class="separator:ga066683c6d9defb4121552b439d11d7ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaee7016dea12793dae5e6732fb86ee8d0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00114_gaee7016dea12793dae5e6732fb86ee8d0.html#gaee7016dea12793dae5e6732fb86ee8d0">knet_framework_destroy</a> (<a class="el" href="a00056_a3195a3be35782fc1efb920c811be111d.html#a3195a3be35782fc1efb920c811be111d">kframework_t</a> *f)</td></tr>
-<tr class="memdesc:gaee7016dea12793dae5e6732fb86ee8d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁框架  <a href="a00114_gaee7016dea12793dae5e6732fb86ee8d0.html#gaee7016dea12793dae5e6732fb86ee8d0">更多...</a><br /></td></tr>
-<tr class="separator:gaee7016dea12793dae5e6732fb86ee8d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae2bea4af82f4cdce2f4efbf68aa8054c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00114_gae2bea4af82f4cdce2f4efbf68aa8054c.html#gae2bea4af82f4cdce2f4efbf68aa8054c">knet_framework_start</a> (<a class="el" href="a00056_a3195a3be35782fc1efb920c811be111d.html#a3195a3be35782fc1efb920c811be111d">kframework_t</a> *f)</td></tr>
-<tr class="memdesc:gae2bea4af82f4cdce2f4efbf68aa8054c"><td class="mdescLeft">&#160;</td><td class="mdescRight">启动框架  <a href="a00114_gae2bea4af82f4cdce2f4efbf68aa8054c.html#gae2bea4af82f4cdce2f4efbf68aa8054c">更多...</a><br /></td></tr>
-<tr class="separator:gae2bea4af82f4cdce2f4efbf68aa8054c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5eda19f3b32bb48578cf735e877aac2e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00114_ga5eda19f3b32bb48578cf735e877aac2e.html#ga5eda19f3b32bb48578cf735e877aac2e">knet_framework_start_wait</a> (<a class="el" href="a00056_a3195a3be35782fc1efb920c811be111d.html#a3195a3be35782fc1efb920c811be111d">kframework_t</a> *f)</td></tr>
-<tr class="memdesc:ga5eda19f3b32bb48578cf735e877aac2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">启动框架并等待框架关闭  <a href="a00114_ga5eda19f3b32bb48578cf735e877aac2e.html#ga5eda19f3b32bb48578cf735e877aac2e">更多...</a><br /></td></tr>
-<tr class="separator:ga5eda19f3b32bb48578cf735e877aac2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gab44f183a42eda626fe6ec1e6d35bb859"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00114_gab44f183a42eda626fe6ec1e6d35bb859.html#gab44f183a42eda626fe6ec1e6d35bb859">knet_framework_start_wait_destroy</a> (<a class="el" href="a00056_a3195a3be35782fc1efb920c811be111d.html#a3195a3be35782fc1efb920c811be111d">kframework_t</a> *f)</td></tr>
-<tr class="memdesc:gab44f183a42eda626fe6ec1e6d35bb859"><td class="mdescLeft">&#160;</td><td class="mdescRight">启动框架并等待框架关闭，如果启动失败或者框架关闭则销毁  <a href="a00114_gab44f183a42eda626fe6ec1e6d35bb859.html#gab44f183a42eda626fe6ec1e6d35bb859">更多...</a><br /></td></tr>
-<tr class="separator:gab44f183a42eda626fe6ec1e6d35bb859"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gacff434cca9ce60fa5a3597348ee4360b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00114_gacff434cca9ce60fa5a3597348ee4360b.html#gacff434cca9ce60fa5a3597348ee4360b">knet_framework_wait_for_stop</a> (<a class="el" href="a00056_a3195a3be35782fc1efb920c811be111d.html#a3195a3be35782fc1efb920c811be111d">kframework_t</a> *f)</td></tr>
-<tr class="memdesc:gacff434cca9ce60fa5a3597348ee4360b"><td class="mdescLeft">&#160;</td><td class="mdescRight">等待框架停止  <a href="a00114_gacff434cca9ce60fa5a3597348ee4360b.html#gacff434cca9ce60fa5a3597348ee4360b">更多...</a><br /></td></tr>
-<tr class="separator:gacff434cca9ce60fa5a3597348ee4360b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga5936d2ece03511c366b19bc7616ac8be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00114_ga5936d2ece03511c366b19bc7616ac8be.html#ga5936d2ece03511c366b19bc7616ac8be">knet_framework_wait_for_stop_destroy</a> (<a class="el" href="a00056_a3195a3be35782fc1efb920c811be111d.html#a3195a3be35782fc1efb920c811be111d">kframework_t</a> *f)</td></tr>
-<tr class="memdesc:ga5936d2ece03511c366b19bc7616ac8be"><td class="mdescLeft">&#160;</td><td class="mdescRight">等待框架停止并销毁  <a href="a00114_ga5936d2ece03511c366b19bc7616ac8be.html#ga5936d2ece03511c366b19bc7616ac8be">更多...</a><br /></td></tr>
-<tr class="separator:ga5936d2ece03511c366b19bc7616ac8be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac8f76fe72392bc5103b70fb5b3280839"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00114_gac8f76fe72392bc5103b70fb5b3280839.html#gac8f76fe72392bc5103b70fb5b3280839">knet_framework_stop</a> (<a class="el" href="a00056_a3195a3be35782fc1efb920c811be111d.html#a3195a3be35782fc1efb920c811be111d">kframework_t</a> *f)</td></tr>
-<tr class="memdesc:gac8f76fe72392bc5103b70fb5b3280839"><td class="mdescLeft">&#160;</td><td class="mdescRight">关闭框架  <a href="a00114_gac8f76fe72392bc5103b70fb5b3280839.html#gac8f76fe72392bc5103b70fb5b3280839">更多...</a><br /></td></tr>
-<tr class="separator:gac8f76fe72392bc5103b70fb5b3280839"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2fcd8c172557a78fe7edbba0e7f9da40"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00056_adeaf952e0f0887507ff836385bf54874.html#adeaf952e0f0887507ff836385bf54874">kframework_config_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00114_ga2fcd8c172557a78fe7edbba0e7f9da40.html#ga2fcd8c172557a78fe7edbba0e7f9da40">knet_framework_get_config</a> (<a class="el" href="a00056_a3195a3be35782fc1efb920c811be111d.html#a3195a3be35782fc1efb920c811be111d">kframework_t</a> *f)</td></tr>
-<tr class="memdesc:ga2fcd8c172557a78fe7edbba0e7f9da40"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得框架配置  <a href="a00114_ga2fcd8c172557a78fe7edbba0e7f9da40.html#ga2fcd8c172557a78fe7edbba0e7f9da40">更多...</a><br /></td></tr>
-<tr class="separator:ga2fcd8c172557a78fe7edbba0e7f9da40"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5bda21127c93214014579d21f6efd643"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00056_abd3f964265beb2f8984e76f44fb5ea33.html#abd3f964265beb2f8984e76f44fb5ea33">kloop_balancer_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00057_a5bda21127c93214014579d21f6efd643.html#a5bda21127c93214014579d21f6efd643">knet_framework_get_balancer</a> (<a class="el" href="a00056_a3195a3be35782fc1efb920c811be111d.html#a3195a3be35782fc1efb920c811be111d">kframework_t</a> *f)</td></tr>
-<tr class="memdesc:a5bda21127c93214014579d21f6efd643"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取负载均衡器  <a href="a00057_a5bda21127c93214014579d21f6efd643.html#a5bda21127c93214014579d21f6efd643">更多...</a><br /></td></tr>
-<tr class="separator:a5bda21127c93214014579d21f6efd643"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae3f68614153df18fabd1c7d148ce826b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00114_gae3f68614153df18fabd1c7d148ce826b.html#gae3f68614153df18fabd1c7d148ce826b">knet_framework_acceptor_start</a> (<a class="el" href="a00056_a3195a3be35782fc1efb920c811be111d.html#a3195a3be35782fc1efb920c811be111d">kframework_t</a> *f, <a class="el" href="a00056_a39c993eb450173e4fde04498d757f9b6.html#a39c993eb450173e4fde04498d757f9b6">kframework_acceptor_config_t</a> *c)</td></tr>
-<tr class="memdesc:gae3f68614153df18fabd1c7d148ce826b"><td class="mdescLeft">&#160;</td><td class="mdescRight">启动监听器  <a href="a00114_gae3f68614153df18fabd1c7d148ce826b.html#gae3f68614153df18fabd1c7d148ce826b">更多...</a><br /></td></tr>
-<tr class="separator:gae3f68614153df18fabd1c7d148ce826b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga28cdba2072f2c191547c0450d040d536"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00114_ga28cdba2072f2c191547c0450d040d536.html#ga28cdba2072f2c191547c0450d040d536">knet_framework_connector_start</a> (<a class="el" href="a00056_a3195a3be35782fc1efb920c811be111d.html#a3195a3be35782fc1efb920c811be111d">kframework_t</a> *f, <a class="el" href="a00056_a44d3033eba5a4fd784a741700a7a2521.html#a44d3033eba5a4fd784a741700a7a2521">kframework_connector_config_t</a> *c)</td></tr>
-<tr class="memdesc:ga28cdba2072f2c191547c0450d040d536"><td class="mdescLeft">&#160;</td><td class="mdescRight">启动连接器  <a href="a00114_ga28cdba2072f2c191547c0450d040d536.html#ga28cdba2072f2c191547c0450d040d536">更多...</a><br /></td></tr>
-<tr class="separator:ga28cdba2072f2c191547c0450d040d536"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaf740887dd472ce5bb57263e156e3e75e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00056_a846172ea4e8a86449eca41a3d8e074b7.html#a846172ea4e8a86449eca41a3d8e074b7">ktimer_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00114_gaf740887dd472ce5bb57263e156e3e75e.html#gaf740887dd472ce5bb57263e156e3e75e">knet_framework_create_worker_timer</a> (<a class="el" href="a00056_a3195a3be35782fc1efb920c811be111d.html#a3195a3be35782fc1efb920c811be111d">kframework_t</a> *f)</td></tr>
-<tr class="memdesc:gaf740887dd472ce5bb57263e156e3e75e"><td class="mdescLeft">&#160;</td><td class="mdescRight">建立一个工作线程定时器 只能在工作线程内建立定时器，如果在非工作线程内建立定时器则失败  <a href="a00114_gaf740887dd472ce5bb57263e156e3e75e.html#gaf740887dd472ce5bb57263e156e3e75e">更多...</a><br /></td></tr>
-<tr class="separator:gaf740887dd472ce5bb57263e156e3e75e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga41a1258d2f4ae75120f26ab7f2326111"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00066_a1b551151864af85fa6cce57058153d04.html#a1b551151864af85fa6cce57058153d04">kbroadcast_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00128_ga41a1258d2f4ae75120f26ab7f2326111.html#ga41a1258d2f4ae75120f26ab7f2326111">knet_broadcast_create</a> ()</td></tr>
+<tr class="memdesc:ga41a1258d2f4ae75120f26ab7f2326111"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建广播域  <a href="a00128_ga41a1258d2f4ae75120f26ab7f2326111.html#ga41a1258d2f4ae75120f26ab7f2326111">更多...</a><br /></td></tr>
+<tr class="separator:ga41a1258d2f4ae75120f26ab7f2326111"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4b13b2545278c2324f4171ef0bbf990a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00128_ga4b13b2545278c2324f4171ef0bbf990a.html#ga4b13b2545278c2324f4171ef0bbf990a">knet_broadcast_destroy</a> (<a class="el" href="a00066_a1b551151864af85fa6cce57058153d04.html#a1b551151864af85fa6cce57058153d04">kbroadcast_t</a> *broadcast)</td></tr>
+<tr class="memdesc:ga4b13b2545278c2324f4171ef0bbf990a"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁广播域  <a href="a00128_ga4b13b2545278c2324f4171ef0bbf990a.html#ga4b13b2545278c2324f4171ef0bbf990a">更多...</a><br /></td></tr>
+<tr class="separator:ga4b13b2545278c2324f4171ef0bbf990a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1355d3863db663680b1c74363d3a5745"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00066_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00128_ga1355d3863db663680b1c74363d3a5745.html#ga1355d3863db663680b1c74363d3a5745">knet_broadcast_join</a> (<a class="el" href="a00066_a1b551151864af85fa6cce57058153d04.html#a1b551151864af85fa6cce57058153d04">kbroadcast_t</a> *broadcast, <a class="el" href="a00066_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *channel_ref)</td></tr>
+<tr class="memdesc:ga1355d3863db663680b1c74363d3a5745"><td class="mdescLeft">&#160;</td><td class="mdescRight">加入广播域  <a href="a00128_ga1355d3863db663680b1c74363d3a5745.html#ga1355d3863db663680b1c74363d3a5745">更多...</a><br /></td></tr>
+<tr class="separator:ga1355d3863db663680b1c74363d3a5745"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga3bb02208a76f18bb2eee61955b3781cd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00128_ga3bb02208a76f18bb2eee61955b3781cd.html#ga3bb02208a76f18bb2eee61955b3781cd">knet_broadcast_leave</a> (<a class="el" href="a00066_a1b551151864af85fa6cce57058153d04.html#a1b551151864af85fa6cce57058153d04">kbroadcast_t</a> *broadcast, <a class="el" href="a00066_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *channel_ref)</td></tr>
+<tr class="memdesc:ga3bb02208a76f18bb2eee61955b3781cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">离开广播域  <a href="a00128_ga3bb02208a76f18bb2eee61955b3781cd.html#ga3bb02208a76f18bb2eee61955b3781cd">更多...</a><br /></td></tr>
+<tr class="separator:ga3bb02208a76f18bb2eee61955b3781cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gabf0b20b2490b3508e58a77314812f1a5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00128_gabf0b20b2490b3508e58a77314812f1a5.html#gabf0b20b2490b3508e58a77314812f1a5">knet_broadcast_get_count</a> (<a class="el" href="a00066_a1b551151864af85fa6cce57058153d04.html#a1b551151864af85fa6cce57058153d04">kbroadcast_t</a> *broadcast)</td></tr>
+<tr class="memdesc:gabf0b20b2490b3508e58a77314812f1a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得广播域内管道数量  <a href="a00128_gabf0b20b2490b3508e58a77314812f1a5.html#gabf0b20b2490b3508e58a77314812f1a5">更多...</a><br /></td></tr>
+<tr class="separator:gabf0b20b2490b3508e58a77314812f1a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gafd3ac5d785687d729047a51724104060"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00128_gafd3ac5d785687d729047a51724104060.html#gafd3ac5d785687d729047a51724104060">knet_broadcast_write</a> (<a class="el" href="a00066_a1b551151864af85fa6cce57058153d04.html#a1b551151864af85fa6cce57058153d04">kbroadcast_t</a> *broadcast, char *buffer, uint32_t size)</td></tr>
+<tr class="memdesc:gafd3ac5d785687d729047a51724104060"><td class="mdescLeft">&#160;</td><td class="mdescRight">广播  <a href="a00128_gafd3ac5d785687d729047a51724104060.html#gafd3ac5d785687d729047a51724104060">更多...</a><br /></td></tr>
+<tr class="separator:gafd3ac5d785687d729047a51724104060"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 27日 星期一 14:33:19 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 八月 4日 星期二 14:40:23 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

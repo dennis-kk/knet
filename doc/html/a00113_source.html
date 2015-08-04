@@ -1,0 +1,292 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.9.1"/>
+<title>knet: E:/knet-git/knet/knet/rpc_object_api.h 源文件</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">knet
+   &#160;<span id="projectnumber">1.4.5</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- 制作者 Doxygen 1.8.9.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>首页</span></a></li>
+      <li><a href="modules.html"><span>模块</span></a></li>
+      <li><a href="annotated.html"><span>结构体</span></a></li>
+      <li class="current"><a href="files.html"><span>文件</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="搜索" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>文件列表</span></a></li>
+      <li><a href="globals.html"><span>全局定义</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_885cc87fac2d91e269af0a5a959fa5f6.html">E:</a></li><li class="navelem"><a class="el" href="dir_4e74998c9a9305a116abc25fcf9a1edb.html">knet-git</a></li><li class="navelem"><a class="el" href="dir_a1c045b39f32066568ae964b52db514f.html">knet</a></li><li class="navelem"><a class="el" href="dir_f76d03789f0b12416cfffea59e2ed47d.html">knet</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">rpc_object_api.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="a00113.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * Copyright (c) 2014-2015, dennis wang</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * All rights reserved.</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * </span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * Redistribution and use in source and binary forms, with or without</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * modification, are permitted provided that the following conditions are met:</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> *     * Redistributions of source code must retain the above copyright</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> *       notice, this list of conditions and the following disclaimer.</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> *     * Redistributions in binary form must reproduce the above copyright</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> *       notice, this list of conditions and the following disclaimer in the</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> *       documentation and/or other materials provided with the distribution.</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> * </span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> * DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment"> * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"> * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment"> * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef RPC_OBJECT_API_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define RPC_OBJECT_API_H</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00066.html">config.h</a>&quot;</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="a00136_ga56259ab59360eeaab4862c1ae6640bf9.html#ga56259ab59360eeaab4862c1ae6640bf9">   71</a></span>&#160;<span class="preprocessor">#define KRPC_MEMBER_SET(type, key) \</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">    void krpc_member_set(krpc_object_t* t, type node) { \</span></div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="preprocessor">        krpc_number_set_##key(t, node); \</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="preprocessor">    }</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="a00136_ga1d5b3462ea73a1e54fc1683a2703ca2d.html#ga1d5b3462ea73a1e54fc1683a2703ca2d">   76</a></span>&#160;<span class="preprocessor">#define KRPC_MEMBER_GET(type, key) \</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor">    void krpc_member_get(krpc_object_t* t, type&amp; node) { \</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">        node = krpc_number_get_##key(t); \</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">    }</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="a00136_ga311cfbc8b2ea6fd5367ce326509013b1.html#ga311cfbc8b2ea6fd5367ce326509013b1">   81</a></span>&#160;<span class="preprocessor">#define KRPC_MARSHAL_COMM(type) \</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">    krpc_object_t* marshal(type node){ \</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">        krpc_object_t* node_ptr = krpc_object_create(); \</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">        krpc_member_set(node_ptr, node); \</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">        return node_ptr; \</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor">    }</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="a00136_ga9fe26802b38b7358c5ede3264fa15367.html#ga9fe26802b38b7358c5ede3264fa15367">   88</a></span>&#160;<span class="preprocessor">#define KRPC_UNMARSHAL_COMM(type) \</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="preprocessor">    bool unmarshal(krpc_object_t* v, type&amp; node) { \</span></div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="preprocessor">        krpc_member_get(v, node); \</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">        return true; \</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="preprocessor">    }</span></div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00020.html">krpc_object_t</a>* <a class="code" href="a00136_ga6aad58d8460944596e39822181bf4848.html#ga6aad58d8460944596e39822181bf4848">krpc_object_create</a>();</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00136_ga8bb578f8ba5a8de682a1fe2a4c8a20f6.html#ga8bb578f8ba5a8de682a1fe2a4c8a20f6">krpc_object_destroy</a>(<a class="code" href="a00020.html">krpc_object_t</a>* o);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00136_gac0a05f116ee7164ceebf6f7fabcf46cf.html#gac0a05f116ee7164ceebf6f7fabcf46cf">krpc_object_check_type</a>(<a class="code" href="a00020.html">krpc_object_t</a>* o, <a class="code" href="a00066_a6fe1ebc0ddea56dd3c337115c1e10bc4.html#a6fe1ebc0ddea56dd3c337115c1e10bc4">knet_rpc_type_e</a> type);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="keyword">extern</span> uint16_t <a class="code" href="a00136_gad51ebf7392be0ee1fd9597aa22a43015.html#gad51ebf7392be0ee1fd9597aa22a43015">krpc_object_get_marshal_size</a>(<a class="code" href="a00020.html">krpc_object_t</a>* o);</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00136_ga77cc2dde006f9cdddf078289159bd514.html#ga77cc2dde006f9cdddf078289159bd514">krpc_object_marshal</a>(<a class="code" href="a00020.html">krpc_object_t</a>* o, <a class="code" href="a00045.html">kstream_t</a>* stream, uint16_t* bytes);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00136_ga32ed12c4faa68e258582b239b46fd180.html#ga32ed12c4faa68e258582b239b46fd180">krpc_object_marshal_buffer</a>(<a class="code" href="a00020.html">krpc_object_t</a>* o, <span class="keywordtype">char</span>* buffer, uint16_t length, uint16_t* bytes);</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00136_ga3e61d7f696fd28c1cb4152037e4cc3c8.html#ga3e61d7f696fd28c1cb4152037e4cc3c8">krpc_object_unmarshal</a>(<a class="code" href="a00045.html">kstream_t</a>* stream, <a class="code" href="a00020.html">krpc_object_t</a>** o, uint16_t* bytes);</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00136_ga0f2289e356949bc9ae0e8e0a151e42f4.html#ga0f2289e356949bc9ae0e8e0a151e42f4">krpc_object_unmarshal_buffer</a>(<span class="keywordtype">char</span>* buffer, uint16_t size, <a class="code" href="a00020.html">krpc_object_t</a>** o, uint16_t* bytes);</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00136_gac97afef390289879f19cda9149beb684.html#gac97afef390289879f19cda9149beb684">krpc_number_set_i8</a>(<a class="code" href="a00020.html">krpc_object_t</a>* o, int8_t i8);</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;<span class="keyword">extern</span> int8_t <a class="code" href="a00136_ga5f14e2a44d3dd64fc1bc54e28b431587.html#ga5f14e2a44d3dd64fc1bc54e28b431587">krpc_number_get_i8</a>(<a class="code" href="a00020.html">krpc_object_t</a>* o);</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00136_ga1b6cbaa51e2171bec6e5b2f97fe6223c.html#ga1b6cbaa51e2171bec6e5b2f97fe6223c">krpc_number_set_i16</a>(<a class="code" href="a00020.html">krpc_object_t</a>* o, int16_t i16);</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="keyword">extern</span> int16_t <a class="code" href="a00136_ga090dd58301d21979a05fe6fc249e3a80.html#ga090dd58301d21979a05fe6fc249e3a80">krpc_number_get_i16</a>(<a class="code" href="a00020.html">krpc_object_t</a>* o);</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00136_gaf70d32f6fb59d76e67e596d0feeee14b.html#gaf70d32f6fb59d76e67e596d0feeee14b">krpc_number_set_i32</a>(<a class="code" href="a00020.html">krpc_object_t</a>* o, int32_t i32);</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="keyword">extern</span> int32_t <a class="code" href="a00136_gad287178bafa8b9495016ee747db8e090.html#gad287178bafa8b9495016ee747db8e090">krpc_number_get_i32</a>(<a class="code" href="a00020.html">krpc_object_t</a>* o);</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00136_gabf92e2dab46131d75789812059214724.html#gabf92e2dab46131d75789812059214724">krpc_number_set_i64</a>(<a class="code" href="a00020.html">krpc_object_t</a>* o, int64_t i64);</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;<span class="keyword">extern</span> int64_t <a class="code" href="a00136_ga41bb57b2a053c9aeb22c98e0cbfbc2e4.html#ga41bb57b2a053c9aeb22c98e0cbfbc2e4">krpc_number_get_i64</a>(<a class="code" href="a00020.html">krpc_object_t</a>* o);</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00136_ga0abbc84b15e73781209485cbfa4d2a56.html#ga0abbc84b15e73781209485cbfa4d2a56">krpc_number_set_ui8</a>(<a class="code" href="a00020.html">krpc_object_t</a>* o, uint8_t ui8);</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="keyword">extern</span> uint8_t <a class="code" href="a00136_ga921ba1649bda27068e3d048b854ed708.html#ga921ba1649bda27068e3d048b854ed708">krpc_number_get_ui8</a>(<a class="code" href="a00020.html">krpc_object_t</a>* o);</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00136_ga7990cb68203c5ab0d1534ef616fd1aad.html#ga7990cb68203c5ab0d1534ef616fd1aad">krpc_number_set_ui16</a>(<a class="code" href="a00020.html">krpc_object_t</a>* o, uint16_t ui16);</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;<span class="keyword">extern</span> uint16_t <a class="code" href="a00136_gaa2f3b1c450f36d181e585924ff7954a5.html#gaa2f3b1c450f36d181e585924ff7954a5">krpc_number_get_ui16</a>(<a class="code" href="a00020.html">krpc_object_t</a>* o);</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00136_gaf864070d7b20a77c9191acbe49f9382f.html#gaf864070d7b20a77c9191acbe49f9382f">krpc_number_set_ui32</a>(<a class="code" href="a00020.html">krpc_object_t</a>* o, uint32_t ui32);</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;<span class="keyword">extern</span> uint32_t <a class="code" href="a00136_gabc1d9560a6f2baf606c4a232488ee76a.html#gabc1d9560a6f2baf606c4a232488ee76a">krpc_number_get_ui32</a>(<a class="code" href="a00020.html">krpc_object_t</a>* o);</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00136_gaaf97bde647eab6b1e7ceaf29bfc4d9cb.html#gaaf97bde647eab6b1e7ceaf29bfc4d9cb">krpc_number_set_ui64</a>(<a class="code" href="a00020.html">krpc_object_t</a>* o, uint64_t ui64);</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;<span class="keyword">extern</span> uint64_t <a class="code" href="a00136_ga951b99916dd94a6d8c5ad335578c35d7.html#ga951b99916dd94a6d8c5ad335578c35d7">krpc_number_get_ui64</a>(<a class="code" href="a00020.html">krpc_object_t</a>* o);</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00136_ga0e16d4b0c82cb88b148e82bc076a840c.html#ga0e16d4b0c82cb88b148e82bc076a840c">krpc_number_set_f32</a>(<a class="code" href="a00020.html">krpc_object_t</a>* o, <a class="code" href="a00066_a24938fa843048398799e12d52d3e3693.html#a24938fa843048398799e12d52d3e3693">float32_t</a> f32);</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00066_a24938fa843048398799e12d52d3e3693.html#a24938fa843048398799e12d52d3e3693">float32_t</a> <a class="code" href="a00136_gaa646cc26fc434789e5d4a58ec39a99fa.html#gaa646cc26fc434789e5d4a58ec39a99fa">krpc_number_get_f32</a>(<a class="code" href="a00020.html">krpc_object_t</a>* o);</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00136_ga8aeb77dbdf5aaab4bb75f57ee0ddd8b9.html#ga8aeb77dbdf5aaab4bb75f57ee0ddd8b9">krpc_number_set_f64</a>(<a class="code" href="a00020.html">krpc_object_t</a>* o, <a class="code" href="a00066_a584460dce5c6f292dfffb0e7fbca0842.html#a584460dce5c6f292dfffb0e7fbca0842">float64_t</a> f64);</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00066_a584460dce5c6f292dfffb0e7fbca0842.html#a584460dce5c6f292dfffb0e7fbca0842">float64_t</a> <a class="code" href="a00136_ga000db715b85193d0b6750b46bfc590b5.html#ga000db715b85193d0b6750b46bfc590b5">krpc_number_get_f64</a>(<a class="code" href="a00020.html">krpc_object_t</a>* o);</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00136_ga6985230e52d14d9e6d1f0de75a7c2f93.html#ga6985230e52d14d9e6d1f0de75a7c2f93">krpc_string_set</a>(<a class="code" href="a00020.html">krpc_object_t</a>* o, <span class="keyword">const</span> <span class="keywordtype">char</span>* s);</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00136_ga478faec6f30727235d29aaeb8d54f22f.html#ga478faec6f30727235d29aaeb8d54f22f">krpc_string_set_s</a>(<a class="code" href="a00020.html">krpc_object_t</a>* o, <span class="keyword">const</span> <span class="keywordtype">char</span>* s, uint16_t size);</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;<span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="a00136_ga4cbbacb71688aa9ee2c5811076132bce.html#ga4cbbacb71688aa9ee2c5811076132bce">krpc_string_get</a>(<a class="code" href="a00020.html">krpc_object_t</a>* o);</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;<span class="keyword">extern</span> uint16_t <a class="code" href="a00136_ga1de7973df219a3f8d3f466d27ba8c080.html#ga1de7973df219a3f8d3f466d27ba8c080">krpc_string_get_size</a>(<a class="code" href="a00020.html">krpc_object_t</a>* o);</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00136_gac870fa910b5e155c9f566ead4fac2b54.html#gac870fa910b5e155c9f566ead4fac2b54">krpc_vector_push_back</a>(<a class="code" href="a00020.html">krpc_object_t</a>* v, <a class="code" href="a00020.html">krpc_object_t</a>* o);</div>
+<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160;</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;<span class="keyword">extern</span> uint32_t <a class="code" href="a00136_gac86bb807e52193aaa69ce6fe36cd59c8.html#gac86bb807e52193aaa69ce6fe36cd59c8">krpc_vector_get_size</a>(<a class="code" href="a00020.html">krpc_object_t</a>* v);</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00020.html">krpc_object_t</a>* <a class="code" href="a00136_ga0291a0548378269354fc614712f4c31e.html#ga0291a0548378269354fc614712f4c31e">krpc_vector_get</a>(<a class="code" href="a00020.html">krpc_object_t</a>* v, <span class="keywordtype">int</span> index);</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00136_gaf08956a35d983893f382974abcfca177.html#gaf08956a35d983893f382974abcfca177">krpc_vector_set</a>(<a class="code" href="a00020.html">krpc_object_t</a>* v, <a class="code" href="a00020.html">krpc_object_t</a>* o, <span class="keywordtype">int</span> index);</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00136_ga02d5eeffe865f129911f42ffbfa0d119.html#ga02d5eeffe865f129911f42ffbfa0d119">krpc_vector_clear</a>(<a class="code" href="a00020.html">krpc_object_t</a>* v);</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00136_ga252615bf3ff115656c3c155a7c9fafaf.html#ga252615bf3ff115656c3c155a7c9fafaf">krpc_map_insert</a>(<a class="code" href="a00020.html">krpc_object_t</a>* m, <a class="code" href="a00020.html">krpc_object_t</a>* k, <a class="code" href="a00020.html">krpc_object_t</a>* v);</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00136_gace78d56aa68df141f3cfa90ecf012b81.html#gace78d56aa68df141f3cfa90ecf012b81">krpc_map_update</a>(<a class="code" href="a00020.html">krpc_object_t</a>* m, <a class="code" href="a00020.html">krpc_object_t</a>* k, <a class="code" href="a00020.html">krpc_object_t</a>* v);</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00020.html">krpc_object_t</a>* <a class="code" href="a00136_ga87ce3d17030c66e3264fa2e026bfaf33.html#ga87ce3d17030c66e3264fa2e026bfaf33">krpc_map_get</a>(<a class="code" href="a00020.html">krpc_object_t</a>* m, <a class="code" href="a00020.html">krpc_object_t</a>* k);</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;<span class="keyword">extern</span> uint32_t <a class="code" href="a00136_gad760f8fec813dab474ac011d7aab1e7e.html#gad760f8fec813dab474ac011d7aab1e7e">krpc_map_get_size</a>(<a class="code" href="a00020.html">krpc_object_t</a>* m);</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;</div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00136_gad894af3d72e3ae9629ebd724534dae7f.html#gad894af3d72e3ae9629ebd724534dae7f">krpc_map_get_first</a>(<a class="code" href="a00020.html">krpc_object_t</a>* m, <a class="code" href="a00020.html">krpc_object_t</a>** k, <a class="code" href="a00020.html">krpc_object_t</a>** v);</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;</div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00136_gaa818187b224d2ec13b5b1a25badc3fe3.html#gaa818187b224d2ec13b5b1a25badc3fe3">krpc_map_next</a>(<a class="code" href="a00020.html">krpc_object_t</a>* m, <a class="code" href="a00020.html">krpc_object_t</a>** k, <a class="code" href="a00020.html">krpc_object_t</a>** v);</div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00136_ga76c5ca67a568d6e6634a57c3be742b2c.html#ga76c5ca67a568d6e6634a57c3be742b2c">krpc_map_clear</a>(<a class="code" href="a00020.html">krpc_object_t</a>* m);</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* RPC_OBJECT_API_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a00136_ga6aad58d8460944596e39822181bf4848_html_ga6aad58d8460944596e39822181bf4848"><div class="ttname"><a href="a00136_ga6aad58d8460944596e39822181bf4848.html#ga6aad58d8460944596e39822181bf4848">krpc_object_create</a></div><div class="ttdeci">krpc_object_t * krpc_object_create()</div><div class="ttdoc">所有set类方法调用时确定krpc_object_t实际类型，类型一旦确定不能再次更改 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:96</div></div>
+<div class="ttc" id="a00136_ga4cbbacb71688aa9ee2c5811076132bce_html_ga4cbbacb71688aa9ee2c5811076132bce"><div class="ttname"><a href="a00136_ga4cbbacb71688aa9ee2c5811076132bce.html#ga4cbbacb71688aa9ee2c5811076132bce">krpc_string_get</a></div><div class="ttdeci">const char * krpc_string_get(krpc_object_t *o)</div><div class="ttdoc">获取字符串指针 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:792</div></div>
+<div class="ttc" id="a00136_ga41bb57b2a053c9aeb22c98e0cbfbc2e4_html_ga41bb57b2a053c9aeb22c98e0cbfbc2e4"><div class="ttname"><a href="a00136_ga41bb57b2a053c9aeb22c98e0cbfbc2e4.html#ga41bb57b2a053c9aeb22c98e0cbfbc2e4">krpc_number_get_i64</a></div><div class="ttdeci">int64_t krpc_number_get_i64(krpc_object_t *o)</div><div class="ttdoc">获取有符号64位 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:623</div></div>
+<div class="ttc" id="a00136_gaa646cc26fc434789e5d4a58ec39a99fa_html_gaa646cc26fc434789e5d4a58ec39a99fa"><div class="ttname"><a href="a00136_gaa646cc26fc434789e5d4a58ec39a99fa.html#gaa646cc26fc434789e5d4a58ec39a99fa">krpc_number_get_f32</a></div><div class="ttdeci">float32_t krpc_number_get_f32(krpc_object_t *o)</div><div class="ttdoc">获取浮点数32位 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:708</div></div>
+<div class="ttc" id="a00136_gac0a05f116ee7164ceebf6f7fabcf46cf_html_gac0a05f116ee7164ceebf6f7fabcf46cf"><div class="ttname"><a href="a00136_gac0a05f116ee7164ceebf6f7fabcf46cf.html#gac0a05f116ee7164ceebf6f7fabcf46cf">krpc_object_check_type</a></div><div class="ttdeci">int krpc_object_check_type(krpc_object_t *o, knet_rpc_type_e type)</div><div class="ttdoc">测试RPC对象类型 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:130</div></div>
+<div class="ttc" id="a00136_gac97afef390289879f19cda9149beb684_html_gac97afef390289879f19cda9149beb684"><div class="ttname"><a href="a00136_gac97afef390289879f19cda9149beb684.html#gac97afef390289879f19cda9149beb684">krpc_number_set_i8</a></div><div class="ttdeci">void krpc_number_set_i8(krpc_object_t *o, int8_t i8)</div><div class="ttdoc">设置数字 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:563</div></div>
+<div class="ttc" id="a00136_ga0f2289e356949bc9ae0e8e0a151e42f4_html_ga0f2289e356949bc9ae0e8e0a151e42f4"><div class="ttname"><a href="a00136_ga0f2289e356949bc9ae0e8e0a151e42f4.html#ga0f2289e356949bc9ae0e8e0a151e42f4">krpc_object_unmarshal_buffer</a></div><div class="ttdeci">int krpc_object_unmarshal_buffer(char *buffer, uint16_t size, krpc_object_t **o, uint16_t *bytes)</div><div class="ttdoc">从缓冲区反序列化对象 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:459</div></div>
+<div class="ttc" id="a00136_ga87ce3d17030c66e3264fa2e026bfaf33_html_ga87ce3d17030c66e3264fa2e026bfaf33"><div class="ttname"><a href="a00136_ga87ce3d17030c66e3264fa2e026bfaf33.html#ga87ce3d17030c66e3264fa2e026bfaf33">krpc_map_get</a></div><div class="ttdeci">krpc_object_t * krpc_map_get(krpc_object_t *m, krpc_object_t *k)</div><div class="ttdoc">查找 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:986</div></div>
+<div class="ttc" id="a00136_ga6985230e52d14d9e6d1f0de75a7c2f93_html_ga6985230e52d14d9e6d1f0de75a7c2f93"><div class="ttname"><a href="a00136_ga6985230e52d14d9e6d1f0de75a7c2f93.html#ga6985230e52d14d9e6d1f0de75a7c2f93">krpc_string_set</a></div><div class="ttdeci">void krpc_string_set(krpc_object_t *o, const char *s)</div><div class="ttdoc">设置字符串 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:733</div></div>
+<div class="ttc" id="a00136_ga76c5ca67a568d6e6634a57c3be742b2c_html_ga76c5ca67a568d6e6634a57c3be742b2c"><div class="ttname"><a href="a00136_ga76c5ca67a568d6e6634a57c3be742b2c.html#ga76c5ca67a568d6e6634a57c3be742b2c">krpc_map_clear</a></div><div class="ttdeci">void krpc_map_clear(krpc_object_t *m)</div><div class="ttdoc">清空表 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:1064</div></div>
+<div class="ttc" id="a00136_ga1b6cbaa51e2171bec6e5b2f97fe6223c_html_ga1b6cbaa51e2171bec6e5b2f97fe6223c"><div class="ttname"><a href="a00136_ga1b6cbaa51e2171bec6e5b2f97fe6223c.html#ga1b6cbaa51e2171bec6e5b2f97fe6223c">krpc_number_set_i16</a></div><div class="ttdeci">void krpc_number_set_i16(krpc_object_t *o, int16_t i16)</div><div class="ttdoc">设置数字 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:580</div></div>
+<div class="ttc" id="a00136_gad894af3d72e3ae9629ebd724534dae7f_html_gad894af3d72e3ae9629ebd724534dae7f"><div class="ttname"><a href="a00136_gad894af3d72e3ae9629ebd724534dae7f.html#gad894af3d72e3ae9629ebd724534dae7f">krpc_map_get_first</a></div><div class="ttdeci">int krpc_map_get_first(krpc_object_t *m, krpc_object_t **k, krpc_object_t **v)</div><div class="ttdoc">重置遍历器并取第一个<key, value> </div><div class="ttdef"><b>Definition:</b> rpc_object.c:1018</div></div>
+<div class="ttc" id="a00136_ga5f14e2a44d3dd64fc1bc54e28b431587_html_ga5f14e2a44d3dd64fc1bc54e28b431587"><div class="ttname"><a href="a00136_ga5f14e2a44d3dd64fc1bc54e28b431587.html#ga5f14e2a44d3dd64fc1bc54e28b431587">krpc_number_get_i8</a></div><div class="ttdeci">int8_t krpc_number_get_i8(krpc_object_t *o)</div><div class="ttdoc">获取有符号8位 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:572</div></div>
+<div class="ttc" id="a00136_ga478faec6f30727235d29aaeb8d54f22f_html_ga478faec6f30727235d29aaeb8d54f22f"><div class="ttname"><a href="a00136_ga478faec6f30727235d29aaeb8d54f22f.html#ga478faec6f30727235d29aaeb8d54f22f">krpc_string_set_s</a></div><div class="ttdeci">void krpc_string_set_s(krpc_object_t *o, const char *s, uint16_t size)</div><div class="ttdoc">设置字符串 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:757</div></div>
+<div class="ttc" id="a00136_ga7990cb68203c5ab0d1534ef616fd1aad_html_ga7990cb68203c5ab0d1534ef616fd1aad"><div class="ttname"><a href="a00136_ga7990cb68203c5ab0d1534ef616fd1aad.html#ga7990cb68203c5ab0d1534ef616fd1aad">krpc_number_set_ui16</a></div><div class="ttdeci">void krpc_number_set_ui16(krpc_object_t *o, uint16_t ui16)</div><div class="ttdoc">设置数字 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:648</div></div>
+<div class="ttc" id="a00066_a24938fa843048398799e12d52d3e3693_html_a24938fa843048398799e12d52d3e3693"><div class="ttname"><a href="a00066_a24938fa843048398799e12d52d3e3693.html#a24938fa843048398799e12d52d3e3693">float32_t</a></div><div class="ttdeci">#define float32_t</div><div class="ttdef"><b>Definition:</b> config.h:94</div></div>
+<div class="ttc" id="a00136_ga0291a0548378269354fc614712f4c31e_html_ga0291a0548378269354fc614712f4c31e"><div class="ttname"><a href="a00136_ga0291a0548378269354fc614712f4c31e.html#ga0291a0548378269354fc614712f4c31e">krpc_vector_get</a></div><div class="ttdeci">krpc_object_t * krpc_vector_get(krpc_object_t *v, int index)</div><div class="ttdoc">按索引取得数组元素 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:848</div></div>
+<div class="ttc" id="a00136_ga951b99916dd94a6d8c5ad335578c35d7_html_ga951b99916dd94a6d8c5ad335578c35d7"><div class="ttname"><a href="a00136_ga951b99916dd94a6d8c5ad335578c35d7.html#ga951b99916dd94a6d8c5ad335578c35d7">krpc_number_get_ui64</a></div><div class="ttdeci">uint64_t krpc_number_get_ui64(krpc_object_t *o)</div><div class="ttdoc">获取无符号64位 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:691</div></div>
+<div class="ttc" id="a00136_ga0abbc84b15e73781209485cbfa4d2a56_html_ga0abbc84b15e73781209485cbfa4d2a56"><div class="ttname"><a href="a00136_ga0abbc84b15e73781209485cbfa4d2a56.html#ga0abbc84b15e73781209485cbfa4d2a56">krpc_number_set_ui8</a></div><div class="ttdeci">void krpc_number_set_ui8(krpc_object_t *o, uint8_t ui8)</div><div class="ttdoc">设置数字 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:631</div></div>
+<div class="ttc" id="a00136_gaf08956a35d983893f382974abcfca177_html_gaf08956a35d983893f382974abcfca177"><div class="ttname"><a href="a00136_gaf08956a35d983893f382974abcfca177.html#gaf08956a35d983893f382974abcfca177">krpc_vector_set</a></div><div class="ttdeci">int krpc_vector_set(krpc_object_t *v, krpc_object_t *o, int index)</div><div class="ttdoc">按索引设置数组元素，若已存在元素则销毁旧元素 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:859</div></div>
+<div class="ttc" id="a00136_ga1de7973df219a3f8d3f466d27ba8c080_html_ga1de7973df219a3f8d3f466d27ba8c080"><div class="ttname"><a href="a00136_ga1de7973df219a3f8d3f466d27ba8c080.html#ga1de7973df219a3f8d3f466d27ba8c080">krpc_string_get_size</a></div><div class="ttdeci">uint16_t krpc_string_get_size(krpc_object_t *o)</div><div class="ttdoc">获取字符串长度，包含结尾符 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:800</div></div>
+<div class="ttc" id="a00136_gaa818187b224d2ec13b5b1a25badc3fe3_html_gaa818187b224d2ec13b5b1a25badc3fe3"><div class="ttname"><a href="a00136_gaa818187b224d2ec13b5b1a25badc3fe3.html#gaa818187b224d2ec13b5b1a25badc3fe3">krpc_map_next</a></div><div class="ttdeci">int krpc_map_next(krpc_object_t *m, krpc_object_t **k, krpc_object_t **v)</div><div class="ttdoc">取下一个未遍历的<key, value> </div><div class="ttdef"><b>Definition:</b> rpc_object.c:1042</div></div>
+<div class="ttc" id="a00136_gabf92e2dab46131d75789812059214724_html_gabf92e2dab46131d75789812059214724"><div class="ttname"><a href="a00136_gabf92e2dab46131d75789812059214724.html#gabf92e2dab46131d75789812059214724">krpc_number_set_i64</a></div><div class="ttdeci">void krpc_number_set_i64(krpc_object_t *o, int64_t i64)</div><div class="ttdoc">设置数字 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:614</div></div>
+<div class="ttc" id="a00136_ga3e61d7f696fd28c1cb4152037e4cc3c8_html_ga3e61d7f696fd28c1cb4152037e4cc3c8"><div class="ttname"><a href="a00136_ga3e61d7f696fd28c1cb4152037e4cc3c8.html#ga3e61d7f696fd28c1cb4152037e4cc3c8">krpc_object_unmarshal</a></div><div class="ttdeci">int krpc_object_unmarshal(kstream_t *stream, krpc_object_t **o, uint16_t *bytes)</div><div class="ttdoc">从数据流反序列化对象 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:353</div></div>
+<div class="ttc" id="a00136_ga8aeb77dbdf5aaab4bb75f57ee0ddd8b9_html_ga8aeb77dbdf5aaab4bb75f57ee0ddd8b9"><div class="ttname"><a href="a00136_ga8aeb77dbdf5aaab4bb75f57ee0ddd8b9.html#ga8aeb77dbdf5aaab4bb75f57ee0ddd8b9">krpc_number_set_f64</a></div><div class="ttdeci">void krpc_number_set_f64(krpc_object_t *o, float64_t f64)</div><div class="ttdoc">设置数字 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:716</div></div>
+<div class="ttc" id="a00136_gad51ebf7392be0ee1fd9597aa22a43015_html_gad51ebf7392be0ee1fd9597aa22a43015"><div class="ttname"><a href="a00136_gad51ebf7392be0ee1fd9597aa22a43015.html#gad51ebf7392be0ee1fd9597aa22a43015">krpc_object_get_marshal_size</a></div><div class="ttdeci">uint16_t krpc_object_get_marshal_size(krpc_object_t *o)</div><div class="ttdoc">取得序列化后的长度 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:163</div></div>
+<div class="ttc" id="a00020_html"><div class="ttname"><a href="a00020.html">_krpc_object_t</a></div><div class="ttdef"><b>Definition:</b> rpc_object.c:86</div></div>
+<div class="ttc" id="a00136_gac86bb807e52193aaa69ce6fe36cd59c8_html_gac86bb807e52193aaa69ce6fe36cd59c8"><div class="ttname"><a href="a00136_gac86bb807e52193aaa69ce6fe36cd59c8.html#gac86bb807e52193aaa69ce6fe36cd59c8">krpc_vector_get_size</a></div><div class="ttdeci">uint32_t krpc_vector_get_size(krpc_object_t *v)</div><div class="ttdoc">取得数组元素个数 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:840</div></div>
+<div class="ttc" id="a00066_html"><div class="ttname"><a href="a00066.html">config.h</a></div></div>
+<div class="ttc" id="a00136_gad760f8fec813dab474ac011d7aab1e7e_html_gad760f8fec813dab474ac011d7aab1e7e"><div class="ttname"><a href="a00136_gad760f8fec813dab474ac011d7aab1e7e.html#gad760f8fec813dab474ac011d7aab1e7e">krpc_map_get_size</a></div><div class="ttdeci">uint32_t krpc_map_get_size(krpc_object_t *m)</div><div class="ttdoc">取得表<kev, value>个数 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:1007</div></div>
+<div class="ttc" id="a00136_ga77cc2dde006f9cdddf078289159bd514_html_ga77cc2dde006f9cdddf078289159bd514"><div class="ttname"><a href="a00136_ga77cc2dde006f9cdddf078289159bd514.html#ga77cc2dde006f9cdddf078289159bd514">krpc_object_marshal</a></div><div class="ttdeci">int krpc_object_marshal(krpc_object_t *o, kstream_t *stream, uint16_t *bytes)</div><div class="ttdoc">序列化到数据流 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:196</div></div>
+<div class="ttc" id="a00136_gaa2f3b1c450f36d181e585924ff7954a5_html_gaa2f3b1c450f36d181e585924ff7954a5"><div class="ttname"><a href="a00136_gaa2f3b1c450f36d181e585924ff7954a5.html#gaa2f3b1c450f36d181e585924ff7954a5">krpc_number_get_ui16</a></div><div class="ttdeci">uint16_t krpc_number_get_ui16(krpc_object_t *o)</div><div class="ttdoc">获取无符号16位 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:657</div></div>
+<div class="ttc" id="a00136_ga252615bf3ff115656c3c155a7c9fafaf_html_ga252615bf3ff115656c3c155a7c9fafaf"><div class="ttname"><a href="a00136_ga252615bf3ff115656c3c155a7c9fafaf.html#ga252615bf3ff115656c3c155a7c9fafaf">krpc_map_insert</a></div><div class="ttdeci">int krpc_map_insert(krpc_object_t *m, krpc_object_t *k, krpc_object_t *v)</div><div class="ttdoc">添加<k, v> </div><div class="ttdef"><b>Definition:</b> rpc_object.c:904</div></div>
+<div class="ttc" id="a00136_ga000db715b85193d0b6750b46bfc590b5_html_ga000db715b85193d0b6750b46bfc590b5"><div class="ttname"><a href="a00136_ga000db715b85193d0b6750b46bfc590b5.html#ga000db715b85193d0b6750b46bfc590b5">krpc_number_get_f64</a></div><div class="ttdeci">float64_t krpc_number_get_f64(krpc_object_t *o)</div><div class="ttdoc">获取浮点数64位 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:725</div></div>
+<div class="ttc" id="a00136_ga8bb578f8ba5a8de682a1fe2a4c8a20f6_html_ga8bb578f8ba5a8de682a1fe2a4c8a20f6"><div class="ttname"><a href="a00136_ga8bb578f8ba5a8de682a1fe2a4c8a20f6.html#ga8bb578f8ba5a8de682a1fe2a4c8a20f6">krpc_object_destroy</a></div><div class="ttdeci">void krpc_object_destroy(krpc_object_t *o)</div><div class="ttdoc">销毁RPC对象 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:103</div></div>
+<div class="ttc" id="a00136_ga02d5eeffe865f129911f42ffbfa0d119_html_ga02d5eeffe865f129911f42ffbfa0d119"><div class="ttname"><a href="a00136_ga02d5eeffe865f129911f42ffbfa0d119.html#ga02d5eeffe865f129911f42ffbfa0d119">krpc_vector_clear</a></div><div class="ttdeci">void krpc_vector_clear(krpc_object_t *v)</div><div class="ttdoc">清空数组 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:877</div></div>
+<div class="ttc" id="a00136_gac870fa910b5e155c9f566ead4fac2b54_html_gac870fa910b5e155c9f566ead4fac2b54"><div class="ttname"><a href="a00136_gac870fa910b5e155c9f566ead4fac2b54.html#gac870fa910b5e155c9f566ead4fac2b54">krpc_vector_push_back</a></div><div class="ttdeci">int krpc_vector_push_back(krpc_object_t *v, krpc_object_t *o)</div><div class="ttdoc">添加到数组尾，数组默认长度为8，每次递增8 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:827</div></div>
+<div class="ttc" id="a00045_html"><div class="ttname"><a href="a00045.html">_stream_t</a></div><div class="ttdef"><b>Definition:</b> stream.c:33</div></div>
+<div class="ttc" id="a00136_gabc1d9560a6f2baf606c4a232488ee76a_html_gabc1d9560a6f2baf606c4a232488ee76a"><div class="ttname"><a href="a00136_gabc1d9560a6f2baf606c4a232488ee76a.html#gabc1d9560a6f2baf606c4a232488ee76a">krpc_number_get_ui32</a></div><div class="ttdeci">uint32_t krpc_number_get_ui32(krpc_object_t *o)</div><div class="ttdoc">获取无符号32位 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:674</div></div>
+<div class="ttc" id="a00136_gad287178bafa8b9495016ee747db8e090_html_gad287178bafa8b9495016ee747db8e090"><div class="ttname"><a href="a00136_gad287178bafa8b9495016ee747db8e090.html#gad287178bafa8b9495016ee747db8e090">krpc_number_get_i32</a></div><div class="ttdeci">int32_t krpc_number_get_i32(krpc_object_t *o)</div><div class="ttdoc">获取有符号32位 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:606</div></div>
+<div class="ttc" id="a00136_ga921ba1649bda27068e3d048b854ed708_html_ga921ba1649bda27068e3d048b854ed708"><div class="ttname"><a href="a00136_ga921ba1649bda27068e3d048b854ed708.html#ga921ba1649bda27068e3d048b854ed708">krpc_number_get_ui8</a></div><div class="ttdeci">uint8_t krpc_number_get_ui8(krpc_object_t *o)</div><div class="ttdoc">获取无符号8位 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:640</div></div>
+<div class="ttc" id="a00136_gaf864070d7b20a77c9191acbe49f9382f_html_gaf864070d7b20a77c9191acbe49f9382f"><div class="ttname"><a href="a00136_gaf864070d7b20a77c9191acbe49f9382f.html#gaf864070d7b20a77c9191acbe49f9382f">krpc_number_set_ui32</a></div><div class="ttdeci">void krpc_number_set_ui32(krpc_object_t *o, uint32_t ui32)</div><div class="ttdoc">设置数字 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:665</div></div>
+<div class="ttc" id="a00136_ga090dd58301d21979a05fe6fc249e3a80_html_ga090dd58301d21979a05fe6fc249e3a80"><div class="ttname"><a href="a00136_ga090dd58301d21979a05fe6fc249e3a80.html#ga090dd58301d21979a05fe6fc249e3a80">krpc_number_get_i16</a></div><div class="ttdeci">int16_t krpc_number_get_i16(krpc_object_t *o)</div><div class="ttdoc">获取有符号16位 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:589</div></div>
+<div class="ttc" id="a00066_a6fe1ebc0ddea56dd3c337115c1e10bc4_html_a6fe1ebc0ddea56dd3c337115c1e10bc4"><div class="ttname"><a href="a00066_a6fe1ebc0ddea56dd3c337115c1e10bc4.html#a6fe1ebc0ddea56dd3c337115c1e10bc4">knet_rpc_type_e</a></div><div class="ttdeci">enum _krpc_type_e knet_rpc_type_e</div></div>
+<div class="ttc" id="a00136_ga0e16d4b0c82cb88b148e82bc076a840c_html_ga0e16d4b0c82cb88b148e82bc076a840c"><div class="ttname"><a href="a00136_ga0e16d4b0c82cb88b148e82bc076a840c.html#ga0e16d4b0c82cb88b148e82bc076a840c">krpc_number_set_f32</a></div><div class="ttdeci">void krpc_number_set_f32(krpc_object_t *o, float32_t f32)</div><div class="ttdoc">设置数字 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:699</div></div>
+<div class="ttc" id="a00136_gaf70d32f6fb59d76e67e596d0feeee14b_html_gaf70d32f6fb59d76e67e596d0feeee14b"><div class="ttname"><a href="a00136_gaf70d32f6fb59d76e67e596d0feeee14b.html#gaf70d32f6fb59d76e67e596d0feeee14b">krpc_number_set_i32</a></div><div class="ttdeci">void krpc_number_set_i32(krpc_object_t *o, int32_t i32)</div><div class="ttdoc">设置数字 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:597</div></div>
+<div class="ttc" id="a00066_a584460dce5c6f292dfffb0e7fbca0842_html_a584460dce5c6f292dfffb0e7fbca0842"><div class="ttname"><a href="a00066_a584460dce5c6f292dfffb0e7fbca0842.html#a584460dce5c6f292dfffb0e7fbca0842">float64_t</a></div><div class="ttdeci">#define float64_t</div><div class="ttdef"><b>Definition:</b> config.h:95</div></div>
+<div class="ttc" id="a00136_gaaf97bde647eab6b1e7ceaf29bfc4d9cb_html_gaaf97bde647eab6b1e7ceaf29bfc4d9cb"><div class="ttname"><a href="a00136_gaaf97bde647eab6b1e7ceaf29bfc4d9cb.html#gaaf97bde647eab6b1e7ceaf29bfc4d9cb">krpc_number_set_ui64</a></div><div class="ttdeci">void krpc_number_set_ui64(krpc_object_t *o, uint64_t ui64)</div><div class="ttdoc">设置数字 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:682</div></div>
+<div class="ttc" id="a00136_ga32ed12c4faa68e258582b239b46fd180_html_ga32ed12c4faa68e258582b239b46fd180"><div class="ttname"><a href="a00136_ga32ed12c4faa68e258582b239b46fd180.html#ga32ed12c4faa68e258582b239b46fd180">krpc_object_marshal_buffer</a></div><div class="ttdeci">int krpc_object_marshal_buffer(krpc_object_t *o, char *buffer, uint16_t length, uint16_t *bytes)</div><div class="ttdoc">序列化到缓冲区 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:272</div></div>
+<div class="ttc" id="a00136_gace78d56aa68df141f3cfa90ecf012b81_html_gace78d56aa68df141f3cfa90ecf012b81"><div class="ttname"><a href="a00136_gace78d56aa68df141f3cfa90ecf012b81.html#gace78d56aa68df141f3cfa90ecf012b81">krpc_map_update</a></div><div class="ttdeci">int krpc_map_update(krpc_object_t *m, krpc_object_t *k, krpc_object_t *v)</div><div class="ttdoc">更新<k, v>，如果k不存在则插入 </div><div class="ttdef"><b>Definition:</b> rpc_object.c:970</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+生成于 2015年 八月 4日 星期二 14:40:23 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.9.1
+</small></address>
+</body>
+</html>

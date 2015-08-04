@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/rpc.c 文件参考</title>
+<title>knet: E:/knet-git/knet/knet/loop_impl.c 文件参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -86,84 +86,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div>
 </div><!-- top -->
 <div class="header">
-  <div class="summary">
-<a href="#nested-classes">结构体</a> &#124;
-<a href="#typedef-members">类型定义</a> &#124;
-<a href="#enum-members">枚举</a> &#124;
-<a href="#func-members">函数</a>  </div>
   <div class="headertitle">
-<div class="title">rpc.c 文件参考</div>  </div>
+<div class="title">loop_impl.c 文件参考</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="a00094_source.html">rpc_api.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00068_source.html">hash.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00054_source.html">channel_ref.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00099_source.html">stream.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00096_source.html">rpc_object.h</a>&quot;</code><br />
-</div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-结构体</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00042.html">krpc_header_t</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00022.html">_krpc_t</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
-类型定义</h2></td></tr>
-<tr class="memitem:aaadecef3a6bd120b41aee1916b5854d0"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="a00042.html">krpc_header_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00093_aaadecef3a6bd120b41aee1916b5854d0.html#aaadecef3a6bd120b41aee1916b5854d0">krpc_header_t</a></td></tr>
-<tr class="separator:aaadecef3a6bd120b41aee1916b5854d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7109e23eab2e74945868adf0b60132b"><td class="memItemLeft" align="right" valign="top">typedef enum <a class="el" href="a00093_a4045ccaf4758dcf838a88a58c73e462b.html#a4045ccaf4758dcf838a88a58c73e462b">_krpc_call_type_e</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00093_aa7109e23eab2e74945868adf0b60132b.html#aa7109e23eab2e74945868adf0b60132b">krpc_call_type_e</a></td></tr>
-<tr class="separator:aa7109e23eab2e74945868adf0b60132b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
-枚举</h2></td></tr>
-<tr class="memitem:a4045ccaf4758dcf838a88a58c73e462b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00093_a4045ccaf4758dcf838a88a58c73e462b.html#a4045ccaf4758dcf838a88a58c73e462b">_krpc_call_type_e</a> { <a class="el" href="a00093_a4045ccaf4758dcf838a88a58c73e462b.html#a4045ccaf4758dcf838a88a58c73e462ba831d2f31c2f7281a9b54c6816df54c61">krpc_call_type_result</a> = 1, 
-<a class="el" href="a00093_a4045ccaf4758dcf838a88a58c73e462b.html#a4045ccaf4758dcf838a88a58c73e462baff220c476768b4bf6b308fa257e12c4b">krpc_call_type_call</a> = 2
- }</td></tr>
-<tr class="separator:a4045ccaf4758dcf838a88a58c73e462b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-函数</h2></td></tr>
-<tr class="memitem:a81438b66394a3d6bf42c1971fefeb67c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00093_a81438b66394a3d6bf42c1971fefeb67c.html#a81438b66394a3d6bf42c1971fefeb67c">_krpc_call_encrypt</a> (<a class="el" href="a00056_a1e414ac6f6de24462ccf81e10f63428d.html#a1e414ac6f6de24462ccf81e10f63428d">krpc_t</a> *rpc, <a class="el" href="a00056_acc208c4c40c875eebbfef88f00fffacf.html#acc208c4c40c875eebbfef88f00fffacf">kstream_t</a> *stream, uint16_t rpcid, <a class="el" href="a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e.html#a9c07dfc8c3b965f75b09f82fdb1bbb1e">krpc_object_t</a> *o)</td></tr>
-<tr class="separator:a81438b66394a3d6bf42c1971fefeb67c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e2ea426099ea032432a9aeb24088cf0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00093_a8e2ea426099ea032432a9aeb24088cf0.html#a8e2ea426099ea032432a9aeb24088cf0">_krpc_call</a> (<a class="el" href="a00056_a1e414ac6f6de24462ccf81e10f63428d.html#a1e414ac6f6de24462ccf81e10f63428d">krpc_t</a> *rpc, <a class="el" href="a00056_acc208c4c40c875eebbfef88f00fffacf.html#acc208c4c40c875eebbfef88f00fffacf">kstream_t</a> *stream, uint16_t rpcid, <a class="el" href="a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e.html#a9c07dfc8c3b965f75b09f82fdb1bbb1e">krpc_object_t</a> *o)</td></tr>
-<tr class="separator:a8e2ea426099ea032432a9aeb24088cf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d55f838d222f44965d99eac9a0381c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00056_a1e414ac6f6de24462ccf81e10f63428d.html#a1e414ac6f6de24462ccf81e10f63428d">krpc_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00093_a5d55f838d222f44965d99eac9a0381c1.html#a5d55f838d222f44965d99eac9a0381c1">krpc_create</a> ()</td></tr>
-<tr class="memdesc:a5d55f838d222f44965d99eac9a0381c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">RPC框架提供了一套底层RPC序列化及反序列化的基础，开发者不应该直接调用这些API，应使用代码生成工具 提供的代码框架来进行RPC操作，生成的代码框架屏蔽了所有烦人的细节，使用起来也会比直接调用这些API更 方便.  <a href="a00093_a5d55f838d222f44965d99eac9a0381c1.html#a5d55f838d222f44965d99eac9a0381c1">更多...</a><br /></td></tr>
-<tr class="separator:a5d55f838d222f44965d99eac9a0381c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab07c8ccf1abc99b85f455a2f4280ac76"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00093_ab07c8ccf1abc99b85f455a2f4280ac76.html#ab07c8ccf1abc99b85f455a2f4280ac76">krpc_destroy</a> (<a class="el" href="a00056_a1e414ac6f6de24462ccf81e10f63428d.html#a1e414ac6f6de24462ccf81e10f63428d">krpc_t</a> *rpc)</td></tr>
-<tr class="memdesc:ab07c8ccf1abc99b85f455a2f4280ac76"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁RPC  <a href="a00093_ab07c8ccf1abc99b85f455a2f4280ac76.html#ab07c8ccf1abc99b85f455a2f4280ac76">更多...</a><br /></td></tr>
-<tr class="separator:ab07c8ccf1abc99b85f455a2f4280ac76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa12a9874d2b0308994c3fa651cdbbd61"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00093_aa12a9874d2b0308994c3fa651cdbbd61.html#aa12a9874d2b0308994c3fa651cdbbd61">krpc_add_cb</a> (<a class="el" href="a00056_a1e414ac6f6de24462ccf81e10f63428d.html#a1e414ac6f6de24462ccf81e10f63428d">krpc_t</a> *rpc, uint16_t rpcid, <a class="el" href="a00056_a06bb708c1b97445d3a5d0c1b32ad2ab6.html#a06bb708c1b97445d3a5d0c1b32ad2ab6">krpc_cb_t</a> cb)</td></tr>
-<tr class="memdesc:aa12a9874d2b0308994c3fa651cdbbd61"><td class="mdescLeft">&#160;</td><td class="mdescRight">注册RPC调用回调函数  <a href="a00093_aa12a9874d2b0308994c3fa651cdbbd61.html#aa12a9874d2b0308994c3fa651cdbbd61">更多...</a><br /></td></tr>
-<tr class="separator:aa12a9874d2b0308994c3fa651cdbbd61"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76529ccab5c6f0ada79cac791e299ef9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00093_a76529ccab5c6f0ada79cac791e299ef9.html#a76529ccab5c6f0ada79cac791e299ef9">krpc_del_cb</a> (<a class="el" href="a00056_a1e414ac6f6de24462ccf81e10f63428d.html#a1e414ac6f6de24462ccf81e10f63428d">krpc_t</a> *rpc, uint16_t rpcid)</td></tr>
-<tr class="memdesc:a76529ccab5c6f0ada79cac791e299ef9"><td class="mdescLeft">&#160;</td><td class="mdescRight">删除注册过的RPC调用回调函数  <a href="a00093_a76529ccab5c6f0ada79cac791e299ef9.html#a76529ccab5c6f0ada79cac791e299ef9">更多...</a><br /></td></tr>
-<tr class="separator:a76529ccab5c6f0ada79cac791e299ef9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7841a0b4c828efcb607a51bbdd9c9ab1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00056_a06bb708c1b97445d3a5d0c1b32ad2ab6.html#a06bb708c1b97445d3a5d0c1b32ad2ab6">krpc_cb_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00093_a7841a0b4c828efcb607a51bbdd9c9ab1.html#a7841a0b4c828efcb607a51bbdd9c9ab1">krpc_get_cb</a> (<a class="el" href="a00056_a1e414ac6f6de24462ccf81e10f63428d.html#a1e414ac6f6de24462ccf81e10f63428d">krpc_t</a> *rpc, uint16_t rpcid)</td></tr>
-<tr class="memdesc:a7841a0b4c828efcb607a51bbdd9c9ab1"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得注册过的RPC调用回调函数  <a href="a00093_a7841a0b4c828efcb607a51bbdd9c9ab1.html#a7841a0b4c828efcb607a51bbdd9c9ab1">更多...</a><br /></td></tr>
-<tr class="separator:a7841a0b4c828efcb607a51bbdd9c9ab1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87f076f27729e0d352ffd12173ab13ab"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00093_a87f076f27729e0d352ffd12173ab13ab.html#a87f076f27729e0d352ffd12173ab13ab">_krpc_proc_decrypt</a> (<a class="el" href="a00056_a1e414ac6f6de24462ccf81e10f63428d.html#a1e414ac6f6de24462ccf81e10f63428d">krpc_t</a> *rpc, <a class="el" href="a00056_acc208c4c40c875eebbfef88f00fffacf.html#acc208c4c40c875eebbfef88f00fffacf">kstream_t</a> *stream)</td></tr>
-<tr class="separator:a87f076f27729e0d352ffd12173ab13ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae905b4f6864964a0080435a81748c3f1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00093_ae905b4f6864964a0080435a81748c3f1.html#ae905b4f6864964a0080435a81748c3f1">_krpc_proc</a> (<a class="el" href="a00056_a1e414ac6f6de24462ccf81e10f63428d.html#a1e414ac6f6de24462ccf81e10f63428d">krpc_t</a> *rpc, <a class="el" href="a00056_acc208c4c40c875eebbfef88f00fffacf.html#acc208c4c40c875eebbfef88f00fffacf">kstream_t</a> *stream)</td></tr>
-<tr class="separator:ae905b4f6864964a0080435a81748c3f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac583f7d7c3e3ecb9954530e8d0f6f5f1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00093_ac583f7d7c3e3ecb9954530e8d0f6f5f1.html#ac583f7d7c3e3ecb9954530e8d0f6f5f1">krpc_proc</a> (<a class="el" href="a00056_a1e414ac6f6de24462ccf81e10f63428d.html#a1e414ac6f6de24462ccf81e10f63428d">krpc_t</a> *rpc, <a class="el" href="a00056_acc208c4c40c875eebbfef88f00fffacf.html#acc208c4c40c875eebbfef88f00fffacf">kstream_t</a> *stream)</td></tr>
-<tr class="memdesc:ac583f7d7c3e3ecb9954530e8d0f6f5f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">处理RPC调用，从数据流反序列化RPC调用，并调用回调函数  <a href="a00093_ac583f7d7c3e3ecb9954530e8d0f6f5f1.html#ac583f7d7c3e3ecb9954530e8d0f6f5f1">更多...</a><br /></td></tr>
-<tr class="separator:ac583f7d7c3e3ecb9954530e8d0f6f5f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a063313e66bd9a479b4d0a6295a5e665b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00093_a063313e66bd9a479b4d0a6295a5e665b.html#a063313e66bd9a479b4d0a6295a5e665b">krpc_call</a> (<a class="el" href="a00056_a1e414ac6f6de24462ccf81e10f63428d.html#a1e414ac6f6de24462ccf81e10f63428d">krpc_t</a> *rpc, <a class="el" href="a00056_acc208c4c40c875eebbfef88f00fffacf.html#acc208c4c40c875eebbfef88f00fffacf">kstream_t</a> *stream, uint16_t rpcid, <a class="el" href="a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e.html#a9c07dfc8c3b965f75b09f82fdb1bbb1e">krpc_object_t</a> *o)</td></tr>
-<tr class="memdesc:a063313e66bd9a479b4d0a6295a5e665b"><td class="mdescLeft">&#160;</td><td class="mdescRight">发起RPC调用  <a href="a00093_a063313e66bd9a479b4d0a6295a5e665b.html#a063313e66bd9a479b4d0a6295a5e665b">更多...</a><br /></td></tr>
-<tr class="separator:a063313e66bd9a479b4d0a6295a5e665b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5317bb571cb4d94bc56b83989c1b10c2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00093_a5317bb571cb4d94bc56b83989c1b10c2.html#a5317bb571cb4d94bc56b83989c1b10c2">krpc_set_encrypt_cb</a> (<a class="el" href="a00056_a1e414ac6f6de24462ccf81e10f63428d.html#a1e414ac6f6de24462ccf81e10f63428d">krpc_t</a> *rpc, <a class="el" href="a00056_ae41a67cc07f8dff897ca978e03b1f2d7.html#ae41a67cc07f8dff897ca978e03b1f2d7">krpc_encrypt_t</a> func)</td></tr>
-<tr class="memdesc:a5317bb571cb4d94bc56b83989c1b10c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置签名加密回调  <a href="a00093_a5317bb571cb4d94bc56b83989c1b10c2.html#a5317bb571cb4d94bc56b83989c1b10c2">更多...</a><br /></td></tr>
-<tr class="separator:a5317bb571cb4d94bc56b83989c1b10c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa75ec66092e77639ca2cf2b5ad04c5db"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00093_aa75ec66092e77639ca2cf2b5ad04c5db.html#aa75ec66092e77639ca2cf2b5ad04c5db">krpc_set_decrypt_cb</a> (<a class="el" href="a00056_a1e414ac6f6de24462ccf81e10f63428d.html#a1e414ac6f6de24462ccf81e10f63428d">krpc_t</a> *rpc, <a class="el" href="a00056_a5cf750f151c90f0589f68fe8c4421f1d.html#a5cf750f151c90f0589f68fe8c4421f1d">krpc_decrypt_t</a> func)</td></tr>
-<tr class="memdesc:aa75ec66092e77639ca2cf2b5ad04c5db"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置签名解密回调  <a href="a00093_aa75ec66092e77639ca2cf2b5ad04c5db.html#aa75ec66092e77639ca2cf2b5ad04c5db">更多...</a><br /></td></tr>
-<tr class="separator:aa75ec66092e77639ca2cf2b5ad04c5db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
-</div><!-- contents -->
+<div class="textblock"><code>#include &quot;<a class="el" href="a00066_source.html">config.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00092.html">loop_epoll.c</a>&quot;</code><br />
+</div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 27日 星期一 14:33:20 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 八月 4日 星期二 14:40:24 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

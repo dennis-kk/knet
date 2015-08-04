@@ -181,7 +181,7 @@ int node_send(kchannel_ref_t* channel, const void* data, uint32_t size);
 
 /**
  * 根节点通知其他节点有新节点加入集群
- * @param channel kchannel_ref_t实例
+ * @param node knode_t实例
  * @param ip 新加入节点IP
  * @param port 新加入节点监听端口
  * @param type 新加入节点类型

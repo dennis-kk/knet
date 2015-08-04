@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/broadcast.c 文件参考</title>
+<title>knet: _thread_runner_t结构体 参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -40,8 +40,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
     <ul class="tablist">
       <li><a href="index.html"><span>首页</span></a></li>
       <li><a href="modules.html"><span>模块</span></a></li>
-      <li><a href="annotated.html"><span>结构体</span></a></li>
-      <li class="current"><a href="files.html"><span>文件</span></a></li>
+      <li class="current"><a href="annotated.html"><span>结构体</span></a></li>
+      <li><a href="files.html"><span>文件</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -62,8 +62,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
   </div>
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
-      <li><a href="files.html"><span>文件列表</span></a></li>
-      <li><a href="globals.html"><span>全局定义</span></a></li>
+      <li><a href="annotated.html"><span>结构体</span></a></li>
+      <li><a href="classes.html"><span>结构体索引</span></a></li>
+      <li><a href="functions.html"><span>成员变量</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -80,54 +81,39 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_885cc87fac2d91e269af0a5a959fa5f6.html">E:</a></li><li class="navelem"><a class="el" href="dir_4e74998c9a9305a116abc25fcf9a1edb.html">knet-git</a></li><li class="navelem"><a class="el" href="dir_a1c045b39f32066568ae964b52db514f.html">knet</a></li><li class="navelem"><a class="el" href="dir_f76d03789f0b12416cfffea59e2ed47d.html">knet</a></li>  </ul>
-</div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">结构体</a> &#124;
-<a href="#func-members">函数</a>  </div>
+<a href="#pub-attribs">成员变量</a>  </div>
   <div class="headertitle">
-<div class="title">broadcast.c 文件参考</div>  </div>
+<div class="title">_thread_runner_t结构体 参考</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="a00048_source.html">broadcast_api.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00073_source.html">list.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00054_source.html">channel_ref.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00090_source.html">misc.h</a>&quot;</code><br />
-</div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-结构体</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00002.html">_broadcast_t</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-函数</h2></td></tr>
-<tr class="memitem:ga41a1258d2f4ae75120f26ab7f2326111"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00056_a1b551151864af85fa6cce57058153d04.html#a1b551151864af85fa6cce57058153d04">kbroadcast_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00112_ga41a1258d2f4ae75120f26ab7f2326111.html#ga41a1258d2f4ae75120f26ab7f2326111">knet_broadcast_create</a> ()</td></tr>
-<tr class="memdesc:ga41a1258d2f4ae75120f26ab7f2326111"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建广播域  <a href="a00112_ga41a1258d2f4ae75120f26ab7f2326111.html#ga41a1258d2f4ae75120f26ab7f2326111">更多...</a><br /></td></tr>
-<tr class="separator:ga41a1258d2f4ae75120f26ab7f2326111"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga4b13b2545278c2324f4171ef0bbf990a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00112_ga4b13b2545278c2324f4171ef0bbf990a.html#ga4b13b2545278c2324f4171ef0bbf990a">knet_broadcast_destroy</a> (<a class="el" href="a00056_a1b551151864af85fa6cce57058153d04.html#a1b551151864af85fa6cce57058153d04">kbroadcast_t</a> *broadcast)</td></tr>
-<tr class="memdesc:ga4b13b2545278c2324f4171ef0bbf990a"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁广播域  <a href="a00112_ga4b13b2545278c2324f4171ef0bbf990a.html#ga4b13b2545278c2324f4171ef0bbf990a">更多...</a><br /></td></tr>
-<tr class="separator:ga4b13b2545278c2324f4171ef0bbf990a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1355d3863db663680b1c74363d3a5745"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00056_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00112_ga1355d3863db663680b1c74363d3a5745.html#ga1355d3863db663680b1c74363d3a5745">knet_broadcast_join</a> (<a class="el" href="a00056_a1b551151864af85fa6cce57058153d04.html#a1b551151864af85fa6cce57058153d04">kbroadcast_t</a> *broadcast, <a class="el" href="a00056_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *channel_ref)</td></tr>
-<tr class="memdesc:ga1355d3863db663680b1c74363d3a5745"><td class="mdescLeft">&#160;</td><td class="mdescRight">加入广播域  <a href="a00112_ga1355d3863db663680b1c74363d3a5745.html#ga1355d3863db663680b1c74363d3a5745">更多...</a><br /></td></tr>
-<tr class="separator:ga1355d3863db663680b1c74363d3a5745"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3bb02208a76f18bb2eee61955b3781cd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00112_ga3bb02208a76f18bb2eee61955b3781cd.html#ga3bb02208a76f18bb2eee61955b3781cd">knet_broadcast_leave</a> (<a class="el" href="a00056_a1b551151864af85fa6cce57058153d04.html#a1b551151864af85fa6cce57058153d04">kbroadcast_t</a> *broadcast, <a class="el" href="a00056_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *channel_ref)</td></tr>
-<tr class="memdesc:ga3bb02208a76f18bb2eee61955b3781cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">离开广播域  <a href="a00112_ga3bb02208a76f18bb2eee61955b3781cd.html#ga3bb02208a76f18bb2eee61955b3781cd">更多...</a><br /></td></tr>
-<tr class="separator:ga3bb02208a76f18bb2eee61955b3781cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gabf0b20b2490b3508e58a77314812f1a5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00112_gabf0b20b2490b3508e58a77314812f1a5.html#gabf0b20b2490b3508e58a77314812f1a5">knet_broadcast_get_count</a> (<a class="el" href="a00056_a1b551151864af85fa6cce57058153d04.html#a1b551151864af85fa6cce57058153d04">kbroadcast_t</a> *broadcast)</td></tr>
-<tr class="memdesc:gabf0b20b2490b3508e58a77314812f1a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得广播域内管道数量  <a href="a00112_gabf0b20b2490b3508e58a77314812f1a5.html#gabf0b20b2490b3508e58a77314812f1a5">更多...</a><br /></td></tr>
-<tr class="separator:gabf0b20b2490b3508e58a77314812f1a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gafd3ac5d785687d729047a51724104060"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00112_gafd3ac5d785687d729047a51724104060.html#gafd3ac5d785687d729047a51724104060">knet_broadcast_write</a> (<a class="el" href="a00056_a1b551151864af85fa6cce57058153d04.html#a1b551151864af85fa6cce57058153d04">kbroadcast_t</a> *broadcast, char *buffer, uint32_t size)</td></tr>
-<tr class="memdesc:gafd3ac5d785687d729047a51724104060"><td class="mdescLeft">&#160;</td><td class="mdescRight">广播  <a href="a00112_gafd3ac5d785687d729047a51724104060.html#gafd3ac5d785687d729047a51724104060">更多...</a><br /></td></tr>
-<tr class="separator:gafd3ac5d785687d729047a51724104060"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+成员变量</h2></td></tr>
+<tr class="memitem:a1f56d29a55490e9ae7c673e07317de36"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00066_a8741dac4a9f8d97603eb3a30a3473b13.html#a8741dac4a9f8d97603eb3a30a3473b13">knet_thread_func_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00047_a1f56d29a55490e9ae7c673e07317de36.html#a1f56d29a55490e9ae7c673e07317de36">func</a></td></tr>
+<tr class="separator:a1f56d29a55490e9ae7c673e07317de36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab08f4e0fa5f6ffe16fcd3c055666c9c"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00047_aab08f4e0fa5f6ffe16fcd3c055666c9c.html#aab08f4e0fa5f6ffe16fcd3c055666c9c">params</a></td></tr>
+<tr class="separator:aab08f4e0fa5f6ffe16fcd3c055666c9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af21668f1d89dff5046d431399d2cf7c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00066_ae098586334a621a23cef7cb17590b618.html#ae098586334a621a23cef7cb17590b618">kdlist_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00047_af21668f1d89dff5046d431399d2cf7c6.html#af21668f1d89dff5046d431399d2cf7c6">multi_params</a></td></tr>
+<tr class="separator:af21668f1d89dff5046d431399d2cf7c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a158d37a73657b2df73e3a2dd383808f8"><td class="memItemLeft" align="right" valign="top">volatile int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00047_a158d37a73657b2df73e3a2dd383808f8.html#a158d37a73657b2df73e3a2dd383808f8">running</a></td></tr>
+<tr class="separator:a158d37a73657b2df73e3a2dd383808f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c1ba378a7b2c1fb84967e7b4063303d"><td class="memItemLeft" align="right" valign="top">volatile int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00047_a7c1ba378a7b2c1fb84967e7b4063303d.html#a7c1ba378a7b2c1fb84967e7b4063303d">stop</a></td></tr>
+<tr class="separator:a7c1ba378a7b2c1fb84967e7b4063303d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab632944b59861e33a9473347b0afdc00"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00066_ad0ada5642d10ce71bdd90816182f9b79.html#ad0ada5642d10ce71bdd90816182f9b79">thread_id_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00047_ab632944b59861e33a9473347b0afdc00.html#ab632944b59861e33a9473347b0afdc00">thread_id</a></td></tr>
+<tr class="separator:ab632944b59861e33a9473347b0afdc00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7461a4eef9b83e07f0acd4f26923744"><td class="memItemLeft" align="right" valign="top">pthread_key_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00047_ad7461a4eef9b83e07f0acd4f26923744.html#ad7461a4eef9b83e07f0acd4f26923744">tls_key</a></td></tr>
+<tr class="separator:ad7461a4eef9b83e07f0acd4f26923744"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<hr/>该结构体的文档由以下文件生成:<ul>
+<li>E:/knet-git/knet/knet/<a class="el" href="a00099.html">misc.c</a></li>
+</ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 27日 星期一 14:33:19 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 八月 4日 星期二 14:40:25 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

@@ -1,210 +1,49 @@
-\hypertarget{a00097}{}\section{E\+:/knet-\/git/knet/knet/rpc\+\_\+object\+\_\+api.h 文件参考}
-\label{a00097}\index{E\+:/knet-\/git/knet/knet/rpc\+\_\+object\+\_\+api.\+h@{E\+:/knet-\/git/knet/knet/rpc\+\_\+object\+\_\+api.\+h}}
+\hypertarget{a00097}{}\section{E\+:/knet-\/git/knet/knet/loop\+\_\+profile\+\_\+api.h 文件参考}
+\label{a00097}\index{E\+:/knet-\/git/knet/knet/loop\+\_\+profile\+\_\+api.\+h@{E\+:/knet-\/git/knet/knet/loop\+\_\+profile\+\_\+api.\+h}}
 {\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\\*
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$ \hyperlink{a00119_ga6aad58d8460944596e39822181bf4848_ga6aad58d8460944596e39822181bf4848}{krpc\+\_\+object\+\_\+create} ()
-\begin{DoxyCompactList}\small\item\em 所有set类方法调用时确定krpc\+\_\+object\+\_\+t实际类型，类型一旦确定不能再次更改 \end{DoxyCompactList}\item 
-void \hyperlink{a00119_ga8bb578f8ba5a8de682a1fe2a4c8a20f6_ga8bb578f8ba5a8de682a1fe2a4c8a20f6}{krpc\+\_\+object\+\_\+destroy} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
-\begin{DoxyCompactList}\small\item\em 销毁\+R\+P\+C对象 \end{DoxyCompactList}\item 
-int \hyperlink{a00119_gac0a05f116ee7164ceebf6f7fabcf46cf_gac0a05f116ee7164ceebf6f7fabcf46cf}{krpc\+\_\+object\+\_\+check\+\_\+type} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, \hyperlink{a00056_a6fe1ebc0ddea56dd3c337115c1e10bc4_a6fe1ebc0ddea56dd3c337115c1e10bc4}{knet\+\_\+rpc\+\_\+type\+\_\+e} type)
-\begin{DoxyCompactList}\small\item\em 测试\+R\+P\+C对象类型 \end{DoxyCompactList}\item 
-uint16\+\_\+t \hyperlink{a00119_gad51ebf7392be0ee1fd9597aa22a43015_gad51ebf7392be0ee1fd9597aa22a43015}{krpc\+\_\+object\+\_\+get\+\_\+marshal\+\_\+size} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
-\begin{DoxyCompactList}\small\item\em 取得序列化后的长度 \end{DoxyCompactList}\item 
-int \hyperlink{a00119_ga77cc2dde006f9cdddf078289159bd514_ga77cc2dde006f9cdddf078289159bd514}{krpc\+\_\+object\+\_\+marshal} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, \hyperlink{a00056_acc208c4c40c875eebbfef88f00fffacf_acc208c4c40c875eebbfef88f00fffacf}{kstream\+\_\+t} $\ast$stream, uint16\+\_\+t $\ast$bytes)
-\begin{DoxyCompactList}\small\item\em 序列化到数据流 \end{DoxyCompactList}\item 
-int \hyperlink{a00119_ga32ed12c4faa68e258582b239b46fd180_ga32ed12c4faa68e258582b239b46fd180}{krpc\+\_\+object\+\_\+marshal\+\_\+buffer} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, char $\ast$buffer, uint16\+\_\+t length, uint16\+\_\+t $\ast$bytes)
-\begin{DoxyCompactList}\small\item\em 序列化到缓冲区 \end{DoxyCompactList}\item 
-int \hyperlink{a00119_ga3e61d7f696fd28c1cb4152037e4cc3c8_ga3e61d7f696fd28c1cb4152037e4cc3c8}{krpc\+\_\+object\+\_\+unmarshal} (\hyperlink{a00056_acc208c4c40c875eebbfef88f00fffacf_acc208c4c40c875eebbfef88f00fffacf}{kstream\+\_\+t} $\ast$stream, \hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$$\ast$o, uint16\+\_\+t $\ast$bytes)
-\begin{DoxyCompactList}\small\item\em 从数据流反序列化对象 \end{DoxyCompactList}\item 
-int \hyperlink{a00119_ga0f2289e356949bc9ae0e8e0a151e42f4_ga0f2289e356949bc9ae0e8e0a151e42f4}{krpc\+\_\+object\+\_\+unmarshal\+\_\+buffer} (char $\ast$buffer, uint16\+\_\+t size, \hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$$\ast$o, uint16\+\_\+t $\ast$bytes)
-\begin{DoxyCompactList}\small\item\em 从缓冲区反序列化对象 \end{DoxyCompactList}\item 
-void \hyperlink{a00119_gac97afef390289879f19cda9149beb684_gac97afef390289879f19cda9149beb684}{krpc\+\_\+number\+\_\+set\+\_\+i8} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, int8\+\_\+t i8)
-\begin{DoxyCompactList}\small\item\em 设置数字 \end{DoxyCompactList}\item 
-int8\+\_\+t \hyperlink{a00119_ga5f14e2a44d3dd64fc1bc54e28b431587_ga5f14e2a44d3dd64fc1bc54e28b431587}{krpc\+\_\+number\+\_\+get\+\_\+i8} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
-\begin{DoxyCompactList}\small\item\em 获取有符号8位 \end{DoxyCompactList}\item 
-void \hyperlink{a00119_ga1b6cbaa51e2171bec6e5b2f97fe6223c_ga1b6cbaa51e2171bec6e5b2f97fe6223c}{krpc\+\_\+number\+\_\+set\+\_\+i16} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, int16\+\_\+t i16)
-\begin{DoxyCompactList}\small\item\em 设置数字 \end{DoxyCompactList}\item 
-int16\+\_\+t \hyperlink{a00119_ga090dd58301d21979a05fe6fc249e3a80_ga090dd58301d21979a05fe6fc249e3a80}{krpc\+\_\+number\+\_\+get\+\_\+i16} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
-\begin{DoxyCompactList}\small\item\em 获取有符号16位 \end{DoxyCompactList}\item 
-void \hyperlink{a00119_gaf70d32f6fb59d76e67e596d0feeee14b_gaf70d32f6fb59d76e67e596d0feeee14b}{krpc\+\_\+number\+\_\+set\+\_\+i32} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, int32\+\_\+t i32)
-\begin{DoxyCompactList}\small\item\em 设置数字 \end{DoxyCompactList}\item 
-int32\+\_\+t \hyperlink{a00119_gad287178bafa8b9495016ee747db8e090_gad287178bafa8b9495016ee747db8e090}{krpc\+\_\+number\+\_\+get\+\_\+i32} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
-\begin{DoxyCompactList}\small\item\em 获取有符号32位 \end{DoxyCompactList}\item 
-void \hyperlink{a00119_gabf92e2dab46131d75789812059214724_gabf92e2dab46131d75789812059214724}{krpc\+\_\+number\+\_\+set\+\_\+i64} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, int64\+\_\+t i64)
-\begin{DoxyCompactList}\small\item\em 设置数字 \end{DoxyCompactList}\item 
-int64\+\_\+t \hyperlink{a00119_ga41bb57b2a053c9aeb22c98e0cbfbc2e4_ga41bb57b2a053c9aeb22c98e0cbfbc2e4}{krpc\+\_\+number\+\_\+get\+\_\+i64} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
-\begin{DoxyCompactList}\small\item\em 获取有符号64位 \end{DoxyCompactList}\item 
-void \hyperlink{a00119_ga0abbc84b15e73781209485cbfa4d2a56_ga0abbc84b15e73781209485cbfa4d2a56}{krpc\+\_\+number\+\_\+set\+\_\+ui8} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, uint8\+\_\+t ui8)
-\begin{DoxyCompactList}\small\item\em 设置数字 \end{DoxyCompactList}\item 
-uint8\+\_\+t \hyperlink{a00119_ga921ba1649bda27068e3d048b854ed708_ga921ba1649bda27068e3d048b854ed708}{krpc\+\_\+number\+\_\+get\+\_\+ui8} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
-\begin{DoxyCompactList}\small\item\em 获取无符号8位 \end{DoxyCompactList}\item 
-void \hyperlink{a00119_ga7990cb68203c5ab0d1534ef616fd1aad_ga7990cb68203c5ab0d1534ef616fd1aad}{krpc\+\_\+number\+\_\+set\+\_\+ui16} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, uint16\+\_\+t ui16)
-\begin{DoxyCompactList}\small\item\em 设置数字 \end{DoxyCompactList}\item 
-uint16\+\_\+t \hyperlink{a00119_gaa2f3b1c450f36d181e585924ff7954a5_gaa2f3b1c450f36d181e585924ff7954a5}{krpc\+\_\+number\+\_\+get\+\_\+ui16} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
-\begin{DoxyCompactList}\small\item\em 获取无符号16位 \end{DoxyCompactList}\item 
-void \hyperlink{a00119_gaf864070d7b20a77c9191acbe49f9382f_gaf864070d7b20a77c9191acbe49f9382f}{krpc\+\_\+number\+\_\+set\+\_\+ui32} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, uint32\+\_\+t ui32)
-\begin{DoxyCompactList}\small\item\em 设置数字 \end{DoxyCompactList}\item 
-uint32\+\_\+t \hyperlink{a00119_gabc1d9560a6f2baf606c4a232488ee76a_gabc1d9560a6f2baf606c4a232488ee76a}{krpc\+\_\+number\+\_\+get\+\_\+ui32} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
-\begin{DoxyCompactList}\small\item\em 获取无符号32位 \end{DoxyCompactList}\item 
-void \hyperlink{a00119_gafd0da43f7cb46188c6d2f1657b39c3ba_gafd0da43f7cb46188c6d2f1657b39c3ba}{krpc\+\_\+number\+\_\+set\+\_\+ui64} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, int64\+\_\+t ui64)
-\begin{DoxyCompactList}\small\item\em 设置数字 \end{DoxyCompactList}\item 
-uint64\+\_\+t \hyperlink{a00119_ga951b99916dd94a6d8c5ad335578c35d7_ga951b99916dd94a6d8c5ad335578c35d7}{krpc\+\_\+number\+\_\+get\+\_\+ui64} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
-\begin{DoxyCompactList}\small\item\em 获取无符号64位 \end{DoxyCompactList}\item 
-void \hyperlink{a00119_ga0e16d4b0c82cb88b148e82bc076a840c_ga0e16d4b0c82cb88b148e82bc076a840c}{krpc\+\_\+number\+\_\+set\+\_\+f32} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, \hyperlink{a00056_a24938fa843048398799e12d52d3e3693_a24938fa843048398799e12d52d3e3693}{float32\+\_\+t} f32)
-\begin{DoxyCompactList}\small\item\em 设置数字 \end{DoxyCompactList}\item 
-\hyperlink{a00056_a24938fa843048398799e12d52d3e3693_a24938fa843048398799e12d52d3e3693}{float32\+\_\+t} \hyperlink{a00119_gaa646cc26fc434789e5d4a58ec39a99fa_gaa646cc26fc434789e5d4a58ec39a99fa}{krpc\+\_\+number\+\_\+get\+\_\+f32} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
-\begin{DoxyCompactList}\small\item\em 获取浮点数32位 \end{DoxyCompactList}\item 
-void \hyperlink{a00119_ga8aeb77dbdf5aaab4bb75f57ee0ddd8b9_ga8aeb77dbdf5aaab4bb75f57ee0ddd8b9}{krpc\+\_\+number\+\_\+set\+\_\+f64} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, \hyperlink{a00056_a584460dce5c6f292dfffb0e7fbca0842_a584460dce5c6f292dfffb0e7fbca0842}{float64\+\_\+t} f64)
-\begin{DoxyCompactList}\small\item\em 设置数字 \end{DoxyCompactList}\item 
-\hyperlink{a00056_a584460dce5c6f292dfffb0e7fbca0842_a584460dce5c6f292dfffb0e7fbca0842}{float64\+\_\+t} \hyperlink{a00119_ga000db715b85193d0b6750b46bfc590b5_ga000db715b85193d0b6750b46bfc590b5}{krpc\+\_\+number\+\_\+get\+\_\+f64} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
-\begin{DoxyCompactList}\small\item\em 获取浮点数64位 \end{DoxyCompactList}\item 
-void \hyperlink{a00119_ga6985230e52d14d9e6d1f0de75a7c2f93_ga6985230e52d14d9e6d1f0de75a7c2f93}{krpc\+\_\+string\+\_\+set} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, const char $\ast$s)
-\begin{DoxyCompactList}\small\item\em 设置字符串 \end{DoxyCompactList}\item 
-void \hyperlink{a00119_ga478faec6f30727235d29aaeb8d54f22f_ga478faec6f30727235d29aaeb8d54f22f}{krpc\+\_\+string\+\_\+set\+\_\+s} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, const char $\ast$s, uint16\+\_\+t size)
-\begin{DoxyCompactList}\small\item\em 设置字符串 \end{DoxyCompactList}\item 
-const char $\ast$ \hyperlink{a00119_ga4cbbacb71688aa9ee2c5811076132bce_ga4cbbacb71688aa9ee2c5811076132bce}{krpc\+\_\+string\+\_\+get} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
-\begin{DoxyCompactList}\small\item\em 获取字符串指针 \end{DoxyCompactList}\item 
-uint16\+\_\+t \hyperlink{a00119_ga1de7973df219a3f8d3f466d27ba8c080_ga1de7973df219a3f8d3f466d27ba8c080}{krpc\+\_\+string\+\_\+get\+\_\+size} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
-\begin{DoxyCompactList}\small\item\em 获取字符串长度，包含结尾符 \end{DoxyCompactList}\item 
-int \hyperlink{a00119_gac870fa910b5e155c9f566ead4fac2b54_gac870fa910b5e155c9f566ead4fac2b54}{krpc\+\_\+vector\+\_\+push\+\_\+back} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$v, \hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
-\begin{DoxyCompactList}\small\item\em 添加到数组尾，数组默认长度为8，每次递增8 \end{DoxyCompactList}\item 
-uint32\+\_\+t \hyperlink{a00119_gac86bb807e52193aaa69ce6fe36cd59c8_gac86bb807e52193aaa69ce6fe36cd59c8}{krpc\+\_\+vector\+\_\+get\+\_\+size} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$v)
-\begin{DoxyCompactList}\small\item\em 取得数组元素个数 \end{DoxyCompactList}\item 
-\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$ \hyperlink{a00119_ga0291a0548378269354fc614712f4c31e_ga0291a0548378269354fc614712f4c31e}{krpc\+\_\+vector\+\_\+get} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$v, int index)
-\begin{DoxyCompactList}\small\item\em 按索引取得数组元素 \end{DoxyCompactList}\item 
-int \hyperlink{a00119_gaf08956a35d983893f382974abcfca177_gaf08956a35d983893f382974abcfca177}{krpc\+\_\+vector\+\_\+set} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$v, \hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, int index)
-\begin{DoxyCompactList}\small\item\em 按索引设置数组元素，若已存在元素则销毁旧元素 \end{DoxyCompactList}\item 
-void \hyperlink{a00119_ga02d5eeffe865f129911f42ffbfa0d119_ga02d5eeffe865f129911f42ffbfa0d119}{krpc\+\_\+vector\+\_\+clear} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$v)
-\begin{DoxyCompactList}\small\item\em 清空数组 \end{DoxyCompactList}\item 
-int \hyperlink{a00119_ga252615bf3ff115656c3c155a7c9fafaf_ga252615bf3ff115656c3c155a7c9fafaf}{krpc\+\_\+map\+\_\+insert} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$m, \hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$k, \hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$v)
-\begin{DoxyCompactList}\small\item\em 添加$<$k, v$>$ \end{DoxyCompactList}\item 
-int \hyperlink{a00119_gace78d56aa68df141f3cfa90ecf012b81_gace78d56aa68df141f3cfa90ecf012b81}{krpc\+\_\+map\+\_\+update} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$m, \hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$k, \hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$v)
-\begin{DoxyCompactList}\small\item\em 更新$<$k, v$>$，如果k不存在则插入 \end{DoxyCompactList}\item 
-\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$ \hyperlink{a00119_ga87ce3d17030c66e3264fa2e026bfaf33_ga87ce3d17030c66e3264fa2e026bfaf33}{krpc\+\_\+map\+\_\+get} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$m, \hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$k)
-\begin{DoxyCompactList}\small\item\em 查找 \end{DoxyCompactList}\item 
-uint32\+\_\+t \hyperlink{a00119_gad760f8fec813dab474ac011d7aab1e7e_gad760f8fec813dab474ac011d7aab1e7e}{krpc\+\_\+map\+\_\+get\+\_\+size} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$m)
-\begin{DoxyCompactList}\small\item\em 取得表$<$kev, value$>$个数 \end{DoxyCompactList}\item 
-int \hyperlink{a00119_gad894af3d72e3ae9629ebd724534dae7f_gad894af3d72e3ae9629ebd724534dae7f}{krpc\+\_\+map\+\_\+get\+\_\+first} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$m, \hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$$\ast$k, \hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$$\ast$v)
-\begin{DoxyCompactList}\small\item\em 重置遍历器并取第一个$<$key, value$>$ \end{DoxyCompactList}\item 
-int \hyperlink{a00119_gaa818187b224d2ec13b5b1a25badc3fe3_gaa818187b224d2ec13b5b1a25badc3fe3}{krpc\+\_\+map\+\_\+next} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$m, \hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$$\ast$k, \hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$$\ast$v)
-\begin{DoxyCompactList}\small\item\em 取下一个未遍历的$<$key, value$>$ \end{DoxyCompactList}\item 
-void \hyperlink{a00119_ga76c5ca67a568d6e6634a57c3be742b2c_ga76c5ca67a568d6e6634a57c3be742b2c}{krpc\+\_\+map\+\_\+clear} (\hyperlink{a00056_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$m)
-\begin{DoxyCompactList}\small\item\em 清空表 \end{DoxyCompactList}\end{DoxyCompactItemize}
+uint32\+\_\+t \hyperlink{a00097_a30be8a49214eb1485429bdff63541dfc_a30be8a49214eb1485429bdff63541dfc}{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+established\+\_\+channel\+\_\+count} (\hyperlink{a00066_ab75a5c23099a6118c469ed160b277f28_ab75a5c23099a6118c469ed160b277f28}{kloop\+\_\+profile\+\_\+t} $\ast$profile)
+\begin{DoxyCompactList}\small\item\em 取得已经建立连接的管道数量 \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{a00097_a9b4aceae0c7a1f1aa86c8db5996ec76a_a9b4aceae0c7a1f1aa86c8db5996ec76a}{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+active\+\_\+channel\+\_\+count} (\hyperlink{a00066_ab75a5c23099a6118c469ed160b277f28_ab75a5c23099a6118c469ed160b277f28}{kloop\+\_\+profile\+\_\+t} $\ast$profile)
+\begin{DoxyCompactList}\small\item\em 取得已经建立但还未连接的管道数量 \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{a00097_a6eaacce21d69455a4e70bd6da4927082_a6eaacce21d69455a4e70bd6da4927082}{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+close\+\_\+channel\+\_\+count} (\hyperlink{a00066_ab75a5c23099a6118c469ed160b277f28_ab75a5c23099a6118c469ed160b277f28}{kloop\+\_\+profile\+\_\+t} $\ast$profile)
+\begin{DoxyCompactList}\small\item\em 取得已经关闭的管道数量 \end{DoxyCompactList}\item 
+uint64\+\_\+t \hyperlink{a00097_a5bb651c97109287f36481c70c4096d02_a5bb651c97109287f36481c70c4096d02}{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+sent\+\_\+bytes} (\hyperlink{a00066_ab75a5c23099a6118c469ed160b277f28_ab75a5c23099a6118c469ed160b277f28}{kloop\+\_\+profile\+\_\+t} $\ast$profile)
+\begin{DoxyCompactList}\small\item\em 取得已经发送的字节数 \end{DoxyCompactList}\item 
+uint64\+\_\+t \hyperlink{a00097_a1ac76d26570c5973ca054d5d2be07596_a1ac76d26570c5973ca054d5d2be07596}{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+recv\+\_\+bytes} (\hyperlink{a00066_ab75a5c23099a6118c469ed160b277f28_ab75a5c23099a6118c469ed160b277f28}{kloop\+\_\+profile\+\_\+t} $\ast$profile)
+\begin{DoxyCompactList}\small\item\em 取得已经接收的字节数 \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{a00097_a61bab9d3f25b772c11067d7ad48e5591_a61bab9d3f25b772c11067d7ad48e5591}{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+sent\+\_\+bandwidth} (\hyperlink{a00066_ab75a5c23099a6118c469ed160b277f28_ab75a5c23099a6118c469ed160b277f28}{kloop\+\_\+profile\+\_\+t} $\ast$profile)
+\begin{DoxyCompactList}\small\item\em 取得发送带宽 \end{DoxyCompactList}\item 
+uint32\+\_\+t \hyperlink{a00097_a925853b256684e4d935f28d4c73a4832_a925853b256684e4d935f28d4c73a4832}{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+recv\+\_\+bandwidth} (\hyperlink{a00066_ab75a5c23099a6118c469ed160b277f28_ab75a5c23099a6118c469ed160b277f28}{kloop\+\_\+profile\+\_\+t} $\ast$profile)
+\begin{DoxyCompactList}\small\item\em 取得接收带宽 \end{DoxyCompactList}\item 
+int \hyperlink{a00097_ada601f1836bdb78ccd50be447559a101_ada601f1836bdb78ccd50be447559a101}{knet\+\_\+loop\+\_\+profile\+\_\+dump\+\_\+file} (\hyperlink{a00066_ab75a5c23099a6118c469ed160b277f28_ab75a5c23099a6118c469ed160b277f28}{kloop\+\_\+profile\+\_\+t} $\ast$profile, F\+I\+L\+E $\ast$fp)
+\begin{DoxyCompactList}\small\item\em 将统计信息写入文件 \end{DoxyCompactList}\item 
+int \hyperlink{a00097_a256be2a18ebf141d93f95cdce1975a9e_a256be2a18ebf141d93f95cdce1975a9e}{knet\+\_\+loop\+\_\+profile\+\_\+dump\+\_\+stream} (\hyperlink{a00066_ab75a5c23099a6118c469ed160b277f28_ab75a5c23099a6118c469ed160b277f28}{kloop\+\_\+profile\+\_\+t} $\ast$profile, \hyperlink{a00066_acc208c4c40c875eebbfef88f00fffacf_acc208c4c40c875eebbfef88f00fffacf}{kstream\+\_\+t} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em 将统计信息写入管道流 \end{DoxyCompactList}\item 
+int \hyperlink{a00097_a256b0db051dd95a364c3ad5612cbff98_a256b0db051dd95a364c3ad5612cbff98}{knet\+\_\+loop\+\_\+profile\+\_\+dump\+\_\+stdout} (\hyperlink{a00066_ab75a5c23099a6118c469ed160b277f28_ab75a5c23099a6118c469ed160b277f28}{kloop\+\_\+profile\+\_\+t} $\ast$profile)
+\begin{DoxyCompactList}\small\item\em 将统计信息打印到标准输出 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{函数说明}
-\hypertarget{a00119_ga76c5ca67a568d6e6634a57c3be742b2c_ga76c5ca67a568d6e6634a57c3be742b2c}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+map\+\_\+clear@{krpc\+\_\+map\+\_\+clear}}
-\index{krpc\+\_\+map\+\_\+clear@{krpc\+\_\+map\+\_\+clear}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+map\+\_\+clear}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+map\+\_\+clear (
+\hypertarget{a00097_ada601f1836bdb78ccd50be447559a101_ada601f1836bdb78ccd50be447559a101}{}\index{loop\+\_\+profile\+\_\+api.\+h@{loop\+\_\+profile\+\_\+api.\+h}!knet\+\_\+loop\+\_\+profile\+\_\+dump\+\_\+file@{knet\+\_\+loop\+\_\+profile\+\_\+dump\+\_\+file}}
+\index{knet\+\_\+loop\+\_\+profile\+\_\+dump\+\_\+file@{knet\+\_\+loop\+\_\+profile\+\_\+dump\+\_\+file}!loop\+\_\+profile\+\_\+api.\+h@{loop\+\_\+profile\+\_\+api.\+h}}
+\subsubsection[{knet\+\_\+loop\+\_\+profile\+\_\+dump\+\_\+file}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+loop\+\_\+profile\+\_\+dump\+\_\+file (
 \begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{m}
+\item[{{\bf kloop\+\_\+profile\+\_\+t} $\ast$}]{profile, }
+\item[{F\+I\+L\+E $\ast$}]{fp}
 \end{DoxyParamCaption}
-)}\label{a00119_ga76c5ca67a568d6e6634a57c3be742b2c_ga76c5ca67a568d6e6634a57c3be742b2c}
+)}\label{a00097_ada601f1836bdb78ccd50be447559a101_ada601f1836bdb78ccd50be447559a101}
 
 
-清空表 
+将统计信息写入文件 
 
 
 \begin{DoxyParams}{参数}
-{\em m} & krpc\+\_\+object\+\_\+t实例 \\
+{\em profile} & kloop\+\_\+profile\+\_\+t实例 \\
 \hline
-\end{DoxyParams}
-\hypertarget{a00119_ga87ce3d17030c66e3264fa2e026bfaf33_ga87ce3d17030c66e3264fa2e026bfaf33}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+map\+\_\+get@{krpc\+\_\+map\+\_\+get}}
-\index{krpc\+\_\+map\+\_\+get@{krpc\+\_\+map\+\_\+get}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+map\+\_\+get}]{\setlength{\rightskip}{0pt plus 5cm}{\bf krpc\+\_\+object\+\_\+t}$\ast$ krpc\+\_\+map\+\_\+get (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{m, }
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{k}
-\end{DoxyParamCaption}
-)}\label{a00119_ga87ce3d17030c66e3264fa2e026bfaf33_ga87ce3d17030c66e3264fa2e026bfaf33}
-
-
-查找 
-
-
-\begin{DoxyParams}{参数}
-{\em m} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em k} & key \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em krpc\+\_\+object\+\_\+t实例} & \\
-\hline
-{\em 0} & 未找到 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00119_gad894af3d72e3ae9629ebd724534dae7f_gad894af3d72e3ae9629ebd724534dae7f}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+map\+\_\+get\+\_\+first@{krpc\+\_\+map\+\_\+get\+\_\+first}}
-\index{krpc\+\_\+map\+\_\+get\+\_\+first@{krpc\+\_\+map\+\_\+get\+\_\+first}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+map\+\_\+get\+\_\+first}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+map\+\_\+get\+\_\+first (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{m, }
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$$\ast$}]{k, }
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$$\ast$}]{v}
-\end{DoxyParamCaption}
-)}\label{a00119_gad894af3d72e3ae9629ebd724534dae7f_gad894af3d72e3ae9629ebd724534dae7f}
-
-
-重置遍历器并取第一个$<$key, value$>$ 
-
-
-\begin{DoxyParams}{参数}
-{\em m} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em k} & key \\
-\hline
-{\em v} & value \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em 0} & 没有 \\
-\hline
-{\em 非零} & 有 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00119_gad760f8fec813dab474ac011d7aab1e7e_gad760f8fec813dab474ac011d7aab1e7e}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+map\+\_\+get\+\_\+size@{krpc\+\_\+map\+\_\+get\+\_\+size}}
-\index{krpc\+\_\+map\+\_\+get\+\_\+size@{krpc\+\_\+map\+\_\+get\+\_\+size}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+map\+\_\+get\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t krpc\+\_\+map\+\_\+get\+\_\+size (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{m}
-\end{DoxyParamCaption}
-)}\label{a00119_gad760f8fec813dab474ac011d7aab1e7e_gad760f8fec813dab474ac011d7aab1e7e}
-
-
-取得表$<$kev, value$>$个数 
-
-
-\begin{DoxyParams}{参数}
-{\em m} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-$<$kev, value$>$个数 
-\end{DoxyReturn}
-\hypertarget{a00119_ga252615bf3ff115656c3c155a7c9fafaf_ga252615bf3ff115656c3c155a7c9fafaf}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+map\+\_\+insert@{krpc\+\_\+map\+\_\+insert}}
-\index{krpc\+\_\+map\+\_\+insert@{krpc\+\_\+map\+\_\+insert}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+map\+\_\+insert}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+map\+\_\+insert (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{m, }
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{k, }
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{v}
-\end{DoxyParamCaption}
-)}\label{a00119_ga252615bf3ff115656c3c155a7c9fafaf_ga252615bf3ff115656c3c155a7c9fafaf}
-
-
-添加$<$k, v$>$ 
-
-
-\begin{DoxyParams}{参数}
-{\em m} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em k} & key \\
-\hline
-{\em v} & value \\
+{\em fp} & F\+I\+L\+E指针 \\
 \hline
 \end{DoxyParams}
 
@@ -214,55 +53,20 @@ $<$kev, value$>$个数
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00119_gaa818187b224d2ec13b5b1a25badc3fe3_gaa818187b224d2ec13b5b1a25badc3fe3}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+map\+\_\+next@{krpc\+\_\+map\+\_\+next}}
-\index{krpc\+\_\+map\+\_\+next@{krpc\+\_\+map\+\_\+next}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+map\+\_\+next}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+map\+\_\+next (
+\hypertarget{a00097_a256b0db051dd95a364c3ad5612cbff98_a256b0db051dd95a364c3ad5612cbff98}{}\index{loop\+\_\+profile\+\_\+api.\+h@{loop\+\_\+profile\+\_\+api.\+h}!knet\+\_\+loop\+\_\+profile\+\_\+dump\+\_\+stdout@{knet\+\_\+loop\+\_\+profile\+\_\+dump\+\_\+stdout}}
+\index{knet\+\_\+loop\+\_\+profile\+\_\+dump\+\_\+stdout@{knet\+\_\+loop\+\_\+profile\+\_\+dump\+\_\+stdout}!loop\+\_\+profile\+\_\+api.\+h@{loop\+\_\+profile\+\_\+api.\+h}}
+\subsubsection[{knet\+\_\+loop\+\_\+profile\+\_\+dump\+\_\+stdout}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+loop\+\_\+profile\+\_\+dump\+\_\+stdout (
 \begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{m, }
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$$\ast$}]{k, }
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$$\ast$}]{v}
+\item[{{\bf kloop\+\_\+profile\+\_\+t} $\ast$}]{profile}
 \end{DoxyParamCaption}
-)}\label{a00119_gaa818187b224d2ec13b5b1a25badc3fe3_gaa818187b224d2ec13b5b1a25badc3fe3}
+)}\label{a00097_a256b0db051dd95a364c3ad5612cbff98_a256b0db051dd95a364c3ad5612cbff98}
 
 
-取下一个未遍历的$<$key, value$>$ 
+将统计信息打印到标准输出 
 
 
 \begin{DoxyParams}{参数}
-{\em m} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em k} & key \\
-\hline
-{\em v} & value \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em 0} & 没有 \\
-\hline
-{\em 非零} & 有 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00119_gace78d56aa68df141f3cfa90ecf012b81_gace78d56aa68df141f3cfa90ecf012b81}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+map\+\_\+update@{krpc\+\_\+map\+\_\+update}}
-\index{krpc\+\_\+map\+\_\+update@{krpc\+\_\+map\+\_\+update}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+map\+\_\+update}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+map\+\_\+update (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{m, }
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{k, }
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{v}
-\end{DoxyParamCaption}
-)}\label{a00119_gace78d56aa68df141f3cfa90ecf012b81_gace78d56aa68df141f3cfa90ecf012b81}
-
-
-更新$<$k, v$>$，如果k不存在则插入 
-
-
-\begin{DoxyParams}{参数}
-{\em m} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em k} & key \\
-\hline
-{\em v} & value \\
+{\em profile} & kloop\+\_\+profile\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 
@@ -272,482 +76,24 @@ $<$kev, value$>$个数
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00119_gaa646cc26fc434789e5d4a58ec39a99fa_gaa646cc26fc434789e5d4a58ec39a99fa}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+number\+\_\+get\+\_\+f32@{krpc\+\_\+number\+\_\+get\+\_\+f32}}
-\index{krpc\+\_\+number\+\_\+get\+\_\+f32@{krpc\+\_\+number\+\_\+get\+\_\+f32}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+f32}]{\setlength{\rightskip}{0pt plus 5cm}{\bf float32\+\_\+t} krpc\+\_\+number\+\_\+get\+\_\+f32 (
+\hypertarget{a00097_a256be2a18ebf141d93f95cdce1975a9e_a256be2a18ebf141d93f95cdce1975a9e}{}\index{loop\+\_\+profile\+\_\+api.\+h@{loop\+\_\+profile\+\_\+api.\+h}!knet\+\_\+loop\+\_\+profile\+\_\+dump\+\_\+stream@{knet\+\_\+loop\+\_\+profile\+\_\+dump\+\_\+stream}}
+\index{knet\+\_\+loop\+\_\+profile\+\_\+dump\+\_\+stream@{knet\+\_\+loop\+\_\+profile\+\_\+dump\+\_\+stream}!loop\+\_\+profile\+\_\+api.\+h@{loop\+\_\+profile\+\_\+api.\+h}}
+\subsubsection[{knet\+\_\+loop\+\_\+profile\+\_\+dump\+\_\+stream}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+loop\+\_\+profile\+\_\+dump\+\_\+stream (
 \begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
+\item[{{\bf kloop\+\_\+profile\+\_\+t} $\ast$}]{profile, }
+\item[{{\bf kstream\+\_\+t} $\ast$}]{stream}
 \end{DoxyParamCaption}
-)}\label{a00119_gaa646cc26fc434789e5d4a58ec39a99fa_gaa646cc26fc434789e5d4a58ec39a99fa}
+)}\label{a00097_a256be2a18ebf141d93f95cdce1975a9e_a256be2a18ebf141d93f95cdce1975a9e}
 
 
-获取浮点数32位 
+将统计信息写入管道流 
 
 
 \begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-浮点数32位 
-\end{DoxyReturn}
-\hypertarget{a00119_ga000db715b85193d0b6750b46bfc590b5_ga000db715b85193d0b6750b46bfc590b5}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+number\+\_\+get\+\_\+f64@{krpc\+\_\+number\+\_\+get\+\_\+f64}}
-\index{krpc\+\_\+number\+\_\+get\+\_\+f64@{krpc\+\_\+number\+\_\+get\+\_\+f64}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+f64}]{\setlength{\rightskip}{0pt plus 5cm}{\bf float64\+\_\+t} krpc\+\_\+number\+\_\+get\+\_\+f64 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
-\end{DoxyParamCaption}
-)}\label{a00119_ga000db715b85193d0b6750b46bfc590b5_ga000db715b85193d0b6750b46bfc590b5}
-
-
-获取浮点数64位 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-浮点数64位 
-\end{DoxyReturn}
-\hypertarget{a00119_ga090dd58301d21979a05fe6fc249e3a80_ga090dd58301d21979a05fe6fc249e3a80}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+number\+\_\+get\+\_\+i16@{krpc\+\_\+number\+\_\+get\+\_\+i16}}
-\index{krpc\+\_\+number\+\_\+get\+\_\+i16@{krpc\+\_\+number\+\_\+get\+\_\+i16}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+i16}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t krpc\+\_\+number\+\_\+get\+\_\+i16 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
-\end{DoxyParamCaption}
-)}\label{a00119_ga090dd58301d21979a05fe6fc249e3a80_ga090dd58301d21979a05fe6fc249e3a80}
-
-
-获取有符号16位 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-有符号16位 
-\end{DoxyReturn}
-\hypertarget{a00119_gad287178bafa8b9495016ee747db8e090_gad287178bafa8b9495016ee747db8e090}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+number\+\_\+get\+\_\+i32@{krpc\+\_\+number\+\_\+get\+\_\+i32}}
-\index{krpc\+\_\+number\+\_\+get\+\_\+i32@{krpc\+\_\+number\+\_\+get\+\_\+i32}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+i32}]{\setlength{\rightskip}{0pt plus 5cm}int32\+\_\+t krpc\+\_\+number\+\_\+get\+\_\+i32 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
-\end{DoxyParamCaption}
-)}\label{a00119_gad287178bafa8b9495016ee747db8e090_gad287178bafa8b9495016ee747db8e090}
-
-
-获取有符号32位 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-有符号32位 
-\end{DoxyReturn}
-\hypertarget{a00119_ga41bb57b2a053c9aeb22c98e0cbfbc2e4_ga41bb57b2a053c9aeb22c98e0cbfbc2e4}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+number\+\_\+get\+\_\+i64@{krpc\+\_\+number\+\_\+get\+\_\+i64}}
-\index{krpc\+\_\+number\+\_\+get\+\_\+i64@{krpc\+\_\+number\+\_\+get\+\_\+i64}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+i64}]{\setlength{\rightskip}{0pt plus 5cm}int64\+\_\+t krpc\+\_\+number\+\_\+get\+\_\+i64 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
-\end{DoxyParamCaption}
-)}\label{a00119_ga41bb57b2a053c9aeb22c98e0cbfbc2e4_ga41bb57b2a053c9aeb22c98e0cbfbc2e4}
-
-
-获取有符号64位 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-有符号64位 
-\end{DoxyReturn}
-\hypertarget{a00119_ga5f14e2a44d3dd64fc1bc54e28b431587_ga5f14e2a44d3dd64fc1bc54e28b431587}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+number\+\_\+get\+\_\+i8@{krpc\+\_\+number\+\_\+get\+\_\+i8}}
-\index{krpc\+\_\+number\+\_\+get\+\_\+i8@{krpc\+\_\+number\+\_\+get\+\_\+i8}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+i8}]{\setlength{\rightskip}{0pt plus 5cm}int8\+\_\+t krpc\+\_\+number\+\_\+get\+\_\+i8 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
-\end{DoxyParamCaption}
-)}\label{a00119_ga5f14e2a44d3dd64fc1bc54e28b431587_ga5f14e2a44d3dd64fc1bc54e28b431587}
-
-
-获取有符号8位 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-有符号8位 
-\end{DoxyReturn}
-\hypertarget{a00119_gaa2f3b1c450f36d181e585924ff7954a5_gaa2f3b1c450f36d181e585924ff7954a5}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+number\+\_\+get\+\_\+ui16@{krpc\+\_\+number\+\_\+get\+\_\+ui16}}
-\index{krpc\+\_\+number\+\_\+get\+\_\+ui16@{krpc\+\_\+number\+\_\+get\+\_\+ui16}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+ui16}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t krpc\+\_\+number\+\_\+get\+\_\+ui16 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
-\end{DoxyParamCaption}
-)}\label{a00119_gaa2f3b1c450f36d181e585924ff7954a5_gaa2f3b1c450f36d181e585924ff7954a5}
-
-
-获取无符号16位 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-无符号16位 
-\end{DoxyReturn}
-\hypertarget{a00119_gabc1d9560a6f2baf606c4a232488ee76a_gabc1d9560a6f2baf606c4a232488ee76a}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+number\+\_\+get\+\_\+ui32@{krpc\+\_\+number\+\_\+get\+\_\+ui32}}
-\index{krpc\+\_\+number\+\_\+get\+\_\+ui32@{krpc\+\_\+number\+\_\+get\+\_\+ui32}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+ui32}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t krpc\+\_\+number\+\_\+get\+\_\+ui32 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
-\end{DoxyParamCaption}
-)}\label{a00119_gabc1d9560a6f2baf606c4a232488ee76a_gabc1d9560a6f2baf606c4a232488ee76a}
-
-
-获取无符号32位 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-无符号32位 
-\end{DoxyReturn}
-\hypertarget{a00119_ga951b99916dd94a6d8c5ad335578c35d7_ga951b99916dd94a6d8c5ad335578c35d7}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+number\+\_\+get\+\_\+ui64@{krpc\+\_\+number\+\_\+get\+\_\+ui64}}
-\index{krpc\+\_\+number\+\_\+get\+\_\+ui64@{krpc\+\_\+number\+\_\+get\+\_\+ui64}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+ui64}]{\setlength{\rightskip}{0pt plus 5cm}uint64\+\_\+t krpc\+\_\+number\+\_\+get\+\_\+ui64 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
-\end{DoxyParamCaption}
-)}\label{a00119_ga951b99916dd94a6d8c5ad335578c35d7_ga951b99916dd94a6d8c5ad335578c35d7}
-
-
-获取无符号64位 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-无符号64位 
-\end{DoxyReturn}
-\hypertarget{a00119_ga921ba1649bda27068e3d048b854ed708_ga921ba1649bda27068e3d048b854ed708}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+number\+\_\+get\+\_\+ui8@{krpc\+\_\+number\+\_\+get\+\_\+ui8}}
-\index{krpc\+\_\+number\+\_\+get\+\_\+ui8@{krpc\+\_\+number\+\_\+get\+\_\+ui8}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+ui8}]{\setlength{\rightskip}{0pt plus 5cm}uint8\+\_\+t krpc\+\_\+number\+\_\+get\+\_\+ui8 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
-\end{DoxyParamCaption}
-)}\label{a00119_ga921ba1649bda27068e3d048b854ed708_ga921ba1649bda27068e3d048b854ed708}
-
-
-获取无符号8位 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-无符号8位 
-\end{DoxyReturn}
-\hypertarget{a00119_ga0e16d4b0c82cb88b148e82bc076a840c_ga0e16d4b0c82cb88b148e82bc076a840c}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+number\+\_\+set\+\_\+f32@{krpc\+\_\+number\+\_\+set\+\_\+f32}}
-\index{krpc\+\_\+number\+\_\+set\+\_\+f32@{krpc\+\_\+number\+\_\+set\+\_\+f32}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+number\+\_\+set\+\_\+f32}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+number\+\_\+set\+\_\+f32 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{{\bf float32\+\_\+t}}]{f32}
-\end{DoxyParamCaption}
-)}\label{a00119_ga0e16d4b0c82cb88b148e82bc076a840c_ga0e16d4b0c82cb88b148e82bc076a840c}
-
-
-设置数字 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em f32} & 浮点数32位 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00119_ga8aeb77dbdf5aaab4bb75f57ee0ddd8b9_ga8aeb77dbdf5aaab4bb75f57ee0ddd8b9}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+number\+\_\+set\+\_\+f64@{krpc\+\_\+number\+\_\+set\+\_\+f64}}
-\index{krpc\+\_\+number\+\_\+set\+\_\+f64@{krpc\+\_\+number\+\_\+set\+\_\+f64}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+number\+\_\+set\+\_\+f64}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+number\+\_\+set\+\_\+f64 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{{\bf float64\+\_\+t}}]{f64}
-\end{DoxyParamCaption}
-)}\label{a00119_ga8aeb77dbdf5aaab4bb75f57ee0ddd8b9_ga8aeb77dbdf5aaab4bb75f57ee0ddd8b9}
-
-
-设置数字 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em f64} & 浮点数64位 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00119_ga1b6cbaa51e2171bec6e5b2f97fe6223c_ga1b6cbaa51e2171bec6e5b2f97fe6223c}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+number\+\_\+set\+\_\+i16@{krpc\+\_\+number\+\_\+set\+\_\+i16}}
-\index{krpc\+\_\+number\+\_\+set\+\_\+i16@{krpc\+\_\+number\+\_\+set\+\_\+i16}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+number\+\_\+set\+\_\+i16}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+number\+\_\+set\+\_\+i16 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{int16\+\_\+t}]{i16}
-\end{DoxyParamCaption}
-)}\label{a00119_ga1b6cbaa51e2171bec6e5b2f97fe6223c_ga1b6cbaa51e2171bec6e5b2f97fe6223c}
-
-
-设置数字 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em i16} & 有符号16位 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00119_gaf70d32f6fb59d76e67e596d0feeee14b_gaf70d32f6fb59d76e67e596d0feeee14b}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+number\+\_\+set\+\_\+i32@{krpc\+\_\+number\+\_\+set\+\_\+i32}}
-\index{krpc\+\_\+number\+\_\+set\+\_\+i32@{krpc\+\_\+number\+\_\+set\+\_\+i32}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+number\+\_\+set\+\_\+i32}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+number\+\_\+set\+\_\+i32 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{int32\+\_\+t}]{i32}
-\end{DoxyParamCaption}
-)}\label{a00119_gaf70d32f6fb59d76e67e596d0feeee14b_gaf70d32f6fb59d76e67e596d0feeee14b}
-
-
-设置数字 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em i32} & 有符号32位 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00119_gabf92e2dab46131d75789812059214724_gabf92e2dab46131d75789812059214724}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+number\+\_\+set\+\_\+i64@{krpc\+\_\+number\+\_\+set\+\_\+i64}}
-\index{krpc\+\_\+number\+\_\+set\+\_\+i64@{krpc\+\_\+number\+\_\+set\+\_\+i64}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+number\+\_\+set\+\_\+i64}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+number\+\_\+set\+\_\+i64 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{int64\+\_\+t}]{i64}
-\end{DoxyParamCaption}
-)}\label{a00119_gabf92e2dab46131d75789812059214724_gabf92e2dab46131d75789812059214724}
-
-
-设置数字 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em i64} & 有符号64位 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00119_gac97afef390289879f19cda9149beb684_gac97afef390289879f19cda9149beb684}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+number\+\_\+set\+\_\+i8@{krpc\+\_\+number\+\_\+set\+\_\+i8}}
-\index{krpc\+\_\+number\+\_\+set\+\_\+i8@{krpc\+\_\+number\+\_\+set\+\_\+i8}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+number\+\_\+set\+\_\+i8}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+number\+\_\+set\+\_\+i8 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{int8\+\_\+t}]{i8}
-\end{DoxyParamCaption}
-)}\label{a00119_gac97afef390289879f19cda9149beb684_gac97afef390289879f19cda9149beb684}
-
-
-设置数字 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em i8} & 有符号8位 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00119_ga7990cb68203c5ab0d1534ef616fd1aad_ga7990cb68203c5ab0d1534ef616fd1aad}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+number\+\_\+set\+\_\+ui16@{krpc\+\_\+number\+\_\+set\+\_\+ui16}}
-\index{krpc\+\_\+number\+\_\+set\+\_\+ui16@{krpc\+\_\+number\+\_\+set\+\_\+ui16}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+number\+\_\+set\+\_\+ui16}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+number\+\_\+set\+\_\+ui16 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{uint16\+\_\+t}]{ui16}
-\end{DoxyParamCaption}
-)}\label{a00119_ga7990cb68203c5ab0d1534ef616fd1aad_ga7990cb68203c5ab0d1534ef616fd1aad}
-
-
-设置数字 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em ui16} & 无符号16位 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00119_gaf864070d7b20a77c9191acbe49f9382f_gaf864070d7b20a77c9191acbe49f9382f}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+number\+\_\+set\+\_\+ui32@{krpc\+\_\+number\+\_\+set\+\_\+ui32}}
-\index{krpc\+\_\+number\+\_\+set\+\_\+ui32@{krpc\+\_\+number\+\_\+set\+\_\+ui32}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+number\+\_\+set\+\_\+ui32}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+number\+\_\+set\+\_\+ui32 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{uint32\+\_\+t}]{ui32}
-\end{DoxyParamCaption}
-)}\label{a00119_gaf864070d7b20a77c9191acbe49f9382f_gaf864070d7b20a77c9191acbe49f9382f}
-
-
-设置数字 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em ui32} & 无符号32位 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00119_gafd0da43f7cb46188c6d2f1657b39c3ba_gafd0da43f7cb46188c6d2f1657b39c3ba}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+number\+\_\+set\+\_\+ui64@{krpc\+\_\+number\+\_\+set\+\_\+ui64}}
-\index{krpc\+\_\+number\+\_\+set\+\_\+ui64@{krpc\+\_\+number\+\_\+set\+\_\+ui64}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+number\+\_\+set\+\_\+ui64}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+number\+\_\+set\+\_\+ui64 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{int64\+\_\+t}]{ui64}
-\end{DoxyParamCaption}
-)}\label{a00119_gafd0da43f7cb46188c6d2f1657b39c3ba_gafd0da43f7cb46188c6d2f1657b39c3ba}
-
-
-设置数字 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em ui64} & 无符号64位 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00119_ga0abbc84b15e73781209485cbfa4d2a56_ga0abbc84b15e73781209485cbfa4d2a56}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+number\+\_\+set\+\_\+ui8@{krpc\+\_\+number\+\_\+set\+\_\+ui8}}
-\index{krpc\+\_\+number\+\_\+set\+\_\+ui8@{krpc\+\_\+number\+\_\+set\+\_\+ui8}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+number\+\_\+set\+\_\+ui8}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+number\+\_\+set\+\_\+ui8 (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{uint8\+\_\+t}]{ui8}
-\end{DoxyParamCaption}
-)}\label{a00119_ga0abbc84b15e73781209485cbfa4d2a56_ga0abbc84b15e73781209485cbfa4d2a56}
-
-
-设置数字 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em ui8} & 无符号8位 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00119_gac0a05f116ee7164ceebf6f7fabcf46cf_gac0a05f116ee7164ceebf6f7fabcf46cf}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+object\+\_\+check\+\_\+type@{krpc\+\_\+object\+\_\+check\+\_\+type}}
-\index{krpc\+\_\+object\+\_\+check\+\_\+type@{krpc\+\_\+object\+\_\+check\+\_\+type}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+object\+\_\+check\+\_\+type}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+object\+\_\+check\+\_\+type (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{{\bf knet\+\_\+rpc\+\_\+type\+\_\+e}}]{type}
-\end{DoxyParamCaption}
-)}\label{a00119_gac0a05f116ee7164ceebf6f7fabcf46cf_gac0a05f116ee7164ceebf6f7fabcf46cf}
-
-
-测试\+R\+P\+C对象类型 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em type} & 类型 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em 0} & 不是type类型 \\
-\hline
-{\em 非零} & 是type类型 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00119_ga6aad58d8460944596e39822181bf4848_ga6aad58d8460944596e39822181bf4848}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+object\+\_\+create@{krpc\+\_\+object\+\_\+create}}
-\index{krpc\+\_\+object\+\_\+create@{krpc\+\_\+object\+\_\+create}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+object\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf krpc\+\_\+object\+\_\+t}$\ast$ krpc\+\_\+object\+\_\+create (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}\label{a00119_ga6aad58d8460944596e39822181bf4848_ga6aad58d8460944596e39822181bf4848}
-
-
-所有set类方法调用时确定krpc\+\_\+object\+\_\+t实际类型，类型一旦确定不能再次更改 
-
-建立\+R\+P\+C对象 \begin{DoxyReturn}{返回}
-krpc\+\_\+object\+\_\+t实例 
-\end{DoxyReturn}
-\hypertarget{a00119_ga8bb578f8ba5a8de682a1fe2a4c8a20f6_ga8bb578f8ba5a8de682a1fe2a4c8a20f6}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+object\+\_\+destroy@{krpc\+\_\+object\+\_\+destroy}}
-\index{krpc\+\_\+object\+\_\+destroy@{krpc\+\_\+object\+\_\+destroy}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+object\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+object\+\_\+destroy (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
-\end{DoxyParamCaption}
-)}\label{a00119_ga8bb578f8ba5a8de682a1fe2a4c8a20f6_ga8bb578f8ba5a8de682a1fe2a4c8a20f6}
-
-
-销毁\+R\+P\+C对象 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00119_gad51ebf7392be0ee1fd9597aa22a43015_gad51ebf7392be0ee1fd9597aa22a43015}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+object\+\_\+get\+\_\+marshal\+\_\+size@{krpc\+\_\+object\+\_\+get\+\_\+marshal\+\_\+size}}
-\index{krpc\+\_\+object\+\_\+get\+\_\+marshal\+\_\+size@{krpc\+\_\+object\+\_\+get\+\_\+marshal\+\_\+size}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+object\+\_\+get\+\_\+marshal\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t krpc\+\_\+object\+\_\+get\+\_\+marshal\+\_\+size (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
-\end{DoxyParamCaption}
-)}\label{a00119_gad51ebf7392be0ee1fd9597aa22a43015_gad51ebf7392be0ee1fd9597aa22a43015}
-
-
-取得序列化后的长度 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-取得序列化后的长度 
-\end{DoxyReturn}
-\hypertarget{a00119_ga77cc2dde006f9cdddf078289159bd514_ga77cc2dde006f9cdddf078289159bd514}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+object\+\_\+marshal@{krpc\+\_\+object\+\_\+marshal}}
-\index{krpc\+\_\+object\+\_\+marshal@{krpc\+\_\+object\+\_\+marshal}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+object\+\_\+marshal}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+object\+\_\+marshal (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{{\bf kstream\+\_\+t} $\ast$}]{stream, }
-\item[{uint16\+\_\+t $\ast$}]{bytes}
-\end{DoxyParamCaption}
-)}\label{a00119_ga77cc2dde006f9cdddf078289159bd514_ga77cc2dde006f9cdddf078289159bd514}
-
-
-序列化到数据流 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+{\em profile} & kloop\+\_\+profile\+\_\+t实例 \\
 \hline
 {\em stream} & kstream\+\_\+t实例 \\
 \hline
-{\em bytes} & 写入流的数据字节数 \\
-\hline
 \end{DoxyParams}
 
 \begin{DoxyRetVals}{返回值}
@@ -756,287 +102,136 @@ krpc\+\_\+object\+\_\+t实例
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00119_ga32ed12c4faa68e258582b239b46fd180_ga32ed12c4faa68e258582b239b46fd180}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+object\+\_\+marshal\+\_\+buffer@{krpc\+\_\+object\+\_\+marshal\+\_\+buffer}}
-\index{krpc\+\_\+object\+\_\+marshal\+\_\+buffer@{krpc\+\_\+object\+\_\+marshal\+\_\+buffer}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+object\+\_\+marshal\+\_\+buffer}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+object\+\_\+marshal\+\_\+buffer (
+\hypertarget{a00097_a9b4aceae0c7a1f1aa86c8db5996ec76a_a9b4aceae0c7a1f1aa86c8db5996ec76a}{}\index{loop\+\_\+profile\+\_\+api.\+h@{loop\+\_\+profile\+\_\+api.\+h}!knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+active\+\_\+channel\+\_\+count@{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+active\+\_\+channel\+\_\+count}}
+\index{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+active\+\_\+channel\+\_\+count@{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+active\+\_\+channel\+\_\+count}!loop\+\_\+profile\+\_\+api.\+h@{loop\+\_\+profile\+\_\+api.\+h}}
+\subsubsection[{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+active\+\_\+channel\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+active\+\_\+channel\+\_\+count (
 \begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{char $\ast$}]{buffer, }
-\item[{uint16\+\_\+t}]{length, }
-\item[{uint16\+\_\+t $\ast$}]{bytes}
+\item[{{\bf kloop\+\_\+profile\+\_\+t} $\ast$}]{profile}
 \end{DoxyParamCaption}
-)}\label{a00119_ga32ed12c4faa68e258582b239b46fd180_ga32ed12c4faa68e258582b239b46fd180}
+)}\label{a00097_a9b4aceae0c7a1f1aa86c8db5996ec76a_a9b4aceae0c7a1f1aa86c8db5996ec76a}
 
 
-序列化到缓冲区 
+取得已经建立但还未连接的管道数量 
 
 
 \begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em buffer} & 缓冲区指针 \\
-\hline
-{\em length} & 缓冲区长度 \\
-\hline
-{\em bytes} & 写入缓冲区的数据字节数 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00119_ga3e61d7f696fd28c1cb4152037e4cc3c8_ga3e61d7f696fd28c1cb4152037e4cc3c8}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+object\+\_\+unmarshal@{krpc\+\_\+object\+\_\+unmarshal}}
-\index{krpc\+\_\+object\+\_\+unmarshal@{krpc\+\_\+object\+\_\+unmarshal}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+object\+\_\+unmarshal}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+object\+\_\+unmarshal (
-\begin{DoxyParamCaption}
-\item[{{\bf kstream\+\_\+t} $\ast$}]{stream, }
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$$\ast$}]{o, }
-\item[{uint16\+\_\+t $\ast$}]{bytes}
-\end{DoxyParamCaption}
-)}\label{a00119_ga3e61d7f696fd28c1cb4152037e4cc3c8_ga3e61d7f696fd28c1cb4152037e4cc3c8}
-
-
-从数据流反序列化对象 
-
-
-\begin{DoxyParams}{参数}
-{\em stream} & kstream\+\_\+t实例 \\
-\hline
-{\em o} & 存储得到的对象指针 \\
-\hline
-{\em bytes} & 读取的流数据字节数 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00119_ga0f2289e356949bc9ae0e8e0a151e42f4_ga0f2289e356949bc9ae0e8e0a151e42f4}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+object\+\_\+unmarshal\+\_\+buffer@{krpc\+\_\+object\+\_\+unmarshal\+\_\+buffer}}
-\index{krpc\+\_\+object\+\_\+unmarshal\+\_\+buffer@{krpc\+\_\+object\+\_\+unmarshal\+\_\+buffer}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+object\+\_\+unmarshal\+\_\+buffer}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+object\+\_\+unmarshal\+\_\+buffer (
-\begin{DoxyParamCaption}
-\item[{char $\ast$}]{buffer, }
-\item[{uint16\+\_\+t}]{size, }
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$$\ast$}]{o, }
-\item[{uint16\+\_\+t $\ast$}]{bytes}
-\end{DoxyParamCaption}
-)}\label{a00119_ga0f2289e356949bc9ae0e8e0a151e42f4_ga0f2289e356949bc9ae0e8e0a151e42f4}
-
-
-从缓冲区反序列化对象 
-
-
-\begin{DoxyParams}{参数}
-{\em buffer} & 缓冲区指针 \\
-\hline
-{\em size} & 缓冲区长度 \\
-\hline
-{\em o} & 存储得到的对象指针 \\
-\hline
-{\em bytes} & 消耗的字节数 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00119_ga4cbbacb71688aa9ee2c5811076132bce_ga4cbbacb71688aa9ee2c5811076132bce}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+string\+\_\+get@{krpc\+\_\+string\+\_\+get}}
-\index{krpc\+\_\+string\+\_\+get@{krpc\+\_\+string\+\_\+get}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+string\+\_\+get}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ krpc\+\_\+string\+\_\+get (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
-\end{DoxyParamCaption}
-)}\label{a00119_ga4cbbacb71688aa9ee2c5811076132bce_ga4cbbacb71688aa9ee2c5811076132bce}
-
-
-获取字符串指针 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+{\em profile} & kloop\+\_\+profile\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-字符串指针 
+建立但还未连接的管道数量 
 \end{DoxyReturn}
-\hypertarget{a00119_ga1de7973df219a3f8d3f466d27ba8c080_ga1de7973df219a3f8d3f466d27ba8c080}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+string\+\_\+get\+\_\+size@{krpc\+\_\+string\+\_\+get\+\_\+size}}
-\index{krpc\+\_\+string\+\_\+get\+\_\+size@{krpc\+\_\+string\+\_\+get\+\_\+size}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+string\+\_\+get\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t krpc\+\_\+string\+\_\+get\+\_\+size (
+\hypertarget{a00097_a6eaacce21d69455a4e70bd6da4927082_a6eaacce21d69455a4e70bd6da4927082}{}\index{loop\+\_\+profile\+\_\+api.\+h@{loop\+\_\+profile\+\_\+api.\+h}!knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+close\+\_\+channel\+\_\+count@{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+close\+\_\+channel\+\_\+count}}
+\index{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+close\+\_\+channel\+\_\+count@{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+close\+\_\+channel\+\_\+count}!loop\+\_\+profile\+\_\+api.\+h@{loop\+\_\+profile\+\_\+api.\+h}}
+\subsubsection[{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+close\+\_\+channel\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+close\+\_\+channel\+\_\+count (
 \begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
+\item[{{\bf kloop\+\_\+profile\+\_\+t} $\ast$}]{profile}
 \end{DoxyParamCaption}
-)}\label{a00119_ga1de7973df219a3f8d3f466d27ba8c080_ga1de7973df219a3f8d3f466d27ba8c080}
+)}\label{a00097_a6eaacce21d69455a4e70bd6da4927082_a6eaacce21d69455a4e70bd6da4927082}
 
 
-获取字符串长度，包含结尾符 
+取得已经关闭的管道数量 
 
 
 \begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
+{\em profile} & kloop\+\_\+profile\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-字符串长度 
+已经关闭的管道数量 
 \end{DoxyReturn}
-\hypertarget{a00119_ga6985230e52d14d9e6d1f0de75a7c2f93_ga6985230e52d14d9e6d1f0de75a7c2f93}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+string\+\_\+set@{krpc\+\_\+string\+\_\+set}}
-\index{krpc\+\_\+string\+\_\+set@{krpc\+\_\+string\+\_\+set}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+string\+\_\+set}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+string\+\_\+set (
+\hypertarget{a00097_a30be8a49214eb1485429bdff63541dfc_a30be8a49214eb1485429bdff63541dfc}{}\index{loop\+\_\+profile\+\_\+api.\+h@{loop\+\_\+profile\+\_\+api.\+h}!knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+established\+\_\+channel\+\_\+count@{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+established\+\_\+channel\+\_\+count}}
+\index{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+established\+\_\+channel\+\_\+count@{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+established\+\_\+channel\+\_\+count}!loop\+\_\+profile\+\_\+api.\+h@{loop\+\_\+profile\+\_\+api.\+h}}
+\subsubsection[{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+established\+\_\+channel\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+established\+\_\+channel\+\_\+count (
 \begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{const char $\ast$}]{s}
+\item[{{\bf kloop\+\_\+profile\+\_\+t} $\ast$}]{profile}
 \end{DoxyParamCaption}
-)}\label{a00119_ga6985230e52d14d9e6d1f0de75a7c2f93_ga6985230e52d14d9e6d1f0de75a7c2f93}
+)}\label{a00097_a30be8a49214eb1485429bdff63541dfc_a30be8a49214eb1485429bdff63541dfc}
 
 
-设置字符串 
+取得已经建立连接的管道数量 
 
 
 \begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em s} & 字符串指针 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00119_ga478faec6f30727235d29aaeb8d54f22f_ga478faec6f30727235d29aaeb8d54f22f}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+string\+\_\+set\+\_\+s@{krpc\+\_\+string\+\_\+set\+\_\+s}}
-\index{krpc\+\_\+string\+\_\+set\+\_\+s@{krpc\+\_\+string\+\_\+set\+\_\+s}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+string\+\_\+set\+\_\+s}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+string\+\_\+set\+\_\+s (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{const char $\ast$}]{s, }
-\item[{uint16\+\_\+t}]{size}
-\end{DoxyParamCaption}
-)}\label{a00119_ga478faec6f30727235d29aaeb8d54f22f_ga478faec6f30727235d29aaeb8d54f22f}
-
-
-设置字符串 
-
-
-\begin{DoxyParams}{参数}
-{\em o} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em size} & 字符串长度，包含结尾符 \\
-\hline
-{\em s} & 字符串指针 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00119_ga02d5eeffe865f129911f42ffbfa0d119_ga02d5eeffe865f129911f42ffbfa0d119}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+vector\+\_\+clear@{krpc\+\_\+vector\+\_\+clear}}
-\index{krpc\+\_\+vector\+\_\+clear@{krpc\+\_\+vector\+\_\+clear}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+vector\+\_\+clear}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+vector\+\_\+clear (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{v}
-\end{DoxyParamCaption}
-)}\label{a00119_ga02d5eeffe865f129911f42ffbfa0d119_ga02d5eeffe865f129911f42ffbfa0d119}
-
-
-清空数组 
-
-
-\begin{DoxyParams}{参数}
-{\em v} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00119_ga0291a0548378269354fc614712f4c31e_ga0291a0548378269354fc614712f4c31e}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+vector\+\_\+get@{krpc\+\_\+vector\+\_\+get}}
-\index{krpc\+\_\+vector\+\_\+get@{krpc\+\_\+vector\+\_\+get}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+vector\+\_\+get}]{\setlength{\rightskip}{0pt plus 5cm}{\bf krpc\+\_\+object\+\_\+t}$\ast$ krpc\+\_\+vector\+\_\+get (
-\begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{v, }
-\item[{int}]{index}
-\end{DoxyParamCaption}
-)}\label{a00119_ga0291a0548378269354fc614712f4c31e_ga0291a0548378269354fc614712f4c31e}
-
-
-按索引取得数组元素 
-
-
-\begin{DoxyParams}{参数}
-{\em v} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em index} & 下标索引 \\
+{\em profile} & kloop\+\_\+profile\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-数组元素 
+建立连接的管道数量 
 \end{DoxyReturn}
-\hypertarget{a00119_gac86bb807e52193aaa69ce6fe36cd59c8_gac86bb807e52193aaa69ce6fe36cd59c8}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+vector\+\_\+get\+\_\+size@{krpc\+\_\+vector\+\_\+get\+\_\+size}}
-\index{krpc\+\_\+vector\+\_\+get\+\_\+size@{krpc\+\_\+vector\+\_\+get\+\_\+size}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+vector\+\_\+get\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t krpc\+\_\+vector\+\_\+get\+\_\+size (
+\hypertarget{a00097_a925853b256684e4d935f28d4c73a4832_a925853b256684e4d935f28d4c73a4832}{}\index{loop\+\_\+profile\+\_\+api.\+h@{loop\+\_\+profile\+\_\+api.\+h}!knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+recv\+\_\+bandwidth@{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+recv\+\_\+bandwidth}}
+\index{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+recv\+\_\+bandwidth@{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+recv\+\_\+bandwidth}!loop\+\_\+profile\+\_\+api.\+h@{loop\+\_\+profile\+\_\+api.\+h}}
+\subsubsection[{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+recv\+\_\+bandwidth}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+recv\+\_\+bandwidth (
 \begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{v}
+\item[{{\bf kloop\+\_\+profile\+\_\+t} $\ast$}]{profile}
 \end{DoxyParamCaption}
-)}\label{a00119_gac86bb807e52193aaa69ce6fe36cd59c8_gac86bb807e52193aaa69ce6fe36cd59c8}
+)}\label{a00097_a925853b256684e4d935f28d4c73a4832_a925853b256684e4d935f28d4c73a4832}
 
 
-取得数组元素个数 
+取得接收带宽 
 
 
 \begin{DoxyParams}{参数}
-{\em v} & krpc\+\_\+object\+\_\+t实例 \\
+{\em profile} & kloop\+\_\+profile\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-数组元素个数 
+带宽(字节/秒) 
 \end{DoxyReturn}
-\hypertarget{a00119_gac870fa910b5e155c9f566ead4fac2b54_gac870fa910b5e155c9f566ead4fac2b54}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+vector\+\_\+push\+\_\+back@{krpc\+\_\+vector\+\_\+push\+\_\+back}}
-\index{krpc\+\_\+vector\+\_\+push\+\_\+back@{krpc\+\_\+vector\+\_\+push\+\_\+back}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+vector\+\_\+push\+\_\+back}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+vector\+\_\+push\+\_\+back (
+\hypertarget{a00097_a1ac76d26570c5973ca054d5d2be07596_a1ac76d26570c5973ca054d5d2be07596}{}\index{loop\+\_\+profile\+\_\+api.\+h@{loop\+\_\+profile\+\_\+api.\+h}!knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+recv\+\_\+bytes@{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+recv\+\_\+bytes}}
+\index{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+recv\+\_\+bytes@{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+recv\+\_\+bytes}!loop\+\_\+profile\+\_\+api.\+h@{loop\+\_\+profile\+\_\+api.\+h}}
+\subsubsection[{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+recv\+\_\+bytes}]{\setlength{\rightskip}{0pt plus 5cm}uint64\+\_\+t knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+recv\+\_\+bytes (
 \begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{v, }
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
+\item[{{\bf kloop\+\_\+profile\+\_\+t} $\ast$}]{profile}
 \end{DoxyParamCaption}
-)}\label{a00119_gac870fa910b5e155c9f566ead4fac2b54_gac870fa910b5e155c9f566ead4fac2b54}
+)}\label{a00097_a1ac76d26570c5973ca054d5d2be07596_a1ac76d26570c5973ca054d5d2be07596}
 
 
-添加到数组尾，数组默认长度为8，每次递增8 
+取得已经接收的字节数 
 
 
 \begin{DoxyParams}{参数}
-{\em v} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em o} & 新增的数组元素 \\
+{\em profile} & kloop\+\_\+profile\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00119_gaf08956a35d983893f382974abcfca177_gaf08956a35d983893f382974abcfca177}{}\index{rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}!krpc\+\_\+vector\+\_\+set@{krpc\+\_\+vector\+\_\+set}}
-\index{krpc\+\_\+vector\+\_\+set@{krpc\+\_\+vector\+\_\+set}!rpc\+\_\+object\+\_\+api.\+h@{rpc\+\_\+object\+\_\+api.\+h}}
-\subsubsection[{krpc\+\_\+vector\+\_\+set}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+vector\+\_\+set (
+\begin{DoxyReturn}{返回}
+已经接收的字节数 
+\end{DoxyReturn}
+\hypertarget{a00097_a61bab9d3f25b772c11067d7ad48e5591_a61bab9d3f25b772c11067d7ad48e5591}{}\index{loop\+\_\+profile\+\_\+api.\+h@{loop\+\_\+profile\+\_\+api.\+h}!knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+sent\+\_\+bandwidth@{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+sent\+\_\+bandwidth}}
+\index{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+sent\+\_\+bandwidth@{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+sent\+\_\+bandwidth}!loop\+\_\+profile\+\_\+api.\+h@{loop\+\_\+profile\+\_\+api.\+h}}
+\subsubsection[{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+sent\+\_\+bandwidth}]{\setlength{\rightskip}{0pt plus 5cm}uint32\+\_\+t knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+sent\+\_\+bandwidth (
 \begin{DoxyParamCaption}
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{v, }
-\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
-\item[{int}]{index}
+\item[{{\bf kloop\+\_\+profile\+\_\+t} $\ast$}]{profile}
 \end{DoxyParamCaption}
-)}\label{a00119_gaf08956a35d983893f382974abcfca177_gaf08956a35d983893f382974abcfca177}
+)}\label{a00097_a61bab9d3f25b772c11067d7ad48e5591_a61bab9d3f25b772c11067d7ad48e5591}
 
 
-按索引设置数组元素，若已存在元素则销毁旧元素 
+取得发送带宽 
 
 
 \begin{DoxyParams}{参数}
-{\em v} & krpc\+\_\+object\+\_\+t实例 \\
-\hline
-{\em o} & 新元素 \\
-\hline
-{\em index} & 下标索引 \\
+{\em profile} & kloop\+\_\+profile\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
+\begin{DoxyReturn}{返回}
+带宽(字节/秒) 
+\end{DoxyReturn}
+\hypertarget{a00097_a5bb651c97109287f36481c70c4096d02_a5bb651c97109287f36481c70c4096d02}{}\index{loop\+\_\+profile\+\_\+api.\+h@{loop\+\_\+profile\+\_\+api.\+h}!knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+sent\+\_\+bytes@{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+sent\+\_\+bytes}}
+\index{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+sent\+\_\+bytes@{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+sent\+\_\+bytes}!loop\+\_\+profile\+\_\+api.\+h@{loop\+\_\+profile\+\_\+api.\+h}}
+\subsubsection[{knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+sent\+\_\+bytes}]{\setlength{\rightskip}{0pt plus 5cm}uint64\+\_\+t knet\+\_\+loop\+\_\+profile\+\_\+get\+\_\+sent\+\_\+bytes (
+\begin{DoxyParamCaption}
+\item[{{\bf kloop\+\_\+profile\+\_\+t} $\ast$}]{profile}
+\end{DoxyParamCaption}
+)}\label{a00097_a5bb651c97109287f36481c70c4096d02_a5bb651c97109287f36481c70c4096d02}
 
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
+
+取得已经发送的字节数 
+
+
+\begin{DoxyParams}{参数}
+{\em profile} & kloop\+\_\+profile\+\_\+t实例 \\
 \hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+已经发送的字节数 
+\end{DoxyReturn}

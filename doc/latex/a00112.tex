@@ -1,141 +1,68 @@
-\hypertarget{a00112}{}\section{广播}
-\label{a00112}\index{广播@{广播}}
-
-
-广播域  
-
-
+\hypertarget{a00112}{}\section{E\+:/knet-\/git/knet/knet/rpc\+\_\+object.h 文件参考}
+\label{a00112}\index{E\+:/knet-\/git/knet/knet/rpc\+\_\+object.\+h@{E\+:/knet-\/git/knet/knet/rpc\+\_\+object.\+h}}
+{\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}rpc\+\_\+object\+\_\+api.\+h\char`\"{}}\\*
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00056_a1b551151864af85fa6cce57058153d04_a1b551151864af85fa6cce57058153d04}{kbroadcast\+\_\+t} $\ast$ \hyperlink{a00112_ga41a1258d2f4ae75120f26ab7f2326111_ga41a1258d2f4ae75120f26ab7f2326111}{knet\+\_\+broadcast\+\_\+create} ()
-\begin{DoxyCompactList}\small\item\em 创建广播域 \end{DoxyCompactList}\item 
-void \hyperlink{a00112_ga4b13b2545278c2324f4171ef0bbf990a_ga4b13b2545278c2324f4171ef0bbf990a}{knet\+\_\+broadcast\+\_\+destroy} (\hyperlink{a00056_a1b551151864af85fa6cce57058153d04_a1b551151864af85fa6cce57058153d04}{kbroadcast\+\_\+t} $\ast$broadcast)
-\begin{DoxyCompactList}\small\item\em 销毁广播域 \end{DoxyCompactList}\item 
-\hyperlink{a00056_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$ \hyperlink{a00112_ga1355d3863db663680b1c74363d3a5745_ga1355d3863db663680b1c74363d3a5745}{knet\+\_\+broadcast\+\_\+join} (\hyperlink{a00056_a1b551151864af85fa6cce57058153d04_a1b551151864af85fa6cce57058153d04}{kbroadcast\+\_\+t} $\ast$broadcast, \hyperlink{a00056_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
-\begin{DoxyCompactList}\small\item\em 加入广播域 \end{DoxyCompactList}\item 
-int \hyperlink{a00112_ga3bb02208a76f18bb2eee61955b3781cd_ga3bb02208a76f18bb2eee61955b3781cd}{knet\+\_\+broadcast\+\_\+leave} (\hyperlink{a00056_a1b551151864af85fa6cce57058153d04_a1b551151864af85fa6cce57058153d04}{kbroadcast\+\_\+t} $\ast$broadcast, \hyperlink{a00056_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$channel\+\_\+ref)
-\begin{DoxyCompactList}\small\item\em 离开广播域 \end{DoxyCompactList}\item 
-int \hyperlink{a00112_gabf0b20b2490b3508e58a77314812f1a5_gabf0b20b2490b3508e58a77314812f1a5}{knet\+\_\+broadcast\+\_\+get\+\_\+count} (\hyperlink{a00056_a1b551151864af85fa6cce57058153d04_a1b551151864af85fa6cce57058153d04}{kbroadcast\+\_\+t} $\ast$broadcast)
-\begin{DoxyCompactList}\small\item\em 取得广播域内管道数量 \end{DoxyCompactList}\item 
-int \hyperlink{a00112_gafd3ac5d785687d729047a51724104060_gafd3ac5d785687d729047a51724104060}{knet\+\_\+broadcast\+\_\+write} (\hyperlink{a00056_a1b551151864af85fa6cce57058153d04_a1b551151864af85fa6cce57058153d04}{kbroadcast\+\_\+t} $\ast$broadcast, char $\ast$buffer, uint32\+\_\+t size)
-\begin{DoxyCompactList}\small\item\em 广播 \end{DoxyCompactList}\end{DoxyCompactItemize}
+uint16\+\_\+t \hyperlink{a00112_aaa8a155df38de3bbf2a876b94686d195_aaa8a155df38de3bbf2a876b94686d195}{krpc\+\_\+number\+\_\+get\+\_\+marshal\+\_\+size} (\hyperlink{a00066_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
+\begin{DoxyCompactList}\small\item\em 获取数字对象序列化长度 \end{DoxyCompactList}\item 
+int \hyperlink{a00112_af0d124108915f859d85fccd58facf12f_af0d124108915f859d85fccd58facf12f}{krpc\+\_\+string\+\_\+set\+\_\+size} (\hyperlink{a00066_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o, uint16\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em 设置字符串长度 \end{DoxyCompactList}\item 
+void \hyperlink{a00112_a13be7946c84baeebe93977ef511e125f_a13be7946c84baeebe93977ef511e125f}{krpc\+\_\+vector\+\_\+enlarge} (\hyperlink{a00066_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
+\begin{DoxyCompactList}\small\item\em 扩展数组 \end{DoxyCompactList}\item 
+void \hyperlink{a00112_a79b7c0edd0ee7a8c462d19881589f701_a79b7c0edd0ee7a8c462d19881589f701}{hash\+\_\+value\+\_\+dtor} (void $\ast$v)
+\begin{DoxyCompactList}\small\item\em 表值销毁函数 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
-
-\subsection{详细描述}
-广播域 
-
-
-\begin{DoxyPre}
-管道可以加入广播域，加入后通过knet\_broadcast\_write方法可以发送数据到所有已经加入域内的管道.
-调用knet\_broadcast\_create创建一个广播域，knet\_broadcast\_destroy销毁广播域.\end{DoxyPre}
-
-
-
-\begin{DoxyPre}knet\_broadcast\_join加入一个广播域，knet\_broadcast\_join函数返回时创建了一个新的管道引用.\end{DoxyPre}
-
-
-
-\begin{DoxyPre}调用knet\_broadcast\_leave时应该使用这个返回值而不是使用knet\_broadcast\_join的第二个参数，新创建
-的管道引用会提升管道的引用计数，如果你关闭了这个管道你可以通过调用knet\_broadcast\_leave减少管
-道的引用计数，从而可以让kloop\_t真正销毁管道.\end{DoxyPre}
-
-
-
-\begin{DoxyPre}调用knet\_broadcast\_get\_count可以得知广播域内的管道引用数量，调用knet\_broadcast\_write发起一个
-广播操作，所有域内管道都会收到你广播的数据.
-\end{DoxyPre}
- 
 
 \subsection{函数说明}
-\hypertarget{a00112_ga41a1258d2f4ae75120f26ab7f2326111_ga41a1258d2f4ae75120f26ab7f2326111}{}\index{广播@{广播}!knet\+\_\+broadcast\+\_\+create@{knet\+\_\+broadcast\+\_\+create}}
-\index{knet\+\_\+broadcast\+\_\+create@{knet\+\_\+broadcast\+\_\+create}!广播@{广播}}
-\subsubsection[{knet\+\_\+broadcast\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kbroadcast\+\_\+t}$\ast$ knet\+\_\+broadcast\+\_\+create (
+\hypertarget{a00112_a79b7c0edd0ee7a8c462d19881589f701_a79b7c0edd0ee7a8c462d19881589f701}{}\index{rpc\+\_\+object.\+h@{rpc\+\_\+object.\+h}!hash\+\_\+value\+\_\+dtor@{hash\+\_\+value\+\_\+dtor}}
+\index{hash\+\_\+value\+\_\+dtor@{hash\+\_\+value\+\_\+dtor}!rpc\+\_\+object.\+h@{rpc\+\_\+object.\+h}}
+\subsubsection[{hash\+\_\+value\+\_\+dtor}]{\setlength{\rightskip}{0pt plus 5cm}void hash\+\_\+value\+\_\+dtor (
 \begin{DoxyParamCaption}
-{}
+\item[{void $\ast$}]{v}
 \end{DoxyParamCaption}
-)}\label{a00112_ga41a1258d2f4ae75120f26ab7f2326111_ga41a1258d2f4ae75120f26ab7f2326111}
+)}\label{a00112_a79b7c0edd0ee7a8c462d19881589f701_a79b7c0edd0ee7a8c462d19881589f701}
 
 
-创建广播域 
+表值销毁函数 
 
-\begin{DoxyReturn}{返回}
-kbroadcast\+\_\+t实例 
-\end{DoxyReturn}
-\hypertarget{a00112_ga4b13b2545278c2324f4171ef0bbf990a_ga4b13b2545278c2324f4171ef0bbf990a}{}\index{广播@{广播}!knet\+\_\+broadcast\+\_\+destroy@{knet\+\_\+broadcast\+\_\+destroy}}
-\index{knet\+\_\+broadcast\+\_\+destroy@{knet\+\_\+broadcast\+\_\+destroy}!广播@{广播}}
-\subsubsection[{knet\+\_\+broadcast\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+broadcast\+\_\+destroy (
+\hypertarget{a00112_aaa8a155df38de3bbf2a876b94686d195_aaa8a155df38de3bbf2a876b94686d195}{}\index{rpc\+\_\+object.\+h@{rpc\+\_\+object.\+h}!krpc\+\_\+number\+\_\+get\+\_\+marshal\+\_\+size@{krpc\+\_\+number\+\_\+get\+\_\+marshal\+\_\+size}}
+\index{krpc\+\_\+number\+\_\+get\+\_\+marshal\+\_\+size@{krpc\+\_\+number\+\_\+get\+\_\+marshal\+\_\+size}!rpc\+\_\+object.\+h@{rpc\+\_\+object.\+h}}
+\subsubsection[{krpc\+\_\+number\+\_\+get\+\_\+marshal\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}uint16\+\_\+t krpc\+\_\+number\+\_\+get\+\_\+marshal\+\_\+size (
 \begin{DoxyParamCaption}
-\item[{{\bf kbroadcast\+\_\+t} $\ast$}]{broadcast}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
 \end{DoxyParamCaption}
-)}\label{a00112_ga4b13b2545278c2324f4171ef0bbf990a_ga4b13b2545278c2324f4171ef0bbf990a}
+)}\label{a00112_aaa8a155df38de3bbf2a876b94686d195_aaa8a155df38de3bbf2a876b94686d195}
 
 
-销毁广播域 
-
-销毁的同时会将所有还在域内的管道引用销毁 
-\begin{DoxyParams}{参数}
-{\em broadcast} & kbroadcast\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\hypertarget{a00112_gabf0b20b2490b3508e58a77314812f1a5_gabf0b20b2490b3508e58a77314812f1a5}{}\index{广播@{广播}!knet\+\_\+broadcast\+\_\+get\+\_\+count@{knet\+\_\+broadcast\+\_\+get\+\_\+count}}
-\index{knet\+\_\+broadcast\+\_\+get\+\_\+count@{knet\+\_\+broadcast\+\_\+get\+\_\+count}!广播@{广播}}
-\subsubsection[{knet\+\_\+broadcast\+\_\+get\+\_\+count}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+broadcast\+\_\+get\+\_\+count (
-\begin{DoxyParamCaption}
-\item[{{\bf kbroadcast\+\_\+t} $\ast$}]{broadcast}
-\end{DoxyParamCaption}
-)}\label{a00112_gabf0b20b2490b3508e58a77314812f1a5_gabf0b20b2490b3508e58a77314812f1a5}
-
-
-取得广播域内管道数量 
+获取数字对象序列化长度 
 
 
 \begin{DoxyParams}{参数}
-{\em broadcast} & kbroadcast\+\_\+t实例 \\
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{返回}
-管道数量 
+数字对象序列化长度 
 \end{DoxyReturn}
-\hypertarget{a00112_ga1355d3863db663680b1c74363d3a5745_ga1355d3863db663680b1c74363d3a5745}{}\index{广播@{广播}!knet\+\_\+broadcast\+\_\+join@{knet\+\_\+broadcast\+\_\+join}}
-\index{knet\+\_\+broadcast\+\_\+join@{knet\+\_\+broadcast\+\_\+join}!广播@{广播}}
-\subsubsection[{knet\+\_\+broadcast\+\_\+join}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kchannel\+\_\+ref\+\_\+t}$\ast$ knet\+\_\+broadcast\+\_\+join (
+\hypertarget{a00112_af0d124108915f859d85fccd58facf12f_af0d124108915f859d85fccd58facf12f}{}\index{rpc\+\_\+object.\+h@{rpc\+\_\+object.\+h}!krpc\+\_\+string\+\_\+set\+\_\+size@{krpc\+\_\+string\+\_\+set\+\_\+size}}
+\index{krpc\+\_\+string\+\_\+set\+\_\+size@{krpc\+\_\+string\+\_\+set\+\_\+size}!rpc\+\_\+object.\+h@{rpc\+\_\+object.\+h}}
+\subsubsection[{krpc\+\_\+string\+\_\+set\+\_\+size}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+string\+\_\+set\+\_\+size (
 \begin{DoxyParamCaption}
-\item[{{\bf kbroadcast\+\_\+t} $\ast$}]{broadcast, }
-\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o, }
+\item[{uint16\+\_\+t}]{size}
 \end{DoxyParamCaption}
-)}\label{a00112_ga1355d3863db663680b1c74363d3a5745_ga1355d3863db663680b1c74363d3a5745}
+)}\label{a00112_af0d124108915f859d85fccd58facf12f_af0d124108915f859d85fccd58facf12f}
 
 
-加入广播域 
+设置字符串长度 
 
-加入成功会生成一个新的引用 
+
 \begin{DoxyParams}{参数}
-{\em broadcast} & kbroadcast\+\_\+t实例 \\
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
 \hline
-{\em channel\+\_\+ref} & kchannel\+\_\+ref\+\_\+t \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-kchannel\+\_\+ref\+\_\+t实例，新的在广播域内的引用 
-\end{DoxyReturn}
-\hypertarget{a00112_ga3bb02208a76f18bb2eee61955b3781cd_ga3bb02208a76f18bb2eee61955b3781cd}{}\index{广播@{广播}!knet\+\_\+broadcast\+\_\+leave@{knet\+\_\+broadcast\+\_\+leave}}
-\index{knet\+\_\+broadcast\+\_\+leave@{knet\+\_\+broadcast\+\_\+leave}!广播@{广播}}
-\subsubsection[{knet\+\_\+broadcast\+\_\+leave}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+broadcast\+\_\+leave (
-\begin{DoxyParamCaption}
-\item[{{\bf kbroadcast\+\_\+t} $\ast$}]{broadcast, }
-\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{channel\+\_\+ref}
-\end{DoxyParamCaption}
-)}\label{a00112_ga3bb02208a76f18bb2eee61955b3781cd_ga3bb02208a76f18bb2eee61955b3781cd}
-
-
-离开广播域 
-
-函数返回后管道引用已经被销毁，不要尝试再次访问这个引用 
-\begin{DoxyParams}{参数}
-{\em broadcast} & kbroadcast\+\_\+t实例 \\
-\hline
-{\em channel\+\_\+ref} & kchannel\+\_\+ref\+\_\+t实例，由knet\+\_\+broadcast\+\_\+join()返回 \\
+{\em size} & 长度 \\
 \hline
 \end{DoxyParams}
 
@@ -145,28 +72,19 @@ kchannel\+\_\+ref\+\_\+t实例，新的在广播域内的引用
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00112_gafd3ac5d785687d729047a51724104060_gafd3ac5d785687d729047a51724104060}{}\index{广播@{广播}!knet\+\_\+broadcast\+\_\+write@{knet\+\_\+broadcast\+\_\+write}}
-\index{knet\+\_\+broadcast\+\_\+write@{knet\+\_\+broadcast\+\_\+write}!广播@{广播}}
-\subsubsection[{knet\+\_\+broadcast\+\_\+write}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+broadcast\+\_\+write (
+\hypertarget{a00112_a13be7946c84baeebe93977ef511e125f_a13be7946c84baeebe93977ef511e125f}{}\index{rpc\+\_\+object.\+h@{rpc\+\_\+object.\+h}!krpc\+\_\+vector\+\_\+enlarge@{krpc\+\_\+vector\+\_\+enlarge}}
+\index{krpc\+\_\+vector\+\_\+enlarge@{krpc\+\_\+vector\+\_\+enlarge}!rpc\+\_\+object.\+h@{rpc\+\_\+object.\+h}}
+\subsubsection[{krpc\+\_\+vector\+\_\+enlarge}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+vector\+\_\+enlarge (
 \begin{DoxyParamCaption}
-\item[{{\bf kbroadcast\+\_\+t} $\ast$}]{broadcast, }
-\item[{char $\ast$}]{buffer, }
-\item[{uint32\+\_\+t}]{size}
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
 \end{DoxyParamCaption}
-)}\label{a00112_gafd3ac5d785687d729047a51724104060_gafd3ac5d785687d729047a51724104060}
+)}\label{a00112_a13be7946c84baeebe93977ef511e125f_a13be7946c84baeebe93977ef511e125f}
 
 
-广播 
+扩展数组 
 
 
 \begin{DoxyParams}{参数}
-{\em broadcast} & kbroadcast\+\_\+t实例 \\
-\hline
-{\em buffer} & 缓冲区指针 \\
-\hline
-{\em size} & 缓冲区长度 \\
+{\em o} & krpc\+\_\+object\+\_\+t实例 \\
 \hline
 \end{DoxyParams}
-\begin{DoxyReturn}{返回}
-发送成功管道的数量 
-\end{DoxyReturn}

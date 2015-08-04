@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/loop_balancer_api.h 源文件</title>
+<title>knet: E:/knet-git/knet/knet/framework_raiser.h 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">loop_balancer_api.h</div>  </div>
+<div class="title">framework_raiser.h</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00074.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
@@ -105,7 +105,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS IS&quot; AND</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> * DISCLAIMED. IN NO EVENT SHALL dennis wang BE LIABLE FOR ANY</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> * DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> * (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment"> * LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND</span></div>
@@ -114,38 +114,45 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef LOOP_BALANCER_API_H</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define LOOP_BALANCER_API_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef FRAMEWORK_RAISER_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define FRAMEWORK_RAISER_H</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00051.html">config.h</a>&quot;</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00066.html">config.h</a>&quot;</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00028.html">kloop_balancer_t</a>* <a class="code" href="a00106_ga4211b2d32e1a7447e479b9727dce61d4.html#ga4211b2d32e1a7447e479b9727dce61d4">knet_loop_balancer_create</a>();</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00106_ga6fcdd378027b0705cd2e279601985609.html#ga6fcdd378027b0705cd2e279601985609">knet_loop_balancer_destroy</a>(<a class="code" href="a00028.html">kloop_balancer_t</a>* balancer);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00106_ga647f8a2d39c97c8759f8768ebc612b98.html#ga647f8a2d39c97c8759f8768ebc612b98">knet_loop_balancer_attach</a>(<a class="code" href="a00028.html">kloop_balancer_t</a>* balancer, <a class="code" href="a00032.html">kloop_t</a>* <a class="code" href="a00031_a373dc3dca662cc251af21736cdcbf8b8.html#a373dc3dca662cc251af21736cdcbf8b8">loop</a>);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00106_ga705fd81a537d18cfe1b66df9d15b6c4e.html#ga705fd81a537d18cfe1b66df9d15b6c4e">knet_loop_balancer_detach</a>(<a class="code" href="a00028.html">kloop_balancer_t</a>* balancer, <a class="code" href="a00032.html">kloop_t</a>* <a class="code" href="a00031_a373dc3dca662cc251af21736cdcbf8b8.html#a373dc3dca662cc251af21736cdcbf8b8">loop</a>);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00106_ga476aeb9c1ab507c2af581b9ceb66b261.html#ga476aeb9c1ab507c2af581b9ceb66b261">knet_loop_balancer_set_data</a>(<a class="code" href="a00028.html">kloop_balancer_t</a>* balancer, <span class="keywordtype">void</span>* data);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span>* <a class="code" href="a00106_gaf4fab99f76529f2381418ff4f0692a68.html#gaf4fab99f76529f2381418ff4f0692a68">knet_loop_balancer_get_data</a>(<a class="code" href="a00028.html">kloop_balancer_t</a>* balancer);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* LOOP_BALANCER_API_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="a00031_a373dc3dca662cc251af21736cdcbf8b8_html_a373dc3dca662cc251af21736cdcbf8b8"><div class="ttname"><a href="a00031_a373dc3dca662cc251af21736cdcbf8b8.html#a373dc3dca662cc251af21736cdcbf8b8">_loop_profile_t::loop</a></div><div class="ttdeci">kloop_t * loop</div><div class="ttdef"><b>Definition:</b> loop_profile.c:31</div></div>
-<div class="ttc" id="a00032_html"><div class="ttname"><a href="a00032.html">_loop_t</a></div><div class="ttdef"><b>Definition:</b> loop.c:36</div></div>
-<div class="ttc" id="a00106_ga476aeb9c1ab507c2af581b9ceb66b261_html_ga476aeb9c1ab507c2af581b9ceb66b261"><div class="ttname"><a href="a00106_ga476aeb9c1ab507c2af581b9ceb66b261.html#ga476aeb9c1ab507c2af581b9ceb66b261">knet_loop_balancer_set_data</a></div><div class="ttdeci">void knet_loop_balancer_set_data(kloop_balancer_t *balancer, void *data)</div><div class="ttdoc">设置用户数据 </div><div class="ttdef"><b>Definition:</b> loop_balancer.c:152</div></div>
-<div class="ttc" id="a00106_gaf4fab99f76529f2381418ff4f0692a68_html_gaf4fab99f76529f2381418ff4f0692a68"><div class="ttname"><a href="a00106_gaf4fab99f76529f2381418ff4f0692a68.html#gaf4fab99f76529f2381418ff4f0692a68">knet_loop_balancer_get_data</a></div><div class="ttdeci">void * knet_loop_balancer_get_data(kloop_balancer_t *balancer)</div><div class="ttdoc">取得用户数据 </div><div class="ttdef"><b>Definition:</b> loop_balancer.c:158</div></div>
-<div class="ttc" id="a00106_ga4211b2d32e1a7447e479b9727dce61d4_html_ga4211b2d32e1a7447e479b9727dce61d4"><div class="ttname"><a href="a00106_ga4211b2d32e1a7447e479b9727dce61d4.html#ga4211b2d32e1a7447e479b9727dce61d4">knet_loop_balancer_create</a></div><div class="ttdeci">kloop_balancer_t * knet_loop_balancer_create()</div><div class="ttdoc">创建负载均衡器 </div><div class="ttdef"><b>Definition:</b> loop_balancer.c:42</div></div>
-<div class="ttc" id="a00106_ga647f8a2d39c97c8759f8768ebc612b98_html_ga647f8a2d39c97c8759f8768ebc612b98"><div class="ttname"><a href="a00106_ga647f8a2d39c97c8759f8768ebc612b98.html#ga647f8a2d39c97c8759f8768ebc612b98">knet_loop_balancer_attach</a></div><div class="ttdeci">int knet_loop_balancer_attach(kloop_balancer_t *balancer, kloop_t *loop)</div><div class="ttdoc">添加事件循环到负载均衡器 </div><div class="ttdef"><b>Definition:</b> loop_balancer.c:65</div></div>
-<div class="ttc" id="a00028_html"><div class="ttname"><a href="a00028.html">_loop_balancer_t</a></div><div class="ttdef"><b>Definition:</b> loop_balancer.c:36</div></div>
-<div class="ttc" id="a00051_html"><div class="ttname"><a href="a00051.html">config.h</a></div></div>
-<div class="ttc" id="a00106_ga6fcdd378027b0705cd2e279601985609_html_ga6fcdd378027b0705cd2e279601985609"><div class="ttname"><a href="a00106_ga6fcdd378027b0705cd2e279601985609.html#ga6fcdd378027b0705cd2e279601985609">knet_loop_balancer_destroy</a></div><div class="ttdeci">void knet_loop_balancer_destroy(kloop_balancer_t *balancer)</div><div class="ttdoc">销毁负载均衡器 </div><div class="ttdef"><b>Definition:</b> loop_balancer.c:53</div></div>
-<div class="ttc" id="a00106_ga705fd81a537d18cfe1b66df9d15b6c4e_html_ga705fd81a537d18cfe1b66df9d15b6c4e"><div class="ttname"><a href="a00106_ga705fd81a537d18cfe1b66df9d15b6c4e.html#ga705fd81a537d18cfe1b66df9d15b6c4e">knet_loop_balancer_detach</a></div><div class="ttdeci">int knet_loop_balancer_detach(kloop_balancer_t *balancer, kloop_t *loop)</div><div class="ttdoc">从负载均衡器内删除事件循环 </div><div class="ttdef"><b>Definition:</b> loop_balancer.c:91</div></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<a class="code" href="a00012.html">kframework_raiser_t</a>* <a class="code" href="a00074_a2b6bd6bd9b9c60ab24eab0c0700bc855.html#a2b6bd6bd9b9c60ab24eab0c0700bc855">knet_framework_raiser_create</a>(<a class="code" href="a00013.html">kframework_t</a>* f, <a class="code" href="a00033.html">kloop_t</a>* loop);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00074_abafbab78ce889f71a99d7200977507a2.html#abafbab78ce889f71a99d7200977507a2">knet_framework_raiser_destroy</a>(<a class="code" href="a00012.html">kframework_raiser_t</a>* raiser);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00074_ad6b3a3a742cf17b521c85962b693efc5.html#ad6b3a3a742cf17b521c85962b693efc5">knet_framework_raiser_start</a>(<a class="code" href="a00012.html">kframework_raiser_t</a>* raiser);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00074_a6e9cfd9d165129b0099e929885aa78e5.html#a6e9cfd9d165129b0099e929885aa78e5">knet_framework_raiser_stop</a>(<a class="code" href="a00012.html">kframework_raiser_t</a>* raiser);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00074_afcada6a8c7bb6d0d91c55df37352f5fb.html#afcada6a8c7bb6d0d91c55df37352f5fb">knet_framework_raiser_wait_for_stop</a>(<a class="code" href="a00012.html">kframework_raiser_t</a>* raiser);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00074_a1fa517b4b3e577a30f12f5b77dfaa9a3.html#a1fa517b4b3e577a30f12f5b77dfaa9a3">knet_framework_raiser_new_acceptor</a>(<a class="code" href="a00012.html">kframework_raiser_t</a>* raiser,</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <a class="code" href="a00009.html">kframework_acceptor_config_t</a>* c);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keywordtype">int</span> <a class="code" href="a00074_af58dbe8c5764d42ecb712d4a93391d11.html#af58dbe8c5764d42ecb712d4a93391d11">knet_framework_raiser_new_connector</a>(<a class="code" href="a00012.html">kframework_raiser_t</a>* raiser,</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <a class="code" href="a00011.html">kframework_connector_config_t</a>* c);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* FRAMEWORK_RAISER_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a00074_abafbab78ce889f71a99d7200977507a2_html_abafbab78ce889f71a99d7200977507a2"><div class="ttname"><a href="a00074_abafbab78ce889f71a99d7200977507a2.html#abafbab78ce889f71a99d7200977507a2">knet_framework_raiser_destroy</a></div><div class="ttdeci">void knet_framework_raiser_destroy(kframework_raiser_t *raiser)</div><div class="ttdoc">销毁网络连接发起者 </div><div class="ttdef"><b>Definition:</b> framework_raiser.c:64</div></div>
+<div class="ttc" id="a00074_af58dbe8c5764d42ecb712d4a93391d11_html_af58dbe8c5764d42ecb712d4a93391d11"><div class="ttname"><a href="a00074_af58dbe8c5764d42ecb712d4a93391d11.html#af58dbe8c5764d42ecb712d4a93391d11">knet_framework_raiser_new_connector</a></div><div class="ttdeci">int knet_framework_raiser_new_connector(kframework_raiser_t *raiser, kframework_connector_config_t *c)</div><div class="ttdoc">启动一个新的连接器 </div><div class="ttdef"><b>Definition:</b> framework_raiser.c:180</div></div>
+<div class="ttc" id="a00074_a2b6bd6bd9b9c60ab24eab0c0700bc855_html_a2b6bd6bd9b9c60ab24eab0c0700bc855"><div class="ttname"><a href="a00074_a2b6bd6bd9b9c60ab24eab0c0700bc855.html#a2b6bd6bd9b9c60ab24eab0c0700bc855">knet_framework_raiser_create</a></div><div class="ttdeci">kframework_raiser_t * knet_framework_raiser_create(kframework_t *f, kloop_t *loop)</div><div class="ttdoc">建立网络连接发起者(监听器/连接器) </div><div class="ttdef"><b>Definition:</b> framework_raiser.c:50</div></div>
+<div class="ttc" id="a00074_a1fa517b4b3e577a30f12f5b77dfaa9a3_html_a1fa517b4b3e577a30f12f5b77dfaa9a3"><div class="ttname"><a href="a00074_a1fa517b4b3e577a30f12f5b77dfaa9a3.html#a1fa517b4b3e577a30f12f5b77dfaa9a3">knet_framework_raiser_new_acceptor</a></div><div class="ttdeci">int knet_framework_raiser_new_acceptor(kframework_raiser_t *raiser, kframework_acceptor_config_t *c)</div><div class="ttdoc">启动一个新的监听器 </div><div class="ttdef"><b>Definition:</b> framework_raiser.c:166</div></div>
+<div class="ttc" id="a00009_html"><div class="ttname"><a href="a00009.html">_framework_acceptor_config_t</a></div><div class="ttdef"><b>Definition:</b> framework_config.c:29</div></div>
+<div class="ttc" id="a00012_html"><div class="ttname"><a href="a00012.html">_framework_raiser_t</a></div><div class="ttdef"><b>Definition:</b> framework_raiser.c:44</div></div>
+<div class="ttc" id="a00074_a6e9cfd9d165129b0099e929885aa78e5_html_a6e9cfd9d165129b0099e929885aa78e5"><div class="ttname"><a href="a00074_a6e9cfd9d165129b0099e929885aa78e5.html#a6e9cfd9d165129b0099e929885aa78e5">knet_framework_raiser_stop</a></div><div class="ttdeci">void knet_framework_raiser_stop(kframework_raiser_t *raiser)</div><div class="ttdoc">关闭网络连接发起者 </div><div class="ttdef"><b>Definition:</b> framework_raiser.c:150</div></div>
+<div class="ttc" id="a00066_html"><div class="ttname"><a href="a00066.html">config.h</a></div></div>
+<div class="ttc" id="a00013_html"><div class="ttname"><a href="a00013.html">_framework_t</a></div><div class="ttdef"><b>Definition:</b> framework.c:35</div></div>
+<div class="ttc" id="a00011_html"><div class="ttname"><a href="a00011.html">_framework_connector_config_t</a></div><div class="ttdef"><b>Definition:</b> framework_config.c:40</div></div>
+<div class="ttc" id="a00074_afcada6a8c7bb6d0d91c55df37352f5fb_html_afcada6a8c7bb6d0d91c55df37352f5fb"><div class="ttname"><a href="a00074_afcada6a8c7bb6d0d91c55df37352f5fb.html#afcada6a8c7bb6d0d91c55df37352f5fb">knet_framework_raiser_wait_for_stop</a></div><div class="ttdeci">void knet_framework_raiser_wait_for_stop(kframework_raiser_t *raiser)</div><div class="ttdoc">等待网络连接发起者 </div><div class="ttdef"><b>Definition:</b> framework_raiser.c:159</div></div>
+<div class="ttc" id="a00033_html"><div class="ttname"><a href="a00033.html">_loop_t</a></div><div class="ttdef"><b>Definition:</b> loop.c:36</div></div>
+<div class="ttc" id="a00074_ad6b3a3a742cf17b521c85962b693efc5_html_ad6b3a3a742cf17b521c85962b693efc5"><div class="ttname"><a href="a00074_ad6b3a3a742cf17b521c85962b693efc5.html#ad6b3a3a742cf17b521c85962b693efc5">knet_framework_raiser_start</a></div><div class="ttdeci">int knet_framework_raiser_start(kframework_raiser_t *raiser)</div><div class="ttdoc">启动网络连接发起者 </div><div class="ttdef"><b>Definition:</b> framework_raiser.c:112</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 22日 星期三 10:36:36 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 八月 4日 星期二 14:40:23 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

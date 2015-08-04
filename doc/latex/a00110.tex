@@ -1,42 +1,50 @@
-\hypertarget{a00110}{}\section{E\+:/knet-\/git/knet/knet/vrouter\+\_\+api.h 文件参考}
-\label{a00110}\index{E\+:/knet-\/git/knet/knet/vrouter\+\_\+api.\+h@{E\+:/knet-\/git/knet/knet/vrouter\+\_\+api.\+h}}
+\hypertarget{a00110}{}\section{E\+:/knet-\/git/knet/knet/rpc\+\_\+api.h 文件参考}
+\label{a00110}\index{E\+:/knet-\/git/knet/knet/rpc\+\_\+api.\+h@{E\+:/knet-\/git/knet/knet/rpc\+\_\+api.\+h}}
 {\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\\*
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00056_a9863a6202df1fb40e2b32c673ad93267_a9863a6202df1fb40e2b32c673ad93267}{kvrouter\+\_\+t} $\ast$ \hyperlink{a00124_gac2a99e706273f22db2ea363b1700bfab_gac2a99e706273f22db2ea363b1700bfab}{knet\+\_\+vrouter\+\_\+create} ()
-\begin{DoxyCompactList}\small\item\em 建立虚拟连接路由器 \end{DoxyCompactList}\item 
-void \hyperlink{a00124_gad0660abac611870c1255dcfe9d36f67e_gad0660abac611870c1255dcfe9d36f67e}{knet\+\_\+vrouter\+\_\+destroy} (\hyperlink{a00056_a9863a6202df1fb40e2b32c673ad93267_a9863a6202df1fb40e2b32c673ad93267}{kvrouter\+\_\+t} $\ast$router)
-\begin{DoxyCompactList}\small\item\em 销毁 return kvrouter\+\_\+t实例 \end{DoxyCompactList}\item 
-int \hyperlink{a00124_ga7256979701c32356201e853b7f3df1ca_ga7256979701c32356201e853b7f3df1ca}{knet\+\_\+vrouter\+\_\+add\+\_\+wire} (\hyperlink{a00056_a9863a6202df1fb40e2b32c673ad93267_a9863a6202df1fb40e2b32c673ad93267}{kvrouter\+\_\+t} $\ast$router, \hyperlink{a00056_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$c1, \hyperlink{a00056_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$c2)
-\begin{DoxyCompactList}\small\item\em 建立一条转发转发关系 \end{DoxyCompactList}\item 
-int \hyperlink{a00124_gaa5052bac7f443e497fcc042f13026bfc_gaa5052bac7f443e497fcc042f13026bfc}{knet\+\_\+vrouter\+\_\+remove\+\_\+wire} (\hyperlink{a00056_a9863a6202df1fb40e2b32c673ad93267_a9863a6202df1fb40e2b32c673ad93267}{kvrouter\+\_\+t} $\ast$router, \hyperlink{a00056_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$c)
-\begin{DoxyCompactList}\small\item\em 删除一条转发关系 \end{DoxyCompactList}\item 
-int \hyperlink{a00124_ga4779bbc1a3db84c6439c872ec6ff4954_ga4779bbc1a3db84c6439c872ec6ff4954}{knet\+\_\+vrouter\+\_\+route} (\hyperlink{a00056_a9863a6202df1fb40e2b32c673ad93267_a9863a6202df1fb40e2b32c673ad93267}{kvrouter\+\_\+t} $\ast$router, \hyperlink{a00056_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$c, void $\ast$buffer, int size)
-\begin{DoxyCompactList}\small\item\em 转发数据 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{a00066_a1e414ac6f6de24462ccf81e10f63428d_a1e414ac6f6de24462ccf81e10f63428d}{krpc\+\_\+t} $\ast$ \hyperlink{a00110_a5d55f838d222f44965d99eac9a0381c1_a5d55f838d222f44965d99eac9a0381c1}{krpc\+\_\+create} ()
+\begin{DoxyCompactList}\small\item\em R\+P\+C框架提供了一套底层\+R\+P\+C序列化及反序列化的基础，开发者不应该直接调用这些\+A\+P\+I，应使用代码生成工具 提供的代码框架来进行\+R\+P\+C操作，生成的代码框架屏蔽了所有烦人的细节，使用起来也会比直接调用这些\+A\+P\+I更 方便. \end{DoxyCompactList}\item 
+void \hyperlink{a00110_ab07c8ccf1abc99b85f455a2f4280ac76_ab07c8ccf1abc99b85f455a2f4280ac76}{krpc\+\_\+destroy} (\hyperlink{a00066_a1e414ac6f6de24462ccf81e10f63428d_a1e414ac6f6de24462ccf81e10f63428d}{krpc\+\_\+t} $\ast$rpc)
+\begin{DoxyCompactList}\small\item\em 销毁\+R\+P\+C \end{DoxyCompactList}\item 
+int \hyperlink{a00110_aa12a9874d2b0308994c3fa651cdbbd61_aa12a9874d2b0308994c3fa651cdbbd61}{krpc\+\_\+add\+\_\+cb} (\hyperlink{a00066_a1e414ac6f6de24462ccf81e10f63428d_a1e414ac6f6de24462ccf81e10f63428d}{krpc\+\_\+t} $\ast$rpc, uint16\+\_\+t rpcid, \hyperlink{a00066_a06bb708c1b97445d3a5d0c1b32ad2ab6_a06bb708c1b97445d3a5d0c1b32ad2ab6}{krpc\+\_\+cb\+\_\+t} cb)
+\begin{DoxyCompactList}\small\item\em 注册\+R\+P\+C调用回调函数 \end{DoxyCompactList}\item 
+int \hyperlink{a00110_a76529ccab5c6f0ada79cac791e299ef9_a76529ccab5c6f0ada79cac791e299ef9}{krpc\+\_\+del\+\_\+cb} (\hyperlink{a00066_a1e414ac6f6de24462ccf81e10f63428d_a1e414ac6f6de24462ccf81e10f63428d}{krpc\+\_\+t} $\ast$rpc, uint16\+\_\+t rpcid)
+\begin{DoxyCompactList}\small\item\em 删除注册过的\+R\+P\+C调用回调函数 \end{DoxyCompactList}\item 
+\hyperlink{a00066_a06bb708c1b97445d3a5d0c1b32ad2ab6_a06bb708c1b97445d3a5d0c1b32ad2ab6}{krpc\+\_\+cb\+\_\+t} \hyperlink{a00110_a7841a0b4c828efcb607a51bbdd9c9ab1_a7841a0b4c828efcb607a51bbdd9c9ab1}{krpc\+\_\+get\+\_\+cb} (\hyperlink{a00066_a1e414ac6f6de24462ccf81e10f63428d_a1e414ac6f6de24462ccf81e10f63428d}{krpc\+\_\+t} $\ast$rpc, uint16\+\_\+t rpcid)
+\begin{DoxyCompactList}\small\item\em 取得注册过的\+R\+P\+C调用回调函数 \end{DoxyCompactList}\item 
+int \hyperlink{a00110_ac583f7d7c3e3ecb9954530e8d0f6f5f1_ac583f7d7c3e3ecb9954530e8d0f6f5f1}{krpc\+\_\+proc} (\hyperlink{a00066_a1e414ac6f6de24462ccf81e10f63428d_a1e414ac6f6de24462ccf81e10f63428d}{krpc\+\_\+t} $\ast$rpc, \hyperlink{a00066_acc208c4c40c875eebbfef88f00fffacf_acc208c4c40c875eebbfef88f00fffacf}{kstream\+\_\+t} $\ast$stream)
+\begin{DoxyCompactList}\small\item\em 处理\+R\+P\+C调用，从数据流反序列化\+R\+P\+C调用，并调用回调函数 \end{DoxyCompactList}\item 
+int \hyperlink{a00110_a063313e66bd9a479b4d0a6295a5e665b_a063313e66bd9a479b4d0a6295a5e665b}{krpc\+\_\+call} (\hyperlink{a00066_a1e414ac6f6de24462ccf81e10f63428d_a1e414ac6f6de24462ccf81e10f63428d}{krpc\+\_\+t} $\ast$rpc, \hyperlink{a00066_acc208c4c40c875eebbfef88f00fffacf_acc208c4c40c875eebbfef88f00fffacf}{kstream\+\_\+t} $\ast$stream, uint16\+\_\+t rpcid, \hyperlink{a00066_a9c07dfc8c3b965f75b09f82fdb1bbb1e_a9c07dfc8c3b965f75b09f82fdb1bbb1e}{krpc\+\_\+object\+\_\+t} $\ast$o)
+\begin{DoxyCompactList}\small\item\em 发起\+R\+P\+C调用 \end{DoxyCompactList}\item 
+int \hyperlink{a00110_a5317bb571cb4d94bc56b83989c1b10c2_a5317bb571cb4d94bc56b83989c1b10c2}{krpc\+\_\+set\+\_\+encrypt\+\_\+cb} (\hyperlink{a00066_a1e414ac6f6de24462ccf81e10f63428d_a1e414ac6f6de24462ccf81e10f63428d}{krpc\+\_\+t} $\ast$rpc, \hyperlink{a00066_ae41a67cc07f8dff897ca978e03b1f2d7_ae41a67cc07f8dff897ca978e03b1f2d7}{krpc\+\_\+encrypt\+\_\+t} func)
+\begin{DoxyCompactList}\small\item\em 设置签名加密回调 \end{DoxyCompactList}\item 
+int \hyperlink{a00110_aa75ec66092e77639ca2cf2b5ad04c5db_aa75ec66092e77639ca2cf2b5ad04c5db}{krpc\+\_\+set\+\_\+decrypt\+\_\+cb} (\hyperlink{a00066_a1e414ac6f6de24462ccf81e10f63428d_a1e414ac6f6de24462ccf81e10f63428d}{krpc\+\_\+t} $\ast$rpc, \hyperlink{a00066_a5cf750f151c90f0589f68fe8c4421f1d_a5cf750f151c90f0589f68fe8c4421f1d}{krpc\+\_\+decrypt\+\_\+t} func)
+\begin{DoxyCompactList}\small\item\em 设置签名解密回调 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{函数说明}
-\hypertarget{a00124_ga7256979701c32356201e853b7f3df1ca_ga7256979701c32356201e853b7f3df1ca}{}\index{vrouter\+\_\+api.\+h@{vrouter\+\_\+api.\+h}!knet\+\_\+vrouter\+\_\+add\+\_\+wire@{knet\+\_\+vrouter\+\_\+add\+\_\+wire}}
-\index{knet\+\_\+vrouter\+\_\+add\+\_\+wire@{knet\+\_\+vrouter\+\_\+add\+\_\+wire}!vrouter\+\_\+api.\+h@{vrouter\+\_\+api.\+h}}
-\subsubsection[{knet\+\_\+vrouter\+\_\+add\+\_\+wire}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+vrouter\+\_\+add\+\_\+wire (
+\hypertarget{a00110_aa12a9874d2b0308994c3fa651cdbbd61_aa12a9874d2b0308994c3fa651cdbbd61}{}\index{rpc\+\_\+api.\+h@{rpc\+\_\+api.\+h}!krpc\+\_\+add\+\_\+cb@{krpc\+\_\+add\+\_\+cb}}
+\index{krpc\+\_\+add\+\_\+cb@{krpc\+\_\+add\+\_\+cb}!rpc\+\_\+api.\+h@{rpc\+\_\+api.\+h}}
+\subsubsection[{krpc\+\_\+add\+\_\+cb}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+add\+\_\+cb (
 \begin{DoxyParamCaption}
-\item[{{\bf kvrouter\+\_\+t} $\ast$}]{router, }
-\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{c1, }
-\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{c2}
+\item[{{\bf krpc\+\_\+t} $\ast$}]{rpc, }
+\item[{uint16\+\_\+t}]{rpcid, }
+\item[{{\bf krpc\+\_\+cb\+\_\+t}}]{cb}
 \end{DoxyParamCaption}
-)}\label{a00124_ga7256979701c32356201e853b7f3df1ca_ga7256979701c32356201e853b7f3df1ca}
+)}\label{a00110_aa12a9874d2b0308994c3fa651cdbbd61_aa12a9874d2b0308994c3fa651cdbbd61}
 
 
-建立一条转发转发关系 
+注册\+R\+P\+C调用回调函数 
 
 
 \begin{DoxyParams}{参数}
-{\em router} & kvrouter\+\_\+t实例 \\
+{\em rpc} & krpc\+\_\+t实例 \\
 \hline
-{\em c1} & kchannel\+\_\+ref\+\_\+t实例，源管道 \\
+{\em rpcid} & 回调\+I\+D \\
 \hline
-{\em c2} & kchannel\+\_\+ref\+\_\+t实例，目的管道 \\
+{\em cb} & 回调函数指针 \\
 \hline
 \end{DoxyParams}
 
@@ -46,48 +54,69 @@ int \hyperlink{a00124_ga4779bbc1a3db84c6439c872ec6ff4954_ga4779bbc1a3db84c6439c8
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00124_gac2a99e706273f22db2ea363b1700bfab_gac2a99e706273f22db2ea363b1700bfab}{}\index{vrouter\+\_\+api.\+h@{vrouter\+\_\+api.\+h}!knet\+\_\+vrouter\+\_\+create@{knet\+\_\+vrouter\+\_\+create}}
-\index{knet\+\_\+vrouter\+\_\+create@{knet\+\_\+vrouter\+\_\+create}!vrouter\+\_\+api.\+h@{vrouter\+\_\+api.\+h}}
-\subsubsection[{knet\+\_\+vrouter\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kvrouter\+\_\+t}$\ast$ knet\+\_\+vrouter\+\_\+create (
+\hypertarget{a00110_a063313e66bd9a479b4d0a6295a5e665b_a063313e66bd9a479b4d0a6295a5e665b}{}\index{rpc\+\_\+api.\+h@{rpc\+\_\+api.\+h}!krpc\+\_\+call@{krpc\+\_\+call}}
+\index{krpc\+\_\+call@{krpc\+\_\+call}!rpc\+\_\+api.\+h@{rpc\+\_\+api.\+h}}
+\subsubsection[{krpc\+\_\+call}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+call (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+t} $\ast$}]{rpc, }
+\item[{{\bf kstream\+\_\+t} $\ast$}]{stream, }
+\item[{uint16\+\_\+t}]{rpcid, }
+\item[{{\bf krpc\+\_\+object\+\_\+t} $\ast$}]{o}
+\end{DoxyParamCaption}
+)}\label{a00110_a063313e66bd9a479b4d0a6295a5e665b_a063313e66bd9a479b4d0a6295a5e665b}
+
+
+发起\+R\+P\+C调用 
+
+
+\begin{DoxyParams}{参数}
+{\em rpc} & krpc\+\_\+t实例 \\
+\hline
+{\em stream} & 数据流 \\
+\hline
+{\em rpcid} & 回调\+I\+D \\
+\hline
+{\em o} & 参数 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{a00110_a5d55f838d222f44965d99eac9a0381c1_a5d55f838d222f44965d99eac9a0381c1}{}\index{rpc\+\_\+api.\+h@{rpc\+\_\+api.\+h}!krpc\+\_\+create@{krpc\+\_\+create}}
+\index{krpc\+\_\+create@{krpc\+\_\+create}!rpc\+\_\+api.\+h@{rpc\+\_\+api.\+h}}
+\subsubsection[{krpc\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf krpc\+\_\+t}$\ast$ krpc\+\_\+create (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\label{a00124_gac2a99e706273f22db2ea363b1700bfab_gac2a99e706273f22db2ea363b1700bfab}
+)}\label{a00110_a5d55f838d222f44965d99eac9a0381c1_a5d55f838d222f44965d99eac9a0381c1}
 
 
-建立虚拟连接路由器 
+R\+P\+C框架提供了一套底层\+R\+P\+C序列化及反序列化的基础，开发者不应该直接调用这些\+A\+P\+I，应使用代码生成工具 提供的代码框架来进行\+R\+P\+C操作，生成的代码框架屏蔽了所有烦人的细节，使用起来也会比直接调用这些\+A\+P\+I更 方便. 
 
-\begin{DoxyReturn}{返回}
-kvrouter\+\_\+t实例 
+建立\+R\+P\+C \begin{DoxyReturn}{返回}
+krpc\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00124_gad0660abac611870c1255dcfe9d36f67e_gad0660abac611870c1255dcfe9d36f67e}{}\index{vrouter\+\_\+api.\+h@{vrouter\+\_\+api.\+h}!knet\+\_\+vrouter\+\_\+destroy@{knet\+\_\+vrouter\+\_\+destroy}}
-\index{knet\+\_\+vrouter\+\_\+destroy@{knet\+\_\+vrouter\+\_\+destroy}!vrouter\+\_\+api.\+h@{vrouter\+\_\+api.\+h}}
-\subsubsection[{knet\+\_\+vrouter\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+vrouter\+\_\+destroy (
+\hypertarget{a00110_a76529ccab5c6f0ada79cac791e299ef9_a76529ccab5c6f0ada79cac791e299ef9}{}\index{rpc\+\_\+api.\+h@{rpc\+\_\+api.\+h}!krpc\+\_\+del\+\_\+cb@{krpc\+\_\+del\+\_\+cb}}
+\index{krpc\+\_\+del\+\_\+cb@{krpc\+\_\+del\+\_\+cb}!rpc\+\_\+api.\+h@{rpc\+\_\+api.\+h}}
+\subsubsection[{krpc\+\_\+del\+\_\+cb}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+del\+\_\+cb (
 \begin{DoxyParamCaption}
-\item[{{\bf kvrouter\+\_\+t} $\ast$}]{router}
+\item[{{\bf krpc\+\_\+t} $\ast$}]{rpc, }
+\item[{uint16\+\_\+t}]{rpcid}
 \end{DoxyParamCaption}
-)}\label{a00124_gad0660abac611870c1255dcfe9d36f67e_gad0660abac611870c1255dcfe9d36f67e}
+)}\label{a00110_a76529ccab5c6f0ada79cac791e299ef9_a76529ccab5c6f0ada79cac791e299ef9}
 
 
-销毁 return kvrouter\+\_\+t实例 
-
-\hypertarget{a00124_gaa5052bac7f443e497fcc042f13026bfc_gaa5052bac7f443e497fcc042f13026bfc}{}\index{vrouter\+\_\+api.\+h@{vrouter\+\_\+api.\+h}!knet\+\_\+vrouter\+\_\+remove\+\_\+wire@{knet\+\_\+vrouter\+\_\+remove\+\_\+wire}}
-\index{knet\+\_\+vrouter\+\_\+remove\+\_\+wire@{knet\+\_\+vrouter\+\_\+remove\+\_\+wire}!vrouter\+\_\+api.\+h@{vrouter\+\_\+api.\+h}}
-\subsubsection[{knet\+\_\+vrouter\+\_\+remove\+\_\+wire}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+vrouter\+\_\+remove\+\_\+wire (
-\begin{DoxyParamCaption}
-\item[{{\bf kvrouter\+\_\+t} $\ast$}]{router, }
-\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{c}
-\end{DoxyParamCaption}
-)}\label{a00124_gaa5052bac7f443e497fcc042f13026bfc_gaa5052bac7f443e497fcc042f13026bfc}
-
-
-删除一条转发关系 
+删除注册过的\+R\+P\+C调用回调函数 
 
 
 \begin{DoxyParams}{参数}
-{\em router} & kvrouter\+\_\+t实例 \\
+{\em rpc} & krpc\+\_\+t实例 \\
 \hline
-{\em c} & kchannel\+\_\+ref\+\_\+t实例，源管道(knet\+\_\+vrouter\+\_\+add\+\_\+wire第二个参数) \\
+{\em rpcid} & 回调\+I\+D \\
 \hline
 \end{DoxyParams}
 
@@ -97,29 +126,113 @@ kvrouter\+\_\+t实例
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00124_ga4779bbc1a3db84c6439c872ec6ff4954_ga4779bbc1a3db84c6439c872ec6ff4954}{}\index{vrouter\+\_\+api.\+h@{vrouter\+\_\+api.\+h}!knet\+\_\+vrouter\+\_\+route@{knet\+\_\+vrouter\+\_\+route}}
-\index{knet\+\_\+vrouter\+\_\+route@{knet\+\_\+vrouter\+\_\+route}!vrouter\+\_\+api.\+h@{vrouter\+\_\+api.\+h}}
-\subsubsection[{knet\+\_\+vrouter\+\_\+route}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+vrouter\+\_\+route (
+\hypertarget{a00110_ab07c8ccf1abc99b85f455a2f4280ac76_ab07c8ccf1abc99b85f455a2f4280ac76}{}\index{rpc\+\_\+api.\+h@{rpc\+\_\+api.\+h}!krpc\+\_\+destroy@{krpc\+\_\+destroy}}
+\index{krpc\+\_\+destroy@{krpc\+\_\+destroy}!rpc\+\_\+api.\+h@{rpc\+\_\+api.\+h}}
+\subsubsection[{krpc\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void krpc\+\_\+destroy (
 \begin{DoxyParamCaption}
-\item[{{\bf kvrouter\+\_\+t} $\ast$}]{router, }
-\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{c, }
-\item[{void $\ast$}]{buffer, }
-\item[{int}]{size}
+\item[{{\bf krpc\+\_\+t} $\ast$}]{rpc}
 \end{DoxyParamCaption}
-)}\label{a00124_ga4779bbc1a3db84c6439c872ec6ff4954_ga4779bbc1a3db84c6439c872ec6ff4954}
+)}\label{a00110_ab07c8ccf1abc99b85f455a2f4280ac76_ab07c8ccf1abc99b85f455a2f4280ac76}
 
 
-转发数据 
+销毁\+R\+P\+C 
 
 
 \begin{DoxyParams}{参数}
-{\em router} & kvrouter\+\_\+t实例 \\
+{\em rpc} & krpc\+\_\+t实例 \\
 \hline
-{\em c} & kchannel\+\_\+ref\+\_\+t实例，源管道(knet\+\_\+vrouter\+\_\+add\+\_\+wire第二个参数) \\
+\end{DoxyParams}
+\hypertarget{a00110_a7841a0b4c828efcb607a51bbdd9c9ab1_a7841a0b4c828efcb607a51bbdd9c9ab1}{}\index{rpc\+\_\+api.\+h@{rpc\+\_\+api.\+h}!krpc\+\_\+get\+\_\+cb@{krpc\+\_\+get\+\_\+cb}}
+\index{krpc\+\_\+get\+\_\+cb@{krpc\+\_\+get\+\_\+cb}!rpc\+\_\+api.\+h@{rpc\+\_\+api.\+h}}
+\subsubsection[{krpc\+\_\+get\+\_\+cb}]{\setlength{\rightskip}{0pt plus 5cm}{\bf krpc\+\_\+cb\+\_\+t} krpc\+\_\+get\+\_\+cb (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+t} $\ast$}]{rpc, }
+\item[{uint16\+\_\+t}]{rpcid}
+\end{DoxyParamCaption}
+)}\label{a00110_a7841a0b4c828efcb607a51bbdd9c9ab1_a7841a0b4c828efcb607a51bbdd9c9ab1}
+
+
+取得注册过的\+R\+P\+C调用回调函数 
+
+
+\begin{DoxyParams}{参数}
+{\em rpc} & krpc\+\_\+t实例 \\
 \hline
-{\em buffer} & 数据缓冲区 \\
+{\em rpcid} & 回调\+I\+D \\
 \hline
-{\em size} & 缓冲区长度 \\
+\end{DoxyParams}
+\begin{DoxyReturn}{返回}
+回调函数指针 
+\end{DoxyReturn}
+\hypertarget{a00110_ac583f7d7c3e3ecb9954530e8d0f6f5f1_ac583f7d7c3e3ecb9954530e8d0f6f5f1}{}\index{rpc\+\_\+api.\+h@{rpc\+\_\+api.\+h}!krpc\+\_\+proc@{krpc\+\_\+proc}}
+\index{krpc\+\_\+proc@{krpc\+\_\+proc}!rpc\+\_\+api.\+h@{rpc\+\_\+api.\+h}}
+\subsubsection[{krpc\+\_\+proc}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+proc (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+t} $\ast$}]{rpc, }
+\item[{{\bf kstream\+\_\+t} $\ast$}]{stream}
+\end{DoxyParamCaption}
+)}\label{a00110_ac583f7d7c3e3ecb9954530e8d0f6f5f1_ac583f7d7c3e3ecb9954530e8d0f6f5f1}
+
+
+处理\+R\+P\+C调用，从数据流反序列化\+R\+P\+C调用，并调用回调函数 
+
+
+\begin{DoxyParams}{参数}
+{\em rpc} & krpc\+\_\+t实例 \\
+\hline
+{\em stream} & 数据流 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{a00110_aa75ec66092e77639ca2cf2b5ad04c5db_aa75ec66092e77639ca2cf2b5ad04c5db}{}\index{rpc\+\_\+api.\+h@{rpc\+\_\+api.\+h}!krpc\+\_\+set\+\_\+decrypt\+\_\+cb@{krpc\+\_\+set\+\_\+decrypt\+\_\+cb}}
+\index{krpc\+\_\+set\+\_\+decrypt\+\_\+cb@{krpc\+\_\+set\+\_\+decrypt\+\_\+cb}!rpc\+\_\+api.\+h@{rpc\+\_\+api.\+h}}
+\subsubsection[{krpc\+\_\+set\+\_\+decrypt\+\_\+cb}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+set\+\_\+decrypt\+\_\+cb (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+t} $\ast$}]{rpc, }
+\item[{{\bf krpc\+\_\+decrypt\+\_\+t}}]{func}
+\end{DoxyParamCaption}
+)}\label{a00110_aa75ec66092e77639ca2cf2b5ad04c5db_aa75ec66092e77639ca2cf2b5ad04c5db}
+
+
+设置签名解密回调 
+
+
+\begin{DoxyParams}{参数}
+{\em rpc} & krpc\+\_\+t实例 \\
+\hline
+{\em func} & 回调函数指针 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{a00110_a5317bb571cb4d94bc56b83989c1b10c2_a5317bb571cb4d94bc56b83989c1b10c2}{}\index{rpc\+\_\+api.\+h@{rpc\+\_\+api.\+h}!krpc\+\_\+set\+\_\+encrypt\+\_\+cb@{krpc\+\_\+set\+\_\+encrypt\+\_\+cb}}
+\index{krpc\+\_\+set\+\_\+encrypt\+\_\+cb@{krpc\+\_\+set\+\_\+encrypt\+\_\+cb}!rpc\+\_\+api.\+h@{rpc\+\_\+api.\+h}}
+\subsubsection[{krpc\+\_\+set\+\_\+encrypt\+\_\+cb}]{\setlength{\rightskip}{0pt plus 5cm}int krpc\+\_\+set\+\_\+encrypt\+\_\+cb (
+\begin{DoxyParamCaption}
+\item[{{\bf krpc\+\_\+t} $\ast$}]{rpc, }
+\item[{{\bf krpc\+\_\+encrypt\+\_\+t}}]{func}
+\end{DoxyParamCaption}
+)}\label{a00110_a5317bb571cb4d94bc56b83989c1b10c2_a5317bb571cb4d94bc56b83989c1b10c2}
+
+
+设置签名加密回调 
+
+
+\begin{DoxyParams}{参数}
+{\em rpc} & krpc\+\_\+t实例 \\
+\hline
+{\em func} & 回调函数指针 \\
 \hline
 \end{DoxyParams}
 

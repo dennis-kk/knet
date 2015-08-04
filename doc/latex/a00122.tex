@@ -1,269 +1,77 @@
-\hypertarget{a00122}{}\section{定时器}
-\label{a00122}\index{定时器@{定时器}}
-
-
-定时器  
-
-
+\hypertarget{a00122}{}\section{E\+:/knet-\/git/knet/knet/trie\+\_\+api.h 文件参考}
+\label{a00122}\index{E\+:/knet-\/git/knet/knet/trie\+\_\+api.\+h@{E\+:/knet-\/git/knet/knet/trie\+\_\+api.\+h}}
+{\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\\*
 \subsection*{函数}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{a00056_a024af2aa29615e7a811ea6c45438157d_a024af2aa29615e7a811ea6c45438157d}{ktimer\+\_\+loop\+\_\+t} $\ast$ \hyperlink{a00122_gaef96e7c368db456236a2121e3d75c49c_gaef96e7c368db456236a2121e3d75c49c}{ktimer\+\_\+loop\+\_\+create} (time\+\_\+t freq, int slot)
-\begin{DoxyCompactList}\small\item\em 创建定时器循环 \end{DoxyCompactList}\item 
-void \hyperlink{a00122_gad3dafe93f5b45424bd5983ef0c163687_gad3dafe93f5b45424bd5983ef0c163687}{ktimer\+\_\+loop\+\_\+destroy} (\hyperlink{a00056_a024af2aa29615e7a811ea6c45438157d_a024af2aa29615e7a811ea6c45438157d}{ktimer\+\_\+loop\+\_\+t} $\ast$ktimer\+\_\+loop)
-\begin{DoxyCompactList}\small\item\em 销毁定时器循环 \end{DoxyCompactList}\item 
-int \hyperlink{a00122_gaf195cf4006bced494e99242c36ad36c0_gaf195cf4006bced494e99242c36ad36c0}{ktimer\+\_\+loop\+\_\+run\+\_\+once} (\hyperlink{a00056_a024af2aa29615e7a811ea6c45438157d_a024af2aa29615e7a811ea6c45438157d}{ktimer\+\_\+loop\+\_\+t} $\ast$ktimer\+\_\+loop)
-\begin{DoxyCompactList}\small\item\em 检查定时器超时，如果超时调用定时器回调 \end{DoxyCompactList}\item 
-void \hyperlink{a00122_ga5e31b2fc26af005e97b09804c5a98099_ga5e31b2fc26af005e97b09804c5a98099}{ktimer\+\_\+loop\+\_\+run} (\hyperlink{a00056_a024af2aa29615e7a811ea6c45438157d_a024af2aa29615e7a811ea6c45438157d}{ktimer\+\_\+loop\+\_\+t} $\ast$ktimer\+\_\+loop)
-\begin{DoxyCompactList}\small\item\em 循环检查定时器超时，调用ktimer\+\_\+loop\+\_\+exit()退出 \end{DoxyCompactList}\item 
-void \hyperlink{a00122_ga9d51f5fa5d9609d783eb4b0e05101079_ga9d51f5fa5d9609d783eb4b0e05101079}{ktimer\+\_\+loop\+\_\+exit} (\hyperlink{a00056_a024af2aa29615e7a811ea6c45438157d_a024af2aa29615e7a811ea6c45438157d}{ktimer\+\_\+loop\+\_\+t} $\ast$ktimer\+\_\+loop)
-\begin{DoxyCompactList}\small\item\em 退出ktimer\+\_\+loop\+\_\+run() \end{DoxyCompactList}\item 
-\hyperlink{a00056_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$ \hyperlink{a00122_ga37901569361ae2a726a1973d7da2d6e5_ga37901569361ae2a726a1973d7da2d6e5}{ktimer\+\_\+create} (\hyperlink{a00056_a024af2aa29615e7a811ea6c45438157d_a024af2aa29615e7a811ea6c45438157d}{ktimer\+\_\+loop\+\_\+t} $\ast$ktimer\+\_\+loop)
-\begin{DoxyCompactList}\small\item\em 创建一个定时器 \end{DoxyCompactList}\item 
-int \hyperlink{a00122_ga1465f5ddec41fa81c429d1647dc5e7a9_ga1465f5ddec41fa81c429d1647dc5e7a9}{ktimer\+\_\+stop} (\hyperlink{a00056_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer)
-\begin{DoxyCompactList}\small\item\em 停止并销毁定时器 \end{DoxyCompactList}\item 
-\hyperlink{a00056_a024af2aa29615e7a811ea6c45438157d_a024af2aa29615e7a811ea6c45438157d}{ktimer\+\_\+loop\+\_\+t} $\ast$ \hyperlink{a00122_gad2c8d1024db56a0bef97ea47fb07a920_gad2c8d1024db56a0bef97ea47fb07a920}{ktimer\+\_\+get\+\_\+loop} (\hyperlink{a00056_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer)
-\begin{DoxyCompactList}\small\item\em 取得ktimer\+\_\+loop\+\_\+t实例 \end{DoxyCompactList}\item 
-int \hyperlink{a00122_ga8c5900fb62a63dc71cc9f38ac6427ad1_ga8c5900fb62a63dc71cc9f38ac6427ad1}{ktimer\+\_\+start} (\hyperlink{a00056_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer, \hyperlink{a00056_a2333fd0f2c3a85faf586300ca40deed4_a2333fd0f2c3a85faf586300ca40deed4}{ktimer\+\_\+cb\+\_\+t} cb, void $\ast$data, time\+\_\+t ms)
-\begin{DoxyCompactList}\small\item\em 启动一个无限次数的定时器 \end{DoxyCompactList}\item 
-int \hyperlink{a00122_ga9c37409260a72e3218ae4fcaf44d79bc_ga9c37409260a72e3218ae4fcaf44d79bc}{ktimer\+\_\+start\+\_\+once} (\hyperlink{a00056_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer, \hyperlink{a00056_a2333fd0f2c3a85faf586300ca40deed4_a2333fd0f2c3a85faf586300ca40deed4}{ktimer\+\_\+cb\+\_\+t} cb, void $\ast$data, time\+\_\+t ms)
-\begin{DoxyCompactList}\small\item\em 启动一个只超时一次的定时器，超时后将自动销毁 \end{DoxyCompactList}\item 
-int \hyperlink{a00122_ga285936846760d9f325e588d2e2105fe5_ga285936846760d9f325e588d2e2105fe5}{ktimer\+\_\+start\+\_\+times} (\hyperlink{a00056_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer, \hyperlink{a00056_a2333fd0f2c3a85faf586300ca40deed4_a2333fd0f2c3a85faf586300ca40deed4}{ktimer\+\_\+cb\+\_\+t} cb, void $\ast$data, time\+\_\+t ms, int times)
-\begin{DoxyCompactList}\small\item\em 启动一个有限次数的定时器，达到times次数后将自动销毁 \end{DoxyCompactList}\item 
-int \hyperlink{a00122_ga9387b99ff760183fe8b61c8c46d6efc8_ga9387b99ff760183fe8b61c8c46d6efc8}{ktimer\+\_\+check\+\_\+dead} (\hyperlink{a00056_a846172ea4e8a86449eca41a3d8e074b7_a846172ea4e8a86449eca41a3d8e074b7}{ktimer\+\_\+t} $\ast$timer)
-\begin{DoxyCompactList}\small\item\em 检查定时器是否在回调函数返回即将被销毁 \end{DoxyCompactList}\item 
-time\+\_\+t \hyperlink{a00122_ga71282c2dc8bac0935617b1271f4066e6_ga71282c2dc8bac0935617b1271f4066e6}{ktimer\+\_\+loop\+\_\+get\+\_\+tick\+\_\+intval} (\hyperlink{a00056_a024af2aa29615e7a811ea6c45438157d_a024af2aa29615e7a811ea6c45438157d}{ktimer\+\_\+loop\+\_\+t} $\ast$ktimer\+\_\+loop)
-\begin{DoxyCompactList}\small\item\em 取得滴答间隔 \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{a00066_a6b38314f31c4ed3eb36896383425a381_a6b38314f31c4ed3eb36896383425a381}{ktrie\+\_\+t} $\ast$ \hyperlink{a00140_ga40c34f3f3eed953a77e3df2927a24d0c_ga40c34f3f3eed953a77e3df2927a24d0c}{trie\+\_\+create} ()
+\begin{DoxyCompactList}\small\item\em 建立trie \end{DoxyCompactList}\item 
+void \hyperlink{a00140_ga1d3fcf14bbc77f4b3221ddb1121c21a0_ga1d3fcf14bbc77f4b3221ddb1121c21a0}{trie\+\_\+destroy} (\hyperlink{a00066_a6b38314f31c4ed3eb36896383425a381_a6b38314f31c4ed3eb36896383425a381}{ktrie\+\_\+t} $\ast$trie, \hyperlink{a00066_a46741b0dab7bbb26d611c429ee64d78c_a46741b0dab7bbb26d611c429ee64d78c}{knet\+\_\+trie\+\_\+dtor\+\_\+t} dtor)
+\begin{DoxyCompactList}\small\item\em 销毁trie \end{DoxyCompactList}\item 
+int \hyperlink{a00140_ga05e43d257d3626377de3340b6cd542fa_ga05e43d257d3626377de3340b6cd542fa}{trie\+\_\+insert} (\hyperlink{a00066_a6b38314f31c4ed3eb36896383425a381_a6b38314f31c4ed3eb36896383425a381}{ktrie\+\_\+t} $\ast$trie, const char $\ast$s, void $\ast$value)
+\begin{DoxyCompactList}\small\item\em 销毁trie \end{DoxyCompactList}\item 
+int \hyperlink{a00140_gae9c0f01c6b0eaf828710de2999601a11_gae9c0f01c6b0eaf828710de2999601a11}{trie\+\_\+find} (\hyperlink{a00066_a6b38314f31c4ed3eb36896383425a381_a6b38314f31c4ed3eb36896383425a381}{ktrie\+\_\+t} $\ast$trie, const char $\ast$s, void $\ast$$\ast$value)
+\begin{DoxyCompactList}\small\item\em 查找 \end{DoxyCompactList}\item 
+int \hyperlink{a00140_ga3d0e5d60984fac9b8053e8f8605d79e0_ga3d0e5d60984fac9b8053e8f8605d79e0}{trie\+\_\+remove} (\hyperlink{a00066_a6b38314f31c4ed3eb36896383425a381_a6b38314f31c4ed3eb36896383425a381}{ktrie\+\_\+t} $\ast$trie, const char $\ast$s, void $\ast$$\ast$value)
+\begin{DoxyCompactList}\small\item\em 删除 \end{DoxyCompactList}\item 
+int \hyperlink{a00140_ga0169ae53516f82a8aa435466a3d55678_ga0169ae53516f82a8aa435466a3d55678}{trie\+\_\+for\+\_\+each} (\hyperlink{a00066_a6b38314f31c4ed3eb36896383425a381_a6b38314f31c4ed3eb36896383425a381}{ktrie\+\_\+t} $\ast$trie, \hyperlink{a00066_ad77af676ce15810f8f713bb3eaa91fe8_ad77af676ce15810f8f713bb3eaa91fe8}{knet\+\_\+trie\+\_\+for\+\_\+each\+\_\+func\+\_\+t} func, void $\ast$param)
+\begin{DoxyCompactList}\small\item\em 遍历 \end{DoxyCompactList}\end{DoxyCompactItemize}
 
-
-\subsection{详细描述}
-定时器 
-
-
-\begin{DoxyPre}
-定时器\end{DoxyPre}
-
-
-
-\begin{DoxyPre}定时器并没有放在kloop\_t内处理，而是提供了独立的ktimer\_loop\_t来处理定时器.
-有3种定时器类型:\end{DoxyPre}
-
-
-
-\begin{DoxyPre}1. 周期性定时器     ktimer\_start启动
-2. 运行一次的定时器  ktimer\_start\_once启动
-3. 运行多次的定时器  ktimer\_start\_times启动\end{DoxyPre}
-
-
-
-\begin{DoxyPre}定时器的处理方式通过回调函数，与传统的定时器激发方式相同，内部实现采纳了
-时间轮的概念(不完全是传统意义的时间轮)，定时器的加入和删除的时间复杂度都是O(1)，
-如果调用ktimer\_loop\_run\_once来自己手动触发，定时器的激发不能保证完全准确，
-这取决于你的调用周期是否<=时间轮的转动频率.\end{DoxyPre}
-
-
-
-\begin{DoxyPre}ktimer\_loop\_run内部使用操作系统提供的毫秒级睡眠函数来模拟间隔，防止CPU空转，
-但操作系统提供的睡眠函数通常是不准确的，如果睡眠>=调度时间片，通常误差为百分之2以内,
-这对于非毫秒级精确度通常是够用的，但是低于10毫秒分辨率的定时器会有非常大的误差，如果需要
-精确的定时器，需要调用操作系统高分辨率时间函数来自行处理.\end{DoxyPre}
-
-
-
-\begin{DoxyPre}\end{DoxyPre}
- 
 
 \subsection{函数说明}
-\hypertarget{a00122_ga9387b99ff760183fe8b61c8c46d6efc8_ga9387b99ff760183fe8b61c8c46d6efc8}{}\index{定时器@{定时器}!ktimer\+\_\+check\+\_\+dead@{ktimer\+\_\+check\+\_\+dead}}
-\index{ktimer\+\_\+check\+\_\+dead@{ktimer\+\_\+check\+\_\+dead}!定时器@{定时器}}
-\subsubsection[{ktimer\+\_\+check\+\_\+dead}]{\setlength{\rightskip}{0pt plus 5cm}int ktimer\+\_\+check\+\_\+dead (
+\hypertarget{a00140_ga40c34f3f3eed953a77e3df2927a24d0c_ga40c34f3f3eed953a77e3df2927a24d0c}{}\index{trie\+\_\+api.\+h@{trie\+\_\+api.\+h}!trie\+\_\+create@{trie\+\_\+create}}
+\index{trie\+\_\+create@{trie\+\_\+create}!trie\+\_\+api.\+h@{trie\+\_\+api.\+h}}
+\subsubsection[{trie\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ktrie\+\_\+t}$\ast$ trie\+\_\+create (
 \begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer}
+{}
 \end{DoxyParamCaption}
-)}\label{a00122_ga9387b99ff760183fe8b61c8c46d6efc8_ga9387b99ff760183fe8b61c8c46d6efc8}
+)}\label{a00140_ga40c34f3f3eed953a77e3df2927a24d0c_ga40c34f3f3eed953a77e3df2927a24d0c}
 
 
-检查定时器是否在回调函数返回即将被销毁 
-
-
-\begin{DoxyParams}{参数}
-{\em timer} & ktimer\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em 0} & 不是 \\
-\hline
-{\em 非零} & 是 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00122_ga37901569361ae2a726a1973d7da2d6e5_ga37901569361ae2a726a1973d7da2d6e5}{}\index{定时器@{定时器}!ktimer\+\_\+create@{ktimer\+\_\+create}}
-\index{ktimer\+\_\+create@{ktimer\+\_\+create}!定时器@{定时器}}
-\subsubsection[{ktimer\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ktimer\+\_\+t}$\ast$ ktimer\+\_\+create (
-\begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+loop\+\_\+t} $\ast$}]{ktimer\+\_\+loop}
-\end{DoxyParamCaption}
-)}\label{a00122_ga37901569361ae2a726a1973d7da2d6e5_ga37901569361ae2a726a1973d7da2d6e5}
-
-
-创建一个定时器 
-
-
-\begin{DoxyParams}{参数}
-{\em ktimer\+\_\+loop} & ktimer\+\_\+loop\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-ktimer\+\_\+t实例 
-\end{DoxyReturn}
-\hypertarget{a00122_gad2c8d1024db56a0bef97ea47fb07a920_gad2c8d1024db56a0bef97ea47fb07a920}{}\index{定时器@{定时器}!ktimer\+\_\+get\+\_\+loop@{ktimer\+\_\+get\+\_\+loop}}
-\index{ktimer\+\_\+get\+\_\+loop@{ktimer\+\_\+get\+\_\+loop}!定时器@{定时器}}
-\subsubsection[{ktimer\+\_\+get\+\_\+loop}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ktimer\+\_\+loop\+\_\+t}$\ast$ ktimer\+\_\+get\+\_\+loop (
-\begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer}
-\end{DoxyParamCaption}
-)}\label{a00122_gad2c8d1024db56a0bef97ea47fb07a920_gad2c8d1024db56a0bef97ea47fb07a920}
-
-
-取得ktimer\+\_\+loop\+\_\+t实例 
-
-
-\begin{DoxyParams}{参数}
-{\em timer} & ktimer\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-ktimer\+\_\+loop\+\_\+t实例 
-\end{DoxyReturn}
-\hypertarget{a00122_gaef96e7c368db456236a2121e3d75c49c_gaef96e7c368db456236a2121e3d75c49c}{}\index{定时器@{定时器}!ktimer\+\_\+loop\+\_\+create@{ktimer\+\_\+loop\+\_\+create}}
-\index{ktimer\+\_\+loop\+\_\+create@{ktimer\+\_\+loop\+\_\+create}!定时器@{定时器}}
-\subsubsection[{ktimer\+\_\+loop\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ktimer\+\_\+loop\+\_\+t}$\ast$ ktimer\+\_\+loop\+\_\+create (
-\begin{DoxyParamCaption}
-\item[{time\+\_\+t}]{freq, }
-\item[{int}]{slot}
-\end{DoxyParamCaption}
-)}\label{a00122_gaef96e7c368db456236a2121e3d75c49c_gaef96e7c368db456236a2121e3d75c49c}
-
-
-创建定时器循环 
-
-
-\begin{DoxyParams}{参数}
-{\em freq} & 最小分辨率（毫秒） \\
-\hline
-{\em slot} & 时间轮槽位数量 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-ktimer\+\_\+loop\+\_\+t实例 
-\end{DoxyReturn}
-\hypertarget{a00122_gad3dafe93f5b45424bd5983ef0c163687_gad3dafe93f5b45424bd5983ef0c163687}{}\index{定时器@{定时器}!ktimer\+\_\+loop\+\_\+destroy@{ktimer\+\_\+loop\+\_\+destroy}}
-\index{ktimer\+\_\+loop\+\_\+destroy@{ktimer\+\_\+loop\+\_\+destroy}!定时器@{定时器}}
-\subsubsection[{ktimer\+\_\+loop\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void ktimer\+\_\+loop\+\_\+destroy (
-\begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+loop\+\_\+t} $\ast$}]{ktimer\+\_\+loop}
-\end{DoxyParamCaption}
-)}\label{a00122_gad3dafe93f5b45424bd5983ef0c163687_gad3dafe93f5b45424bd5983ef0c163687}
-
-
-销毁定时器循环 
+建立trie 
 
 \begin{DoxyReturn}{返回}
-ktimer\+\_\+loop\+\_\+t实例 
+ktrie\+\_\+t实例 
 \end{DoxyReturn}
-\hypertarget{a00122_ga9d51f5fa5d9609d783eb4b0e05101079_ga9d51f5fa5d9609d783eb4b0e05101079}{}\index{定时器@{定时器}!ktimer\+\_\+loop\+\_\+exit@{ktimer\+\_\+loop\+\_\+exit}}
-\index{ktimer\+\_\+loop\+\_\+exit@{ktimer\+\_\+loop\+\_\+exit}!定时器@{定时器}}
-\subsubsection[{ktimer\+\_\+loop\+\_\+exit}]{\setlength{\rightskip}{0pt plus 5cm}void ktimer\+\_\+loop\+\_\+exit (
+\hypertarget{a00140_ga1d3fcf14bbc77f4b3221ddb1121c21a0_ga1d3fcf14bbc77f4b3221ddb1121c21a0}{}\index{trie\+\_\+api.\+h@{trie\+\_\+api.\+h}!trie\+\_\+destroy@{trie\+\_\+destroy}}
+\index{trie\+\_\+destroy@{trie\+\_\+destroy}!trie\+\_\+api.\+h@{trie\+\_\+api.\+h}}
+\subsubsection[{trie\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void trie\+\_\+destroy (
 \begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+loop\+\_\+t} $\ast$}]{ktimer\+\_\+loop}
+\item[{{\bf ktrie\+\_\+t} $\ast$}]{trie, }
+\item[{{\bf knet\+\_\+trie\+\_\+dtor\+\_\+t}}]{dtor}
 \end{DoxyParamCaption}
-)}\label{a00122_ga9d51f5fa5d9609d783eb4b0e05101079_ga9d51f5fa5d9609d783eb4b0e05101079}
+)}\label{a00140_ga1d3fcf14bbc77f4b3221ddb1121c21a0_ga1d3fcf14bbc77f4b3221ddb1121c21a0}
 
 
-退出ktimer\+\_\+loop\+\_\+run() 
+销毁trie 
 
 
 \begin{DoxyParams}{参数}
-{\em ktimer\+\_\+loop} & ktimer\+\_\+loop\+\_\+t实例 \\
+{\em trie} & ktrie\+\_\+t实例 \\
+\hline
+{\em dtor} & 销毁函数 \\
 \hline
 \end{DoxyParams}
-\hypertarget{a00122_ga71282c2dc8bac0935617b1271f4066e6_ga71282c2dc8bac0935617b1271f4066e6}{}\index{定时器@{定时器}!ktimer\+\_\+loop\+\_\+get\+\_\+tick\+\_\+intval@{ktimer\+\_\+loop\+\_\+get\+\_\+tick\+\_\+intval}}
-\index{ktimer\+\_\+loop\+\_\+get\+\_\+tick\+\_\+intval@{ktimer\+\_\+loop\+\_\+get\+\_\+tick\+\_\+intval}!定时器@{定时器}}
-\subsubsection[{ktimer\+\_\+loop\+\_\+get\+\_\+tick\+\_\+intval}]{\setlength{\rightskip}{0pt plus 5cm}time\+\_\+t ktimer\+\_\+loop\+\_\+get\+\_\+tick\+\_\+intval (
+\hypertarget{a00140_gae9c0f01c6b0eaf828710de2999601a11_gae9c0f01c6b0eaf828710de2999601a11}{}\index{trie\+\_\+api.\+h@{trie\+\_\+api.\+h}!trie\+\_\+find@{trie\+\_\+find}}
+\index{trie\+\_\+find@{trie\+\_\+find}!trie\+\_\+api.\+h@{trie\+\_\+api.\+h}}
+\subsubsection[{trie\+\_\+find}]{\setlength{\rightskip}{0pt plus 5cm}int trie\+\_\+find (
 \begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+loop\+\_\+t} $\ast$}]{ktimer\+\_\+loop}
+\item[{{\bf ktrie\+\_\+t} $\ast$}]{trie, }
+\item[{const char $\ast$}]{s, }
+\item[{void $\ast$$\ast$}]{value}
 \end{DoxyParamCaption}
-)}\label{a00122_ga71282c2dc8bac0935617b1271f4066e6_ga71282c2dc8bac0935617b1271f4066e6}
+)}\label{a00140_gae9c0f01c6b0eaf828710de2999601a11_gae9c0f01c6b0eaf828710de2999601a11}
 
 
-取得滴答间隔 
+查找 
 
 
 \begin{DoxyParams}{参数}
-{\em ktimer\+\_\+loop} & ktimer\+\_\+loop\+\_\+t实例 \\
+{\em trie} & ktrie\+\_\+t实例 \\
 \hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-滴答间隔 
-\end{DoxyReturn}
-\hypertarget{a00122_ga5e31b2fc26af005e97b09804c5a98099_ga5e31b2fc26af005e97b09804c5a98099}{}\index{定时器@{定时器}!ktimer\+\_\+loop\+\_\+run@{ktimer\+\_\+loop\+\_\+run}}
-\index{ktimer\+\_\+loop\+\_\+run@{ktimer\+\_\+loop\+\_\+run}!定时器@{定时器}}
-\subsubsection[{ktimer\+\_\+loop\+\_\+run}]{\setlength{\rightskip}{0pt plus 5cm}void ktimer\+\_\+loop\+\_\+run (
-\begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+loop\+\_\+t} $\ast$}]{ktimer\+\_\+loop}
-\end{DoxyParamCaption}
-)}\label{a00122_ga5e31b2fc26af005e97b09804c5a98099_ga5e31b2fc26af005e97b09804c5a98099}
-
-
-循环检查定时器超时，调用ktimer\+\_\+loop\+\_\+exit()退出 
-
-
-\begin{DoxyParams}{参数}
-{\em ktimer\+\_\+loop} & ktimer\+\_\+loop\+\_\+t实例 \\
+{\em s} & 键 \\
 \hline
-\end{DoxyParams}
-\hypertarget{a00122_gaf195cf4006bced494e99242c36ad36c0_gaf195cf4006bced494e99242c36ad36c0}{}\index{定时器@{定时器}!ktimer\+\_\+loop\+\_\+run\+\_\+once@{ktimer\+\_\+loop\+\_\+run\+\_\+once}}
-\index{ktimer\+\_\+loop\+\_\+run\+\_\+once@{ktimer\+\_\+loop\+\_\+run\+\_\+once}!定时器@{定时器}}
-\subsubsection[{ktimer\+\_\+loop\+\_\+run\+\_\+once}]{\setlength{\rightskip}{0pt plus 5cm}int ktimer\+\_\+loop\+\_\+run\+\_\+once (
-\begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+loop\+\_\+t} $\ast$}]{ktimer\+\_\+loop}
-\end{DoxyParamCaption}
-)}\label{a00122_gaf195cf4006bced494e99242c36ad36c0_gaf195cf4006bced494e99242c36ad36c0}
-
-
-检查定时器超时，如果超时调用定时器回调 
-
-
-\begin{DoxyParams}{参数}
-{\em ktimer\+\_\+loop} & ktimer\+\_\+loop\+\_\+t实例 \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{返回}
-定时器超时的数量 
-\end{DoxyReturn}
-\hypertarget{a00122_ga8c5900fb62a63dc71cc9f38ac6427ad1_ga8c5900fb62a63dc71cc9f38ac6427ad1}{}\index{定时器@{定时器}!ktimer\+\_\+start@{ktimer\+\_\+start}}
-\index{ktimer\+\_\+start@{ktimer\+\_\+start}!定时器@{定时器}}
-\subsubsection[{ktimer\+\_\+start}]{\setlength{\rightskip}{0pt plus 5cm}int ktimer\+\_\+start (
-\begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer, }
-\item[{{\bf ktimer\+\_\+cb\+\_\+t}}]{cb, }
-\item[{void $\ast$}]{data, }
-\item[{time\+\_\+t}]{ms}
-\end{DoxyParamCaption}
-)}\label{a00122_ga8c5900fb62a63dc71cc9f38ac6427ad1_ga8c5900fb62a63dc71cc9f38ac6427ad1}
-
-
-启动一个无限次数的定时器 
-
-
-\begin{DoxyParams}{参数}
-{\em timer} & ktimer\+\_\+t实例 \\
-\hline
-{\em cb} & 超时回调函数 \\
-\hline
-{\em data} & 回调函数参数 \\
-\hline
-{\em ms} & 定时器超时间隔 \\
+{\em value} & 值 \\
 \hline
 \end{DoxyParams}
 
@@ -273,29 +81,48 @@ ktimer\+\_\+loop\+\_\+t实例
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00122_ga9c37409260a72e3218ae4fcaf44d79bc_ga9c37409260a72e3218ae4fcaf44d79bc}{}\index{定时器@{定时器}!ktimer\+\_\+start\+\_\+once@{ktimer\+\_\+start\+\_\+once}}
-\index{ktimer\+\_\+start\+\_\+once@{ktimer\+\_\+start\+\_\+once}!定时器@{定时器}}
-\subsubsection[{ktimer\+\_\+start\+\_\+once}]{\setlength{\rightskip}{0pt plus 5cm}int ktimer\+\_\+start\+\_\+once (
+\hypertarget{a00140_ga0169ae53516f82a8aa435466a3d55678_ga0169ae53516f82a8aa435466a3d55678}{}\index{trie\+\_\+api.\+h@{trie\+\_\+api.\+h}!trie\+\_\+for\+\_\+each@{trie\+\_\+for\+\_\+each}}
+\index{trie\+\_\+for\+\_\+each@{trie\+\_\+for\+\_\+each}!trie\+\_\+api.\+h@{trie\+\_\+api.\+h}}
+\subsubsection[{trie\+\_\+for\+\_\+each}]{\setlength{\rightskip}{0pt plus 5cm}int trie\+\_\+for\+\_\+each (
 \begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer, }
-\item[{{\bf ktimer\+\_\+cb\+\_\+t}}]{cb, }
-\item[{void $\ast$}]{data, }
-\item[{time\+\_\+t}]{ms}
+\item[{{\bf ktrie\+\_\+t} $\ast$}]{trie, }
+\item[{{\bf knet\+\_\+trie\+\_\+for\+\_\+each\+\_\+func\+\_\+t}}]{func, }
+\item[{void $\ast$}]{param}
 \end{DoxyParamCaption}
-)}\label{a00122_ga9c37409260a72e3218ae4fcaf44d79bc_ga9c37409260a72e3218ae4fcaf44d79bc}
+)}\label{a00140_ga0169ae53516f82a8aa435466a3d55678_ga0169ae53516f82a8aa435466a3d55678}
 
 
-启动一个只超时一次的定时器，超时后将自动销毁 
+遍历 
 
 
 \begin{DoxyParams}{参数}
-{\em timer} & ktimer\+\_\+t实例 \\
+{\em trie} & ktrie\+\_\+t实例 \\
 \hline
-{\em cb} & 超时回调函数 \\
+{\em func} & 遍历函数 \\
 \hline
-{\em data} & 回调函数参数 \\
+{\em param} & 遍历函数参数 \\
 \hline
-{\em ms} & 定时器超时间隔 \\
+\end{DoxyParams}
+\hypertarget{a00140_ga05e43d257d3626377de3340b6cd542fa_ga05e43d257d3626377de3340b6cd542fa}{}\index{trie\+\_\+api.\+h@{trie\+\_\+api.\+h}!trie\+\_\+insert@{trie\+\_\+insert}}
+\index{trie\+\_\+insert@{trie\+\_\+insert}!trie\+\_\+api.\+h@{trie\+\_\+api.\+h}}
+\subsubsection[{trie\+\_\+insert}]{\setlength{\rightskip}{0pt plus 5cm}int trie\+\_\+insert (
+\begin{DoxyParamCaption}
+\item[{{\bf ktrie\+\_\+t} $\ast$}]{trie, }
+\item[{const char $\ast$}]{s, }
+\item[{void $\ast$}]{value}
+\end{DoxyParamCaption}
+)}\label{a00140_ga05e43d257d3626377de3340b6cd542fa_ga05e43d257d3626377de3340b6cd542fa}
+
+
+销毁trie 
+
+
+\begin{DoxyParams}{参数}
+{\em trie} & ktrie\+\_\+t实例 \\
+\hline
+{\em s} & 键 \\
+\hline
+{\em value} & 值 \\
 \hline
 \end{DoxyParams}
 
@@ -305,55 +132,26 @@ ktimer\+\_\+loop\+\_\+t实例
 {\em 其他} & 失败 \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{a00122_ga285936846760d9f325e588d2e2105fe5_ga285936846760d9f325e588d2e2105fe5}{}\index{定时器@{定时器}!ktimer\+\_\+start\+\_\+times@{ktimer\+\_\+start\+\_\+times}}
-\index{ktimer\+\_\+start\+\_\+times@{ktimer\+\_\+start\+\_\+times}!定时器@{定时器}}
-\subsubsection[{ktimer\+\_\+start\+\_\+times}]{\setlength{\rightskip}{0pt plus 5cm}int ktimer\+\_\+start\+\_\+times (
+\hypertarget{a00140_ga3d0e5d60984fac9b8053e8f8605d79e0_ga3d0e5d60984fac9b8053e8f8605d79e0}{}\index{trie\+\_\+api.\+h@{trie\+\_\+api.\+h}!trie\+\_\+remove@{trie\+\_\+remove}}
+\index{trie\+\_\+remove@{trie\+\_\+remove}!trie\+\_\+api.\+h@{trie\+\_\+api.\+h}}
+\subsubsection[{trie\+\_\+remove}]{\setlength{\rightskip}{0pt plus 5cm}int trie\+\_\+remove (
 \begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer, }
-\item[{{\bf ktimer\+\_\+cb\+\_\+t}}]{cb, }
-\item[{void $\ast$}]{data, }
-\item[{time\+\_\+t}]{ms, }
-\item[{int}]{times}
+\item[{{\bf ktrie\+\_\+t} $\ast$}]{trie, }
+\item[{const char $\ast$}]{s, }
+\item[{void $\ast$$\ast$}]{value}
 \end{DoxyParamCaption}
-)}\label{a00122_ga285936846760d9f325e588d2e2105fe5_ga285936846760d9f325e588d2e2105fe5}
+)}\label{a00140_ga3d0e5d60984fac9b8053e8f8605d79e0_ga3d0e5d60984fac9b8053e8f8605d79e0}
 
 
-启动一个有限次数的定时器，达到times次数后将自动销毁 
+删除 
 
 
 \begin{DoxyParams}{参数}
-{\em timer} & ktimer\+\_\+t实例 \\
+{\em trie} & ktrie\+\_\+t实例 \\
 \hline
-{\em cb} & 超时回调函数 \\
+{\em s} & 键 \\
 \hline
-{\em data} & 回调函数参数 \\
-\hline
-{\em ms} & 定时器超时间隔 \\
-\hline
-{\em times} & 次数 \\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyRetVals}{返回值}
-{\em error\+\_\+ok} & 成功 \\
-\hline
-{\em 其他} & 失败 \\
-\hline
-\end{DoxyRetVals}
-\hypertarget{a00122_ga1465f5ddec41fa81c429d1647dc5e7a9_ga1465f5ddec41fa81c429d1647dc5e7a9}{}\index{定时器@{定时器}!ktimer\+\_\+stop@{ktimer\+\_\+stop}}
-\index{ktimer\+\_\+stop@{ktimer\+\_\+stop}!定时器@{定时器}}
-\subsubsection[{ktimer\+\_\+stop}]{\setlength{\rightskip}{0pt plus 5cm}int ktimer\+\_\+stop (
-\begin{DoxyParamCaption}
-\item[{{\bf ktimer\+\_\+t} $\ast$}]{timer}
-\end{DoxyParamCaption}
-)}\label{a00122_ga1465f5ddec41fa81c429d1647dc5e7a9_ga1465f5ddec41fa81c429d1647dc5e7a9}
-
-
-停止并销毁定时器 
-
-
-\begin{DoxyParams}{参数}
-{\em timer} & ktimer\+\_\+t实例 \\
+{\em value} & 值 \\
 \hline
 \end{DoxyParams}
 

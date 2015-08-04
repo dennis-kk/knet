@@ -170,6 +170,7 @@ const char* knet_node_config_get_white_ip_filter_file_path(knode_config_t* c);
 /**
  * 检查节点类型是否为关注类型
  * @param c knode_config_t实例
+ * @param type 节点类型
  * @retval 零 不是
  * @retval 非零 是
  */

@@ -1,0 +1,131 @@
+\hypertarget{a00126}{}\section{E\+:/knet-\/git/knet/knet/vrouter\+\_\+api.h 文件参考}
+\label{a00126}\index{E\+:/knet-\/git/knet/knet/vrouter\+\_\+api.\+h@{E\+:/knet-\/git/knet/knet/vrouter\+\_\+api.\+h}}
+{\ttfamily \#include \char`\"{}config.\+h\char`\"{}}\\*
+\subsection*{函数}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{a00066_a9863a6202df1fb40e2b32c673ad93267_a9863a6202df1fb40e2b32c673ad93267}{kvrouter\+\_\+t} $\ast$ \hyperlink{a00141_gac2a99e706273f22db2ea363b1700bfab_gac2a99e706273f22db2ea363b1700bfab}{knet\+\_\+vrouter\+\_\+create} ()
+\begin{DoxyCompactList}\small\item\em 建立虚拟连接路由器 \end{DoxyCompactList}\item 
+void \hyperlink{a00141_gad0660abac611870c1255dcfe9d36f67e_gad0660abac611870c1255dcfe9d36f67e}{knet\+\_\+vrouter\+\_\+destroy} (\hyperlink{a00066_a9863a6202df1fb40e2b32c673ad93267_a9863a6202df1fb40e2b32c673ad93267}{kvrouter\+\_\+t} $\ast$router)
+\begin{DoxyCompactList}\small\item\em 销毁 return kvrouter\+\_\+t实例 \end{DoxyCompactList}\item 
+int \hyperlink{a00141_ga7256979701c32356201e853b7f3df1ca_ga7256979701c32356201e853b7f3df1ca}{knet\+\_\+vrouter\+\_\+add\+\_\+wire} (\hyperlink{a00066_a9863a6202df1fb40e2b32c673ad93267_a9863a6202df1fb40e2b32c673ad93267}{kvrouter\+\_\+t} $\ast$router, \hyperlink{a00066_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$c1, \hyperlink{a00066_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$c2)
+\begin{DoxyCompactList}\small\item\em 建立一条转发关系 \end{DoxyCompactList}\item 
+int \hyperlink{a00141_gaa5052bac7f443e497fcc042f13026bfc_gaa5052bac7f443e497fcc042f13026bfc}{knet\+\_\+vrouter\+\_\+remove\+\_\+wire} (\hyperlink{a00066_a9863a6202df1fb40e2b32c673ad93267_a9863a6202df1fb40e2b32c673ad93267}{kvrouter\+\_\+t} $\ast$router, \hyperlink{a00066_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$c)
+\begin{DoxyCompactList}\small\item\em 删除一条转发关系 \end{DoxyCompactList}\item 
+int \hyperlink{a00141_gaa86ea6d10f159ae1bf74ee70aa4a2c10_gaa86ea6d10f159ae1bf74ee70aa4a2c10}{knet\+\_\+vrouter\+\_\+route} (\hyperlink{a00066_a9863a6202df1fb40e2b32c673ad93267_a9863a6202df1fb40e2b32c673ad93267}{kvrouter\+\_\+t} $\ast$router, \hyperlink{a00066_a3b7e82599367eade261456f60ebe2cd9_a3b7e82599367eade261456f60ebe2cd9}{kchannel\+\_\+ref\+\_\+t} $\ast$c, const void $\ast$buffer, int size)
+\begin{DoxyCompactList}\small\item\em 转发数据 \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{函数说明}
+\hypertarget{a00141_ga7256979701c32356201e853b7f3df1ca_ga7256979701c32356201e853b7f3df1ca}{}\index{vrouter\+\_\+api.\+h@{vrouter\+\_\+api.\+h}!knet\+\_\+vrouter\+\_\+add\+\_\+wire@{knet\+\_\+vrouter\+\_\+add\+\_\+wire}}
+\index{knet\+\_\+vrouter\+\_\+add\+\_\+wire@{knet\+\_\+vrouter\+\_\+add\+\_\+wire}!vrouter\+\_\+api.\+h@{vrouter\+\_\+api.\+h}}
+\subsubsection[{knet\+\_\+vrouter\+\_\+add\+\_\+wire}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+vrouter\+\_\+add\+\_\+wire (
+\begin{DoxyParamCaption}
+\item[{{\bf kvrouter\+\_\+t} $\ast$}]{router, }
+\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{c1, }
+\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{c2}
+\end{DoxyParamCaption}
+)}\label{a00141_ga7256979701c32356201e853b7f3df1ca_ga7256979701c32356201e853b7f3df1ca}
+
+
+建立一条转发关系 
+
+
+\begin{DoxyParams}{参数}
+{\em router} & kvrouter\+\_\+t实例 \\
+\hline
+{\em c1} & kchannel\+\_\+ref\+\_\+t实例，源管道 \\
+\hline
+{\em c2} & kchannel\+\_\+ref\+\_\+t实例，目的管道 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{a00141_gac2a99e706273f22db2ea363b1700bfab_gac2a99e706273f22db2ea363b1700bfab}{}\index{vrouter\+\_\+api.\+h@{vrouter\+\_\+api.\+h}!knet\+\_\+vrouter\+\_\+create@{knet\+\_\+vrouter\+\_\+create}}
+\index{knet\+\_\+vrouter\+\_\+create@{knet\+\_\+vrouter\+\_\+create}!vrouter\+\_\+api.\+h@{vrouter\+\_\+api.\+h}}
+\subsubsection[{knet\+\_\+vrouter\+\_\+create}]{\setlength{\rightskip}{0pt plus 5cm}{\bf kvrouter\+\_\+t}$\ast$ knet\+\_\+vrouter\+\_\+create (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{a00141_gac2a99e706273f22db2ea363b1700bfab_gac2a99e706273f22db2ea363b1700bfab}
+
+
+建立虚拟连接路由器 
+
+\begin{DoxyReturn}{返回}
+kvrouter\+\_\+t实例 
+\end{DoxyReturn}
+\hypertarget{a00141_gad0660abac611870c1255dcfe9d36f67e_gad0660abac611870c1255dcfe9d36f67e}{}\index{vrouter\+\_\+api.\+h@{vrouter\+\_\+api.\+h}!knet\+\_\+vrouter\+\_\+destroy@{knet\+\_\+vrouter\+\_\+destroy}}
+\index{knet\+\_\+vrouter\+\_\+destroy@{knet\+\_\+vrouter\+\_\+destroy}!vrouter\+\_\+api.\+h@{vrouter\+\_\+api.\+h}}
+\subsubsection[{knet\+\_\+vrouter\+\_\+destroy}]{\setlength{\rightskip}{0pt plus 5cm}void knet\+\_\+vrouter\+\_\+destroy (
+\begin{DoxyParamCaption}
+\item[{{\bf kvrouter\+\_\+t} $\ast$}]{router}
+\end{DoxyParamCaption}
+)}\label{a00141_gad0660abac611870c1255dcfe9d36f67e_gad0660abac611870c1255dcfe9d36f67e}
+
+
+销毁 return kvrouter\+\_\+t实例 
+
+\hypertarget{a00141_gaa5052bac7f443e497fcc042f13026bfc_gaa5052bac7f443e497fcc042f13026bfc}{}\index{vrouter\+\_\+api.\+h@{vrouter\+\_\+api.\+h}!knet\+\_\+vrouter\+\_\+remove\+\_\+wire@{knet\+\_\+vrouter\+\_\+remove\+\_\+wire}}
+\index{knet\+\_\+vrouter\+\_\+remove\+\_\+wire@{knet\+\_\+vrouter\+\_\+remove\+\_\+wire}!vrouter\+\_\+api.\+h@{vrouter\+\_\+api.\+h}}
+\subsubsection[{knet\+\_\+vrouter\+\_\+remove\+\_\+wire}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+vrouter\+\_\+remove\+\_\+wire (
+\begin{DoxyParamCaption}
+\item[{{\bf kvrouter\+\_\+t} $\ast$}]{router, }
+\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{c}
+\end{DoxyParamCaption}
+)}\label{a00141_gaa5052bac7f443e497fcc042f13026bfc_gaa5052bac7f443e497fcc042f13026bfc}
+
+
+删除一条转发关系 
+
+
+\begin{DoxyParams}{参数}
+{\em router} & kvrouter\+\_\+t实例 \\
+\hline
+{\em c} & kchannel\+\_\+ref\+\_\+t实例，源管道(knet\+\_\+vrouter\+\_\+add\+\_\+wire第二个参数) \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{a00141_gaa86ea6d10f159ae1bf74ee70aa4a2c10_gaa86ea6d10f159ae1bf74ee70aa4a2c10}{}\index{vrouter\+\_\+api.\+h@{vrouter\+\_\+api.\+h}!knet\+\_\+vrouter\+\_\+route@{knet\+\_\+vrouter\+\_\+route}}
+\index{knet\+\_\+vrouter\+\_\+route@{knet\+\_\+vrouter\+\_\+route}!vrouter\+\_\+api.\+h@{vrouter\+\_\+api.\+h}}
+\subsubsection[{knet\+\_\+vrouter\+\_\+route}]{\setlength{\rightskip}{0pt plus 5cm}int knet\+\_\+vrouter\+\_\+route (
+\begin{DoxyParamCaption}
+\item[{{\bf kvrouter\+\_\+t} $\ast$}]{router, }
+\item[{{\bf kchannel\+\_\+ref\+\_\+t} $\ast$}]{c, }
+\item[{const void $\ast$}]{buffer, }
+\item[{int}]{size}
+\end{DoxyParamCaption}
+)}\label{a00141_gaa86ea6d10f159ae1bf74ee70aa4a2c10_gaa86ea6d10f159ae1bf74ee70aa4a2c10}
+
+
+转发数据 
+
+
+\begin{DoxyParams}{参数}
+{\em router} & kvrouter\+\_\+t实例 \\
+\hline
+{\em c} & kchannel\+\_\+ref\+\_\+t实例，源管道(knet\+\_\+vrouter\+\_\+add\+\_\+wire第二个参数) \\
+\hline
+{\em buffer} & 数据缓冲区 \\
+\hline
+{\em size} & 缓冲区长度 \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{返回值}
+{\em error\+\_\+ok} & 成功 \\
+\hline
+{\em 其他} & 失败 \\
+\hline
+\end{DoxyRetVals}
