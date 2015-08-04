@@ -87,6 +87,17 @@ extern int knet_stream_eat(kstream_t* stream, int size);
 extern int knet_stream_pop(kstream_t* stream, void* buffer, int size);
 
 /**
+ * 从数据流内查找指定的结束符，并取出遍历过的数据（包含结束符）
+ * @param stream kstream_t实例
+ * @param end 结束符
+ * @param buffer 缓冲区
+ * @param size 缓冲区大小，返回实际的读取的字节数
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int knet_stream_pop_until(kstream_t* stream, const char* end, void* buffer, int* size);
+
+/**
  * 向数据流内写数据
  * @param stream kstream_t实例
  * @param buffer 缓冲区

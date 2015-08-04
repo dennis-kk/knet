@@ -107,6 +107,30 @@ uint32_t ringbuffer_copy(kringbuffer_t* rb, char* buffer, uint32_t size) {
     return size;
 }
 
+uint32_t ringbuffer_find(kringbuffer_t* rb, const char* target, uint32_t* size) {
+    uint32_t i      = 0;                           /* 是否达到末尾 */
+    int      index  = 0;                           /* 当前匹配到的字符下标 */
+    int      length = strlen(target);              /* 总长度 */
+    int      pos    = rb->read_pos % rb->max_size; /* 在rb内的下标 */
+    verify(rb);
+    verify(target);
+    verify(size);
+    for (; (i < rb->count) && (index < length); i++) {
+        if (rb->ptr[pos] == target[index]) { /* 匹配 */
+            index += 1;                        /* 当前位置递增 */
+            pos    = (pos + 1) % rb->max_size; /* rb读位置递增 */
+        } else { /* 失配 */
+            pos   = (rb->read_pos + i + 1) % rb->max_size; /* 重新设置rb匹配位置 */
+            index = 0;                                 /* 重置目标字符串下标 */
+        }
+    }
+    if (index == length) {
+        *size = i; /* 搜索所经历的所有字符数，包含target */
+        return error_ok;
+    }
+    return error_ringbuffer_not_found;
+}
+
 uint32_t ringbuffer_available(kringbuffer_t* rb) {
     verify(rb);
     return rb->count;

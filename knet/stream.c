@@ -64,6 +64,23 @@ int knet_stream_pop(kstream_t* stream, void* buffer, int size) {
     return error_recv_fail;
 }
 
+int knet_stream_pop_until(kstream_t* stream, const char* end, void* buffer, int* size) {
+    uint32_t max_size = *size;
+    int      error    = error_ok;
+    verify(stream);
+    verify(end);
+    verify(buffer);
+    verify(size);
+    error = ringbuffer_find(knet_channel_ref_get_ringbuffer(stream->channel_ref), end, (uint32_t*)size);
+    if (error_ok == error) {
+        if ((uint32_t)*size > max_size) {
+            return error_stream_buffer_overflow;
+        }
+        error = knet_stream_pop(stream, buffer, *size);
+    }
+    return error;
+}
+
 int knet_stream_eat_all(kstream_t* stream) {
     verify(stream);
     return ringbuffer_eat_all(knet_channel_ref_get_ringbuffer(stream->channel_ref));

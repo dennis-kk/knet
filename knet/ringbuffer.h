@@ -59,6 +59,16 @@ uint32_t ringbuffer_read(kringbuffer_t* rb, char* buffer, uint32_t size);
 uint32_t ringbuffer_copy(kringbuffer_t* rb, char* buffer, uint32_t size);
 
 /**
+ * 查找指定的目标，并返回位置
+ * @param rb kringbuffer_t实例
+ * @param target 目标字符串
+ * @param size 位置
+ * @retval error_ok 找到
+ * @retval 其他 未找到
+ */
+uint32_t ringbuffer_find(kringbuffer_t* rb, const char* target, uint32_t* size);
+
+/**
  * 取得可读字节数
  * @param rb kringbuffer_t实例
  * @return 可读字节数

@@ -102,15 +102,6 @@ extern int knet_node_config_set_root(knode_config_t* c);
 extern int knet_node_config_check_root(knode_config_t* c);
 
 /**
- * 设置节点操作系统信号处理函数, 如果不设置处理函数，节点将忽略所有可以忽略的信号
- * @param c knode_config_t实例
- * @param cb 信号处理函数
- * @retval error_ok 成功
- * @retval 其他 失败
- */
-extern int knet_node_config_set_signal_cb(knode_config_t* c, knet_node_signal_cb_t cb);
-
-/**
  * 设置节点事件处理函数
  * @param c knode_config_t实例
  * @param cb 事件处理函数
@@ -147,6 +138,15 @@ extern int knet_node_config_set_manage_address(knode_config_t* c, const char* ip
  * @retval 其他 失败
  */
 extern int knet_node_config_set_manage_cb(knode_config_t* c, knet_node_manage_cb_t cb);
+
+/**
+ * 设置节点监控回调
+ * @param c knode_config_t实例
+ * @param cb 节点监控回调函数
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int knet_node_config_set_monitor_cb(knode_config_t* c, knet_node_monitor_cb_t cb);
 
 /**
  * 开启/关闭节点退出自动保存IP黑名单
@@ -217,5 +217,12 @@ extern void knet_node_config_set_node_channel_idle_timeout(knode_config_t* c, in
  * @return kframework_config_t实例
  */
 extern kframework_config_t* knet_node_config_get_framework_config(knode_config_t* c);
+
+/**
+ * 设置管理命令结果的缓冲区最大长度
+ * @param c knode_config_t实例
+ * @param max_output_buffer_length 缓冲区最大长度
+ */
+extern void knet_node_config_set_manage_max_output_buffer_length(knode_config_t* c, int max_output_buffer_length);
 
 #endif /* NODE_CONFIG_API_H */

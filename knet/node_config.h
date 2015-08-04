@@ -91,13 +91,6 @@ const char* knet_node_config_get_root_ip(knode_config_t* c);
 int knet_node_config_get_root_port(knode_config_t* c);
 
 /**
- * 取得信号处理函数
- * @param c knode_config_t实例
- * @return 信号处理函数
- */
-knet_node_signal_cb_t knet_node_config_get_signal_cb(knode_config_t* c);
-
-/**
  * 取得节点事件处理函数
  * @param c knode_config_t实例
  * @return 节点事件处理函数
@@ -138,6 +131,13 @@ int knet_node_config_get_manage_port(knode_config_t* c);
  * @return 管理命令处理函数指针
  */
 knet_node_manage_cb_t knet_node_config_get_manage_cb(knode_config_t* c);
+
+/**
+ * 取得节点监控处理函数指针
+ * @param c knode_config_t实例
+ * @return 监控处理函数指针
+ */
+knet_node_monitor_cb_t knet_node_config_get_monitor_cb(knode_config_t* c);
 
 /**
  * 取得节点IP黑名单退出自动保存开关
@@ -195,5 +195,12 @@ int knet_node_config_get_node_channel_max_send_list_count(knode_config_t* c);
  * @return 节点管道空闲超时（秒）
  */
 int knet_node_config_get_node_channel_idle_timeout(knode_config_t* c);
+
+/**
+ * 取得管理命令结果缓冲区最大长度（字节）
+ * @param c knode_config_t实例
+ * @return 管理命令结果缓冲区最大长度（字节）
+ */
+int knet_node_config_get_manage_max_output_buffer_length(knode_config_t* c);
 
 #endif /* NODE_CONFIG_H */

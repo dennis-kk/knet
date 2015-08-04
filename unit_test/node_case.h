@@ -165,3 +165,51 @@ CASE(Test_Node_Join) {
         knet_node_destroy(Test_Node_Node_Array[i]);
     }
 }
+
+int Test_Manage_Cb_Manage_Cb_Count = 0;
+kloop_t* Test_Manage_Cb_Loop = 0;
+
+CASE(Test_Manage_Cb) {
+    struct holder {
+        static int manage_cb(knode_t* node, const char* cmd, char* result, int* size) {
+            verify(node);
+            verify(cmd);
+            Test_Manage_Cb_Manage_Cb_Count += 1;
+            EXPECT_TRUE(std::string(cmd) == "test");
+            *size = 0;
+            if (Test_Manage_Cb_Manage_Cb_Count == 2) {
+                knet_node_stop(node);
+                knet_loop_exit(Test_Manage_Cb_Loop);
+            }
+            return manage_cb_ok;
+        }
+
+        static void client_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
+            if (e & channel_cb_event_connect) {
+                kstream_t* s = knet_channel_ref_get_stream(channel);
+                knet_stream_push(s, "test\r\ntest\r\n", 12);
+            }
+        }
+    };
+
+    // 建立根节点
+    knode_t* node = knet_node_create();
+    knode_config_t* rnc = knet_node_get_config(node);
+    EXPECT_TRUE(error_ok == knet_node_config_set_identity(rnc, 1, 1));
+    EXPECT_TRUE(error_ok == knet_node_config_set_address(rnc, "127.0.0.1", 12345));
+    EXPECT_TRUE(error_ok == knet_node_config_set_root(rnc));
+    EXPECT_TRUE(error_ok == knet_node_config_set_manage_address(rnc, "127.0.0.1", 12346));
+    EXPECT_TRUE(error_ok == knet_node_config_set_manage_cb(rnc, &holder::manage_cb));
+    EXPECT_TRUE(error_ok == knet_node_start(node));
+
+    // 模拟一个管理客户端
+    Test_Manage_Cb_Loop = knet_loop_create();
+    kchannel_ref_t* channel = knet_loop_create_channel(Test_Manage_Cb_Loop, 0, 1024);
+    knet_channel_ref_set_cb(channel, &holder::client_cb);
+    knet_channel_ref_connect(channel, "127.0.0.1", 12346, 2);
+    knet_loop_run(Test_Manage_Cb_Loop);
+
+    knet_node_wait_for_stop(node);
+    knet_node_destroy(node);
+    knet_loop_destroy(Test_Manage_Cb_Loop);
+}

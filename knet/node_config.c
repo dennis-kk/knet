@@ -30,31 +30,32 @@
 #define MAX_CONCERN_SIZE 64
 
 struct _node_config_t {
-    int                   root;                           /* 是否是根节点 */
-    int                   worker_count;                   /* 工作线程数量 */
-    knode_t*              node;                           /* 节点 */
-    uint32_t              id;                             /* 节点ID */
-    uint32_t              type;                           /* 节点类型 */
-    int                   concern_pos;                    /* 关注类型数组当前下标 */
-    uint32_t              concern[MAX_CONCERN_SIZE];      /* 关注类型数组 */
-    char                  ip[32];                         /* 监听IP */
-    int                   port;                           /* 监听端口 */
-    char                  root_ip[32];                    /* 根节点IP */
-    int                   root_port;                      /* 根节点端口 */
-    char                  monitor_ip[32];                 /* 监控监听IP */
-    int                   monitor_port;                   /* 监控监听端口 */
-    char                  manage_ip[32];                  /* 管理监听IP */
-    int                   manage_port;                    /* 管理监听端口 */
-    knet_node_signal_cb_t signal_cb;                      /* 操作系统信号处理回调 */
-    knet_node_cb_t        node_cb;                        /* 节点回调函数 */
-    knet_node_manage_cb_t manage_cb;                      /* 管理命令回调函数 */
-    int                   black_ip_filter_auto_save;      /* 是否自动保存IP黑名单 */
-    char                  black_ip_filter_path[PATH_MAX]; /* IP黑名单文件路径 */
-    int                   white_ip_filter_auto_save;      /* 是否自动保存IP黑名单 */
-    char                  white_ip_filter_path[PATH_MAX]; /* IP黑名单文件路径 */
-    int                   idle_timeout;                   /* 节点管道空闲 */
-    int                   max_recv_buffer_length;         /* 节点管道接收缓冲区最大长度 */
-    int                   max_send_list_count;            /* 节点管道发送链表最大长度 */
+    int                    root;                           /* 是否是根节点 */
+    int                    worker_count;                   /* 工作线程数量 */
+    knode_t*               node;                           /* 节点 */
+    uint32_t               id;                             /* 节点ID */
+    uint32_t               type;                           /* 节点类型 */
+    int                    concern_pos;                    /* 关注类型数组当前下标 */
+    uint32_t               concern[MAX_CONCERN_SIZE];      /* 关注类型数组 */
+    char                   ip[32];                         /* 监听IP */
+    int                    port;                           /* 监听端口 */
+    char                   root_ip[32];                    /* 根节点IP */
+    int                    root_port;                      /* 根节点端口 */
+    char                   monitor_ip[32];                 /* 监控监听IP */
+    int                    monitor_port;                   /* 监控监听端口 */
+    char                   manage_ip[32];                  /* 管理监听IP */
+    int                    manage_port;                    /* 管理监听端口 */
+    knet_node_cb_t         node_cb;                        /* 节点回调函数 */
+    knet_node_manage_cb_t  manage_cb;                      /* 管理命令回调函数 */
+    knet_node_monitor_cb_t monitor_cb;                     /* 节点皆空回调函数 */
+    int                    black_ip_filter_auto_save;      /* 是否自动保存IP黑名单 */
+    char                   black_ip_filter_path[PATH_MAX]; /* IP黑名单文件路径 */
+    int                    white_ip_filter_auto_save;      /* 是否自动保存IP黑名单 */
+    char                   white_ip_filter_path[PATH_MAX]; /* IP黑名单文件路径 */
+    int                    idle_timeout;                   /* 节点管道空闲 */
+    int                    max_recv_buffer_length;         /* 节点管道接收缓冲区最大长度 */
+    int                    max_send_list_count;            /* 节点管道发送链表最大长度 */
+    int                    max_output_buffer_length;       /* 管理命令结果缓冲区最大长度 */
 };
 
 void knet_node_config_set_node_channel_max_recv_buffer_length(knode_config_t* c, int max_recv_buffer_length) {
@@ -93,10 +94,11 @@ knode_config_t* knet_node_config_create(knode_t* node) {
     c = create(knode_config_t);
     verify(c);
     memset(c, 0, sizeof(knode_config_t));
-    c->node                   = node;
-    c->worker_count           = 1;
-    c->max_recv_buffer_length = 16 * 1024;
-    c->max_send_list_count    = INT_MAX;
+    c->node                     = node;
+    c->worker_count             = 1;
+    c->max_recv_buffer_length   = 16 * 1024;
+    c->max_send_list_count      = INT_MAX;
+    c->max_output_buffer_length = 1024;
     return c;
 }
 
@@ -213,17 +215,6 @@ int knet_node_config_check_root(knode_config_t* c) {
     return (c->root || (!strcmp(c->ip, c->root_ip) && (c->port == c->root_port)));
 }
 
-int knet_node_config_set_signal_cb(knode_config_t* c, knet_node_signal_cb_t cb) {
-    verify(c);
-    c->signal_cb = cb;
-    return error_ok;
-}
-
-knet_node_signal_cb_t knet_node_config_get_signal_cb(knode_config_t* c) {
-    verify(c);
-    return c->signal_cb;
-}
-
 int knet_node_config_set_node_cb(knode_config_t* c, knet_node_cb_t cb) {
     verify(c);
     c->node_cb = cb;
@@ -279,6 +270,17 @@ int knet_node_config_set_manage_cb(knode_config_t* c, knet_node_manage_cb_t cb) 
     return error_ok;
 }
 
+int knet_node_config_set_monitor_cb(knode_config_t* c, knet_node_monitor_cb_t cb) {
+    verify(c);
+    c->monitor_cb = cb;
+    return error_ok;
+}
+
+knet_node_monitor_cb_t knet_node_config_get_monitor_cb(knode_config_t* c) {
+    verify(c);
+    return c->monitor_cb;
+}
+
 knet_node_manage_cb_t knet_node_config_get_manage_cb(knode_config_t* c) {
     verify(c);
     return c->manage_cb;
@@ -313,6 +315,16 @@ const char* knet_node_config_get_black_ip_filter_file_path(knode_config_t* c) {
 kframework_config_t* knet_node_config_get_framework_config(knode_config_t* c) {
     verify(c);
     return knet_framework_get_config(knet_node_get_framework(c->node));
+}
+
+void knet_node_config_set_manage_max_output_buffer_length(knode_config_t* c, int max_output_buffer_length) {
+    verify(c);
+    c->max_output_buffer_length = max_output_buffer_length;
+}
+
+int knet_node_config_get_manage_max_output_buffer_length(knode_config_t* c) {
+    verify(c);
+    return c->max_output_buffer_length;
 }
 
 int knet_node_config_set_white_ip_filter_auto_save_at_exit(knode_config_t* c, int on) {

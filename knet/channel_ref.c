@@ -678,13 +678,19 @@ void knet_channel_ref_set_timeout(kchannel_ref_t* channel_ref, int timeout) {
 }
 
 int knet_channel_ref_check_connect_timeout(kchannel_ref_t* channel_ref, time_t ts) {
+    int ret = 0;
     verify(channel_ref);
     if (knet_channel_ref_check_state(channel_ref, channel_state_connect)) {
         if (channel_ref->ref_info->last_connect_timeout) {
-            return (channel_ref->ref_info->last_connect_timeout < ts);
+            ret = (channel_ref->ref_info->last_connect_timeout < ts);
         }
     }
-    return 0;
+    if (ret) {
+        /* 如果超时重置下次触发时间 */
+        channel_ref->ref_info->last_connect_timeout =
+            ts + channel_ref->ref_info->connect_timeout;
+    }
+    return ret;
 }
 
 int knet_channel_ref_check_timeout(kchannel_ref_t* channel_ref, time_t ts) {

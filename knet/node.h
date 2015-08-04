@@ -100,6 +100,22 @@ int node_connect_root(knode_t* node);
 int node_local_start(knode_t* node);
 
 /**
+ * 启动节点监控端口
+ * @param node knode_t实例
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int node_monitor_start(knode_t* node);
+
+/**
+ * 启动节点管理端口
+ * @param node knode_t实例
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int node_manage_start(knode_t* node);
+
+/**
  * 读取IP黑/白名单文件
  * @param node knode_t实例
  * @retval error_ok 成功
@@ -123,12 +139,26 @@ void node_save_filter_files(knode_t* node);
 void node_channel_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e);
 
 /**
+ * 节点监控管道回调
+ * @param channel kchannel_ref_t实例
+ * @param e 管道事件
+ */
+void node_monitor_channel_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e);
+
+/**
+ * 节点管理管道回调
+ * @param channel kchannel_ref_t实例
+ * @param e 管道事件
+ */
+void node_manage_channel_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e);
+
+/**
  * 发送节点身份验证请求
  * @param channel kchannel_ref_t实例
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int _node_login_req(kchannel_ref_t* channel);
+int node_login_req(kchannel_ref_t* channel);
 
 /**
  * 发送节点身份验证应答
@@ -136,7 +166,7 @@ int _node_login_req(kchannel_ref_t* channel);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int _node_login_ack(kchannel_ref_t* channel);
+int node_login_ack(kchannel_ref_t* channel);
 
 /**
  * 发送数据到其他节点
@@ -146,7 +176,7 @@ int _node_login_ack(kchannel_ref_t* channel);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int _node_send(kchannel_ref_t* channel, const void* data, uint32_t size);
+int node_send(kchannel_ref_t* channel, const void* data, uint32_t size);
 
 /**
  * 根节点通知其他节点有新节点加入集群
@@ -158,14 +188,14 @@ int _node_send(kchannel_ref_t* channel, const void* data, uint32_t size);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int _node_broadcast_join(knode_t* node, const char* ip, int port, uint32_t type, uint32_t id);
+int node_broadcast_join(knode_t* node, const char* ip, int port, uint32_t type, uint32_t id);
 
 /**
  * 获取消息ID
  * @param channel kchannel_ref_t实例
  * @return 消息ID
  */
-uint32_t _proc_msg_id(kchannel_ref_t* channel);
+uint32_t copy_msg_id(kchannel_ref_t* channel);
 
 /**
  * 发送心跳请求
@@ -173,7 +203,7 @@ uint32_t _proc_msg_id(kchannel_ref_t* channel);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int _node_send_heartbeat_req(kchannel_ref_t* channel);
+int node_send_heartbeat_req(kchannel_ref_t* channel);
 
 /**
  * 发送心跳应答
@@ -181,7 +211,7 @@ int _node_send_heartbeat_req(kchannel_ref_t* channel);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int _node_send_heartbeat_ack(kchannel_ref_t* channel);
+int node_send_heartbeat_ack(kchannel_ref_t* channel);
 
 /**
  * 身份验证请求处理函数
@@ -189,7 +219,7 @@ int _node_send_heartbeat_ack(kchannel_ref_t* channel);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int _on_node_login_req(kchannel_ref_t* channel);
+int on_node_login_req(kchannel_ref_t* channel);
 
 /**
  * 身份验证应答处理函数
@@ -197,7 +227,7 @@ int _on_node_login_req(kchannel_ref_t* channel);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int _on_node_login_ack(kchannel_ref_t* channel);
+int on_node_login_ack(kchannel_ref_t* channel);
 
 /**
  * 新节点加入通知处理函数
@@ -205,7 +235,7 @@ int _on_node_login_ack(kchannel_ref_t* channel);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int _on_node_join(kchannel_ref_t* channel);
+int on_node_join(kchannel_ref_t* channel);
 
 /**
  * 节点数据处理函数
@@ -213,7 +243,7 @@ int _on_node_join(kchannel_ref_t* channel);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int _on_node_data(kchannel_ref_t* channel);
+int on_node_data(kchannel_ref_t* channel);
 
 /**
  * 节点管道成功处理函数 - 主动连接
@@ -221,7 +251,7 @@ int _on_node_data(kchannel_ref_t* channel);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int _on_node_connect(kchannel_ref_t* channel);
+int on_node_connect(kchannel_ref_t* channel);
 
 /**
  * 节点管道成功处理函数 - 监听
@@ -229,7 +259,7 @@ int _on_node_connect(kchannel_ref_t* channel);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int _on_node_accept(kchannel_ref_t* channel);
+int on_node_accept(kchannel_ref_t* channel);
 
 /**
  * 节点管道数据处理函数
@@ -237,7 +267,7 @@ int _on_node_accept(kchannel_ref_t* channel);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int _on_node_recv(kchannel_ref_t* channel);
+int on_node_recv(kchannel_ref_t* channel);
 
 /**
  * 节点内部协议处理入口函数
@@ -245,7 +275,7 @@ int _on_node_recv(kchannel_ref_t* channel);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int _on_node_disjoin(kchannel_ref_t* channel);
+int on_node_disjoin(kchannel_ref_t* channel);
 
 /**
  * 节点管道超时处理函数
@@ -253,7 +283,7 @@ int _on_node_disjoin(kchannel_ref_t* channel);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int _on_node_timeout(kchannel_ref_t* channel);
+int on_node_timeout(kchannel_ref_t* channel);
 
 /**
  * 节点心跳请求处理函数
@@ -261,7 +291,7 @@ int _on_node_timeout(kchannel_ref_t* channel);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int _on_node_heartbeat_req(kchannel_ref_t* channel);
+int on_node_heartbeat_req(kchannel_ref_t* channel);
 
 /**
  * 节点心跳应答处理函数
@@ -269,6 +299,6 @@ int _on_node_heartbeat_req(kchannel_ref_t* channel);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int _on_node_heartbeat_ack(kchannel_ref_t* channel);
+int on_node_heartbeat_ack(kchannel_ref_t* channel);
 
 #endif /* NODE_H */

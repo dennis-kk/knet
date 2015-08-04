@@ -245,6 +245,7 @@ typedef enum _error_e {
     error_node_ip_filter,
     error_node_invalid_msg,
     error_node_timeout,
+    error_ringbuffer_not_found,
 } knet_error_e;
 
 /*! 管道回调事件 */
@@ -307,6 +308,11 @@ typedef enum _node_cb_event_e {
     node_cb_event_data = 4,
 } knet_node_cb_event_e;
 
+typedef enum _manage_cb_ret_e {
+    manage_cb_ok = 0,    /* 成功 */
+    manage_cb_close = 1, /* 关闭管理客户端管道 */
+} manage_cb_ret_e;
+
 /*! 线程函数 */
 typedef void (*knet_thread_func_t)(kthread_runner_t*);
 /*! 管道事件回调函数 */
@@ -327,10 +333,10 @@ typedef void (*knet_trie_dtor_t)(void*);
 typedef int (*knet_trie_for_each_func_t)(const char*, void*);
 /*! 节点代理回调函数 */
 typedef void (*knet_node_cb_t)(knode_proxy_t*, kchannel_ref_t*, knet_node_cb_event_e);
-/*! 节点OS信号回调函数 */
-typedef void (*knet_node_signal_cb_t)(int s, knode_t*);
 /*! 节点管理命令回调函数 */
-typedef void (*knet_node_manage_cb_t)(const char*);
+typedef int (*knet_node_manage_cb_t)(knode_t*, const char*, char*, int*);
+/*! 节点节点监控回调函数 */
+typedef void (*knet_node_monitor_cb_t)(knode_t*, kchannel_ref_t*);
 
 /* 根据需要， 开启不同选取器 */
 #if defined(WIN32)
