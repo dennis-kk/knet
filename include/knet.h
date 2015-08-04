@@ -47,6 +47,7 @@
 #include "vrouter_api.h"
 #include "node_api.h"
 #include "node_config_api.h"
+#include "hash_api.h"
 #include "version.h"
 
 #ifdef __cplusplus
