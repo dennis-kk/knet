@@ -94,8 +94,6 @@ extern int knet_node_config_set_root(knode_config_t* c);
 /**
  * 设置本节点是否为根节点
  * @param c knode_config_t实例
- * @param ip IP
- * @param port 端口
  * @retval error_ok 成功
  * @retval 其他 失败
  */

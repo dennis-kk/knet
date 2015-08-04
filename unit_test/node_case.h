@@ -209,7 +209,53 @@ CASE(Test_Manage_Cb) {
     knet_channel_ref_connect(channel, "127.0.0.1", 12346, 2);
     knet_loop_run(Test_Manage_Cb_Loop);
 
+    EXPECT_TRUE(Test_Manage_Cb_Manage_Cb_Count == 2);
+
     knet_node_wait_for_stop(node);
     knet_node_destroy(node);
     knet_loop_destroy(Test_Manage_Cb_Loop);
+}
+
+bool Test_Node_Monitor_Cb_Call = false;
+knode_t* Test_Node_Monitor_Cb_Node = 0;
+
+CASE(Test_Node_Monitor_Cb) {
+    struct holder {
+        static void monitor_cb(knode_t* node, kchannel_ref_t* channel) {
+            verify(node);
+            verify(channel);
+            Test_Node_Monitor_Cb_Call = true;
+        }
+
+        static void client_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
+            if (e & channel_cb_event_close) {
+                /* 5秒超时，关闭 */
+                knet_loop_exit(knet_channel_ref_get_loop(channel));
+                knet_node_stop(Test_Node_Monitor_Cb_Node);
+            }
+        }
+    };
+
+    // 建立根节点
+    Test_Node_Monitor_Cb_Node = knet_node_create();
+    knode_config_t* rnc = knet_node_get_config(Test_Node_Monitor_Cb_Node);
+    EXPECT_TRUE(error_ok == knet_node_config_set_identity(rnc, 1, 1));
+    EXPECT_TRUE(error_ok == knet_node_config_set_address(rnc, "127.0.0.1", 12345));
+    EXPECT_TRUE(error_ok == knet_node_config_set_root(rnc));
+    EXPECT_TRUE(error_ok == knet_node_config_set_monitor_address(rnc, "127.0.0.1", 12346));
+    EXPECT_TRUE(error_ok == knet_node_config_set_monitor_cb(rnc, &holder::monitor_cb));
+    EXPECT_TRUE(error_ok == knet_node_start(Test_Node_Monitor_Cb_Node));
+
+    // 模拟一个监控客户端
+    kloop_t* loop = knet_loop_create();
+    kchannel_ref_t* channel = knet_loop_create_channel(loop, 0, 1024);
+    knet_channel_ref_set_cb(channel, &holder::client_cb);
+    knet_channel_ref_connect(channel, "127.0.0.1", 12346, 2);
+    knet_loop_run(loop);
+
+    EXPECT_TRUE(Test_Node_Monitor_Cb_Call);
+
+    knet_node_wait_for_stop(Test_Node_Monitor_Cb_Node);
+    knet_node_destroy(Test_Node_Monitor_Cb_Node);
+    knet_loop_destroy(loop);
 }

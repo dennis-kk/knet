@@ -228,6 +228,9 @@ int knet_node_start(knode_t* node) {
     }
     /* 启动管理端口 */
     error = node_manage_start(node);
+    if (error_ok != error) {
+        return error;
+    }
     /* 设置工作线程数量, 默认单线程 */
     knet_framework_config_set_worker_thread_count(config,
         knet_node_config_get_worker_thread_count(node->c));
