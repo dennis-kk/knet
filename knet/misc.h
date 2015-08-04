@@ -71,15 +71,94 @@ socket_t socket_accept(socket_t socket_fd);
  */
 int socket_close(socket_t socket_fd);
 
+/**
+ * 开启地址重用
+ * @param socket_fd
+ * @retval 0 成功
+ * @retval 其他 失败
+ */
 int socket_set_reuse_addr_on(socket_t socket_fd);
+
+/**
+ * 开启套接字非阻塞
+ * @param socket_fd
+ * @retval 0 成功
+ * @retval 其他 失败
+ */
 int socket_set_non_blocking_on(socket_t socket_fd);
+
+/**
+ * 关闭nagle算法
+ *
+ * 让数据更快的被发送
+ * @param socket_fd
+ * @retval 0 成功
+ * @retval 其他 失败
+ */
 int socket_set_nagle_off(socket_t socket_fd);
+
+/**
+ * 关闭linger
+ *
+ * 避免已关闭的端口进入TIME_WAIT状态
+ * @param socket_fd
+ * @retval 0 成功
+ * @retval 其他 失败
+ */
 int socket_set_linger_off(socket_t socket_fd);
+
+/**
+ * 关闭keep-alive
+ * @param socket_fd
+ * @retval 0 成功
+ * @retval 其他 失败
+ */
 int socket_set_keepalive_off(socket_t socket_fd);
+
+/**
+ * 开启SO_DONTROUTE，未使用
+ * @param socket_fd
+ * @retval 0 成功
+ * @retval 其他 失败
+ */
 int socket_set_donot_route_on(socket_t socket_fd);
+
+/**
+ * 设置接收缓冲区大小
+ * @param socket_fd
+ * @param size 接收缓冲区大小
+ * @retval 0 成功
+ * @retval 其他 失败
+ */
 int socket_set_recv_buffer_size(socket_t socket_fd, int size);
+
+/**
+ * 设置发送缓冲区大小
+ * @param socket_fd
+ * @param size 发送缓冲区大小
+ * @retval 0 成功
+ * @retval 其他 失败
+ */
 int socket_set_send_buffer_size(socket_t socket_fd, int size);
+
+/**
+ * 发送
+ * @param socket_fd
+ * @param data 数据指针
+ * @param size 数据长度
+ * @retval >0 成功
+ * @retval 其他 失败
+ */
 int socket_send(socket_t socket_fd, const char* data, uint32_t size);
+
+/**
+ * 接收
+ * @param socket_fd
+ * @param data 接收缓冲区指针
+ * @param size 接收缓冲长度
+ * @retval >0 成功
+ * @retval 其他 失败
+ */
 int socket_recv(socket_t socket_fd, char* data, uint32_t size);
 
 /**
