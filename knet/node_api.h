@@ -186,6 +186,13 @@ extern uint32_t knet_node_proxy_get_type(knode_proxy_t* proxy);
  */
 extern uint32_t knet_node_proxy_get_data_length(knode_proxy_t* proxy);
 
+/**
+ * 取得本机节点
+ * @param proxy knode_proxy_t实例
+ * @return 本机节点
+ */
+extern knode_t* knet_node_proxy_get_self(knode_proxy_t* proxy);
+
 /** @} */
 
 #endif /* NODE_API_H */

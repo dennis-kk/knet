@@ -48,6 +48,7 @@ struct _node_proxy_t {
     uint32_t        type;            /* 节点类型 */
     uint32_t        id;              /* 节点ID */
     kchannel_ref_t* channel;         /* 节点管道引用 */
+    knode_t*        self;            /* 本机节点 */
     uint32_t        length;          /* 本次读取长度 */
     uint32_t        heartbeat_count; /* 心跳无效次数*/
 };
@@ -349,7 +350,7 @@ int knet_node_add_node(knode_t* node, uint32_t type, uint32_t id, kchannel_ref_t
         error = error_node_exist;
         goto error_return;
     }
-    proxy = node_proxy_create();
+    proxy = node_proxy_create(node);
     verify(proxy);
     proxy->type    = type;
     proxy->id      = id;
@@ -470,6 +471,16 @@ uint32_t knet_node_proxy_get_type(knode_proxy_t* proxy) {
     return proxy->type;
 }
 
+uint32_t knet_node_proxy_get_data_length(knode_proxy_t* proxy) {
+    verify(proxy);
+    return proxy->length;
+}
+
+knode_t* knet_node_proxy_get_self(knode_proxy_t* proxy) {
+    verify(proxy);
+    return proxy->self;
+}
+
 kframework_t* knet_node_get_framework(knode_t* node) {
     verify(node);
     return node->f;
@@ -485,10 +496,11 @@ kip_filter_t* knet_node_get_white_ip_filter(knode_t* node) {
     return node->white_ips;
 }
 
-knode_proxy_t* node_proxy_create() {
+knode_proxy_t* node_proxy_create(knode_t* self) {
     knode_proxy_t* proxy = create(knode_proxy_t);
     verify(proxy);
     memset(proxy, 0, sizeof(knode_proxy_t));
+    proxy->self = self;
     return proxy;
 }
 

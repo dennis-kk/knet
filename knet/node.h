@@ -59,9 +59,10 @@ int knet_node_remove_node_by_id(knode_t* node, uint32_t id);
 
 /**
  * 建立节点代理
+ * @param self 本机节点
  * @return knode_proxy_t实例
  */
-knode_proxy_t* node_proxy_create();
+knode_proxy_t* node_proxy_create(knode_t* self);
 
 /**
  * 销毁节点代理
