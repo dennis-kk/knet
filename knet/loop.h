@@ -268,4 +268,11 @@ socket_t knet_impl_channel_accept(kchannel_ref_t* channel_ref);
  */
 void* knet_loop_get_data(kloop_t* loop);
 
+/**
+ * 设置用户数据指针
+ * @param loop kloop_t实例
+ * @param data 用户数据指针
+ */
+void knet_loop_set_data(kloop_t* loop, void* data);
+
 #endif /* LOOP_H */

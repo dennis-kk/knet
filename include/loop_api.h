@@ -128,13 +128,6 @@ extern int knet_loop_get_active_channel_count(kloop_t* loop);
 extern int knet_loop_get_close_channel_count(kloop_t* loop);
 
 /**
- * 设置用户数据指针
- * @param loop kloop_t实例
- * @param data 用户数据指针
- */
-extern void knet_loop_set_data(kloop_t* loop, void* data);
-
-/**
  * 取得统计器
  * @param loop kloop_t实例
  * @return kloop_profile_t实例

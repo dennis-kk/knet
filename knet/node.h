@@ -101,6 +101,18 @@ int node_connect_root(knode_t* node);
 int node_local_start(knode_t* node);
 
 /**
+ * 获取node启动参数
+ *
+ * 通过main()参数传入
+ * @param node knode_t实例
+ * @param argc 参数个数
+ * @param argv 参数数组
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int node_get_config_argv(knode_t* node, int argc, char** argv);
+
+/**
  * 启动节点监控端口
  * @param node knode_t实例
  * @retval error_ok 成功

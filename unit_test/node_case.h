@@ -259,3 +259,13 @@ CASE(Test_Node_Monitor_Cb) {
     knet_node_destroy(Test_Node_Monitor_Cb_Node);
     knet_loop_destroy(loop);
 }
+
+CASE(Test_Node_Start_Argv) {
+    knode_t* node = knet_node_create();
+    char* argv[] = {
+        "node", "-root", "127.0.0.1:12345", "-self", "127.0.0.1:12345:1:1"
+    };
+    EXPECT_TRUE(error_ok == knet_node_start_argv(node, 5, argv));
+    knet_node_stop(node);
+    knet_node_destroy(node);
+}

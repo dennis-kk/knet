@@ -72,20 +72,6 @@ extern int knet_loop_balancer_attach(kloop_balancer_t* balancer, kloop_t* loop);
  */
 extern int knet_loop_balancer_detach(kloop_balancer_t* balancer, kloop_t* loop);
 
-/**
- * 设置用户数据
- * @param balancer kloop_balancer_t实例
- * @param data 用户数据指针
- */
-extern void knet_loop_balancer_set_data(kloop_balancer_t* balancer, void* data);
-
-/**
- * 取得用户数据
- * @param balancer kloop_balancer_t实例
- * @return 用户数据指针
- */
-extern void* knet_loop_balancer_get_data(kloop_balancer_t* balancer);
-
 /** @} */
 
 #endif /* LOOP_BALANCER_API_H */

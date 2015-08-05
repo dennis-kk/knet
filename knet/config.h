@@ -246,6 +246,7 @@ typedef enum _error_e {
     error_node_invalid_msg,
     error_node_timeout,
     error_ringbuffer_not_found,
+    error_node_argv_invalid,
 } knet_error_e;
 
 /*! 管道回调事件 */
@@ -331,7 +332,7 @@ typedef void (*knet_hash_dtor_t)(void*);
 typedef void (*knet_trie_dtor_t)(void*);
 /*! trie遍历函数 */
 typedef int (*knet_trie_for_each_func_t)(const char*, void*);
-/*! 节点代理回调函数 */
+/*! 节点回调函数 */
 typedef void (*knet_node_cb_t)(knode_proxy_t*, kchannel_ref_t*, knet_node_cb_event_e);
 /*! 节点管理命令回调函数 */
 typedef int (*knet_node_manage_cb_t)(knode_t*, const char*, char*, int*);

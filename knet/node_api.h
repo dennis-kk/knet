@@ -93,6 +93,22 @@ extern knode_config_t* knet_node_get_config(knode_t* node);
 extern int knet_node_start(knode_t* node);
 
 /**
+ * 启动节点，使用命令行传递的参数
+ *
+ * <pre>
+ * 命令行参数为
+ * -root ip:port
+ * -self ip:port:node-type:node-id
+ * </pre>
+ * @param node knode_t实例
+ * @param argc 命令行参数个数
+ * @param argv 命令行参数数组
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int knet_node_start_argv(knode_t* node, int argc, char** argv);
+
+/**
  * 关闭节点
  * @param node knode_t实例
  * @retval error_ok 成功

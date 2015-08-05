@@ -35,4 +35,18 @@
  */
 kloop_t* knet_loop_balancer_choose(kloop_balancer_t* balancer);
 
+/**
+ * 设置用户数据
+ * @param balancer kloop_balancer_t实例
+ * @param data 用户数据指针
+ */
+void knet_loop_balancer_set_data(kloop_balancer_t* balancer, void* data);
+
+/**
+ * 取得用户数据
+ * @param balancer kloop_balancer_t实例
+ * @return 用户数据指针
+ */
+void* knet_loop_balancer_get_data(kloop_balancer_t* balancer);
+
 #endif /* LOOP_BALANCER_H */

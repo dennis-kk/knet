@@ -28,6 +28,12 @@
 #include "config.h"
 
 /**
+ * @defgroup node_config 节点配置
+ * 节点配置
+ * @{
+ */
+
+/**
  * 设置节点身份
  * @param c knode_config_t实例
  * @param type 节点类型
@@ -222,5 +228,7 @@ extern kframework_config_t* knet_node_config_get_framework_config(knode_config_t
  * @param max_output_buffer_length 缓冲区最大长度
  */
 extern void knet_node_config_set_manage_max_output_buffer_length(knode_config_t* c, int max_output_buffer_length);
+
+/** @} */
 
 #endif /* NODE_CONFIG_API_H */

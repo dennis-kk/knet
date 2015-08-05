@@ -1202,3 +1202,31 @@ void rwlock_wrunlock(krwlock_t* rwlock) {
     pthread_rwlock_unlock(&rwlock->rwlock);
 #endif /* defined(WIN32) */
 }
+
+int split(const char* src, char delim, int n, ...) {
+    int   i   = 0; /* 当前分割数 */
+    int   j   = 0; /* 字符缓冲区下标 */
+    char* arg = 0; /* 当前字符缓冲区 */
+    va_list arg_ptr;
+    verify(src);
+    verify(n);
+    va_start(arg_ptr, n);
+    for (; i < n; i++) {
+        arg = va_arg(arg_ptr, char*);
+        for ( ;*src; src++) {
+            if (*src == delim) {
+                arg[j] = 0;
+                j = 0;
+                src += 1;
+                break;
+            } else {
+                arg[j++] = *src;
+            }
+        }
+    }
+    va_end(arg_ptr);
+    if (i < n || *src) {
+        return 1;
+    }
+    return 0;
+}

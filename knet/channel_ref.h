@@ -339,4 +339,18 @@ int knet_channel_ref_check_ref_zero(kchannel_ref_t* channel_ref);
  */
 int knet_channel_ref_get_ref(kchannel_ref_t* channel_ref);
 
+/**
+ * 设置管道用户数据
+ * @param channel_ref kchannel_ref_t实例
+ * @param data 用户数据指针
+ */
+void knet_channel_ref_set_user_data(kchannel_ref_t* channel_ref, void* data);
+
+/**
+ * 获取管道用户数据
+ * @param channel_ref kchannel_ref_t实例
+ * @return 用户数据指针
+ */
+void* knet_channel_ref_get_user_data(kchannel_ref_t* channel_ref);
+
 #endif /* CHANNEL_REF_H */

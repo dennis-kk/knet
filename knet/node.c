@@ -238,6 +238,66 @@ int knet_node_start(knode_t* node) {
     return knet_framework_start(node->f);
 }
 
+int node_get_config_argv(knode_t* node, int argc, char** argv) {
+    int  error         = error_ok;
+    int  i             = 1;
+    char root_ip[32]   = {0};
+    char root_port[16] = {0};
+    char ip[32]        = {0};
+    char port[16]      = {0};
+    char type[16]      = {0};
+    char id[16]        = {0};
+    int  root          = 0;
+    int  self          = 0;
+    verify(node);
+    verify(argc);
+    verify(argv);
+    for (; i < argc;) {
+        if (!strcmp("-root", argv[i]) || !strcmp("-r", argv[i])) {
+            if (i + 1 < argc) {
+                i += 1;
+                if (split(argv[i], ':', 2, root_ip, root_port)) {
+                    error = error_node_argv_invalid;
+                }
+            } else {
+                error = error_node_argv_invalid;
+            }
+            root = 1;
+        } else if (!strcmp("-self", argv[i])|| !strcmp("-s", argv[i])) {
+            if (i + 1 < argc) {
+                i += 1;
+                if (split(argv[i], ':', 4, ip, port, type, id)) {
+                    error = error_node_argv_invalid;
+                }
+            } else {
+                error = error_node_argv_invalid;
+            }
+            self = 1;
+        }
+        i += 1;
+        if (error_ok != error) {
+            return error;
+        }
+    }
+    if (root) {
+        knet_node_config_set_root_address(node->c, root_ip, (uint32_t)atoi(root_port));
+    }
+    if (self) {
+        knet_node_config_set_address(node->c, ip, atoi(port));
+        knet_node_config_set_identity(node->c, (uint32_t)atoi(type), (uint32_t)atoi(id));
+    }
+    return error;
+}
+
+int knet_node_start_argv(knode_t* node, int argc, char** argv) {
+    int error = error_ok;
+    error = node_get_config_argv(node, argc, argv);
+    if (error_ok != error) {
+        return error;
+    }
+    return knet_node_start(node);
+}
+
 int knet_node_stop(knode_t* node) {
     verify(node);
     return knet_framework_stop(node->f);
@@ -596,7 +656,8 @@ int node_connect_root(knode_t* node) {
     kframework_connector_config_t* connector = 0;
     kframework_config_t*           config    = 0;
     verify(node);
-    config    = knet_framework_get_config(node->f);
+    config = knet_framework_get_config(node->f);
+    verify(config);
     connector = knet_framework_config_new_connector(config);
     verify(connector);
     knet_framework_connector_config_set_remote_address(connector,

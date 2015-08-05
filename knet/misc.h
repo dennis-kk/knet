@@ -353,4 +353,14 @@ void rwlock_wrlock(krwlock_t* rwlock);
  */
 void rwlock_wrunlock(krwlock_t* rwlock);
 
+/**
+ * 分割字符串
+ * @param src 待分割字符串
+ * @param delim 分割字符
+ * @param n 分割后子串数量
+ * @retval 0 成功
+ * @retval 其他 失败
+ */
+int split(const char* src, char delim, int n, ...);
+
 #endif /* MISC_H */
