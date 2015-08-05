@@ -115,7 +115,18 @@ For more detail, see `examples/framework.c`
 ### Node ###
 ##
 
-Developing...
+`knode_t` API offers a high level peer to peer node cluster abstract based on `kframework_t`. There two type of node: root node and node.  
+Generally, the root node listening a port for node comming and notify other node in cluster the new joiner's identifier, after that new joiner connected with node cluster. Node only connect to which node type is concerned type(Use node configuration API). In fact, the root node could not be unique but it should be unique for a cluster. Node API are helpful to developer divide logical function to seperate process via node abstract, there are the feature list:   
+
+1. Node cluster
+2. Peer-to-peer   
+3. Broadcast message   
+4. Broadcast message by node type   
+5. Black IP filter   
+6. White IP filter   
+7. Internal heartbeat between node pair
+
+For more detail, see the DEV document.
 
 ### RPC ###
 ##
