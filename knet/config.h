@@ -357,22 +357,6 @@ typedef void (*knet_node_monitor_cb_t)(knode_t*, kchannel_ref_t*);
 #define LOGGER_MODE (logger_mode_file | logger_mode_console | logger_mode_flush | logger_mode_override) /* 日志模式 */
 #define LOGGER_LEVEL logger_level_verbose /* 日志等级 */
 
-#include "logger.h"
-
-#if defined(DEBUG) || defined(_DEBUG)
-    #define verify(expr) assert(expr)
-#elif defined(NDEBUG)
-    #define verify(expr) \
-        if (!(expr)) { \
-            log_fatal("crash point abort, file:(%s:%d): cause:(%s)", __FILE__, __LINE__, #expr); \
-            abort(); \
-        }
-#else
-    #define verify(expr) \
-        if (!(expr)) { \
-            log_fatal("crash point abort, file:(%s:%d): cause:(%s)", __FILE__, __LINE__, #expr); \
-            abort(); \
-        }
-#endif /* defined(DEBUG) || defined(_DEBUG) */
+#include "logger_api.h"
 
 #endif /* CONFIG_H */

@@ -187,6 +187,73 @@ extern atomic_counter_t atomic_counter_dec(atomic_counter_t* counter);
  */
 extern int atomic_counter_zero(atomic_counter_t* counter);
 
+/**
+ * 建立互斥锁实例
+ * @return klock_t实例
+ */
+extern klock_t* lock_create();
+
+/**
+ * 销毁互斥锁
+ * @param lock klock_t实例
+ */
+extern void lock_destroy(klock_t* lock);
+
+/**
+ * 锁
+ * @param lock klock_t实例
+ */
+extern void lock_lock(klock_t* lock);
+
+/**
+ * 测试锁
+ * @param lock klock_t实例
+ * @sa pthread_mutex_trylock
+ */
+extern int lock_trylock(klock_t* lock);
+
+/**
+ * 解锁
+ * @param lock klock_t实例
+ */
+extern void lock_unlock(klock_t* lock);
+
+/**
+ * 建立读写锁
+ * @return krwlock_t实例
+ */
+extern krwlock_t* rwlock_create();
+
+/**
+ * 销毁读写锁
+ * @param rwlock krwlock_t实例
+ */
+extern void rwlock_destroy(krwlock_t* rwlock);
+
+/**
+ * 读者锁
+ * @param rwlock krwlock_t实例
+ */
+extern void rwlock_rdlock(krwlock_t* rwlock);
+
+/**
+ * 读者解锁
+ * @param rwlock krwlock_t实例
+ */
+extern void rwlock_rdunlock(krwlock_t* rwlock);
+
+/**
+ * 写者锁
+ * @param rwlock krwlock_t实例
+ */
+extern void rwlock_wrlock(krwlock_t* rwlock);
+
+/**
+ * 写者解锁
+ * @param rwlock krwlock_t实例
+ */
+extern void rwlock_wrunlock(krwlock_t* rwlock);
+
 /** @} */
 
 #endif /* THREAD_API_H */

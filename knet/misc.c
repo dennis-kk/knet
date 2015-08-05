@@ -1103,7 +1103,7 @@ const char* get_channel_cb_event_name(knet_channel_cb_event_e e) {
     return "unknown channel callback event";
 }
 
-char* ltoa(long l, char* buffer, int size) {
+char* knet_ltoa(long l, char* buffer, int size) {
     int len = 0;
     verify(buffer);
     verify(size);
@@ -1122,7 +1122,7 @@ char* ltoa(long l, char* buffer, int size) {
     return buffer;
 }
 
-char* lltoa(long long ll, char* buffer, int size) {
+char* knet_lltoa(long long ll, char* buffer, int size) {
     int len = 0;
     verify(buffer);
     verify(size);

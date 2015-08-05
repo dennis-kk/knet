@@ -48,6 +48,8 @@
 #include "node_api.h"
 #include "node_config_api.h"
 #include "hash_api.h"
+#include "misc_api.h"
+#include "logger_api.h"
 #include "version.h"
 
 #ifdef __cplusplus

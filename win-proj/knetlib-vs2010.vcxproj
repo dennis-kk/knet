@@ -84,6 +84,7 @@
     <ClInclude Include="..\knet\knet.h" />
     <ClInclude Include="..\knet\list.h" />
     <ClInclude Include="..\knet\logger.h" />
+    <ClInclude Include="..\knet\logger_api.h" />
     <ClInclude Include="..\knet\loop.h" />
     <ClInclude Include="..\knet\loop_api.h" />
     <ClInclude Include="..\knet\loop_balancer.h" />
@@ -91,6 +92,7 @@
     <ClInclude Include="..\knet\loop_profile.h" />
     <ClInclude Include="..\knet\loop_profile_api.h" />
     <ClInclude Include="..\knet\misc.h" />
+    <ClInclude Include="..\knet\misc_api.h" />
     <ClInclude Include="..\knet\node.h" />
     <ClInclude Include="..\knet\node_api.h" />
     <ClInclude Include="..\knet\node_config.h" />
@@ -229,7 +231,8 @@
     <PostBuildEvent>
       <Command>xcopy /e /y  ..\knet\*_api.h ..\include\
 xcopy /e /y  ..\knet\knet.h ..\include\
-xcopy /e /y  ..\knet\config.h ..\include\</Command>
+xcopy /e /y  ..\knet\config.h ..\include\
+xcopy /e /y  ..\knet\version.h ..\include\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -307,7 +310,8 @@ xcopy /e /y  ..\knet\config.h ..\include\</Command>
     <PostBuildEvent>
       <Command>xcopy /e /y  ..\knet\*_api.h ..\include\
 xcopy /e /y  ..\knet\knet.h ..\include\
-xcopy /e /y  ..\knet\config.h ..\include\</Command>
+xcopy /e /y  ..\knet\config.h ..\include\
+xcopy /e /y  ..\knet\version.h ..\include\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release-Win64|Win32'">
