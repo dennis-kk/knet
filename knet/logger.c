@@ -36,6 +36,46 @@ struct _logger_t {
     klock_t*            lock;  /* Ëø */
 };
 
+void set_console_blue() {
+#if defined(WIN32)
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_BLUE | FOREGROUND_INTENSITY);
+#else
+    printf("\033[1;34m");
+#endif /* defined(WIN32) */
+}
+
+void set_console_red() {
+#if defined(WIN32)
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_INTENSITY);
+#else
+    printf("\033[1;31m");
+#endif /* defined(WIN32) */
+}
+
+void set_console_green() {
+#if defined(WIN32)
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+#else
+    printf("\033[1;32m");
+#endif /* defined(WIN32) */
+}
+
+void set_console_white() {
+#if defined(WIN32)
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+#else
+    printf("\033[30m");
+#endif /* defined(WIN32) */
+}
+
+void set_console_yellow() {
+#if defined(WIN32)
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_INTENSITY);
+#else
+    printf("\033[1;33m");
+#endif /* defined(WIN32) */
+}
+
 klogger_t* logger_create(const char* path, int level, int mode) {
     char temp[PATH_MAX] = {0};
     klogger_t* logger = create(klogger_t);
@@ -110,6 +150,17 @@ int logger_write(klogger_t* logger, int level, const char* format, ...) {
     if (logger->mode & logger_mode_console) {
         /* Ð´Èëstderr */
         lock_lock(logger->lock);
+        if (level == logger_level_verbose) {
+            set_console_blue();
+        } else if (level == logger_level_information) {
+            set_console_white();
+        } else if (level == logger_level_warning) {
+            set_console_green();
+        } else if (level == logger_level_error) {
+            set_console_red();
+        } else if (level == logger_level_fatal) {
+            set_console_yellow();
+        }
         fprintf(stderr, "[%s][%s]", logger_level_name[level], buffer);
         vfprintf(stderr, format, va_ptr_console);
         fprintf(stderr, "\n");
@@ -119,6 +170,7 @@ int logger_write(klogger_t* logger, int level, const char* format, ...) {
         }
         lock_unlock(logger->lock);
     }
+    set_console_white();
     va_end(va_ptr_file);
     va_end(va_ptr_console);
     return error_ok;
