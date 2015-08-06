@@ -26,6 +26,7 @@
 #include "node_config.h"
 #include "framework.h"
 #include "node.h"
+#include "logger.h"
 
 #define MAX_CONCERN_SIZE 64
 

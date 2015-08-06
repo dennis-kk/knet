@@ -23,6 +23,7 @@
  */
 
 #include "address.h"
+#include "logger.h"
 
 struct _address_t {
     char ip[32];

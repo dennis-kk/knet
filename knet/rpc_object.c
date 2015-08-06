@@ -26,6 +26,7 @@
 #include "hash.h"
 #include "stream.h"
 #include "misc.h"
+#include "logger.h"
 
 
 #if defined(_MSC_VER )

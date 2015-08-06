@@ -24,6 +24,7 @@
 
 #include "hash.h"
 #include "list.h"
+#include "logger.h"
 
 
 struct _hash_t {

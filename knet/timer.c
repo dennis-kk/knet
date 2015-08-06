@@ -25,6 +25,7 @@
 #include "timer.h"
 #include "list.h"
 #include "misc.h"
+#include "logger.h"
 
 
 struct _ktimer_t {

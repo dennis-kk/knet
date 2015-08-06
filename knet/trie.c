@@ -23,6 +23,7 @@
  */
 
 #include "trie_api.h"
+#include "logger.h"
 
 typedef struct _trie_node_t {
     struct _trie_node_t* parent;   /* ¸¸½Úµã */

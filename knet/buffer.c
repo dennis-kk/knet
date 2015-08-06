@@ -23,6 +23,7 @@
  */
 
 #include "buffer.h"
+#include "logger.h"
 
 
 struct _buffer_t {

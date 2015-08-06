@@ -28,6 +28,7 @@
 #include "channel_ref.h"
 #include "stream.h"
 #include "misc.h"
+#include "logger.h"
 
 typedef struct _wire_t {
     kchannel_ref_t* c1; /* 起始管道 */

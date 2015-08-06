@@ -26,9 +26,9 @@
 #include "config.h"
 #include "channel_ref.h"
 #include "ringbuffer.h"
-
 #include "buffer.h"
 #include "misc.h"
+#include "logger.h"
 
 struct _stream_t {
     kchannel_ref_t* channel_ref;

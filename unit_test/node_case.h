@@ -55,7 +55,6 @@ knode_t* Test_Node_Node = 0;
 CASE(Test_Node_Connect) {
     struct holder {
         static void root_node_cb(knode_proxy_t* p, knet_node_cb_event_e e) {
-            verify(p);
             if (e & node_cb_event_disjoin) {
                 Test_Node_Connect_Root_DisJoin_Flag = true;
                 knet_node_stop(Test_Node_Root_Node);
@@ -66,7 +65,6 @@ CASE(Test_Node_Connect) {
         }
 
         static void node_cb(knode_proxy_t* p, knet_node_cb_event_e e) {
-            verify(p);
             if (e & node_cb_event_join) {
                 knet_node_proxy_close(p);
             }
@@ -109,12 +107,9 @@ int MAX_JOIN_TIMES = (MAX_NODE * (MAX_NODE - 1)) / 2;
 CASE(Test_Node_Join) {
     struct holder {
         static void root_node_cb(knode_proxy_t* p, knet_node_cb_event_e e) {
-            verify(p);
-            verify(e);
         }
 
         static void node_cb(knode_proxy_t* p, knet_node_cb_event_e e) {
-            verify(p);
             if (e & node_cb_event_join) {
                 Test_Node_Join_Count++;
                 if (Test_Node_Join_Count == MAX_JOIN_TIMES) {
@@ -169,8 +164,6 @@ kloop_t* Test_Manage_Cb_Loop = 0;
 CASE(Test_Manage_Cb) {
     struct holder {
         static int manage_cb(knode_t* node, const char* cmd, char* result, int* size) {
-            verify(node);
-            verify(cmd);
             Test_Manage_Cb_Manage_Cb_Count += 1;
             EXPECT_TRUE(std::string(cmd) == "test");
             *size = 0;
@@ -219,8 +212,6 @@ knode_t* Test_Node_Monitor_Cb_Node = 0;
 CASE(Test_Node_Monitor_Cb) {
     struct holder {
         static void monitor_cb(knode_t* node, kchannel_ref_t* channel) {
-            verify(node);
-            verify(channel);
             Test_Node_Monitor_Cb_Call = true;
         }
 
@@ -272,7 +263,6 @@ bool Test_Node_Send_Flag = false;
 CASE(Test_Node_Send) {
     struct holder {
         static void root_node_cb(knode_proxy_t* p, knet_node_cb_event_e e) {
-            verify(p);
             if (e & node_cb_event_disjoin) {
                 Test_Node_Connect_Root_DisJoin_Flag = true;
                 knet_node_stop(Test_Node_Root_Node);
@@ -284,7 +274,6 @@ CASE(Test_Node_Send) {
         }
 
         static void node_cb(knode_proxy_t* p, knet_node_cb_event_e e) {
-            verify(p);
             if (e & node_cb_event_data) {
                 char buffer[128] = {0};
                 knet_node_proxy_read(p, buffer, sizeof(buffer));

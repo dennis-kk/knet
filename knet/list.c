@@ -25,6 +25,7 @@
 #include <stdlib.h>
 #include "list.h"
 #include "misc.h"
+#include "logger.h"
 
 
 /* Á´±í½Úµã */

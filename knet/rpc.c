@@ -29,6 +29,7 @@
 #include "channel_ref.h"
 #include "stream.h"
 #include "rpc_object.h"
+#include "logger.h"
 
 
 #if defined(_MSC_VER )
