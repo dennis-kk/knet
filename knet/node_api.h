@@ -209,6 +209,51 @@ extern uint32_t knet_node_proxy_get_data_length(knode_proxy_t* proxy);
  */
 extern knode_t* knet_node_proxy_get_self(knode_proxy_t* proxy);
 
+/**
+ * 发送到节点
+ * @param proxy knode_proxy_t实例
+ * @param buffer 数据
+ * @param size 长度
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int knet_node_proxy_write(knode_proxy_t* proxy, void* buffer, int size);
+
+/**
+ * 读取节点数据
+ * @param proxy knode_proxy_t实例
+ * @param buffer 数据
+ * @param size 长度
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int knet_node_proxy_read(knode_proxy_t* proxy, void* buffer, int size);
+
+/**
+ * 读取节点数据，但不清除
+ * @param proxy knode_proxy_t实例
+ * @param buffer 数据
+ * @param size 长度
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int knet_node_proxy_copy(knode_proxy_t* proxy, void* buffer, int size);
+
+/**
+ * 可读取数据的长度（字节）
+ * @param proxy knode_proxy_t实例
+ * @return 可读取数据的长度（字节）
+ */
+extern int knet_node_proxy_available(knode_proxy_t* proxy);
+
+/**
+ * 断开节点连接
+ * @param proxy knode_proxy_t实例
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int knet_node_proxy_close(knode_proxy_t* proxy);
+
 /** @} */
 
 #endif /* NODE_API_H */
