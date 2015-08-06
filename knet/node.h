@@ -110,7 +110,7 @@ int node_local_start(knode_t* node);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int node_get_config_argv(knode_t* node, int argc, char** argv);
+int node_get_config_argv(knode_t* node, int argc, const char** argv);
 
 /**
  * 启动节点监控端口

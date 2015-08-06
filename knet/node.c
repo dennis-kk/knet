@@ -238,7 +238,7 @@ int knet_node_start(knode_t* node) {
     return knet_framework_start(node->f);
 }
 
-int node_get_config_argv(knode_t* node, int argc, char** argv) {
+int node_get_config_argv(knode_t* node, int argc, const char** argv) {
     int  error         = error_ok;
     int  i             = 1;
     char root_ip[32]   = {0};
@@ -289,7 +289,7 @@ int node_get_config_argv(knode_t* node, int argc, char** argv) {
     return error;
 }
 
-int knet_node_start_argv(knode_t* node, int argc, char** argv) {
+int knet_node_start_argv(knode_t* node, int argc, const char** argv) {
     int error = error_ok;
     error = node_get_config_argv(node, argc, argv);
     if (error_ok != error) {
@@ -405,7 +405,7 @@ int knet_node_add_node(knode_t* node, uint32_t type, uint32_t id, kchannel_ref_t
     uuid = knet_channel_ref_get_uuid(channel);
     rwlock_wrlock(node->rwlock_node_hash);
     if (hash_get(node->hash_node_id, id)) {
-        log_error("node ID exists, ID[%D]", id);
+        log_error("node ID exists, ID[%d]", id);
         error = error_node_exist;
         goto error_return;
     }
@@ -424,10 +424,6 @@ int knet_node_add_node(knode_t* node, uint32_t type, uint32_t id, kchannel_ref_t
         goto error_return;
     }
     error = hash_add(node->hash_node_channel_id, uuid_get_high32(uuid), proxy);
-    if (error_ok != error) {
-        goto error_return;
-    }
-    error = node_login_ack(channel);
     if (error_ok != error) {
         goto error_return;
     }
@@ -1085,6 +1081,10 @@ int on_node_login_req(kchannel_ref_t* channel) {
         return error;
     }
     error = knet_stream_pop(stream, &req, sizeof(knode_login_req_t));
+    if (error_ok != error) {
+        return error;
+    }
+    error = node_login_ack(channel);
     if (error_ok != error) {
         return error;
     }

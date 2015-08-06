@@ -164,11 +164,9 @@ see `doc/html/index.html` for dev doc.
 1. Windows   
 	see `knet/win-proj/knet-vs2010.sln`
 2. Linux   
-	see `knet/CMakeLists.txt`   
-	`cmake CMakeLists.txt`   
-	`make`   
+	./build.sh 
 
-The build result in folder `knet/bin`.
+The build result in folder `knet/bin` and `knet/lib`.
 
 ### Test ###
 

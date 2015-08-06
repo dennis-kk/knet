@@ -106,7 +106,7 @@ extern int knet_node_start(knode_t* node);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int knet_node_start_argv(knode_t* node, int argc, char** argv);
+extern int knet_node_start_argv(knode_t* node, int argc, const char** argv);
 
 /**
  * 关闭节点
@@ -210,7 +210,7 @@ extern knode_t* knet_node_proxy_get_self(knode_proxy_t* proxy);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int knet_node_proxy_write(knode_proxy_t* proxy, void* buffer, int size);
+extern int knet_node_proxy_write(knode_proxy_t* proxy, const void* buffer, int size);
 
 /**
  * 读取节点数据

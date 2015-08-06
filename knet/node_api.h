@@ -106,7 +106,7 @@ extern int knet_node_start(knode_t* node);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int knet_node_start_argv(knode_t* node, int argc, char** argv);
+extern int knet_node_start_argv(knode_t* node, int argc, const char** argv);
 
 /**
  * 关闭节点

@@ -259,7 +259,7 @@ CASE(Test_Node_Monitor_Cb) {
 
 CASE(Test_Node_Start_Argv) {
     knode_t* node = knet_node_create();
-    char* argv[] = {
+    const char* argv[] = {
         "node", "-root", "127.0.0.1:12345", "-self", "127.0.0.1:12345:1:1"
     };
     EXPECT_TRUE(error_ok == knet_node_start_argv(node, 5, argv));
@@ -289,6 +289,7 @@ CASE(Test_Node_Send) {
                 char buffer[128] = {0};
                 knet_node_proxy_read(p, buffer, sizeof(buffer));
                 Test_Node_Send_Flag = (std::string("hello") == buffer);
+                knet_node_proxy_close(p);
             }
         }
     };
