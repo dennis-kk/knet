@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/trie_api.h 文件参考</title>
+<title>knet: E:/knet-git/knet/knet/timer.h 文件参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -89,38 +89,39 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
   <div class="summary">
 <a href="#func-members">函数</a>  </div>
   <div class="headertitle">
-<div class="title">trie_api.h 文件参考</div>  </div>
+<div class="title">timer.h 文件参考</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="a00066_source.html">config.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00123_source.html">timer_api.h</a>&quot;</code><br />
 </div>
 <p><a href="a00122_source.html">浏览源代码.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 函数</h2></td></tr>
-<tr class="memitem:ga40c34f3f3eed953a77e3df2927a24d0c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00066_a6b38314f31c4ed3eb36896383425a381.html#a6b38314f31c4ed3eb36896383425a381">ktrie_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00140_ga40c34f3f3eed953a77e3df2927a24d0c.html#ga40c34f3f3eed953a77e3df2927a24d0c">trie_create</a> ()</td></tr>
-<tr class="memdesc:ga40c34f3f3eed953a77e3df2927a24d0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">建立trie  <a href="a00140_ga40c34f3f3eed953a77e3df2927a24d0c.html#ga40c34f3f3eed953a77e3df2927a24d0c">更多...</a><br /></td></tr>
-<tr class="separator:ga40c34f3f3eed953a77e3df2927a24d0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1d3fcf14bbc77f4b3221ddb1121c21a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00140_ga1d3fcf14bbc77f4b3221ddb1121c21a0.html#ga1d3fcf14bbc77f4b3221ddb1121c21a0">trie_destroy</a> (<a class="el" href="a00066_a6b38314f31c4ed3eb36896383425a381.html#a6b38314f31c4ed3eb36896383425a381">ktrie_t</a> *trie, <a class="el" href="a00066_a46741b0dab7bbb26d611c429ee64d78c.html#a46741b0dab7bbb26d611c429ee64d78c">knet_trie_dtor_t</a> dtor)</td></tr>
-<tr class="memdesc:ga1d3fcf14bbc77f4b3221ddb1121c21a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁trie  <a href="a00140_ga1d3fcf14bbc77f4b3221ddb1121c21a0.html#ga1d3fcf14bbc77f4b3221ddb1121c21a0">更多...</a><br /></td></tr>
-<tr class="separator:ga1d3fcf14bbc77f4b3221ddb1121c21a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga05e43d257d3626377de3340b6cd542fa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00140_ga05e43d257d3626377de3340b6cd542fa.html#ga05e43d257d3626377de3340b6cd542fa">trie_insert</a> (<a class="el" href="a00066_a6b38314f31c4ed3eb36896383425a381.html#a6b38314f31c4ed3eb36896383425a381">ktrie_t</a> *trie, const char *s, void *value)</td></tr>
-<tr class="memdesc:ga05e43d257d3626377de3340b6cd542fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁trie  <a href="a00140_ga05e43d257d3626377de3340b6cd542fa.html#ga05e43d257d3626377de3340b6cd542fa">更多...</a><br /></td></tr>
-<tr class="separator:ga05e43d257d3626377de3340b6cd542fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gae9c0f01c6b0eaf828710de2999601a11"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00140_gae9c0f01c6b0eaf828710de2999601a11.html#gae9c0f01c6b0eaf828710de2999601a11">trie_find</a> (<a class="el" href="a00066_a6b38314f31c4ed3eb36896383425a381.html#a6b38314f31c4ed3eb36896383425a381">ktrie_t</a> *trie, const char *s, void **value)</td></tr>
-<tr class="memdesc:gae9c0f01c6b0eaf828710de2999601a11"><td class="mdescLeft">&#160;</td><td class="mdescRight">查找  <a href="a00140_gae9c0f01c6b0eaf828710de2999601a11.html#gae9c0f01c6b0eaf828710de2999601a11">更多...</a><br /></td></tr>
-<tr class="separator:gae9c0f01c6b0eaf828710de2999601a11"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga3d0e5d60984fac9b8053e8f8605d79e0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00140_ga3d0e5d60984fac9b8053e8f8605d79e0.html#ga3d0e5d60984fac9b8053e8f8605d79e0">trie_remove</a> (<a class="el" href="a00066_a6b38314f31c4ed3eb36896383425a381.html#a6b38314f31c4ed3eb36896383425a381">ktrie_t</a> *trie, const char *s, void **value)</td></tr>
-<tr class="memdesc:ga3d0e5d60984fac9b8053e8f8605d79e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">删除  <a href="a00140_ga3d0e5d60984fac9b8053e8f8605d79e0.html#ga3d0e5d60984fac9b8053e8f8605d79e0">更多...</a><br /></td></tr>
-<tr class="separator:ga3d0e5d60984fac9b8053e8f8605d79e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0169ae53516f82a8aa435466a3d55678"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00140_ga0169ae53516f82a8aa435466a3d55678.html#ga0169ae53516f82a8aa435466a3d55678">trie_for_each</a> (<a class="el" href="a00066_a6b38314f31c4ed3eb36896383425a381.html#a6b38314f31c4ed3eb36896383425a381">ktrie_t</a> *trie, <a class="el" href="a00066_ad77af676ce15810f8f713bb3eaa91fe8.html#ad77af676ce15810f8f713bb3eaa91fe8">knet_trie_for_each_func_t</a> func, void *param)</td></tr>
-<tr class="memdesc:ga0169ae53516f82a8aa435466a3d55678"><td class="mdescLeft">&#160;</td><td class="mdescRight">遍历  <a href="a00140_ga0169ae53516f82a8aa435466a3d55678.html#ga0169ae53516f82a8aa435466a3d55678">更多...</a><br /></td></tr>
-<tr class="separator:ga0169ae53516f82a8aa435466a3d55678"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af64f93b32c31cd222c02f0ad40bb642c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00122_af64f93b32c31cd222c02f0ad40bb642c.html#af64f93b32c31cd222c02f0ad40bb642c">ktimer_destroy</a> (<a class="el" href="a00066_a846172ea4e8a86449eca41a3d8e074b7.html#a846172ea4e8a86449eca41a3d8e074b7">ktimer_t</a> *timer)</td></tr>
+<tr class="memdesc:af64f93b32c31cd222c02f0ad40bb642c"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁定时器  <a href="a00122_af64f93b32c31cd222c02f0ad40bb642c.html#af64f93b32c31cd222c02f0ad40bb642c">更多...</a><br /></td></tr>
+<tr class="separator:af64f93b32c31cd222c02f0ad40bb642c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e263963404ff40c8d7865ba117d3446"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00122_a6e263963404ff40c8d7865ba117d3446.html#a6e263963404ff40c8d7865ba117d3446">ktimer_check_timeout</a> (<a class="el" href="a00066_a846172ea4e8a86449eca41a3d8e074b7.html#a846172ea4e8a86449eca41a3d8e074b7">ktimer_t</a> *timer, time_t ms)</td></tr>
+<tr class="memdesc:a6e263963404ff40c8d7865ba117d3446"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查定时器是否超时  <a href="a00122_a6e263963404ff40c8d7865ba117d3446.html#a6e263963404ff40c8d7865ba117d3446">更多...</a><br /></td></tr>
+<tr class="separator:a6e263963404ff40c8d7865ba117d3446"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03cfe3f98b0537ccb1aba830ccee3991"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00122_a03cfe3f98b0537ccb1aba830ccee3991.html#a03cfe3f98b0537ccb1aba830ccee3991">ktimer_set_current_list</a> (<a class="el" href="a00066_a846172ea4e8a86449eca41a3d8e074b7.html#a846172ea4e8a86449eca41a3d8e074b7">ktimer_t</a> *timer, <a class="el" href="a00066_ae098586334a621a23cef7cb17590b618.html#ae098586334a621a23cef7cb17590b618">kdlist_t</a> *list)</td></tr>
+<tr class="memdesc:a03cfe3f98b0537ccb1aba830ccee3991"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置定时器所在的当前链表  <a href="a00122_a03cfe3f98b0537ccb1aba830ccee3991.html#a03cfe3f98b0537ccb1aba830ccee3991">更多...</a><br /></td></tr>
+<tr class="separator:a03cfe3f98b0537ccb1aba830ccee3991"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a189b9239e148c4eeec1ec910261a3389"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00066_ae098586334a621a23cef7cb17590b618.html#ae098586334a621a23cef7cb17590b618">kdlist_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00122_a189b9239e148c4eeec1ec910261a3389.html#a189b9239e148c4eeec1ec910261a3389">ktimer_get_current_list</a> (<a class="el" href="a00066_a846172ea4e8a86449eca41a3d8e074b7.html#a846172ea4e8a86449eca41a3d8e074b7">ktimer_t</a> *timer)</td></tr>
+<tr class="memdesc:a189b9239e148c4eeec1ec910261a3389"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得当前所属链表  <a href="a00122_a189b9239e148c4eeec1ec910261a3389.html#a189b9239e148c4eeec1ec910261a3389">更多...</a><br /></td></tr>
+<tr class="separator:a189b9239e148c4eeec1ec910261a3389"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10748c7e8540fef8a8948da8662f7889"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00122_a10748c7e8540fef8a8948da8662f7889.html#a10748c7e8540fef8a8948da8662f7889">ktimer_set_current_list_node</a> (<a class="el" href="a00066_a846172ea4e8a86449eca41a3d8e074b7.html#a846172ea4e8a86449eca41a3d8e074b7">ktimer_t</a> *timer, <a class="el" href="a00066_ac701f00a0851c97467ae35c382b316b7.html#ac701f00a0851c97467ae35c382b316b7">kdlist_node_t</a> *node)</td></tr>
+<tr class="memdesc:a10748c7e8540fef8a8948da8662f7889"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置定时器所在的当前链表的链表节点  <a href="a00122_a10748c7e8540fef8a8948da8662f7889.html#a10748c7e8540fef8a8948da8662f7889">更多...</a><br /></td></tr>
+<tr class="separator:a10748c7e8540fef8a8948da8662f7889"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c3c91cc707a108fc5e01e441bc3513e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00066_ac701f00a0851c97467ae35c382b316b7.html#ac701f00a0851c97467ae35c382b316b7">kdlist_node_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00122_a6c3c91cc707a108fc5e01e441bc3513e.html#a6c3c91cc707a108fc5e01e441bc3513e">ktimer_get_current_list_node</a> (<a class="el" href="a00066_a846172ea4e8a86449eca41a3d8e074b7.html#a846172ea4e8a86449eca41a3d8e074b7">ktimer_t</a> *timer)</td></tr>
+<tr class="memdesc:a6c3c91cc707a108fc5e01e441bc3513e"><td class="mdescLeft">&#160;</td><td class="mdescRight">取得当前链表节点  <a href="a00122_a6c3c91cc707a108fc5e01e441bc3513e.html#a6c3c91cc707a108fc5e01e441bc3513e">更多...</a><br /></td></tr>
+<tr class="separator:a6c3c91cc707a108fc5e01e441bc3513e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 八月 4日 星期二 14:40:25 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 八月 6日 星期四 10:26:38 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

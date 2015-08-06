@@ -539,11 +539,6 @@ uint32_t knet_node_proxy_get_type(knode_proxy_t* proxy) {
     return proxy->type;
 }
 
-uint32_t knet_node_proxy_get_data_length(knode_proxy_t* proxy) {
-    verify(proxy);
-    return proxy->length;
-}
-
 knode_t* knet_node_proxy_get_self(knode_proxy_t* proxy) {
     verify(proxy);
     return proxy->self;

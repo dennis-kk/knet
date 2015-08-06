@@ -25,6 +25,7 @@ var searchData=
   ['error_5fmultiple_5fstart',['error_multiple_start',['../a00066_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5aa31d63fb607c438a0fc7f5fed4fec444',1,'config.h']]],
   ['error_5fmust_5fbe_5fshared_5fchannel_5fref',['error_must_be_shared_channel_ref',['../a00066_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a7e89168302853180230e6fe22b68aeaa',1,'config.h']]],
   ['error_5fno_5fmemory',['error_no_memory',['../a00066_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a226700b6c9b2aa587dd17e4c59075515',1,'config.h']]],
+  ['error_5fnode_5fargv_5finvalid',['error_node_argv_invalid',['../a00066_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5ad3159e28da0dccf938d40d501320cb90',1,'config.h']]],
   ['error_5fnode_5fexist',['error_node_exist',['../a00066_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a863a799c738ba99a160a6be48105006b',1,'config.h']]],
   ['error_5fnode_5finvalid_5fmsg',['error_node_invalid_msg',['../a00066_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a172c2cb47335d83c64a13f4da74f368a',1,'config.h']]],
   ['error_5fnode_5fip_5ffilter',['error_node_ip_filter',['../a00066_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a4659db4bc44101cc12d1c8c3cbfa0c98',1,'config.h']]],

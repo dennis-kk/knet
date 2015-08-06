@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/loop_impl.c 文件参考</title>
+<title>knet: E:/knet-git/knet/knet/loop_balancer_api.h 文件参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -86,16 +86,35 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div>
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#func-members">函数</a>  </div>
   <div class="headertitle">
-<div class="title">loop_impl.c 文件参考</div>  </div>
+<div class="title">loop_balancer_api.h 文件参考</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="a00066_source.html">config.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="a00092.html">loop_epoll.c</a>&quot;</code><br />
-</div></div><!-- contents -->
+</div>
+<p><a href="a00093_source.html">浏览源代码.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+函数</h2></td></tr>
+<tr class="memitem:ga4211b2d32e1a7447e479b9727dce61d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="a00066_abd3f964265beb2f8984e76f44fb5ea33.html#abd3f964265beb2f8984e76f44fb5ea33">kloop_balancer_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00137_ga4211b2d32e1a7447e479b9727dce61d4.html#ga4211b2d32e1a7447e479b9727dce61d4">knet_loop_balancer_create</a> ()</td></tr>
+<tr class="memdesc:ga4211b2d32e1a7447e479b9727dce61d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">创建负载均衡器  <a href="a00137_ga4211b2d32e1a7447e479b9727dce61d4.html#ga4211b2d32e1a7447e479b9727dce61d4">更多...</a><br /></td></tr>
+<tr class="separator:ga4211b2d32e1a7447e479b9727dce61d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga6fcdd378027b0705cd2e279601985609"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00137_ga6fcdd378027b0705cd2e279601985609.html#ga6fcdd378027b0705cd2e279601985609">knet_loop_balancer_destroy</a> (<a class="el" href="a00066_abd3f964265beb2f8984e76f44fb5ea33.html#abd3f964265beb2f8984e76f44fb5ea33">kloop_balancer_t</a> *balancer)</td></tr>
+<tr class="memdesc:ga6fcdd378027b0705cd2e279601985609"><td class="mdescLeft">&#160;</td><td class="mdescRight">销毁负载均衡器  <a href="a00137_ga6fcdd378027b0705cd2e279601985609.html#ga6fcdd378027b0705cd2e279601985609">更多...</a><br /></td></tr>
+<tr class="separator:ga6fcdd378027b0705cd2e279601985609"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga647f8a2d39c97c8759f8768ebc612b98"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00137_ga647f8a2d39c97c8759f8768ebc612b98.html#ga647f8a2d39c97c8759f8768ebc612b98">knet_loop_balancer_attach</a> (<a class="el" href="a00066_abd3f964265beb2f8984e76f44fb5ea33.html#abd3f964265beb2f8984e76f44fb5ea33">kloop_balancer_t</a> *balancer, <a class="el" href="a00066_a97fc76209a58362019f1ded9169e397f.html#a97fc76209a58362019f1ded9169e397f">kloop_t</a> *loop)</td></tr>
+<tr class="memdesc:ga647f8a2d39c97c8759f8768ebc612b98"><td class="mdescLeft">&#160;</td><td class="mdescRight">添加事件循环到负载均衡器  <a href="a00137_ga647f8a2d39c97c8759f8768ebc612b98.html#ga647f8a2d39c97c8759f8768ebc612b98">更多...</a><br /></td></tr>
+<tr class="separator:ga647f8a2d39c97c8759f8768ebc612b98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga705fd81a537d18cfe1b66df9d15b6c4e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00137_ga705fd81a537d18cfe1b66df9d15b6c4e.html#ga705fd81a537d18cfe1b66df9d15b6c4e">knet_loop_balancer_detach</a> (<a class="el" href="a00066_abd3f964265beb2f8984e76f44fb5ea33.html#abd3f964265beb2f8984e76f44fb5ea33">kloop_balancer_t</a> *balancer, <a class="el" href="a00066_a97fc76209a58362019f1ded9169e397f.html#a97fc76209a58362019f1ded9169e397f">kloop_t</a> *loop)</td></tr>
+<tr class="memdesc:ga705fd81a537d18cfe1b66df9d15b6c4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">从负载均衡器内删除事件循环  <a href="a00137_ga705fd81a537d18cfe1b66df9d15b6c4e.html#ga705fd81a537d18cfe1b66df9d15b6c4e">更多...</a><br /></td></tr>
+<tr class="separator:ga705fd81a537d18cfe1b66df9d15b6c4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 八月 4日 星期二 14:40:24 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 八月 6日 星期四 10:26:37 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

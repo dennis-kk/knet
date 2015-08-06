@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/stream.h 源文件</title>
+<title>knet: E:/knet-git/knet/knet/loop_profile_api.h 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">stream.h</div>  </div>
+<div class="title">loop_profile_api.h</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00099.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
@@ -114,27 +114,49 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef STREAM_H</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define STREAM_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef LOOP_PROFILE_API_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define LOOP_PROFILE_API_H</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00056.html">config.h</a>&quot;</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00100.html">stream_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<a class="code" href="a00035.html">kstream_t</a>* <a class="code" href="a00099_a6bd4317031384f8711bacd24ea59be47.html#a6bd4317031384f8711bacd24ea59be47">stream_create</a>(<a class="code" href="a00005.html">kchannel_ref_t</a>* channel_ref);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keywordtype">void</span> <a class="code" href="a00099_ad8aa700d37115d60d17bd80078ae4d4c.html#ad8aa700d37115d60d17bd80078ae4d4c">stream_destroy</a>(<a class="code" href="a00035.html">kstream_t</a>* stream);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00066.html">config.h</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keyword">extern</span> uint32_t <a class="code" href="a00099_a30be8a49214eb1485429bdff63541dfc.html#a30be8a49214eb1485429bdff63541dfc">knet_loop_profile_get_established_channel_count</a>(<a class="code" href="a00032.html">kloop_profile_t</a>* profile);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">extern</span> uint32_t <a class="code" href="a00099_a9b4aceae0c7a1f1aa86c8db5996ec76a.html#a9b4aceae0c7a1f1aa86c8db5996ec76a">knet_loop_profile_get_active_channel_count</a>(<a class="code" href="a00032.html">kloop_profile_t</a>* profile);</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* STREAM_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="a00056_html"><div class="ttname"><a href="a00056.html">config.h</a></div></div>
-<div class="ttc" id="a00035_html"><div class="ttname"><a href="a00035.html">_stream_t</a></div><div class="ttdef"><b>Definition:</b> stream.c:33</div></div>
-<div class="ttc" id="a00099_a6bd4317031384f8711bacd24ea59be47_html_a6bd4317031384f8711bacd24ea59be47"><div class="ttname"><a href="a00099_a6bd4317031384f8711bacd24ea59be47.html#a6bd4317031384f8711bacd24ea59be47">stream_create</a></div><div class="ttdeci">kstream_t * stream_create(kchannel_ref_t *channel_ref)</div><div class="ttdoc">建立管道流 </div><div class="ttdef"><b>Definition:</b> stream.c:37</div></div>
-<div class="ttc" id="a00100_html"><div class="ttname"><a href="a00100.html">stream_api.h</a></div></div>
-<div class="ttc" id="a00005_html"><div class="ttname"><a href="a00005.html">_channel_ref_t</a></div><div class="ttdef"><b>Definition:</b> channel_ref.c:61</div></div>
-<div class="ttc" id="a00099_ad8aa700d37115d60d17bd80078ae4d4c_html_ad8aa700d37115d60d17bd80078ae4d4c"><div class="ttname"><a href="a00099_ad8aa700d37115d60d17bd80078ae4d4c.html#ad8aa700d37115d60d17bd80078ae4d4c">stream_destroy</a></div><div class="ttdeci">void stream_destroy(kstream_t *stream)</div><div class="ttdoc">销毁管道流 </div><div class="ttdef"><b>Definition:</b> stream.c:47</div></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">extern</span> uint32_t <a class="code" href="a00099_a6eaacce21d69455a4e70bd6da4927082.html#a6eaacce21d69455a4e70bd6da4927082">knet_loop_profile_get_close_channel_count</a>(<a class="code" href="a00032.html">kloop_profile_t</a>* profile);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">extern</span> uint64_t <a class="code" href="a00099_a5bb651c97109287f36481c70c4096d02.html#a5bb651c97109287f36481c70c4096d02">knet_loop_profile_get_sent_bytes</a>(<a class="code" href="a00032.html">kloop_profile_t</a>* profile);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keyword">extern</span> uint64_t <a class="code" href="a00099_a1ac76d26570c5973ca054d5d2be07596.html#a1ac76d26570c5973ca054d5d2be07596">knet_loop_profile_get_recv_bytes</a>(<a class="code" href="a00032.html">kloop_profile_t</a>* profile);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword">extern</span> uint32_t <a class="code" href="a00099_a61bab9d3f25b772c11067d7ad48e5591.html#a61bab9d3f25b772c11067d7ad48e5591">knet_loop_profile_get_sent_bandwidth</a>(<a class="code" href="a00032.html">kloop_profile_t</a>* profile);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="keyword">extern</span> uint32_t <a class="code" href="a00099_a925853b256684e4d935f28d4c73a4832.html#a925853b256684e4d935f28d4c73a4832">knet_loop_profile_get_recv_bandwidth</a>(<a class="code" href="a00032.html">kloop_profile_t</a>* profile);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00099_ada601f1836bdb78ccd50be447559a101.html#ada601f1836bdb78ccd50be447559a101">knet_loop_profile_dump_file</a>(<a class="code" href="a00032.html">kloop_profile_t</a>* profile, FILE* fp);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00099_a256be2a18ebf141d93f95cdce1975a9e.html#a256be2a18ebf141d93f95cdce1975a9e">knet_loop_profile_dump_stream</a>(<a class="code" href="a00032.html">kloop_profile_t</a>* profile, <a class="code" href="a00045.html">kstream_t</a>* stream);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00099_a256b0db051dd95a364c3ad5612cbff98.html#a256b0db051dd95a364c3ad5612cbff98">knet_loop_profile_dump_stdout</a>(<a class="code" href="a00032.html">kloop_profile_t</a>* profile);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* LOOP_PROFILE_API_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a00099_a61bab9d3f25b772c11067d7ad48e5591_html_a61bab9d3f25b772c11067d7ad48e5591"><div class="ttname"><a href="a00099_a61bab9d3f25b772c11067d7ad48e5591.html#a61bab9d3f25b772c11067d7ad48e5591">knet_loop_profile_get_sent_bandwidth</a></div><div class="ttdeci">uint32_t knet_loop_profile_get_sent_bandwidth(kloop_profile_t *profile)</div><div class="ttdoc">取得发送带宽 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:125</div></div>
+<div class="ttc" id="a00099_a256b0db051dd95a364c3ad5612cbff98_html_a256b0db051dd95a364c3ad5612cbff98"><div class="ttname"><a href="a00099_a256b0db051dd95a364c3ad5612cbff98.html#a256b0db051dd95a364c3ad5612cbff98">knet_loop_profile_dump_stdout</a></div><div class="ttdeci">int knet_loop_profile_dump_stdout(kloop_profile_t *profile)</div><div class="ttdoc">将统计信息打印到标准输出 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:210</div></div>
+<div class="ttc" id="a00099_a6eaacce21d69455a4e70bd6da4927082_html_a6eaacce21d69455a4e70bd6da4927082"><div class="ttname"><a href="a00099_a6eaacce21d69455a4e70bd6da4927082.html#a6eaacce21d69455a4e70bd6da4927082">knet_loop_profile_get_close_channel_count</a></div><div class="ttdeci">uint32_t knet_loop_profile_get_close_channel_count(kloop_profile_t *profile)</div><div class="ttdoc">取得已经关闭的管道数量 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:100</div></div>
+<div class="ttc" id="a00099_a30be8a49214eb1485429bdff63541dfc_html_a30be8a49214eb1485429bdff63541dfc"><div class="ttname"><a href="a00099_a30be8a49214eb1485429bdff63541dfc.html#a30be8a49214eb1485429bdff63541dfc">knet_loop_profile_get_established_channel_count</a></div><div class="ttdeci">uint32_t knet_loop_profile_get_established_channel_count(kloop_profile_t *profile)</div><div class="ttdoc">取得已经建立连接的管道数量 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:70</div></div>
+<div class="ttc" id="a00099_a9b4aceae0c7a1f1aa86c8db5996ec76a_html_a9b4aceae0c7a1f1aa86c8db5996ec76a"><div class="ttname"><a href="a00099_a9b4aceae0c7a1f1aa86c8db5996ec76a.html#a9b4aceae0c7a1f1aa86c8db5996ec76a">knet_loop_profile_get_active_channel_count</a></div><div class="ttdeci">uint32_t knet_loop_profile_get_active_channel_count(kloop_profile_t *profile)</div><div class="ttdoc">取得已经建立但还未连接的管道数量 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:85</div></div>
+<div class="ttc" id="a00032_html"><div class="ttname"><a href="a00032.html">_loop_profile_t</a></div><div class="ttdef"><b>Definition:</b> loop_profile.c:30</div></div>
+<div class="ttc" id="a00099_a5bb651c97109287f36481c70c4096d02_html_a5bb651c97109287f36481c70c4096d02"><div class="ttname"><a href="a00099_a5bb651c97109287f36481c70c4096d02.html#a5bb651c97109287f36481c70c4096d02">knet_loop_profile_get_sent_bytes</a></div><div class="ttdeci">uint64_t knet_loop_profile_get_sent_bytes(kloop_profile_t *profile)</div><div class="ttdoc">取得已经发送的字节数 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:110</div></div>
+<div class="ttc" id="a00066_html"><div class="ttname"><a href="a00066.html">config.h</a></div></div>
+<div class="ttc" id="a00099_a1ac76d26570c5973ca054d5d2be07596_html_a1ac76d26570c5973ca054d5d2be07596"><div class="ttname"><a href="a00099_a1ac76d26570c5973ca054d5d2be07596.html#a1ac76d26570c5973ca054d5d2be07596">knet_loop_profile_get_recv_bytes</a></div><div class="ttdeci">uint64_t knet_loop_profile_get_recv_bytes(kloop_profile_t *profile)</div><div class="ttdoc">取得已经接收的字节数 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:120</div></div>
+<div class="ttc" id="a00045_html"><div class="ttname"><a href="a00045.html">_stream_t</a></div><div class="ttdef"><b>Definition:</b> stream.c:33</div></div>
+<div class="ttc" id="a00099_a256be2a18ebf141d93f95cdce1975a9e_html_a256be2a18ebf141d93f95cdce1975a9e"><div class="ttname"><a href="a00099_a256be2a18ebf141d93f95cdce1975a9e.html#a256be2a18ebf141d93f95cdce1975a9e">knet_loop_profile_dump_stream</a></div><div class="ttdeci">int knet_loop_profile_dump_stream(kloop_profile_t *profile, kstream_t *stream)</div><div class="ttdoc">将统计信息写入管道流 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:189</div></div>
+<div class="ttc" id="a00099_a925853b256684e4d935f28d4c73a4832_html_a925853b256684e4d935f28d4c73a4832"><div class="ttname"><a href="a00099_a925853b256684e4d935f28d4c73a4832.html#a925853b256684e4d935f28d4c73a4832">knet_loop_profile_get_recv_bandwidth</a></div><div class="ttdeci">uint32_t knet_loop_profile_get_recv_bandwidth(kloop_profile_t *profile)</div><div class="ttdoc">取得接收带宽 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:144</div></div>
+<div class="ttc" id="a00099_ada601f1836bdb78ccd50be447559a101_html_ada601f1836bdb78ccd50be447559a101"><div class="ttname"><a href="a00099_ada601f1836bdb78ccd50be447559a101.html#ada601f1836bdb78ccd50be447559a101">knet_loop_profile_dump_file</a></div><div class="ttdeci">int knet_loop_profile_dump_file(kloop_profile_t *profile, FILE *fp)</div><div class="ttdoc">将统计信息写入文件 </div><div class="ttdef"><b>Definition:</b> loop_profile.c:163</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 七月 27日 星期一 14:33:19 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 八月 6日 星期四 10:26:37 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

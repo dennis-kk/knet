@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/loop_balancer.h 源文件</title>
+<title>knet: E:/knet-git/knet/knet/loop_api.h 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">loop_balancer.h</div>  </div>
+<div class="title">loop_api.h</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00090.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
@@ -114,24 +114,52 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef LOOP_BALANCER_H</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define LOOP_BALANCER_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef LOOP_API_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define LOOP_API_H</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00066.html">config.h</a>&quot;</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00091.html">loop_balancer_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<a class="code" href="a00033.html">kloop_t</a>* <a class="code" href="a00090_ab16d1483a612eba09677784480b5e1e7.html#ab16d1483a612eba09677784480b5e1e7">knet_loop_balancer_choose</a>(<a class="code" href="a00029.html">kloop_balancer_t</a>* balancer);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* LOOP_BALANCER_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="a00091_html"><div class="ttname"><a href="a00091.html">loop_balancer_api.h</a></div></div>
-<div class="ttc" id="a00029_html"><div class="ttname"><a href="a00029.html">_loop_balancer_t</a></div><div class="ttdef"><b>Definition:</b> loop_balancer.c:36</div></div>
-<div class="ttc" id="a00090_ab16d1483a612eba09677784480b5e1e7_html_ab16d1483a612eba09677784480b5e1e7"><div class="ttname"><a href="a00090_ab16d1483a612eba09677784480b5e1e7.html#ab16d1483a612eba09677784480b5e1e7">knet_loop_balancer_choose</a></div><div class="ttdeci">kloop_t * knet_loop_balancer_choose(kloop_balancer_t *balancer)</div><div class="ttdoc">负载均衡 - 选取一个kloop_t实例 </div><div class="ttdef"><b>Definition:</b> loop_balancer.c:118</div></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00033.html">kloop_t</a>* <a class="code" href="a00136_ga2e4181ebe9c1769be90bb8dc0e5cdffe.html#ga2e4181ebe9c1769be90bb8dc0e5cdffe">knet_loop_create</a>();</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00136_ga390ea3161f935d0d3a411df8752d8b9f.html#ga390ea3161f935d0d3a411df8752d8b9f">knet_loop_destroy</a>(<a class="code" href="a00033.html">kloop_t</a>* loop);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00005.html">kchannel_ref_t</a>* <a class="code" href="a00136_gac1f9a4848c06c2a6a2723d7b991b4394.html#gac1f9a4848c06c2a6a2723d7b991b4394">knet_loop_create_channel</a>(<a class="code" href="a00033.html">kloop_t</a>* loop, uint32_t max_send_list_len, uint32_t recv_ring_len);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00005.html">kchannel_ref_t</a>* <a class="code" href="a00136_gaddfd5a2709d0c26ada8a2dd3fd6a5b62.html#gaddfd5a2709d0c26ada8a2dd3fd6a5b62">knet_loop_create_channel_exist_socket_fd</a>(<a class="code" href="a00033.html">kloop_t</a>* loop, <a class="code" href="a00066_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a> socket_fd,</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    uint32_t max_send_list_len, uint32_t recv_ring_len);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00136_ga37ab03493fb1ed037815f2cd951d762a.html#ga37ab03493fb1ed037815f2cd951d762a">knet_loop_run_once</a>(<a class="code" href="a00033.html">kloop_t</a>* loop);</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00136_gaaf104ae1337c32415bd1aa8df545ae31.html#gaaf104ae1337c32415bd1aa8df545ae31">knet_loop_run</a>(<a class="code" href="a00033.html">kloop_t</a>* loop);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00136_ga9e04a2d06c79405f444aa53a26eedd90.html#ga9e04a2d06c79405f444aa53a26eedd90">knet_loop_exit</a>(<a class="code" href="a00033.html">kloop_t</a>* loop);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00136_ga1eca6d310350a4545182666db28fb91f.html#ga1eca6d310350a4545182666db28fb91f">knet_loop_get_active_channel_count</a>(<a class="code" href="a00033.html">kloop_t</a>* loop);</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00136_ga8a8c7aee4eed09d50062a5f464cdba7a.html#ga8a8c7aee4eed09d50062a5f464cdba7a">knet_loop_get_close_channel_count</a>(<a class="code" href="a00033.html">kloop_t</a>* loop);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00032.html">kloop_profile_t</a>* <a class="code" href="a00136_gafc6a946f7c7fd4fb0508ac0f88969da1.html#gafc6a946f7c7fd4fb0508ac0f88969da1">knet_loop_get_profile</a>(<a class="code" href="a00033.html">kloop_t</a>* loop);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* LOOP_API_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a00136_ga1eca6d310350a4545182666db28fb91f_html_ga1eca6d310350a4545182666db28fb91f"><div class="ttname"><a href="a00136_ga1eca6d310350a4545182666db28fb91f.html#ga1eca6d310350a4545182666db28fb91f">knet_loop_get_active_channel_count</a></div><div class="ttdeci">int knet_loop_get_active_channel_count(kloop_t *loop)</div><div class="ttdoc">获取活跃管道数量 </div><div class="ttdef"><b>Definition:</b> loop.c:423</div></div>
+<div class="ttc" id="a00136_ga2e4181ebe9c1769be90bb8dc0e5cdffe_html_ga2e4181ebe9c1769be90bb8dc0e5cdffe"><div class="ttname"><a href="a00136_ga2e4181ebe9c1769be90bb8dc0e5cdffe.html#ga2e4181ebe9c1769be90bb8dc0e5cdffe">knet_loop_create</a></div><div class="ttdeci">kloop_t * knet_loop_create()</div><div class="ttdoc">创建一个事件循环 </div><div class="ttdef"><b>Definition:</b> loop.c:97</div></div>
+<div class="ttc" id="a00136_ga37ab03493fb1ed037815f2cd951d762a_html_ga37ab03493fb1ed037815f2cd951d762a"><div class="ttname"><a href="a00136_ga37ab03493fb1ed037815f2cd951d762a.html#ga37ab03493fb1ed037815f2cd951d762a">knet_loop_run_once</a></div><div class="ttdeci">int knet_loop_run_once(kloop_t *loop)</div><div class="ttdoc">运行一次事件循环 kloop_t不是线程安全的，不能在多个线程内同时对同一个kloop_t实例调用knet_loop_run_once...</div><div class="ttdef"><b>Definition:</b> loop.c:278</div></div>
+<div class="ttc" id="a00136_gaddfd5a2709d0c26ada8a2dd3fd6a5b62_html_gaddfd5a2709d0c26ada8a2dd3fd6a5b62"><div class="ttname"><a href="a00136_gaddfd5a2709d0c26ada8a2dd3fd6a5b62.html#gaddfd5a2709d0c26ada8a2dd3fd6a5b62">knet_loop_create_channel_exist_socket_fd</a></div><div class="ttdeci">kchannel_ref_t * knet_loop_create_channel_exist_socket_fd(kloop_t *loop, socket_t socket_fd, uint32_t max_send_list_len, uint32_t recv_ring_len)</div><div class="ttdoc">使用已存在的套接字创建管道 </div><div class="ttdef"><b>Definition:</b> loop.c:263</div></div>
+<div class="ttc" id="a00136_ga9e04a2d06c79405f444aa53a26eedd90_html_ga9e04a2d06c79405f444aa53a26eedd90"><div class="ttname"><a href="a00136_ga9e04a2d06c79405f444aa53a26eedd90.html#ga9e04a2d06c79405f444aa53a26eedd90">knet_loop_exit</a></div><div class="ttdeci">void knet_loop_exit(kloop_t *loop)</div><div class="ttdoc">退出函数knet_loop_run() </div><div class="ttdef"><b>Definition:</b> loop.c:297</div></div>
+<div class="ttc" id="a00136_ga390ea3161f935d0d3a411df8752d8b9f_html_ga390ea3161f935d0d3a411df8752d8b9f"><div class="ttname"><a href="a00136_ga390ea3161f935d0d3a411df8752d8b9f.html#ga390ea3161f935d0d3a411df8752d8b9f">knet_loop_destroy</a></div><div class="ttdeci">void knet_loop_destroy(kloop_t *loop)</div><div class="ttdoc">销毁事件循环 事件循环内的所有管道也会被销毁 </div><div class="ttdef"><b>Definition:</b> loop.c:135</div></div>
+<div class="ttc" id="a00136_gafc6a946f7c7fd4fb0508ac0f88969da1_html_gafc6a946f7c7fd4fb0508ac0f88969da1"><div class="ttname"><a href="a00136_gafc6a946f7c7fd4fb0508ac0f88969da1.html#gafc6a946f7c7fd4fb0508ac0f88969da1">knet_loop_get_profile</a></div><div class="ttdeci">kloop_profile_t * knet_loop_get_profile(kloop_t *loop)</div><div class="ttdoc">取得统计器 </div><div class="ttdef"><b>Definition:</b> loop.c:458</div></div>
+<div class="ttc" id="a00005_html"><div class="ttname"><a href="a00005.html">_channel_ref_t</a></div><div class="ttdef"><b>Definition:</b> channel_ref.c:61</div></div>
+<div class="ttc" id="a00032_html"><div class="ttname"><a href="a00032.html">_loop_profile_t</a></div><div class="ttdef"><b>Definition:</b> loop_profile.c:30</div></div>
+<div class="ttc" id="a00066_a0d9e0afbf02fb6ed6c5b1415dce51b05_html_a0d9e0afbf02fb6ed6c5b1415dce51b05"><div class="ttname"><a href="a00066_a0d9e0afbf02fb6ed6c5b1415dce51b05.html#a0d9e0afbf02fb6ed6c5b1415dce51b05">socket_t</a></div><div class="ttdeci">#define socket_t</div><div class="ttdef"><b>Definition:</b> config.h:89</div></div>
 <div class="ttc" id="a00066_html"><div class="ttname"><a href="a00066.html">config.h</a></div></div>
 <div class="ttc" id="a00033_html"><div class="ttname"><a href="a00033.html">_loop_t</a></div><div class="ttdef"><b>Definition:</b> loop.c:36</div></div>
+<div class="ttc" id="a00136_gac1f9a4848c06c2a6a2723d7b991b4394_html_gac1f9a4848c06c2a6a2723d7b991b4394"><div class="ttname"><a href="a00136_gac1f9a4848c06c2a6a2723d7b991b4394.html#gac1f9a4848c06c2a6a2723d7b991b4394">knet_loop_create_channel</a></div><div class="ttdeci">kchannel_ref_t * knet_loop_create_channel(kloop_t *loop, uint32_t max_send_list_len, uint32_t recv_ring_len)</div><div class="ttdoc">创建管道 </div><div class="ttdef"><b>Definition:</b> loop.c:268</div></div>
+<div class="ttc" id="a00136_gaaf104ae1337c32415bd1aa8df545ae31_html_gaaf104ae1337c32415bd1aa8df545ae31"><div class="ttname"><a href="a00136_gaaf104ae1337c32415bd1aa8df545ae31.html#gaaf104ae1337c32415bd1aa8df545ae31">knet_loop_run</a></div><div class="ttdeci">int knet_loop_run(kloop_t *loop)</div><div class="ttdoc">运行事件循环直到调用knet_loop_exit() kloop_t不是线程安全的，不能在多个线程内同时对同一个kloop_t实例调...</div><div class="ttdef"><b>Definition:</b> loop.c:284</div></div>
+<div class="ttc" id="a00136_ga8a8c7aee4eed09d50062a5f464cdba7a_html_ga8a8c7aee4eed09d50062a5f464cdba7a"><div class="ttname"><a href="a00136_ga8a8c7aee4eed09d50062a5f464cdba7a.html#ga8a8c7aee4eed09d50062a5f464cdba7a">knet_loop_get_close_channel_count</a></div><div class="ttdeci">int knet_loop_get_close_channel_count(kloop_t *loop)</div><div class="ttdoc">获取已关闭管道数量 </div><div class="ttdef"><b>Definition:</b> loop.c:428</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 八月 4日 星期二 14:40:23 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 八月 6日 星期四 10:26:37 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

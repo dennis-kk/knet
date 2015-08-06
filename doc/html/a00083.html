@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/list.h 文件参考</title>
+<title>knet: E:/knet-git/knet/knet/list.c 文件参考</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,24 +87,22 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#define-members">宏定义</a> &#124;
+<a href="#nested-classes">结构体</a> &#124;
 <a href="#func-members">函数</a>  </div>
   <div class="headertitle">
-<div class="title">list.h 文件参考</div>  </div>
+<div class="title">list.c 文件参考</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="a00066_source.html">config.h</a>&quot;</code><br />
-</div>
-<p><a href="a00083_source.html">浏览源代码.</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-宏定义</h2></td></tr>
-<tr class="memitem:a74abc436128d57c9cce4bb6cb4514a30"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00083_a74abc436128d57c9cce4bb6cb4514a30.html#a74abc436128d57c9cce4bb6cb4514a30">dlist_for_each</a>(list,  node)&#160;&#160;&#160;for (node = <a class="el" href="a00083_af684bff246b7633789ce4bab232676b8.html#af684bff246b7633789ce4bab232676b8">dlist_get_front</a>(list); (node); node = <a class="el" href="a00083_a7d5102f0d3cf28ce26a381033d6e29dc.html#a7d5102f0d3cf28ce26a381033d6e29dc">dlist_next</a>(list, node))</td></tr>
-<tr class="separator:a74abc436128d57c9cce4bb6cb4514a30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06e8f967efba4722dce2899baaa5c155"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00083_a06e8f967efba4722dce2899baaa5c155.html#a06e8f967efba4722dce2899baaa5c155">dlist_for_each_safe</a>(list,  node,  temp)&#160;&#160;&#160;for (node = <a class="el" href="a00083_af684bff246b7633789ce4bab232676b8.html#af684bff246b7633789ce4bab232676b8">dlist_get_front</a>(list), temp = <a class="el" href="a00083_a7d5102f0d3cf28ce26a381033d6e29dc.html#a7d5102f0d3cf28ce26a381033d6e29dc">dlist_next</a>(list, node); (node); node = temp, temp = <a class="el" href="a00083_a7d5102f0d3cf28ce26a381033d6e29dc.html#a7d5102f0d3cf28ce26a381033d6e29dc">dlist_next</a>(list, node))</td></tr>
-<tr class="separator:a06e8f967efba4722dce2899baaa5c155"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73da38d84d57d10d4b8a82b5ce1873e8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00083_a73da38d84d57d10d4b8a82b5ce1873e8.html#a73da38d84d57d10d4b8a82b5ce1873e8">dlist_for_each_break</a>()&#160;&#160;&#160;break</td></tr>
-<tr class="separator:a73da38d84d57d10d4b8a82b5ce1873e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="a00084_source.html">list.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00102_source.html">misc.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+结构体</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00007.html">_dlist_node_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00008.html">_dlist_t</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 函数</h2></td></tr>
@@ -169,7 +167,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 八月 4日 星期二 14:40:24 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 八月 6日 星期四 10:26:37 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

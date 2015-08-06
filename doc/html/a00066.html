@@ -112,7 +112,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <code>#include &lt;unistd.h&gt;</code><br />
 <code>#include &lt;pthread.h&gt;</code><br />
 <code>#include &lt;sys/epoll.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="a00085_source.html">logger.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="a00087_source.html">logger_api.h</a>&quot;</code><br />
 </div>
 <p><a href="a00066_source.html">浏览源代码.</a></p>
 <table class="memberdecls">
@@ -158,8 +158,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <tr class="separator:ad3df826d09b6b84228245d9f4ba52b21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab89b260e9cc223630b78193c8fb31cea"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00066_ab89b260e9cc223630b78193c8fb31cea.html#ab89b260e9cc223630b78193c8fb31cea">LOGGER_LEVEL</a>&#160;&#160;&#160;<a class="el" href="a00066_a4e764c733cf98ee587ca17412fca9148.html#a4e764c733cf98ee587ca17412fca9148a20b7712a6e03c1820c297b36add74593">logger_level_verbose</a> /* 日志等级 */</td></tr>
 <tr class="separator:ab89b260e9cc223630b78193c8fb31cea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aecaddce56c58fa07fb91249ea5de89ae"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00066_aecaddce56c58fa07fb91249ea5de89ae.html#aecaddce56c58fa07fb91249ea5de89ae">verify</a>(expr)</td></tr>
-<tr class="separator:aecaddce56c58fa07fb91249ea5de89ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 类型定义</h2></td></tr>
@@ -287,8 +285,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <tr class="separator:a46741b0dab7bbb26d611c429ee64d78c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad77af676ce15810f8f713bb3eaa91fe8"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00066_ad77af676ce15810f8f713bb3eaa91fe8.html#ad77af676ce15810f8f713bb3eaa91fe8">knet_trie_for_each_func_t</a>) (const char *, void *)</td></tr>
 <tr class="separator:ad77af676ce15810f8f713bb3eaa91fe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09c2d1f8eef7dc82226691ce39b7c4d8"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00066_a09c2d1f8eef7dc82226691ce39b7c4d8.html#a09c2d1f8eef7dc82226691ce39b7c4d8">knet_node_cb_t</a>) (<a class="el" href="a00066_a5025c3e4422f5f55b981aad6e56b6d89.html#a5025c3e4422f5f55b981aad6e56b6d89">knode_proxy_t</a> *, <a class="el" href="a00066_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *, <a class="el" href="a00066_a7aebece745b529163834cdbd7ab3ac3f.html#a7aebece745b529163834cdbd7ab3ac3f">knet_node_cb_event_e</a>)</td></tr>
-<tr class="separator:a09c2d1f8eef7dc82226691ce39b7c4d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5b5cbb2b6da175681aa217e5fc83646"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00066_af5b5cbb2b6da175681aa217e5fc83646.html#af5b5cbb2b6da175681aa217e5fc83646">knet_node_cb_t</a>) (<a class="el" href="a00066_a5025c3e4422f5f55b981aad6e56b6d89.html#a5025c3e4422f5f55b981aad6e56b6d89">knode_proxy_t</a> *, <a class="el" href="a00066_a7aebece745b529163834cdbd7ab3ac3f.html#a7aebece745b529163834cdbd7ab3ac3f">knet_node_cb_event_e</a>)</td></tr>
+<tr class="separator:af5b5cbb2b6da175681aa217e5fc83646"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd4bad75f444cb56dffa5f9413bbe456"><td class="memItemLeft" align="right" valign="top">typedef int(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00066_acd4bad75f444cb56dffa5f9413bbe456.html#acd4bad75f444cb56dffa5f9413bbe456">knet_node_manage_cb_t</a>) (<a class="el" href="a00066_a5e720b27efbc9ad744240f5f4233763a.html#a5e720b27efbc9ad744240f5f4233763a">knode_t</a> *, const char *, char *, int *)</td></tr>
 <tr class="separator:acd4bad75f444cb56dffa5f9413bbe456"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aabd13837697aceb20b2a2cb8908e79cd"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="a00066_aabd13837697aceb20b2a2cb8908e79cd.html#aabd13837697aceb20b2a2cb8908e79cd">knet_node_monitor_cb_t</a>) (<a class="el" href="a00066_a5e720b27efbc9ad744240f5f4233763a.html#a5e720b27efbc9ad744240f5f4233763a">knode_t</a> *, <a class="el" href="a00066_a3b7e82599367eade261456f60ebe2cd9.html#a3b7e82599367eade261456f60ebe2cd9">kchannel_ref_t</a> *)</td></tr>
@@ -398,7 +396,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 &#160;&#160;<a class="el" href="a00066_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a4659db4bc44101cc12d1c8c3cbfa0c98">error_node_ip_filter</a>, 
 <a class="el" href="a00066_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5a172c2cb47335d83c64a13f4da74f368a">error_node_invalid_msg</a>, 
 <a class="el" href="a00066_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5afdd514c17a1bcd24def204622aab329f">error_node_timeout</a>, 
-<a class="el" href="a00066_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5ad47ca7c6a37d0a728e8f0f9135d8fd13">error_ringbuffer_not_found</a>
+<a class="el" href="a00066_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5ad47ca7c6a37d0a728e8f0f9135d8fd13">error_ringbuffer_not_found</a>, 
+<br />
+&#160;&#160;<a class="el" href="a00066_ad8bc998d415be9115a064a8307df0ed5.html#ad8bc998d415be9115a064a8307df0ed5ad3159e28da0dccf938d40d501320cb90">error_node_argv_invalid</a>
 <br />
  }</td></tr>
 <tr class="separator:ad8bc998d415be9115a064a8307df0ed5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -470,7 +470,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 八月 4日 星期二 14:40:24 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 八月 6日 星期四 10:26:37 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

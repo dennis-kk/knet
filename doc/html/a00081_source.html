@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>knet: E:/knet-git/knet/knet/knet.h 源文件</title>
+<title>knet: E:/knet-git/knet/knet/ip_filter_api.h 源文件</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -87,7 +87,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">knet.h</div>  </div>
+<div class="title">ip_filter_api.h</div>  </div>
 </div><!--header-->
 <div class="contents">
 <a href="a00081.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
@@ -114,61 +114,47 @@ var searchBox = new SearchBox("searchBox", "search",false,'搜索');
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"> */</span></div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef KNET_H</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define KNET_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#ifndef IP_FILTER_API_H</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define IP_FILTER_API_H</span></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">extern</span> <span class="stringliteral">&quot;C&quot;</span> {</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __cplusplus */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00088.html">loop_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00097.html">loop_profile_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00116.html">stream_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00065.html">channel_ref_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00056.html">address_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00091.html">loop_balancer_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00058.html">broadcast_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00069.html">framework_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00072.html">framework_config_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00120.html">timer_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00117.html">thread_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00110.html">rpc_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00113.html">rpc_object_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00122.html">trie_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00080.html">ip_filter_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00126.html">vrouter_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00103.html">node_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00106.html">node_config_api.h</a>&quot;</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00124.html">version.h</a>&quot;</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#ifdef __cplusplus</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;}</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* __cplusplus */</span><span class="preprocessor"></span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* KNET_H */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="a00124_html"><div class="ttname"><a href="a00124.html">version.h</a></div></div>
-<div class="ttc" id="a00122_html"><div class="ttname"><a href="a00122.html">trie_api.h</a></div></div>
-<div class="ttc" id="a00110_html"><div class="ttname"><a href="a00110.html">rpc_api.h</a></div></div>
-<div class="ttc" id="a00091_html"><div class="ttname"><a href="a00091.html">loop_balancer_api.h</a></div></div>
-<div class="ttc" id="a00056_html"><div class="ttname"><a href="a00056.html">address_api.h</a></div></div>
-<div class="ttc" id="a00103_html"><div class="ttname"><a href="a00103.html">node_api.h</a></div></div>
-<div class="ttc" id="a00088_html"><div class="ttname"><a href="a00088.html">loop_api.h</a></div></div>
-<div class="ttc" id="a00106_html"><div class="ttname"><a href="a00106.html">node_config_api.h</a></div></div>
-<div class="ttc" id="a00126_html"><div class="ttname"><a href="a00126.html">vrouter_api.h</a></div></div>
-<div class="ttc" id="a00058_html"><div class="ttname"><a href="a00058.html">broadcast_api.h</a></div></div>
-<div class="ttc" id="a00117_html"><div class="ttname"><a href="a00117.html">thread_api.h</a></div></div>
-<div class="ttc" id="a00120_html"><div class="ttname"><a href="a00120.html">timer_api.h</a></div></div>
-<div class="ttc" id="a00113_html"><div class="ttname"><a href="a00113.html">rpc_object_api.h</a></div></div>
-<div class="ttc" id="a00069_html"><div class="ttname"><a href="a00069.html">framework_api.h</a></div></div>
-<div class="ttc" id="a00072_html"><div class="ttname"><a href="a00072.html">framework_config_api.h</a></div></div>
-<div class="ttc" id="a00065_html"><div class="ttname"><a href="a00065.html">channel_ref_api.h</a></div></div>
-<div class="ttc" id="a00080_html"><div class="ttname"><a href="a00080.html">ip_filter_api.h</a></div></div>
-<div class="ttc" id="a00116_html"><div class="ttname"><a href="a00116.html">stream_api.h</a></div></div>
-<div class="ttc" id="a00097_html"><div class="ttname"><a href="a00097.html">loop_profile_api.h</a></div></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="a00066.html">config.h</a>&quot;</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">extern</span> <a class="code" href="a00017.html">kip_filter_t</a>* <a class="code" href="a00135_ga14e6d1c3709870a082f203c8ba0ca9f4.html#ga14e6d1c3709870a082f203c8ba0ca9f4">knet_ip_filter_create</a>();</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">void</span> <a class="code" href="a00135_gae2d8c7b5356b36261f90f59bc49181e1.html#gae2d8c7b5356b36261f90f59bc49181e1">knet_ip_filter_destroy</a>(<a class="code" href="a00017.html">kip_filter_t</a>* ip_filter);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00135_ga044a4fc59ee0910af3c2d030e025c536.html#ga044a4fc59ee0910af3c2d030e025c536">knet_ip_filter_load_file</a>(<a class="code" href="a00017.html">kip_filter_t</a>* ip_filter, <span class="keyword">const</span> <span class="keywordtype">char</span>* path);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00135_ga271a51fad46aa61d322b6c9da2d5ba1e.html#ga271a51fad46aa61d322b6c9da2d5ba1e">knet_ip_filter_add</a>(<a class="code" href="a00017.html">kip_filter_t</a>* ip_filter, <span class="keyword">const</span> <span class="keywordtype">char</span>* ip);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00135_gae03dc5307ec374e375c2313d27dd08ad.html#gae03dc5307ec374e375c2313d27dd08ad">knet_ip_filter_remove</a>(<a class="code" href="a00017.html">kip_filter_t</a>* ip_filter, <span class="keyword">const</span> <span class="keywordtype">char</span>* ip);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00135_ga1425a397cc96d8a1cdf32bff3f1fe645.html#ga1425a397cc96d8a1cdf32bff3f1fe645">knet_ip_filter_save</a>(<a class="code" href="a00017.html">kip_filter_t</a>* ip_filter, <span class="keyword">const</span> <span class="keywordtype">char</span>* path);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00135_ga6d722330898e2a29a8555d711aab8b01.html#ga6d722330898e2a29a8555d711aab8b01">knet_ip_filter_check</a>(<a class="code" href="a00017.html">kip_filter_t</a>* ip_filter, <span class="keyword">const</span> <span class="keywordtype">char</span>* ip);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00135_gaa42afdd4af32db13227e991ad457f229.html#gaa42afdd4af32db13227e991ad457f229">knet_ip_filter_check_address</a>(<a class="code" href="a00017.html">kip_filter_t</a>* ip_filter, <a class="code" href="a00001.html">kaddress_t</a>* address);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="keyword">extern</span> <span class="keywordtype">int</span> <a class="code" href="a00135_gae44a5a6a2fc4cb6e86ae5fda52dff9d6.html#gae44a5a6a2fc4cb6e86ae5fda52dff9d6">knet_ip_filter_check_channel</a>(<a class="code" href="a00017.html">kip_filter_t</a>* ip_filter, <a class="code" href="a00005.html">kchannel_ref_t</a>* channel);</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* IP_FILTER_API_H */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="a00135_gae44a5a6a2fc4cb6e86ae5fda52dff9d6_html_gae44a5a6a2fc4cb6e86ae5fda52dff9d6"><div class="ttname"><a href="a00135_gae44a5a6a2fc4cb6e86ae5fda52dff9d6.html#gae44a5a6a2fc4cb6e86ae5fda52dff9d6">knet_ip_filter_check_channel</a></div><div class="ttdeci">int knet_ip_filter_check_channel(kip_filter_t *ip_filter, kchannel_ref_t *channel)</div><div class="ttdoc">检查IP是否被过滤 </div><div class="ttdef"><b>Definition:</b> ip_filter.c:167</div></div>
+<div class="ttc" id="a00001_html"><div class="ttname"><a href="a00001.html">_address_t</a></div><div class="ttdef"><b>Definition:</b> address.c:27</div></div>
+<div class="ttc" id="a00135_ga14e6d1c3709870a082f203c8ba0ca9f4_html_ga14e6d1c3709870a082f203c8ba0ca9f4"><div class="ttname"><a href="a00135_ga14e6d1c3709870a082f203c8ba0ca9f4.html#ga14e6d1c3709870a082f203c8ba0ca9f4">knet_ip_filter_create</a></div><div class="ttdeci">kip_filter_t * knet_ip_filter_create()</div><div class="ttdoc">建立IP过滤器 </div><div class="ttdef"><b>Definition:</b> ip_filter.c:83</div></div>
+<div class="ttc" id="a00135_gae2d8c7b5356b36261f90f59bc49181e1_html_gae2d8c7b5356b36261f90f59bc49181e1"><div class="ttname"><a href="a00135_gae2d8c7b5356b36261f90f59bc49181e1.html#gae2d8c7b5356b36261f90f59bc49181e1">knet_ip_filter_destroy</a></div><div class="ttdeci">void knet_ip_filter_destroy(kip_filter_t *ip_filter)</div><div class="ttdoc">销毁IP过滤器 </div><div class="ttdef"><b>Definition:</b> ip_filter.c:92</div></div>
+<div class="ttc" id="a00135_ga6d722330898e2a29a8555d711aab8b01_html_ga6d722330898e2a29a8555d711aab8b01"><div class="ttname"><a href="a00135_ga6d722330898e2a29a8555d711aab8b01.html#ga6d722330898e2a29a8555d711aab8b01">knet_ip_filter_check</a></div><div class="ttdeci">int knet_ip_filter_check(kip_filter_t *ip_filter, const char *ip)</div><div class="ttdoc">检查IP是否被过滤 </div><div class="ttdef"><b>Definition:</b> ip_filter.c:155</div></div>
+<div class="ttc" id="a00135_ga1425a397cc96d8a1cdf32bff3f1fe645_html_ga1425a397cc96d8a1cdf32bff3f1fe645"><div class="ttname"><a href="a00135_ga1425a397cc96d8a1cdf32bff3f1fe645.html#ga1425a397cc96d8a1cdf32bff3f1fe645">knet_ip_filter_save</a></div><div class="ttdeci">int knet_ip_filter_save(kip_filter_t *ip_filter, const char *path)</div><div class="ttdoc">保存到文件 </div><div class="ttdef"><b>Definition:</b> ip_filter.c:141</div></div>
+<div class="ttc" id="a00135_ga044a4fc59ee0910af3c2d030e025c536_html_ga044a4fc59ee0910af3c2d030e025c536"><div class="ttname"><a href="a00135_ga044a4fc59ee0910af3c2d030e025c536.html#ga044a4fc59ee0910af3c2d030e025c536">knet_ip_filter_load_file</a></div><div class="ttdeci">int knet_ip_filter_load_file(kip_filter_t *ip_filter, const char *path)</div><div class="ttdoc">加载IP过滤文件 </div><div class="ttdef"><b>Definition:</b> ip_filter.c:98</div></div>
+<div class="ttc" id="a00017_html"><div class="ttname"><a href="a00017.html">_ip_filter_t</a></div><div class="ttdef"><b>Definition:</b> ip_filter.c:31</div></div>
+<div class="ttc" id="a00005_html"><div class="ttname"><a href="a00005.html">_channel_ref_t</a></div><div class="ttdef"><b>Definition:</b> channel_ref.c:61</div></div>
+<div class="ttc" id="a00066_html"><div class="ttname"><a href="a00066.html">config.h</a></div></div>
+<div class="ttc" id="a00135_gae03dc5307ec374e375c2313d27dd08ad_html_gae03dc5307ec374e375c2313d27dd08ad"><div class="ttname"><a href="a00135_gae03dc5307ec374e375c2313d27dd08ad.html#gae03dc5307ec374e375c2313d27dd08ad">knet_ip_filter_remove</a></div><div class="ttdeci">int knet_ip_filter_remove(kip_filter_t *ip_filter, const char *ip)</div><div class="ttdoc">删除单个IP </div><div class="ttdef"><b>Definition:</b> ip_filter.c:135</div></div>
+<div class="ttc" id="a00135_ga271a51fad46aa61d322b6c9da2d5ba1e_html_ga271a51fad46aa61d322b6c9da2d5ba1e"><div class="ttname"><a href="a00135_ga271a51fad46aa61d322b6c9da2d5ba1e.html#ga271a51fad46aa61d322b6c9da2d5ba1e">knet_ip_filter_add</a></div><div class="ttdeci">int knet_ip_filter_add(kip_filter_t *ip_filter, const char *ip)</div><div class="ttdoc">添加单个IP </div><div class="ttdef"><b>Definition:</b> ip_filter.c:129</div></div>
+<div class="ttc" id="a00135_gaa42afdd4af32db13227e991ad457f229_html_gaa42afdd4af32db13227e991ad457f229"><div class="ttname"><a href="a00135_gaa42afdd4af32db13227e991ad457f229.html#gaa42afdd4af32db13227e991ad457f229">knet_ip_filter_check_address</a></div><div class="ttdeci">int knet_ip_filter_check_address(kip_filter_t *ip_filter, kaddress_t *address)</div><div class="ttdoc">检查IP是否被过滤 </div><div class="ttdef"><b>Definition:</b> ip_filter.c:161</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-生成于 2015年 八月 4日 星期二 14:40:23 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
+生成于 2015年 八月 6日 星期四 10:26:37 , 为 knet使用  &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

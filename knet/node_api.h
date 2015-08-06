@@ -196,13 +196,6 @@ extern uint32_t knet_node_proxy_get_id(knode_proxy_t* proxy);
 extern uint32_t knet_node_proxy_get_type(knode_proxy_t* proxy);
 
 /**
- * 取得节点代理本次可以读取的数据长度，此长度代表了一次节点发送
- * @param proxy knode_proxy_t实例
- * @return 本次可以读取的数据长度
- */
-extern uint32_t knet_node_proxy_get_data_length(knode_proxy_t* proxy);
-
-/**
  * 取得本机节点
  * @param proxy knode_proxy_t实例
  * @return 本机节点
