@@ -544,7 +544,7 @@ knode_t* knet_node_proxy_get_self(knode_proxy_t* proxy) {
     return proxy->self;
 }
 
-int knet_node_proxy_write(knode_proxy_t* proxy, void* buffer, int size) {
+int knet_node_proxy_write(knode_proxy_t* proxy, const void* buffer, int size) {
     verify(proxy);
     verify(buffer);
     verify(size);

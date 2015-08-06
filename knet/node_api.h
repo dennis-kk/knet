@@ -210,7 +210,7 @@ extern knode_t* knet_node_proxy_get_self(knode_proxy_t* proxy);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int knet_node_proxy_write(knode_proxy_t* proxy, void* buffer, int size);
+extern int knet_node_proxy_write(knode_proxy_t* proxy, const void* buffer, int size);
 
 /**
  * 读取节点数据
