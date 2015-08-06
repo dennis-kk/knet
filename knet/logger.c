@@ -40,7 +40,7 @@ void set_console_blue() {
 #if defined(WIN32)
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 #else
-    printf("\033[1;34m");
+    fprintf(stderr, "\033[1;34m");
 #endif /* defined(WIN32) */
 }
 
@@ -48,7 +48,7 @@ void set_console_red() {
 #if defined(WIN32)
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_INTENSITY);
 #else
-    printf("\033[1;31m");
+    fprintf(stderr, "\033[1;31m");
 #endif /* defined(WIN32) */
 }
 
@@ -56,7 +56,7 @@ void set_console_green() {
 #if defined(WIN32)
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 #else
-    printf("\033[1;32m");
+    fprintf(stderr, "\033[1;32m");
 #endif /* defined(WIN32) */
 }
 
@@ -64,7 +64,7 @@ void set_console_white() {
 #if defined(WIN32)
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 #else
-    printf("\033[30m");
+    fprintf(stderr, "\033[30m");
 #endif /* defined(WIN32) */
 }
 
@@ -72,7 +72,7 @@ void set_console_yellow() {
 #if defined(WIN32)
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_INTENSITY);
 #else
-    printf("\033[1;33m");
+    fprintf(stderr, "\033[1;33m");
 #endif /* defined(WIN32) */
 }
 

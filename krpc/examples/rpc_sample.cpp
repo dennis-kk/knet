@@ -101,7 +101,7 @@ template<typename T1, typename T2>
 krpc_object_t* krpc_marshal(std::map<T1, T2>& node){
 	krpc_object_t* pNode = krpc_object_create();
 	krpc_map_clear(pNode);
-	for(std::map<T1, T2>::iterator iter = node.begin(); iter != node.end(); iter++) {
+	for(typename std::map<T1, T2>::iterator iter = node.begin(); iter != node.end(); iter++) {
 		krpc_map_insert(pNode, krpc_marshal(iter->first), krpc_marshal(iter->second));
 	}
 	return pNode;
