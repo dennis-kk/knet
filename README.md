@@ -69,7 +69,7 @@ In header file `knet/config.h`, change the macro value to tell compiler choose s
 	#define LOGGER_MODE (logger_mode_file | logger_mode_console | logger_mode_flush | logger_mode_override) /* the mode of logger */
 	#define LOGGER_LEVEL logger_level_verbose /* the level of logger */
 
-`LOGGER_ON` is the switch of **knet** internal logger, the macro `LOGGER_MODE` and `LOGGER_LEVEL` can change the mode and the level of logger. Internal logger may help developer find the problom ASAP, `LOGGER_ON` should be set to 0 in release version.
+In header file `knet/logger.h`, `LOGGER_ON` is the switch of **knet** internal logger, the macro `LOGGER_MODE` and `LOGGER_LEVEL` can change the mode and the level of logger. Internal logger may help developer find the problom ASAP, `LOGGER_ON` should be set to 0 in release version.
 
 ### Balancer ###
 ##

@@ -32,6 +32,7 @@
 #include "ringbuffer.h"
 #include "address.h"
 #include "loop_profile.h"
+#include "logger.h"
 
 
 typedef struct _channel_ref_info_t {

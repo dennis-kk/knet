@@ -28,6 +28,7 @@
 #include "ringbuffer.h"
 #include "loop.h"
 #include "misc.h"
+#include "logger.h"
 
 
 struct _channel_t {

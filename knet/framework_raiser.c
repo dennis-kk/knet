@@ -30,6 +30,7 @@
 #include "framework_config.h"
 #include "list.h"
 #include "misc.h"
+#include "logger.h"
 
 /**
  * ´´½¨¼àÌýÆ÷

@@ -28,6 +28,7 @@
 #include "timer.h"
 #include "loop_balancer.h"
 #include "misc.h"
+#include "logger.h"
 
 struct _framework_worker_t {
     kloop_t*          loop;       /* ÍøÂçÊÂ¼şÑ­»· */

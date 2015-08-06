@@ -33,6 +33,7 @@
 #include "channel_ref.h"
 #include "stream.h"
 #include "address.h"
+#include "logger.h"
 
 struct _node_t {
     kframework_t*   f;                    /* ¿ò¼Ü */

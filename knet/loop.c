@@ -31,6 +31,7 @@
 #include "loop_balancer.h"
 #include "loop_profile.h"
 #include "stream.h"
+#include "logger.h"
 
 
 struct _loop_t {

@@ -25,6 +25,7 @@
 #include "framework_config.h"
 #include "misc.h"
 #include "list.h"
+#include "logger.h"
 
 struct _framework_acceptor_config_t {
     char                  ip[32];                 /* IP */

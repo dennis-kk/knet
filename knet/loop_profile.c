@@ -26,6 +26,7 @@
 #include "loop.h"
 #include "list.h"
 #include "stream.h"
+#include "logger.h"
 
 struct _loop_profile_t {
     kloop_t*  loop;                /* ÍøÂçÊÂ¼şÑ­»· */

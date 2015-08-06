@@ -33,6 +33,7 @@
 #include "address.h"
 #include "timer.h"
 #include "list.h"
+#include "logger.h"
 
 
 struct _thread_runner_t {

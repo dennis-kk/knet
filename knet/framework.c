@@ -31,6 +31,7 @@
 #include "rpc_api.h"
 #include "list.h"
 #include "misc.h"
+#include "logger.h"
 
 struct _framework_t {
     kdlist_t*             loops;       /* ÍøÂçÊÂ¼şÑ­»· */

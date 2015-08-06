@@ -27,6 +27,7 @@
 #include "trie_api.h"
 #include "address.h"
 #include "channel_ref.h"
+#include "logger.h"
 
 struct _ip_filter_t {
     ktrie_t* trie; /* IP trie */
