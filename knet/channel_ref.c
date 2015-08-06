@@ -320,11 +320,11 @@ void knet_channel_ref_close(kchannel_ref_t* channel_ref) {
     }
     if (knet_loop_get_thread_id(loop) != thread_get_self_id()) {
         /* 通知管道所属线程 */
-        log_info("close channel cross thread, notify thread[id:%d]", knet_loop_get_thread_id(loop));
+        log_info("close channel cross thread, notify thread[id:%ld]", knet_loop_get_thread_id(loop));
         knet_loop_notify_close(loop, channel_ref);
     } else {
         /* 本线程内关闭 */
-        log_info("close channel[%llu] in loop thread[id: %d]", knet_channel_ref_get_uuid(channel_ref), knet_loop_get_thread_id(loop));
+        log_info("close channel[%llu] in loop thread[id: %ld]", knet_channel_ref_get_uuid(channel_ref), knet_loop_get_thread_id(loop));
         knet_channel_ref_update_close_in_loop(loop, channel_ref);
     }
 }
@@ -366,7 +366,7 @@ int knet_channel_ref_write(kchannel_ref_t* channel_ref, const char* data, int si
     loop = channel_ref->ref_info->loop;
     if (knet_loop_get_thread_id(loop) != thread_get_self_id()) {
         /* 转到loop所在线程发送 */
-        log_info("send cross thread, notify thread[id:%d]", knet_loop_get_thread_id(loop));
+        log_info("send cross thread, notify thread[id:%ld]", knet_loop_get_thread_id(loop));
         send_buffer = knet_buffer_create(size);
         verify(send_buffer);
         if (!send_buffer) {
