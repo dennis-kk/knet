@@ -348,7 +348,7 @@ typedef void (*knet_node_monitor_cb_t)(knode_t*, kchannel_ref_t*);
     #define LOOP_SELECT 0  /* select */
 #endif /* defined(WIN32) */
 
-#if defined(DEBUG) || defined(_DEBUG)
+#if defined(DEBUG) || defined(_DEBUG) || !defined(NDEBUG)
     #define LOGGER_ON 1 /* 调试版本开启日志 */
 #else
     #define LOGGER_ON 0 /* 发行版关闭日志 */
