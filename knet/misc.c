@@ -61,6 +61,12 @@ typedef struct _thread_param_t {
     void*       loop; /* 循环指针 */
 } thread_param_t;
 
+void destroy(void* ptr) {
+    if (ptr) {
+        free(ptr);
+    }
+}
+
 socket_t socket_create() {
 #if LOOP_IOCP
     socket_t socket_fd = WSASocket(AF_INET, SOCK_STREAM, IPPROTO_TCP, 0, 0, WSA_FLAG_OVERLAPPED);
@@ -1230,4 +1236,96 @@ int split(const char* src, char delim, int n, ...) {
         return 1;
     }
     return 0;
+}
+
+int get_host_ip_string(const char* host_name, char* ip, int size) {
+#if defined(WIN32)
+    WSADATA             wsad;
+    struct sockaddr_in* addr_in = 0;
+    char*               ret     = 0;
+#endif /* defined(WIN32) */
+    int error = error_ok;
+    struct addrinfo  hints;
+    struct addrinfo* answer    = 0;
+    int              gai_error = 0;
+    int              len       = 0;
+    char             c         = 0;
+    int              stop      = 1;
+    verify(host_name);
+    verify(ip);
+    verify(size);
+    len = strlen(host_name);
+    /* 错略的检查 */
+    for (; (*host_name); host_name++) {
+        c = *host_name;
+        if ((c != '.') && (!((c >= '0') && (c <= '9')))) {
+            stop = 0;
+            break;
+        }
+    }
+    if (stop) {
+        /* 全数字认为是IP */
+        if (len > size) {
+            return error_getaddrinfo_fail;
+        }
+        strcpy(ip, host_name);
+        ip[len - 1] = 0;
+        return error_ok;
+    }
+#if defined(WIN32)
+    WSAStartup(MAKEWORD(2, 2), &wsad);
+#endif /* defined(WIN32) */
+    len = 0;
+    memset(&hints, 0, sizeof(hints));
+    hints.ai_socktype = SOCK_STREAM;
+    hints.ai_flags    = AI_CANONNAME;
+#if defined(WIN32)
+    hints.ai_family   = AF_INET;
+    hints.ai_protocol = IPPROTO_TCP;
+#endif /* defined(WIN32) */
+    gai_error = getaddrinfo(host_name, 0, &hints, &answer);
+    if (gai_error) {
+        error = error_getaddrinfo_fail;
+#if defined(WIN32)
+        log_error("'getaddrinfo' failed, %s, error: %d", host_name, sys_get_errno());
+#else
+        log_error("'getaddrinfo' failed, %s, error: %s", host_name, gai_strerror(gai_error));
+#endif /* defined(WIN32) */
+        goto error_return;
+    }
+#if defined(WIN32)
+    addr_in = (struct sockaddr_in*)answer->ai_addr;
+    ret     = inet_ntoa(addr_in->sin_addr);
+    if (!ret) {
+        error = error_getaddrinfo_fail;
+        goto error_return;
+    }
+    len = strlen(ret);
+    if (len > size) {
+        error = error_getaddrinfo_fail;
+        goto error_return;
+    }
+    strcpy(ip, ret);
+    ip[len - 1] = 0;
+#else
+    if (!inet_ntop(AF_INET, &answer->ai_addr->sa_data[2], ip, size)) {
+        error = error_getaddrinfo_fail;
+        goto error_return;
+    }
+#endif /* defined(WIN32) */
+    if (answer) {
+        freeaddrinfo(answer);
+    }
+#if defined(WIN32)
+    WSACleanup();
+#endif /* defined(WIN32) */
+    return error_ok;
+error_return:
+    if (answer) {
+        freeaddrinfo(answer);
+    }
+#if defined(WIN32)
+    WSACleanup();
+#endif /* WIN32 */
+    return error;
 }

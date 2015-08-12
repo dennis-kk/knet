@@ -51,6 +51,7 @@
     #define WIN32_LEAN_AND_MEAN
     #include <windows.h>
     #include <process.h>
+    #include <ws2tcpip.h> /* getaddrinfo */
     #if defined(_MSC_VER )
         #pragma comment(lib,"wsock32.lib")
     #endif /* defined(_MSC_VER) */
@@ -104,7 +105,7 @@
 #define create_type(type, size)       (type*)malloc(size)
 #define rcreate_raw(ptr, size)        (char*)realloc(ptr, size)
 #define rcreate_type(type, ptr, size) (type*)realloc(ptr, size)
-#define destroy(ptr)                  do { if (ptr) { free(ptr); } } while(0);
+extern void destroy(void* ptr) ;
 
 #ifndef min
 #define min(a, b) ((a) < (b) ? (a) : (b))
@@ -247,6 +248,7 @@ typedef enum _error_e {
     error_node_timeout,
     error_ringbuffer_not_found,
     error_node_argv_invalid,
+    error_getaddrinfo_fail,
 } knet_error_e;
 
 /*! 管道回调事件 */

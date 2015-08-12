@@ -137,4 +137,14 @@ extern char* knet_lltoa(long long ll, char* buffer, int size);
  */
 extern int split(const char* src, char delim, int n, ...);
 
+/**
+ * 获取主机域名的IP
+ * @param host_name 主机域名
+ * @param ip 返回IP字符串
+ * @param size 返回缓冲区长度
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int get_host_ip_string(const char* host_name, char* ip, int size);
+
 #endif /* MISC_API_H */

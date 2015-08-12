@@ -22,21 +22,12 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-#ifndef ALL_TEST_CASE_H
-#define ALL_TEST_CASE_H
+#include "helper.h"
+#include "knet.h"
 
-//#include "rpc_object_case.h"
-//#include "address_case.h"
-//#include "channel_ref_case.h"
-//#include "stream_case.h"
-//#include "thread_case.h"
-//#include "timer_case.h"
-//#include "framework_case.h"
-//#include "loop_profile_case.h"
-//#include "trie_case.h"
-//#include "ip_filter_case.h"
-//#include "vrouter_case.h"
-//#include "node_case.h"
-#include "misc_case.h"
-
-#endif // ALL_TEST_CASE_H
+CASE(Test_get_host_ip_string) {
+    char ip[32] = {0};
+    EXPECT_TRUE(error_ok == get_host_ip_string("www.google.com", ip, sizeof(ip)));
+    EXPECT_FALSE(error_ok == get_host_ip_string("www.kjkeekjqqwewe.com", ip, sizeof(ip)));
+    EXPECT_TRUE(error_ok == get_host_ip_string("192.168.0.1", ip, sizeof(ip)));
+}
