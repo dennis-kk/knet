@@ -55,7 +55,8 @@ typedef struct _channel_ref_info_t {
     int                           auto_reconnect;       /* 自动重连标志 */
     int                           flag;                 /* 选取器所使用自定义标志位 */
     void*                         data;                 /* 选取器所使用自定义数据 */
-    void*                         user_data;            /* 用户数据指针 */
+    void*                         user_data;            /* 用户数据指针 - 内部使用 */
+    void*                         user_ptr;             /* 暴露给外部使用的数据指针 - 外部使用 */
     /* 扩展数据成员 */
 } channel_ref_info_t;
 
@@ -115,7 +116,7 @@ int knet_channel_ref_destroy(kchannel_ref_t* channel_ref) {
 }
 
 int knet_channel_ref_connect(kchannel_ref_t* channel_ref, const char* ip, int port, int timeout) {
-    int     error = error_ok;
+    int      error = error_ok;
     kloop_t* loop  = 0;
     verify(channel_ref);
     verify(port);
@@ -160,18 +161,18 @@ int knet_channel_ref_connect(kchannel_ref_t* channel_ref, const char* ip, int po
 }
 
 int knet_channel_ref_reconnect(kchannel_ref_t* channel_ref, int timeout) {
-    int              error               = error_ok;
-    char             ip[32]              = {0};
-    int              port                = 0;
-    kchannel_ref_t*   new_channel         = 0;
-    kaddress_t*       peer_address        = 0;
-    time_t           connect_timeout     = 0;
+    int                   error               = error_ok;
+    char                  ip[32]              = {0};
+    int                   port                = 0;
+    kchannel_ref_t*       new_channel         = 0;
+    kaddress_t*           peer_address        = 0;
+    time_t                connect_timeout     = 0;
     knet_channel_ref_cb_t cb                  = 0;
-    kloop_t*          loop                = 0;
-    uint32_t         max_send_list_len   = 0;
-    uint32_t         max_recv_buffer_len = 0;
-    int              auto_reconnect      = 0;
-    void*            user_data           = 0;
+    kloop_t*              loop                = 0;
+    uint32_t              max_send_list_len   = 0;
+    uint32_t              max_recv_buffer_len = 0;
+    int                   auto_reconnect      = 0;
+    void*                 user_data           = 0;
     verify(channel_ref);
     verify(channel_ref->ref_info->channel);
     if (!knet_channel_ref_check_state(channel_ref, channel_state_connect)) {
@@ -807,4 +808,14 @@ void knet_channel_ref_set_user_data(kchannel_ref_t* channel_ref, void* data) {
 void* knet_channel_ref_get_user_data(kchannel_ref_t* channel_ref) {
     verify(channel_ref);
     return channel_ref->ref_info->user_data;
+}
+
+void knet_channel_ref_set_ptr(kchannel_ref_t* channel_ref, void* ptr) {
+    verify(channel_ref);
+    channel_ref->ref_info->user_ptr = ptr;
+}
+
+void* knet_channel_ref_get_ptr(kchannel_ref_t* channel_ref) {
+    verify(channel_ref);
+    return channel_ref->ref_info->user_ptr;
 }

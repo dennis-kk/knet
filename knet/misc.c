@@ -1251,13 +1251,14 @@ int get_host_ip_string(const char* host_name, char* ip, int size) {
     int              len       = 0;
     char             c         = 0;
     int              stop      = 1;
+    int              i         = 0;
     verify(host_name);
     verify(ip);
     verify(size);
     len = strlen(host_name);
     /* ´íÂÔµÄ¼ì²é */
-    for (; (*host_name); host_name++) {
-        c = *host_name;
+    for (i = 0; host_name[i]; i++) {
+        c = host_name[i];
         if ((c != '.') && (!((c >= '0') && (c <= '9')))) {
             stop = 0;
             break;
@@ -1269,7 +1270,7 @@ int get_host_ip_string(const char* host_name, char* ip, int size) {
             return error_getaddrinfo_fail;
         }
         strcpy(ip, host_name);
-        ip[len - 1] = 0;
+        ip[len] = 0;
         return error_ok;
     }
 #if defined(WIN32)

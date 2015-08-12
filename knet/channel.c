@@ -125,7 +125,7 @@ int knet_channel_send_buffer(kchannel_t* channel, kbuffer_t* send_buffer) {
 }
 
 int knet_channel_send(kchannel_t* channel, const char* data, int size) {
-    int       bytes       = 0;
+    int        bytes       = 0;
     kbuffer_t* send_buffer = 0;
     verify(channel);
     verify(data);

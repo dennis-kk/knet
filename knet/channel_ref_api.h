@@ -240,6 +240,20 @@ extern uint64_t knet_channel_ref_get_uuid(kchannel_ref_t* channel_ref);
  */
 extern int knet_channel_ref_equal(kchannel_ref_t* a, kchannel_ref_t* b);
 
+/**
+ * 设置用户数据指针
+ * @param channel_ref kchannel_t实例
+ * @param ptr 用户数据指针
+ */
+extern void knet_channel_ref_set_ptr(kchannel_ref_t* channel_ref, void* ptr);
+
+/**
+ * 获取用户数据指针
+ * @param channel_ref kchannel_t实例
+ * @return 用户数据指针
+ */
+extern void* knet_channel_ref_get_ptr(kchannel_ref_t* channel_ref);
+
 /** @} */
 
 #endif /* CHANNEL_REF_API_H */
