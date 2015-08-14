@@ -39,7 +39,7 @@ struct _framework_t {
     kframework_raiser_t*  raiser;      /* 监听器/连接器 */
     kframework_worker_t** workers;     /* 工作线程 */
     kloop_balancer_t*     balancer;    /* 负载均衡器 */
-    volatile int         start;       /* 启动标志 */
+    volatile int          start;       /* 启动标志 */
 };
 
 /**

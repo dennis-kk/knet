@@ -100,11 +100,12 @@
 #define INT_MAX  2147483647 /* maximum (signed) int value */
 #endif /* INT_MAX */
 
-#define create(type)                  (type*)malloc(sizeof(type))
-#define create_raw(size)              (char*)malloc(size)
-#define create_type(type, size)       (type*)malloc(size)
-#define rcreate_raw(ptr, size)        (char*)realloc(ptr, size)
-#define rcreate_type(type, ptr, size) (type*)realloc(ptr, size)
+#define create(type)                   (type*)malloc(sizeof(type))
+#define create_raw(size)               (char*)malloc(size)
+#define create_type(type, size)        (type*)malloc(size)
+#define create_type_ptr_array(type, n) (type**)malloc((n) * sizeof(type*))
+#define rcreate_raw(ptr, size)         (char*)realloc(ptr, size)
+#define rcreate_type(type, ptr, size)  (type*)realloc(ptr, size)
 extern void destroy(void* ptr) ;
 
 #ifndef min
