@@ -770,14 +770,14 @@ uint64_t knet_channel_ref_get_domain_id(kchannel_ref_t* channel_ref) {
     return channel_ref->domain_id;
 }
 
-void knet_channel_ref_incref(kchannel_ref_t* channel_ref) {
+int knet_channel_ref_incref(kchannel_ref_t* channel_ref) {
     verify(channel_ref);
-    atomic_counter_inc(&channel_ref->ref_info->ref_count);
+    return (int)atomic_counter_inc(&channel_ref->ref_info->ref_count);
 }
 
-void knet_channel_ref_decref(kchannel_ref_t* channel_ref) {
+int knet_channel_ref_decref(kchannel_ref_t* channel_ref) {
     verify(channel_ref);
-    atomic_counter_dec(&channel_ref->ref_info->ref_count);
+    return (int)atomic_counter_dec(&channel_ref->ref_info->ref_count);
 }
 
 int knet_channel_ref_check_ref_zero(kchannel_ref_t* channel_ref) {

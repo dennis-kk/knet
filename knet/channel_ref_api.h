@@ -254,6 +254,20 @@ extern void knet_channel_ref_set_ptr(kchannel_ref_t* channel_ref, void* ptr);
  */
 extern void* knet_channel_ref_get_ptr(kchannel_ref_t* channel_ref);
 
+/**
+ * 递增当前管道引用计数
+ * @param channel_ref kchannel_ref_t实例
+ * @return 当前引用计数
+ */
+extern int knet_channel_ref_incref(kchannel_ref_t* channel_ref);
+
+/**
+ * 递减当前管道引用计数
+ * @param channel_ref kchannel_ref_t实例
+ * @return 当前引用计数
+ */
+extern int knet_channel_ref_decref(kchannel_ref_t* channel_ref);
+
 /** @} */
 
 #endif /* CHANNEL_REF_API_H */

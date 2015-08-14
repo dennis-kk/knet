@@ -313,18 +313,6 @@ void knet_channel_ref_set_domain_id(kchannel_ref_t* channel_ref, uint64_t domain
 uint64_t knet_channel_ref_get_domain_id(kchannel_ref_t* channel_ref);
 
 /**
- * 递增当前管道引用计数
- * @param channel_ref kchannel_ref_t实例
- */
-void knet_channel_ref_incref(kchannel_ref_t* channel_ref);
-
-/**
- * 递减当前管道引用计数
- * @param channel_ref kchannel_ref_t实例
- */
-void knet_channel_ref_decref(kchannel_ref_t* channel_ref);
-
-/**
  * 测试管道引用是否为零
  * @param channel_ref kchannel_ref_t实例
  * @return 0 不为零
