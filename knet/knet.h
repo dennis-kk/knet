@@ -50,6 +50,7 @@
 #include "hash_api.h"
 #include "misc_api.h"
 #include "logger_api.h"
+#include "ringbuffer_api.h"
 #include "version.h"
 
 #ifdef __cplusplus
