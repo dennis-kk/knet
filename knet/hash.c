@@ -25,16 +25,17 @@
 #include "hash.h"
 #include "list.h"
 #include "logger.h"
+#include "misc.h"
 
 
 struct _hash_t {
-    uint32_t      size;         /* 桶数量 */
-    uint32_t      count;        /* 当前表内元素个数 */
-    kdlist_t**     buckets;      /* 桶数组 */
-    knet_hash_dtor_t   dtor;         /* 自定义值销毁函数 */
-    uint32_t      it_index;     /* 遍历器 - 当前遍历的桶索引 */
-    kdlist_node_t* it_node_safe; /* 遍历器 - 当前桶内节点 */
-    kdlist_node_t* it_node_next; /* 遍历器 - 当前桶内节点的下一个节点 */
+    uint32_t          size;         /* 桶数量 */
+    uint32_t          count;        /* 当前表内元素个数 */
+    kdlist_t**        buckets;      /* 桶数组 */
+    knet_hash_dtor_t  dtor;         /* 自定义值销毁函数 */
+    uint32_t          it_index;     /* 遍历器 - 当前遍历的桶索引 */
+    kdlist_node_t*    it_node_safe; /* 遍历器 - 当前桶内节点 */
+    kdlist_node_t*    it_node_next; /* 遍历器 - 当前桶内节点的下一个节点 */
 };
 
 struct _hash_value_t {
@@ -81,7 +82,7 @@ int hash_value_equal_string_key(khash_value_t* hash_value, const char* key);
  * @param key 字符串
  * @return 整数键值
  */
-uint32_t _hash_string(const char* key);
+uint32_t hash_string(const char* key);
 
 khash_value_t* hash_value_create(uint32_t key, const char* string_key, void* value) {
     khash_value_t* hash_value = create(khash_value_t);
@@ -217,7 +218,7 @@ int hash_add_string_key(khash_t* hash, const char* key, void* value) {
     khash_value_t* hash_value = 0;
     verify(hash);
     verify(value);
-    hash_key = _hash_string(key) % hash->size;
+    hash_key = hash_string(key) % hash->size;
     /* 创建值 */
     hash_value = hash_value_create(0, key, value);
     if (!hash_value) {
@@ -265,7 +266,7 @@ void* hash_remove_string_key(khash_t* hash, const char* key) {
     khash_value_t* hash_value = 0;
     void*         value      = 0;
     verify(hash);
-    hash_key = _hash_string(key) % hash->size;
+    hash_key = hash_string(key) % hash->size;
     /* 遍历链表查找 */
     dlist_for_each_safe(hash->buckets[hash_key], node, temp) {
         if (node == hash->it_node_next) { /* 删除正在遍历节点的后续节点 */
@@ -328,7 +329,7 @@ int hash_replace_string_key(khash_t* hash, const char* key, void* value) {
     verify(hash);
     verify(key);
     verify(value);
-    hash_key = _hash_string(key) % hash->size;
+    hash_key = hash_string(key) % hash->size;
     /* 遍历链表查找 */
     dlist_for_each(hash->buckets[hash_key], node) {
         hash_value = (khash_value_t*)dlist_node_get_data(node);
@@ -380,7 +381,7 @@ void* hash_get_string_key(khash_t* hash, const char* key) {
     khash_value_t* hash_value = 0;
     verify(hash);
     verify(key);
-    hash_key = _hash_string(key) % hash->size;
+    hash_key = hash_string(key) % hash->size;
     /* 遍历链表查找 */
     dlist_for_each(hash->buckets[hash_key], node) {
         hash_value = (khash_value_t*)dlist_node_get_data(node);
@@ -396,7 +397,7 @@ uint32_t hash_get_size(khash_t* hash) {
     return hash->count;
 }
 
-uint32_t _hash_string(const char* key) {
+uint32_t hash_string(const char* key) {
     uint32_t hash_key = 0;
     /* 简单的计算出整数key */
     for(; *key; key++) {
@@ -406,7 +407,7 @@ uint32_t _hash_string(const char* key) {
 }
 
 khash_value_t* hash_get_first(khash_t* hash) {
-    uint32_t      i          = 0;
+    uint32_t       i          = 0;
     kdlist_t*      list       = 0;
     khash_value_t* hash_value = 0;
     verify(hash);

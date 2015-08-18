@@ -183,9 +183,8 @@ extern khash_value_t* hash_get_first(khash_t* hash);
  */
 extern khash_value_t* hash_next(khash_t* hash);
 
-/* 遍历哈希表，可以在遍历过程中删除或销毁当前元素 */
+/* 遍历哈希表，可以在遍历过程中删除或销毁当前元素, 遍历宏不是线程安全的 */
 #define hash_for_each_safe(hash, value) \
     for (value = hash_get_first(hash); (value); value = hash_next(hash))
-
 
 #endif /* HASH_API_H */

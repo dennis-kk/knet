@@ -65,6 +65,8 @@
  * @{
  */
 
+/* TODO 管道用户指针设置配置接口 */
+
 /**
  * 从文件加载配置
  * @param c kframework_config_t实例

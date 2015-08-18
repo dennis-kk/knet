@@ -38,7 +38,7 @@ struct _dlist_node_t {
 
 /* Ë«ÏòÑ­»·Á´±í */
 struct _dlist_t {
-    kdlist_node_t*    head;
+    kdlist_node_t*   head;
     atomic_counter_t count;
     int              init;
 };
