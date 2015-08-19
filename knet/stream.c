@@ -183,6 +183,28 @@ int knet_stream_copy_stream(kstream_t* stream, kstream_t* target) {
     return error_ok;
 }
 
+int knet_stream_drain_ringbuffer(kstream_t* stream, kringbuffer_t* target) {
+    uint32_t       size = 0;
+    kringbuffer_t* rb   = 0;
+    char*          ptr  = 0;
+    verify(stream);
+    verify(target);
+    rb = knet_channel_ref_get_ringbuffer(stream->channel_ref);
+    verify(rb);
+    /* 从ringbuffer内取数据写入另一个ringbuffer */
+    for (size = ringbuffer_read_lock_size(rb);
+        (size);
+        ringbuffer_read_commit(rb, size), size = ringbuffer_read_lock_size(rb)) {
+        ptr = ringbuffer_read_lock_ptr(rb);
+        verify(ptr);
+        if (size != ringbuffer_write(target, ptr, size)) {
+            ringbuffer_read_commit(rb, size);
+            return error_send_fail;
+        }
+    }
+    return error_ok;
+}
+
 kchannel_ref_t* knet_stream_get_channel_ref(kstream_t* stream) {
     verify(stream);
     return stream->channel_ref;

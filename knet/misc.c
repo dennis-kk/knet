@@ -1330,3 +1330,20 @@ error_return:
 #endif /* WIN32 */
     return error;
 }
+
+#if defined(WIN32)
+long long atoll(const char *p) {  
+    int       minus = 0;
+    long long value = 0;
+    if (*p == '-') {
+        minus++;
+        p++;  
+    }
+    while (*p >= '0' && *p <= '9') {
+        value *= 10;
+        value += *p - '0';
+        p++;
+    }
+    return minus ? 0 - value : value;
+}
+#endif /* defined(WIN32) */

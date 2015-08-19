@@ -147,6 +147,15 @@ extern int knet_stream_push_stream(kstream_t* stream, kstream_t* target);
 extern int knet_stream_copy_stream(kstream_t* stream, kstream_t* target);
 
 /**
+ * 将stream内数据写入ringbuffer内
+ * @param stream kstream_t实例
+ * @param target kringbuffer_t实例
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int knet_stream_drain_ringbuffer(kstream_t* stream, kringbuffer_t* target);
+
+/**
  * 获取流所属的管道引用
  * @param stream kstream_t实例
  * @return kchannel_ref_t实例

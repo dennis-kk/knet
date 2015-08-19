@@ -51,6 +51,15 @@ extern void ringbuffer_destroy(kringbuffer_t* rb);
 extern uint32_t ringbuffer_read(kringbuffer_t* rb, char* buffer, uint32_t size);
 
 /**
+ * 写入
+ * @param rb kringbuffer_t实例
+ * @param buffer 写入缓冲区指针
+ * @param size 写入缓冲区长度
+ * @return 实际写入字节数
+ */
+extern uint32_t ringbuffer_write(kringbuffer_t* rb, const char* buffer, uint32_t size);
+
+/**
  * 读取但不清除
  * @param rb kringbuffer_t实例
  * @param buffer 写入缓冲区指针
@@ -178,5 +187,11 @@ extern int ringbuffer_empty(kringbuffer_t* rb);
  * @return 最大长度
  */
 extern uint32_t ringbuffer_get_max_size(kringbuffer_t* rb);
+
+/**
+ * 将内容打印到屏幕
+ * @param rb kringbuffer_t实例
+ */
+extern void ringbuffer_print_stdout(kringbuffer_t* rb);
 
 #endif /* RINGBUFFER_API_H */

@@ -93,6 +93,20 @@ uint32_t ringbuffer_read(kringbuffer_t* rb, char* buffer, uint32_t size) {
     return size;
 }
 
+uint32_t ringbuffer_write(kringbuffer_t* rb, const char* buffer, uint32_t size) {
+    uint32_t i = 0;
+    verify(rb);
+    verify(buffer);
+    verify(size);
+    size = (((rb->max_size - rb->count) > size) ? size : rb->max_size - rb->count);
+    for (; i < size; i++) {
+        rb->ptr[rb->write_pos] = buffer[i];
+        rb->write_pos = (rb->write_pos + 1) % rb->max_size;
+    }
+    rb->count += size;
+    return size;
+}
+
 uint32_t ringbuffer_copy(kringbuffer_t* rb, char* buffer, uint32_t size) {
     uint32_t i        = 0;
     uint32_t read_pos = 0;
@@ -267,4 +281,16 @@ int ringbuffer_empty(kringbuffer_t* rb) {
 uint32_t ringbuffer_get_max_size(kringbuffer_t* rb) {
     verify(rb);
     return rb->max_size;
+}
+
+void ringbuffer_print_stdout(kringbuffer_t* rb) {
+    uint32_t i   = 0;
+    uint32_t pos = 0;
+    verify(rb);
+    pos = rb->read_pos;
+    fprintf(stdout, "MaxSize: %d, Count: %d\n", rb->max_size, rb->count);
+    for (; i < rb->count; i++) {
+        fprintf(stdout, "%c", rb->ptr[pos]);
+        pos = (pos + 1) % rb->max_size;
+    }
 }

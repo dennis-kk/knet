@@ -147,4 +147,13 @@ extern int split(const char* src, char delim, int n, ...);
  */
 extern int get_host_ip_string(const char* host_name, char* ip, int size);
 
+#if defined(WIN32)
+/**
+ * ×Ö·û´®×ªlong long
+ * @param p ×Ö·û´®
+ * @return long long
+ */
+extern long long atoll(const char *p);
+#endif /* defined(WIN32) */
+
 #endif /* MISC_API_H */
