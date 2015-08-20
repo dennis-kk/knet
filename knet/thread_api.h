@@ -180,6 +180,25 @@ extern atomic_counter_t atomic_counter_inc(atomic_counter_t* counter);
 extern atomic_counter_t atomic_counter_dec(atomic_counter_t* counter);
 
 /**
+ * 原子操作 - CAS(check and swap)
+ * @param counter atomic_counter_t实例
+ * @param target 目标值
+ * @param value 新值
+ * @return 操作后的值
+ */
+extern atomic_counter_t atomic_counter_cas(atomic_counter_t* counter,
+    atomic_counter_t target, atomic_counter_t value);
+
+/**
+ * 原子操作 - 赋值
+ * @param counter atomic_counter_t实例
+ * @param value 新值
+ * @return 操作后的值
+ */
+extern atomic_counter_t atomic_counter_set(atomic_counter_t* counter,
+    atomic_counter_t value);
+
+/**
  * 原子操作 - 是否为零
  * @param counter atomic_counter_t实例
  * @retval 0 非零

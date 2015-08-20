@@ -494,6 +494,24 @@ atomic_counter_t atomic_counter_dec(atomic_counter_t* counter) {
 #endif /* defined(WIN32) */
 }
 
+atomic_counter_t atomic_counter_cas(atomic_counter_t* counter,
+    atomic_counter_t target, atomic_counter_t value) {
+#if defined(WIN32)
+    return InterlockedCompareExchange(counter, value, target);
+#else
+    return __sync_val_compare_and_swap(counter, target, value);
+#endif /* defined(WIN32) */
+}
+
+atomic_counter_t atomic_counter_set(atomic_counter_t* counter,
+    atomic_counter_t value) {
+#if defined(WIN32)
+    return InterlockedExchange(counter, value);
+#else
+    return __sync_lock_test_and_set(counter, value);
+#endif /* defined(WIN32) */
+}
+
 int atomic_counter_zero(atomic_counter_t* counter) {
     return (*counter == 0);
 }
