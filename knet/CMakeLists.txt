@@ -36,3 +36,5 @@ add_library(knet
 )
 
 target_link_libraries(knet -lpthread)
+
+INSTALL(TARGETS knet DESTINATION lib)

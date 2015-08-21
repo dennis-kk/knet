@@ -6,4 +6,4 @@ if [ ! -d ./lib ]; then
     mkdir lib
 fi
 cmake CMakeLists.txt
-make
+make install
