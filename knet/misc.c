@@ -613,7 +613,7 @@ void _thread_func(void* params) {
     kthread_runner_t* runner = 0;
     verify(params);
     runner = (kthread_runner_t*)params;
-    runner->func(runner->params);
+    runner->func(runner);
 }
 
 void _thread_loop_func(void* params) {
