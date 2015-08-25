@@ -35,7 +35,7 @@ typedef struct _loop_epoll_t {
     struct epoll_event* events;   /* epoll事件数组 */
 } loop_epoll_t;
 
-#define MAXEVENTS 8192
+#define MAXEVENTS 8192 /* epoll_create参数 */
 
 int knet_impl_create(kloop_t* loop) {
     loop_epoll_t* impl = create(loop_epoll_t);

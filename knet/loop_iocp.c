@@ -34,47 +34,102 @@
     #pragma comment(lib,"Ws2_32.lib")
 #endif /* defined(_MSC_VER) */
 
-#define ACCEPTEX_ADDR_SIZE   sizeof(struct sockaddr_in) + 16
-#define ACCEPTEX_BUFFER_SIZE 1024
-#define ACCEPTEX             LPFN_ACCEPTEX
+#define ACCEPTEX_ADDR_SIZE   sizeof(struct sockaddr_in) + 16 /* AcceptEx函数参数，详见MSDN */
+#define ACCEPTEX_BUFFER_SIZE 1024                            /* AcceptEx函数参数，详见MSDN */
+#define ACCEPTEX             LPFN_ACCEPTEX                   /* AcceptEx函数指针，详见MSDN */
 
+/**
+ * 事件类型
+ */
 typedef enum _io_type_e {
-    io_type_accept  = 1,
-    io_type_connect = 2,
-    io_type_recv    = 4,
-    io_type_send    = 8,
-    io_type_close   = 16,
+    io_type_accept  = 1,  /* 新连接到来 */
+    io_type_connect = 2,  /* 连接建立 */
+    io_type_recv    = 4,  /* 接收 */
+    io_type_send    = 8,  /* 发送 */
+    io_type_close   = 16, /* 管道关闭 */
 } io_type_e;
 
+/**
+ * per-I/O数据
+ */
 typedef struct _per_io_t {  
-    OVERLAPPED ov;  
-    io_type_e  type;
+    OVERLAPPED ov;   /* windows重叠I/O所需数据结构 */
+    io_type_e  type; /* 当前I/O类型 */
 } per_io_t;
 
+/**
+ * AcceptEx函数相关
+ */
 typedef struct _AcceptEx_t {
     ACCEPTEX       fn_AcceptEx;                  /* AcceptEx函数指针 */
     socket_t       socket_fd;                    /* 当前未决的客户端套接字 - AcceptEx */
     char           buffer[ACCEPTEX_BUFFER_SIZE]; /* 参数 - AcceptEx */
 } AcceptEx_t;
 
+/**
+ * per-socket数据
+ */
 typedef struct _per_sock_t {  
-    kchannel_ref_t* channel_ref;                  /* 当前管道 */
-    AcceptEx_t*    AcceptEx_info;                /* AcceptEx_t指针 */
-    per_io_t       io_recv;                      /* 当前实现只支持同一个时刻只投递一个recv请求 */
-    per_io_t       io_send;                      /* 当前实现只支持同一个时刻只投递一个send请求 */
+    kchannel_ref_t* channel_ref;  /* 当前管道 */
+    AcceptEx_t*    AcceptEx_info; /* AcceptEx_t指针 */
+    per_io_t       io_recv;       /* 当前实现只支持同一个时刻只投递一个recv请求 */
+    per_io_t       io_send;       /* 当前实现只支持同一个时刻只投递一个send请求 */
 } per_sock_t;
 
+/**
+ * IOCP实现
+ */
 typedef struct _loop_iocp_t {
-    HANDLE iocp;
+    HANDLE iocp; /* IOCP句柄 */
 } loop_iocp_t;
 
+/**
+ * 建立per-socket数据
+ * @return per_sock_t实例
+ */
 per_sock_t* socket_data_create();
+
+/**
+ * 销毁per-socket数据
+ * @param data per_sock_t实例
+ */
 void socket_data_destroy(per_sock_t* data);
-ACCEPTEX get_fn_AcceptEx(socket_t fd);
-AcceptEx_t* socket_data_prepare_accept(per_sock_t* data);
-loop_iocp_t* get_impl(kloop_t* loop);
+
+/**
+ * 取得管道的per-socket数据
+ * @param channel_ref 管道引用
+ * @return per_sock_t实例
+ */
 per_sock_t* get_data(kchannel_ref_t* channel_ref);
+
+/**
+ * 获取监听的描述符的AcceptEx函数指针
+ * @return AcceptEx函数指针
+ */
+ACCEPTEX get_fn_AcceptEx(socket_t fd);
+
+/**
+ * 准备接受新的连接
+ * @return AcceptEx函数指针
+ */
+AcceptEx_t* socket_data_prepare_accept(per_sock_t* data);
+
+/**
+ * 取得网络循环的IOCP实现
+ * @return loop_iocp_t实例
+ */
+loop_iocp_t* get_impl(kloop_t* loop);
+
+/**
+ * 注册RECV事件
+ * @param channel_ref kchannel_ref_t实例
+ */
 void on_iocp_recv(kchannel_ref_t* channel_ref);
+
+/**
+ * 注册SEND事件
+ * @param channel_ref kchannel_ref_t实例
+ */
 void on_iocp_send(kchannel_ref_t* channel_ref);
 
 per_sock_t* socket_data_create() {

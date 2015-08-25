@@ -32,9 +32,9 @@
 
 
 struct _channel_t {
-    kdlist_t*      send_buffer_list;  /* 发送链表 */
+    kdlist_t*      send_buffer_list;  /* 发送链表, 发送失败的数据会法如这个链表等待下次发送 */
     uint32_t       max_send_list_len; /* 发送链表最大长度 */
-    kringbuffer_t* recv_ringbuffer;   /* 读环形缓冲区 */
+    kringbuffer_t* recv_ringbuffer;   /* 读环形缓冲区, 通过socket读取函数读到的数据会放在这个缓冲区内 */
     socket_t       socket_fd;         /* 套接字 */
     uint64_t       uuid;              /* 管道UUID */
 };
