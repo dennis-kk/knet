@@ -4,7 +4,7 @@
 **knet** is cross-platform multi-threading light-weight TCP transport library, for now, knet support **IOCP**, **select**, **epoll** model on **Windows** and **CentOS**. it will testing(port) under more Linux and Unix OS version, more model will be implemented like: kqueue(kevent) etc.   
 **knet** is not a event loop like **libevent**, **knet** focus on transport only.
 
-**knet** 是跨平台，多线程，轻量级的TCP网络库，当前版本提供了Windows和Linux平台下的**IOCP**, **select**, **epoll** 三种实现. 未来**knet**将会在更多Linux和Unix操作系统下测试(移植),同时,更多的实现也会逐渐加入进来,譬如:kqueue(kevent)等.
+**knet** 是跨平台，多线程，轻量级的TCP网络库，当前版本提供了Windows和Linux平台下的 **IOCP**, **select**, **epoll** 三种实现. 未来 **knet**将会在更多Linux和Unix操作系统下测试(移植),同时,更多的实现也会逐渐加入进来,譬如:kqueue(kevent)等.
 **knet** 并不是像libevent一样的事件库, **knet** 只专注于传输.
 
 ### Loop ###
@@ -179,7 +179,7 @@ For more detail, see the DEV document.
 
 **knet** offers a low level **RPC** object framework for developer. `krpc_t` is the base for the next version(1.5.x), developers may develop handwriting code by `krpc_t`, but its not a good way to maintain code for future development.
 
-**knet**为使用者提供了一套低层次的**RPC**对象框架. `krpc_t`是下一个版本(1.5.x)的基础, 使用者可以使用`krpc_t`手写RPC通信,但这不是推荐方式，这样的代码非常难于维护.
+**knet**为使用者提供了一套低层次的 **RPC** 对象框架. `krpc_t`是下一个版本(1.5.x)的基础, 使用者可以使用`krpc_t`手写RPC通信,但这不是推荐方式，这样的代码非常难于维护.
 
 For more detail, see `examples/rpc.c`
 
