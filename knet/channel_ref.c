@@ -506,6 +506,7 @@ void knet_channel_ref_update_accept(kchannel_ref_t* channel_ref) {
             client_ref = knet_channel_ref_accept_from_socket_fd(channel_ref, loop, client_fd, 0);
             verify(client_ref);
             knet_channel_ref_set_user_data(client_ref, channel_ref->ref_info->user_data);
+            knet_channel_ref_set_ptr(client_ref, channel_ref->ref_info->user_ptr);
             /* 设置回调 */
             knet_channel_ref_set_cb(client_ref, channel_ref->ref_info->cb);
             /* 添加到其他loop */
@@ -514,6 +515,7 @@ void knet_channel_ref_update_accept(kchannel_ref_t* channel_ref) {
             client_ref = knet_channel_ref_accept_from_socket_fd(channel_ref, channel_ref->ref_info->loop, client_fd, 1);
             verify(client_ref);
             knet_channel_ref_set_user_data(client_ref, channel_ref->ref_info->user_data);
+            knet_channel_ref_set_ptr(client_ref, channel_ref->ref_info->user_ptr);
             /* 调用回调 */
             if (channel_ref->ref_info->cb) {
                 channel_ref->ref_info->cb(client_ref, channel_cb_event_accept);
