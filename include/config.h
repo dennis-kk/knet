@@ -153,6 +153,7 @@ typedef struct _node_config_t knode_config_t;
 typedef struct _node_t knode_t;
 typedef struct _node_proxy_t knode_proxy_t;
 typedef struct _rwlock_t krwlock_t;
+typedef struct _cond_t kcond_t;
 
 /* 管道可投递事件 */
 typedef enum _channel_event_e {

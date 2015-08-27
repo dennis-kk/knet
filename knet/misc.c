@@ -1228,6 +1228,80 @@ void rwlock_wrunlock(krwlock_t* rwlock) {
 #endif /* defined(WIN32) */
 }
 
+struct _cond_t {
+#if defined(WIN32)
+    HANDLE event;
+#else
+    pthread_cond_t event;
+#endif /* WIN32 */
+};
+
+kcond_t* cond_create() {
+    kcond_t* cond = create(kcond_t);
+    verify(cond);
+#if defined(WIN32)
+    cond->event = CreateEvent(0, TRUE, FALSE, 0);
+    if (cond->event == INVALID_HANDLE_VALUE) {
+        log_error("CreateEvent() failed, system error: %d", sys_get_errno());
+        return 0;
+    }
+#else
+    if (pthread_cond_init(&cond->event, 0)) {
+        log_error("pthread_cond_init() failed, system error: %d", sys_get_errno());
+        return 0;
+    }
+#endif /* WIN32 */
+    return cond;
+}
+
+void cond_destroy(kcond_t* cond) {
+    verify(cond);
+#if defined(WIN32)
+    CloseHandle(cond->event);
+#else
+    pthread_cond_destroy(&cond->event);
+#endif /* WIN32 */
+    destroy(cond);
+}
+
+void cond_wait(kcond_t* cond, klock_t* lock) {
+    verify(cond);
+    verify(lock);
+#if defined(WIN32)
+    lock_unlock(lock);
+    WaitForSingleObject(cond->event, INFINITE);
+    lock_lock(lock);
+#else
+    pthread_cond_wait(&cond->event, &lock->lock);
+#endif /* WIN32 */
+}
+
+void cond_wait_ms(kcond_t* cond, klock_t* lock, int ms) {
+#if !defined(WIN32)
+    struct timespec;
+#endif /* !defined(WIN32) */
+    verify(cond);
+    verify(lock);
+#if defined(WIN32)
+    lock_unlock(lock);
+    WaitForSingleObject(cond->event, ms);
+    lock_lock(lock);
+#else
+    timespec.tv_sec  = ms / 1000;
+    timespec.tv_nsec = (ms % 1000) * 1000 * 1000
+    pthread_cond_timedwait(&cond->event, &lock->lock, &timespec);
+#endif /* WIN32 */
+}
+
+void cond_signal(kcond_t* cond) {
+    verify(cond);
+#if defined(WIN32)
+    SetEvent(cond->event);
+#else
+    pthread_cond_signal(&cond->event);
+#endif /* WIN32 */
+}
+
 int split(const char* src, char delim, int n, ...) {
     int   i   = 0; /* 当前分割数 */
     int   j   = 0; /* 字符缓冲区下标 */
