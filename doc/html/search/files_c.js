@@ -1,9 +1,0 @@
-var searchData=
-[
-  ['thread_5fapi_2eh',['thread_api.h',['../a00120.html',1,'']]],
-  ['timer_2ec',['timer.c',['../a00121.html',1,'']]],
-  ['timer_2eh',['timer.h',['../a00122.html',1,'']]],
-  ['timer_5fapi_2eh',['timer_api.h',['../a00123.html',1,'']]],
-  ['trie_2ec',['trie.c',['../a00124.html',1,'']]],
-  ['trie_5fapi_2eh',['trie_api.h',['../a00125.html',1,'']]]
-];
