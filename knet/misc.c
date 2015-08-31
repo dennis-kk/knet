@@ -1288,7 +1288,7 @@ void cond_wait_ms(kcond_t* cond, klock_t* lock, int ms) {
     lock_lock(lock);
 #else
     tms.tv_sec  = ms / 1000;
-    tms.tv_nsec = (ms % 1000) * 1000 * 1000
+    tms.tv_nsec = (ms % 1000) * 1000 * 1000;
     pthread_cond_timedwait(&cond->event, &lock->lock, &tms);
 #endif /* WIN32 */
 }
