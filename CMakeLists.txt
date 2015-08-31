@@ -22,7 +22,6 @@ INSTALL(FILES
 	${PROJECT_SOURCE_DIR}/include/broadcast_api.h
 	${PROJECT_SOURCE_DIR}/include/channel_ref_api.h
 	${PROJECT_SOURCE_DIR}/include/config.h
-	${PROJECT_SOURCE_DIR}/include/files.txt
 	${PROJECT_SOURCE_DIR}/include/framework_api.h
 	${PROJECT_SOURCE_DIR}/include/framework_config_api.h
 	${PROJECT_SOURCE_DIR}/include/hash_api.h
