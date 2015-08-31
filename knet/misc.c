@@ -1278,7 +1278,7 @@ void cond_wait(kcond_t* cond, klock_t* lock) {
 
 void cond_wait_ms(kcond_t* cond, klock_t* lock, int ms) {
 #if !defined(WIN32)
-    struct timespec;
+    struct timespec tms;
 #endif /* !defined(WIN32) */
     verify(cond);
     verify(lock);
@@ -1287,9 +1287,9 @@ void cond_wait_ms(kcond_t* cond, klock_t* lock, int ms) {
     WaitForSingleObject(cond->event, ms);
     lock_lock(lock);
 #else
-    timespec.tv_sec  = ms / 1000;
-    timespec.tv_nsec = (ms % 1000) * 1000 * 1000
-    pthread_cond_timedwait(&cond->event, &lock->lock, &timespec);
+    tms.tv_sec  = ms / 1000;
+    tms.tv_nsec = (ms % 1000) * 1000 * 1000
+    pthread_cond_timedwait(&cond->event, &lock->lock, &tms);
 #endif /* WIN32 */
 }
 
