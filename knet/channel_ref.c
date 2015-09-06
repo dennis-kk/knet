@@ -320,6 +320,10 @@ void knet_channel_ref_close(kchannel_ref_t* channel_ref) {
         knet_channel_ref_destroy(channel_ref);
         return;
     }
+    if (knet_channel_ref_check_state(channel_ref, channel_state_close)) {
+        /* 已经在关闭链表内 */
+        return;
+    }
     if (knet_loop_get_thread_id(loop) != thread_get_self_id()) {
         /* 通知管道所属线程 */
         log_info("close channel cross thread, notify thread[id:%ld]", knet_loop_get_thread_id(loop));
