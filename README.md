@@ -162,15 +162,16 @@ Generally, the root node listening a port for node coming and notify other node 
 4. Broadcast message by node type   
 5. Black IP filter   
 6. White IP filter   
-7. Internal heartbeat between node pair
+7. Internal heartbeat between node pair   
 
-1. 节点结群
-2. 点对点
-3. 广播
-4. 广播到指定节点类型
-5. IP黑名单
-6. IP白名单
-7. 节点间的心跳
+功能:   
+1. 节点结群   
+2. 点对点   
+3. 广播   
+4. 广播到指定节点类型   
+5. IP黑名单   
+6. IP白名单   
+7. 节点间的心跳   
 
 For more detail, see the DEV document.
 
