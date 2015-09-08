@@ -65,12 +65,13 @@ int knet_stream_pop(kstream_t* stream, void* buffer, int size) {
 }
 
 int knet_stream_pop_until(kstream_t* stream, const char* end, void* buffer, int* size) {
-    uint32_t max_size = *size;
+    uint32_t max_size = 0;
     int      error    = error_ok;
     verify(stream);
     verify(end);
     verify(buffer);
     verify(size);
+    max_size = *size;
     error = ringbuffer_find(knet_channel_ref_get_ringbuffer(stream->channel_ref), end, (uint32_t*)size);
     if (error_ok == error) {
         if ((uint32_t)*size > max_size) {

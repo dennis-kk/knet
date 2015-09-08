@@ -90,7 +90,7 @@ socket_t socket_create() {
 int socket_connect(socket_t socket_fd, const char* ip, int port) {
 #if defined(WIN32)
     DWORD last_error = 0;
-#endif /* defined(WIN32) || defined(WIN64) */
+#endif /* defined(WIN32) */
     int error = 0;
     struct sockaddr_in sa;
     memset(&sa, 0, sizeof(sa));
@@ -106,7 +106,7 @@ int socket_connect(socket_t socket_fd, const char* ip, int port) {
     if (ip) {
         sa.sin_addr.s_addr = inet_addr(ip);
     }
-#endif /* defined(WIN32) || defined(WIN64) */
+#endif /* defined(WIN32) */
     error = connect(socket_fd, (struct sockaddr*)&sa, sizeof(struct sockaddr));
 #if defined(WIN32)
     if (error < 0) {
@@ -123,7 +123,7 @@ int socket_connect(socket_t socket_fd, const char* ip, int port) {
             return error_connect_fail;
         }
     }
-#endif /* defined(WIN32) || defined(WIN64) */
+#endif /* defined(WIN32) */
     return error_ok;
 }
 
@@ -143,7 +143,7 @@ int socket_bind_and_listen(socket_t socket_fd, const char* ip, int port, int bac
     if (ip) {
         sa.sin_addr.s_addr = inet_addr(ip);
     }
-#endif /* defined(WIN32) || defined(WIN64) */
+#endif /* defined(WIN32) */
     socket_set_reuse_addr_on(socket_fd);
     socket_set_linger_off(socket_fd);
     error = bind(socket_fd, (struct sockaddr*)&sa, sizeof(struct sockaddr));
@@ -167,10 +167,17 @@ socket_t socket_accept(socket_t socket_fd) {
     memset(&sa, 0, sizeof(sa));
     /* 接受客户端 */
     client_fd = accept(socket_fd, (struct sockaddr*)&sa, &addr_len);
+#if defined(WIN32)
+    if (INVALID_SOCKET == client_fd) {
+        log_error("accept() failed, system error: %d", sys_get_errno());
+        return 0;
+    }
+#else
     if (client_fd < 0) {
         log_error("accept() failed, system error: %d", sys_get_errno());
         return 0;
     }
+#endif /* defined(WIN32) */    
     return client_fd;
 }
 
@@ -284,7 +291,7 @@ int socket_send(socket_t socket_fd, const char* data, uint32_t size) {
             log_error("send() failed, system error: %d", sys_get_errno());
             send_bytes = -1;
         }
-    #endif /* defined(WIN32) || defined(WIN64) */
+    #endif /* defined(WIN32) */
     } else if (!send_bytes && size) {
         log_error("send() failed, system error: %d", sys_get_errno());
         return -1;
@@ -316,7 +323,7 @@ int socket_recv(socket_t socket_fd, char* data, uint32_t size) {
             log_error("recv() failed, system error: %d", sys_get_errno());
             recv_bytes = -1;
         }
-    #endif /* defined(WIN32) || defined(WIN64) */
+    #endif /* defined(WIN32) */
     } else if (recv_bytes == 0) {
         log_error("recv() failed, system error: %d", sys_get_errno());
         recv_bytes = -1;
@@ -329,7 +336,7 @@ u_short _get_random_port(int begin, int gap) {
     srand((int)time(0));
     return (u_short)(begin + abs(rand() % gap));
 }
-#endif /* defined(WIN32) || defined(WIN64) */
+#endif /* defined(WIN32) */
 
 int socket_pair(socket_t pair[2]) {
 #if defined(WIN32)
@@ -427,7 +434,7 @@ error_return:
         return 1;
     }
     return (socket_set_non_blocking_on(pair[0]) && socket_set_non_blocking_on(pair[1]));
-#endif /* defined(WIN32) || defined(WIN64) */
+#endif /* defined(WIN32) */
 }
 
 int socket_getpeername(kchannel_ref_t* channel_ref, kaddress_t* address) {
@@ -435,7 +442,7 @@ int socket_getpeername(kchannel_ref_t* channel_ref, kaddress_t* address) {
     char* ip;
 #else
     char ip[32] = {0};
-#endif /* defined(WIN32) || define(WIN64) */
+#endif /* defined(WIN32) */
     int port;
     struct sockaddr_in addr;
     socket_len_t len = sizeof(struct sockaddr);
@@ -448,7 +455,7 @@ int socket_getpeername(kchannel_ref_t* channel_ref, kaddress_t* address) {
     ip = inet_ntoa(addr.sin_addr);
 #else
     inet_ntop(AF_INET, &addr.sin_addr.s_addr, ip, sizeof(ip));
-#endif /* defined(WIN32) || define(WIN64) */
+#endif /* defined(WIN32) */
     port = ntohs(addr.sin_port);
     knet_address_set(address, ip, port);
     return error_ok;
@@ -459,7 +466,7 @@ int socket_getsockname(kchannel_ref_t* channel_ref,kaddress_t* address) {
     char* ip;
 #else
     char ip[32] = {0};
-#endif /* defined(WIN32) || define(WIN64) */
+#endif /* defined(WIN32) */
     int port;
     struct sockaddr_in addr;
     socket_len_t len = sizeof(struct sockaddr);
@@ -472,7 +479,7 @@ int socket_getsockname(kchannel_ref_t* channel_ref,kaddress_t* address) {
     ip = inet_ntoa(addr.sin_addr);
 #else
     inet_ntop(AF_INET, &addr.sin_addr.s_addr, ip, sizeof(ip));
-#endif /* defined(WIN32) || define(WIN64) */
+#endif /* defined(WIN32) */
     port = ntohs(addr.sin_port);
     knet_address_set(address, ip, port);
     return error_ok;
@@ -521,7 +528,7 @@ struct _lock_t {
         CRITICAL_SECTION lock;
     #else
         pthread_mutex_t lock;
-    #endif /* defined(WIN32) || defined(WIN64) */
+    #endif /* defined(WIN32) */
 };
 
 void _lock_init(klock_t* lock) {
@@ -529,7 +536,7 @@ void _lock_init(klock_t* lock) {
         InitializeCriticalSection(&lock->lock);
     #else
         pthread_mutex_init(&lock->lock, 0);
-    #endif /* defined(WIN32) || defined(WIN64) */ 
+    #endif /* defined(WIN32) */ 
 }
 
 klock_t* lock_create() {
@@ -545,7 +552,7 @@ void lock_destroy(klock_t* lock) {
         DeleteCriticalSection(&lock->lock);
     #else
         pthread_mutex_destroy(&lock->lock);
-    #endif /* defined(WIN32) || defined(WIN64) */
+    #endif /* defined(WIN32) */
     destroy(lock);
 }
 
@@ -555,7 +562,7 @@ void lock_lock(klock_t* lock) {
         EnterCriticalSection(&lock->lock);
     #else
         pthread_mutex_lock(&lock->lock);
-    #endif /* defined(WIN32) || defined(WIN64) */ 
+    #endif /* defined(WIN32) */ 
 }
 
 int lock_trylock(klock_t* lock) {
@@ -564,7 +571,7 @@ int lock_trylock(klock_t* lock) {
         return TryEnterCriticalSection(&lock->lock);
     #else
         return !pthread_mutex_trylock(&lock->lock);
-    #endif /* defined(WIN32) || defined(WIN64) */ 
+    #endif /* defined(WIN32) */ 
 }
 
 void lock_unlock(klock_t* lock) {
@@ -573,7 +580,7 @@ void lock_unlock(klock_t* lock) {
         LeaveCriticalSection(&lock->lock);
     #else
         pthread_mutex_unlock(&lock->lock);
-    #endif /* defined(WIN32) || defined(WIN64) */ 
+    #endif /* defined(WIN32) */ 
 }
 
 kthread_runner_t* thread_runner_create(knet_thread_func_t func, void* params) {
@@ -667,7 +674,7 @@ void* thread_loop_func_pthread(void* params) {
     _thread_loop_func(params);
     return 0;
 }
-#endif /* defined(WIN32) || defined(WIN64) */
+#endif /* defined(WIN32) */
 
 #if defined(WIN32)
 void thread_timer_loop_func_win(void* params) {
@@ -678,7 +685,7 @@ void* thread_timer_loop_func_pthread(void* params) {
     _thread_timer_loop_func(params);
     return 0;
 }
-#endif /* defined(WIN32) || defined(WIN64) */
+#endif /* defined(WIN32) */
 
 #if defined(WIN32)
 void thread_multi_loop_func_win(void* params) {
@@ -689,7 +696,7 @@ void* thread_multi_loop_func_pthread(void* params) {
     _thread_multi_loop_func(params);
     return 0;
 }
-#endif /* defined(WIN32) || defined(WIN64) */
+#endif /* defined(WIN32) */
 
 #if defined(WIN32)
 void thread_func_win(void* params) {
@@ -700,7 +707,7 @@ void* thread_func_pthread(void* params) {
     _thread_func(params);
     return 0;
 }
-#endif /* defined(WIN32) || defined(WIN64) */
+#endif /* defined(WIN32) */
 
 int thread_runner_start(kthread_runner_t* runner, int stack_size) {
 #if defined(WIN32)
@@ -708,7 +715,7 @@ int thread_runner_start(kthread_runner_t* runner, int stack_size) {
 #else
     int retval = 0;
     pthread_attr_t attr;
-#endif /* defined(WIN32) || defined(WIN64) */
+#endif /* defined(WIN32) */
     verify(runner);
     if (!runner->func) {
         return error_thread_start_fail;
@@ -716,7 +723,7 @@ int thread_runner_start(kthread_runner_t* runner, int stack_size) {
     runner->running = 1;
 #if defined(WIN32)
     retval = _beginthread(thread_func_win, stack_size, runner);
-    if (retval < 0) {
+    if (retval <= 0) {
         log_error("_beginthread() failed, system error: %d", sys_get_errno());
         return error_thread_start_fail;
     }
@@ -734,7 +741,7 @@ int thread_runner_start(kthread_runner_t* runner, int stack_size) {
         log_error("pthread_create() failed, system error: %d", sys_get_errno());
         return error_thread_start_fail;
     }
-#endif /* defined(WIN32) || defined(WIN64) */
+#endif /* defined(WIN32) */
     return error_ok;
 }
 
@@ -744,14 +751,14 @@ int thread_runner_start_loop(kthread_runner_t* runner, kloop_t* loop, int stack_
 #else
     int retval = 0;
     pthread_attr_t attr;
-#endif /* defined(WIN32) || defined(WIN64) */
+#endif /* defined(WIN32) */
     verify(runner);
     verify(loop);
     runner->params = loop;
     runner->running = 1;
 #if defined(WIN32)
     retval = _beginthread(thread_loop_func_win, stack_size, runner);
-    if (retval < 0) {
+    if (retval <= 0) {
         log_error("_beginthread() failed, system error: %d", sys_get_errno());
         return error_thread_start_fail;
     }
@@ -769,7 +776,7 @@ int thread_runner_start_loop(kthread_runner_t* runner, kloop_t* loop, int stack_
         log_error("pthread_create() failed, system error: %d", sys_get_errno());
         return error_thread_start_fail;
     }
-#endif /* defined(WIN32) || defined(WIN64) */
+#endif /* defined(WIN32) */
     return error_ok;
 }
 
@@ -779,14 +786,14 @@ int thread_runner_start_timer_loop(kthread_runner_t* runner, ktimer_loop_t* time
 #else
     int retval = 0;
     pthread_attr_t attr;
-#endif /* defined(WIN32) || defined(WIN64) */
+#endif /* defined(WIN32) */
     verify(runner);
     verify(timer_loop);
     runner->params = timer_loop;
     runner->running = 1;
 #if defined(WIN32)
     retval = _beginthread(thread_timer_loop_func_win, stack_size, runner);
-    if (retval < 0) {
+    if (retval <= 0) {
         log_error("_beginthread() failed, system error: %d", sys_get_errno());
         return error_thread_start_fail;
     }
@@ -804,7 +811,7 @@ int thread_runner_start_timer_loop(kthread_runner_t* runner, ktimer_loop_t* time
         log_error("pthread_create() failed, system error: %d", sys_get_errno());
         return error_thread_start_fail;
     }
-#endif /* defined(WIN32) || defined(WIN64) */
+#endif /* defined(WIN32) */
     return error_ok;
 }
 
@@ -814,7 +821,7 @@ int thread_runner_start_multi_loop_varg(kthread_runner_t* runner, int stack_size
 #else
     int retval = 0;
     pthread_attr_t attr;
-#endif /* defined(WIN32) || defined(WIN64) */
+#endif /* defined(WIN32) */
     char            c     = 0;
     thread_param_t* param = 0;
     va_list arg_ptr;
@@ -844,7 +851,7 @@ int thread_runner_start_multi_loop_varg(kthread_runner_t* runner, int stack_size
     runner->running = 1;
     #if defined(WIN32)
         retval = _beginthread(thread_multi_loop_func_win, stack_size, runner);
-        if (retval < 0) {
+        if (retval <= 0) {
             log_error("_beginthread() failed, system error: %d", sys_get_errno());
             return error_thread_start_fail;
         }
@@ -862,7 +869,7 @@ int thread_runner_start_multi_loop_varg(kthread_runner_t* runner, int stack_size
             log_error("pthread_create() failed, system error: %d", sys_get_errno());
             return error_thread_start_fail;
         }
-    #endif /* defined(WIN32) || defined(WIN64) */
+    #endif /* defined(WIN32) */
     return error_ok;
 }
 
@@ -890,7 +897,7 @@ void thread_runner_join(kthread_runner_t* runner) {
     runner->thread_handle = 0;
 #else
     pthread_join(runner->thread_id, 0);
-#endif /* defined(WIN32) || defined(WIN64) */
+#endif /* defined(WIN32) */
     runner->thread_id = 0;
 }
 
@@ -1036,7 +1043,7 @@ uint64_t time_get_microseconds() {
     ms = tv.tv_sec * 1000 * 1000;
     ms += tv.tv_usec;
     return ms;
-#endif /* defined(WIN32) || defined(WIN64) */
+#endif /* defined(WIN32) */
 }
 
 uint64_t uuid_create() {
