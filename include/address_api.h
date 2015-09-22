@@ -54,6 +54,16 @@ extern const char* address_get_ip(kaddress_t* address);
  */
 extern int address_get_port(kaddress_t* address);
 
+/**
+ * 测试是否相等
+ * @param address kaddress_t实例
+ * @param ip IP
+ * @param port 端口
+ * @retval 0 相等
+ * @retval 非零 不相等
+ */
+extern int address_equal(kaddress_t* address, const char* ip, int port);
+
 /** @} */
 
 #endif /* ADDRESS_API_H */

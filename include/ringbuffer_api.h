@@ -60,6 +60,16 @@ extern uint32_t ringbuffer_read(kringbuffer_t* rb, char* buffer, uint32_t size);
 extern uint32_t ringbuffer_write(kringbuffer_t* rb, const char* buffer, uint32_t size);
 
 /**
+ * 替换
+ * @param rb kringbuffer_t实例
+ * @param pos 替换的起始位置
+ * @param buffer 写入缓冲区指针
+ * @param size 写入缓冲区长度
+ * @return 实际写入字节数
+ */
+extern uint32_t ringbuffer_replace(kringbuffer_t* rb, uint32_t pos, const char* buffer, uint32_t size);
+
+/**
  * 读取但不清除
  * @param rb kringbuffer_t实例
  * @param buffer 写入缓冲区指针

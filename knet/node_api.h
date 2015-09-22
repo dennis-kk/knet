@@ -178,6 +178,13 @@ extern kip_filter_t* knet_node_get_black_ip_filter(knode_t* node);
 extern kip_filter_t* knet_node_get_white_ip_filter(knode_t* node);
 
 /**
+ * 取得用户指针
+ * @param node knode_t实例
+ * @return 用户指针
+ */
+extern void* knet_node_get_ptr(knode_t* node);
+
+/**
  * 取得节点代理ID
  *
  * 节点代理ID既远程节点的ID
@@ -246,6 +253,20 @@ extern int knet_node_proxy_available(knode_proxy_t* proxy);
  * @retval 其他 失败
  */
 extern int knet_node_proxy_close(knode_proxy_t* proxy);
+
+/**
+ * 增加节点代理的引用计数
+ * @param proxy knode_proxy_t实例
+ * @return 当前引用计数
+ */
+extern int knet_node_proxy_incref(knode_proxy_t* proxy);
+
+/**
+ * 减少节点代理的引用计数, 如果有已经调用过销毁函数同时引用计数为零则销毁
+ * @param proxy knode_proxy_t实例
+ * @return 当前引用计数
+ */
+extern int knet_node_proxy_decref(knode_proxy_t* proxy);
 
 /** @} */
 

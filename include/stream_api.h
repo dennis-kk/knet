@@ -129,6 +129,17 @@ extern int knet_stream_push_varg(kstream_t* stream, const char* format, ...);
 extern int knet_stream_copy(kstream_t* stream, void* buffer, int size);
 
 /**
+ * 替换数据流内数据
+ * @param stream kstream_t实例
+ * @param pos 起始位置
+ * @param buffer 缓冲区
+ * @param size 缓冲区大小
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int knet_stream_replace(kstream_t* stream, int pos, void* buffer, int size);
+
+/**
  * 将stream内数据写入target, 并清除stream内数据
  * @param stream kstream_t实例
  * @param target kstream_t实例
@@ -136,6 +147,16 @@ extern int knet_stream_copy(kstream_t* stream, void* buffer, int size);
  * @retval 其他 失败
  */
 extern int knet_stream_push_stream(kstream_t* stream, kstream_t* target);
+
+/**
+ * 将stream内数据写入target, 并清除stream内数据
+ * @param stream kstream_t实例
+ * @param target kstream_t实例
+ * @param count 写入长度
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int knet_stream_push_stream_count(kstream_t* stream, kstream_t* target, int count);
 
 /**
  * 将stream内数据写入target, 但不清除stream内数据

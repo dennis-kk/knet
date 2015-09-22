@@ -134,6 +134,16 @@ int knet_stream_copy(kstream_t* stream, void* buffer, int size) {
     return error_ok;
 }
 
+int knet_stream_replace(kstream_t* stream, int pos, void* buffer, int size) {
+    verify(stream);
+    verify(buffer);
+    verify(size);
+    if (0 >= ringbuffer_replace(knet_channel_ref_get_ringbuffer(stream->channel_ref), pos, (char*)buffer, size)) {
+        return error_recv_fail;
+    }
+    return error_ok;
+}
+
 int knet_stream_push_stream(kstream_t* stream, kstream_t* target) {
     uint32_t      size = 0;
     kringbuffer_t* rb   = 0;
@@ -150,6 +160,36 @@ int knet_stream_push_stream(kstream_t* stream, kstream_t* target) {
         (size);
         ringbuffer_read_commit(rb, size), size = ringbuffer_read_lock_size(rb)) {
         ptr = ringbuffer_read_lock_ptr(rb);
+        verify(ptr);
+        if (error_ok != knet_stream_push(target, ptr, size)) {
+            ringbuffer_read_commit(rb, size);
+            return error_send_fail;
+        }
+    }
+    return error_ok;
+}
+
+int knet_stream_push_stream_count(kstream_t* stream, kstream_t* target, int count) {
+    int            size = 0;
+    kringbuffer_t* rb   = 0;
+    char*          ptr  = 0;
+    verify(count);
+    verify(stream);
+    verify(target);
+    if (stream == target) {
+        return error_send_fail;
+    }
+    rb = knet_channel_ref_get_ringbuffer(stream->channel_ref);
+    verify(rb);
+    /* 从ringbuffer内取数据写入另一个stream */
+    for (size = ringbuffer_read_lock_size(rb);
+        (size) && (count);
+        ringbuffer_read_commit(rb, size), size = ringbuffer_read_lock_size(rb)) {
+        if (size > count) {
+            size = count;
+        }
+        ptr = ringbuffer_read_lock_ptr(rb);
+        count -= size;
         verify(ptr);
         if (error_ok != knet_stream_push(target, ptr, size)) {
             ringbuffer_read_commit(rb, size);

@@ -107,6 +107,23 @@ uint32_t ringbuffer_write(kringbuffer_t* rb, const char* buffer, uint32_t size) 
     return size;
 }
 
+uint32_t ringbuffer_replace(kringbuffer_t* rb, uint32_t pos, const char* buffer, uint32_t size) {
+    uint32_t i         = 0;
+    uint32_t write_pos = 0;
+    verify(rb);
+    verify(buffer);
+    verify(size);
+    if (size > rb->max_size) {
+        return 0;
+    }
+    write_pos = (rb->read_pos + pos) % rb->max_size;
+    for (; i < size; i++) {
+        rb->ptr[write_pos] = buffer[i];
+        write_pos = (write_pos + 1) % rb->max_size;
+    }
+    return size;
+}
+
 uint32_t ringbuffer_copy(kringbuffer_t* rb, char* buffer, uint32_t size) {
     uint32_t i        = 0;
     uint32_t read_pos = 0;

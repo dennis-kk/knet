@@ -62,3 +62,10 @@ int address_get_port(kaddress_t* address) {
     verify(address);
     return address->port;
 }
+
+int address_equal(kaddress_t* address, const char* ip, int port) {
+    verify(address);
+    verify(ip);
+    verify(port);
+    return (strcmp(address->ip, ip) || !(address->port == port));
+}

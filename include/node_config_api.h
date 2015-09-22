@@ -229,6 +229,13 @@ extern kframework_config_t* knet_node_config_get_framework_config(knode_config_t
  */
 extern void knet_node_config_set_manage_max_output_buffer_length(knode_config_t* c, int max_output_buffer_length);
 
+/**
+ * 设置用户指针
+ * @param c knode_config_t实例
+ * @param ptr 用户指针
+ */
+extern void knet_node_config_set_ptr(knode_config_t* c, void* ptr);
+
 /** @} */
 
 #endif /* NODE_CONFIG_API_H */

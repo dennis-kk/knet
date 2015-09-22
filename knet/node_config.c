@@ -57,6 +57,7 @@ struct _node_config_t {
     int                    max_recv_buffer_length;         /* 节点管道接收缓冲区最大长度 */
     int                    max_send_list_count;            /* 节点管道发送链表最大长度 */
     int                    max_output_buffer_length;       /* 管理命令结果缓冲区最大长度 */
+    void*                  user_ptr;                       /* 用户指针 */
 };
 
 void knet_node_config_set_node_channel_max_recv_buffer_length(knode_config_t* c, int max_recv_buffer_length) {
@@ -323,9 +324,19 @@ void knet_node_config_set_manage_max_output_buffer_length(knode_config_t* c, int
     c->max_output_buffer_length = max_output_buffer_length;
 }
 
+void knet_node_config_set_ptr(knode_config_t* c, void* ptr) {
+    verify(c);
+    c->user_ptr = ptr;
+}
+
 int knet_node_config_get_manage_max_output_buffer_length(knode_config_t* c) {
     verify(c);
     return c->max_output_buffer_length;
+}
+
+void* knet_node_config_get_ptr(knode_config_t* c) {
+    verify(c);
+    return c->user_ptr;
 }
 
 int knet_node_config_set_white_ip_filter_auto_save_at_exit(knode_config_t* c, int on) {

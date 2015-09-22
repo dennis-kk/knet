@@ -46,12 +46,13 @@ struct _node_t {
 };
 
 struct _node_proxy_t {
-    uint32_t        type;            /* 节点类型 */
-    uint32_t        id;              /* 节点ID */
-    kchannel_ref_t* channel;         /* 节点管道引用 */
-    knode_t*        self;            /* 本机节点 */
-    uint32_t        length;          /* 本次读取长度 */
-    uint32_t        heartbeat_count; /* 心跳无效次数*/
+    uint32_t         type;            /* 节点类型 */
+    uint32_t         id;              /* 节点ID */
+    kchannel_ref_t*  channel;         /* 节点管道引用 */
+    knode_t*         self;            /* 本机节点 */
+    uint32_t         length;          /* 本次读取长度 */
+    uint32_t         heartbeat_count; /* 心跳无效次数*/
+    int              deleted;         /* 是否已经删除 */
 };
 
 typedef enum _node_msg_id_e {
@@ -580,6 +581,21 @@ int knet_node_proxy_close(knode_proxy_t* proxy) {
     return error_ok;
 }
 
+int knet_node_proxy_incref(knode_proxy_t* proxy) {
+    verify(proxy);
+    return knet_channel_ref_incref(proxy->channel);
+}
+
+int knet_node_proxy_decref(knode_proxy_t* proxy) {
+    int ref = 0;
+    verify(proxy);
+    ref = knet_channel_ref_decref(proxy->channel);
+    if ((0 == ref) && proxy->deleted) {
+        node_proxy_destroy(proxy);
+    }
+    return ref;
+}
+
 kframework_t* knet_node_get_framework(knode_t* node) {
     verify(node);
     return node->f;
@@ -595,6 +611,11 @@ kip_filter_t* knet_node_get_white_ip_filter(knode_t* node) {
     return node->white_ips;
 }
 
+void* knet_node_get_ptr(knode_t* node) {
+    verify(node);
+    return knet_node_config_get_ptr(node->c);
+}
+
 knode_proxy_t* node_proxy_create(knode_t* self) {
     knode_proxy_t* proxy = create(knode_proxy_t);
     verify(proxy);
@@ -604,11 +625,15 @@ knode_proxy_t* node_proxy_create(knode_t* self) {
 }
 
 void node_proxy_destroy(knode_proxy_t* proxy) {
+    int ref = 0;
     verify(proxy);
     if (proxy->channel) {
-        knet_channel_ref_decref(proxy->channel);
+        ref = knet_channel_ref_decref(proxy->channel);
     }
-    destroy(proxy);
+    proxy->deleted = 1;
+    if (0 == ref) {
+        destroy(proxy);
+    }    
 }
 
 void hash_node_channel_id_dtor(void* param) {

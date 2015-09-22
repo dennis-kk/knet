@@ -204,4 +204,11 @@ int knet_node_config_get_node_channel_idle_timeout(knode_config_t* c);
  */
 int knet_node_config_get_manage_max_output_buffer_length(knode_config_t* c);
 
+/**
+ * 取得用户指针
+ * @param c knode_config_t实例
+ * @return 用户指针
+ */
+void* knet_node_config_get_ptr(knode_config_t* c);
+
 #endif /* NODE_CONFIG_H */
