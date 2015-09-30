@@ -112,11 +112,13 @@ int knet_stream_push_varg(kstream_t* stream, const char* format, ...) {
     #if defined(WIN32)
     len = _vsnprintf(buffer, sizeof(buffer), format, arg_ptr);
     if ((len >= sizeof(buffer)) || (len < 0)) {
+        va_end(arg_ptr);
         return error_stream_buffer_overflow;
     }
     #else
     len = vsnprintf(buffer, sizeof(buffer), format, arg_ptr);
     if (len <= 0) {
+        va_end(arg_ptr);
         return error_stream_buffer_overflow;
     }
     #endif /* defined(WIN32) */

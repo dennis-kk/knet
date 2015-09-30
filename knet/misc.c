@@ -1250,11 +1250,13 @@ kcond_t* cond_create() {
     cond->event = CreateEvent(0, TRUE, FALSE, 0);
     if (cond->event == INVALID_HANDLE_VALUE) {
         log_error("CreateEvent() failed, system error: %d", sys_get_errno());
+        destroy(cond);
         return 0;
     }
 #else
     if (pthread_cond_init(&cond->event, 0)) {
         log_error("pthread_cond_init() failed, system error: %d", sys_get_errno());
+        destroy(cond);
         return 0;
     }
 #endif /* WIN32 */

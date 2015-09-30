@@ -305,7 +305,7 @@ void ringbuffer_print_stdout(kringbuffer_t* rb) {
     uint32_t pos = 0;
     verify(rb);
     pos = rb->read_pos;
-    fprintf(stdout, "MaxSize: %d, Count: %d\n", rb->max_size, rb->count);
+    fprintf(stdout, "MaxSize: %u, Count: %u\n", rb->max_size, rb->count);
     for (; i < rb->count; i++) {
         fprintf(stdout, "%c", rb->ptr[pos]);
         pos = (pos + 1) % rb->max_size;
