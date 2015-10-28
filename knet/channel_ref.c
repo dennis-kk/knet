@@ -173,6 +173,7 @@ int knet_channel_ref_reconnect(kchannel_ref_t* channel_ref, int timeout) {
     uint32_t              max_recv_buffer_len = 0;
     int                   auto_reconnect      = 0;
     void*                 user_data           = 0;
+    void*                 ptr                 = 0;
     verify(channel_ref);
     verify(channel_ref->ref_info->channel);
     if (!knet_channel_ref_check_state(channel_ref, channel_state_connect)) {
@@ -185,6 +186,7 @@ int knet_channel_ref_reconnect(kchannel_ref_t* channel_ref, int timeout) {
     max_recv_buffer_len = knet_channel_get_max_recv_buffer_len(channel_ref->ref_info->channel);
     cb                  = knet_channel_ref_get_cb(channel_ref);
     user_data           = knet_channel_ref_get_user_data(channel_ref);
+    ptr                 = knet_channel_ref_get_ptr(channel_ref);
     auto_reconnect      = knet_channel_ref_check_auto_reconnect(channel_ref);
     peer_address        = channel_ref->ref_info->peer_address;
     verify(peer_address);
@@ -206,6 +208,8 @@ int knet_channel_ref_reconnect(kchannel_ref_t* channel_ref, int timeout) {
     knet_channel_ref_set_cb(new_channel, cb);
     /* 设置原有用户数据 */
     knet_channel_ref_set_user_data(new_channel, user_data);
+    /* 设置用户指针 */
+    knet_channel_ref_set_ptr(new_channel, ptr);
     /* 设置自动重连标志 */
     knet_channel_ref_set_auto_reconnect(new_channel, auto_reconnect);
     /* 启动新的连接器 */
