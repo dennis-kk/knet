@@ -308,6 +308,9 @@ void knet_channel_ref_close_check_reconnect(kchannel_ref_t* channel_ref) {
     verify(channel_ref);
     if (knet_channel_ref_check_auto_reconnect(channel_ref)) {
         /* 自动重连 */
+        /* 伪造当前状态 */
+        knet_channel_ref_set_state(channel_ref, channel_state_connect);
+        /* 重连 */
         knet_channel_ref_reconnect(channel_ref, 0);
     } else {
         /* 关闭管道 */
