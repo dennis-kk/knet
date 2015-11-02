@@ -6,9 +6,9 @@
 #define COMPILE_CONNECTOR_TIMEOUT 0
 #define COMPILE_MULTI_LOOP        0
 #define COMPILE_TELNET_ECHO       0
-#define COMPILE_BROADCAST         0
+#define COMPILE_BROADCAST         1
 #define COMPILE_TIMER             0
-#define COMPILE_RPC               1
+#define COMPILE_RPC               0
 #define COMPILE_FRAMEWORK_C       0
 
 #endif /* EXAMPLE_CONFIG_H */

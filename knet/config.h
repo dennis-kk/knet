@@ -213,6 +213,7 @@ typedef enum _error_e {
     error_thread_start_fail,
     error_already_close,
     error_impl_add_channel_ref_fail,
+    error_broadcast_not_found,
     error_getpeername,
     error_getsockname,
     error_not_correct_domain,

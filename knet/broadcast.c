@@ -23,30 +23,23 @@
  */
 
 #include "broadcast_api.h"
-#include "list.h"
+#include "hash.h"
 #include "channel_ref.h"
 #include "misc.h"
 #include "logger.h"
 
 struct _broadcast_t {
     uint64_t domain_id; /* 域ID */
-    kdlist_t* channels;  /* 广播域内管道引用链表 */
-    klock_t*  lock;      /* 锁 */
+    khash_t* channels;  /* 广播域内管道引用链表 */
+    klock_t* lock;      /* 锁 */
 };
 
 kbroadcast_t* knet_broadcast_create() {
     kbroadcast_t* broadcast = create(kbroadcast_t);
     verify(broadcast);
     memset(broadcast, 0, sizeof(kbroadcast_t));
-    broadcast->channels = dlist_create();
-    if (!broadcast->channels) {
-        knet_broadcast_destroy(broadcast);
-        return 0;
-    }
-    if (!broadcast->channels) {
-        knet_broadcast_destroy(broadcast);
-        return 0;
-    }
+    broadcast->channels = hash_create(256, 0);
+    verify(broadcast->channels);
     /* 生成一个域ID */
     broadcast->domain_id = uuid_create();
     broadcast->lock      = lock_create();
@@ -54,17 +47,17 @@ kbroadcast_t* knet_broadcast_create() {
 }
 
 void knet_broadcast_destroy(kbroadcast_t* broadcast) {
-    kdlist_node_t*  node        = 0;
-    kdlist_node_t*  temp        = 0;
+    khash_value_t*  value       = 0;
     kchannel_ref_t* channel_ref = 0;
     verify(broadcast);
     /* 销毁所有引用 */
     if (broadcast->channels) {
-        dlist_for_each_safe(broadcast->channels, node, temp) {
-            channel_ref = (kchannel_ref_t*)dlist_node_get_data(node);
+        hash_for_each_safe(broadcast->channels, value) {
+            channel_ref = (kchannel_ref_t*)hash_value_get_value(value);
             verify(channel_ref);
-            knet_broadcast_leave(broadcast, channel_ref);
+            knet_channel_ref_decref(channel_ref);
         }
+        hash_destroy(broadcast->channels);
     }
     if (broadcast->lock) {
         lock_destroy(broadcast->lock);
@@ -72,37 +65,39 @@ void knet_broadcast_destroy(kbroadcast_t* broadcast) {
     destroy(broadcast);
 }
 
-kchannel_ref_t* knet_broadcast_join(kbroadcast_t* broadcast, kchannel_ref_t* channel_ref) {
-    kdlist_node_t* node = 0;
-    /* 创建新的引用 */
-    kchannel_ref_t* channel_shared = 0;
+int knet_broadcast_join(kbroadcast_t* broadcast, kchannel_ref_t* channel_ref) {
+    uint64_t uuid  = 0;
+    int      error = error_ok;
     verify(broadcast);
     verify(channel_ref);
-    channel_shared = knet_channel_ref_share(channel_ref);
-    verify(channel_shared);
     lock_lock(broadcast->lock);
-    /* 添加到广播域链表，设置链表节点（快速删除） */
-    node = dlist_add_tail_node(broadcast->channels, channel_shared);
-    knet_channel_ref_set_domain_node(channel_shared, node);
-    knet_channel_ref_set_domain_id(channel_shared, broadcast->domain_id);
+    /* 增加引用计数 */
+    knet_channel_ref_incref(channel_ref);
+    uuid = knet_channel_ref_get_uuid(channel_ref);
+    /* 添加到广播域链表，设置链表节点 */
+    error = hash_add(broadcast->channels, uuid_get_high32(uuid), channel_ref);
+    if (error_ok != error) {
+        lock_unlock(broadcast->lock);
+        return error;
+    }
     lock_unlock(broadcast->lock);
-    return channel_shared;
+    return error_ok;
 }
 
 int knet_broadcast_leave(kbroadcast_t* broadcast, kchannel_ref_t* channel_ref) {
-    kdlist_node_t* node = 0;
+    uint64_t uuid  = 0;
     verify(broadcast);
     verify(channel_ref);
     verify(knet_channel_ref_check_share(channel_ref));
-    node = knet_channel_ref_get_domain_node(channel_ref);
-    verify(node);
-    if (broadcast->domain_id != knet_channel_ref_get_domain_id(channel_ref)) {
-        return error_not_correct_domain;
-    }
+    uuid = knet_channel_ref_get_uuid(channel_ref);
     lock_lock(broadcast->lock);
-    dlist_delete(broadcast->channels, node);
-    /* 销毁引用 */
-    knet_channel_ref_leave(channel_ref);
+    if (!hash_get(broadcast->channels, uuid_get_high32(uuid))) {
+        lock_unlock(broadcast->lock);
+        return error_broadcast_not_found;
+    }
+    /* 减少引用计数 */
+    knet_channel_ref_decref(channel_ref);
+    hash_delete(broadcast->channels, uuid_get_high32(uuid));
     lock_unlock(broadcast->lock);
     return error_ok;
 }
@@ -113,25 +108,25 @@ int knet_broadcast_get_count(kbroadcast_t* broadcast) {
     verify(broadcast->channels);
     verify(broadcast->lock);
     lock_lock(broadcast->lock);
-    count = dlist_get_count(broadcast->channels);
+    count = hash_get_size(broadcast->channels);
     lock_unlock(broadcast->lock);
     return count;
 }
 
 int knet_broadcast_write(kbroadcast_t* broadcast, char* buffer, uint32_t size) {
-    kdlist_node_t*  node        = 0;
-    kdlist_node_t*  temp        = 0;
+    khash_value_t*  value       = 0;
     kchannel_ref_t* channel_ref = 0;
-    int            error       = 0;
-    int            count       = 0;
+    int             error       = 0;
+    int             count       = 0;
     verify(broadcast);
-    verify(broadcast->channels);
-    verify(broadcast->lock);
     verify(buffer);
     verify(size);
+    verify(broadcast->channels);
+    verify(broadcast->lock);
     lock_lock(broadcast->lock);
-    dlist_for_each_safe(broadcast->channels, node, temp) {
-        channel_ref = (kchannel_ref_t*)dlist_node_get_data(node);
+    hash_for_each_safe(broadcast->channels, value) {
+        channel_ref = (kchannel_ref_t*)hash_value_get_value(value);
+        verify(channel_ref);
         error = knet_channel_ref_write(channel_ref, buffer, size);
         if (error == error_ok) {
             count++;

@@ -42,8 +42,8 @@ CASE(Test_Channel_Ref_State) {
 
     kchannel_ref_t* connector = knet_loop_create_channel(loop, 1, 1024);
     kchannel_ref_t* acceptor = knet_loop_create_channel(loop, 1, 1024);
-    knet_channel_ref_accept(acceptor, 0, 80, 1);
-    knet_channel_ref_connect(connector, "127.0.0.1", 80, 1);
+    knet_channel_ref_accept(acceptor, 0, 8000, 1);
+    knet_channel_ref_connect(connector, "127.0.0.1", 8000, 1);
     knet_channel_ref_set_cb(connector, &holder::connector_cb);
     EXPECT_TRUE(knet_channel_ref_check_state(connector, channel_state_connect));
     EXPECT_TRUE(knet_channel_ref_check_state(acceptor, channel_state_accept));
@@ -76,8 +76,8 @@ CASE(Test_Channel_Ref_Close_Socket_Fd_Outside) {
 
     kchannel_ref_t* connector = knet_loop_create_channel(loop, 1, 1024);
     kchannel_ref_t* acceptor = knet_loop_create_channel(loop, 1, 1024);
-    knet_channel_ref_accept(acceptor, 0, 80, 1);
-    knet_channel_ref_connect(connector, "127.0.0.1", 80, 1);
+    knet_channel_ref_accept(acceptor, 0, 8000, 1);
+    knet_channel_ref_connect(connector, "127.0.0.1", 8000, 1);
     knet_channel_ref_set_cb(connector, &holder::connector_cb);
     EXPECT_TRUE(knet_channel_ref_check_state(connector, channel_state_connect));
     EXPECT_TRUE(knet_channel_ref_check_state(acceptor, channel_state_accept));
@@ -91,11 +91,11 @@ CASE(Test_Channel_Ref_Connect_Accept_Twice) {
 
     kchannel_ref_t* connector = knet_loop_create_channel(loop, 1, 1024);
     kchannel_ref_t* acceptor = knet_loop_create_channel(loop, 1, 1024);
-    knet_channel_ref_connect(connector, "127.0.0.1", 80, 1);
-    EXPECT_FALSE(error_ok == knet_channel_ref_connect(connector, "127.0.0.1", 80, 1));
+    knet_channel_ref_connect(connector, "127.0.0.1", 8000, 1);
+    EXPECT_FALSE(error_ok == knet_channel_ref_connect(connector, "127.0.0.1", 8000, 1));
 
-    knet_channel_ref_accept(acceptor, 0, 80, 1);
-    EXPECT_FALSE(error_ok == knet_channel_ref_accept(acceptor, 0, 80, 1));
+    knet_channel_ref_accept(acceptor, 0, 8000, 1);
+    EXPECT_FALSE(error_ok == knet_channel_ref_accept(acceptor, 0, 8000, 1));
 
     knet_loop_destroy(loop);
 }
@@ -125,7 +125,7 @@ CASE(Test_Channel_Connect_Timeout) {
 
     kchannel_ref_t* connector = knet_loop_create_channel(loop, 1, 1024);
     knet_channel_ref_set_cb(connector, &holder::connector_cb);
-    knet_channel_ref_connect(connector, "127.0.0.1", 80, 1);
+    knet_channel_ref_connect(connector, "127.0.0.1", 8000, 1);
 
     knet_loop_run(loop);
     knet_loop_destroy(loop);
@@ -139,7 +139,7 @@ CASE(Test_Channel_Connect_Timeout_Reconnect) {
             if (e & channel_cb_event_connect_timeout) {
                 if (!Test_Channel_Connect_Timeout2_Accept) {
                     kchannel_ref_t* acceptor = knet_loop_create_channel(knet_channel_ref_get_loop(channel), 1, 100);
-                    knet_channel_ref_accept(acceptor, 0, 80, 10);
+                    knet_channel_ref_accept(acceptor, 0, 8000, 10);
                     Test_Channel_Connect_Timeout2_Accept = true;
                 }
                 // 重连
@@ -158,7 +158,7 @@ CASE(Test_Channel_Connect_Timeout_Reconnect) {
 
     kchannel_ref_t* connector = knet_loop_create_channel(loop, 1, 1024);
     knet_channel_ref_set_cb(connector, &holder::connector_cb);
-    knet_channel_ref_connect(connector, "127.0.0.1", 80, 1);
+    knet_channel_ref_connect(connector, "127.0.0.1", 8000, 1);
 
     knet_loop_run(loop);
     knet_loop_destroy(loop);
@@ -170,7 +170,7 @@ CASE(Test_Channel_Connect_Timeout_Auto_Reconnect) {
             if (e & channel_cb_event_connect_timeout) {
                 if (!Test_Channel_Connect_Timeout2_Accept) {
                     kchannel_ref_t* acceptor = knet_loop_create_channel(knet_channel_ref_get_loop(channel), 1, 100);
-                    knet_channel_ref_accept(acceptor, 0, 80, 10);
+                    knet_channel_ref_accept(acceptor, 0, 8000, 10);
                     Test_Channel_Connect_Timeout2_Accept = true;
                 }
             } else if (e & channel_cb_event_connect) {
@@ -189,7 +189,7 @@ CASE(Test_Channel_Connect_Timeout_Auto_Reconnect) {
     kchannel_ref_t* connector = knet_loop_create_channel(loop, 1, 1024);
     knet_channel_ref_set_cb(connector, &holder::connector_cb);
     knet_channel_ref_set_auto_reconnect(connector, 1);
-    knet_channel_ref_connect(connector, "127.0.0.1", 80, 1);
+    knet_channel_ref_connect(connector, "127.0.0.1", 8000, 1);
 
     knet_loop_run(loop);
     knet_loop_destroy(loop);
@@ -212,7 +212,7 @@ CASE(Test_Channel_Idle_Timeout) {
     kchannel_ref_t* connector = knet_loop_create_channel(loop, 1, 1024);
     knet_channel_ref_set_cb(connector, &holder::connector_cb);
     knet_channel_ref_set_timeout(connector, 1); /* 设置读超时 */
-    knet_channel_ref_connect(connector, "127.0.0.1", 80, 0);
+    knet_channel_ref_connect(connector, "127.0.0.1", 8000, 0);
 
     knet_loop_run(loop);
     knet_loop_destroy(loop);
@@ -244,8 +244,8 @@ CASE(Test_Channel_Share_Leave) {
     kloop_t* loop = knet_loop_create();
     kchannel_ref_t* connector = knet_loop_create_channel(loop, 1, 1024);
     kchannel_ref_t* acceptor = knet_loop_create_channel(loop, 1, 1024);
-    knet_channel_ref_accept(acceptor, 0, 80, 1);
-    knet_channel_ref_connect(connector, "127.0.0.1", 80, 1);
+    knet_channel_ref_accept(acceptor, 0, 8000, 1);
+    knet_channel_ref_connect(connector, "127.0.0.1", 8000, 1);
     knet_channel_ref_set_cb(connector, &holder::connector_cb);
     EXPECT_TRUE(knet_channel_ref_check_state(connector, channel_state_connect));
     EXPECT_TRUE(knet_channel_ref_check_state(acceptor, channel_state_accept));

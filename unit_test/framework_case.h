@@ -56,13 +56,13 @@ CASE(Test_Framework) {
     Test_Framework_Framework = knet_framework_create();
     kframework_config_t* c = knet_framework_get_config(Test_Framework_Framework);
     kframework_acceptor_config_t* ac = knet_framework_config_new_acceptor(c);
-    knet_framework_acceptor_config_set_local_address(ac, 0, 80);
+    knet_framework_acceptor_config_set_local_address(ac, 0, 8000);
     knet_framework_acceptor_config_set_client_cb(ac, &holder::channel_cb);
     knet_framework_config_set_worker_thread_count(c, 4);
 
     // 模拟一个外部连接器
     kframework_connector_config_t* cc = knet_framework_config_new_connector(c);
-    knet_framework_connector_config_set_remote_address(cc, "127.0.0.1", 80);
+    knet_framework_connector_config_set_remote_address(cc, "127.0.0.1", 8000);
     knet_framework_connector_config_set_cb(cc, &holder::connector_cb);
 
     // 启动框架
@@ -107,13 +107,13 @@ CASE(Test_Framework_Async) {
 
     // 框架启动后，建立一个监听器
     kframework_acceptor_config_t* ac = knet_framework_config_new_acceptor(c);
-    knet_framework_acceptor_config_set_local_address(ac, 0, 80);
+    knet_framework_acceptor_config_set_local_address(ac, 0, 8000);
     knet_framework_acceptor_config_set_client_cb(ac, &holder::channel_cb);
     knet_framework_acceptor_start(Test_Framework_Framework, ac);
 
     // 框架启动后，模拟一个外部连接器
     kframework_connector_config_t* cc = knet_framework_config_new_connector(c);
-    knet_framework_connector_config_set_remote_address(cc, "127.0.0.1", 80);
+    knet_framework_connector_config_set_remote_address(cc, "127.0.0.1", 8000);
     knet_framework_connector_config_set_cb(cc, &holder::connector_cb);
     knet_framework_connector_start(Test_Framework_Framework, cc);
 
@@ -128,21 +128,21 @@ CASE(Test_Framework_Start_Fail) {
     kframework_t* f = knet_framework_create();
     kframework_config_t* c = knet_framework_get_config(f);
     kframework_acceptor_config_t* ac = knet_framework_config_new_acceptor(c);
-    knet_framework_acceptor_config_set_local_address(ac, "128.0.0.1", 80);
+    knet_framework_acceptor_config_set_local_address(ac, "128.0.0.1", 8000);
     EXPECT_FALSE(error_ok == knet_framework_start(f));
     knet_framework_destroy(f);
 
     f = knet_framework_create();
     c = knet_framework_get_config(f);
     ac = knet_framework_config_new_acceptor(c);
-    knet_framework_acceptor_config_set_local_address(ac, "128.0.0.1", 80);
+    knet_framework_acceptor_config_set_local_address(ac, "128.0.0.1", 8000);
     EXPECT_FALSE(error_ok == knet_framework_start_wait(f));
     knet_framework_destroy(f);
 
     f = knet_framework_create();
     c = knet_framework_get_config(f);
     ac = knet_framework_config_new_acceptor(c);
-    knet_framework_acceptor_config_set_local_address(ac, "128.0.0.1", 80);
+    knet_framework_acceptor_config_set_local_address(ac, "128.0.0.1", 8000);
     EXPECT_FALSE(error_ok == knet_framework_start_wait_destroy(f));
 }
 
@@ -165,13 +165,13 @@ CASE(Test_Framework_Timer) {
     Test_Framework_Framework = knet_framework_create();
     kframework_config_t* c = knet_framework_get_config(Test_Framework_Framework);
     kframework_acceptor_config_t* ac = knet_framework_config_new_acceptor(c);
-    knet_framework_acceptor_config_set_local_address(ac, 0, 80);
+    knet_framework_acceptor_config_set_local_address(ac, 0, 8000);
     knet_framework_acceptor_config_set_client_cb(ac, &holder::channel_cb);
     knet_framework_config_set_worker_thread_count(c, 4);
 
     // 模拟一个外部连接器
     kframework_connector_config_t* cc = knet_framework_config_new_connector(c);
-    knet_framework_connector_config_set_remote_address(cc, "127.0.0.1", 80);
+    knet_framework_connector_config_set_remote_address(cc, "127.0.0.1", 8000);
     knet_framework_connector_config_set_cb(cc, 0);
 
     // 启动框架

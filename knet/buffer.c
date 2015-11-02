@@ -27,9 +27,9 @@
 
 
 struct _buffer_t {
-    char*    ptr;
-    uint32_t len;
-    uint32_t pos;
+    char*    ptr; /* 缓冲区起始地址 */
+    uint32_t len; /* 缓冲区长度 */
+    uint32_t pos; /* 缓冲区当前位置 */
 };
 
 kbuffer_t* knet_buffer_create(uint32_t size) {

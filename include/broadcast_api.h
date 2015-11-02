@@ -35,11 +35,8 @@
  * 管道可以加入广播域，加入后通过knet_broadcast_write方法可以发送数据到所有已经加入域内的管道.
  * 调用knet_broadcast_create创建一个广播域，knet_broadcast_destroy销毁广播域.
  *
- * knet_broadcast_join加入一个广播域，knet_broadcast_join函数返回时创建了一个新的管道引用.
- *
- * 调用knet_broadcast_leave时应该使用这个返回值而不是使用knet_broadcast_join的第二个参数，新创建
- * 的管道引用会提升管道的引用计数，如果你关闭了这个管道你可以通过调用knet_broadcast_leave减少管
- * 道的引用计数，从而可以让kloop_t真正销毁管道.
+ * knet_broadcast_join加入一个广播域，knet_broadcast_join函数将增加加入管道的引用计数,调用
+ * knet_broadcast_leave减少管道的引用计数，从而可以让kloop_t真正销毁管道.
  *
  * 调用knet_broadcast_get_count可以得知广播域内的管道引用数量，调用knet_broadcast_write发起一个
  * 广播操作，所有域内管道都会收到你广播的数据.
@@ -67,9 +64,10 @@ extern void knet_broadcast_destroy(kbroadcast_t* broadcast);
  * 加入成功会生成一个新的引用
  * @param broadcast kbroadcast_t实例
  * @param channel_ref kchannel_ref_t
- * @return kchannel_ref_t实例，新的在广播域内的引用
+ * @retval error_ok 成功
+ * @retval 其他 失败
  */
-extern kchannel_ref_t* knet_broadcast_join(kbroadcast_t* broadcast, kchannel_ref_t* channel_ref);
+extern int knet_broadcast_join(kbroadcast_t* broadcast, kchannel_ref_t* channel_ref);
 
 /**
  * 离开广播域

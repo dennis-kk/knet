@@ -44,11 +44,13 @@
     <LinkIncremental>true</LinkIncremental>
     <EmbedManifest>false</EmbedManifest>
     <OutDir>$(SolutionDir)$\..\..\bin\debug\</OutDir>
+    <IntDir>$(TEMP)\krpc\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <OutDir>$(SolutionDir)$\..\..\bin\release\</OutDir>
     <EmbedManifest>false</EmbedManifest>
+    <IntDir>$(TEMP)\krpc\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

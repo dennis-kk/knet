@@ -80,12 +80,12 @@ CASE(Test_Stream_Push_Stream) {
     Test_Stream_Push_Stream_Connector2 = knet_loop_create_channel(loop, 1, 1024);
     kchannel_ref_t* acceptor = knet_loop_create_channel(loop, 1, 1024);
     knet_channel_ref_set_cb(acceptor, &holder::acceptor_cb);
-    knet_channel_ref_accept(acceptor, "127.0.0.1", 80, 1);
+    knet_channel_ref_accept(acceptor, "127.0.0.1", 8000, 1);
     // 启动两个客户端
     // 设置第一个连接器事件回调
     knet_channel_ref_set_cb(Test_Stream_Push_Stream_Connector1, &holder::connector_cb);
-    knet_channel_ref_connect(Test_Stream_Push_Stream_Connector1, "127.0.0.1", 80, 1);
-    knet_channel_ref_connect(Test_Stream_Push_Stream_Connector2, "127.0.0.1", 80, 1);
+    knet_channel_ref_connect(Test_Stream_Push_Stream_Connector1, "127.0.0.1", 8000, 1);
+    knet_channel_ref_connect(Test_Stream_Push_Stream_Connector2, "127.0.0.1", 8000, 1);
 
     knet_loop_run(loop);
     knet_loop_destroy(loop);
@@ -147,13 +147,13 @@ CASE(Test_Stream_Copy_Stream) {
     Test_Stream_Copy_Stream_Connector2 = knet_loop_create_channel(loop, 1, 1024);
     kchannel_ref_t* acceptor = knet_loop_create_channel(loop, 1, 1024);
     knet_channel_ref_set_cb(acceptor, &holder::acceptor_cb);
-    knet_channel_ref_accept(acceptor, "127.0.0.1", 80, 1);
+    knet_channel_ref_accept(acceptor, "127.0.0.1", 8000, 1);
 
     // 启动两个客户端
     // 设置第一个连接器事件回调
     knet_channel_ref_set_cb(Test_Stream_Copy_Stream_Connector1, &holder::connector_cb);
-    knet_channel_ref_connect(Test_Stream_Copy_Stream_Connector1, "127.0.0.1", 80, 1);
-    knet_channel_ref_connect(Test_Stream_Copy_Stream_Connector2, "127.0.0.1", 80, 1);
+    knet_channel_ref_connect(Test_Stream_Copy_Stream_Connector1, "127.0.0.1", 8000, 1);
+    knet_channel_ref_connect(Test_Stream_Copy_Stream_Connector2, "127.0.0.1", 8000, 1);
 
     knet_loop_run(loop);
     knet_loop_destroy(loop);

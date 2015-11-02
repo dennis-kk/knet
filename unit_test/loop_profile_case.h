@@ -56,11 +56,11 @@ CASE(Test_Loop_Profile_Dump_Stdout) {
     kloop_profile_t* profile = knet_loop_get_profile(loop);
     kchannel_ref_t* acceptor = knet_loop_create_channel(loop, 1, 128);
     knet_channel_ref_set_cb(acceptor, &holder::acceptor_cb);
-    knet_channel_ref_accept(acceptor, 0, 80, 10);
+    knet_channel_ref_accept(acceptor, 0, 8000, 10);
     for (int i = 0; i < Test_Loop_Profile_Client_Count; i++) {
         kchannel_ref_t* connector = knet_loop_create_channel(loop, 1, 128);
         knet_channel_ref_set_cb(connector, &holder::connector_cb);
-        knet_channel_ref_connect(connector, 0, 80, 0);
+        knet_channel_ref_connect(connector, 0, 8000, 0);
     }
     knet_loop_run(loop);
     EXPECT_TRUE(error_ok == knet_loop_profile_dump_stdout(profile));
@@ -103,11 +103,11 @@ CASE(Test_Loop_Profile_Dump_Stream) {
     kloop_t* loop = knet_loop_create();
     kchannel_ref_t* acceptor = knet_loop_create_channel(loop, 1, 1024);
     knet_channel_ref_set_cb(acceptor, &holder::acceptor_cb);
-    knet_channel_ref_accept(acceptor, 0, 80, 10);
+    knet_channel_ref_accept(acceptor, 0, 8000, 10);
     for (int i = 0; i < Test_Loop_Profile_Client_Count; i++) {
         kchannel_ref_t* connector = knet_loop_create_channel(loop, 1, 1024);
         knet_channel_ref_set_cb(connector, &holder::connector_cb);
-        knet_channel_ref_connect(connector, 0, 80, 0);
+        knet_channel_ref_connect(connector, 0, 8000, 0);
     }
     knet_loop_run(loop);
     EXPECT_TRUE(Test_Loop_Profile_Client_Count == Test_Loop_Profile_i);
