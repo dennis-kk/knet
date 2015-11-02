@@ -26,6 +26,9 @@
 #include "ringbuffer.h"
 #include "logger.h"
 
+#ifndef min
+#define min(a, b) ((a) < (b) ? (a) : (b))
+#endif
 
 struct _ringbuffer_t {
     char*    ptr;                   /* »º³åÇøÖ¸Õë */
