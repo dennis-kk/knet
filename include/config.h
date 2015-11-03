@@ -109,10 +109,6 @@
 #define rcreate_type_ptr_array(type, ptr, n) (type**)realloc(ptr, (n) * sizeof(type*))
 extern void destroy(void* ptr) ;
 
-#ifndef min
-#define min(a, b) ((a) < (b) ? (a) : (b))
-#endif
-
 typedef struct _loop_t kloop_t;
 typedef struct _channel_t kchannel_t;
 typedef struct _channel_ref_t kchannel_ref_t;
