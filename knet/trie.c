@@ -361,13 +361,47 @@ int _trie_node_insert_exist_path(ktrie_node_t* node, const char* key, const char
             error = _trie_node_insert(node->left, key, s, value);
         }
     } else { /* 全部处理完毕 */
-        node->key   = c;
-        node->value = value;
-        node->ref  += 1;
-        if (node->real_key) { /* key已经存在 */
-            return error_trie_key_exist;
+        if (key == s) {
+            if (node->key == c) {
+                return error_trie_key_exist;
+            } else if (node->key < c) {
+                if (!node->right) {
+                    node->right = _trie_node_create(node);
+                    verify(node->right);
+                    node->right->key   = c;
+                    node->right->value = value;
+                    node->right->ref  += 1;
+                    if (node->right->real_key) { /* key已经存在 */
+                        return error_trie_key_exist;
+                    }
+                    _trie_node_set_real_key(node->right, key);
+                } else {
+                    error = _trie_node_insert(node->right, key, s, value);
+                }
+            } else if (node->key > c) {
+                if (!node->left) {
+                    node->left = _trie_node_create(node);
+                    verify(node->left);
+                    node->left->key   = c;
+                    node->left->value = value;
+                    node->left->ref  += 1;
+                    if (node->left->real_key) { /* key已经存在 */
+                        return error_trie_key_exist;
+                    }
+                    _trie_node_set_real_key(node->left, key);
+                } else {
+                    error = _trie_node_insert(node->left, key, s, value);
+                }
+            }
+        } else {
+            node->key   = c;
+            node->value = value;
+            node->ref  += 1;
+            if (node->real_key) { /* key已经存在 */
+                return error_trie_key_exist;
+            }
+            _trie_node_set_real_key(node, key);
         }
-        _trie_node_set_real_key(node, key);
     }
     return error;
 }

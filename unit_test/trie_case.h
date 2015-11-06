@@ -35,6 +35,23 @@ CASE(Test_Trie_Insert) {
     trie_destroy(t, 0);
 }
 
+CASE(Test_Trie_Insert_One_Char) {
+    ktrie_t* t = trie_create();
+    EXPECT_TRUE(error_ok == trie_insert(t, "1", 0));
+    EXPECT_TRUE(error_ok == trie_insert(t, "2", 0));
+    EXPECT_TRUE(error_ok == trie_insert(t, "3", 0));
+    EXPECT_TRUE(error_ok == trie_insert(t, "4", 0));
+    EXPECT_TRUE(error_ok == trie_insert(t, "5", 0));
+    EXPECT_TRUE(error_ok == trie_insert(t, "6", 0));
+    EXPECT_TRUE(error_ok == trie_find(t, "1", 0));
+    EXPECT_TRUE(error_ok == trie_find(t, "2", 0));
+    EXPECT_TRUE(error_ok == trie_find(t, "3", 0));
+    EXPECT_TRUE(error_ok == trie_find(t, "4", 0));
+    EXPECT_TRUE(error_ok == trie_find(t, "5", 0));
+    EXPECT_TRUE(error_ok == trie_find(t, "6", 0));
+    trie_destroy(t, 0);
+}
+
 CASE(Test_Trie_Find) {
     int i = 10;
     void* iptr = 0;
