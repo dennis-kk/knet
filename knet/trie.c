@@ -459,20 +459,17 @@ int _trie_node_decref_path(ktrie_node_t* node, ktrie_node_t** start_node, const 
     verify(s);
     c = *s;
     if (node->key == c) {
-        if (!*start_node) {
-            *start_node = node;
-        }
-        node->ref -= 1;
         s += 1;
         n = *s;
+        node->ref -= 1;
+        if (!*start_node && (!node->ref)) {
+            *start_node = node;
+        }
         if (!n) {
-            // 销毁根节点real_key, 节点已经失效
-            destroy(node->real_key);
-            node->real_key = 0;
             return (!node->ref && !node->center && !node->left && !node->right);
         }
         if (node->center) {
-            ret &= _trie_node_decref_path(node->center,start_node, s);
+            ret &= _trie_node_decref_path(node->center, start_node, s);
         }
     } else if (node->key > c) {
         if (node->left) {
@@ -483,21 +480,16 @@ int _trie_node_decref_path(ktrie_node_t* node, ktrie_node_t** start_node, const 
             ret &= _trie_node_decref_path(node->right, start_node, s);
         }
     }
-    return ret;
+    return (ret && *start_node);
 }
 
 void _trie_node_delete_path(ktrie_node_t* node, const char* s) {
     char c = 0;
-    char n = 0;
     verify(node);
     verify(s);
     c = *s;
+    s += 1;
     if (node->key == c) {
-        s += 1;
-        n = *s;
-        if (!n) {
-            return;
-        }
         if (node->center) {
             _trie_node_delete_path(node->center, s);
             _trie_node_destroy_self(node->center, 0);
