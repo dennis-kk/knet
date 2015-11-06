@@ -466,6 +466,9 @@ int _trie_node_decref_path(ktrie_node_t* node, ktrie_node_t** start_node, const 
         s += 1;
         n = *s;
         if (!n) {
+            // 销毁根节点real_key, 节点已经失效
+            destroy(node->real_key);
+            node->real_key = 0;
             return (!node->ref && !node->center && !node->left && !node->right);
         }
         if (node->center) {
