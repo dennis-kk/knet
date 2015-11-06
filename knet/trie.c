@@ -228,6 +228,15 @@ void _trie_node_destroy(ktrie_node_t* node, knet_trie_dtor_t dtor) {
 }
 
 void _trie_node_destroy_self(ktrie_node_t* node, knet_trie_dtor_t dtor) {
+    if (node->parent) { /* 非根节点 */
+        if (node->parent->left == node) {
+            node->parent->left = 0;
+        } else if (node->parent->right == node) {
+            node->parent->right = 0;
+        } else if (node->parent->center == node) {
+            node->parent->center = 0;
+        }
+    }
     verify(node);
     if (node->real_key) {
         destroy(node->real_key);
@@ -419,9 +428,14 @@ int _trie_node_insert(ktrie_node_t* node, const char* key, const char* s, void* 
     return error;
 }
 
+int _trie_node_check_not_root(ktrie_node_t* node) {
+    return ((!node->center && !node->left && !node->right) && (node->parent));
+}
+
 int _trie_node_remove(ktrie_node_t* node, const char* s, void** value) {
-    int           error      = error_ok;
-    ktrie_node_t* start_node = 0;
+    int           error       = error_ok;
+    ktrie_node_t* start_node  = 0;
+    ktrie_node_t* parent_node = 0;
     verify(node);
     verify(s);
     error = _trie_node_find(node, s, s, value);
@@ -432,20 +446,19 @@ int _trie_node_remove(ktrie_node_t* node, const char* s, void** value) {
     if (_trie_node_decref_path(node, &start_node, s)) {
         /* 销毁路径 */
         _trie_node_delete_path(start_node, s);
-        if (start_node->parent) { /* 非根节点 */
-            if (start_node->parent->left == start_node) {
-                start_node->parent->left = 0;
-                _trie_node_destroy_self(start_node, 0);
-            } else if (start_node->parent->right == start_node) {
-                start_node->parent->right = 0;
-                _trie_node_destroy_self(start_node, 0);
-            } else if (start_node->parent->center == start_node) {
-                start_node->parent->center = 0;
-                _trie_node_destroy_self(start_node, 0);
-            }
-        } else {
-            /* 根节点 */
-            _trie_node_reset(start_node);
+        if (_trie_node_check_not_root(start_node)) {
+            _trie_node_destroy_self(start_node, 0);
+        }
+        start_node = 0;
+    }
+    if (start_node) {
+        /* 使当前节点无效 */
+        destroy(start_node->real_key);
+        start_node->real_key = 0;
+        while (start_node && _trie_node_check_not_root(start_node)) {
+            parent_node = start_node->parent;
+            _trie_node_destroy_self(start_node, 0);
+            start_node = parent_node;
         }
     }
     return error;
@@ -462,7 +475,7 @@ int _trie_node_decref_path(ktrie_node_t* node, ktrie_node_t** start_node, const 
         s += 1;
         n = *s;
         node->ref -= 1;
-        if (!*start_node && (!node->ref)) {
+        if (!*start_node || (!node->ref)) {
             *start_node = node;
         }
         if (!n) {
