@@ -81,6 +81,8 @@ CASE(Test_Trie_Remove) {
     EXPECT_TRUE(error_ok == trie_insert(t, "def", 0));
     EXPECT_TRUE(error_ok == trie_remove(t, "def", 0));
     EXPECT_TRUE(error_ok == trie_remove(t, "abcdef", 0));
+    EXPECT_TRUE(error_ok == trie_find(t, "def", 0));
+    EXPECT_TRUE(error_ok == trie_find(t, "abcdef", 0));
     trie_destroy(t, 0);
 }
 
@@ -89,8 +91,14 @@ CASE(Test_Trie_Remove2) {
     EXPECT_TRUE(error_ok == trie_insert(t, "1", 0));
     EXPECT_TRUE(error_ok == trie_insert(t, "2", 0));
     EXPECT_TRUE(error_ok == trie_insert(t, "10", 0));
+    EXPECT_TRUE(error_ok == trie_insert(t, "0", 0));
     EXPECT_TRUE(error_ok == trie_remove(t, "2", 0));
     EXPECT_TRUE(error_ok == trie_remove(t, "10", 0));
     EXPECT_TRUE(error_ok == trie_remove(t, "1", 0));
+    EXPECT_TRUE(error_ok == trie_remove(t, "0", 0));
+    EXPECT_FALSE(error_ok == trie_find(t, "1", 0));
+    EXPECT_FALSE(error_ok == trie_find(t, "2", 0));
+    EXPECT_FALSE(error_ok == trie_find(t, "10", 0));
+    EXPECT_FALSE(error_ok == trie_find(t, "0", 0));
     trie_destroy(t, 0);
 }

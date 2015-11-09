@@ -428,8 +428,8 @@ int _trie_node_insert(ktrie_node_t* node, const char* key, const char* s, void* 
     return error;
 }
 
-int _trie_node_check_not_root(ktrie_node_t* node) {
-    return ((!node->center && !node->left && !node->right) && (node->parent));
+int _trie_node_check_orphan(ktrie_node_t* node) {
+    return ((!node->center && !node->left && !node->right) && (node->parent) && (!node->ref));
 }
 
 int _trie_node_remove(ktrie_node_t* node, const char* s, void** value) {
@@ -446,7 +446,7 @@ int _trie_node_remove(ktrie_node_t* node, const char* s, void** value) {
     if (_trie_node_decref_path(node, &start_node, s)) {
         /* 销毁路径 */
         _trie_node_delete_path(start_node, s);
-        if (_trie_node_check_not_root(start_node)) {
+        if (_trie_node_check_orphan(start_node)) {
             _trie_node_destroy_self(start_node, 0);
         }
         start_node = 0;
@@ -455,7 +455,7 @@ int _trie_node_remove(ktrie_node_t* node, const char* s, void** value) {
         /* 使当前节点无效 */
         destroy(start_node->real_key);
         start_node->real_key = 0;
-        while (start_node && _trie_node_check_not_root(start_node)) {
+        while (start_node && _trie_node_check_orphan(start_node)) {
             parent_node = start_node->parent;
             _trie_node_destroy_self(start_node, 0);
             start_node = parent_node;
