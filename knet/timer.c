@@ -226,9 +226,9 @@ ktimer_t* ktimer_create(ktimer_loop_t* ktimer_loop) {
 
 void ktimer_destroy(ktimer_t* timer) {
     verify(timer);
-    verify(timer->current_list);
-    verify(timer->list_node);
-    dlist_delete(timer->current_list, timer->list_node);
+    if (timer->current_list && timer->list_node) {
+        dlist_delete(timer->current_list, timer->list_node);
+    }
     free(timer);
 }
 
@@ -297,6 +297,9 @@ int ktimer_check_timeout(ktimer_t* timer, time_t ms) {
 int ktimer_stop(ktimer_t* timer) {
     verify(timer);
     timer->stop = 1;
+    if (!timer->current_list) { /* 还未启动的定时器 */
+        ktimer_destroy(timer);
+    }
     return error_ok;
 }
 
