@@ -287,14 +287,14 @@ extern void cond_destroy(kcond_t* cond);
 
 /**
  * 等待唤醒
- * @param kcond_t实例
+ * @param cond kcond_t实例
  * @param lock 锁
  */
 extern void cond_wait(kcond_t* cond, klock_t* lock);
 
 /**
  * 等待唤醒
- * @param kcond_t实例
+ * @param cond kcond_t实例
  * @param lock 锁
  * @param ms 等待时间（毫秒）
  */
@@ -302,7 +302,7 @@ extern void cond_wait_ms(kcond_t* cond, klock_t* lock, int ms);
 
 /**
  * 唤醒
- * @param kcond_t实例
+ * @param cond kcond_t实例
  */
 extern void cond_signal(kcond_t* cond);
 

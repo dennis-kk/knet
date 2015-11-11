@@ -37,7 +37,7 @@ extern klogger_t* global_logger;
         if (!global_logger) global_logger = logger_create(0, LOGGER_LEVEL, LOGGER_MODE); \
     } while(0);
 
-#ifdef LOGGER_ON
+#if LOGGER_ON
     #if defined(WIN32)
         #define log_verb(format, ...) \
             do { \
