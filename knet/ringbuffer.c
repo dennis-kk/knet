@@ -216,6 +216,12 @@ void ringbuffer_read_commit(kringbuffer_t* rb, uint32_t size) {
     rb->count -= size;
 }
 
+void ringbuffer_read_unlock(kringbuffer_t* rb) {
+    verify(rb);
+    rb->lock_size = 0;
+    rb->lock_type = 0;
+}
+
 uint32_t ringbuffer_window_read_lock_size(kringbuffer_t* rb) {
     verify(rb);
     if (ringbuffer_empty(rb)) {
@@ -286,6 +292,12 @@ void ringbuffer_write_commit(kringbuffer_t* rb, uint32_t size) {
     rb->lock_size = 0;
     rb->lock_type = 0;
     rb->count += size;
+}
+
+void ringbuffer_write_unlock(kringbuffer_t* rb) {
+    verify(rb);
+    rb->lock_size = 0;
+    rb->lock_type = 0;
 }
 
 int ringbuffer_full(kringbuffer_t* rb) {

@@ -168,6 +168,7 @@ int knet_stream_push_stream(kstream_t* stream, kstream_t* target) {
             return error_send_fail;
         }
     }
+    ringbuffer_read_unlock(rb);
     return error_ok;
 }
 
@@ -198,6 +199,7 @@ int knet_stream_push_stream_count(kstream_t* stream, kstream_t* target, int coun
             return error_send_fail;
         }
     }
+    ringbuffer_read_unlock(rb);
     return error_ok;
 }
 
@@ -245,6 +247,7 @@ int knet_stream_drain_ringbuffer(kstream_t* stream, kringbuffer_t* target) {
             return error_send_fail;
         }
     }
+    ringbuffer_read_unlock(rb);
     return error_ok;
 }
 

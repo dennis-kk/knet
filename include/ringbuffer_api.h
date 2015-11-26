@@ -134,6 +134,12 @@ extern char* ringbuffer_read_lock_ptr(kringbuffer_t* rb);
 extern void ringbuffer_read_commit(kringbuffer_t* rb, uint32_t size);
 
 /**
+ * 解除读锁定
+ * @param rb kringbuffer_t实例
+ */
+extern void ringbuffer_read_unlock(kringbuffer_t* rb);
+
+/**
  * 虚拟窗口 - 取得非绕回连续地址的最大可读字节数
  * @param rb kringbuffer_t实例
  * @return 非绕回连续地址的最大可读字节数
@@ -174,6 +180,12 @@ extern char* ringbuffer_write_lock_ptr(kringbuffer_t* rb);
  * @param size 成功写入的字节数
  */
 extern void ringbuffer_write_commit(kringbuffer_t* rb, uint32_t size);
+
+/**
+ * 解除写锁定
+ * @param rb kringbuffer_t实例
+ */
+extern void ringbuffer_write_unlock(kringbuffer_t* rb);
 
 /**
  * 满
