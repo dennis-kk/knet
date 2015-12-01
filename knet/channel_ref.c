@@ -520,6 +520,8 @@ void knet_channel_ref_update_accept(kchannel_ref_t* channel_ref) {
             knet_channel_ref_set_ptr(client_ref, channel_ref->ref_info->user_ptr);
             /* 设置回调 */
             knet_channel_ref_set_cb(client_ref, channel_ref->ref_info->cb);
+            /* 设置读空闲超时 */
+            knet_channel_ref_set_timeout(client_ref, (int)channel_ref->ref_info->timeout);
             /* 添加到其他loop */
             knet_loop_notify_accept(loop, client_ref);
         } else {
@@ -529,6 +531,8 @@ void knet_channel_ref_update_accept(kchannel_ref_t* channel_ref) {
             knet_channel_ref_set_ptr(client_ref, channel_ref->ref_info->user_ptr);
             /* 设置回调 */
             knet_channel_ref_set_cb(client_ref, channel_ref->ref_info->cb);
+            /* 设置读空闲超时 */
+            knet_channel_ref_set_timeout(client_ref, (int)channel_ref->ref_info->timeout);
             /* 调用回调 */
             if (channel_ref->ref_info->cb) {
                 channel_ref->ref_info->cb(client_ref, channel_cb_event_accept);

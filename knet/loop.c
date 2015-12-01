@@ -393,7 +393,7 @@ void knet_loop_check_timeout(kloop_t* loop, time_t ts) {
                 }
             }
         }
-        if (knet_channel_ref_check_timeout(channel_ref, ts)) {
+        if (knet_channel_ref_check_timeout(channel_ref, ts) && !knet_channel_ref_check_state(channel_ref, channel_state_accept)) {
             /* ¶Á³¬Ê±£¬ĞÄÌø */
             if (knet_channel_ref_get_cb(channel_ref)) {
                 knet_channel_ref_get_cb(channel_ref)(channel_ref, channel_cb_event_timeout);
