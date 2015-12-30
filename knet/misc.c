@@ -1087,13 +1087,13 @@ sys_error_t sys_get_errno() {
 #endif /* defined(WIN32) */
 }
 
-uint64_t htonll(uint64_t ui64) { 
+uint64_t knet_htonll(uint64_t ui64) { 
      return (((uint64_t)htonl((uint32_t)ui64)) << 32) + htonl(ui64 >> 32); 
-} 
+}
 
-uint64_t ntohll(uint64_t ui64) { 
+uint64_t knet_ntohll(uint64_t ui64) { 
      return (((uint64_t)ntohl((uint32_t)ui64)) << 32) + ntohl(ui64 >> 32); 
-} 
+}
 
 const char* get_channel_cb_event_string(knet_channel_cb_event_e e) {
     switch (e) {
@@ -1432,8 +1432,8 @@ error_return:
     return error;
 }
 
-#if defined(WIN32)
-long long atoll(const char *p) {  
+#if defined(WIN32) && !defined(atoll)
+long long knet_atoll(const char *p) {  
     int       minus = 0;
     long long value = 0;
     if (*p == '-') {
@@ -1447,4 +1447,4 @@ long long atoll(const char *p) {
     }
     return minus ? 0 - value : value;
 }
-#endif /* defined(WIN32) */
+#endif /* defined(WIN32) && !defined(atoll) */

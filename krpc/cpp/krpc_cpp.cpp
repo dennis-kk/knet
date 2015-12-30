@@ -357,6 +357,8 @@ void krpc_gen_cpp_t::gen_struct_unmarshal_method_impl(krpc_ostream_t& source, kr
 }
 
 void krpc_gen_cpp_t::gen_struct_unmarshal_field_impl(krpc_ostream_t& source, krpc_field_t* field, const std::string& name, int index) {
+	(void)name;
+	(void)field;
 	source.write("\tkrpc_unmarshal(krpc_vector_get(v, {{$index}}), o.{{@name}});\n", index, field->get_field_name().c_str());
 }
 
@@ -540,6 +542,7 @@ void krpc_gen_cpp_t::gen_field_unmarshal_impl_not_array(
 void krpc_gen_cpp_t::gen_field_marshal_impl(krpc_field_t* field,
 	krpc_ostream_t& source, const std::string& holder, const std::string& v, 
 	const std::string& whites) {
+	(void)field;
     source.write(
 		"{{@whites}}\tkrpc_vector_push_back({{@v}}, krpc_marshal({{@holder}}));\n",
         whites.c_str(),

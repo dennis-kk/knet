@@ -211,7 +211,7 @@ see `doc/html/index.html` for dev doc.
 ##
 
 1. Windows   
-	see `knet/win-proj/knet-vs2010.sln`
+	see `knet/win-proj/knet.sln`
 2. Linux   
 	./build.sh 
 
@@ -222,8 +222,8 @@ The build result in folder `knet/bin` and `knet/lib`.
 see `knet/bin`.
 
 1. Windows   
-	`test_client-vs2010.exe`   
-	`test_server-vs2010.exe`
+	`test_client.exe`   
+	`test_server.exe`
 2. Linux   
 	`test_client`   
 	`test_server`   

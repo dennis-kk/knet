@@ -84,14 +84,22 @@ extern sys_error_t sys_get_errno();
  * @param ui64 64位无符号整数
  * @return 64位无符号整数
  */
-extern uint64_t htonll(uint64_t ui64);
+extern uint64_t knet_htonll(uint64_t ui64);
+
+#ifndef htonll
+#define htonll knet_htonll
+#endif /* htonll */
 
 /**
  * 字节序转换 - 网络序到主机序
  * @param ui64 64位无符号整数
  * @return 64位无符号整数
  */
-extern uint64_t ntohll(uint64_t ui64);
+extern uint64_t knet_ntohll(uint64_t ui64);
+
+#ifndef ntohll
+#define ntohll knet_ntohll
+#endif /* ntohll */
 
 /**
  * 取得管道回调事件描述
@@ -147,13 +155,15 @@ extern int split(const char* src, char delim, int n, ...);
  */
 extern int get_host_ip_string(const char* host_name, char* ip, int size);
 
-#if defined(WIN32)
 /**
- * 字符串转long long
- * @param p 字符串
- * @return long long
- */
-extern long long atoll(const char *p);
-#endif /* defined(WIN32) */
+* 字符串转long long
+* @param p 字符串
+* @return long long
+*/
+extern long long knet_atoll(const char *p);
+
+#if defined(WIN32)
+#define atoll knet_atoll
+#endif /* defined(WIN32) && !defined(atoll) */
 
 #endif /* MISC_API_H */

@@ -34,11 +34,10 @@
 
 #if defined(WIN32)
     #if defined(_WIN32_WINNT)
-        #if _WIN32_WINNT < 0x0502
-            #define _WIN32_WINNT 0x0502
-        #endif /* _WIN32_WINNT < 0x0502 */ 
+		#undef _WIN32_WINNT
+        #define _WIN32_WINNT 0x0600
     #else
-        #define _WIN32_WINNT 0x0502 /* TryEnterCriticalSection */
+		#define _WIN32_WINNT 0x0600
     #endif /* defined(_WIN32_WINNT) */
     #if defined(FD_SETSIZE)
         #undef FD_SETSIZE
