@@ -175,6 +175,7 @@ int knet_channel_ref_reconnect(kchannel_ref_t* channel_ref, int timeout) {
     void*                 user_data           = 0;
     void*                 ptr                 = 0;
     verify(channel_ref);
+    verify(channel_ref->ref_info);
     verify(channel_ref->ref_info->channel);
     if (!knet_channel_ref_check_state(channel_ref, channel_state_connect)) {
         /* 未处于正在连接状态的管道不能重连 */
@@ -685,6 +686,7 @@ void* knet_channel_ref_get_data(kchannel_ref_t* channel_ref) {
 }
 
 void knet_channel_ref_set_loop(kchannel_ref_t* channel_ref, kloop_t* loop) {
+    verify(channel_ref);
     channel_ref->ref_info->loop = loop;
 }
 
