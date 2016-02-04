@@ -161,8 +161,11 @@ uint32_t ringbuffer_copy_random(kringbuffer_t* rb, uint32_t pos, char* buffer, u
     verify(pos >= 0);
     verify(size);
     verify(buffer);
-    size = min(rb->count, size);
-    read_pos = rb->read_pos;
+    if (pos + size > rb->count) {
+        return 0;
+    }
+    size = min(rb->count - pos, size);
+    read_pos = (rb->read_pos + pos) % rb->max_size;
     for (; i < size; i++) {
         buffer[i] = rb->ptr[read_pos];
         read_pos = (read_pos + 1) % rb->max_size;
