@@ -51,6 +51,14 @@ extern void ringbuffer_destroy(kringbuffer_t* rb);
 extern uint32_t ringbuffer_read(kringbuffer_t* rb, char* buffer, uint32_t size);
 
 /**
+* 清除
+* @param rb kringbuffer_t实例
+* @param size 需要清除的字节数
+* @return 实际清除的字节数
+*/
+extern uint32_t ringbuffer_remove(kringbuffer_t* rb, uint32_t size);
+
+/**
  * 写入
  * @param rb kringbuffer_t实例
  * @param buffer 写入缓冲区指针
@@ -77,6 +85,16 @@ extern uint32_t ringbuffer_replace(kringbuffer_t* rb, uint32_t pos, const char* 
  * @return 实际读出字节数
  */
 extern uint32_t ringbuffer_copy(kringbuffer_t* rb, char* buffer, uint32_t size);
+
+/**
+ * 随机读取
+ * @param rb kringbuffer_t实例
+ * @param pos 读取的起始位置
+ * @param buffer 写入缓冲区指针
+ * @param size 写入缓冲区长度
+ * @return 实际写入字节数
+ */
+extern uint32_t ringbuffer_copy_random(kringbuffer_t* rb, uint32_t pos, char* buffer, uint32_t size);
 
 /**
  * 查找指定的目标，并返回位置
