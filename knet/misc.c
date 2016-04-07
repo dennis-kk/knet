@@ -1432,7 +1432,7 @@ error_return:
     return error;
 }
 
-#if defined(WIN32) && !defined(atoll)
+#if defined(WIN32)
 long long knet_atoll(const char *p) {  
     int       minus = 0;
     long long value = 0;
