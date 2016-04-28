@@ -409,6 +409,11 @@ void knet_loop_check_close(kloop_t* loop) {
     verify(loop);
     dlist_for_each_safe(knet_loop_get_close_list(loop), node, temp) {
         channel_ref = (kchannel_ref_t*)dlist_node_get_data(node);
+        /* 调用用户回调 */
+        if (knet_channel_ref_get_cb(channel_ref)) {
+            knet_channel_ref_get_cb(channel_ref)(channel_ref, channel_cb_event_close);
+        }
+        /* 销毁管道 */
         if (error_ok == knet_channel_ref_destroy(channel_ref)) {
             knet_loop_profile_decrease_close_channel_count(loop->profile);
             dlist_delete(knet_loop_get_close_list(loop), node);

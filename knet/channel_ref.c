@@ -297,10 +297,6 @@ void knet_channel_ref_update_close_in_loop(kloop_t* loop, kchannel_ref_t* channe
     }
     knet_channel_ref_set_state(channel_ref, channel_state_close);
     knet_channel_ref_clear_event(channel_ref, channel_event_recv | channel_event_send);
-    /* 先调用回调，保证在内部还可以获得地址信息 */
-    if (channel_ref->ref_info->cb) {
-        channel_ref->ref_info->cb(channel_ref, channel_cb_event_close);
-    }
     knet_channel_close(channel_ref->ref_info->channel);
     knet_loop_close_channel_ref(channel_ref->ref_info->loop, channel_ref);
 }
