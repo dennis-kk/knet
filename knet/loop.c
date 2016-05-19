@@ -35,19 +35,19 @@
 
 
 struct _loop_t {
-    kdlist_t*              active_channel_list; /* 活跃管道链表 */
-    kdlist_t*              close_channel_list;  /* 已关闭管道链表 */
-    kdlist_t*              event_list;          /* 事件链表 */
-    klock_t*               lock;                /* 锁-事件链表*/
-    kchannel_ref_t*        notify_channel;      /* 事件通知写管道 */
-    kchannel_ref_t*        read_channel;        /* 事件通知读管道 */
-    kloop_balancer_t*      balancer;            /* 负载均衡器 */
-    void*                 impl;                /* 事件选取器实现 */
-    volatile int          running;             /* 事件循环运行标志 */
-    thread_id_t           thread_id;           /* 事件选取器当前运行线程ID */
+    kdlist_t*                  active_channel_list; /* 活跃管道链表 */
+    kdlist_t*                  close_channel_list;  /* 已关闭管道链表 */
+    kdlist_t*                  event_list;          /* 事件链表 */
+    klock_t*                   lock;                /* 锁-事件链表*/
+    kchannel_ref_t*            notify_channel;      /* 事件通知写管道 */
+    kchannel_ref_t*            read_channel;        /* 事件通知读管道 */
+    kloop_balancer_t*          balancer;            /* 负载均衡器 */
+    void*                      impl;                /* 事件选取器实现 */
+    volatile int               running;             /* 事件循环运行标志 */
+    thread_id_t                thread_id;           /* 事件选取器当前运行线程ID */
     knet_loop_balance_option_e balance_options;     /* 负载均衡配置 */
-    kloop_profile_t*       profile;             /* 统计 */
-    void*                 data;                /* 用户数据指针 */
+    kloop_profile_t*           profile;             /* 统计 */
+    void*                      data;                /* 用户数据指针 */
 };
 
 typedef enum _loop_event_e {
@@ -61,7 +61,7 @@ typedef enum _loop_event_e {
 typedef struct _loop_event_t {
     kchannel_ref_t* channel_ref; /* 事件相关管道 */
     kbuffer_t*      send_buffer; /* 发送缓冲区指针 */
-    loop_event_e   event;       /* 事件类型 */
+    loop_event_e    event;       /* 事件类型 */
 } loop_event_t;
 
 loop_event_t* loop_event_create(kchannel_ref_t* channel_ref, kbuffer_t* send_buffer, loop_event_e e) {
@@ -97,7 +97,7 @@ loop_event_e loop_event_get_event(loop_event_t* loop_event) {
 
 kloop_t* knet_loop_create() {
     socket_t pair[2] = {0}; /* 事件读写描述符 */
-    kloop_t*  loop    = create(kloop_t);
+    kloop_t* loop    = create(kloop_t);
     verify(loop);
     memset(loop, 0, sizeof(kloop_t));
     /* 建立选取器实现 */
@@ -382,7 +382,7 @@ void knet_loop_check_timeout(kloop_t* loop, time_t ts) {
                 knet_impl_event_add(channel_ref, channel_event_send);
             }
             if (knet_channel_ref_check_connect_timeout(channel_ref, ts)) {
-                /* 连接超时 */            
+                /* 连接超时 */
                 if (knet_channel_ref_get_cb(channel_ref)) {
                     log_error("connect timeout, channel[%llu]", knet_channel_ref_get_uuid(channel_ref));
                     knet_channel_ref_get_cb(channel_ref)(channel_ref, channel_cb_event_connect_timeout);

@@ -233,11 +233,11 @@ int hash_add_string_key(khash_t* hash, const char* key, void* value) {
 }
 
 void* hash_remove(khash_t* hash, uint32_t key) {
-    uint32_t      hash_key   = 0;
+    uint32_t      hash_key    = 0;
     kdlist_node_t* node       = 0;
     kdlist_node_t* temp       = 0;
     khash_value_t* hash_value = 0;
-    void*         value      = 0;
+    void*         value       = 0;
     verify(hash);
     hash_key = key % hash->size;
     /* ±éÀúÁ´±í²éÕÒ */
@@ -376,7 +376,7 @@ void* hash_get(khash_t* hash, uint32_t key) {
 }
 
 void* hash_get_string_key(khash_t* hash, const char* key) {
-    uint32_t      hash_key   = 0;
+    uint32_t       hash_key   = 0;
     kdlist_node_t* node       = 0;
     khash_value_t* hash_value = 0;
     verify(hash);

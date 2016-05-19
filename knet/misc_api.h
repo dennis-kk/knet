@@ -38,6 +38,12 @@ extern uint32_t time_get_milliseconds();
 extern uint64_t time_get_microseconds();
 
 /**
+ * localtime
+ * @see localtime_s or localtime_r
+ */
+extern void knet_localtime(struct tm* tm, const time_t* time);
+
+/**
  * gettimeofday
  * @sa gettimeofday
  */
