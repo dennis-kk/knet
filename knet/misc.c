@@ -983,7 +983,7 @@ void knet_localtime(struct tm* tm, const time_t* time) {
 #if defined(WIN32)
     localtime_s(tm, time);
 #else
-    localtime_r(tm, time);
+    localtime_r(time, tm);
 #endif /* defined(WIN32) */
 }
 
