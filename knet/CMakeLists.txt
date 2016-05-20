@@ -33,6 +33,7 @@ add_library(knet
 	vrouter.c
 	node.c
 	node_config.c
+	rb_tree.c
 )
 
 target_link_libraries(knet -lpthread)

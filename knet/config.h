@@ -150,6 +150,8 @@ typedef struct _node_t knode_t;
 typedef struct _node_proxy_t knode_proxy_t;
 typedef struct _rwlock_t krwlock_t;
 typedef struct _cond_t kcond_t;
+typedef struct _rb_tree_t krbtree_t;
+typedef struct _rb_node_t krbnode_t;
 
 /* 管道可投递事件 */
 typedef enum _channel_event_e {
@@ -178,6 +180,12 @@ typedef enum _loop_balance_option_e {
     loop_balancer_in  = 1, /*! 开启其他kloop_t的管道在当前kloop_t负载 */
     loop_balancer_out = 2, /*! 开启当前kloop_t的管道到其他kloop_t内负载 */
 } knet_loop_balance_option_e;
+
+/*! 红黑树节点颜色 */
+typedef enum _rb_color_e {
+    rb_color_red = 1, /* 红色节点 */
+    rb_color_black,   /* 黑色节点 */
+} rb_color_e;
 
 /* 错误码 */
 typedef enum _error_e {
@@ -339,6 +347,8 @@ typedef void (*knet_node_cb_t)(knode_proxy_t*, knet_node_cb_event_e);
 typedef int (*knet_node_manage_cb_t)(knode_t*, const char*, char*, int*);
 /*! 节点节点监控回调函数 */
 typedef void (*knet_node_monitor_cb_t)(knode_t*, kchannel_ref_t*);
+/*! 红黑树节点销毁回调函数 */
+typedef void(*knet_rb_node_destroy_cb_t)(void*, uint64_t);
 
 /* 根据需要， 开启不同选取器 */
 #if defined(WIN32)
