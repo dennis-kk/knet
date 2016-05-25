@@ -1,3 +1,27 @@
+/*
+* Copyright (c) 2014-2015, dennis wang
+* All rights reserved.
+*
+* Redistribution and use in source and binary forms, with or without
+* modification, are permitted provided that the following conditions are met:
+*     * Redistributions of source code must retain the above copyright
+*       notice, this list of conditions and the following disclaimer.
+*     * Redistributions in binary form must reproduce the above copyright
+*       notice, this list of conditions and the following disclaimer in the
+*       documentation and/or other materials provided with the distribution.
+*
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+* ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+* WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+* DISCLAIMED. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
+* DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+* (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+* LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+* ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+* (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+* SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
 #include "rb_tree.h"
 
 /*
@@ -18,6 +42,10 @@ struct _rb_tree_t {
     krbnode_t* root; /* 根节点 */
 };
 
+/*
+ * 实现基于算法导论关于红黑树的相关章节
+ */
+
 /* 外围节点 */
 static krbnode_t nil_node = { 0, 0, 0, 0, 0, rb_color_black };
 static krbnode_t* nil = &nil_node;
@@ -26,35 +54,35 @@ static krbnode_t* nil = &nil_node;
  * 销毁节点及其所有子节点
  * @param node 节点
  */
-static void krbnode_destroy_recursive(krbnode_t* node);
+void krbnode_destroy_recursive(krbnode_t* node);
 
 /**
  * 对x节点左旋转
  * @param tree 红黑树
  * @param x 节点
  */
-static void krbtree_left_rotate(krbtree_t* tree, krbnode_t* x);
+void krbtree_left_rotate(krbtree_t* tree, krbnode_t* x);
 
 /**
  * 对x节点右旋转
  * @param tree 红黑树
  * @param x 节点
  */
-static void krbtree_right_rotate(krbtree_t* tree, krbnode_t* x);
+void krbtree_right_rotate(krbtree_t* tree, krbnode_t* x);
 
 /**
  * 根据二叉搜索树的规则插入节点后修正树,使其符合红黑树的规则
  * @param tree 红黑树
  * @param x 新插入的节点
  */
-static void krbtree_insert_fixup(krbtree_t* tree, krbnode_t* x);
+void krbtree_insert_fixup(krbtree_t* tree, krbnode_t* x);
 
 /**
  * 根据二叉搜索树的规则删除节点后修正树,使其符合红黑树的规则
  * @param tree 红黑树
  * @param x 需要删除的节点
  */
-static void krbtree_delete_fixup(krbtree_t* tree, krbnode_t* x);
+void krbtree_delete_fixup(krbtree_t* tree, krbnode_t* x);
 
 /**
  * 查找某个子树内节点
@@ -62,31 +90,33 @@ static void krbtree_delete_fixup(krbtree_t* tree, krbnode_t* x);
  * @param key 键
  * @return 节点
  */
-static krbnode_t* krbnode_find(krbnode_t* tree, uint64_t key);
+krbnode_t* krbnode_find(krbnode_t* tree, uint64_t key);
 
 /**
- * 获取x的后继节点, 寻找右儿子的最小节点
+ * 获取x的后继节点
  * @param x 节点
  * @return 节点
  */
-static krbnode_t* krbnode_get_successor(krbnode_t* x);
+krbnode_t* krbnode_get_successor(krbnode_t* x);
 
 krbnode_t* krbnode_create(uint64_t key, void* ptr, knet_rb_node_destroy_cb_t cb) {
     krbnode_t* node = create(krbnode_t);
     verify(node);
     memset(node, 0, sizeof(krbnode_t));
-    node->key    = key;
-    node->ptr    = ptr;
-    node->cb     = cb;
-    node->left   = nil;
-    node->right  = nil;
+    node->key = key;
+    node->ptr = ptr;
+    node->cb  = cb;
+    node->left = nil;
+    node->right = nil;
     node->parent = nil;
-    node->color  = rb_color_red;
     return node;
 }
 
 void krbnode_destroy(krbnode_t* node) {
     verify(node);
+    if (node == nil) {
+        return;
+    }
     if (node->cb) {
         node->cb(node->ptr, node->key);
     }
@@ -136,21 +166,20 @@ void krbtree_destroy(krbtree_t* tree) {
 }
 
 void krbtree_insert(krbtree_t* tree, krbnode_t* z) {
-    krbnode_t* y = 0; /* 搜索树内父节点 */
+    krbnode_t* y = 0;
     krbnode_t* x = 0;
     verify(tree);
     verify(z);
     if (!tree->root) { /* 没有任何节点 */
-        z->color   = rb_color_black; /* 根节点为黑色 */
-        z->left    = nil;
-        z->right   = nil;
-        z->parent  = nil;
-        tree->root = z;
+        z->color  = rb_color_black;
+        z->left   = nil;
+        z->right  = nil;
+        z->parent = nil;
+        tree->root   = z;
         return;
-    }
+    }  
     x = tree->root;
     y = nil;
-    /* 首先添加到二叉搜索树, 查找需要插入的父节点 */
     while (x != nil) {
         y = x;
         if (z->key < x->key) {
@@ -159,32 +188,34 @@ void krbtree_insert(krbtree_t* tree, krbnode_t* z) {
             x = x->right;
         }
     }
-    z->parent = y; /* 设置父节点 */
-    if (z->key < y->key) {
-        y->left = z; /* 左分支 */
+    z->parent = y;
+    if (y == nil) {
+        tree->root = z;
+        tree->root->parent = nil;
+        tree->root->parent->color = rb_color_black;
+    } else if (z->key < y->key) {
+        y->left = z;
     } else {
-        y->right = z; /* 右分支 */
+        y->right = z;
     }
-    /* 调整红黑树使之符合红黑树规则 */
+    /* 调整红黑树 */
     krbtree_insert_fixup(tree, z);
 }
 
 krbnode_t* krbnode_find(krbnode_t* node, uint64_t key) {
-    if (node == nil) {
-        /* 到达外围节点 */
+    if (!node) {
         return 0;
     }
-    if (node->key > key) { /* 左分支 */
-        return krbnode_find(node->left, key);
-    } else if (node->key < key) { /* 右分支 */
+    if (node->key < key) {
         return krbnode_find(node->right, key);
+    } else if (node->key > key) {
+        return krbnode_find(node->left, key);
     }
     return node;
 }
 
 krbnode_t* krbtree_find(krbtree_t* tree, uint64_t key) {
     verify(tree);
-    /* 从根节点开始搜索 */
     return krbnode_find(tree->root, key);
 }
 
@@ -193,10 +224,9 @@ void krbtree_delete(krbtree_t* tree, krbnode_t* z) {
     krbnode_t* y = 0;
     verify(tree);
     verify(z);
-    if (z->left == nil || z->right == nil) { /* 至少有一个孩子 */
+    if (z->left == nil || z->right == nil) {
         y = z;
     } else {
-        /* 寻找后继节点 */
         y = krbnode_get_successor(z);
     }
     if (y->left != nil) {
@@ -214,15 +244,12 @@ void krbtree_delete(krbtree_t* tree, krbnode_t* z) {
     }
     if (y != z) {
         z->key = y->key;
-        z->cb  = y->cb;
-        z->ptr = y->ptr;
     }
     if (y->color == rb_color_black) {
-        /* 调整红黑树使之符合红黑树规则 */
         krbtree_delete_fixup(tree, x);
     }
     /* 销毁 */
-    krbnode_destroy(y);
+    krbnode_destroy(z);
 }
 
 krbnode_t* krbtree_min(krbtree_t* tree) {
@@ -233,7 +260,6 @@ krbnode_t* krbtree_min(krbtree_t* tree) {
         return 0;
     }
     x = tree->root;
-    /* 最左边节点为最小节点 */
     while (x != nil) {
         t = x;
         x = x->left;
@@ -248,13 +274,12 @@ krbnode_t* krbtree_max(krbtree_t* tree) {
     if (tree->root == nil) {
         return 0;
     }
-    /* 最右边的节点为最大节点 */
     x = tree->root;
     while (x != nil) {
         t = x;
         x = x->right;
     }
-    return x;
+    return t;
 }
 
 void krbtree_left_rotate(krbtree_t* tree, krbnode_t* x) {
@@ -414,7 +439,6 @@ void krbtree_delete_fixup(krbtree_t* tree, krbnode_t* x) {
 }
 
 krbnode_t* krbnode_get_successor(krbnode_t* x) {
-    verify(x);
     krbnode_t* z = x;
     krbnode_t* y = 0;
     if (z->right != nil) {
