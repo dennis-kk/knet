@@ -1,4 +1,4 @@
-# knet 1.4.x #
+# knet 1.5.x #
 ##
 
 **knet** is cross-platform multi-threading light-weight TCP transport library, for now, knet support **IOCP**, **select**, **epoll** model on **Windows** and **CentOS**. it will testing(port) under more Linux and Unix OS version, more model will be implemented like: kqueue(kevent) etc.   
