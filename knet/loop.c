@@ -32,7 +32,7 @@
 #include "loop_profile.h"
 #include "stream.h"
 #include "logger.h"
-
+#include "timer.h"
 
 struct _loop_t {
     kdlist_t*                  active_channel_list; /* 活跃管道链表 */
@@ -48,6 +48,7 @@ struct _loop_t {
     knet_loop_balance_option_e balance_options;     /* 负载均衡配置 */
     kloop_profile_t*           profile;             /* 统计 */
     void*                      data;                /* 用户数据指针 */
+    ktimer_loop_t*             timer_loop;          /* 定时器循环 */
 };
 
 typedef enum _loop_event_e {
@@ -117,6 +118,7 @@ kloop_t* knet_loop_create() {
     loop->close_channel_list = dlist_create();
     loop->event_list = dlist_create();
     loop->lock = lock_create();
+    loop->timer_loop = ktimer_loop_create(0); /* 建立定时器循环 */
     loop->balance_options = loop_balancer_in | loop_balancer_out;
     loop->notify_channel = knet_loop_create_channel_exist_socket_fd(loop, pair[0], 0, 0);
     verify(loop->notify_channel);
@@ -137,7 +139,7 @@ void knet_loop_destroy(kloop_t* loop) {
     kdlist_node_t*  node        = 0;
     kdlist_node_t*  temp        = 0;
     kchannel_ref_t* channel_ref = 0;
-    loop_event_t*  event       = 0;
+    loop_event_t*   event       = 0;
     verify(loop);
     /* 关闭管道 */
     dlist_for_each_safe(loop->active_channel_list, node, temp) {
@@ -161,6 +163,8 @@ void knet_loop_destroy(kloop_t* loop) {
     knet_loop_profile_destroy(loop->profile);
     dlist_destroy(loop->event_list);
     lock_destroy(loop->lock);
+    /* 销毁定时器循环 */
+    ktimer_loop_destroy(loop->timer_loop);
     destroy(loop);
 }
 
@@ -311,7 +315,10 @@ kdlist_t* knet_loop_get_close_list(kloop_t* loop) {
 }
 
 void knet_loop_add_channel_ref(kloop_t* loop, kchannel_ref_t* channel_ref) {
-    kdlist_node_t* node = 0;
+    kdlist_node_t* node         = 0;
+    ktimer_t*      recv_timer   = 0;
+    time_t         recv_timeout = 0;
+    int            error        = 0;
     verify(channel_ref);
     verify(loop);
     node = knet_channel_ref_get_loop_node(channel_ref);
@@ -328,6 +335,19 @@ void knet_loop_add_channel_ref(kloop_t* loop, kchannel_ref_t* channel_ref) {
     knet_channel_ref_set_loop_node(channel_ref, dlist_get_front(loop->active_channel_list));
     /* 通知选取器添加管道 */
     knet_impl_add_channel_ref(loop, channel_ref);
+    /* 建立接收超时定时器 */
+    if (!knet_channel_ref_get_recv_timeout_timer(channel_ref)) {
+        recv_timeout = knet_channel_ref_get_timeout(channel_ref);
+        if (recv_timeout) {
+            /* 建立接收超时定时器 */
+            recv_timer = ktimer_create(loop->timer_loop);
+            verify(recv_timer);
+            error = ktimer_start(recv_timer, knet_channel_ref_get_timer_cb(channel_ref),
+                channel_ref, recv_timeout * 1000);
+            verify(error == error_ok);
+            knet_channel_ref_set_recv_timeout_timer(channel_ref, recv_timer);
+        }
+    }
 }
 
 void knet_loop_remove_channel_ref(kloop_t* loop, kchannel_ref_t* channel_ref) {
@@ -371,35 +391,8 @@ kloop_balancer_t* knet_loop_get_balancer(kloop_t* loop) {
 }
 
 void knet_loop_check_timeout(kloop_t* loop, time_t ts) {
-    kdlist_node_t*  node        = 0;
-    kdlist_node_t*  temp        = 0;
-    kchannel_ref_t* channel_ref = 0;
-    verify(loop);
-    dlist_for_each_safe(knet_loop_get_active_list(loop), node, temp) {
-        channel_ref = (kchannel_ref_t*)dlist_node_get_data(node);
-        if (knet_channel_ref_check_state(channel_ref, channel_state_connect)) {
-            if (socket_check_send_ready(knet_channel_ref_get_socket_fd(channel_ref))) {
-                knet_impl_event_add(channel_ref, channel_event_send);
-            }
-            if (knet_channel_ref_check_connect_timeout(channel_ref, ts)) {
-                /* 连接超时 */
-                if (knet_channel_ref_get_cb(channel_ref)) {
-                    log_error("connect timeout, channel[%llu]", knet_channel_ref_get_uuid(channel_ref));
-                    knet_channel_ref_get_cb(channel_ref)(channel_ref, channel_cb_event_connect_timeout);
-                }
-                /* 自动重连 */
-                if (knet_channel_ref_check_auto_reconnect(channel_ref)) {
-                    knet_channel_ref_reconnect(channel_ref, 0);
-                }
-            }
-        }
-        if (knet_channel_ref_check_timeout(channel_ref, ts) && !knet_channel_ref_check_state(channel_ref, channel_state_accept)) {
-            /* 读超时，心跳 */
-            if (knet_channel_ref_get_cb(channel_ref)) {
-                knet_channel_ref_get_cb(channel_ref)(channel_ref, channel_cb_event_timeout);
-            }
-        }
-    }
+    (void)ts;
+    ktimer_loop_run_once(loop->timer_loop);
 }
 
 void knet_loop_check_close(kloop_t* loop) {
@@ -409,9 +402,12 @@ void knet_loop_check_close(kloop_t* loop) {
     verify(loop);
     dlist_for_each_safe(knet_loop_get_close_list(loop), node, temp) {
         channel_ref = (kchannel_ref_t*)dlist_node_get_data(node);
-        /* 调用用户回调 */
-        if (knet_channel_ref_get_cb(channel_ref)) {
-            knet_channel_ref_get_cb(channel_ref)(channel_ref, channel_cb_event_close);
+        if (!knet_channel_ref_check_close_cb_called(channel_ref)) {
+            /* 调用用户回调 */
+            if (knet_channel_ref_get_cb(channel_ref)) {
+                knet_channel_ref_get_cb(channel_ref)(channel_ref, channel_cb_event_close);
+            }
+            knet_channel_ref_set_close_cb_called(channel_ref);
         }
         /* 销毁管道 */
         if (error_ok == knet_channel_ref_destroy(channel_ref)) {
@@ -464,4 +460,9 @@ void* knet_loop_get_data(kloop_t* loop) {
 kloop_profile_t* knet_loop_get_profile(kloop_t* loop) {
     verify(loop);
     return loop->profile;
+}
+
+ktimer_loop_t* knet_loop_get_timer_loop(kloop_t* loop) {
+    verify(loop);
+    return loop->timer_loop;
 }

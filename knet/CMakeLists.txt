@@ -21,18 +21,10 @@ add_library(knet
 	timer.c
 	logger.c
 	hash.c
-	rpc.c
-	rpc_object.c
-	framework.c
-	framework_raiser.c
-	framework_worker.c
-	framework_config.c
 	loop_profile.c
 	trie.c
 	ip_filter.c
 	vrouter.c
-	node.c
-	node_config.c
 	rb_tree.c
 )
 

@@ -25,8 +25,8 @@
 #include "version.h"
 
 #define MAJOR 1 /* 主版本 */
-#define MINOR 4 /* 次版本 */
-#define PATCH 14 /* 补丁 */
+#define MINOR 5 /* 次版本 */
+#define PATCH 0 /* 补丁 */
 
 #define KNET_MAJOR(major) #major
 #define KNET_MINOR(minor) #minor

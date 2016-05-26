@@ -65,7 +65,7 @@
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>..\lib\debug\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>knetlib-.lib</AdditionalDependencies>
+      <AdditionalDependencies>knetlib.lib</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -90,17 +90,15 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>..\lib\release\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>knetlib-.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>knetlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\examples\basic.c" />
     <ClCompile Include="..\examples\broadcast.c" />
     <ClCompile Include="..\examples\connector_timeout.c" />
-    <ClCompile Include="..\examples\framework.c" />
     <ClCompile Include="..\examples\multi_connector.c" />
     <ClCompile Include="..\examples\multi_loop.c" />
-    <ClCompile Include="..\examples\rpc.c" />
     <ClCompile Include="..\examples\telnet_echo.c" />
     <ClCompile Include="..\examples\timer.c" />
   </ItemGroup>

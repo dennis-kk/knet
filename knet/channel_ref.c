@@ -33,7 +33,7 @@
 #include "address.h"
 #include "loop_profile.h"
 #include "logger.h"
-
+#include "timer.h"
 
 typedef struct _channel_ref_info_t {
     /* 基础数据成员 */
@@ -58,14 +58,25 @@ typedef struct _channel_ref_info_t {
     void*                         user_data;            /* 用户数据指针 - 内部使用 */
     void*                         user_ptr;             /* 暴露给外部使用的数据指针 - 外部使用 */
     /* 扩展数据成员 */
+    /*
+     * 调用ktimer_stop将关闭定时器, 定时器将在定时器循环内被销毁, 管道将不清理定时器
+     */
+    ktimer_t* recv_timeout_timer;    /* 读空闲超时定时器 */
+    ktimer_t* connect_timeout_timer; /* 连接超时定时器 */
+    int       close_cb_called;       /* 关闭事件是否已经触发过 */
 } channel_ref_info_t;
 
 struct _channel_ref_t {
-    int                 share;     /* 是否通过knet_channel_ref_share()创建 */
-    uint64_t            domain_id; /* 域ID */
-    kdlist_node_t*      list_node; /* 域链表节点 */
-    channel_ref_info_t* ref_info;  /* 管道信息 */
+    int                 share;                 /* 是否通过knet_channel_ref_share()创建 */
+    uint64_t            domain_id;             /* 域ID */
+    kdlist_node_t*      list_node;             /* 域链表节点 */
+    channel_ref_info_t* ref_info;              /* 管道信息 */
 };
+
+/**
+ * 定时器回调
+ */
+void _timer_cb(ktimer_t* timer, void* data);
 
 kchannel_ref_t* knet_channel_ref_create(kloop_t* loop, kchannel_t* channel) {
     kchannel_ref_t* channel_ref = create(kchannel_ref_t);
@@ -213,6 +224,11 @@ int knet_channel_ref_reconnect(kchannel_ref_t* channel_ref, int timeout) {
     knet_channel_ref_set_ptr(new_channel, ptr);
     /* 设置自动重连标志 */
     knet_channel_ref_set_auto_reconnect(new_channel, auto_reconnect);
+    /* 重置重连定时器 */
+    if (channel_ref->ref_info->connect_timeout_timer) {
+        ktimer_stop(channel_ref->ref_info->connect_timeout_timer);
+        knet_channel_ref_set_connect_timeout_timer(new_channel, 0);
+    }
     /* 启动新的连接器 */
     error = knet_channel_ref_connect(new_channel, ip, port, (int)connect_timeout);
     if (error_ok != error) {
@@ -299,6 +315,14 @@ void knet_channel_ref_update_close_in_loop(kloop_t* loop, kchannel_ref_t* channe
     knet_channel_ref_clear_event(channel_ref, channel_event_recv | channel_event_send);
     knet_channel_close(channel_ref->ref_info->channel);
     knet_loop_close_channel_ref(channel_ref->ref_info->loop, channel_ref);
+    /* 关闭接收超时定时器 */
+    if (knet_channel_ref_get_recv_timeout_timer(channel_ref)) {
+        ktimer_stop(knet_channel_ref_get_recv_timeout_timer(channel_ref));
+    }
+    /* 关闭连接超时定时器 */
+    if (knet_channel_ref_get_connect_timeout_timer(channel_ref)) {
+        ktimer_stop(knet_channel_ref_get_connect_timeout_timer(channel_ref));
+    }
 }
 
 void knet_channel_ref_close_check_reconnect(kchannel_ref_t* channel_ref) {
@@ -366,7 +390,7 @@ void knet_channel_ref_update_send_in_loop(kloop_t* loop, kchannel_ref_t* channel
 int knet_channel_ref_write(kchannel_ref_t* channel_ref, const char* data, int size) {
     kloop_t*   loop        = 0;
     kbuffer_t* send_buffer = 0;
-    int       error       = error_ok;
+    int        error       = error_ok;
     verify(channel_ref);
     verify(data);
     verify(size);
@@ -560,6 +584,43 @@ void knet_channel_ref_update_connect(kchannel_ref_t* channel_ref) {
         log_verb("connected, invoke cb");
         channel_ref->ref_info->cb(channel_ref, channel_cb_event_connect);
     }
+    /* 销毁连接超时定时器 */
+    if (channel_ref->ref_info->connect_timeout_timer) {
+        ktimer_stop(channel_ref->ref_info->connect_timeout_timer);
+        channel_ref->ref_info->connect_timeout_timer = 0;
+    }
+}
+
+void _timer_cb(ktimer_t* timer, void* data) {
+    kchannel_ref_t* channel_ref   = (kchannel_ref_t*)data;
+    ktimer_t*       recv_timer    = knet_channel_ref_get_recv_timeout_timer(channel_ref);
+    ktimer_t*       connect_timer = knet_channel_ref_get_connect_timeout_timer(channel_ref);
+    if (connect_timer == timer) { /* 连接超时定时器 */
+        if (socket_check_send_ready(knet_channel_ref_get_socket_fd(channel_ref))) {
+            knet_impl_event_add(channel_ref, channel_event_send);
+        }
+        /* 连接超时 */
+        if (knet_channel_ref_get_cb(channel_ref)) {
+            log_error("connect timeout, channel[%llu]", knet_channel_ref_get_uuid(channel_ref));
+            knet_channel_ref_get_cb(channel_ref)(channel_ref, channel_cb_event_connect_timeout);
+        }
+        /* 自动重连 */
+        if (knet_channel_ref_check_auto_reconnect(channel_ref)) {
+            knet_channel_ref_reconnect(channel_ref, 0);
+        }
+    } else if (recv_timer == timer) { /* 接收超时定时器 */
+        if (!knet_channel_ref_check_state(channel_ref, channel_state_accept)) {
+            /* 读超时，心跳 */
+            if (knet_channel_ref_get_cb(channel_ref)) {
+                knet_channel_ref_get_cb(channel_ref)(channel_ref, channel_cb_event_timeout);
+            }
+        }
+    }
+}
+
+ktimer_cb_t knet_channel_ref_get_timer_cb(kchannel_ref_t* channel_ref) {
+    (void)channel_ref;
+    return _timer_cb;
 }
 
 void knet_channel_ref_update_recv(kchannel_ref_t* channel_ref) {
@@ -696,32 +757,14 @@ void knet_channel_ref_set_timeout(kchannel_ref_t* channel_ref, int timeout) {
     channel_ref->ref_info->timeout = (time_t)timeout;
 }
 
-int knet_channel_ref_check_connect_timeout(kchannel_ref_t* channel_ref, time_t ts) {
-    int ret = 0;
+int knet_channel_ref_get_timeout(kchannel_ref_t* channel_ref) {
     verify(channel_ref);
-    if (knet_channel_ref_check_state(channel_ref, channel_state_connect)) {
-        if (channel_ref->ref_info->last_connect_timeout) {
-            ret = (channel_ref->ref_info->last_connect_timeout < ts);
-        }
-    }
-    if (ret) {
-        /* 如果超时重置下次触发时间 */
-        channel_ref->ref_info->last_connect_timeout =
-            ts + channel_ref->ref_info->connect_timeout;
-    }
-    return ret;
+    return (int)channel_ref->ref_info->timeout;
 }
 
-int knet_channel_ref_check_timeout(kchannel_ref_t* channel_ref, time_t ts) {
+int knet_channel_ref_get_connect_timeout(kchannel_ref_t* channel_ref) {
     verify(channel_ref);
-    if (!channel_ref->ref_info->timeout) {
-        return 0;
-    }
-    if ((ts - channel_ref->ref_info->last_recv_ts) > channel_ref->ref_info->timeout) {
-        channel_ref->ref_info->last_recv_ts = ts;
-        return 1;
-    }
-    return 0;
+    return (int)channel_ref->ref_info->connect_timeout;
 }
 
 void knet_channel_ref_set_cb(kchannel_ref_t* channel_ref, knet_channel_ref_cb_t cb) {
@@ -735,10 +778,29 @@ knet_channel_ref_cb_t knet_channel_ref_get_cb(kchannel_ref_t* channel_ref) {
 }
 
 int knet_channel_ref_connect_in_loop(kchannel_ref_t* channel_ref) {
+    int error = 0;
     verify(channel_ref);
     knet_loop_add_channel_ref(channel_ref->ref_info->loop, channel_ref);
     knet_channel_ref_set_state(channel_ref, channel_state_connect);
     knet_channel_ref_set_event(channel_ref, channel_event_send);
+    if (channel_ref->ref_info->connect_timeout) {
+        /* 建立连接超时定时器 */
+        channel_ref->ref_info->connect_timeout_timer = ktimer_create(knet_loop_get_timer_loop(channel_ref->ref_info->loop));
+        verify(channel_ref->ref_info->connect_timeout_timer);
+        error = ktimer_start(channel_ref->ref_info->connect_timeout_timer, _timer_cb, channel_ref,
+            channel_ref->ref_info->connect_timeout * 1000);
+        verify(error == error_ok);
+    }
+    if (!channel_ref->ref_info->recv_timeout_timer) {
+        if (channel_ref->ref_info->timeout) {
+            /* 启动读超时定时器 */
+            channel_ref->ref_info->recv_timeout_timer = ktimer_create(knet_loop_get_timer_loop(channel_ref->ref_info->loop));
+            verify(channel_ref->ref_info->recv_timeout_timer);
+            error = ktimer_start(channel_ref->ref_info->recv_timeout_timer, knet_channel_ref_get_timer_cb(channel_ref),
+                channel_ref, channel_ref->ref_info->timeout * 1000);
+            verify(error == error_ok);
+        }
+    }
     return error_ok;
 }
 
@@ -835,4 +897,34 @@ void knet_channel_ref_set_ptr(kchannel_ref_t* channel_ref, void* ptr) {
 void* knet_channel_ref_get_ptr(kchannel_ref_t* channel_ref) {
     verify(channel_ref);
     return channel_ref->ref_info->user_ptr;
+}
+
+void knet_channel_ref_set_recv_timeout_timer(kchannel_ref_t* channel_ref, ktimer_t* timer) {
+    verify(channel_ref);
+    channel_ref->ref_info->recv_timeout_timer = timer;
+}
+
+ktimer_t* knet_channel_ref_get_recv_timeout_timer(kchannel_ref_t* channel_ref) {
+    verify(channel_ref);
+    return channel_ref->ref_info->recv_timeout_timer;
+}
+
+void knet_channel_ref_set_connect_timeout_timer(kchannel_ref_t* channel_ref, ktimer_t* timer) {
+    verify(channel_ref);
+    channel_ref->ref_info->connect_timeout_timer = timer;
+}
+
+ktimer_t* knet_channel_ref_get_connect_timeout_timer(kchannel_ref_t* channel_ref) {
+    verify(channel_ref);
+    return channel_ref->ref_info->connect_timeout_timer;
+}
+
+int knet_channel_ref_check_close_cb_called(kchannel_ref_t* channel_ref) {
+    verify(channel_ref);
+    return channel_ref->ref_info->close_cb_called;
+}
+
+void knet_channel_ref_set_close_cb_called(kchannel_ref_t* channel_ref) {
+    verify(channel_ref);
+    channel_ref->ref_info->close_cb_called = 1;
 }

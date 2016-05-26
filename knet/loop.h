@@ -275,4 +275,11 @@ void* knet_loop_get_data(kloop_t* loop);
  */
 void knet_loop_set_data(kloop_t* loop, void* data);
 
+/**
+ * 获取定时器循环
+ * @param loop kloop_t实例
+ * @return ktimer_loop_t实例
+ */
+ktimer_loop_t* knet_loop_get_timer_loop(kloop_t* loop);
+
 #endif /* LOOP_H */

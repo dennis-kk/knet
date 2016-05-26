@@ -35,11 +35,11 @@ CASE(Test_Timer_Run_Once) {
         }
     };
 
-    ktimer_loop_t* l = ktimer_loop_create(1000, 128);
+    ktimer_loop_t* l = ktimer_loop_create(1000);
     for (int i = 0; i < 100; i++) {
         ktimer_t* t = ktimer_create(l);
         // 周期为1000毫秒，只运行一次的定时器
-        ktimer_start_once(t, &holder::timer_cb, 0, 1000);
+        ktimer_start_once(t, &holder::timer_cb, 0, 900);
     }
     thread_sleep_ms(1000);
     ktimer_loop_run_once(l);
@@ -59,7 +59,7 @@ CASE(Test_Timer_Run) {
         }
     };
 
-    ktimer_loop_t* l = ktimer_loop_create(1000, 128);
+    ktimer_loop_t* l = ktimer_loop_create(1000);
     for (int i = 0; i < 100; i++) {
         ktimer_t* t = ktimer_create(l);
         // 周期为1000毫秒的定时器
@@ -81,7 +81,7 @@ CASE(Test_Timer_Start_Times) {
         }
     };
 
-    ktimer_loop_t* l = ktimer_loop_create(1000, 128);
+    ktimer_loop_t* l = ktimer_loop_create(1000);
     for (int i = 0; i < 100; i++) {
         ktimer_t* t = ktimer_create(l);
         // 周期为1000毫秒的定时器, 运行2次
@@ -104,7 +104,7 @@ CASE(Test_Timer_Stop) {
         }
     };
 
-    ktimer_loop_t* l = ktimer_loop_create(1000, 128);
+    ktimer_loop_t* l = ktimer_loop_create(1000);
     for (int i = 0; i < 100; i++) {
         ktimer_t* t = ktimer_create(l);
         // 周期为1000毫秒的定时器

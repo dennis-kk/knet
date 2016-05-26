@@ -1,1 +1,0 @@
-	std::map<{{@key_type}}, {{@value_type}}> p{{$index}};

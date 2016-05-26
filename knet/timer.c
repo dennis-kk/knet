@@ -26,213 +26,227 @@
 #include "list.h"
 #include "misc.h"
 #include "logger.h"
+#include "rb_tree.h"
 
-
+/**
+ * 定时器
+ */
 struct _ktimer_t {
     kdlist_t*       current_list;  /* 所属链表 */
     kdlist_node_t*  list_node;     /* 链表节点 */
-    ktimer_loop_t* ktimer_loop;   /* 定时器循环 */
-    ktimer_type_e  type;          /* 定时器类型 */
-    ktimer_cb_t    cb;            /* 定时器回调 */
-    void*          data;          /* 自定义数据 */
-    time_t         ms;            /* 下次触发时间 */
-    time_t         intval;        /* 定时器间隔 */
-    int            times;         /* 触发最大次数 */
-    int            current_times; /* 当前触发次数 */
-    int            stop;          /* 终止标志 */
+    ktimer_loop_t*  timer_loop;    /* 定时器循环 */
+    ktimer_type_e   type;          /* 定时器类型 */
+    ktimer_cb_t     cb;            /* 定时器回调 */
+    void*           data;          /* 自定义数据 */
+    uint64_t        ms;            /* 下次触发时间 */
+    uint64_t        intval;        /* 定时器间隔 */
+    int             times;         /* 触发最大次数 */
+    int             current_times; /* 当前触发次数 */
+    int             stop;          /* 终止标志 */
 };
 
+/**
+ * 定时器循环
+ */
 struct _ktimer_loop_t {
-    kdlist_t** ktimer_wheels; /* 时间轮链表数组 */
-    int       running;       /* 运行标志 */
-    int       max_slot;      /* 时间轮数组长度 */
-    int       slot;          /* 当前槽位 */
-    time_t    last_tick;     /* 上一次调用循环的时间（毫秒） */
-    time_t    tick_intval;   /* 槽位刻度间隔（毫秒） */
-    time_t    deviation;     /* 误差 */
+    krbtree_t* timer_tree; /* 红黑树 */
+    int        running;    /* 运行标志 */
+    uint64_t   last_tick;  /* 上一次调用循环的时间（毫秒） */
+    uint64_t   freq;       /* 循环调用间隔(毫秒) */
 };
 
-int _ktimer_loop_select_slot(ktimer_loop_t* ktimer_loop, time_t ms);
-void _ktimer_loop_add_timer(ktimer_loop_t* ktimer_loop, ktimer_t* timer);
-void _ktimer_loop_add_ktimer_node(ktimer_loop_t* ktimer_loop, kdlist_node_t* node, time_t ms);
-kdlist_node_t* _ktimer_loop_remove_timer(ktimer_t* timer);
-int _ktimer_check_stop(ktimer_t* timer);
+/**
+ * 销毁红黑树节点
+ */
+void _rb_node_destroy_cb(void* ptr, uint64_t key);
 
-ktimer_loop_t* ktimer_loop_create(time_t freq, int slot) {
-    int i = 0;
-    ktimer_loop_t* ktimer_loop = create(ktimer_loop_t);
-    verify(ktimer_loop);
-    verify(freq);
-    verify(slot);
-    memset(ktimer_loop, 0, sizeof(ktimer_loop_t));
-    ktimer_loop->max_slot     = slot;
-    ktimer_loop->tick_intval  = freq;
-    ktimer_loop->deviation    = (time_t)((float)freq * 0.01f); /* 默认误差范围为1% */
-    ktimer_loop->last_tick    = time_get_milliseconds();
-    ktimer_loop->slot         = 1;
-    ktimer_loop->ktimer_wheels = (kdlist_t**)create_type(kdlist_t, sizeof(kdlist_t*) * ktimer_loop->max_slot);
-    verify(ktimer_loop->ktimer_wheels);
-    for (; i < ktimer_loop->max_slot; i++) {
-        ktimer_loop->ktimer_wheels[i] = dlist_create();
-        verify(ktimer_loop->ktimer_wheels[i]);
-    }
-    return ktimer_loop;
-}
+/**
+ * 添加定时器
+ * @param timer 定时器
+ * @param node 定时器链表节点
+ * @param ms 到期时间戳(毫秒)
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int _ktimer_add_node(ktimer_t* timer, kdlist_node_t* node, time_t ms);
 
-void ktimer_loop_destroy(ktimer_loop_t* ktimer_loop) {
-    int i = 0;
-    ktimer_t*     timer = 0;
-    kdlist_node_t* node  = 0;
-    kdlist_node_t* temp  = 0;
-    verify(ktimer_loop);
-    /* 销毁所有槽内链表 */
-    for (; i < ktimer_loop->max_slot; i++) {
-        dlist_for_each_safe(ktimer_loop->ktimer_wheels[i], node, temp) {
-            timer = (ktimer_t*)dlist_node_get_data(node);
-            ktimer_destroy(timer);
-        }
-        dlist_destroy(ktimer_loop->ktimer_wheels[i]);
-    }
-    destroy(ktimer_loop->ktimer_wheels);
-    destroy(ktimer_loop);
-}
+/**
+ * 添加定时器
+ * @param timer 定时器
+ * @param ms 到期时间戳(毫秒)
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int _ktimer_add(ktimer_t* timer, time_t ms);
 
-void ktimer_loop_run(ktimer_loop_t* ktimer_loop) {
-    verify(ktimer_loop);
-    ktimer_loop->running = 1;
-    while (ktimer_loop->running) {
-        thread_sleep_ms((int)ktimer_loop->tick_intval);
-        ktimer_loop_run_once(ktimer_loop);
-    }
-}
-
-void ktimer_loop_exit(ktimer_loop_t* ktimer_loop) {
-    verify(ktimer_loop);
-    ktimer_loop->running = 0;
-}
-
-int _ktimer_loop_select_slot(ktimer_loop_t* ktimer_loop, time_t ms) {
-    verify(ktimer_loop);
-    /* 计算按当前槽位的位置，后面哪个槽位会触发定时器 */
-    return (int)(ktimer_loop->slot + ms / ktimer_loop->tick_intval) % ktimer_loop->max_slot;
-}
-
-void _ktimer_loop_add_timer(ktimer_loop_t* ktimer_loop, ktimer_t* timer) {
-    /* 新timer都加入到下次运行的槽位，如果未过期会被调整到后续槽位 */
+void _rb_node_destroy_cb(void* ptr, uint64_t key) {
     kdlist_node_t* node = 0;
-    verify(ktimer_loop);
-    verify(timer);
-    node = dlist_add_tail_node(ktimer_loop->ktimer_wheels[ktimer_loop->slot], timer);
-    ktimer_set_current_list(timer, ktimer_loop->ktimer_wheels[ktimer_loop->slot]);
-    ktimer_set_current_list_node(timer, node);
+    kdlist_node_t* temp = 0;
+    kdlist_t*      list = (kdlist_t*)ptr;
+    (void)key;
+    /* 销毁链表内的定时器 */
+    dlist_for_each_safe(list, node, temp) {
+        ktimer_t* timer = (ktimer_t*)dlist_node_get_data(node);
+        ktimer_destroy(timer);
+    }
+    /* 销毁链表 */
+    dlist_destroy(list);
 }
 
-void _ktimer_loop_add_ktimer_node(ktimer_loop_t* ktimer_loop, kdlist_node_t* node, time_t ms) {
-    int       slot  = 0;
-    ktimer_t* timer = 0;
-    verify(ktimer_loop);
-    verify(node);
-    slot = _ktimer_loop_select_slot(ktimer_loop, ms);
-    timer = (ktimer_t*)dlist_node_get_data(node);
-    dlist_add_tail(ktimer_loop->ktimer_wheels[slot], node);
-    ktimer_set_current_list(timer, ktimer_loop->ktimer_wheels[slot]);
+int _ktimer_add_node(ktimer_t* timer, kdlist_node_t* node, time_t ms) {
+    kdlist_t*  list    = 0;
+    krbnode_t* rb_node = 0;
+    /* 查找节点 */
+    rb_node = krbtree_find(timer->timer_loop->timer_tree, ms);
+    if (!rb_node) { /* 未找到节点 */
+        list    = dlist_create();
+        /* 建立红黑树节点 */
+        rb_node = krbnode_create(ms, list, _rb_node_destroy_cb);
+        /* 插入红黑树节点 */
+        krbtree_insert(timer->timer_loop->timer_tree, rb_node);
+    }
+    if (rb_node) {
+        /* 设置定时器所属链表 */
+        timer->current_list = (kdlist_t*)krbnode_get_ptr(rb_node);
+        /* 添加到链表尾部 */
+        dlist_add_tail(timer->current_list, node);
+        /* 链表内的节点 */
+        timer->list_node = node;
+    } else {
+        return error_fail;
+    }
+    return error_ok;
 }
 
-kdlist_node_t* _ktimer_loop_remove_timer(ktimer_t* timer) {
-    kdlist_t*      current_list = 0;
-    kdlist_node_t* list_node    = 0;
-    verify(timer);
-    current_list = ktimer_get_current_list(timer);
-    verify(current_list);
-    list_node = ktimer_get_current_list_node(timer);
-    verify(list_node);
-    dlist_remove(current_list, list_node);
-    ktimer_set_current_list(timer, 0);
-    return list_node;
-} 
+int _ktimer_add(ktimer_t* timer, time_t ms) {
+    kdlist_t*  list = 0;
+    krbnode_t* rb_node = 0;
+    rb_node = krbtree_find(timer->timer_loop->timer_tree, ms);
+    if (!rb_node) {
+        list    = dlist_create();
+        rb_node = krbnode_create(time_get_milliseconds_19700101() + ms,
+            list, _rb_node_destroy_cb);
+        /* 插入红黑树节点 */
+        krbtree_insert(timer->timer_loop->timer_tree, rb_node);
+    }
+    if (rb_node) {
+        timer->current_list = (kdlist_t*)krbnode_get_ptr(rb_node);
+        timer->list_node = dlist_add_tail_node(timer->current_list, timer);
+    } else {
+        return error_fail;
+    }
+    return error_ok;
+}
 
-int ktimer_loop_run_once(ktimer_loop_t* ktimer_loop) {
-    kdlist_node_t* node   = 0;
-    kdlist_node_t* temp   = 0;
-    kdlist_t*      timers = 0;
-    ktimer_t*     timer = 0;
-    time_t        ms     = time_get_milliseconds(); /* 当前时间戳（毫秒） */
-    time_t        delta  = 0;
-    int           count  = 0;
-    verify(ktimer_loop);
-    delta  = ms - ktimer_loop->last_tick;
-    /* 误差范围内都启动 */
-    if (delta + ktimer_loop->deviation < ktimer_loop->tick_intval) {
+ktimer_loop_t* ktimer_loop_create(time_t freq) {
+    ktimer_loop_t* timer_loop = create(ktimer_loop_t);
+    verify(timer_loop);
+    memset(timer_loop, 0, sizeof(ktimer_loop_t));
+    timer_loop->last_tick  = time_get_milliseconds_19700101();
+    timer_loop->timer_tree = krbtree_create();
+    timer_loop->freq       = freq;
+    return timer_loop;
+}
+
+void ktimer_loop_destroy(ktimer_loop_t* timer_loop) {
+    verify(timer_loop);
+    /* 销毁红黑树 */
+    krbtree_destroy(timer_loop->timer_tree);
+    destroy(timer_loop);
+}
+
+void ktimer_loop_run(ktimer_loop_t* timer_loop) {
+    verify(timer_loop);
+    timer_loop->running = 1;
+    while (timer_loop->running) {
+        thread_sleep_ms((int)timer_loop->freq);
+        ktimer_loop_run_once(timer_loop);
+    }
+}
+
+void ktimer_loop_exit(ktimer_loop_t* timer_loop) {
+    verify(timer_loop);
+    timer_loop->running = 0;
+}
+
+int ktimer_loop_run_once(ktimer_loop_t* timer_loop) {
+    krbnode_t*     rb_node = 0;
+    kdlist_node_t* node    = 0;
+    kdlist_node_t* temp    = 0;
+    kdlist_t*      timers  = 0;
+    ktimer_t*      timer   = 0;
+    uint64_t       key     = 0;
+    uint64_t       ms      = time_get_milliseconds_19700101(); /* 当前时间戳（毫秒） */
+    int            count   = 0;
+    verify(timer_loop);
+    /* 记录上次tick时间戳 */
+    timer_loop->last_tick = ms;
+    /* 查找时间戳最小节点 */
+    rb_node = krbtree_min(timer_loop->timer_tree);
+    if (!rb_node) {
+        /* 没有节点 */
         return 0;
     }
-    timers = ktimer_loop->ktimer_wheels[ktimer_loop->slot];
-    dlist_for_each_safe(timers, node, temp) {
-        timer = (ktimer_t*)dlist_node_get_data(node);
-        if (!_ktimer_check_stop(timer)) {
-            /* 处理定时器 */
-            if (ktimer_check_timeout(timer, ms)) {
-                count++;
+    /* 获取最小节点的时间戳 */
+    key = krbnode_get_key(rb_node);
+    while (rb_node && (key < ms)) { /* 到期 */
+        /* 获取当前时间戳的定时器链表 */
+        timers = (kdlist_t*)krbnode_get_ptr(rb_node);
+        verify(timers);
+        /* 处理所有到期的定时器 */
+        dlist_for_each_safe(timers, node, temp) {
+            timer = (ktimer_t*)dlist_node_get_data(node);
+            verify(timer);
+            if ((!timer->stop) && timer->cb) {
+                /* 定时器到期,调用回调 */
+                timer->cb(timer, timer->data);
+                count += 1;
             }
-        } else {
-            /* 销毁 */
-            ktimer_destroy(timer);
+            /* 调用次数递增 */
+            timer->current_times += 1;
+            if (!(timer->stop || ktimer_check_dead(timer))) {
+                /* 不能被销毁, 移动到新时间戳红黑树节点链表内 */
+                timer->ms = ms + timer->intval;
+                dlist_remove(timers, node);
+                _ktimer_add_node(timer, node, timer->ms);
+            }
         }
+        /* 销毁红黑树节点 */
+        krbtree_delete(timer_loop->timer_tree, rb_node);
+        /* 查找时间戳最小节点 */
+        rb_node = krbtree_min(timer_loop->timer_tree);
+        if (!rb_node) {
+            /* 没有节点 */
+            break;
+        }
+        /* 获取最小节点的时间戳 */
+        key = krbnode_get_key(rb_node);
     }
-    /* 下一个槽位 */
-    ktimer_loop->slot = (ktimer_loop->slot + 1) % ktimer_loop->max_slot;
-    /* 记录上次tick时间戳 */
-    ktimer_loop->last_tick = ms;
     return count;
 }
 
-int _ktimer_check_stop(ktimer_t* timer) {
-    return timer->stop;
-}
-
 ktimer_loop_t* ktimer_get_loop(ktimer_t* timer) {
-    return timer->ktimer_loop;
-}
-
-void ktimer_set_current_list(ktimer_t* timer, kdlist_t* list) {
-    verify(timer); /* list可以为零 */
-    timer->current_list = list;
-}
-
-void ktimer_set_current_list_node(ktimer_t* timer, kdlist_node_t* node) {
     verify(timer);
-    verify(node);
-    timer->list_node = node;
+    return timer->timer_loop;
 }
 
-kdlist_t* ktimer_get_current_list(ktimer_t* timer) {
-    verify(timer);
-    return timer->current_list;
-}
-
-kdlist_node_t* ktimer_get_current_list_node(ktimer_t* timer) {
-    verify(timer);
-    return timer->list_node;
-}
-
-ktimer_t* ktimer_create(ktimer_loop_t* ktimer_loop) {
+ktimer_t* ktimer_create(ktimer_loop_t* timer_loop) {
     ktimer_t* timer = 0;
-    verify(ktimer_loop);
+    verify(timer_loop);
     timer = create(ktimer_t);
     verify(timer);
     memset(timer, 0, sizeof(ktimer_t));
-    timer->ktimer_loop = ktimer_loop;
+    timer->timer_loop = timer_loop;
     return timer;
 }
 
 void ktimer_destroy(ktimer_t* timer) {
     verify(timer);
-    if (timer->current_list && timer->list_node) {
-        dlist_delete(timer->current_list, timer->list_node);
-    }
     free(timer);
 }
 
 int ktimer_check_dead(ktimer_t* timer) {
+    verify(timer);
     if (timer->type == ktimer_type_once) {
         return 1;
     } else if (timer->type == ktimer_type_times) {
@@ -243,61 +257,16 @@ int ktimer_check_dead(ktimer_t* timer) {
     return 0;
 }
 
-time_t ktimer_loop_get_tick_intval(ktimer_loop_t* ktimer_loop) {
-    return ktimer_loop->tick_intval;
-}
-
-int ktimer_check_timeout(ktimer_t* timer, time_t ms) {
-    kdlist_node_t* node         = 0;
-    time_t        tick_intval  = 0;
-    ktimer_loop_t* ktimer_loop = 0;
-    verify(timer);
-    ktimer_loop = timer->ktimer_loop;
-    verify(ktimer_loop);
-    tick_intval = ktimer_loop_get_tick_intval(ktimer_loop);
-    if (timer->ms > ms) {
-        /* 在将来的时间到期，检测是否可以触发 */
-        if (timer->ms - ms >= tick_intval) {
-            /* 距离下次超时时间大于（等于）一个tick间隔, 可以被下次触发, 调整到后续槽位槽位 */
-            node = _ktimer_loop_remove_timer(timer);
-            _ktimer_loop_add_ktimer_node(timer->ktimer_loop, node, timer->ms - ms);
-            return 0;
-        } else {
-            /* 距离下次超时时间小于一个tick间隔, 如果下一轮触发已经多超时了一个tick间隔 */
-        }
-    }
-    if (timer->type == ktimer_type_times) {
-        /* 先改变次数 */
-        timer->ms = ms + timer->intval;
-        timer->current_times++;
-    }
-    timer->cb(timer, timer->data);
-    if (_ktimer_check_stop(timer)) {
-        /* 回调内调用ktimer_stop() */
-        ktimer_destroy(timer);
-        return 1;
-    }
-    if (timer->type == ktimer_type_once) {
-        ktimer_destroy(timer);
-    } else if (timer->type == ktimer_type_period) {
-        timer->ms = ms + timer->intval;
-        node = _ktimer_loop_remove_timer(timer);
-        _ktimer_loop_add_ktimer_node(timer->ktimer_loop, node, timer->intval);
-    } else if (timer->type == ktimer_type_times) {
-        if (timer->times <= timer->current_times) {
-            ktimer_destroy(timer);
-        } else {
-            node = _ktimer_loop_remove_timer(timer);
-            _ktimer_loop_add_ktimer_node(timer->ktimer_loop, node, timer->intval);
-        }
-    }
-    return 1;
+time_t ktimer_loop_get_tick_intval(ktimer_loop_t* timer_loop) {
+    verify(timer_loop);
+    return timer_loop->freq;
 }
 
 int ktimer_stop(ktimer_t* timer) {
     verify(timer);
     timer->stop = 1;
-    if (!timer->current_list) { /* 还未启动的定时器 */
+    if (!timer->current_list) {
+        /* 还未启动的定时器, 未放入定时器链表 */
         ktimer_destroy(timer);
     }
     return error_ok;
@@ -307,16 +276,18 @@ int ktimer_start(ktimer_t* timer, ktimer_cb_t cb, void* data, time_t ms) {
     verify(timer);
     verify(cb);
     verify(ms);
+    verify(timer->timer_loop);
     if (timer->current_list) {
         return error_multiple_start;
+    }
+    if (error_ok != _ktimer_add(timer, ms)) {
+        return error_fail;
     }
     timer->cb     = cb;
     timer->data   = data;
     timer->type   = ktimer_type_period;
-    timer->ms     = time_get_milliseconds() + ms;
+    timer->ms     = time_get_milliseconds_19700101() + ms;
     timer->intval = ms;
-    verify(timer->ktimer_loop);
-    _ktimer_loop_add_timer(timer->ktimer_loop, timer);
     return error_ok;
 }
 
@@ -324,16 +295,18 @@ int ktimer_start_once(ktimer_t* timer, ktimer_cb_t cb, void* data, time_t ms) {
     verify(timer);
     verify(cb);
     verify(ms);
+    verify(timer->timer_loop);
     if (timer->current_list) {
         return error_multiple_start;
+    }
+    if (error_ok != _ktimer_add(timer, ms)) {
+        return error_fail;
     }
     timer->cb     = cb;
     timer->data   = data;
     timer->type   = ktimer_type_once;
-    timer->ms     = time_get_milliseconds() + ms;
+    timer->ms     = time_get_milliseconds_19700101() + ms;
     timer->intval = ms;
-    verify(timer->ktimer_loop);
-    _ktimer_loop_add_timer(timer->ktimer_loop, timer);
     return error_ok;
 }
 
@@ -341,16 +314,18 @@ int ktimer_start_times(ktimer_t* timer, ktimer_cb_t cb, void* data, time_t ms, i
     verify(timer);
     verify(cb);
     verify(ms);
+    verify(timer->timer_loop);
     if (timer->current_list) {
         return error_multiple_start;
+    }
+    if (error_ok != _ktimer_add(timer, ms)) {
+        return error_fail;
     }
     timer->cb     = cb;
     timer->data   = data;
     timer->type   = ktimer_type_times;
     timer->times  = times;
-    timer->ms     = time_get_milliseconds() + ms;
+    timer->ms     = time_get_milliseconds_19700101() + ms;
     timer->intval = ms;
-    verify(timer->ktimer_loop);
-    _ktimer_loop_add_timer(timer->ktimer_loop, timer);
     return error_ok;
 }

@@ -22,8 +22,6 @@ INSTALL(FILES
 	${PROJECT_SOURCE_DIR}/include/broadcast_api.h
 	${PROJECT_SOURCE_DIR}/include/channel_ref_api.h
 	${PROJECT_SOURCE_DIR}/include/config.h
-	${PROJECT_SOURCE_DIR}/include/framework_api.h
-	${PROJECT_SOURCE_DIR}/include/framework_config_api.h
 	${PROJECT_SOURCE_DIR}/include/hash_api.h
 	${PROJECT_SOURCE_DIR}/include/ip_filter_api.h
 	${PROJECT_SOURCE_DIR}/include/knet.h
@@ -32,12 +30,8 @@ INSTALL(FILES
 	${PROJECT_SOURCE_DIR}/include/loop_balancer_api.h
 	${PROJECT_SOURCE_DIR}/include/loop_profile_api.h
 	${PROJECT_SOURCE_DIR}/include/misc_api.h
-	${PROJECT_SOURCE_DIR}/include/node_api.h
-	${PROJECT_SOURCE_DIR}/include/node_config_api.h
 	${PROJECT_SOURCE_DIR}/include/ringbuffer_api.h
 	${PROJECT_SOURCE_DIR}/include/router_api.h
-	${PROJECT_SOURCE_DIR}/include/rpc_api.h
-	${PROJECT_SOURCE_DIR}/include/rpc_object_api.h
 	${PROJECT_SOURCE_DIR}/include/stream_api.h
 	${PROJECT_SOURCE_DIR}/include/thread_api.h
 	${PROJECT_SOURCE_DIR}/include/timer_api.h

@@ -256,7 +256,7 @@ krbnode_t* krbtree_min(krbtree_t* tree) {
     krbnode_t* x = 0;
     krbnode_t* t = 0;
     verify(tree);
-    if (tree->root == nil) {
+    if (!tree->root) {
         return 0;
     }
     x = tree->root;
@@ -271,7 +271,7 @@ krbnode_t* krbtree_max(krbtree_t* tree) {
     krbnode_t* x = 0;
     krbnode_t* t = 0;
     verify(tree);
-    if (tree->root == nil) {
+    if (!tree->root) {
         return 0;
     }
     x = tree->root;

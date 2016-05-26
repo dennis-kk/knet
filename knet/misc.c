@@ -979,6 +979,12 @@ uint32_t time_get_milliseconds() {
 #endif /* defined(WIN32) */
 }
 
+uint64_t time_get_milliseconds_19700101() {
+    struct timeval tp;
+    time_gettimeofday(&tp, 0);
+    return (uint64_t)tp.tv_sec * 1000llu + (uint64_t)tp.tv_usec / 1000llu;
+}
+
 void knet_localtime(struct tm* tm, const time_t* time) {
 #if defined(WIN32)
     localtime_s(tm, time);

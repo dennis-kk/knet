@@ -124,30 +124,13 @@ typedef struct _broadcast_t kbroadcast_t;
 typedef struct _ktimer_loop_t ktimer_loop_t;
 typedef struct _ktimer_t ktimer_t;
 typedef struct _logger_t klogger_t;
-typedef struct _krpc_t krpc_t;
-typedef struct _krpc_number_t krpc_number_t;
-typedef struct _krpc_string_t krpc_string_t;
-typedef struct _krpc_vector_t krpc_vector_t;
-typedef struct _krpc_object_t krpc_object_t;
-typedef struct _krpc_map_t krpc_map_t;
-typedef struct _krpc_value_t krpc_value_t;
 typedef struct _hash_t khash_t;
 typedef struct _hash_value_t khash_value_t;
-typedef struct _framework_t kframework_t;
-typedef struct _framework_acceptor_config_t kframework_acceptor_config_t;
-typedef struct _framework_connector_config_t kframework_connector_config_t;
-typedef struct _framework_config_t kframework_config_t;
-typedef struct _framework_raiser_t kframework_raiser_t;
-typedef struct _framework_worker_t kframework_worker_t;
-typedef struct _framework_timer_config_t kframework_timer_config_t;
 typedef struct _loop_profile_t kloop_profile_t;
 typedef struct _trie_t ktrie_t;
 typedef struct _ip_filter_t kip_filter_t;
 typedef struct _vrouter_t kvrouter_t;
 typedef struct _router_path_t krouter_path_t;
-typedef struct _node_config_t knode_config_t;
-typedef struct _node_t knode_t;
-typedef struct _node_proxy_t knode_proxy_t;
 typedef struct _rwlock_t krwlock_t;
 typedef struct _cond_t kcond_t;
 typedef struct _rb_tree_t krbtree_t;
@@ -224,18 +207,6 @@ typedef enum _error_e {
     error_not_connected,
     error_logger_write,
     error_set_tls_fail,
-    error_rpc_dup_id,
-    error_rpc_unknown_id,
-    error_rpc_unknown_type,
-    error_rpc_cb_fail,
-    error_rpc_cb_fail_close,
-    error_rpc_cb_close,
-    error_rpc_next,
-    error_rpc_not_enough_bytes,
-    error_rpc_vector_out_of_bound,
-    error_rpc_marshal_fail,
-    error_rpc_unmarshal_fail,
-    error_rpc_map_error_key_or_value,
     error_recvbuffer_not_enough,
     error_recvbuffer_locked,
     error_stream_enable,
@@ -248,11 +219,6 @@ typedef enum _error_e {
     error_ip_filter_open_fail,
     error_router_wire_not_found,
     error_router_wire_exist,
-    error_node_not_found,
-    error_node_exist,
-    error_node_ip_filter,
-    error_node_invalid_msg,
-    error_node_timeout,
     error_ringbuffer_not_found,
     error_node_argv_invalid,
     error_getaddrinfo_fail,
@@ -286,32 +252,6 @@ typedef enum _logger_mode_e {
     logger_mode_override = 8, /* 覆盖已存在的日志文件 */
 } knet_logger_mode_e;
 
-/*! RPC错误码 */
-typedef enum _rpc_error_e {
-    rpc_ok = 0,      /*! 成功 */
-    rpc_close,       /*! 忽略错误，关闭 */
-    rpc_error,       /*! 错误，但不关闭 */
-    rpc_error_close, /*! 错误且关闭 */
-} knet_rpc_error_e;
-
-/*! RPC类型 */
-typedef enum _krpc_type_e {
-    krpc_type_i8     = 1,    /*! 有符号8位 */
-    krpc_type_ui8    = 2,    /*! 无符号8位 */
-    krpc_type_i16    = 4,    /*! 有符号16位 */
-    krpc_type_ui16   = 8,    /*! 无符号16位 */
-    krpc_type_i32    = 16,   /*! 有符号32位 */
-    krpc_type_ui32   = 32,   /*! 无符号32位 */
-    krpc_type_i64    = 64,   /*! 有符号64位 */
-    krpc_type_ui64   = 128,  /*! 无符号64位 */
-    krpc_type_f32    = 256,  /*! 32位浮点 */
-    krpc_type_f64    = 512,  /*! 64位浮点 */
-    krpc_type_number = 1024, /*! 数字 */
-    krpc_type_string = 2048, /*! 字符串 */
-    krpc_type_vector = 4096, /*! 数组 */
-    krpc_type_map    = 8192, /*! 表 */
-} knet_rpc_type_e;
-
 typedef enum _node_cb_event_e {
     node_cb_event_join = 1,
     node_cb_event_disjoin = 2,
@@ -329,8 +269,6 @@ typedef void (*knet_thread_func_t)(kthread_runner_t*);
 typedef void (*knet_channel_ref_cb_t)(kchannel_ref_t*, knet_channel_cb_event_e);
 /*! 定时器回调函数 */
 typedef void (*ktimer_cb_t)(ktimer_t*, void*);
-/*! RPC回调函数 */
-typedef int (*krpc_cb_t)(krpc_object_t*);
 /*! RPC加密回调函数, 返回 非零 加密后长度, 0 失败 */
 typedef uint16_t (*krpc_encrypt_t)(void*, uint16_t, void*, uint16_t);
 /*! RPC解密回调函数, 返回 非零 解密后长度, 0 失败 */
@@ -341,12 +279,6 @@ typedef void (*knet_hash_dtor_t)(void*);
 typedef void (*knet_trie_dtor_t)(void*);
 /*! trie遍历函数 */
 typedef int (*knet_trie_for_each_func_t)(const char*, void*);
-/*! 节点回调函数 */
-typedef void (*knet_node_cb_t)(knode_proxy_t*, knet_node_cb_event_e);
-/*! 节点管理命令回调函数 */
-typedef int (*knet_node_manage_cb_t)(knode_t*, const char*, char*, int*);
-/*! 节点节点监控回调函数 */
-typedef void (*knet_node_monitor_cb_t)(knode_t*, kchannel_ref_t*);
 /*! 红黑树节点销毁回调函数 */
 typedef void(*knet_rb_node_destroy_cb_t)(void*, uint64_t);
 

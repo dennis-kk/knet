@@ -38,6 +38,11 @@ extern uint32_t time_get_milliseconds();
 extern uint64_t time_get_microseconds();
 
 /**
+ * 获取自1970年1月1日到现在的毫秒数
+ */
+extern uint64_t time_get_milliseconds_19700101();
+
+/**
  * localtime
  * @see localtime_s or localtime_r
  */

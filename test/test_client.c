@@ -77,7 +77,7 @@ int main(int argc, char* argv[]) {
     }
 
     loop       = knet_loop_create();
-    timer_loop = ktimer_loop_create(1000, 1000);
+    timer_loop = ktimer_loop_create(1000);
     timer      = ktimer_create(timer_loop);
 
     ktimer_start(timer, timer_cb, 0, 1000);

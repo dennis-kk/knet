@@ -245,22 +245,18 @@ void knet_channel_ref_update_recv(kchannel_ref_t* channel_ref);
 void knet_channel_ref_update_send(kchannel_ref_t* channel_ref);
 
 /**
- * 检测管道发起的连接操作是否超时
+ * 获取管道读空闲超时
  * @param channel_ref kchannel_ref_t实例
- * @param ts 当前时间戳（秒）
- * @retval 0 没有超时
- * @retval 非零 超时
+ * @return 管道读空闲超时
  */
-int knet_channel_ref_check_connect_timeout(kchannel_ref_t* channel_ref, time_t ts);
+int knet_channel_ref_get_timeout(kchannel_ref_t* channel_ref);
 
 /**
- * 检测管道是否空闲超时
+ * 获取管道连接超时
  * @param channel_ref kchannel_ref_t实例
- * @param ts 当前时间戳（秒）
- * @retval 0 没有超时
- * @retval 非零 超时
+ * @return 管道连接超时
  */
-int knet_channel_ref_check_timeout(kchannel_ref_t* channel_ref, time_t ts);
+int knet_channel_ref_get_connect_timeout(kchannel_ref_t* channel_ref);
 
 /**
  * 取得管道读缓冲区
@@ -340,5 +336,54 @@ void knet_channel_ref_set_user_data(kchannel_ref_t* channel_ref, void* data);
  * @return 用户数据指针
  */
 void* knet_channel_ref_get_user_data(kchannel_ref_t* channel_ref);
+
+/**
+ * 设置接收超时定时器
+ * @param channel_ref kchannel_ref_t实例
+ * @param timer 定时器
+ */
+void knet_channel_ref_set_recv_timeout_timer(kchannel_ref_t* channel_ref, ktimer_t* timer);
+
+/**
+ * 获取接收超时定时器
+ * @param channel_ref kchannel_ref_t实例
+ * @return 定时器
+ */
+ktimer_t* knet_channel_ref_get_recv_timeout_timer(kchannel_ref_t* channel_ref);
+
+/**
+ * 设置连接超时定时器
+ * @param channel_ref kchannel_ref_t实例
+ * @param timer 定时器
+ */
+void knet_channel_ref_set_connect_timeout_timer(kchannel_ref_t* channel_ref, ktimer_t* timer);
+
+/**
+ * 获取连接超时定时器
+ * @param channel_ref kchannel_ref_t实例
+ * @return 定时器
+ */
+ktimer_t* knet_channel_ref_get_connect_timeout_timer(kchannel_ref_t* channel_ref);
+
+/**
+ * 获取管道定时器回调函数
+ * @param channel_ref kchannel_ref_t实例
+ * @return 管道定时器回调函数
+ */
+ktimer_cb_t knet_channel_ref_get_timer_cb(kchannel_ref_t* channel_ref);
+
+/**
+ * 检查关闭事件是否已经被处理
+ * @param channel_ref kchannel_ref_t实例
+ * @retval 0 没有
+ * @retval 非零 已经被处理
+ */
+int knet_channel_ref_check_close_cb_called(kchannel_ref_t* channel_ref);
+
+/**
+ * 设置关闭事件处理标志
+ * @param channel_ref kchannel_ref_t实例
+ */
+void knet_channel_ref_set_close_cb_called(kchannel_ref_t* channel_ref);
 
 #endif /* CHANNEL_REF_H */
