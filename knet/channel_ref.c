@@ -61,16 +61,16 @@ typedef struct _channel_ref_info_t {
     /*
      * 调用ktimer_stop将关闭定时器, 定时器将在定时器循环内被销毁, 管道将不清理定时器
      */
-    ktimer_t* recv_timeout_timer;    /* 读空闲超时定时器 */
-    ktimer_t* connect_timeout_timer; /* 连接超时定时器 */
-    int       close_cb_called;       /* 关闭事件是否已经触发过 */
+    ktimer_t*    recv_timeout_timer;    /* 读空闲超时定时器 */
+    ktimer_t*    connect_timeout_timer; /* 连接超时定时器 */
+    volatile int close_cb_called;       /* 关闭事件是否已经触发过 */
 } channel_ref_info_t;
 
 struct _channel_ref_t {
-    int                 share;                 /* 是否通过knet_channel_ref_share()创建 */
-    uint64_t            domain_id;             /* 域ID */
-    kdlist_node_t*      list_node;             /* 域链表节点 */
-    channel_ref_info_t* ref_info;              /* 管道信息 */
+    int                 share;     /* 是否通过knet_channel_ref_share()创建 */
+    uint64_t            domain_id; /* 域ID */
+    kdlist_node_t*      list_node; /* 域链表节点 */
+    channel_ref_info_t* ref_info;  /* 管道信息 */
 };
 
 /**
@@ -251,8 +251,11 @@ int knet_channel_ref_check_auto_reconnect(kchannel_ref_t* channel_ref) {
 
 void knet_channel_ref_accept_async(kchannel_ref_t* channel_ref) {
     verify(channel_ref);
+    /* 添加到活跃管道链表 */
     knet_loop_add_channel_ref(channel_ref->ref_info->loop, channel_ref);
+    /* 设置管道状态 */
     knet_channel_ref_set_state(channel_ref, channel_state_accept);
+    /* 设置关注事件 */
     knet_channel_ref_set_event(channel_ref, channel_event_recv);
 }
 
@@ -521,7 +524,7 @@ kchannel_ref_t* knet_channel_ref_accept_from_socket_fd(kchannel_ref_t* channel_r
 void knet_channel_ref_update_accept(kchannel_ref_t* channel_ref) {
     kchannel_ref_t* client_ref = 0;
     kloop_t*        loop       = 0;
-    socket_t       client_fd  = 0;
+    socket_t        client_fd  = 0;
     verify(channel_ref);
     /* 查看选取器是否有自定义实现 */
     client_fd = knet_impl_channel_accept(channel_ref);
