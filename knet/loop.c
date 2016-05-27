@@ -113,17 +113,18 @@ kloop_t* knet_loop_create() {
         log_fatal("knet_loop_create() failed, reason: socket_pair()");
         return 0;
     }
-    loop->profile = knet_loop_profile_create(loop);
-    loop->active_channel_list = dlist_create();
-    loop->close_channel_list = dlist_create();
-    loop->event_list = dlist_create();
-    loop->lock = lock_create();
+    loop->profile = knet_loop_profile_create(loop); /* 统计 */
+    loop->active_channel_list = dlist_create(); /* 活跃管道链表 */
+    loop->close_channel_list = dlist_create(); /* 延迟关闭管道链表 */
+    loop->event_list = dlist_create(); /* 跨线程事件链表 */
+    loop->lock = lock_create(); /* 锁 - 跨线程事件链表 */
     loop->timer_loop = ktimer_loop_create(0); /* 建立定时器循环 */
-    loop->balance_options = loop_balancer_in | loop_balancer_out;
-    loop->notify_channel = knet_loop_create_channel_exist_socket_fd(loop, pair[0], 0, 0);
+    loop->balance_options = loop_balancer_in | loop_balancer_out; /* 负载均衡配置 */
+    loop->notify_channel = knet_loop_create_channel_exist_socket_fd(loop, pair[0], 0, 0); /* 跨线程事件通知写管道 */
     verify(loop->notify_channel);
-    loop->read_channel = knet_loop_create_channel_exist_socket_fd(loop, pair[1], 0, 1024 * 64);
+    loop->read_channel = knet_loop_create_channel_exist_socket_fd(loop, pair[1], 0, 1024 * 64); /* 跨线程事件通知读管道 */
     verify(loop->read_channel);
+    /* 将事件管道加入到活跃管道链并设置为活跃状态*/
     knet_loop_add_channel_ref(loop, loop->notify_channel);
     knet_loop_add_channel_ref(loop, loop->read_channel);
     knet_channel_ref_set_state(loop->notify_channel, channel_state_active);
@@ -141,9 +142,10 @@ void knet_loop_destroy(kloop_t* loop) {
     kchannel_ref_t* channel_ref = 0;
     loop_event_t*   event       = 0;
     verify(loop);
-    /* 关闭管道 */
+    /* 关闭所有活跃管道 */
     dlist_for_each_safe(loop->active_channel_list, node, temp) {
         channel_ref = (kchannel_ref_t*)dlist_node_get_data(node);
+        /* 关闭的活跃管道将被迁移到延迟关闭链表 */
         knet_channel_ref_update_close_in_loop(knet_channel_ref_get_loop(channel_ref), channel_ref);
     }
     /* 销毁已关闭管道 */
@@ -151,19 +153,22 @@ void knet_loop_destroy(kloop_t* loop) {
         channel_ref = (kchannel_ref_t*)dlist_node_get_data(node);
         knet_channel_ref_destroy(channel_ref);
     }
-    /* 销毁选取器 */
+    /* 销毁选取器本地实现 */
     knet_impl_destroy(loop);
-    dlist_destroy(loop->close_channel_list);
-    dlist_destroy(loop->active_channel_list);
-    /* 销毁未处理事件 */
+    dlist_destroy(loop->close_channel_list); /* 销毁关闭链表 */
+    dlist_destroy(loop->active_channel_list); /* 销毁活跃链表 */
+    /* 销毁未处理跨线程事件 */
     dlist_for_each_safe(loop->event_list, node, temp) {
         event = (loop_event_t*)dlist_node_get_data(node);
         destroy(event);
     }
+    /* 销毁统计器 */
     knet_loop_profile_destroy(loop->profile);
+    /* 销毁事件链表 */
     dlist_destroy(loop->event_list);
+    /* 销毁事件链表锁 */
     lock_destroy(loop->lock);
-    /* 销毁定时器循环 */
+    /* 销毁定时器循环, 所有管道定时器将被销毁 */
     ktimer_loop_destroy(loop->timer_loop);
     destroy(loop);
 }
@@ -182,18 +187,21 @@ void loop_add_event(kloop_t* loop, loop_event_t* loop_event) {
 void knet_loop_notify_accept(kloop_t* loop, kchannel_ref_t* channel_ref) {
     verify(loop);
     verify(channel_ref);
+    /* 添加accept事件 */
     loop_add_event(loop, loop_event_create(channel_ref, 0, loop_event_accept));
 }
 
 void knet_loop_notify_accept_async(kloop_t* loop, kchannel_ref_t* channel_ref) {
     verify(loop);
     verify(channel_ref);
+    /* 添加异步accept事件 */
     loop_add_event(loop, loop_event_create(channel_ref, 0, loop_event_accept_async));
 }
 
 void knet_loop_notify_connect(kloop_t* loop, kchannel_ref_t* channel_ref) {
     verify(loop);
     verify(channel_ref);
+    /* 添加connect事件 */
     loop_add_event(loop, loop_event_create(channel_ref, 0, loop_event_connect));
 }
 
@@ -201,20 +209,23 @@ void knet_loop_notify_send(kloop_t* loop, kchannel_ref_t* channel_ref, kbuffer_t
     verify(loop);
     verify(channel_ref);
     verify(send_buffer);
+    /* 添加send事件 */
     loop_add_event(loop, loop_event_create(channel_ref, send_buffer, loop_event_send));
 }
 
 void knet_loop_notify_close(kloop_t* loop, kchannel_ref_t* channel_ref) {
     verify(loop);
     verify(channel_ref);
+    /* 添加关闭事件 */
     loop_add_event(loop, loop_event_create(channel_ref, 0, loop_event_close));
 }
 
 void knet_loop_queue_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
     verify(channel);
     if (e & channel_cb_event_recv) {
-        /* 清空所有读到的数据 */
+        /* 清空所有读到的数据, 这些数据(没有实际意义)只是触发读事件来让loop处理其他线程发送过来的事件 */
         knet_stream_eat_all(knet_channel_ref_get_stream(channel));
+        /* 一次全部处理完所有事件 */
         knet_loop_event_process(knet_channel_ref_get_loop(channel));
     } else if (e & channel_cb_event_close) {
         if (knet_loop_check_running(knet_channel_ref_get_loop(channel))) {
@@ -232,6 +243,11 @@ void knet_loop_notify(kloop_t* loop) {
 }
 
 void knet_loop_event_process(kloop_t* loop) {
+    /*
+     * loop多线程的处理原则如下:
+     * 1. 任何管道(kchannel_ref_t)的所有操作只会在一个线程内, 即管道与线程是绑定的关系
+     * 2. 在任何一个线程内操作管道, 如果管道与线程没有绑定关系, 都会以事件方式发送至绑定线程处理
+     */
     kdlist_node_t* node       = 0;
     kdlist_node_t* temp       = 0;
     loop_event_t* loop_event = 0;
@@ -355,6 +371,7 @@ void knet_loop_remove_channel_ref(kloop_t* loop, kchannel_ref_t* channel_ref) {
     verify(channel_ref);
     /* 解除与当前链表关联，但不销毁节点 */
     dlist_remove(loop->active_channel_list, knet_channel_ref_get_loop_node(channel_ref));
+    /* 统计信息 */
     knet_loop_profile_decrease_established_channel_count(loop->profile);
     knet_loop_profile_increase_close_channel_count(loop->profile);
 }
@@ -392,6 +409,7 @@ kloop_balancer_t* knet_loop_get_balancer(kloop_t* loop) {
 
 void knet_loop_check_timeout(kloop_t* loop, time_t ts) {
     (void)ts;
+    /* 检测管道超时, 包含连接超时和读超时 */
     ktimer_loop_run_once(loop->timer_loop);
 }
 
@@ -402,11 +420,13 @@ void knet_loop_check_close(kloop_t* loop) {
     verify(loop);
     dlist_for_each_safe(knet_loop_get_close_list(loop), node, temp) {
         channel_ref = (kchannel_ref_t*)dlist_node_get_data(node);
+        /* 在多线程环境下, 由于多线程持有管道引用导致引用计数不为零, 保证用户回调在本线程只会被调用一次 */
         if (!knet_channel_ref_check_close_cb_called(channel_ref)) {
             /* 调用用户回调 */
             if (knet_channel_ref_get_cb(channel_ref)) {
                 knet_channel_ref_get_cb(channel_ref)(channel_ref, channel_cb_event_close);
             }
+            /* 设置关闭事件回调标志 */
             knet_channel_ref_set_close_cb_called(channel_ref);
         }
         /* 销毁管道 */

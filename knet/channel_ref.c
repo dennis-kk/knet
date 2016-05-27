@@ -39,7 +39,7 @@ typedef struct _channel_ref_info_t {
     /* 基础数据成员 */
     int                           balance;              /* 是否被负载均衡标志 */
     kchannel_t*                   channel;              /* 内部管道 */
-    kdlist_node_t*                loop_node;            /* 管道链表节点 */
+    kdlist_node_t*                loop_node;            /* 管道链表节点, 保存此节点可以不需遍历链表搜索 */
     kstream_t*                    stream;               /* 管道(读/写)数据流 */
     kloop_t*                      loop;                 /* 管道所关联的kloop_t */
     kaddress_t*                   peer_address;         /* 对端地址 */
