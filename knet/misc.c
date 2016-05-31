@@ -35,7 +35,6 @@
 #include "list.h"
 #include "logger.h"
 
-
 struct _thread_runner_t {
     knet_thread_func_t func;         /* 线程函数 */
     void*              params;       /* 单参数 */

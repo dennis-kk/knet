@@ -220,7 +220,6 @@ typedef enum _error_e {
     error_router_wire_not_found,
     error_router_wire_exist,
     error_ringbuffer_not_found,
-    error_node_argv_invalid,
     error_getaddrinfo_fail,
 } knet_error_e;
 
@@ -251,17 +250,6 @@ typedef enum _logger_mode_e {
     logger_mode_flush = 4,    /* 每次写日志同时清空缓存 */
     logger_mode_override = 8, /* 覆盖已存在的日志文件 */
 } knet_logger_mode_e;
-
-typedef enum _node_cb_event_e {
-    node_cb_event_join = 1,
-    node_cb_event_disjoin = 2,
-    node_cb_event_data = 4,
-} knet_node_cb_event_e;
-
-typedef enum _manage_cb_ret_e {
-    manage_cb_ok = 0,    /* 成功 */
-    manage_cb_close = 1, /* 关闭管理客户端管道 */
-} manage_cb_ret_e;
 
 /*! 线程函数 */
 typedef void (*knet_thread_func_t)(kthread_runner_t*);
