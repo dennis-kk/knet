@@ -22,6 +22,7 @@
 * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+#include "config.h"
 #include "rb_tree.h"
 #include "logger.h"
 
