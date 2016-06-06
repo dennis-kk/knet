@@ -23,6 +23,7 @@
 */
 
 #include "rb_tree.h"
+#include "logger.h"
 
 /*
  * 实现基于算法导论关于红黑树的相关章节
