@@ -52,27 +52,30 @@ struct _loop_t {
 };
 
 typedef enum _loop_event_e {
-    loop_event_accept = 1,    /* 接受新连接事件 */
-    loop_event_connect,       /* 发起连接事件 */
-    loop_event_send,          /* 发送事件 */
-    loop_event_close,         /* 关闭事件 */
-    loop_event_accept_async,  /* 异步发起监听 */
+    loop_event_accept = 1,          /* 接受新连接事件 */
+    loop_event_connect,             /* 发起连接事件 */
+    loop_event_send,                /* 发送事件 */
+    loop_event_close,               /* 关闭事件 */
+    loop_event_accept_async,        /* 异步发起监听 */
+    loop_event_change_recv_timeout, /* 重置读空闲超时 */
 } loop_event_e;
 
 typedef struct _loop_event_t {
-    kchannel_ref_t* channel_ref; /* 事件相关管道 */
-    kbuffer_t*      send_buffer; /* 发送缓冲区指针 */
-    loop_event_e    event;       /* 事件类型 */
+    kchannel_ref_t* channel_ref;  /* 事件相关管道 */
+    kbuffer_t*      send_buffer;  /* 发送缓冲区指针 */
+    int32_t         recv_timeout; /* 读空闲超时 */
+    loop_event_e    event;        /* 事件类型 */
 } loop_event_t;
 
-loop_event_t* loop_event_create(kchannel_ref_t* channel_ref, kbuffer_t* send_buffer, loop_event_e e) {
+loop_event_t* loop_event_create(kchannel_ref_t* channel_ref, kbuffer_t* send_buffer, int32_t recv_timeout, loop_event_e e) {
     loop_event_t* ev = 0;
     verify(channel_ref); /* send_buffer可以为0 */
     ev = create(loop_event_t);
     verify(ev);
-    ev->channel_ref = channel_ref;
-    ev->send_buffer = send_buffer;
-    ev->event = e;
+    ev->channel_ref  = channel_ref;
+    ev->send_buffer  = send_buffer;
+    ev->recv_timeout = recv_timeout;
+    ev->event        = e;
     return ev;
 }
 
@@ -188,21 +191,21 @@ void knet_loop_notify_accept(kloop_t* loop, kchannel_ref_t* channel_ref) {
     verify(loop);
     verify(channel_ref);
     /* 添加accept事件 */
-    loop_add_event(loop, loop_event_create(channel_ref, 0, loop_event_accept));
+    loop_add_event(loop, loop_event_create(channel_ref, 0, 0, loop_event_accept));
 }
 
 void knet_loop_notify_accept_async(kloop_t* loop, kchannel_ref_t* channel_ref) {
     verify(loop);
     verify(channel_ref);
     /* 添加异步accept事件 */
-    loop_add_event(loop, loop_event_create(channel_ref, 0, loop_event_accept_async));
+    loop_add_event(loop, loop_event_create(channel_ref, 0, 0, loop_event_accept_async));
 }
 
 void knet_loop_notify_connect(kloop_t* loop, kchannel_ref_t* channel_ref) {
     verify(loop);
     verify(channel_ref);
     /* 添加connect事件 */
-    loop_add_event(loop, loop_event_create(channel_ref, 0, loop_event_connect));
+    loop_add_event(loop, loop_event_create(channel_ref, 0, 0, loop_event_connect));
 }
 
 void knet_loop_notify_send(kloop_t* loop, kchannel_ref_t* channel_ref, kbuffer_t* send_buffer) {
@@ -210,14 +213,21 @@ void knet_loop_notify_send(kloop_t* loop, kchannel_ref_t* channel_ref, kbuffer_t
     verify(channel_ref);
     verify(send_buffer);
     /* 添加send事件 */
-    loop_add_event(loop, loop_event_create(channel_ref, send_buffer, loop_event_send));
+    loop_add_event(loop, loop_event_create(channel_ref, send_buffer, 0, loop_event_send));
+}
+
+void knet_loop_notify_recv_timeout(kloop_t* loop, kchannel_ref_t* channel_ref, int32_t recv_timeout) {
+    verify(loop);
+    verify(channel_ref);
+    /* 添加重置读空闲超时事件 */
+    loop_add_event(loop, loop_event_create(channel_ref, 0, recv_timeout, loop_event_change_recv_timeout));
 }
 
 void knet_loop_notify_close(kloop_t* loop, kchannel_ref_t* channel_ref) {
     verify(loop);
     verify(channel_ref);
     /* 添加关闭事件 */
-    loop_add_event(loop, loop_event_create(channel_ref, 0, loop_event_close));
+    loop_add_event(loop, loop_event_create(channel_ref, 0, 0, loop_event_close));
 }
 
 void knet_loop_queue_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
@@ -271,6 +281,9 @@ void knet_loop_event_process(kloop_t* loop) {
                 break;
             case loop_event_close: /* 当前loop内close */
                 knet_channel_ref_update_close_in_loop(loop, loop_event->channel_ref);
+                break;
+            case loop_event_change_recv_timeout: /* 重置读空闲超时 */
+                knet_start_recv_timeout_timer_in_loop(loop_event->channel_ref, loop_event->recv_timeout);
                 break;
             default:
                 break;
@@ -331,10 +344,7 @@ kdlist_t* knet_loop_get_close_list(kloop_t* loop) {
 }
 
 void knet_loop_add_channel_ref(kloop_t* loop, kchannel_ref_t* channel_ref) {
-    kdlist_node_t* node         = 0;
-    ktimer_t*      recv_timer   = 0;
-    time_t         recv_timeout = 0;
-    int            error        = 0;
+    kdlist_node_t* node  = 0;
     verify(channel_ref);
     verify(loop);
     node = knet_channel_ref_get_loop_node(channel_ref);
@@ -351,19 +361,6 @@ void knet_loop_add_channel_ref(kloop_t* loop, kchannel_ref_t* channel_ref) {
     knet_channel_ref_set_loop_node(channel_ref, dlist_get_front(loop->active_channel_list));
     /* 通知选取器添加管道 */
     knet_impl_add_channel_ref(loop, channel_ref);
-    /* 建立接收超时定时器 */
-    if (!knet_channel_ref_get_recv_timeout_timer(channel_ref)) {
-        recv_timeout = knet_channel_ref_get_timeout(channel_ref);
-        if (recv_timeout) {
-            /* 建立接收超时定时器 */
-            recv_timer = ktimer_create(loop->timer_loop);
-            verify(recv_timer);
-            error = ktimer_start(recv_timer, knet_channel_ref_get_timer_cb(channel_ref),
-                channel_ref, recv_timeout * 1000);
-            verify(error == error_ok);
-            knet_channel_ref_set_recv_timeout_timer(channel_ref, recv_timer);
-        }
-    }
 }
 
 void knet_loop_remove_channel_ref(kloop_t* loop, kchannel_ref_t* channel_ref) {
