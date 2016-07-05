@@ -26,15 +26,15 @@
 #include "logger.h"
 
 struct _address_t {
-    char ip[32]; /* IP地址 */
-    int  port;   /* 端口 */
+    char ip[32];
+    int  port;
 };
 
 kaddress_t* knet_address_create() {
     kaddress_t* address = create(kaddress_t);
     verify(address);
     memset(address, 0, sizeof(kaddress_t));
-    strcpy(address->ip, "0.0.0.0"); /* 默认值 */
+    strcpy(address->ip, "0.0.0.0");
     return address;
 }
 

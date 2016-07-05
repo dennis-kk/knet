@@ -617,9 +617,6 @@ void _timer_cb(ktimer_t* timer, void* data) {
             if (knet_channel_ref_get_cb(channel_ref)) {
                 knet_channel_ref_get_cb(channel_ref)(channel_ref, channel_cb_event_timeout);
             }
-        } else {
-            /* 监听器没有读超时 */
-            ktimer_stop(timer);
         }
     }
 }
@@ -652,11 +649,6 @@ void knet_channel_ref_update_recv(kchannel_ref_t* channel_ref) {
             channel_ref->ref_info->cb(channel_ref, channel_cb_event_recv);
         }
         knet_channel_ref_set_event(channel_ref, channel_event_recv);
-        /* 重置读空闲超时定时器 */
-        if (channel_ref->ref_info->recv_timeout_timer) {
-            ktimer_stop(channel_ref->ref_info->recv_timeout_timer);
-            knet_start_recv_timeout_timer_in_loop(channel_ref, (int)channel_ref->ref_info->timeout);
-        }
     }
 }
 
@@ -763,37 +755,9 @@ int knet_channel_ref_check_balance(kchannel_ref_t* channel_ref) {
     return channel_ref->ref_info->balance;
 }
 
-int knet_start_recv_timeout_timer_in_loop(kchannel_ref_t* channel_ref, int timeout) {
-    int error = 0;
-    if (channel_ref->ref_info->recv_timeout_timer) {
-        ktimer_stop(channel_ref->ref_info->recv_timeout_timer);
-    }
-    channel_ref->ref_info->timeout = timeout;
-    /* 建立接收超时定时器 */
-    if (channel_ref->ref_info->timeout) {
-        /* 建立接收超时定时器 */
-        channel_ref->ref_info->recv_timeout_timer = ktimer_create(knet_loop_get_timer_loop(
-            channel_ref->ref_info->loop));
-        verify(channel_ref->ref_info->recv_timeout_timer);
-        error = ktimer_start(channel_ref->ref_info->recv_timeout_timer,
-            knet_channel_ref_get_timer_cb(channel_ref), channel_ref, channel_ref->ref_info->timeout * 1000);
-        verify(error == error_ok);
-    }
-    return error;
-}
-
 void knet_channel_ref_set_timeout(kchannel_ref_t* channel_ref, int timeout) {
-    thread_id_t thread_id = 0;
     verify(channel_ref); /* timeout可以为0 */
-    thread_id = knet_loop_get_thread_id(channel_ref->ref_info->loop);
     channel_ref->ref_info->timeout = (time_t)timeout;
-    if (!thread_id || (thread_id == thread_get_self_id())) {
-        /* 当前线程内改变超时时间 */
-        knet_start_recv_timeout_timer_in_loop(channel_ref, timeout);
-    } else {
-        /* 发送跨线程事件 */
-        knet_loop_notify_recv_timeout(channel_ref->ref_info->loop, channel_ref, timeout);
-    }
 }
 
 int knet_channel_ref_get_timeout(kchannel_ref_t* channel_ref) {
@@ -829,6 +793,16 @@ int knet_channel_ref_connect_in_loop(kchannel_ref_t* channel_ref) {
         error = ktimer_start(channel_ref->ref_info->connect_timeout_timer, _timer_cb, channel_ref,
             channel_ref->ref_info->connect_timeout * 1000);
         verify(error == error_ok);
+    }
+    if (!channel_ref->ref_info->recv_timeout_timer) {
+        if (channel_ref->ref_info->timeout) {
+            /* 启动读超时定时器 */
+            channel_ref->ref_info->recv_timeout_timer = ktimer_create(knet_loop_get_timer_loop(channel_ref->ref_info->loop));
+            verify(channel_ref->ref_info->recv_timeout_timer);
+            error = ktimer_start(channel_ref->ref_info->recv_timeout_timer, knet_channel_ref_get_timer_cb(channel_ref),
+                channel_ref, channel_ref->ref_info->timeout * 1000);
+            verify(error == error_ok);
+        }
     }
     return error_ok;
 }

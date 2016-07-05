@@ -386,13 +386,4 @@ int knet_channel_ref_check_close_cb_called(kchannel_ref_t* channel_ref);
  */
 void knet_channel_ref_set_close_cb_called(kchannel_ref_t* channel_ref);
 
-/**
- * 启动读空闲超时定时器
- * @param channel_ref kchannel_ref_t实例
- * @param timeout 读空闲超时(秒)
- * @retval error_ok 成功
- * @retval 其他 失败
- */
-int knet_start_recv_timeout_timer_in_loop(kchannel_ref_t* channel_ref, int timeout);
-
 #endif /* CHANNEL_REF_H */

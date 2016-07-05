@@ -135,14 +135,6 @@ void knet_loop_notify_send(kloop_t* loop, kchannel_ref_t* channel_ref, kbuffer_t
 void knet_loop_notify_close(kloop_t* loop, kchannel_ref_t* channel_ref);
 
 /**
- * 发送事件通知 - 重置读空闲超时
- * @param loop kloop_t实例
- * @param channel_ref kchannel_ref_t实例
- * @param recv_timeout 空闲超时(秒)
- */
-void knet_loop_notify_recv_timeout(kloop_t* loop, kchannel_ref_t* channel_ref, int32_t recv_timeout);
-
-/**
  * 通知管道回调函数
  * @param channel kchannel_ref_t实例
  * @param e 管道事件
