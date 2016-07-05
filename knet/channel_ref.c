@@ -565,6 +565,26 @@ void knet_channel_ref_update_accept(kchannel_ref_t* channel_ref) {
     }
 }
 
+int knet_channel_ref_start_connect_timeout_timer(kchannel_ref_t* channel_ref) {
+    int       error         = error_ok;
+    ktimer_t* connect_timer = 0;
+    verify(channel_ref);
+    if (channel_ref->ref_info->connect_timeout_timer) {
+        ktimer_stop(channel_ref->ref_info->connect_timeout_timer);
+        channel_ref->ref_info->connect_timeout_timer = 0;
+    }
+    if (channel_ref->ref_info->connect_timeout) {
+        connect_timer = ktimer_create(knet_loop_get_timer_loop(channel_ref->ref_info->loop));
+        verify(connect_timer);
+        error = ktimer_start(connect_timer, knet_channel_ref_get_timer_cb(channel_ref),
+            channel_ref, channel_ref->ref_info->connect_timeout * 1000);
+        if (error == error_ok) {
+            knet_channel_ref_set_connect_timeout_timer(channel_ref, connect_timer);
+        }
+    }
+    return error;
+}
+
 int knet_channel_ref_start_recv_timeout_timer(kchannel_ref_t* channel_ref) {
     int       error      = error_ok;
     ktimer_t* recv_timer = 0;
@@ -811,7 +831,7 @@ int knet_channel_ref_connect_in_loop(kchannel_ref_t* channel_ref) {
     knet_loop_add_channel_ref(channel_ref->ref_info->loop, channel_ref);
     knet_channel_ref_set_state(channel_ref, channel_state_connect);
     knet_channel_ref_set_event(channel_ref, channel_event_send);
-    return knet_channel_ref_start_recv_timeout_timer(channel_ref);
+    return knet_channel_ref_start_connect_timeout_timer(channel_ref);
 }
 
 kaddress_t* knet_channel_ref_get_peer_address(kchannel_ref_t* channel_ref) {
