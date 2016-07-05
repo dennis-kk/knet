@@ -28,7 +28,7 @@ void acceptor_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
             knet_channel_ref_get_socket_fd(channel),
             knet_loop_get_active_channel_count(knet_channel_ref_get_loop(channel)),
             knet_loop_get_close_channel_count(knet_channel_ref_get_loop(channel)));
-        knet_channel_ref_set_timeout(channel, 20);
+        knet_channel_ref_set_timeout(channel, 5);
         knet_channel_ref_set_cb(channel, client_cb);
     }
 }
@@ -73,9 +73,7 @@ int main(int argc, char* argv[]) {
 
     acceptor = knet_loop_create_channel(loop, 8, 1024);
     knet_channel_ref_set_cb(acceptor, acceptor_cb);
-    knet_channel_ref_accept(acceptor, ip, port, 500);
-    knet_channel_ref_set_timeout(acceptor, 20);
-
+    knet_channel_ref_accept(acceptor, ip, port, 5000);
     for (i = 0; i < worker; i++) {
         loops[i] = knet_loop_create();
         knet_loop_balancer_attach(balancer, loops[i]);

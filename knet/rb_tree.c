@@ -208,12 +208,16 @@ krbnode_t* krbnode_find(krbnode_t* node, uint64_t key) {
     if (!node) {
         return 0;
     }
-    if (node->key < key) {
-        return krbnode_find(node->right, key);
-    } else if (node->key > key) {
-        return krbnode_find(node->left, key);
+    while (node != nil) {
+        if (node->key < key) {
+            node = node->right;
+        } else if (node->key > key) {
+            node = node->left;
+        } else {
+            break;
+        }
     }
-    return node;
+    return ((node != nil) ? node : 0);
 }
 
 krbnode_t* krbtree_find(krbtree_t* tree, uint64_t key) {
