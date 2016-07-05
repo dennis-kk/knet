@@ -565,6 +565,26 @@ void knet_channel_ref_update_accept(kchannel_ref_t* channel_ref) {
     }
 }
 
+int knet_channel_ref_start_recv_timeout_timer(kchannel_ref_t* channel_ref) {
+    int       error      = error_ok;
+    ktimer_t* recv_timer = 0;
+    verify(channel_ref);
+    if (channel_ref->ref_info->recv_timeout_timer) {
+        ktimer_stop(channel_ref->ref_info->recv_timeout_timer);
+        channel_ref->ref_info->recv_timeout_timer = 0;
+    }
+    if (channel_ref->ref_info->timeout) {
+        recv_timer = ktimer_create(knet_loop_get_timer_loop(channel_ref->ref_info->loop));
+        verify(recv_timer);
+        error = ktimer_start(recv_timer, knet_channel_ref_get_timer_cb(channel_ref),
+            channel_ref, channel_ref->ref_info->timeout * 1000);
+        if (error == error_ok) {
+            knet_channel_ref_set_recv_timeout_timer(channel_ref, recv_timer);
+        }
+    }
+    return error;
+}
+
 void knet_channel_ref_update_accept_in_loop(kloop_t* loop, kchannel_ref_t* channel_ref) {
     verify(loop);
     verify(channel_ref);
@@ -576,6 +596,8 @@ void knet_channel_ref_update_accept_in_loop(kloop_t* loop, kchannel_ref_t* chann
     if (channel_ref->ref_info->cb) {
         channel_ref->ref_info->cb(channel_ref, channel_cb_event_accept);
     }
+    /* 建立接收超时定时器 */
+    knet_channel_ref_start_recv_timeout_timer(channel_ref);
 }
 
 void knet_channel_ref_update_connect(kchannel_ref_t* channel_ref) {
@@ -595,7 +617,9 @@ void knet_channel_ref_update_connect(kchannel_ref_t* channel_ref) {
 }
 
 void _timer_cb(ktimer_t* timer, void* data) {
+    time_t          now           = time(0);
     kchannel_ref_t* channel_ref   = (kchannel_ref_t*)data;
+    time_t          gap           = now - channel_ref->ref_info->last_recv_ts;
     ktimer_t*       recv_timer    = knet_channel_ref_get_recv_timeout_timer(channel_ref);
     ktimer_t*       connect_timer = knet_channel_ref_get_connect_timeout_timer(channel_ref);
     if (connect_timer == timer) { /* 连接超时定时器 */
@@ -613,9 +637,11 @@ void _timer_cb(ktimer_t* timer, void* data) {
         }
     } else if (recv_timer == timer) { /* 接收超时定时器 */
         if (!knet_channel_ref_check_state(channel_ref, channel_state_accept)) {
-            /* 读超时，心跳 */
-            if (knet_channel_ref_get_cb(channel_ref)) {
-                knet_channel_ref_get_cb(channel_ref)(channel_ref, channel_cb_event_timeout);
+            if (gap > channel_ref->ref_info->timeout) {
+                /* 读超时，心跳 */
+                if (knet_channel_ref_get_cb(channel_ref)) {
+                    knet_channel_ref_get_cb(channel_ref)(channel_ref, channel_cb_event_timeout);
+                }
             }
         }
     }
@@ -781,30 +807,11 @@ knet_channel_ref_cb_t knet_channel_ref_get_cb(kchannel_ref_t* channel_ref) {
 }
 
 int knet_channel_ref_connect_in_loop(kchannel_ref_t* channel_ref) {
-    int error = 0;
     verify(channel_ref);
     knet_loop_add_channel_ref(channel_ref->ref_info->loop, channel_ref);
     knet_channel_ref_set_state(channel_ref, channel_state_connect);
     knet_channel_ref_set_event(channel_ref, channel_event_send);
-    if (channel_ref->ref_info->connect_timeout) {
-        /* 建立连接超时定时器 */
-        channel_ref->ref_info->connect_timeout_timer = ktimer_create(knet_loop_get_timer_loop(channel_ref->ref_info->loop));
-        verify(channel_ref->ref_info->connect_timeout_timer);
-        error = ktimer_start(channel_ref->ref_info->connect_timeout_timer, _timer_cb, channel_ref,
-            channel_ref->ref_info->connect_timeout * 1000);
-        verify(error == error_ok);
-    }
-    if (!channel_ref->ref_info->recv_timeout_timer) {
-        if (channel_ref->ref_info->timeout) {
-            /* 启动读超时定时器 */
-            channel_ref->ref_info->recv_timeout_timer = ktimer_create(knet_loop_get_timer_loop(channel_ref->ref_info->loop));
-            verify(channel_ref->ref_info->recv_timeout_timer);
-            error = ktimer_start(channel_ref->ref_info->recv_timeout_timer, knet_channel_ref_get_timer_cb(channel_ref),
-                channel_ref, channel_ref->ref_info->timeout * 1000);
-            verify(error == error_ok);
-        }
-    }
-    return error_ok;
+    return knet_channel_ref_start_recv_timeout_timer(channel_ref);
 }
 
 kaddress_t* knet_channel_ref_get_peer_address(kchannel_ref_t* channel_ref) {

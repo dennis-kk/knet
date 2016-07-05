@@ -331,10 +331,7 @@ kdlist_t* knet_loop_get_close_list(kloop_t* loop) {
 }
 
 void knet_loop_add_channel_ref(kloop_t* loop, kchannel_ref_t* channel_ref) {
-    kdlist_node_t* node         = 0;
-    ktimer_t*      recv_timer   = 0;
-    time_t         recv_timeout = 0;
-    int            error        = 0;
+    kdlist_node_t* node  = 0;
     verify(channel_ref);
     verify(loop);
     node = knet_channel_ref_get_loop_node(channel_ref);
@@ -352,18 +349,7 @@ void knet_loop_add_channel_ref(kloop_t* loop, kchannel_ref_t* channel_ref) {
     /* 通知选取器添加管道 */
     knet_impl_add_channel_ref(loop, channel_ref);
     /* 建立接收超时定时器 */
-    if (!knet_channel_ref_get_recv_timeout_timer(channel_ref)) {
-        recv_timeout = knet_channel_ref_get_timeout(channel_ref);
-        if (recv_timeout) {
-            /* 建立接收超时定时器 */
-            recv_timer = ktimer_create(loop->timer_loop);
-            verify(recv_timer);
-            error = ktimer_start(recv_timer, knet_channel_ref_get_timer_cb(channel_ref),
-                channel_ref, recv_timeout * 1000);
-            verify(error == error_ok);
-            knet_channel_ref_set_recv_timeout_timer(channel_ref, recv_timer);
-        }
-    }
+    knet_channel_ref_start_recv_timeout_timer(channel_ref);
 }
 
 void knet_loop_remove_channel_ref(kloop_t* loop, kchannel_ref_t* channel_ref) {
