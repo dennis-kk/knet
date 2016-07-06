@@ -562,7 +562,7 @@ void knet_channel_ref_update_accept(kchannel_ref_t* channel_ref) {
                 channel_ref->ref_info->cb(client_ref, channel_cb_event_accept);
             }
             /* 建立接收超时定时器 */
-            knet_channel_ref_start_recv_timeout_timer(channel_ref);
+            knet_channel_ref_start_recv_timeout_timer(client_ref);
         }
     }
 }

@@ -230,6 +230,37 @@ CASE(Test_Channel_Idle_Timeout) {
     knet_loop_destroy(loop);
 }
 
+bool case_Test_Channel_Recv_Timeout = false;
+
+CASE(Test_Channel_Recv_Timeout) {
+    struct holder {
+        static void connector_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
+            if (e & channel_cb_event_connect) {
+            } else if (e & channel_cb_event_close) {
+            }
+        }
+
+        static void acceptor_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
+            if (e & channel_cb_event_accept) {
+                knet_channel_ref_set_cb(channel, acceptor_cb);
+                knet_channel_ref_set_timeout(channel, 1);
+            } else if (e & channel_cb_event_timeout) {
+                case_Test_Channel_Recv_Timeout = true;
+                knet_loop_exit(knet_channel_ref_get_loop(channel));
+            }
+        }
+    };
+    kloop_t* loop = knet_loop_create();
+    kchannel_ref_t* connector = knet_loop_create_channel(loop, 1, 1024);
+    kchannel_ref_t* acceptor = knet_loop_create_channel(loop, 1, 1024);
+    knet_channel_ref_accept(acceptor, "127.0.0.1", 8000, 1);
+    knet_channel_ref_connect(connector, "127.0.0.1", 8000, 1);
+    knet_channel_ref_set_cb(connector, &holder::connector_cb);
+    knet_channel_ref_set_cb(acceptor, &holder::acceptor_cb);
+    knet_loop_run(loop);
+    knet_loop_destroy(loop);
+}
+
 kchannel_ref_t* case_Test_Channel_Share_Leave_channel = 0;
 
 CASE(Test_Channel_Share_Leave) {
