@@ -660,6 +660,7 @@ void _timer_cb(ktimer_t* timer, void* data) {
     } else if (recv_timer == timer) { /* 接收超时定时器 */
         if (!knet_channel_ref_check_state(channel_ref, channel_state_accept)) {
             if (gap > channel_ref->ref_info->timeout) {
+                log_warning("channel recv timeout, channel[%llu]", knet_channel_ref_get_uuid(channel_ref));
                 /* 读超时，心跳 */
                 if (knet_channel_ref_get_cb(channel_ref)) {
                     knet_channel_ref_get_cb(channel_ref)(channel_ref, channel_cb_event_timeout);
