@@ -26,14 +26,15 @@
 #include "logger.h"
 
 struct _address_t {
-    char ip[32];
-    int  port;
+    char ip[32]; /* IP */
+    int  port;   /* 端口 */
 };
 
 kaddress_t* knet_address_create() {
     kaddress_t* address = create(kaddress_t);
     verify(address);
     memset(address, 0, sizeof(kaddress_t));
+    /* 默认地址 */
     strcpy(address->ip, "0.0.0.0");
     return address;
 }
@@ -47,6 +48,7 @@ void knet_address_destroy(kaddress_t* address) {
 
 void knet_address_set(kaddress_t* address, const char* ip, int port) {
     verify(address);
+    /* 设置IP, 端口 */
     if (ip) {
         strcpy(address->ip, ip);
     }
@@ -67,5 +69,6 @@ int address_equal(kaddress_t* address, const char* ip, int port) {
     verify(address);
     verify(ip);
     verify(port);
+    /* 完全相同 */
     return (strcmp(address->ip, ip) || !(address->port == port));
 }

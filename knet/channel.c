@@ -32,7 +32,7 @@
 
 
 struct _channel_t {
-    kdlist_t*      send_buffer_list;  /* 发送链表, 发送失败的数据会法如这个链表等待下次发送 */
+    kdlist_t*      send_buffer_list;  /* 发送链表, 发送失败的数据会加入这个链表等待下次发送 */
     uint32_t       max_send_list_len; /* 发送链表最大长度 */
     kringbuffer_t* recv_ringbuffer;   /* 读环形缓冲区, 通过socket读取函数读到的数据会放在这个缓冲区内 */
     socket_t       socket_fd;         /* 套接字 */
@@ -52,10 +52,10 @@ kchannel_t* knet_channel_create_exist_socket_fd(socket_t socket_fd, uint32_t max
     kchannel_t* channel = create(kchannel_t);
     verify(channel);
     memset(channel, 0, sizeof(kchannel_t));
-    channel->uuid = uuid_create();
-    channel->send_buffer_list = dlist_create();
+    channel->uuid = uuid_create(); /* 管道UUID */
+    channel->send_buffer_list = dlist_create(); /* 发送链表 */
     verify(channel->send_buffer_list);
-    channel->recv_ringbuffer = ringbuffer_create(recv_ring_len);
+    channel->recv_ringbuffer = ringbuffer_create(recv_ring_len); /* 读缓冲区 */
     verify(channel->recv_ringbuffer);
     channel->max_send_list_len = max_send_list_len;
     channel->socket_fd = socket_fd;
