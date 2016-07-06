@@ -348,8 +348,6 @@ void knet_loop_add_channel_ref(kloop_t* loop, kchannel_ref_t* channel_ref) {
     knet_channel_ref_set_loop_node(channel_ref, dlist_get_front(loop->active_channel_list));
     /* 通知选取器添加管道 */
     knet_impl_add_channel_ref(loop, channel_ref);
-    /* 建立接收超时定时器 */
-    knet_channel_ref_start_recv_timeout_timer(channel_ref);
 }
 
 void knet_loop_remove_channel_ref(kloop_t* loop, kchannel_ref_t* channel_ref) {

@@ -250,7 +250,7 @@ int socket_set_send_buffer_size(socket_t socket_fd, int size) {
 
 int socket_check_send_ready(socket_t socket_fd) {
 #if defined(WIN32)
-    struct timeval tv = {0, 0};
+    struct timeval tv = {0, 1000};
     int error = 0;
     fd_set send_fds;
     memset(&send_fds, 0, sizeof(fd_set));

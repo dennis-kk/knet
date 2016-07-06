@@ -224,11 +224,8 @@ int knet_channel_ref_reconnect(kchannel_ref_t* channel_ref, int timeout) {
     knet_channel_ref_set_ptr(new_channel, ptr);
     /* 设置自动重连标志 */
     knet_channel_ref_set_auto_reconnect(new_channel, auto_reconnect);
-    /* 重置重连定时器 */
-    if (channel_ref->ref_info->connect_timeout_timer) {
-        ktimer_stop(channel_ref->ref_info->connect_timeout_timer);
-        knet_channel_ref_set_connect_timeout_timer(new_channel, 0);
-    }
+    /* 销毁连接超时定时器 */
+    knet_channel_ref_stop_connect_timeout_timer(channel_ref);
     /* 启动新的连接器 */
     error = knet_channel_ref_connect(new_channel, ip, port, (int)connect_timeout);
     if (error_ok != error) {
@@ -318,14 +315,10 @@ void knet_channel_ref_update_close_in_loop(kloop_t* loop, kchannel_ref_t* channe
     knet_channel_ref_clear_event(channel_ref, channel_event_recv | channel_event_send);
     knet_channel_close(channel_ref->ref_info->channel);
     knet_loop_close_channel_ref(channel_ref->ref_info->loop, channel_ref);
-    /* 关闭接收超时定时器 */
-    if (knet_channel_ref_get_recv_timeout_timer(channel_ref)) {
-        ktimer_stop(knet_channel_ref_get_recv_timeout_timer(channel_ref));
-    }
-    /* 关闭连接超时定时器 */
-    if (knet_channel_ref_get_connect_timeout_timer(channel_ref)) {
-        ktimer_stop(knet_channel_ref_get_connect_timeout_timer(channel_ref));
-    }
+    /* 销毁接收超时定时器 */
+    knet_channel_ref_stop_recv_timeout_timer(channel_ref);
+    /* 销毁连接超时定时器 */
+    knet_channel_ref_stop_connect_timeout_timer(channel_ref);
 }
 
 void knet_channel_ref_close_check_reconnect(kchannel_ref_t* channel_ref) {
@@ -571,17 +564,16 @@ int knet_channel_ref_start_connect_timeout_timer(kchannel_ref_t* channel_ref) {
     int       error         = error_ok;
     ktimer_t* connect_timer = 0;
     verify(channel_ref);
-    if (channel_ref->ref_info->connect_timeout_timer) {
-        ktimer_stop(channel_ref->ref_info->connect_timeout_timer);
-        channel_ref->ref_info->connect_timeout_timer = 0;
-    }
+    /* 销毁 */
+    knet_channel_ref_stop_connect_timeout_timer(channel_ref);
+    /* 建立新的 */
     if (channel_ref->ref_info->connect_timeout) {
         connect_timer = ktimer_create(knet_loop_get_timer_loop(channel_ref->ref_info->loop));
         verify(connect_timer);
         error = ktimer_start(connect_timer, knet_channel_ref_get_timer_cb(channel_ref),
             channel_ref, channel_ref->ref_info->connect_timeout * 1000);
         if (error == error_ok) {
-            knet_channel_ref_set_connect_timeout_timer(channel_ref, connect_timer);
+            channel_ref->ref_info->connect_timeout_timer = connect_timer;
         }
     }
     return error;
@@ -591,20 +583,26 @@ int knet_channel_ref_start_recv_timeout_timer(kchannel_ref_t* channel_ref) {
     int       error      = error_ok;
     ktimer_t* recv_timer = 0;
     verify(channel_ref);
-    if (channel_ref->ref_info->recv_timeout_timer) {
-        ktimer_stop(channel_ref->ref_info->recv_timeout_timer);
-        channel_ref->ref_info->recv_timeout_timer = 0;
-    }
+    /* 销毁 */
+    knet_channel_ref_stop_recv_timeout_timer(channel_ref);
+    /* 建立新的 */
     if (channel_ref->ref_info->timeout) {
         recv_timer = ktimer_create(knet_loop_get_timer_loop(channel_ref->ref_info->loop));
         verify(recv_timer);
         error = ktimer_start(recv_timer, knet_channel_ref_get_timer_cb(channel_ref),
             channel_ref, channel_ref->ref_info->timeout * 1000);
         if (error == error_ok) {
-            knet_channel_ref_set_recv_timeout_timer(channel_ref, recv_timer);
+            channel_ref->ref_info->recv_timeout_timer = recv_timer;
         }
     }
     return error;
+}
+
+void knet_channel_ref_stop_recv_timeout_timer(kchannel_ref_t* channel_ref) {
+    if (channel_ref->ref_info->recv_timeout_timer) {
+        ktimer_stop(channel_ref->ref_info->recv_timeout_timer);
+        channel_ref->ref_info->recv_timeout_timer = 0;
+    }
 }
 
 void knet_channel_ref_update_accept_in_loop(kloop_t* loop, kchannel_ref_t* channel_ref) {
@@ -622,6 +620,13 @@ void knet_channel_ref_update_accept_in_loop(kloop_t* loop, kchannel_ref_t* chann
     knet_channel_ref_start_recv_timeout_timer(channel_ref);
 }
 
+void knet_channel_ref_stop_connect_timeout_timer(kchannel_ref_t* channel_ref) {
+    if (channel_ref->ref_info->connect_timeout_timer) {
+        ktimer_stop(channel_ref->ref_info->connect_timeout_timer);
+        channel_ref->ref_info->connect_timeout_timer = 0;
+    }
+}
+
 void knet_channel_ref_update_connect(kchannel_ref_t* channel_ref) {
     verify(channel_ref);
     knet_channel_ref_set_event(channel_ref, channel_event_recv);
@@ -632,10 +637,9 @@ void knet_channel_ref_update_connect(kchannel_ref_t* channel_ref) {
         channel_ref->ref_info->cb(channel_ref, channel_cb_event_connect);
     }
     /* 销毁连接超时定时器 */
-    if (channel_ref->ref_info->connect_timeout_timer) {
-        ktimer_stop(channel_ref->ref_info->connect_timeout_timer);
-        channel_ref->ref_info->connect_timeout_timer = 0;
-    }
+    knet_channel_ref_stop_connect_timeout_timer(channel_ref);
+    /* 启动接收超时定时器 */
+    knet_channel_ref_start_recv_timeout_timer(channel_ref);
 }
 
 void _timer_cb(ktimer_t* timer, void* data) {
@@ -660,7 +664,7 @@ void _timer_cb(ktimer_t* timer, void* data) {
     } else if (recv_timer == timer) { /* 接收超时定时器 */
         if (!knet_channel_ref_check_state(channel_ref, channel_state_accept)) {
             if (gap > channel_ref->ref_info->timeout) {
-                log_warning("channel recv timeout, channel[%llu]", knet_channel_ref_get_uuid(channel_ref));
+                /*log_warn("channel recv timeout, channel[%llu]", knet_channel_ref_get_uuid(channel_ref));*/
                 /* 读超时，心跳 */
                 if (knet_channel_ref_get_cb(channel_ref)) {
                     knet_channel_ref_get_cb(channel_ref)(channel_ref, channel_cb_event_timeout);
@@ -834,7 +838,7 @@ int knet_channel_ref_connect_in_loop(kchannel_ref_t* channel_ref) {
     knet_loop_add_channel_ref(channel_ref->ref_info->loop, channel_ref);
     knet_channel_ref_set_state(channel_ref, channel_state_connect);
     knet_channel_ref_set_event(channel_ref, channel_event_send);
-    return knet_channel_ref_start_connect_timeout_timer(channel_ref);
+    return knet_channel_ref_start_connect_timeout_timer(channel_ref);;
 }
 
 kaddress_t* knet_channel_ref_get_peer_address(kchannel_ref_t* channel_ref) {
