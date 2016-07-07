@@ -120,6 +120,9 @@ int knet_channel_ref_destroy(kchannel_ref_t* channel_ref) {
         if (channel_ref->ref_info->stream) {
             stream_destroy(channel_ref->ref_info->stream);
         }
+        /* Ïú»Ù¶¨Ê±Æ÷ */
+        knet_channel_ref_stop_connect_timeout_timer(channel_ref);
+        knet_channel_ref_stop_recv_timeout_timer(channel_ref);
         destroy(channel_ref->ref_info);
     }
     destroy(channel_ref);
