@@ -197,18 +197,20 @@ int ktimer_loop_run_once(ktimer_loop_t* timer_loop) {
         dlist_for_each_safe(timers, node, temp) {
             timer = (ktimer_t*)dlist_node_get_data(node);
             verify(timer);
-            if ((!timer->stop) && timer->cb) {
-                /* 定时器到期,调用回调 */
-                timer->cb(timer, timer->data);
-                count += 1;
-            }
-            /* 调用次数递增 */
-            timer->current_times += 1;
-            if (!(timer->stop || ktimer_check_dead(timer))) {
-                /* 不能被销毁, 移动到新时间戳红黑树节点链表内 */
-                timer->ms = ms + timer->intval;
-                dlist_remove(timers, node);
-                _ktimer_add_node(timer, node, timer->ms);
+            if (!timer->stop) {
+                if (timer->cb) {
+                    /* 定时器到期,调用回调 */
+                    timer->cb(timer, timer->data);
+                    count += 1;
+                    /* 调用次数递增 */
+                    timer->current_times += 1;
+                }
+                if (!ktimer_check_dead(timer)) {
+                    /* 不能被销毁, 移动到新时间戳红黑树节点链表内 */
+                    timer->ms = ms + timer->intval;
+                    dlist_remove(timers, node);
+                    _ktimer_add_node(timer, node, timer->ms);
+                }
             }
         }
         /* 销毁红黑树节点 */
