@@ -571,7 +571,7 @@ int knet_channel_ref_start_connect_timeout_timer(kchannel_ref_t* channel_ref) {
         connect_timer = ktimer_create(knet_loop_get_timer_loop(channel_ref->ref_info->loop));
         verify(connect_timer);
         error = ktimer_start(connect_timer, knet_channel_ref_get_timer_cb(channel_ref),
-            channel_ref, channel_ref->ref_info->connect_timeout * 1000);
+            channel_ref, 100);
         if (error == error_ok) {
             channel_ref->ref_info->connect_timeout_timer = connect_timer;
         }
@@ -651,6 +651,10 @@ void _timer_cb(ktimer_t* timer, void* data) {
     if (connect_timer == timer) { /* 连接超时定时器 */
         if (socket_check_send_ready(knet_channel_ref_get_socket_fd(channel_ref))) {
             knet_impl_event_add(channel_ref, channel_event_send);
+        }
+        /* 并未实际超时 */
+        if (channel_ref->ref_info->last_connect_timeout > now) {
+            return;
         }
         /* 连接超时 */
         if (knet_channel_ref_get_cb(channel_ref)) {
