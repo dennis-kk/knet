@@ -75,8 +75,10 @@ struct _channel_ref_t {
 
 /**
  * 管道定时器回调
+ * @param timer 管道定时器
+ * @param data 管道指针
  */
-void _timer_cb(ktimer_t* timer, void* data);
+void timer_cb(ktimer_t* timer, void* data);
 
 kchannel_ref_t* knet_channel_ref_create(kloop_t* loop, kchannel_t* channel) {
     kchannel_ref_t* channel_ref = create(kchannel_ref_t);
@@ -92,6 +94,7 @@ kchannel_ref_t* knet_channel_ref_create(kloop_t* loop, kchannel_t* channel) {
     channel_ref->ref_info->loop         = loop;
     channel_ref->ref_info->last_recv_ts = time(0);
     channel_ref->ref_info->state        = channel_state_init;
+    /* 记录统计数据 */
     knet_loop_profile_increase_active_channel_count(knet_loop_get_profile(loop));
     return channel_ref;
 }
@@ -103,9 +106,11 @@ int knet_channel_ref_destroy(kchannel_ref_t* channel_ref) {
         if (!atomic_counter_zero(&channel_ref->ref_info->ref_count)) {
             return error_ref_nonzero;
         }
+        /* 销毁对端地址 */
         if (channel_ref->ref_info->peer_address) {
             knet_address_destroy(channel_ref->ref_info->peer_address);
         }
+        /* 销毁本地地址 */
         if (channel_ref->ref_info->local_address) {
             knet_address_destroy(channel_ref->ref_info->local_address);
         }
@@ -114,17 +119,21 @@ int knet_channel_ref_destroy(kchannel_ref_t* channel_ref) {
             channel_ref->ref_info->loop) {
             knet_impl_remove_channel_ref(channel_ref->ref_info->loop, channel_ref);
         }
+        /* 销毁管道 */
         if (channel_ref->ref_info->channel) {
             knet_channel_destroy(channel_ref->ref_info->channel);
         }
+        /* 销毁数据流 */
         if (channel_ref->ref_info->stream) {
             stream_destroy(channel_ref->ref_info->stream);
         }
         /* 销毁定时器 */
         knet_channel_ref_stop_connect_timeout_timer(channel_ref);
         knet_channel_ref_stop_recv_timeout_timer(channel_ref);
+        /* 销毁管道信息 */
         destroy(channel_ref->ref_info);
     }
+    /* 销毁管道引用 */
     destroy(channel_ref);
     return error_ok;
 }
@@ -142,8 +151,10 @@ int knet_channel_ref_connect(kchannel_ref_t* channel_ref, const char* ip, int po
         return error_connect_in_progress;
     }
     if (!channel_ref->ref_info->peer_address) {
+        /* 建立对端地址对象 */
         channel_ref->ref_info->peer_address = knet_address_create();        
     }
+    /* 设置对端地址 */
     knet_address_set(channel_ref->ref_info->peer_address, ip, port);
     if (timeout > 0) {
         channel_ref->ref_info->connect_timeout = timeout;
@@ -155,7 +166,7 @@ int knet_channel_ref_connect(kchannel_ref_t* channel_ref, const char* ip, int po
     if (error_ok != error) {
         return error;
     }
-    log_info("start connect to IP[%s], port[%d]", ip, port);
+    log_verb("start connecting to IP[%s], port[%d]", ip, port);
     /* 负载均衡 */
     loop = knet_channel_ref_choose_loop(channel_ref);
     if (loop) {
@@ -175,19 +186,19 @@ int knet_channel_ref_connect(kchannel_ref_t* channel_ref, const char* ip, int po
 }
 
 int knet_channel_ref_reconnect(kchannel_ref_t* channel_ref, int timeout) {
-    int                   error               = error_ok;
-    char                  ip[32]              = {0};
-    int                   port                = 0;
-    kchannel_ref_t*       new_channel         = 0;
-    kaddress_t*           peer_address        = 0;
-    time_t                connect_timeout     = 0;
-    knet_channel_ref_cb_t cb                  = 0;
-    kloop_t*              loop                = 0;
-    uint32_t              max_send_list_len   = 0;
-    uint32_t              max_recv_buffer_len = 0;
-    int                   auto_reconnect      = 0;
-    void*                 user_data           = 0;
-    void*                 ptr                 = 0;
+    int                   error               = error_ok; /* 错误码 */
+    char                  ip[32]              = {0};      /* IP */
+    int                   port                = 0;        /* 端口 */
+    kchannel_ref_t*       new_channel         = 0;        /* 重连时新建立的管道 */
+    kaddress_t*           peer_address        = 0;        /* 对端地址 */
+    time_t                connect_timeout     = 0;        /* 连接超时(秒) */
+    knet_channel_ref_cb_t cb                  = 0;        /* 管道回调 */
+    kloop_t*              loop                = 0;        /* loop */
+    uint32_t              max_send_list_len   = 0;        /* 发送链表最大长度 */
+    uint32_t              max_recv_buffer_len = 0;        /* 接收缓冲区最大长度 */
+    int                   auto_reconnect      = 0;        /* 自动重连标志 */
+    void*                 user_data           = 0;        /* 内部使用数据指针 */
+    void*                 ptr                 = 0;        /* 用户数据指针 */
     verify(channel_ref);
     verify(channel_ref->ref_info);
     verify(channel_ref->ref_info->channel);
@@ -260,8 +271,8 @@ void knet_channel_ref_accept_async(kchannel_ref_t* channel_ref) {
 }
 
 int knet_channel_ref_accept(kchannel_ref_t* channel_ref, const char* ip, int port, int backlog) {
-    int error = 0;
-    thread_id_t thread_id = 0;
+    int         error     = 0; /* 错误码 */
+    thread_id_t thread_id = 0; /* loop所在的线程ID */
     verify(channel_ref);
     verify(port);
     if (knet_channel_ref_check_state(channel_ref, channel_state_accept)) {
@@ -280,7 +291,9 @@ int knet_channel_ref_accept(kchannel_ref_t* channel_ref, const char* ip, int por
         }
         /* 当前线程内 */
         knet_loop_add_channel_ref(channel_ref->ref_info->loop, channel_ref);
+        /* 设置为监听状态 */
         knet_channel_ref_set_state(channel_ref, channel_state_accept);
+        /* 投递读事件 */
         knet_channel_ref_set_event(channel_ref, channel_event_recv);
     }
     return error;
@@ -312,11 +325,16 @@ void knet_channel_ref_update_close_in_loop(kloop_t* loop, kchannel_ref_t* channe
     verify(loop);
     verify(channel_ref);
     if (knet_channel_ref_check_state(channel_ref, channel_state_close)) {
+        /* 已经在延迟关闭链表内 */
         return;
     }
+    /* 设置为关闭状态 */
     knet_channel_ref_set_state(channel_ref, channel_state_close);
+    /* 取消投递读和写事件 */
     knet_channel_ref_clear_event(channel_ref, channel_event_recv | channel_event_send);
+    /* 关闭管道 */
     knet_channel_close(channel_ref->ref_info->channel);
+    /* 关闭管道引用 */
     knet_loop_close_channel_ref(channel_ref->ref_info->loop, channel_ref);
     /* 销毁接收超时定时器 */
     knet_channel_ref_stop_recv_timeout_timer(channel_ref);
@@ -339,7 +357,7 @@ void knet_channel_ref_close_check_reconnect(kchannel_ref_t* channel_ref) {
 }
 
 void knet_channel_ref_close(kchannel_ref_t* channel_ref) {
-    kloop_t*     loop = 0;
+    kloop_t* loop = 0;
     verify(channel_ref);
     loop = channel_ref->ref_info->loop;
     if (!knet_loop_get_thread_id(loop) || (channel_ref->ref_info->state == channel_state_init)) {
@@ -372,13 +390,16 @@ void knet_channel_ref_update_send_in_loop(kloop_t* loop, kchannel_ref_t* channel
     verify(loop);
     verify(channel_ref);
     verify(send_buffer);
+    /* 记录统计数据 */
     knet_loop_profile_add_send_bytes(knet_loop_get_profile(loop), knet_buffer_get_length(send_buffer));
+    /* 处理发送 */
     error = knet_channel_send_buffer(channel_ref->ref_info->channel, send_buffer);
     switch (error) {
-    case error_send_patial:
+    case error_send_patial: /* 部分发送成功 */
+        /* 继续投递写事件 */
         knet_channel_ref_set_event(channel_ref, channel_event_send);
         break;
-    case error_send_fail:
+    case error_send_fail: /* 发送失败 */
         knet_channel_ref_close_check_reconnect(channel_ref);
         break;
     default:
@@ -405,7 +426,9 @@ int knet_channel_ref_write(kchannel_ref_t* channel_ref, const char* data, int si
         if (!send_buffer) {
             return error_no_memory;
         }
+        /* 打包到缓冲区 */
         knet_buffer_put(send_buffer, data, size);
+        /* 通知目标线程 */
         knet_loop_notify_send(loop, channel_ref, send_buffer);
     } else {
         knet_loop_profile_add_send_bytes(knet_loop_get_profile(channel_ref->ref_info->loop), size);
@@ -417,7 +440,7 @@ int knet_channel_ref_write(kchannel_ref_t* channel_ref, const char* data, int si
             /* 对于调用者不是错误 */
             error = error_ok;
             break;
-        case error_send_fail:
+        case error_send_fail: /* 发送失败 */
             knet_channel_ref_close_check_reconnect(channel_ref);
             break;
         default:
@@ -485,11 +508,11 @@ int knet_channel_ref_check_event(kchannel_ref_t* channel_ref, knet_channel_event
 }
 
 kchannel_ref_t* knet_channel_ref_accept_from_socket_fd(kchannel_ref_t* channel_ref, kloop_t* loop, socket_t client_fd, int event) {
-    kchannel_t*     acceptor_channel    = 0;
-    uint32_t        max_send_list_len   = 0;
-    uint32_t        max_ringbuffer_size = 0;
-    kchannel_t*     client_channel      = 0;
-    kchannel_ref_t* client_ref          = 0;
+    kchannel_t*     acceptor_channel    = 0; /* 监听管道 */
+    uint32_t        max_send_list_len   = 0; /* 最大发送链表长度 */
+    uint32_t        max_ringbuffer_size = 0; /* 最大接受缓冲区长度 */
+    kchannel_t*     client_channel      = 0; /* 客户端管道 */
+    kchannel_ref_t* client_ref          = 0; /* 客户端管道引用 */
     verify(channel_ref);
     verify(channel_ref->ref_info);
     verify(client_fd > 0);
@@ -503,8 +526,10 @@ kchannel_ref_t* knet_channel_ref_accept_from_socket_fd(kchannel_ref_t* channel_r
     if (!max_ringbuffer_size) {
         max_ringbuffer_size = 16 * 1024; /* 默认16K */
     }
+    /* 建立客户端管道 */
     client_channel = knet_channel_create_exist_socket_fd(client_fd, max_send_list_len, max_ringbuffer_size);
     verify(client_channel);
+    /* 建立管道引用 */
     client_ref = knet_channel_ref_create(loop, client_channel);
     verify(client_ref);
     if (event) {
@@ -602,8 +627,11 @@ int knet_channel_ref_start_recv_timeout_timer(kchannel_ref_t* channel_ref) {
 }
 
 void knet_channel_ref_stop_recv_timeout_timer(kchannel_ref_t* channel_ref) {
+    verify(channel_ref);
     if (channel_ref->ref_info->recv_timeout_timer) {
+        /* 停止定时器 */
         ktimer_stop(channel_ref->ref_info->recv_timeout_timer);
+        /* 置零 */
         channel_ref->ref_info->recv_timeout_timer = 0;
     }
 }
@@ -613,10 +641,12 @@ void knet_channel_ref_update_accept_in_loop(kloop_t* loop, kchannel_ref_t* chann
     verify(channel_ref);
     /* 添加到当前线程loop */
     knet_loop_add_channel_ref(loop, channel_ref);
+    /* 设置管道为活跃状态 */
     knet_channel_ref_set_state(channel_ref, channel_state_active);
-    knet_channel_ref_set_event(channel_ref, channel_event_recv);
-    /* 调用回调 */
+    /* 投递读事件 */
+    knet_channel_ref_set_event(channel_ref, channel_event_recv);    
     if (channel_ref->ref_info->cb) {
+        /* 调用回调 */
         channel_ref->ref_info->cb(channel_ref, channel_cb_event_accept);
     }
     /* 建立接收超时定时器 */
@@ -625,18 +655,22 @@ void knet_channel_ref_update_accept_in_loop(kloop_t* loop, kchannel_ref_t* chann
 
 void knet_channel_ref_stop_connect_timeout_timer(kchannel_ref_t* channel_ref) {
     if (channel_ref->ref_info->connect_timeout_timer) {
+        /* 停止定时器 */
         ktimer_stop(channel_ref->ref_info->connect_timeout_timer);
+        /* 置零 */
         channel_ref->ref_info->connect_timeout_timer = 0;
     }
 }
 
 void knet_channel_ref_update_connect(kchannel_ref_t* channel_ref) {
     verify(channel_ref);
+    /* 投递读事件 */
     knet_channel_ref_set_event(channel_ref, channel_event_recv);
+    /* 切换管道为活跃状态 */
     knet_channel_ref_set_state(channel_ref, channel_state_active);
-    /* 调用回调 */
     if (channel_ref->ref_info->cb) {
-        log_verb("connected, invoke cb");
+        /* 调用回调 */
+        log_error("channel connectd, channel[%llu]", knet_channel_ref_get_uuid(channel_ref));
         channel_ref->ref_info->cb(channel_ref, channel_cb_event_connect);
     }
     /* 销毁连接超时定时器 */
@@ -645,7 +679,7 @@ void knet_channel_ref_update_connect(kchannel_ref_t* channel_ref) {
     knet_channel_ref_start_recv_timeout_timer(channel_ref);
 }
 
-void _timer_cb(ktimer_t* timer, void* data) {
+void timer_cb(ktimer_t* timer, void* data) {
     time_t          now           = time(0);
     kchannel_ref_t* channel_ref   = (kchannel_ref_t*)data;
     time_t          gap           = now - channel_ref->ref_info->last_recv_ts;
@@ -671,7 +705,6 @@ void _timer_cb(ktimer_t* timer, void* data) {
     } else if (recv_timer == timer) { /* 接收超时定时器 */
         if (!knet_channel_ref_check_state(channel_ref, channel_state_accept)) {
             if (gap > channel_ref->ref_info->timeout) {
-                /*log_warn("channel recv timeout, channel[%llu]", knet_channel_ref_get_uuid(channel_ref));*/
                 /* 读超时，心跳 */
                 if (knet_channel_ref_get_cb(channel_ref)) {
                     knet_channel_ref_get_cb(channel_ref)(channel_ref, channel_cb_event_timeout);
@@ -683,31 +716,36 @@ void _timer_cb(ktimer_t* timer, void* data) {
 
 ktimer_cb_t knet_channel_ref_get_timer_cb(kchannel_ref_t* channel_ref) {
     (void)channel_ref;
-    return _timer_cb;
+    return timer_cb;
 }
 
 void knet_channel_ref_update_recv(kchannel_ref_t* channel_ref) {
     int error = 0;
     uint32_t bytes = 0;
     verify(channel_ref);
+    /* 获取管道流内字节数量 */
     bytes = knet_stream_available(channel_ref->ref_info->stream);
+    /* 处理读事件 */
     error = knet_channel_update_recv(channel_ref->ref_info->channel);
     switch (error) {
-        case error_recv_fail:
+        case error_recv_fail: /* 接收失败 */
             knet_channel_ref_close_check_reconnect(channel_ref);
             break;
-        case error_recv_buffer_full:
+        case error_recv_buffer_full: /* 接收缓冲区满 */
             knet_channel_ref_close_check_reconnect(channel_ref);
             break;
         default:
             break;
     }
     if (error == error_ok) {
+        /* 记录统计数据 */
         knet_loop_profile_add_recv_bytes(knet_loop_get_profile(channel_ref->ref_info->loop),
             knet_stream_available(channel_ref->ref_info->stream) - bytes);
         if (channel_ref->ref_info->cb) {
+            /* 调用回调 */
             channel_ref->ref_info->cb(channel_ref, channel_cb_event_recv);
         }
+        /* 重新投递读事件 */
         knet_channel_ref_set_event(channel_ref, channel_event_recv);
     }
 }
@@ -715,12 +753,13 @@ void knet_channel_ref_update_recv(kchannel_ref_t* channel_ref) {
 void knet_channel_ref_update_send(kchannel_ref_t* channel_ref) {
     int error = 0;
     verify(channel_ref);
+    /* 处理发送事件 */
     error = knet_channel_update_send(channel_ref->ref_info->channel);
     switch (error) {
-        case error_send_fail:
+        case error_send_fail: /* 发送失败 */
             knet_channel_ref_close_check_reconnect(channel_ref);
             break;
-        case error_send_patial:
+        case error_send_patial: /* 未发送全部数据 */
             knet_channel_ref_set_event(channel_ref, channel_event_send);
             break;
         default:
@@ -728,6 +767,7 @@ void knet_channel_ref_update_send(kchannel_ref_t* channel_ref) {
     }
     if (error == error_ok) {
         if (channel_ref->ref_info->cb) {
+            /* 调用回调 */
             channel_ref->ref_info->cb(channel_ref, channel_cb_event_send);
         }
     }
@@ -736,6 +776,7 @@ void knet_channel_ref_update_send(kchannel_ref_t* channel_ref) {
 void knet_channel_ref_update(kchannel_ref_t* channel_ref, knet_channel_event_e e, time_t ts) {
     verify(channel_ref);
     if (knet_channel_ref_check_state(channel_ref, channel_state_close)) {
+        /* 管道已经关闭 */
         return;
     }
     if ((e & channel_event_recv) && knet_channel_ref_check_event(channel_ref, channel_event_recv)) {
@@ -842,9 +883,13 @@ knet_channel_ref_cb_t knet_channel_ref_get_cb(kchannel_ref_t* channel_ref) {
 
 int knet_channel_ref_connect_in_loop(kchannel_ref_t* channel_ref) {
     verify(channel_ref);
+    /* 添加到活跃管道链表 */
     knet_loop_add_channel_ref(channel_ref->ref_info->loop, channel_ref);
+    /* 设置连接状态 */
     knet_channel_ref_set_state(channel_ref, channel_state_connect);
+    /* 通知选取器投递发送事件 */
     knet_channel_ref_set_event(channel_ref, channel_event_send);
+    /* 启动连接超时定时器 */
     return knet_channel_ref_start_connect_timeout_timer(channel_ref);;
 }
 
@@ -853,6 +898,7 @@ kaddress_t* knet_channel_ref_get_peer_address(kchannel_ref_t* channel_ref) {
     if (channel_ref->ref_info->peer_address) {
         return channel_ref->ref_info->peer_address;
     }
+    /* 第一次建立 */
     channel_ref->ref_info->peer_address = knet_address_create();
     socket_getpeername(channel_ref, channel_ref->ref_info->peer_address);
     return channel_ref->ref_info->peer_address;
@@ -863,6 +909,7 @@ kaddress_t* knet_channel_ref_get_local_address(kchannel_ref_t* channel_ref) {
     if (channel_ref->ref_info->local_address) {
         return channel_ref->ref_info->local_address;
     }
+    /* 第一次建立 */
     channel_ref->ref_info->local_address = knet_address_create();
     socket_getsockname(channel_ref, channel_ref->ref_info->local_address);
     return channel_ref->ref_info->local_address;

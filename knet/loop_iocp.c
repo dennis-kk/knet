@@ -204,13 +204,13 @@ void knet_impl_destroy(kloop_t* loop) {
 }
 
 int _select(kloop_t* loop, time_t ts) {
-    BOOL           error       = FALSE;
-    DWORD          bytes       = 0;
-    DWORD          last_error  = 0;
-    per_io_t*      per_io      = 0;
-    per_sock_t*    per_sock    = 0;
+    BOOL            error       = FALSE;
+    DWORD           bytes       = 0;
+    DWORD           last_error  = 0;
+    per_io_t*       per_io      = 0;
+    per_sock_t*     per_sock    = 0;
     kchannel_ref_t* channel_ref = 0;
-    loop_iocp_t*   impl        = get_impl(loop);
+    loop_iocp_t*    impl        = get_impl(loop);
     error = GetQueuedCompletionStatus(impl->iocp, &bytes, (PULONG_PTR)&per_sock, (LPOVERLAPPED*)&per_io, 1);
     last_error = GetLastError();
     if (FALSE == error) {
