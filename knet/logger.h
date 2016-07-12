@@ -38,7 +38,7 @@ extern klogger_t* global_logger;
     } while(0);
 
 #if LOGGER_ON
-    #if defined(WIN32)
+    #if (defined(WIN32) || defined(_WIN64))
         #define log_verb(format, ...) \
             do { \
                GLOBAL_LOGGER_INITIALIZE(); \
@@ -90,9 +90,9 @@ extern klogger_t* global_logger;
                 GLOBAL_LOGGER_INITIALIZE(); \
                 logger_write(global_logger, logger_level_fatal, format, ##args); \
             } while(0);
-    #endif /* defined(WIN32) */
+    #endif /* defined(WIN32) || defined(_WIN64) */
 #else /* LOGGER_ON==0 */
-    #if defined(WIN32)
+    #if (defined(WIN32) || defined(_WIN64))
         #define log_verb(format, ...)
         #define log_info(format, ...)
         #define log_warn(format, ...)
@@ -104,7 +104,7 @@ extern klogger_t* global_logger;
         #define log_warn(format, args...)
         #define log_error(format, args...)
         #define log_fatal(format, args...)
-    #endif /* defined(WIN32) */
+    #endif /* defined(WIN32) || defined(_WIN64) */
 #endif /* LOGGER_ON */
 
 #endif /* LOGGER_H */

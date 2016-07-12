@@ -37,43 +37,43 @@ struct _logger_t {
 };
 
 void set_console_blue() {
-#if defined(WIN32)
+#if (defined(WIN32) || defined(_WIN64))
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_BLUE | FOREGROUND_INTENSITY);
 #else
     fprintf(stderr, "\033[1;34m");
-#endif /* defined(WIN32) */
+#endif /* defined(WIN32) || defined(_WIN64) */
 }
 
 void set_console_red() {
-#if defined(WIN32)
+#if (defined(WIN32) || defined(_WIN64))
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_INTENSITY);
 #else
     fprintf(stderr, "\033[1;31m");
-#endif /* defined(WIN32) */
+#endif /* defined(WIN32) || defined(_WIN64) */
 }
 
 void set_console_green() {
-#if defined(WIN32)
+#if (defined(WIN32) || defined(_WIN64))
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 #else
     fprintf(stderr, "\033[1;32m");
-#endif /* defined(WIN32) */
+#endif /* defined(WIN32) || defined(_WIN64) */
 }
 
 void set_console_white() {
-#if defined(WIN32)
+#if (defined(WIN32) || defined(_WIN64))
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 #else
     fprintf(stderr, "\033[30m");
-#endif /* defined(WIN32) */
+#endif /* defined(WIN32) || defined(_WIN64) */
 }
 
 void set_console_yellow() {
-#if defined(WIN32)
+#if (defined(WIN32) || defined(_WIN64))
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_RED | FOREGROUND_INTENSITY);
 #else
     fprintf(stderr, "\033[1;33m");
-#endif /* defined(WIN32) */
+#endif /* defined(WIN32) || defined(_WIN64) */
 }
 
 klogger_t* logger_create(const char* path, int level, int mode) {

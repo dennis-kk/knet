@@ -173,7 +173,7 @@ extern int get_host_ip_string(const char* host_name, char* ip, int size);
 */
 extern long long knet_atoll(const char *p);
 
-#if defined(WIN32)
+#if (defined(WIN32) || defined(_WIN64))
 #define atoll knet_atoll
 #endif /* defined(WIN32) && !defined(atoll) */
 

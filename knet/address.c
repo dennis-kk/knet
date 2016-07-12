@@ -25,6 +25,9 @@
 #include "address.h"
 #include "logger.h"
 
+/**
+ * µØÖ·
+ */
 struct _address_t {
     char ip[32]; /* IP */
     int  port;   /* ¶Ë¿Ú */

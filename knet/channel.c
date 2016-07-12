@@ -30,7 +30,9 @@
 #include "misc.h"
 #include "logger.h"
 
-
+/**
+ * 管道
+ */
 struct _channel_t {
     kdlist_t*      send_buffer_list;  /* 发送链表, 发送失败的数据会加入这个链表等待下次发送 */
     uint32_t       max_send_list_len; /* 发送链表最大长度 */

@@ -30,17 +30,17 @@
 
 /* 链表节点 */
 struct _dlist_node_t {
-    struct _dlist_node_t* prev;
-    struct _dlist_node_t* next;
-    void*                 data;
-    int                   init;
+    struct _dlist_node_t* prev; /* 上一个节点 */
+    struct _dlist_node_t* next; /* 下一个节点 */
+    void*                 data; /* 用户数据指针 */
+    int                   init; /* 是否通过调用dlist_node_init初始化 */
 };
 
 /* 双向循环链表 */
 struct _dlist_t {
-    kdlist_node_t*   head;
-    atomic_counter_t count;
-    int              init;
+    kdlist_node_t*   head;  /* 链表头 */
+    atomic_counter_t count; /* 链表内节点数量 */
+    int              init;  /* 是否通过调用dlist_init初始化 */
 };
 
 kdlist_node_t* dlist_node_create() {
@@ -94,7 +94,7 @@ kdlist_t* dlist_create() {
     dlist->head->next = dlist->head;
     dlist->head->prev = dlist->head;
     dlist->count = 0;
-    dlist->init = 0;
+    dlist->init  = 0;
     return dlist;
 }
 

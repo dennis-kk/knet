@@ -34,11 +34,14 @@
 #include "logger.h"
 #include "timer.h"
 
+/**
+ * 网络循环
+ */
 struct _loop_t {
     kdlist_t*                  active_channel_list; /* 活跃管道链表 */
     kdlist_t*                  close_channel_list;  /* 已关闭管道链表 */
-    kdlist_t*                  event_list;          /* 事件链表 */
-    klock_t*                   lock;                /* 锁-事件链表*/
+    kdlist_t*                  event_list;          /* 线程事件链表 */
+    klock_t*                   lock;                /* 锁-线程事件链表 */
     kchannel_ref_t*            notify_channel;      /* 事件通知写管道 */
     kchannel_ref_t*            read_channel;        /* 事件通知读管道 */
     kloop_balancer_t*          balancer;            /* 负载均衡器 */
@@ -113,14 +116,14 @@ kloop_t* knet_loop_create() {
         log_fatal("knet_loop_create() failed, reason: socket_pair()");
         return 0;
     }
-    loop->profile = knet_loop_profile_create(loop); /* 统计 */
-    loop->active_channel_list = dlist_create(); /* 活跃管道链表 */
-    loop->close_channel_list = dlist_create(); /* 延迟关闭管道链表 */
-    loop->event_list = dlist_create(); /* 跨线程事件链表 */
-    loop->lock = lock_create(); /* 锁 - 跨线程事件链表 */
-    loop->timer_loop = ktimer_loop_create(0); /* 建立定时器循环 */
-    loop->balance_options = loop_balancer_in | loop_balancer_out; /* 负载均衡配置 */
-    loop->notify_channel = knet_loop_create_channel_exist_socket_fd(loop, pair[0], 0, 0); /* 跨线程事件通知写管道 */
+    loop->profile             = knet_loop_profile_create(loop);       /* 统计 */
+    loop->active_channel_list = dlist_create();                       /* 活跃管道链表 */
+    loop->close_channel_list  = dlist_create();                       /* 延迟关闭管道链表 */
+    loop->event_list          = dlist_create();                       /* 跨线程事件链表 */
+    loop->lock                = lock_create();                        /* 锁 - 跨线程事件链表 */
+    loop->timer_loop          = ktimer_loop_create(0);                /* 建立定时器循环 */
+    loop->balance_options     = loop_balancer_in | loop_balancer_out; /* 负载均衡配置 */
+    loop->notify_channel      = knet_loop_create_channel_exist_socket_fd(loop, pair[0], 0, 0); /* 跨线程事件通知写管道 */
     verify(loop->notify_channel);
     loop->read_channel = knet_loop_create_channel_exist_socket_fd(loop, pair[1], 0, 1024 * 64); /* 跨线程事件通知读管道 */
     verify(loop->read_channel);
@@ -170,18 +173,19 @@ void knet_loop_destroy(kloop_t* loop) {
     lock_destroy(loop->lock);
     /* 销毁定时器循环, 所有管道定时器将被销毁 */
     ktimer_loop_destroy(loop->timer_loop);
+    /* 销毁网络循环 */
     destroy(loop);
 }
 
 void loop_add_event(kloop_t* loop, loop_event_t* loop_event) {
     verify(loop);
     verify(loop_event);
-    lock_lock(loop->lock);
-    log_info("invoke loop_add_event(), event[type:%d]", loop_event->event);
+    lock_lock(loop->lock); /* 锁 */
+    log_verb("invoke loop_add_event(), event[type:%d]", loop_event->event);
     /* 事件添加到链表尾部 */
     dlist_add_tail_node(loop->event_list, loop_event);
-    lock_unlock(loop->lock);
-    knet_loop_notify(loop);
+    lock_unlock(loop->lock); /* 解锁 */
+    knet_loop_notify(loop); /* 通知目标 */
 }
 
 void knet_loop_notify_accept(kloop_t* loop, kchannel_ref_t* channel_ref) {
@@ -250,9 +254,9 @@ void knet_loop_event_process(kloop_t* loop) {
      */
     kdlist_node_t* node       = 0;
     kdlist_node_t* temp       = 0;
-    loop_event_t* loop_event = 0;
+    loop_event_t*  loop_event = 0;
     verify(loop);
-    lock_lock(loop->lock);
+    lock_lock(loop->lock); /* 锁 */
     /* 每次读事件回调内处理整个事件链表 */
     dlist_for_each_safe(loop->event_list, node, temp) {
         loop_event = (loop_event_t*)dlist_node_get_data(node);
@@ -275,10 +279,12 @@ void knet_loop_event_process(kloop_t* loop) {
             default:
                 break;
         }
+        /* 销毁事件 */
         loop_event_destroy(loop_event);
+        /* 销毁链表节点 */
         dlist_delete(loop->event_list, node);
     }
-    lock_unlock(loop->lock);
+    lock_unlock(loop->lock); /* 解锁 */
 }
 
 kchannel_ref_t* knet_loop_create_channel_exist_socket_fd(kloop_t* loop, socket_t socket_fd, uint32_t max_send_list_len, uint32_t recv_ring_len) {
@@ -298,6 +304,7 @@ thread_id_t knet_loop_get_thread_id(kloop_t* loop) {
 
 int knet_loop_run_once(kloop_t* loop) {
     verify(loop);
+    /* 获取当前线程ID */
     loop->thread_id = thread_get_self_id();
     return knet_impl_run_once(loop);
 }

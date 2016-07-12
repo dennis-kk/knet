@@ -31,13 +31,13 @@
 
 typedef struct _loop_info_t {
     kloop_t*  loop;    /* kloop_t实例 */
-    uint64_t choose;  /* 被选取次数，保留 */
+    uint64_t  choose;  /* 被选取次数，保留 */
 } loop_info_t;
 
 struct _loop_balancer_t {
     kdlist_t* loop_info_list; /* kloop_t实例链表 */
     klock_t*  lock;           /* 锁 - 链表访问, kloop_t实例的添加删除 */
-    void*    data;           /* 用户数据 */
+    void*     data;           /* 用户数据 */
 };
 
 kloop_balancer_t* knet_loop_balancer_create() {
@@ -66,8 +66,8 @@ void knet_loop_balancer_destroy(kloop_balancer_t* balancer) {
 int knet_loop_balancer_attach(kloop_balancer_t* balancer, kloop_t* loop) {
     kdlist_node_t* node      = 0;
     kdlist_node_t* temp      = 0;
-    loop_info_t*  loop_info = 0;
-    int           error     = error_ok;
+    loop_info_t*   loop_info = 0;
+    int            error     = error_ok;
     verify(balancer);
     verify(loop);
     lock_lock(balancer->lock);
@@ -93,8 +93,8 @@ int knet_loop_balancer_detach(kloop_balancer_t* balancer, kloop_t* loop) {
     kdlist_node_t* node      = 0;
     kdlist_node_t* found     = 0;
     kdlist_node_t* temp      = 0;
-    loop_info_t*  loop_info = 0;
-    int           error     = error_ok;
+    loop_info_t*   loop_info = 0;
+    int            error     = error_ok;
     verify(balancer);
     verify(loop);
     lock_lock(balancer->lock);
@@ -120,10 +120,10 @@ kloop_t* knet_loop_balancer_choose(kloop_balancer_t* balancer) {
     kdlist_node_t* node          = 0;
     kdlist_node_t* temp          = 0;
     kdlist_t*      channel_list  = 0;
-    loop_info_t*  found         = 0;
-    loop_info_t*  loop_info     = 0;
-    int           channel_count = INT_MAX;
-    int           count         = 0;
+    loop_info_t*   found         = 0;
+    loop_info_t*   loop_info     = 0;
+    int            channel_count = INT_MAX;
+    int            count         = 0;
     verify(balancer);
     lock_lock(balancer->lock);
     /* 选取当前活跃管道数最少的kloop_t */

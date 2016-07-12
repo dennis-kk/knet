@@ -35,6 +35,9 @@
 #include "logger.h"
 #include "timer.h"
 
+/**
+ * 管道信息
+ */
 typedef struct _channel_ref_info_t {
     /* 基础数据成员 */
     int                           balance;              /* 是否被负载均衡标志 */
@@ -66,6 +69,9 @@ typedef struct _channel_ref_info_t {
     volatile int close_cb_called;       /* 关闭事件是否已经触发过 */
 } channel_ref_info_t;
 
+/**
+ * 管道引用
+ */
 struct _channel_ref_t {
     int                 share;     /* 是否通过knet_channel_ref_share()创建 */
     uint64_t            domain_id; /* 域ID */
@@ -615,8 +621,10 @@ int knet_channel_ref_start_recv_timeout_timer(kchannel_ref_t* channel_ref) {
     knet_channel_ref_stop_recv_timeout_timer(channel_ref);
     /* 建立新的 */
     if (channel_ref->ref_info->timeout) {
+        /* 建立定时器 */
         recv_timer = ktimer_create(knet_loop_get_timer_loop(channel_ref->ref_info->loop));
         verify(recv_timer);
+        /* 启动定时器 */
         error = ktimer_start(recv_timer, knet_channel_ref_get_timer_cb(channel_ref),
             channel_ref, channel_ref->ref_info->timeout * 1000);
         if (error == error_ok) {
@@ -680,11 +688,11 @@ void knet_channel_ref_update_connect(kchannel_ref_t* channel_ref) {
 }
 
 void timer_cb(ktimer_t* timer, void* data) {
-    time_t          now           = time(0);
-    kchannel_ref_t* channel_ref   = (kchannel_ref_t*)data;
-    time_t          gap           = now - channel_ref->ref_info->last_recv_ts;
-    ktimer_t*       recv_timer    = knet_channel_ref_get_recv_timeout_timer(channel_ref);
-    ktimer_t*       connect_timer = knet_channel_ref_get_connect_timeout_timer(channel_ref);
+    time_t          now           = time(0); /* 当前时间(秒) */
+    kchannel_ref_t* channel_ref   = (kchannel_ref_t*)data; /* 当前管道 */
+    time_t          gap           = now - channel_ref->ref_info->last_recv_ts; /* 上次接收距离当前时间(秒) */
+    ktimer_t*       recv_timer    = knet_channel_ref_get_recv_timeout_timer(channel_ref); /* 接收定时器 */
+    ktimer_t*       connect_timer = knet_channel_ref_get_connect_timeout_timer(channel_ref); /* 连接定时器 */
     if (connect_timer == timer) { /* 连接超时定时器 */
         if (socket_check_send_ready(knet_channel_ref_get_socket_fd(channel_ref))) {
             knet_impl_event_add(channel_ref, channel_event_send);
@@ -720,7 +728,7 @@ ktimer_cb_t knet_channel_ref_get_timer_cb(kchannel_ref_t* channel_ref) {
 }
 
 void knet_channel_ref_update_recv(kchannel_ref_t* channel_ref) {
-    int error = 0;
+    int      error = 0;
     uint32_t bytes = 0;
     verify(channel_ref);
     /* 获取管道流内字节数量 */

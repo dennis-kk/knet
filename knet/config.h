@@ -32,7 +32,7 @@
 #include <limits.h>
 #include <assert.h>
 
-#if defined(WIN32)
+#if (defined(WIN32) || defined(_WIN64))
     #if defined(_WIN32_WINNT)
 		#undef _WIN32_WINNT
         #define _WIN32_WINNT 0x0600
@@ -89,7 +89,7 @@
     #define socket_t int
     #define sys_error_t int
     #define atomic_counter_t volatile int
-#endif /* defined(WIN32) */
+#endif /* defined(WIN32) || defined(_WIN64) */
 
 #define float32_t float
 #define float64_t double
@@ -271,13 +271,13 @@ typedef int (*knet_trie_for_each_func_t)(const char*, void*);
 typedef void(*knet_rb_node_destroy_cb_t)(void*, uint64_t);
 
 /* 根据需要， 开启不同选取器 */
-#if defined(WIN32)
+#if (defined(WIN32) || defined(_WIN64))
     #define LOOP_IOCP 1    /* IOCP */
     #define LOOP_SELECT 0  /* select */
 #else
     #define LOOP_EPOLL 1   /* epoll */
     #define LOOP_SELECT 0  /* select */
-#endif /* defined(WIN32) */
+#endif /* defined(WIN32) || defined(_WIN64) */
 
 #if defined(DEBUG) || defined(_DEBUG) || !defined(NDEBUG)
     #define LOGGER_ON 1 /* 调试版本开启日志 */
