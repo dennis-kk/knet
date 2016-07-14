@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2015, dennis wang
+ * Copyright (c) 2014-2016, dennis wang
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -42,6 +42,7 @@ struct _channel_t {
 };
 
 kchannel_t* knet_channel_create(uint32_t max_send_list_len, uint32_t recv_ring_len) {
+    /* 建立socket描述符 */
     socket_t socket_fd = socket_create();
     verify(socket_fd > 0);
     if (socket_fd <= 0) {
@@ -60,7 +61,7 @@ kchannel_t* knet_channel_create_exist_socket_fd(socket_t socket_fd, uint32_t max
     channel->recv_ringbuffer = ringbuffer_create(recv_ring_len); /* 读缓冲区 */
     verify(channel->recv_ringbuffer);
     channel->max_send_list_len = max_send_list_len;
-    channel->socket_fd = socket_fd;
+    channel->socket_fd         = socket_fd;
     /* 设置为非阻塞 */
     socket_set_non_blocking_on(channel->socket_fd);
     /* 关闭延迟发送 */
@@ -102,7 +103,7 @@ int knet_channel_accept(kchannel_t* channel, const char* ip, int port, int backl
     verify(channel);
     verify(port);
     if (!backlog) {
-        backlog = 50;
+        backlog = 500;
     }
     if (!ip) {
         ip = "0.0.0.0";
@@ -160,7 +161,7 @@ int knet_channel_update_send(kchannel_t* channel) {
     kdlist_node_t* node        = 0;
     kdlist_node_t* temp        = 0;
     kbuffer_t*     send_buffer = 0;
-    int           bytes       = 0;
+    int            bytes       = 0;
     verify(channel);
     verify(channel->send_buffer_list);
     /* 发送链表内所有数据 */
@@ -197,7 +198,7 @@ int knet_channel_update_recv(kchannel_t* channel) {
         return error_recv_buffer_full;
     }
     for (; (size = ringbuffer_write_lock_size(channel->recv_ringbuffer));) {
-        ptr = ringbuffer_write_lock_ptr(channel->recv_ringbuffer);
+        ptr   = ringbuffer_write_lock_ptr(channel->recv_ringbuffer);
         bytes = socket_recv(channel->socket_fd, ptr, size);
         if (bytes < 0) {
             /* 错误，关闭 */

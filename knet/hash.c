@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2015, dennis wang
+ * Copyright (c) 2014-2016, dennis wang
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -27,7 +27,9 @@
 #include "logger.h"
 #include "misc.h"
 
-
+/**
+ * 哈希表
+ */
 struct _hash_t {
     uint32_t          size;         /* 桶数量 */
     uint32_t          count;        /* 当前表内元素个数 */
@@ -38,6 +40,9 @@ struct _hash_t {
     kdlist_node_t*    it_node_next; /* 遍历器 - 当前桶内节点的下一个节点 */
 };
 
+/**
+ * 哈希表键-值对
+ */
 struct _hash_value_t {
     uint32_t key;        /* 数字键 */
     char*    string_key; /* 字符串键 */
@@ -142,7 +147,7 @@ int hash_value_equal_string_key(khash_value_t* hash_value, const char* key) {
 }
 
 khash_t* hash_create(uint32_t size, knet_hash_dtor_t dtor) {
-    uint32_t i = 0;
+    uint32_t i    = 0;
     khash_t* hash = create(khash_t);
     verify(hash);
     memset(hash, 0, sizeof(khash_t));
@@ -151,6 +156,7 @@ khash_t* hash_create(uint32_t size, knet_hash_dtor_t dtor) {
     }
     hash->dtor = dtor;
     hash->size = size;
+    /* 创建桶数组 */
     hash->buckets = (kdlist_t**)create_type(kdlist_t*, sizeof(kdlist_t*) * size);
     verify(hash->buckets);
     if (!hash->buckets) {
@@ -166,7 +172,7 @@ khash_t* hash_create(uint32_t size, knet_hash_dtor_t dtor) {
 }
 
 void hash_destroy(khash_t* hash) {
-    uint32_t      i     = 0;
+    uint32_t       i     = 0;
     kdlist_node_t* node  = 0;
     kdlist_node_t* temp  = 0;
     khash_value_t* value = 0;
@@ -194,7 +200,7 @@ void hash_destroy(khash_t* hash) {
 }
 
 int hash_add(khash_t* hash, uint32_t key, void* value) {
-    uint32_t      hash_key   = 0;
+    uint32_t       hash_key   = 0;
     khash_value_t* hash_value = 0;
     verify(hash);
     verify(value);
@@ -214,7 +220,7 @@ int hash_add(khash_t* hash, uint32_t key, void* value) {
 }
 
 int hash_add_string_key(khash_t* hash, const char* key, void* value) {
-    uint32_t      hash_key   = 0;
+    uint32_t       hash_key   = 0;
     khash_value_t* hash_value = 0;
     verify(hash);
     verify(value);
@@ -233,11 +239,11 @@ int hash_add_string_key(khash_t* hash, const char* key, void* value) {
 }
 
 void* hash_remove(khash_t* hash, uint32_t key) {
-    uint32_t      hash_key    = 0;
+    uint32_t       hash_key   = 0;
     kdlist_node_t* node       = 0;
     kdlist_node_t* temp       = 0;
     khash_value_t* hash_value = 0;
-    void*         value       = 0;
+    void*          value      = 0;
     verify(hash);
     hash_key = key % hash->size;
     /* 遍历链表查找 */
@@ -260,11 +266,11 @@ void* hash_remove(khash_t* hash, uint32_t key) {
 }
 
 void* hash_remove_string_key(khash_t* hash, const char* key) {
-    uint32_t      hash_key   = 0;
+    uint32_t       hash_key   = 0;
     kdlist_node_t* node       = 0;
     kdlist_node_t* temp       = 0;
     khash_value_t* hash_value = 0;
-    void*         value      = 0;
+    void*          value      = 0;
     verify(hash);
     hash_key = hash_string(key) % hash->size;
     /* 遍历链表查找 */
@@ -302,7 +308,7 @@ int hash_delete(khash_t* hash, uint32_t key) {
 }
 
 int hash_replace(khash_t* hash, uint32_t key, void* value) {
-    uint32_t      hash_key   = 0;
+    uint32_t       hash_key   = 0;
     kdlist_node_t* node       = 0;
     khash_value_t* hash_value = 0;
     verify(hash);
@@ -323,7 +329,7 @@ int hash_replace(khash_t* hash, uint32_t key, void* value) {
 }
 
 int hash_replace_string_key(khash_t* hash, const char* key, void* value) {
-    uint32_t      hash_key   = 0;
+    uint32_t       hash_key   = 0;
     kdlist_node_t* node       = 0;
     khash_value_t* hash_value = 0;
     verify(hash);
@@ -360,7 +366,7 @@ int hash_delete_string_key(khash_t* hash, const char* key) {
 }
 
 void* hash_get(khash_t* hash, uint32_t key) {
-    uint32_t      hash_key   = 0;
+    uint32_t       hash_key   = 0;
     kdlist_node_t* node       = 0;
     khash_value_t* hash_value = 0;
     verify(hash);
@@ -440,7 +446,7 @@ khash_value_t* hash_get_first(khash_t* hash) {
 }
 
 khash_value_t* hash_next(khash_t* hash) {
-    uint32_t      i          = 0;
+    uint32_t       i          = 0;
     kdlist_t*      list       = 0;
     khash_value_t* hash_value = 0;
     verify(hash);

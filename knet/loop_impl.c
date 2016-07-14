@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2015, dennis wang
+ * Copyright (c) 2014-2016, dennis wang
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -25,9 +25,9 @@
 #include "config.h"
 
 #if LOOP_SELECT
-    #include "loop_select.c"
+    #include "loop_select.c" /* select */
 #elif LOOP_IOCP
-    #include "loop_iocp.c"
+    #include "loop_iocp.c" /* IOCP */
 #elif LOOP_EPOLL
-    #include "loop_epoll.c"
+    #include "loop_epoll.c" /* EPOLL */
 #endif

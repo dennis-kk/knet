@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2015, dennis wang
+ * Copyright (c) 2014-2016, dennis wang
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -25,7 +25,9 @@
 #include "buffer.h"
 #include "logger.h"
 
-
+/**
+ * 发送缓冲区
+ */
 struct _buffer_t {
     char*    ptr; /* 缓冲区起始地址 */
     uint32_t len; /* 缓冲区长度 */
@@ -38,10 +40,12 @@ kbuffer_t* knet_buffer_create(uint32_t size) {
     if (!sb) {
         return 0;
     }
+    /* 数据指针 */
     sb->ptr = create_raw(size);
     verify(sb->ptr);
     if (!sb->ptr) {
         knet_buffer_destroy(sb);
+        return 0;
     }
     sb->pos = 0;
     sb->len = size;

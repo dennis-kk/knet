@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2015, dennis wang
+ * Copyright (c) 2014-2016, dennis wang
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -54,6 +54,9 @@ struct _loop_t {
     ktimer_loop_t*             timer_loop;          /* 定时器循环 */
 };
 
+/**
+ * 网络线程事件类型
+ */
 typedef enum _loop_event_e {
     loop_event_accept = 1,    /* 接受新连接事件 */
     loop_event_connect,       /* 发起连接事件 */
@@ -62,6 +65,9 @@ typedef enum _loop_event_e {
     loop_event_accept_async,  /* 异步发起监听 */
 } loop_event_e;
 
+/**
+ * 网络线程事件
+ */
 typedef struct _loop_event_t {
     kchannel_ref_t* channel_ref; /* 事件相关管道 */
     kbuffer_t*      send_buffer; /* 发送缓冲区指针 */
@@ -75,7 +81,7 @@ loop_event_t* loop_event_create(kchannel_ref_t* channel_ref, kbuffer_t* send_buf
     verify(ev);
     ev->channel_ref = channel_ref;
     ev->send_buffer = send_buffer;
-    ev->event = e;
+    ev->event       = e;
     return ev;
 }
 
@@ -100,7 +106,7 @@ loop_event_e loop_event_get_event(loop_event_t* loop_event) {
 }
 
 kloop_t* knet_loop_create() {
-    socket_t pair[2] = {0}; /* 事件读写描述符 */
+    socket_t pair[2] = {0}; /* 线程事件读写描述符 */
     kloop_t* loop    = create(kloop_t);
     verify(loop);
     memset(loop, 0, sizeof(kloop_t));
@@ -110,7 +116,7 @@ kloop_t* knet_loop_create() {
         log_fatal("knet_loop_create() failed, reason: knet_impl_create()");
         return 0;
     }
-    /* 建立读写描述符 */
+    /* 建立线程事件读写描述符 */
     if (socket_pair(pair)) {
         destroy(loop);
         log_fatal("knet_loop_create() failed, reason: socket_pair()");
@@ -125,7 +131,7 @@ kloop_t* knet_loop_create() {
     loop->balance_options     = loop_balancer_in | loop_balancer_out; /* 负载均衡配置 */
     loop->notify_channel      = knet_loop_create_channel_exist_socket_fd(loop, pair[0], 0, 0); /* 跨线程事件通知写管道 */
     verify(loop->notify_channel);
-    loop->read_channel = knet_loop_create_channel_exist_socket_fd(loop, pair[1], 0, 1024 * 64); /* 跨线程事件通知读管道 */
+    loop->read_channel = knet_loop_create_channel_exist_socket_fd(loop, pair[1], 0, 1024 * 16); /* 跨线程事件通知读管道 */
     verify(loop->read_channel);
     /* 将事件管道加入到活跃管道链并设置为活跃状态*/
     knet_loop_add_channel_ref(loop, loop->notify_channel);

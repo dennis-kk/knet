@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2015, dennis wang
+ * Copyright (c) 2014-2016, dennis wang
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -176,7 +176,7 @@ extern char* ringbuffer_window_read_lock_ptr(kringbuffer_t* rb);
  * @param rb kringbuffer_t实例
  * @param size 已经读出的字节数
  */
-void ringbuffer_window_read_commit(kringbuffer_t* rb, uint32_t size);
+extern void ringbuffer_window_read_commit(kringbuffer_t* rb, uint32_t size);
 
 /**
  * 取得非绕回可连续写入的最大长度

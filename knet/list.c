@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014-2015, dennis wang
+ * Copyright (c) 2014-2016, dennis wang
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
@@ -46,19 +46,19 @@ struct _dlist_t {
 kdlist_node_t* dlist_node_create() {
     kdlist_node_t* node = create(kdlist_node_t);
     verify(node);
-    node->next  = 0;
-    node->prev  = 0;
-    node->data  = 0;
-    node->init  = 0;
+    node->next = 0;
+    node->prev = 0;
+    node->data = 0;
+    node->init = 0;
     return node;
 }
 
 kdlist_node_t* dlist_node_init(kdlist_node_t* node) {
     verify(node);
-    node->next  = 0;
-    node->prev  = 0;
-    node->data  = 0;
-    node->init  = 1;
+    node->next = 0;
+    node->prev = 0;
+    node->data = 0;
+    node->init = 1;
     return node;
 }
 
@@ -93,8 +93,8 @@ kdlist_t* dlist_create() {
     dlist->head->data = 0;
     dlist->head->next = dlist->head;
     dlist->head->prev = dlist->head;
-    dlist->count = 0;
-    dlist->init  = 0;
+    dlist->count      = 0;
+    dlist->init       = 0;
     return dlist;
 }
 
@@ -105,8 +105,8 @@ kdlist_t* dlist_init(kdlist_t* dlist) {
     dlist->head->data = 0;
     dlist->head->next = dlist->head;
     dlist->head->prev = dlist->head;
-    dlist->count = 0;
-    dlist->init = 1;
+    dlist->count      = 0;
+    dlist->init       = 1;
     return dlist;
 }
 
@@ -127,9 +127,9 @@ void dlist_add_front(kdlist_t* dlist, kdlist_node_t* node) {
     verify(dlist);
     verify(node);
     dlist->head->next->prev = node;
-    node->prev = dlist->head;
-    node->next = dlist->head->next;
-    dlist->head->next = node;
+    node->prev              = dlist->head;
+    node->next              = dlist->head->next;
+    dlist->head->next       = node;
     atomic_counter_inc(&dlist->count);
 }
 
@@ -137,9 +137,9 @@ void dlist_add_tail(kdlist_t* dlist, kdlist_node_t* node) {
     verify(dlist);
     verify(node);
     dlist->head->prev->next = node;
-    node->next = dlist->head;
-    node->prev = dlist->head->prev;
-    dlist->head->prev = node;
+    node->next              = dlist->head;
+    node->prev              = dlist->head->prev;
+    dlist->head->prev       = node;
     atomic_counter_inc(&dlist->count);
 }
 

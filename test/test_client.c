@@ -8,7 +8,7 @@ char*    ip         = 0;
 int      port       = 0;
 ktimer_loop_t* timer_loop = 0;
 
-void timer_cb(ktimer_t* timer, void* data) {
+void client_timer_cb(ktimer_t* timer, void* data) {
 	(void)data;
     assert(timer);
     printf("Active channel: %d, Recv: %d, Send: %d\n", active_channel, recv_bytes, send_bytes);
@@ -80,7 +80,7 @@ int main(int argc, char* argv[]) {
     timer_loop = ktimer_loop_create(1000);
     timer      = ktimer_create(timer_loop);
 
-    ktimer_start(timer, timer_cb, 0, 1000);
+    ktimer_start(timer, client_timer_cb, 0, 1000);
     timer_thread = thread_runner_create(0, 0);
     thread_runner_start_timer_loop(timer_thread, timer_loop, 0);
 
