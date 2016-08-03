@@ -48,6 +48,7 @@ kchannel_t* knet_channel_create(uint32_t max_send_list_len, uint32_t recv_ring_l
     if (socket_fd <= 0) {
         return 0;
     }
+    /* 建立管道 */
     return knet_channel_create_exist_socket_fd(socket_fd, max_send_list_len, recv_ring_len);
 }
 
@@ -90,12 +91,14 @@ void knet_channel_destroy(kchannel_t* channel) {
     if (channel->recv_ringbuffer) {
         ringbuffer_destroy(channel->recv_ringbuffer);
     }
+    /* 销毁管道 */
     destroy(channel);
 }
 
 int knet_channel_connect(kchannel_t* channel, const char* ip, int port) {
     verify(channel);
     verify(ip);
+    /* 发起连接操作 */
     return socket_connect(channel->socket_fd, ip, port);
 }
 
@@ -158,10 +161,10 @@ int knet_channel_send(kchannel_t* channel, const char* data, int size) {
 }
 
 int knet_channel_update_send(kchannel_t* channel) {
-    kdlist_node_t* node        = 0;
-    kdlist_node_t* temp        = 0;
-    kbuffer_t*     send_buffer = 0;
-    int            bytes       = 0;
+    kdlist_node_t* node        = 0; /* 发送缓冲链表节点 */
+    kdlist_node_t* temp        = 0; /* 发送缓冲链表临时节点 */
+    kbuffer_t*     send_buffer = 0; /* 发送缓冲指针 */
+    int            bytes       = 0; /* 调用socket_send实际发送的字节 */
     verify(channel);
     verify(channel->send_buffer_list);
     /* 发送链表内所有数据 */
@@ -187,10 +190,10 @@ int knet_channel_update_send(kchannel_t* channel) {
 }
 
 int knet_channel_update_recv(kchannel_t* channel) {
-    int      bytes      = 0;
-    int      recv_bytes = 0;
-    uint32_t size       = 0;
-    char*    ptr        = 0;
+    int      bytes      = 0; /* 调用socket_recv实际接收的字节 */
+    int      recv_bytes = 0; /* 接收到字节总数 */
+    uint32_t size       = 0; /* 读缓冲区当前可连续写入的字节数 */ 
+    char*    ptr        = 0; /* 读缓冲区可连续写入的起始地址 */
     verify(channel);
     verify(channel->recv_ringbuffer);
     if (ringbuffer_full(channel->recv_ringbuffer)) {
