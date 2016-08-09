@@ -122,6 +122,12 @@ extern int thread_runner_start_multi_loop_varg(kthread_runner_t* runner, int sta
 extern void thread_runner_join(kthread_runner_t* runner);
 
 /**
+ * 终止线程
+ * @param runner kthread_runner_t实例
+ */
+extern void thread_runner_exit(kthread_runner_t* runner);
+
+/**
  * 检查线程是否正在运行
  * @param runner kthread_runner_t实例
  * @retval 0 未运行

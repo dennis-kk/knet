@@ -900,6 +900,18 @@ void thread_runner_join(kthread_runner_t* runner) {
     runner->thread_id = 0;
 }
 
+void thread_runner_exit(kthread_runner_t* runner) {
+#if (defined(WIN32) || defined(_WIN64))
+    if (!runner->thread_handle) {
+        return;
+    }
+    runner->thread_handle = 0;
+    _endthread();
+#else
+    pthread_exit(0);
+#endif /* defined(WIN32) || defined(_WIN64) */
+}
+
 int thread_runner_check_start(kthread_runner_t* runner) {
     verify(runner);
     return runner->running;
