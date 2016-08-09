@@ -905,7 +905,6 @@ void thread_runner_exit(kthread_runner_t* runner) {
     if (!runner->thread_handle) {
         return;
     }
-    runner->thread_handle = 0;
     _endthread();
 #else
     pthread_exit(0);
