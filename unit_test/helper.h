@@ -115,6 +115,8 @@ inline std::string getBinaryPath() {
 
 #include <cstdio>
 #include <limits.h>
+#include <sys/types.h>
+#include <unistd.h>
 
 inline static std::ostream& blue(std::ostream &s) {
     printf("\033[1;34m");
