@@ -131,6 +131,6 @@ void knet_buffer_clear(kbuffer_t* sb) {
     if (!sb->ptr) {
         return;
     }
-    sb->ptr = sb->ptr - sb->pos;
+    sb->ptr = sb->m;
     sb->pos = 0;
 }
