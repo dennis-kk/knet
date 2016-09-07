@@ -120,6 +120,7 @@ void knet_buffer_adjust(kbuffer_t* sb, uint32_t gap) {
         return;
     }
     sb->ptr += gap;
+    sb->pos -= gap;
 }
 
 void knet_buffer_clear(kbuffer_t* sb) {
