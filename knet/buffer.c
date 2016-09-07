@@ -29,6 +29,7 @@
  * 发送缓冲区
  */
 struct _buffer_t {
+    char*    m;   /* 地址指针 */
     char*    ptr; /* 缓冲区起始地址 */
     uint32_t len; /* 缓冲区长度 */
     uint32_t pos; /* 缓冲区当前位置 */
@@ -47,6 +48,7 @@ kbuffer_t* knet_buffer_create(uint32_t size) {
         knet_buffer_destroy(sb);
         return 0;
     }
+    sb->m   = sb->ptr;
     sb->pos = 0;
     sb->len = size;
     return sb;
@@ -57,8 +59,8 @@ void knet_buffer_destroy(kbuffer_t* sb) {
     if (!sb) {
         return;
     }
-    if (sb->ptr) {
-        destroy(sb->ptr);
+    if (sb->m) {
+        destroy(sb->m);
     }
     if (sb) {
         destroy(sb);
