@@ -210,7 +210,7 @@ CASE(Test_Channel_Connect_Timeout_Auto_Reconnect) {
 CASE(Test_Channel_Idle_Timeout) {
     struct holder {
         static void connector_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
-            if (e & channel_cb_event_timeout) {
+            if (e & channel_cb_event_connect_timeout) {
                 knet_loop_exit(knet_channel_ref_get_loop(channel));
             } else if (e & channel_cb_event_close) {                
             } else {
@@ -223,8 +223,7 @@ CASE(Test_Channel_Idle_Timeout) {
 
     kchannel_ref_t* connector = knet_loop_create_channel(loop, 1, 1024);
     knet_channel_ref_set_cb(connector, &holder::connector_cb);
-    knet_channel_ref_set_timeout(connector, 1); /* …Ë÷√∂¡≥¨ ± */
-    knet_channel_ref_connect(connector, "127.0.0.1", 8000, 0);
+    knet_channel_ref_connect(connector, "127.0.0.1", 8000, 1);
 
     knet_loop_run(loop);
     knet_loop_destroy(loop);
