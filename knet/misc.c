@@ -324,11 +324,6 @@ int socket_recv(socket_t socket_fd, char* data, uint32_t size) {
         }
     #endif /* defined(WIN32) || defined(_WIN64) */
     } else if (recv_bytes == 0) {
-    #if (!defined(WIN32) && !defined(_WIN64))
-        if (errno == EAGAIN) {
-            return 0;
-        }
-    #endif /* (!defined(WIN32) && !defined(_WIN64)) */
         log_error("recv() failed, system error: %d", sys_get_errno());
         recv_bytes = -1;
     }
