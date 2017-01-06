@@ -213,8 +213,10 @@ int socket_close(socket_t socket_fd) {
     #if LOOP_IOCP
     CancelIo((HANDLE)socket_fd);
     #endif /* LOOP_IOCP */
+    shutdown(socket_fd, 2);
     return closesocket(socket_fd);
 #else
+    shutdown(socket_fd, SHUT_RDWR);
     return close(socket_fd);
 #endif /* defined(WIN32) || defined(_WIN64) */
 }
