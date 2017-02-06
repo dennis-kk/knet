@@ -206,8 +206,8 @@ uint32_t ringbuffer_available(kringbuffer_t* rb) {
 
 void ringbuffer_destroy(kringbuffer_t* rb) {
     verify(rb);
-    destroy(rb->ptr);
-    destroy(rb);
+    knet_free(rb->ptr);
+    knet_free(rb);
 }
 
 uint32_t ringbuffer_read_lock_size(kringbuffer_t* rb) {

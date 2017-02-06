@@ -122,7 +122,7 @@ void krbnode_destroy(krbnode_t* node) {
     if (node->cb) {
         node->cb(node->ptr, node->key);
     }
-    destroy(node);
+    knet_free(node);
 }
 
 void krbnode_destroy_recursive(krbnode_t* node) {
@@ -164,7 +164,7 @@ void krbtree_destroy(krbtree_t* tree) {
     if (node) {
         krbnode_destroy_recursive(node);
     }
-    destroy(tree);
+    knet_free(tree);
 }
 
 void krbtree_insert(krbtree_t* tree, krbnode_t* z) {

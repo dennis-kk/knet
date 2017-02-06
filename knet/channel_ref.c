@@ -137,10 +137,10 @@ int knet_channel_ref_destroy(kchannel_ref_t* channel_ref) {
         knet_channel_ref_stop_connect_timeout_timer(channel_ref);
         knet_channel_ref_stop_recv_timeout_timer(channel_ref);
         /* 销毁管道信息 */
-        destroy(channel_ref->ref_info);
+        knet_free(channel_ref->ref_info);
     }
     /* 销毁管道引用 */
-    destroy(channel_ref);
+    knet_free(channel_ref);
     return error_ok;
 }
 
@@ -324,7 +324,7 @@ void knet_channel_ref_leave(kchannel_ref_t* channel_ref) {
     /* 递减引用计数 */
     atomic_counter_dec(&channel_ref->ref_info->ref_count);
     /* 管道信息最终由kloop_t销毁 */
-    destroy(channel_ref);
+    knet_free(channel_ref);
 }
 
 void knet_channel_ref_update_close_in_loop(kloop_t* loop, kchannel_ref_t* channel_ref) {

@@ -60,10 +60,10 @@ void knet_buffer_destroy(kbuffer_t* sb) {
         return;
     }
     if (sb->m) {
-        destroy(sb->m);
+        knet_free(sb->m);
     }
     if (sb) {
-        destroy(sb);
+        knet_free(sb);
     }
 }
 

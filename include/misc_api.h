@@ -167,14 +167,32 @@ extern int split(const char* src, char delim, int n, ...);
 extern int get_host_ip_string(const char* host_name, char* ip, int size);
 
 /**
-* 字符串转long long
-* @param p 字符串
-* @return long long
-*/
+ * 字符串转long long
+ * @param p 字符串
+ * @return long long
+ */
 extern long long knet_atoll(const char *p);
 
 #if (defined(WIN32) || defined(_WIN64))
 #define atoll knet_atoll
 #endif /* defined(WIN32) && !defined(atoll) */
+
+/**
+ * 设置malloc函数指针
+ * @param func 函数指针
+ */
+extern void knet_set_malloc_func(knet_malloc_func_t func);
+
+/**
+ * 设置realloc函数指针
+ * @param func 函数指针
+ */
+extern void knet_set_realloc_func(knet_realloc_func_t func);
+
+/**
+ * 设置free函数指针
+ * @param func 函数指针
+ */
+extern void knet_set_free_func(knet_free_func_t func);
 
 #endif /* MISC_API_H */

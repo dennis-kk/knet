@@ -45,7 +45,7 @@ kaddress_t* knet_address_create() {
 void knet_address_destroy(kaddress_t* address) {
     verify(address);
     if (address) {
-        destroy(address);
+        knet_free(address);
     }
 }
 

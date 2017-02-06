@@ -152,7 +152,7 @@ void ktimer_loop_destroy(ktimer_loop_t* timer_loop) {
     verify(timer_loop);
     /* Ïú»ÙºìºÚÊ÷ */
     krbtree_destroy(timer_loop->timer_tree);
-    destroy(timer_loop);
+    knet_free(timer_loop);
 }
 
 void ktimer_loop_run(ktimer_loop_t* timer_loop) {

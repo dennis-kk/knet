@@ -87,7 +87,7 @@ loop_event_t* loop_event_create(kchannel_ref_t* channel_ref, kbuffer_t* send_buf
 
 void loop_event_destroy(loop_event_t* loop_event) {
     verify(loop_event);
-    destroy(loop_event);
+    knet_free(loop_event);
 }
 
 kchannel_ref_t* loop_event_get_channel_ref(loop_event_t* loop_event) {
@@ -112,13 +112,13 @@ kloop_t* knet_loop_create() {
     memset(loop, 0, sizeof(kloop_t));
     /* 建立选取器实现 */
     if (knet_impl_create(loop)) {
-        destroy(loop);
+        knet_free(loop);
         log_fatal("knet_loop_create() failed, reason: knet_impl_create()");
         return 0;
     }
     /* 建立线程事件读写描述符 */
     if (socket_pair(pair)) {
-        destroy(loop);
+        knet_free(loop);
         log_fatal("knet_loop_create() failed, reason: socket_pair()");
         return 0;
     }
@@ -169,7 +169,7 @@ void knet_loop_destroy(kloop_t* loop) {
     /* 销毁未处理跨线程事件 */
     dlist_for_each_safe(loop->event_list, node, temp) {
         event = (loop_event_t*)dlist_node_get_data(node);
-        destroy(event);
+        knet_free(event);
     }
     /* 销毁统计器 */
     knet_loop_profile_destroy(loop->profile);
@@ -180,7 +180,7 @@ void knet_loop_destroy(kloop_t* loop) {
     /* 销毁定时器循环, 所有管道定时器将被销毁 */
     ktimer_loop_destroy(loop->timer_loop);
     /* 销毁网络循环 */
-    destroy(loop);
+    knet_free(loop);
 }
 
 void loop_add_event(kloop_t* loop, loop_event_t* loop_event) {

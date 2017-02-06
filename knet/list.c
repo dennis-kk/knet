@@ -66,7 +66,7 @@ void dlist_node_destroy(kdlist_node_t* node) {
     verify(node);
     /* data在外部销毁 */
     if (!node->init) {
-        destroy(node);
+        knet_free(node);
     }
 }
 
@@ -87,7 +87,7 @@ kdlist_t* dlist_create() {
     dlist->head = dlist_node_create();
     verify(dlist->head);
     if (!dlist->head) {
-        destroy(dlist);
+        knet_free(dlist);
         return 0;
     }
     dlist->head->data = 0;
@@ -117,9 +117,9 @@ void dlist_destroy(kdlist_t* dlist) {
     dlist_for_each_safe(dlist, node, temp) {
         dlist_delete(dlist, node);
     }
-    destroy(dlist->head);
+    knet_free(dlist->head);
     if (!dlist->init) {
-        destroy(dlist);
+        knet_free(dlist);
     }
 }
 

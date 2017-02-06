@@ -108,7 +108,7 @@ klogger_t* logger_create(const char* path, int level, int mode) {
     }
     return logger;
 fail_return:
-    destroy(logger);
+    knet_free(logger);
     return 0;
 }
 
@@ -118,7 +118,7 @@ void logger_destroy(klogger_t* logger) {
         fclose(logger->fd);
     }
     lock_destroy(logger->lock);
-    destroy(logger);
+    knet_free(logger);
 }
 
 int logger_write(klogger_t* logger, int level, const char* format, ...) {

@@ -165,7 +165,7 @@ ktrie_t* trie_create() {
 void trie_destroy(ktrie_t* trie, knet_trie_dtor_t dtor) {
     verify(trie);
     _trie_node_destroy(trie->root, dtor);
-    destroy(trie);
+    knet_free(trie);
 }
 
 int trie_insert(ktrie_t* trie, const char* s, void* value) {
@@ -239,20 +239,20 @@ void _trie_node_destroy_self(ktrie_node_t* node, knet_trie_dtor_t dtor) {
     }
     verify(node);
     if (node->real_key) {
-        destroy(node->real_key);
+        knet_free(node->real_key);
     }
     if (dtor) {
         if (node->value) {
             dtor(node->value);
         }
     }
-    destroy(node);
+    knet_free(node);
 }
 
 void _trie_node_reset(ktrie_node_t* node) {
     verify(node);
     if (node->real_key) {
-        destroy(node->real_key);
+        knet_free(node->real_key);
     }
     memset(node, 0, sizeof(ktrie_node_t));
 }
@@ -453,7 +453,7 @@ int _trie_node_remove(ktrie_node_t* node, const char* s, void** value) {
     }
     if (start_node) {
         /* 使当前节点无效 */
-        destroy(start_node->real_key);
+        knet_free(start_node->real_key);
         start_node->real_key = 0;
         while (start_node && _trie_node_check_orphan(start_node)) {
             parent_node = start_node->parent;

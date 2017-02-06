@@ -99,14 +99,21 @@
 #define INT_MAX  2147483647 /* maximum (signed) int value */
 #endif /* INT_MAX */
 
-#define create(type)                         (type*)malloc(sizeof(type))
-#define create_raw(size)                     (char*)malloc(size)
-#define create_type(type, size)              (type*)malloc(size)
-#define create_type_ptr_array(type, n)       (type**)malloc((n) * sizeof(type*))
-#define rcreate_raw(ptr, size)               (char*)realloc(ptr, size)
-#define rcreate_type(type, ptr, size)        (type*)realloc(ptr, size)
-#define rcreate_type_ptr_array(type, ptr, n) (type**)realloc(ptr, (n) * sizeof(type*))
-extern void destroy(void* ptr) ;
+#define create(type)                         (type*)knet_malloc(sizeof(type))
+#define create_raw(size)                     (char*)knet_malloc(size)
+#define create_type(type, size)              (type*)knet_malloc(size)
+#define create_type_ptr_array(type, n)       (type**)knet_malloc((n) * sizeof(type*))
+#define rcreate_raw(ptr, size)               (char*)knet_realloc(ptr, size)
+#define rcreate_type(type, ptr, size)        (type*)knet_realloc(ptr, size)
+#define rcreate_type_ptr_array(type, ptr, n) (type**)knet_realloc(ptr, (n) * sizeof(type*))
+
+extern void knet_free(void* ptr); /* free */
+extern void* knet_malloc(size_t size); /* malloc */
+extern void* knet_realloc(void* ptr, size_t size); /* realloc */
+
+typedef void* (*knet_malloc_func_t)(size_t);
+typedef void* (*knet_realloc_func_t)(void*, size_t);
+typedef void  (*knet_free_func_t)(void*);
 
 typedef struct _loop_t kloop_t;
 typedef struct _channel_t kchannel_t;

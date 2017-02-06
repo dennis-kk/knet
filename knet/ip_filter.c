@@ -93,7 +93,7 @@ kip_filter_t* knet_ip_filter_create() {
 void knet_ip_filter_destroy(kip_filter_t* ip_filter) {
     verify(ip_filter);
     trie_destroy(ip_filter->trie, 0);
-    destroy(ip_filter);
+    knet_free(ip_filter);
 }
 
 int knet_ip_filter_load_file(kip_filter_t* ip_filter, const char* path) {

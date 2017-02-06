@@ -96,7 +96,7 @@ khash_value_t* hash_value_create(uint32_t key, const char* string_key, void* val
     if (string_key) { /* ×Ö·û´®¼ü */
         hash_value->string_key = create_type(char, strlen(string_key) + 1);
         if (!hash_value->string_key) {
-            destroy(hash_value);
+            knet_free(hash_value);
             return 0;
         }
         strcpy(hash_value->string_key, string_key);
@@ -110,9 +110,9 @@ khash_value_t* hash_value_create(uint32_t key, const char* string_key, void* val
 void hash_value_destroy(khash_value_t* hash_value) {
     verify(hash_value);
     if (hash_value->string_key) {
-        destroy(hash_value->string_key);
+        knet_free(hash_value->string_key);
     }
-    destroy(hash_value);
+    knet_free(hash_value);
 }
 
 void* hash_value_get_value(khash_value_t* hash_value) {
@@ -160,7 +160,7 @@ khash_t* hash_create(uint32_t size, knet_hash_dtor_t dtor) {
     hash->buckets = (kdlist_t**)create_type(kdlist_t*, sizeof(kdlist_t*) * size);
     verify(hash->buckets);
     if (!hash->buckets) {
-        destroy(hash);
+        knet_free(hash);
         return 0;
     }
     memset(hash->buckets, 0, size * sizeof(kdlist_t*));
@@ -195,8 +195,8 @@ void hash_destroy(khash_t* hash) {
         }
     }
     /* Ïú»Ùbucket */
-    destroy(hash->buckets);
-    destroy(hash);
+    knet_free(hash->buckets);
+    knet_free(hash);
 }
 
 int hash_add(khash_t* hash, uint32_t key, void* value) {

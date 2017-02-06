@@ -46,7 +46,7 @@ kstream_t* stream_create(kchannel_ref_t* channel_ref) {
 
 void stream_destroy(kstream_t* stream) {
     verify(stream);
-    destroy(stream);
+    knet_free(stream);
 }
 
 int knet_stream_available(kstream_t* stream) {

@@ -42,7 +42,7 @@ int knet_impl_create(kloop_t* loop) {
     knet_loop_set_impl(loop, impl);
     impl->epoll_fd = epoll_create(MAXEVENTS);
     if (impl->epoll_fd < 0) {
-        destroy(impl);
+        knet_free(impl);
         return 1;
     }
     impl->events = create_type(struct epoll_event, sizeof(struct epoll_event) * MAXEVENTS);
@@ -53,8 +53,8 @@ int knet_impl_create(kloop_t* loop) {
 void knet_impl_destroy(kloop_t* loop) {
     loop_epoll_t* impl = (loop_epoll_t*)knet_loop_get_impl(loop);
     close(impl->epoll_fd);
-    destroy(impl->events);
-    destroy(impl);
+    knet_free(impl->events);
+    knet_free(impl);
 }
 
 int _select(kloop_t* loop, int* count) {

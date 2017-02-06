@@ -62,7 +62,7 @@ void knet_broadcast_destroy(kbroadcast_t* broadcast) {
     if (broadcast->lock) {
         lock_destroy(broadcast->lock);
     }
-    destroy(broadcast);
+    knet_free(broadcast);
 }
 
 int knet_broadcast_join(kbroadcast_t* broadcast, kchannel_ref_t* channel_ref) {

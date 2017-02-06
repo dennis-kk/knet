@@ -57,10 +57,10 @@ void knet_loop_balancer_destroy(kloop_balancer_t* balancer) {
     verify(balancer);
     lock_destroy(balancer->lock);
     dlist_for_each_safe(balancer->loop_info_list, node, temp) {
-        destroy(dlist_node_get_data(node));
+        knet_free(dlist_node_get_data(node));
     }
     dlist_destroy(balancer->loop_info_list);
-    destroy(balancer);
+    knet_free(balancer);
 }
 
 int knet_loop_balancer_attach(kloop_balancer_t* balancer, kloop_t* loop) {
@@ -107,7 +107,7 @@ int knet_loop_balancer_detach(kloop_balancer_t* balancer, kloop_t* loop) {
     }
     if (found) {
         knet_loop_set_balancer(loop_info->loop, 0);
-        destroy(loop_info);
+        knet_free(loop_info);
         dlist_delete(balancer->loop_info_list, found);
     } else {
         error = error_loop_not_found;

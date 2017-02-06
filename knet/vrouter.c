@@ -62,7 +62,7 @@ void knet_vrouter_destroy(kvrouter_t* router) {
     verify(router->lock);
     hash_destroy(router->table);
     lock_destroy(router->lock);
-    destroy(router);
+    knet_free(router);
 }
 
 int knet_vrouter_add_wire(kvrouter_t* router,  kchannel_ref_t* c1, kchannel_ref_t* c2) {
@@ -100,7 +100,7 @@ error_return:
         if (w->c2) {
             knet_channel_ref_leave(w->c2);
         }
-        destroy(w);
+        knet_free(w);
     }
     return error;
 }

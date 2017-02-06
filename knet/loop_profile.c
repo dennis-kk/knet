@@ -55,7 +55,7 @@ kloop_profile_t* knet_loop_profile_create(kloop_t* loop) {
 }
 
 void knet_loop_profile_destroy(kloop_profile_t* profile) {
-    destroy(profile);
+    knet_free(profile);
 }
 
 uint32_t knet_loop_profile_increase_established_channel_count(kloop_profile_t* profile) {

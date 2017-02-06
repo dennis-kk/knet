@@ -60,12 +60,6 @@ typedef struct _thread_param_t {
     void*       loop; /* 循环指针 */
 } thread_param_t;
 
-void destroy(void* ptr) {
-    if (ptr) {
-        free(ptr);
-    }
-}
-
 socket_t socket_create() {
 #if LOOP_IOCP
     socket_t socket_fd = WSASocket(AF_INET, SOCK_STREAM, IPPROTO_TCP, 0, 0, WSA_FLAG_OVERLAPPED);
@@ -554,7 +548,7 @@ void lock_destroy(klock_t* lock) {
     #else
         pthread_mutex_destroy(&lock->lock);
     #endif /* defined(WIN32) || defined(_WIN64) */
-    destroy(lock);
+    knet_free(lock);
 }
 
 void lock_lock(klock_t* lock) {
@@ -611,10 +605,10 @@ void thread_runner_destroy(kthread_runner_t* runner) {
     }
     dlist_for_each(runner->multi_params, node) {
         param = (thread_param_t*)dlist_node_get_data(node);
-        destroy(param);
+        knet_free(param);
     }
     dlist_destroy(runner->multi_params);
-    destroy(runner);
+    knet_free(runner);
 }
 
 void _thread_func(void* params) {
@@ -1276,13 +1270,13 @@ kcond_t* cond_create() {
     cond->event = CreateEvent(0, TRUE, FALSE, 0);
     if (cond->event == INVALID_HANDLE_VALUE) {
         log_error("CreateEvent() failed, system error: %d", sys_get_errno());
-        destroy(cond);
+        knet_free(cond);
         return 0;
     }
 #else
     if (pthread_cond_init(&cond->event, 0)) {
         log_error("pthread_cond_init() failed, system error: %d", sys_get_errno());
-        destroy(cond);
+        knet_free(cond);
         return 0;
     }
 #endif /* WIN32 */
@@ -1296,7 +1290,7 @@ void cond_destroy(kcond_t* cond) {
 #else
     pthread_cond_destroy(&cond->event);
 #endif /* WIN32 */
-    destroy(cond);
+    knet_free(cond);
 }
 
 void cond_wait(kcond_t* cond, klock_t* lock) {
@@ -1474,3 +1468,39 @@ long long knet_atoll(const char *p) {
     return minus ? 0 - value : value;
 }
 #endif /* defined(WIN32) && !defined(atoll) */
+
+/*! malloc函数指针  */
+knet_malloc_func_t _knet_malloc_func = malloc;
+
+/*! realloc函数指针  */
+knet_realloc_func_t _knet_realloc_func = realloc;
+
+/*! free函数指针  */
+knet_free_func_t _knet_free_func = free;
+
+void knet_set_malloc_func(knet_malloc_func_t func) {
+    _knet_malloc_func = func;
+}
+
+void knet_set_realloc_func(knet_realloc_func_t func) {
+    _knet_realloc_func = func;
+}
+
+void knet_set_free_func(knet_free_func_t func) {
+    _knet_free_func = func;
+}
+
+void knet_free(void* ptr) {
+    if (ptr) {
+        _knet_free_func(ptr);
+    }
+}
+
+void* knet_malloc(size_t size) {
+    return _knet_malloc_func(size);
+}
+
+void* knet_realloc(void* ptr, size_t size) {
+    return _knet_realloc_func(ptr, size);
+}
+

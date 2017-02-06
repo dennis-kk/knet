@@ -47,7 +47,7 @@ int knet_impl_create(kloop_t* loop) {
 }
 
 void knet_impl_destroy(kloop_t* loop) {
-    destroy(knet_loop_get_impl(loop));
+    knet_free(knet_loop_get_impl(loop));
 #if defined(WIN32) || defined(WIN64)
     WSACleanup();
 #endif /* defined(WIN32) || defined(WIN64) */

@@ -146,9 +146,9 @@ void socket_data_destroy(per_sock_t* data) {
         if (data->AcceptEx_info->socket_fd) {
             socket_close(data->AcceptEx_info->socket_fd);
         }
-        destroy(data->AcceptEx_info);
+        knet_free(data->AcceptEx_info);
     }
-    destroy(data);
+    knet_free(data);
 }
 
 AcceptEx_t* socket_data_prepare_accept(per_sock_t* data) {
@@ -188,7 +188,7 @@ int knet_impl_create(kloop_t* loop) {
     knet_loop_set_impl(loop, impl);
     impl->iocp = CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, 0, 0);
     if (!impl->iocp) {
-        destroy(impl);
+        knet_free(impl);
         return error_loop_impl_init_fail;
     }
     WSAStartup(MAKEWORD(2, 2), &wsa);
@@ -199,7 +199,7 @@ void knet_impl_destroy(kloop_t* loop) {
     loop_iocp_t* impl = get_impl(loop);
     verify(impl);
     CloseHandle(impl->iocp);
-    destroy(impl);
+    knet_free(impl);
     WSACleanup();
 }
 

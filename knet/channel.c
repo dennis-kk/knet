@@ -92,7 +92,7 @@ void knet_channel_destroy(kchannel_t* channel) {
         ringbuffer_destroy(channel->recv_ringbuffer);
     }
     /* Ïú»Ù¹ÜµÀ */
-    destroy(channel);
+    knet_free(channel);
 }
 
 int knet_channel_connect(kchannel_t* channel, const char* ip, int port) {
