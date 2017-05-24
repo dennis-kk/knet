@@ -308,7 +308,7 @@ int socket_recv(socket_t socket_fd, char* data, uint32_t size) {
         if ((error == 0) || (error == WSAEINTR) || (error == WSAEINPROGRESS) || (error == WSAEWOULDBLOCK)) {
             return 0;
         } else {
-            log_error("recv() failed, system error: %d", sys_get_errno());
+            log_error("recv() failed, return %d, system error: %d", recv_bytes, sys_get_errno());
             recv_bytes = -1;
         }
     #else
@@ -320,7 +320,7 @@ int socket_recv(socket_t socket_fd, char* data, uint32_t size) {
         }
     #endif /* defined(WIN32) || defined(_WIN64) */
     } else if (recv_bytes == 0) {
-        log_error("recv() failed, system error: %d", sys_get_errno());
+        log_error("recv() failed, return 0, system error: %d", sys_get_errno());
         recv_bytes = -1;
     }
     return recv_bytes;
