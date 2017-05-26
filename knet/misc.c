@@ -315,7 +315,7 @@ int socket_recv(socket_t socket_fd, char* data, uint32_t size) {
         if ((errno == 0) || (errno == EAGAIN ) || (errno == EWOULDBLOCK) || (errno == EINTR)) {
             return 0;
         } else {
-            log_error("recv() failed, system error: %d", sys_get_errno());
+            log_error("recv() failed, return %d, system error: %d", recv_bytes, sys_get_errno());
             recv_bytes = -1;
         }
     #endif /* defined(WIN32) || defined(_WIN64) */

@@ -205,6 +205,7 @@ int knet_channel_update_recv(kchannel_t* channel) {
         bytes = socket_recv(channel->socket_fd, ptr, size);
         if (bytes < 0) {
             /* 错误，关闭 */
+            ringbuffer_write_commit(channel->recv_ringbuffer, 0);
             return error_recv_fail;
         } else if (bytes == 0) {
             /* 未接收到, 下次继续接收 */

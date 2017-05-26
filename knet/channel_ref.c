@@ -735,6 +735,18 @@ void knet_channel_ref_update_recv(kchannel_ref_t* channel_ref) {
     bytes = knet_stream_available(channel_ref->ref_info->stream);
     /* 处理读事件 */
     error = knet_channel_update_recv(channel_ref->ref_info->channel);
+    if (error != error_ok) {
+        bytes = knet_stream_available(channel_ref->ref_info->stream);
+        if (bytes) {
+            /* 记录统计数据 */
+            knet_loop_profile_add_recv_bytes(knet_loop_get_profile(channel_ref->ref_info->loop),
+                knet_stream_available(channel_ref->ref_info->stream) - bytes);
+            if (channel_ref->ref_info->cb) {
+                /* 调用回调 */
+                channel_ref->ref_info->cb(channel_ref, channel_cb_event_recv);
+            }
+        }
+    }
     switch (error) {
         case error_recv_fail: /* 接收失败 */
             knet_channel_ref_close_check_reconnect(channel_ref);
