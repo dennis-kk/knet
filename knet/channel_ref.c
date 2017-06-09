@@ -559,7 +559,9 @@ void knet_channel_ref_update_accept(kchannel_ref_t* channel_ref) {
         /* Ä¬ÈÏÊµÏÖ */
         client_fd = socket_accept(knet_channel_get_socket_fd(channel_ref->ref_info->channel));
     }
-    verify(client_fd > 0);
+    if (client_fd <= 0) {
+        return;
+    }
     knet_channel_ref_set_state(channel_ref, channel_state_accept);
     knet_channel_ref_set_event(channel_ref, channel_event_recv);
     if (client_fd) {
