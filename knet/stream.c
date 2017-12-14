@@ -146,6 +146,26 @@ int knet_stream_replace(kstream_t* stream, int pos, void* buffer, int size) {
     return error_ok;
 }
 
+int knet_stream_operate(kstream_t* stream, knet_stream_operator_t operate, int pos, int size) {
+    char old   = 0;
+    char op    = 0;
+    int  start = pos;
+    int  end   = pos + size;
+    verify(stream);
+    verify(operate);
+    verify(size);
+    for (; start < end; start++) {
+        if (0 >= ringbuffer_copy_random(knet_channel_ref_get_ringbuffer(stream->channel_ref), start, &old, 1)) {
+            return error_recv_fail;
+        }
+        op = operate(old);
+        if (0 >= ringbuffer_replace(knet_channel_ref_get_ringbuffer(stream->channel_ref), start, &op, 1)) {
+            return error_recv_fail;
+        }
+    }
+    return error_ok;
+}
+
 int knet_stream_push_stream(kstream_t* stream, kstream_t* target) {
     uint32_t      size = 0;
     kringbuffer_t* rb   = 0;

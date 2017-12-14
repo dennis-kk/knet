@@ -139,6 +139,19 @@ extern int knet_stream_copy(kstream_t* stream, void* buffer, int size);
  */
 extern int knet_stream_replace(kstream_t* stream, int pos, void* buffer, int size);
 
+typedef char(*knet_stream_operator_t)(char);
+
+/**
+ * 从pos开始针对每个字节调用knet_stream_operator_t对应的回调并设置
+ * @param stream kstream_t实例
+ * @param operate 操作回调
+ * @param pos 起始位置
+ * @param size 需要处理的长度
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+extern int knet_stream_operate(kstream_t* stream, knet_stream_operator_t operate, int pos, int size);
+
 /**
  * 将stream内数据写入target, 并清除stream内数据
  * @param stream kstream_t实例

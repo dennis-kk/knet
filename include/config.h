@@ -293,7 +293,7 @@ typedef void(*knet_rb_node_destroy_cb_t)(void*, uint64_t);
 #endif /* defined(DEBUG) || defined(_DEBUG) */
 
 #define LOGGER_MODE (logger_mode_file | logger_mode_console | logger_mode_flush | logger_mode_override) /* 日志模式 */
-#define LOGGER_LEVEL logger_level_verbose /* 日志等级 */
+#define LOGGER_LEVEL logger_level_fatal /* 日志等级 */
 
 #if defined(DEBUG) || defined(_DEBUG)
     #define verify(expr) assert(expr)
