@@ -33,7 +33,6 @@
 #include "loop_profile_case.h"
 #include "trie_case.h"
 #include "ip_filter_case.h"
-#include "vrouter_case.h"
 #include "misc_case.h"
 
 #endif // ALL_TEST_CASE_H
