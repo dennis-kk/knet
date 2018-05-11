@@ -17,14 +17,12 @@ add_library(knet
 	stream.c
 	address.c
 	version.c
-	broadcast.c
 	timer.c
 	logger.c
 	hash.c
 	loop_profile.c
 	trie.c
 	ip_filter.c
-	vrouter.c
 	rb_tree.c
 )
 
