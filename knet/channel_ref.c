@@ -607,7 +607,7 @@ int knet_channel_ref_start_connect_timeout_timer(kchannel_ref_t* channel_ref) {
         connect_timer = ktimer_create(knet_loop_get_timer_loop(channel_ref->ref_info->loop));
         verify(connect_timer);
         error = ktimer_start(connect_timer, knet_channel_ref_get_timer_cb(channel_ref),
-            channel_ref, 100);
+            channel_ref, channel_ref->ref_info->connect_timeout * 1000);
         if (error == error_ok) {
             channel_ref->ref_info->connect_timeout_timer = connect_timer;
         }
