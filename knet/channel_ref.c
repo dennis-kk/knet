@@ -107,7 +107,11 @@ kchannel_ref_t* knet_channel_ref_create(kloop_t* loop, kchannel_t* channel) {
 
 int knet_channel_ref_destroy(kchannel_ref_t* channel_ref) {
     verify(channel_ref);
-    if (channel_ref->ref_info) {
+    if (channel_ref->ref_info) {        
+        if (channel_ref->ref_info->state == channel_state_init) {
+            /* 未被加入到链表内 */
+            knet_channel_close(channel_ref->ref_info->channel);
+        }
         /* 检测引用计数 */
         if (!atomic_counter_zero(&channel_ref->ref_info->ref_count)) {
             return error_ref_nonzero;
