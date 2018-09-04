@@ -88,6 +88,7 @@ int main(int argc, char* argv[]) {
     knet_channel_ref_set_cb(connector, connector_cb);
     knet_channel_ref_set_timeout(connector, 1);
     if (error_ok != knet_channel_ref_connect(connector, ip, port, 20)) {
+        knet_channel_ref_close(connector);
         return 0;
     }
 
