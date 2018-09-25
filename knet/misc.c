@@ -972,7 +972,7 @@ void* thread_get_tls_data(kthread_runner_t* runner) {
 #endif /* defined(WIN32) || defined(_WIN64) */
 }
 
-uint32_t time_get_milliseconds() {
+uint64_t time_get_milliseconds() {
 #if (defined(WIN32) || defined(_WIN64))
     return GetTickCount();
 #else

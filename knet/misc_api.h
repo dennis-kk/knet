@@ -30,7 +30,7 @@
 /**
  * 获取当前毫秒
  */
-extern uint32_t time_get_milliseconds();
+extern uint64_t time_get_milliseconds();
 
 /**
  * 获取当前微秒
