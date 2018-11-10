@@ -57,8 +57,8 @@ int _select(kloop_t* loop) {
     socket_t max_fd = 0;
     socket_t fd = 0;
     int error = 0;
-    dlist_node_t* node = 0;
-    dlist_node_t* temp = 0;
+    kdlist_node_t* node = 0;
+    kdlist_node_t* temp = 0;
     kchannel_ref_t* channel_ref = 0;
     struct timeval tv = {0, 100}; /* 空转时最多等待1ms */
     loop_select_t* impl = (loop_select_t*)knet_loop_get_impl(loop);
@@ -86,8 +86,8 @@ int _select(kloop_t* loop) {
 }
 
 int knet_impl_run_once(kloop_t* loop) {
-    dlist_node_t* node = 0;
-    dlist_node_t* temp = 0;
+    kdlist_node_t* node = 0;
+    kdlist_node_t* temp = 0;
     kchannel_ref_t* channel_ref = 0;
     socket_t fd = 0;
     time_t ts = time(0);
