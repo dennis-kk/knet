@@ -941,7 +941,9 @@ kaddress_t* knet_channel_ref_get_local_address(kchannel_ref_t* channel_ref) {
     }
     /* 第一次建立 */
     channel_ref->ref_info->local_address = knet_address_create();
-    socket_getsockname(channel_ref, channel_ref->ref_info->local_address);
+    if (channel_ref->ref_info->state != channel_state_init) {
+        socket_getsockname(channel_ref, channel_ref->ref_info->local_address);
+    }
     return channel_ref->ref_info->local_address;
 }
 

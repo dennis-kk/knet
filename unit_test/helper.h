@@ -119,27 +119,27 @@ inline std::string getBinaryPath() {
 #include <unistd.h>
 
 inline static std::ostream& blue(std::ostream &s) {
-    printf("\033[1;34m");
+    //printf("\033[1;34m");
     return s;
 }
 
 inline static std::ostream& red(std::ostream &s) {
-    printf("\033[1;31m");
+    //printf("\033[1;31m");
     return s;
 }
 
 inline static std::ostream& green(std::ostream &s) {
-    printf("\033[1;32m");
+    //printf("\033[1;32m");
     return s;
 }
 
 inline static std::ostream& yellow(std::ostream &s) {
-    printf("\033[1;33m");
+    //printf("\033[1;33m");
     return s;
 }
 
 inline static std::ostream& white(std::ostream &s) {
-    printf("\033[30m");
+    //printf("\033[30m");
     return s;
 }
 
