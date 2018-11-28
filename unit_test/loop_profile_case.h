@@ -26,7 +26,7 @@
 #include "knet.h"
 
 int Test_Loop_Profile_i = 0;
-int Test_Loop_Profile_Client_Count = 10;
+int Test_Loop_Profile_Client_Count = 1;
 
 CASE(Test_Loop_Profile_Dump_Stdout) {
     struct holder {

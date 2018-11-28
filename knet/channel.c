@@ -109,7 +109,11 @@ int knet_channel_accept(kchannel_t* channel, const char* ip, int port, int backl
         backlog = 500;
     }
     if (!ip) {
+        #if defined(USE_IPV6)
+        ip = "0:0:0:0:0:0:0:0";
+        #else
         ip = "0.0.0.0";
+        #endif /* defined(USE_IPV6) */
     }
     /* ÉèÖÃÎª¼àÌý×´Ì¬ */
     return socket_bind_and_listen(channel->socket_fd, ip, port, backlog);

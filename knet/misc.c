@@ -62,9 +62,17 @@ typedef struct _thread_param_t {
 
 socket_t socket_create() {
 #if LOOP_IOCP
-    socket_t socket_fd = WSASocket(AF_INET, SOCK_STREAM, IPPROTO_TCP, 0, 0, WSA_FLAG_OVERLAPPED);
+    #if defined(USE_IPV6)
+    socket_t socket_fd = WSASocket(AF_INET6, SOCK_STREAM, 0, 0, 0, WSA_FLAG_OVERLAPPED);
+    #else
+    socket_t socket_fd = WSASocket(AF_INET, SOCK_STREAM, 0, 0, 0, WSA_FLAG_OVERLAPPED);
+    #endif /* defined(USE_IPV6) */
 #else
-    socket_t socket_fd = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
+    #if defined(USE_IPV6)
+    socket_t socket_fd = socket(PF_INET6, SOCK_STREAM, 0);
+    #else
+    socket_t socket_fd = socket(AF_INET, SOCK_STREAM, 0);
+    #endif
 #endif /* LOOP_IOCP */
 #if (defined(WIN32) || defined(_WIN64))
     if (socket_fd == INVALID_SOCKET) {
@@ -85,22 +93,45 @@ int socket_connect(socket_t socket_fd, const char* ip, int port) {
     DWORD last_error = 0;
 #endif /* defined(WIN32) || defined(_WIN64) */
     int error = 0;
+    #if defined(USE_IPV6)
+    struct sockaddr_in6 sa;
+    #else
     struct sockaddr_in sa;
+    #endif /* defined(USE_IPV6) */
     memset(&sa, 0, sizeof(sa));
-    sa.sin_family = AF_INET;
-    sa.sin_port   = htons((unsigned short)port);
+    #if defined(USE_IPV6)
+    sa.sin6_family = AF_INET6;
+    sa.sin6_port=htons((unsigned short)port);
+    #else
+    sa.sin_family = PF_INET6;
+    sa.sin_port = htons((unsigned short)port);
+    #endif /* defined(USE_IPV6) */
 #if (defined(WIN32) || defined(_WIN64))
+    #if defined(USE_IPV6)
+    sa.sin6_addr = in6addr_any;
+    if (ip) {
+        inet_pton(AF_INET6, ip, &sa.sin6_addr);
+    }
+    #else
     sa.sin_addr.S_un.S_addr = INADDR_ANY;
     if (ip) {
         sa.sin_addr.S_un.S_addr = inet_addr(ip);
     }
+    #endif /* defined(USE_IPV6) */
 #else
+    #if defined(USE_IPV6)
+    sa.sin6_addr = in6addr_any;
+    if (ip) {
+        inet_pton(AF_INET6, ip, &sa.sin6_addr);
+    }
+    #else
     sa.sin_addr.s_addr = INADDR_ANY;
     if (ip) {
         sa.sin_addr.s_addr = inet_addr(ip);
     }
+    #endif /* defined(USE_IPV6) */
 #endif /* defined(WIN32) || defined(_WIN64) */
-    error = connect(socket_fd, (struct sockaddr*)&sa, sizeof(struct sockaddr));
+    error = connect(socket_fd, (struct sockaddr*)&sa, sizeof(sa));
 #if (defined(WIN32) || defined(_WIN64))
     if (error < 0) {
         last_error = GetLastError();
@@ -122,24 +153,51 @@ int socket_connect(socket_t socket_fd, const char* ip, int port) {
 
 int socket_bind_and_listen(socket_t socket_fd, const char* ip, int port, int backlog) {
     int error = 0;
+    #if defined(USE_IPV6)
+    struct sockaddr_in6 sa;
+    #else
     struct sockaddr_in sa;
+    #endif /* defined(USE_IPV6) */
     memset(&sa, 0, sizeof(sa));
-    sa.sin_family = AF_INET;
-    sa.sin_port   = htons((unsigned short)port);
+    #if defined(USE_IPV6)
+    sa.sin6_family = AF_INET6;
+    sa.sin6_port=htons((unsigned short)port);
+    #else
+    sa.sin_family = PF_INET6;
+    sa.sin_port = htons((unsigned short)port);
+    #endif /* defined(USE_IPV6) */
 #if (defined(WIN32) || defined(_WIN64))
+    #if defined(USE_IPV6)
+    sa.sin6_addr = in6addr_any;
+    if (ip) {
+        inet_pton(AF_INET6, ip, &sa.sin6_addr);
+    }
+    #else
     sa.sin_addr.S_un.S_addr = INADDR_ANY;
     if (ip) {
         sa.sin_addr.S_un.S_addr = inet_addr(ip);
     }
+    #endif /* defined(USE_IPV6) */
 #else
+    #if defined(USE_IPV6)
+    sa.sin6_addr = in6addr_any;
+    if (ip) {
+        inet_pton(AF_INET6, ip, &sa.sin6_addr);
+    }
+    #else
     sa.sin_addr.s_addr = INADDR_ANY;
     if (ip) {
         sa.sin_addr.s_addr = inet_addr(ip);
     }
+    #endif /* defined(USE_IPV6) */
 #endif /* defined(WIN32) || defined(_WIN64) */
     socket_set_reuse_addr_on(socket_fd);
     socket_set_linger_off(socket_fd);
+    #if defined(USE_IPV6)
+    error = bind(socket_fd, (struct sockaddr*)&sa, sizeof(struct sockaddr_in6));
+    #else
     error = bind(socket_fd, (struct sockaddr*)&sa, sizeof(struct sockaddr));
+    #endif /* defined(USE_IPV6) */
     if (error < 0) {
         log_error("bind() failed, system error: %d", sys_get_errno());
         return error_bind_fail;
@@ -155,8 +213,12 @@ int socket_bind_and_listen(socket_t socket_fd, const char* ip, int port, int bac
 
 socket_t socket_accept(socket_t socket_fd) {
     socket_t     client_fd = 0; /* 客户端套接字 */
-    socket_len_t addr_len  = sizeof(struct sockaddr_in);
+    #if defined(USE_IPV6)
+    struct sockaddr_in6 sa;
+    #else
     struct sockaddr_in sa;
+    #endif /* defined(USE_IPV6) */
+    socket_len_t addr_len  = sizeof(sa);
     memset(&sa, 0, sizeof(sa));
     /* 接受客户端 */
     client_fd = accept(socket_fd, (struct sockaddr*)&sa, &addr_len);
@@ -433,49 +495,53 @@ error_return:
 }
 
 int socket_getpeername(kchannel_ref_t* channel_ref, kaddress_t* address) {
-#if (defined(WIN32) || defined(_WIN64))
-    char* ip;
-#else
+    #if defined(USE_IPV6)
+    char ip[128] = {0};
+    struct sockaddr_in6 addr;
+    #else
     char ip[32] = {0};
-#endif /* defined(WIN32) || defined(_WIN64) */
-    int port;
     struct sockaddr_in addr;
+    #endif /* defined(USE_IPV6) */
+    int port;
     socket_len_t len = sizeof(struct sockaddr);
     int retval = getpeername(knet_channel_ref_get_socket_fd(channel_ref), (struct sockaddr*)&addr, &len);
     if (retval < 0) {
         log_error("getpeername() failed, system error: %d", sys_get_errno());
         return error_getpeername;
     }
-#if (defined(WIN32) || defined(_WIN64))
-    ip = inet_ntoa(addr.sin_addr);
-#else
-    inet_ntop(AF_INET, &addr.sin_addr.s_addr, ip, sizeof(ip));
-#endif /* defined(WIN32) || defined(_WIN64) */
+    #if defined(USE_IPV6)
+    inet_ntop(AF_INET6, &addr.sin6_addr, ip, sizeof(ip));
+    port = ntohs(addr.sin6_port);
+    #else
+    inet_ntop(AF_INET6, &addr.sin_addr, ip, sizeof(ip));
     port = ntohs(addr.sin_port);
+    #endif /* defined(USE_IPV6) */    
     knet_address_set(address, ip, port);
     return error_ok;
 }
 
 int socket_getsockname(kchannel_ref_t* channel_ref,kaddress_t* address) {
-#if (defined(WIN32) || defined(_WIN64))
-    char* ip;
-#else
-    char ip[32] = {0};
-#endif /* defined(WIN32) || defined(_WIN64) */
-    int port;
+    #if defined(USE_IPV6)
+    char ip[128] = { 0 };
+    struct sockaddr_in6 addr;
+    #else
+    char ip[32] = { 0 };
     struct sockaddr_in addr;
+    #endif /* defined(USE_IPV6) */
+    int port;
     socket_len_t len = sizeof(struct sockaddr);
     int retval = getsockname(knet_channel_ref_get_socket_fd(channel_ref), (struct sockaddr*)&addr, &len);
     if (retval < 0) {
         log_error("getsockname() failed, system error: %d", sys_get_errno());
         return error_getpeername;
     }
-#if (defined(WIN32) || defined(_WIN64))
-    ip = inet_ntoa(addr.sin_addr);
+#if defined(USE_IPV6)
+    inet_ntop(AF_INET6, &addr.sin6_addr, ip, sizeof(ip));
+    port = ntohs(addr.sin6_port);
 #else
-    inet_ntop(AF_INET, &addr.sin_addr.s_addr, ip, sizeof(ip));
-#endif /* defined(WIN32) || defined(_WIN64) */
+    inet_ntop(AF_INET, &addr.sin_addr, ip, sizeof(ip));
     port = ntohs(addr.sin_port);
+#endif /* defined(USE_IPV6) */
     knet_address_set(address, ip, port);
     return error_ok;
 }
@@ -1402,7 +1468,7 @@ int get_host_ip_string(const char* host_name, char* ip, int size) {
     hints.ai_socktype = SOCK_STREAM;
     hints.ai_flags    = AI_CANONNAME;
 #if (defined(WIN32) || defined(_WIN64))
-    hints.ai_family   = AF_INET;
+    hints.ai_family   = AF_UNSPEC;
     hints.ai_protocol = IPPROTO_TCP;
 #endif /* defined(WIN32) || defined(_WIN64) */
     gai_error = getaddrinfo(host_name, 0, &hints, &answer);

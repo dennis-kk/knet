@@ -29,7 +29,7 @@
  * 地址
  */
 struct _address_t {
-    char ip[32]; /* IP */
+    char ip[128]; /* IP */
     int  port;   /* 端口 */
 };
 
@@ -38,7 +38,11 @@ kaddress_t* knet_address_create() {
     verify(address);
     memset(address, 0, sizeof(kaddress_t));
     /* 默认地址 */
+#if defined(USE_IPV6)
+    strcpy(address->ip, "0:0:0:0:0:0:0:0");
+#else
     strcpy(address->ip, "0.0.0.0");
+#endif /* defined(USE_IPV6) */
     return address;
 }
 

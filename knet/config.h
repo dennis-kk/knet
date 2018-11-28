@@ -308,4 +308,6 @@ typedef void(*knet_rb_node_destroy_cb_t)(void*, uint64_t);
         }
 #endif /* defined(DEBUG) || defined(_DEBUG) */
 
+//#define USE_IPV6
+
 #endif /* CONFIG_H */

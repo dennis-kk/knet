@@ -28,7 +28,7 @@
 CASE(Test_Ip_Filter_Add) {
     kip_filter_t* f = knet_ip_filter_create();
     EXPECT_TRUE(error_ok == knet_ip_filter_add(f, "192.168.0.1"));
-    EXPECT_TRUE(error_ok == knet_ip_filter_add(f, "127.0.0.1"));
+    EXPECT_TRUE(error_ok == knet_ip_filter_add(f, LOOP_ADDR));
     EXPECT_TRUE(knet_ip_filter_check(f, "192.168.0.1"));
     EXPECT_FALSE(knet_ip_filter_check(f, "192.168.0.2"));
     knet_ip_filter_destroy(f);

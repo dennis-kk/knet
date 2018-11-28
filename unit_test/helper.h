@@ -159,4 +159,13 @@ inline std::string getBinaryPath() {
 #include "testing.h"
 #include "test_case.h"
 
+#include "config.h"
+#if defined(USE_IPV6)
+#define LOOP_ADDR "0:0:0:0:0:0:0:1"
+#define LOCAL_ADDR "0:0:0:0:0:0:0:0"
+#else
+#define LOOP_ADDR "127.0.0.1"
+#define LOCAL_ADDR "0.0.0.0"
+#endif
+
 #endif // HEPLER_H

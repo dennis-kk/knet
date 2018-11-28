@@ -27,7 +27,7 @@
 
 CASE(Test_get_host_ip_string) {
     char ip[32] = {0};
-    EXPECT_TRUE(error_ok == get_host_ip_string("www.google.com", ip, sizeof(ip)));
+    EXPECT_TRUE(error_ok == get_host_ip_string("www.baidu.com", ip, sizeof(ip)));
     EXPECT_FALSE(error_ok == get_host_ip_string("www.kjkeekjqqwewe.com", ip, sizeof(ip)));
     EXPECT_TRUE(error_ok == get_host_ip_string("192.168.0.1", ip, sizeof(ip)));
 }

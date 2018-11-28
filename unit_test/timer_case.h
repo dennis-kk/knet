@@ -66,7 +66,7 @@ CASE(Test_Timer_Run) {
         ktimer_start(t, &holder::timer_cb, 0, 1000);
     }
     ktimer_loop_run(l);
-    EXPECT_TRUE(100 < Test_Timer_i);
+    EXPECT_TRUE(100 <= Test_Timer_i);
     ktimer_loop_destroy(l);
 }
 

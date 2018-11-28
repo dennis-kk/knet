@@ -34,7 +34,11 @@
     #pragma comment(lib,"Ws2_32.lib")
 #endif /* defined(_MSC_VER) */
 
+#if defined(USE_IPV6)
+#define ACCEPTEX_ADDR_SIZE   sizeof(struct sockaddr_in6) + 16 /* AcceptEx函数参数，详见MSDN */
+#else
 #define ACCEPTEX_ADDR_SIZE   sizeof(struct sockaddr_in) + 16 /* AcceptEx函数参数，详见MSDN */
+#endif /* USE_IPV6 */
 #define ACCEPTEX_BUFFER_SIZE 1024                            /* AcceptEx函数参数，详见MSDN */
 #define ACCEPTEX             LPFN_ACCEPTEX                   /* AcceptEx函数指针，详见MSDN */
 

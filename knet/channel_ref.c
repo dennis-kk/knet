@@ -154,7 +154,11 @@ int knet_channel_ref_connect(kchannel_ref_t* channel_ref, const char* ip, int po
     verify(channel_ref);
     verify(port);
     if (!ip) {
-        ip = "127.0.0.1";
+        #if defined(USE_IPV6)
+        ip = "0:0:0:0:0:0:0:0";
+        #else
+        ip = "0.0.0.0";
+        #endif /* defined(USE_IPV6) */
     }
     if (knet_channel_ref_check_state(channel_ref, channel_state_connect)) {
         /* 已经处于连接状态 */

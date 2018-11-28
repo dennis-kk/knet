@@ -30,7 +30,7 @@
 #include "stream_case.h"
 #include "thread_case.h"
 #include "timer_case.h"
-#include "loop_profile_case.h"
+//#include "loop_profile_case.h"
 #include "trie_case.h"
 #include "ip_filter_case.h"
 #include "misc_case.h"
