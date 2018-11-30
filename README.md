@@ -114,7 +114,7 @@ see `doc/html/index.html` for dev doc.
 1. Windows   
 	see `knet/win-proj/knet.sln`
 2. Linux   
-	./build.sh 
+	./build.sh [IPV6]
 
 The build result in folder `knet/bin` and `knet/lib`.
 
