@@ -103,7 +103,7 @@ int socket_connect(socket_t socket_fd, const char* ip, int port) {
     sa.sin6_family = AF_INET6;
     sa.sin6_port=htons((unsigned short)port);
     #else
-    sa.sin_family = PF_INET6;
+    sa.sin_family = AF_INET;
     sa.sin_port = htons((unsigned short)port);
     #endif /* defined(USE_IPV6) */
 #if (defined(WIN32) || defined(_WIN64))
@@ -163,7 +163,7 @@ int socket_bind_and_listen(socket_t socket_fd, const char* ip, int port, int bac
     sa.sin6_family = AF_INET6;
     sa.sin6_port=htons((unsigned short)port);
     #else
-    sa.sin_family = PF_INET6;
+    sa.sin_family = AF_INET;
     sa.sin_port = htons((unsigned short)port);
     #endif /* defined(USE_IPV6) */
 #if (defined(WIN32) || defined(_WIN64))
