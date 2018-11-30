@@ -276,8 +276,8 @@ typedef void(*knet_rb_node_destroy_cb_t)(void*, uint64_t);
 
 /* 根据需要， 开启不同选取器 */
 #if (defined(WIN32) || defined(_WIN64))
-    #define LOOP_IOCP 1    /* IOCP */
-    #define LOOP_SELECT 0  /* select */
+    #define LOOP_IOCP 0    /* IOCP */
+    #define LOOP_SELECT 1  /* select */
 #else
     #define LOOP_EPOLL 1   /* epoll */
     #define LOOP_SELECT 0  /* select */
@@ -308,6 +308,6 @@ typedef void(*knet_rb_node_destroy_cb_t)(void*, uint64_t);
         }
 #endif /* defined(DEBUG) || defined(_DEBUG) */
 
-//#define USE_IPV6
+#define USE_IPV6
 
 #endif /* CONFIG_H */

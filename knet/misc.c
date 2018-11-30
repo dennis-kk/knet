@@ -63,9 +63,9 @@ typedef struct _thread_param_t {
 socket_t socket_create() {
 #if LOOP_IOCP
     #if defined(USE_IPV6)
-    socket_t socket_fd = WSASocket(AF_INET6, SOCK_STREAM, 0, 0, 0, WSA_FLAG_OVERLAPPED);
+    socket_t socket_fd = WSASocket(AF_INET6, SOCK_STREAM, IPPROTO_TCP, 0, 0, WSA_FLAG_OVERLAPPED);
     #else
-    socket_t socket_fd = WSASocket(AF_INET, SOCK_STREAM, 0, 0, 0, WSA_FLAG_OVERLAPPED);
+    socket_t socket_fd = WSASocket(AF_INET, SOCK_STREAM, IPPROTO_TCP, 0, 0, WSA_FLAG_OVERLAPPED);
     #endif /* defined(USE_IPV6) */
 #else
     #if defined(USE_IPV6)

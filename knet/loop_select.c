@@ -29,6 +29,10 @@
 #include "channel_ref.h"
 #include "logger.h"
 
+#if defined(_MSC_VER )
+    #pragma comment(lib,"Ws2_32.lib")
+#endif /* defined(_MSC_VER) */
+
 typedef struct _loop_select_t {
     fd_set read_fds[FD_SETSIZE]; /* select读描述符数组 */
     fd_set send_fds[FD_SETSIZE]; /* select写描述符数组 */

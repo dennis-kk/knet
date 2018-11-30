@@ -12,7 +12,7 @@ for arg in $@; do
 	fi
 done
 
-if [ $use_ipv6 -eq 1 ] then
+if [ $use_ipv6 -eq 1 ]; then
 	cmake -DCMAKE_BUILD_TYPE=IPV6 CMakeLists.txt
 else
 	cmake CMakeLists.txt

@@ -1,5 +1,9 @@
 #include "knet.h"
 
+#if defined(_MSC_VER )
+#pragma comment(lib,"Ws2_32.lib")
+#endif /* defined(_MSC_VER) */
+
 void client_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
     char      buffer[1024] = {0};
     int       bytes      = 0;
@@ -28,7 +32,7 @@ void acceptor_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
             knet_channel_ref_get_socket_fd(channel),
             knet_loop_get_active_channel_count(knet_channel_ref_get_loop(channel)),
             knet_loop_get_close_channel_count(knet_channel_ref_get_loop(channel)));
-        knet_channel_ref_set_timeout(channel, 5);
+        knet_channel_ref_set_timeout(channel, 120);
         knet_channel_ref_set_cb(channel, client_cb);
     }
 }
