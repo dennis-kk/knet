@@ -173,6 +173,12 @@ int socket_connect6(socket_t socket_fd, const char* ip, int port) {
         if ((WSAEWOULDBLOCK != last_error) && (WSAEISCONN != last_error)) {
             log_error("connect() failed, system error: %d", sys_get_errno());
             return error_connect_fail;
+        } else {
+#ifdef LOOP_IOCP
+            while (!socket_check_send_ready(socket_fd)) {
+                thread_sleep_ms(1);
+            }
+#endif /* LOOP_IOCP */
         }
     }
 #else

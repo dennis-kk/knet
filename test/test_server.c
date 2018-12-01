@@ -35,10 +35,10 @@ void acceptor_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
             knet_loop_get_close_channel_count(knet_channel_ref_get_loop(channel)));
         knet_channel_ref_set_timeout(channel, 120);
         knet_channel_ref_set_cb(channel, client_cb);
-        address = knet_channel_ref_get_peer_address(channel);
+        /*address = knet_channel_ref_get_peer_address(channel);
         printf("peer: ip:%s, port:%d\n", address_get_ip(address), address_get_port(address));
         address = knet_channel_ref_get_local_address(channel);
-        printf("local: ip:%s, port:%d\n", address_get_ip(address), address_get_port(address));
+        printf("local: ip:%s, port:%d\n", address_get_ip(address), address_get_port(address));*/
     }
 }
 
