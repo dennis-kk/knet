@@ -27,6 +27,7 @@ void client_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
 }
 
 void acceptor_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
+    kaddress_t*  address = 0;
     if (e & channel_cb_event_accept) {
         printf("accept fd: %d, active channel count: %d, close channel count: %d\n",
             knet_channel_ref_get_socket_fd(channel),
@@ -34,7 +35,18 @@ void acceptor_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
             knet_loop_get_close_channel_count(knet_channel_ref_get_loop(channel)));
         knet_channel_ref_set_timeout(channel, 120);
         knet_channel_ref_set_cb(channel, client_cb);
+        address = knet_channel_ref_get_peer_address(channel);
+        printf("peer: ip:%s, port:%d\n", address_get_ip(address), address_get_port(address));
+        address = knet_channel_ref_get_local_address(channel);
+        printf("local: ip:%s, port:%d\n", address_get_ip(address), address_get_port(address));
     }
+}
+
+int isIPV6(const char* ip) {
+    if (!strchr(ip, ':')) {
+        return 0;
+    }
+    return 1;
 }
 
 int main(int argc, char* argv[]) {
@@ -75,7 +87,11 @@ int main(int argc, char* argv[]) {
 
     knet_loop_balancer_attach(balancer, loop);
 
-    acceptor = knet_loop_create_channel(loop, 8, 1024);
+    if (isIPV6(ip)) {
+        acceptor = knet_loop_create_channel6(loop, 8, 1024);
+    } else {
+        acceptor = knet_loop_create_channel(loop, 8, 1024);
+    }
     knet_channel_ref_set_cb(acceptor, acceptor_cb);
     knet_channel_ref_accept(acceptor, ip, port, 5000);
     for (i = 0; i < worker; i++) {

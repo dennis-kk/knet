@@ -154,11 +154,11 @@ int knet_channel_ref_connect(kchannel_ref_t* channel_ref, const char* ip, int po
     verify(channel_ref);
     verify(port);
     if (!ip) {
-        #if defined(USE_IPV6)
-        ip = "0:0:0:0:0:0:0:0";
-        #else
-        ip = "0.0.0.0";
-        #endif /* defined(USE_IPV6) */
+        if (knet_channel_is_ipv6(channel_ref->ref_info->channel)) {
+            ip = ":::";
+        } else {
+            ip = "0.0.0.0";
+        }
     }
     if (knet_channel_ref_check_state(channel_ref, channel_state_connect)) {
         /* 已经处于连接状态 */
@@ -166,7 +166,11 @@ int knet_channel_ref_connect(kchannel_ref_t* channel_ref, const char* ip, int po
     }
     if (!channel_ref->ref_info->peer_address) {
         /* 建立对端地址对象 */
-        channel_ref->ref_info->peer_address = knet_address_create();        
+        if (knet_channel_is_ipv6(channel_ref->ref_info->channel)) {
+            channel_ref->ref_info->peer_address = knet_address_create6();
+        } else {
+            channel_ref->ref_info->peer_address = knet_address_create();
+        }
     }
     /* 设置对端地址 */
     knet_address_set(channel_ref->ref_info->peer_address, ip, port);
@@ -233,7 +237,11 @@ int knet_channel_ref_reconnect(kchannel_ref_t* channel_ref, int timeout) {
     strcpy(ip, address_get_ip(peer_address));
     port = address_get_port(peer_address);
     /* 建立新管道 */
-    new_channel = knet_loop_create_channel(loop, max_send_list_len, max_recv_buffer_len);
+    if (knet_channel_is_ipv6(channel_ref->ref_info->channel)) {
+        new_channel = knet_loop_create_channel6(loop, max_send_list_len, max_recv_buffer_len);
+    } else {
+        new_channel = knet_loop_create_channel(loop, max_send_list_len, max_recv_buffer_len);
+    }
     verify(new_channel);
     if (timeout > 0) {
         /* 设置新的超时时间戳 */
@@ -521,7 +529,7 @@ int knet_channel_ref_check_event(kchannel_ref_t* channel_ref, knet_channel_event
     return (channel_ref->ref_info->event & event);
 }
 
-kchannel_ref_t* knet_channel_ref_accept_from_socket_fd(kchannel_ref_t* channel_ref, kloop_t* loop, socket_t client_fd, int event) {
+kchannel_ref_t* knet_channel_ref_accept_from_socket_fd(kchannel_ref_t* channel_ref, kloop_t* loop, socket_t client_fd, int event, int ipv6) {
     kchannel_t*     acceptor_channel    = 0; /* 监听管道 */
     uint32_t        max_send_list_len   = 0; /* 最大发送链表长度 */
     uint32_t        max_ringbuffer_size = 0; /* 最大接受缓冲区长度 */
@@ -541,7 +549,7 @@ kchannel_ref_t* knet_channel_ref_accept_from_socket_fd(kchannel_ref_t* channel_r
         max_ringbuffer_size = 16 * 1024; /* 默认16K */
     }
     /* 建立客户端管道 */
-    client_channel = knet_channel_create_exist_socket_fd(client_fd, max_send_list_len, max_ringbuffer_size);
+    client_channel = knet_channel_create_exist_socket_fd(client_fd, max_send_list_len, max_ringbuffer_size, ipv6);
     verify(client_channel);
     /* 建立管道引用 */
     client_ref = knet_channel_ref_create(loop, client_channel);
@@ -560,12 +568,17 @@ void knet_channel_ref_update_accept(kchannel_ref_t* channel_ref) {
     kchannel_ref_t* client_ref = 0;
     kloop_t*        loop       = 0;
     socket_t        client_fd  = 0;
+    int             ipv6 = knet_channel_is_ipv6(channel_ref->ref_info->channel);
     verify(channel_ref);
     /* 查看选取器是否有自定义实现 */
     client_fd = knet_impl_channel_accept(channel_ref);
     if (!client_fd) {
         /* 默认实现 */
-        client_fd = socket_accept(knet_channel_get_socket_fd(channel_ref->ref_info->channel));
+        if (knet_channel_is_ipv6(channel_ref->ref_info->channel)) {
+            client_fd = socket_accept6(knet_channel_get_socket_fd(channel_ref->ref_info->channel));
+        } else {
+            client_fd = socket_accept(knet_channel_get_socket_fd(channel_ref->ref_info->channel));
+        }
     }
     if (client_fd <= 0) {
         return;
@@ -575,7 +588,7 @@ void knet_channel_ref_update_accept(kchannel_ref_t* channel_ref) {
     if (client_fd) {
         loop = knet_channel_ref_choose_loop(channel_ref);
         if (loop) {
-            client_ref = knet_channel_ref_accept_from_socket_fd(channel_ref, loop, client_fd, 0);
+            client_ref = knet_channel_ref_accept_from_socket_fd(channel_ref, loop, client_fd, 0, ipv6);
             verify(client_ref);
             knet_channel_ref_set_user_data(client_ref, channel_ref->ref_info->user_data);
             knet_channel_ref_set_ptr(client_ref, channel_ref->ref_info->user_ptr);
@@ -586,7 +599,7 @@ void knet_channel_ref_update_accept(kchannel_ref_t* channel_ref) {
             /* 添加到其他loop */
             knet_loop_notify_accept(loop, client_ref);
         } else {
-            client_ref = knet_channel_ref_accept_from_socket_fd(channel_ref, channel_ref->ref_info->loop, client_fd, 1);
+            client_ref = knet_channel_ref_accept_from_socket_fd(channel_ref, channel_ref->ref_info->loop, client_fd, 1, ipv6);
             verify(client_ref);
             knet_channel_ref_set_user_data(client_ref, channel_ref->ref_info->user_data);
             knet_channel_ref_set_ptr(client_ref, channel_ref->ref_info->user_ptr);
@@ -930,7 +943,11 @@ kaddress_t* knet_channel_ref_get_peer_address(kchannel_ref_t* channel_ref) {
     }
     /* 第一次建立 */
     channel_ref->ref_info->peer_address = knet_address_create();
-    socket_getpeername(channel_ref, channel_ref->ref_info->peer_address);
+    if (knet_channel_is_ipv6(channel_ref->ref_info->channel)) {
+        socket_getpeername6(channel_ref, channel_ref->ref_info->peer_address);
+    } else {
+        socket_getpeername(channel_ref, channel_ref->ref_info->peer_address);
+    }
     return channel_ref->ref_info->peer_address;
 }
 
@@ -942,7 +959,11 @@ kaddress_t* knet_channel_ref_get_local_address(kchannel_ref_t* channel_ref) {
     /* 第一次建立 */
     channel_ref->ref_info->local_address = knet_address_create();
     if (channel_ref->ref_info->state != channel_state_init) {
-        socket_getsockname(channel_ref, channel_ref->ref_info->local_address);
+        if (knet_channel_is_ipv6(channel_ref->ref_info->channel)) {
+            socket_getsockname6(channel_ref, channel_ref->ref_info->local_address);
+        } else {
+            socket_getsockname(channel_ref, channel_ref->ref_info->local_address);
+        }
     }
     return channel_ref->ref_info->local_address;
 }

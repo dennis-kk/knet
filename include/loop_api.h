@@ -79,6 +79,15 @@ extern void knet_loop_destroy(kloop_t* loop);
 extern kchannel_ref_t* knet_loop_create_channel(kloop_t* loop, uint32_t max_send_list_len, uint32_t recv_ring_len);
 
 /**
+ * 创建管道
+ * @param loop kloop_t实例
+ * @param max_send_list_len 发送缓冲区链最大长度
+ * @param recv_ring_len 接受环形缓冲区最大长度
+ * @return kchannel_ref_t实例
+ */
+extern kchannel_ref_t* knet_loop_create_channel6(kloop_t* loop, uint32_t max_send_list_len, uint32_t recv_ring_len);
+
+/**
  * 使用已存在的套接字创建管道
  * @param loop kloop_t实例
  * @param socket_fd 套接字
@@ -87,6 +96,17 @@ extern kchannel_ref_t* knet_loop_create_channel(kloop_t* loop, uint32_t max_send
  * @return kchannel_ref_t实例
  */
 extern kchannel_ref_t* knet_loop_create_channel_exist_socket_fd(kloop_t* loop, socket_t socket_fd,
+    uint32_t max_send_list_len, uint32_t recv_ring_len);
+
+/**
+ * 使用已存在的套接字创建管道
+ * @param loop kloop_t实例
+ * @param socket_fd 套接字
+ * @param max_send_list_len 发送缓冲区链最大长度
+ * @param recv_ring_len 接受环形缓冲区最大长度
+ * @return kchannel_ref_t实例
+ */
+extern kchannel_ref_t* knet_loop_create_channel_exist_socket_fd6(kloop_t* loop, socket_t socket_fd,
     uint32_t max_send_list_len, uint32_t recv_ring_len);
 
 /**

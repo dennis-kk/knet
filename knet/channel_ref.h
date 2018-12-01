@@ -68,9 +68,10 @@ int knet_channel_ref_write(kchannel_ref_t* channel_ref, const char* data, int si
  * @param loop kloop_t实例
  * @param client_fd 通过accept()得到的套接字
  * @param event 是否投递事件和设置管道状态
+ * @param ipv6 是否是IPV6
  * @return kchannel_ref_t实例
  */
-kchannel_ref_t* knet_channel_ref_accept_from_socket_fd(kchannel_ref_t* channel_ref, kloop_t* loop, socket_t client_fd, int event);
+kchannel_ref_t* knet_channel_ref_accept_from_socket_fd(kchannel_ref_t* channel_ref, kloop_t* loop, socket_t client_fd, int event, int ipv6);
 
 /**
  * 取得管道相关联的kloop_t实例

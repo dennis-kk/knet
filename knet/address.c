@@ -38,11 +38,16 @@ kaddress_t* knet_address_create() {
     verify(address);
     memset(address, 0, sizeof(kaddress_t));
     /* 默认地址 */
-#if defined(USE_IPV6)
-    strcpy(address->ip, "0:0:0:0:0:0:0:0");
-#else
     strcpy(address->ip, "0.0.0.0");
-#endif /* defined(USE_IPV6) */
+    return address;
+}
+
+kaddress_t* knet_address_create6() {
+    kaddress_t* address = create(kaddress_t);
+    verify(address);
+    memset(address, 0, sizeof(kaddress_t));
+    /* 默认地址 */
+    strcpy(address->ip, ":::");
     return address;
 }
 

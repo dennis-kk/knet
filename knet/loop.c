@@ -295,12 +295,22 @@ void knet_loop_event_process(kloop_t* loop) {
 
 kchannel_ref_t* knet_loop_create_channel_exist_socket_fd(kloop_t* loop, socket_t socket_fd, uint32_t max_send_list_len, uint32_t recv_ring_len) {
     verify(loop);
-    return knet_channel_ref_create(loop, knet_channel_create_exist_socket_fd(socket_fd, max_send_list_len, recv_ring_len));
+    return knet_channel_ref_create(loop, knet_channel_create_exist_socket_fd(socket_fd, max_send_list_len, recv_ring_len, 0));
+}
+
+kchannel_ref_t* knet_loop_create_channel_exist_socket_fd6(kloop_t* loop, socket_t socket_fd, uint32_t max_send_list_len, uint32_t recv_ring_len) {
+    verify(loop);
+    return knet_channel_ref_create(loop, knet_channel_create_exist_socket_fd(socket_fd, max_send_list_len, recv_ring_len, 1));
 }
 
 kchannel_ref_t* knet_loop_create_channel(kloop_t* loop, uint32_t max_send_list_len, uint32_t recv_ring_len) {
     verify(loop);
-    return knet_channel_ref_create(loop, knet_channel_create(max_send_list_len, recv_ring_len));
+    return knet_channel_ref_create(loop, knet_channel_create(max_send_list_len, recv_ring_len, 0));
+}
+
+kchannel_ref_t* knet_loop_create_channel6(kloop_t* loop, uint32_t max_send_list_len, uint32_t recv_ring_len) {
+    verify(loop);
+    return knet_channel_ref_create(loop, knet_channel_create(max_send_list_len, recv_ring_len, 1));
 }
 
 thread_id_t knet_loop_get_thread_id(kloop_t* loop) {

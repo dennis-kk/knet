@@ -35,6 +35,12 @@
 kaddress_t* knet_address_create();
 
 /**
+ * 创建一个kaddress_t实例, IPV6
+ * @return kaddress_t实例
+ */
+kaddress_t* knet_address_create6();
+
+/**
  * 销毁一个kaddress_t实例
  * @param address kaddress_t实例
  */

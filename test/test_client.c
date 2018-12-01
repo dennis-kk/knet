@@ -18,10 +18,18 @@ void client_timer_cb(ktimer_t* timer, void* data) {
     printf("Active channel: %d, Recv: %d, Send: %d\n", active_channel, recv_bytes, send_bytes);
 }
 
+int isIPV6(const char* ip) {
+    if (!strchr(ip, ':')) {
+        return 0;
+    }
+    return 1;
+}
+
 void connector_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
     char      buffer[1024]    = {0};
     char*     hello           = "hello world";
     int       bytes           = 0;
+    kaddress_t* address = 0;
     kstream_t* stream          = knet_channel_ref_get_stream(channel);
     if (e & channel_cb_event_connect) { /* 连接成功 */
         printf("connected: %d\n", knet_channel_ref_get_socket_fd(channel));
@@ -29,6 +37,10 @@ void connector_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
         /* 写入 */
         send_bytes += 12;
         knet_stream_push(stream, hello, 12);
+        address = knet_channel_ref_get_peer_address(channel);
+        printf("peer: ip:%s, port:%d\n", address_get_ip(address), address_get_port(address));
+        address = knet_channel_ref_get_local_address(channel);
+        printf("local: ip:%s, port:%d\n", address_get_ip(address), address_get_port(address));
     } else if (e & channel_cb_event_recv) {
         bytes = knet_stream_available(stream);
         if (error_ok == knet_stream_pop(stream, buffer, bytes)) {
@@ -85,7 +97,11 @@ int main(int argc, char* argv[]) {
     thread_runner_start_timer_loop(timer_thread, timer_loop, 0);
 
     for (i = 0; i < client_n; i++) {
-        connector = knet_loop_create_channel(loop, 64, 1024);
+        if (isIPV6(ip)) {
+            connector = knet_loop_create_channel6(loop, 64, 1024);
+        } else {
+            connector = knet_loop_create_channel(loop, 64, 1024);
+        }
         knet_channel_ref_set_cb(connector, connector_cb);
         knet_channel_ref_set_timeout(connector, 1);
         if (error_ok != knet_channel_ref_connect(connector, ip, port, 10)) {

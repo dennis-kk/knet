@@ -31,18 +31,20 @@
  * 创建一个kchannel_t实例
  * @param max_send_list_len 发送链表最大长度
  * @param recv_ring_len 接受缓冲区最大长度
+ * @param ipv6 是否是IPV6
  * @return kchannel_t实例
  */
-kchannel_t* knet_channel_create(uint32_t max_send_list_len, uint32_t recv_ring_len);
+kchannel_t* knet_channel_create(uint32_t max_send_list_len, uint32_t recv_ring_len, int ipv6);
 
 /**
  * 创建一个kchannel_t实例
  * @param socket_fd 已建立的套接字
  * @param max_send_list_len 发送链表最大长度
  * @param recv_ring_len 接受缓冲区最大长度
+ * @param ipv6 是否是IPV6
  * @return kchannel_t实例
  */
-kchannel_t* knet_channel_create_exist_socket_fd(socket_t socket_fd, uint32_t max_send_list_len, uint32_t recv_ring_len);
+kchannel_t* knet_channel_create_exist_socket_fd(socket_t socket_fd, uint32_t max_send_list_len, uint32_t recv_ring_len, int ipv6);
 
 /**
  * 销毁kchannel_t实例
@@ -157,5 +159,13 @@ uint64_t knet_channel_get_uuid(kchannel_t* channel);
  * @retval 非零 是
  */
 int knet_channel_send_list_reach_max(kchannel_t* channel);
+
+/**
+ * 是否是IPV6
+ * @param channel kchannel_t实例
+ * @retval 0 不是
+ * @retval 非零 是
+ */
+int knet_channel_is_ipv6(kchannel_t* channel);
 
 #endif /* CHANNEL_H */

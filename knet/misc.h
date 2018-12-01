@@ -37,6 +37,12 @@
 socket_t socket_create();
 
 /**
+ * 建立一个套接字, IPV6
+ * @return 套接字
+ */
+socket_t socket_create6();
+
+/**
  * 发起异步connect
  * @param socket_fd 套接字
  * @param ip IP
@@ -45,6 +51,16 @@ socket_t socket_create();
  * @retval 其他 失败
  */
 int socket_connect(socket_t socket_fd, const char* ip, int port);
+
+/**
+ * 发起异步connect, IPV6
+ * @param socket_fd 套接字
+ * @param ip IP
+ * @param port 端口
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int socket_connect6(socket_t socket_fd, const char* ip, int port);
 
 /**
  * bind & listen
@@ -58,12 +74,31 @@ int socket_connect(socket_t socket_fd, const char* ip, int port);
 int socket_bind_and_listen(socket_t socket_fd, const char* ip, int port, int backlog);
 
 /**
+ * bind & listen, IPV6
+ * @param socket_fd 套接字
+ * @param ip IP
+ * @param port 端口
+ * @param backlog 函数listen()参数
+ * @retval error_ok 成功
+ * @retval 其他 失败
+ */
+int socket_bind_and_listen6(socket_t socket_fd, const char* ip, int port, int backlog);
+
+/**
  * accept
  * @param socket_fd 套接字
  * @retval 0 失败
  * @retval 有效的套接字
  */
 socket_t socket_accept(socket_t socket_fd);
+
+/**
+ * accept, IPV6
+ * @param socket_fd 套接字
+ * @retval 0 失败
+ * @retval 有效的套接字
+ */
+socket_t socket_accept6(socket_t socket_fd);
 
 /**
  * 关闭套接字（强制关闭）
@@ -176,10 +211,22 @@ int socket_pair(socket_t pair[2]);
 int socket_getpeername(kchannel_ref_t* channel_ref, kaddress_t* address);
 
 /**
+ * getpeername, IPV6
+ * @sa getpeername
+ */
+int socket_getpeername6(kchannel_ref_t* channel_ref, kaddress_t* address);
+
+/**
  * getsockname
  * @sa getsockname
  */
 int socket_getsockname(kchannel_ref_t* channel_ref, kaddress_t* address);
+
+/**
+ * getsockname, IPV6
+ * @sa getsockname
+ */
+int socket_getsockname6(kchannel_ref_t* channel_ref, kaddress_t* address);
 
 /**
  * 检查套接字是否可写

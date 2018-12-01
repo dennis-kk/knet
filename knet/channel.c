@@ -39,20 +39,26 @@ struct _channel_t {
     kringbuffer_t* recv_ringbuffer;   /* 读环形缓冲区, 通过socket读取函数读到的数据会放在这个缓冲区内 */
     socket_t       socket_fd;         /* 套接字 */
     uint64_t       uuid;              /* 管道UUID */
+    int            ipv6;              /* 是否是IPV6 */
 };
 
-kchannel_t* knet_channel_create(uint32_t max_send_list_len, uint32_t recv_ring_len) {
+kchannel_t* knet_channel_create(uint32_t max_send_list_len, uint32_t recv_ring_len, int ipv6) {
+    socket_t socket_fd = 0;
     /* 建立socket描述符 */
-    socket_t socket_fd = socket_create();
+    if (ipv6) {
+        socket_fd = socket_create6();
+    } else {
+        socket_fd = socket_create();
+    }
     verify(socket_fd > 0);
     if (socket_fd <= 0) {
         return 0;
     }
     /* 建立管道 */
-    return knet_channel_create_exist_socket_fd(socket_fd, max_send_list_len, recv_ring_len);
+    return knet_channel_create_exist_socket_fd(socket_fd, max_send_list_len, recv_ring_len, ipv6);
 }
 
-kchannel_t* knet_channel_create_exist_socket_fd(socket_t socket_fd, uint32_t max_send_list_len, uint32_t recv_ring_len) {
+kchannel_t* knet_channel_create_exist_socket_fd(socket_t socket_fd, uint32_t max_send_list_len, uint32_t recv_ring_len, int ipv6) {
     kchannel_t* channel = create(kchannel_t);
     verify(channel);
     memset(channel, 0, sizeof(kchannel_t));
@@ -63,6 +69,7 @@ kchannel_t* knet_channel_create_exist_socket_fd(socket_t socket_fd, uint32_t max
     verify(channel->recv_ringbuffer);
     channel->max_send_list_len = max_send_list_len;
     channel->socket_fd         = socket_fd;
+    channel->ipv6              = ipv6;
     /* 设置为非阻塞 */
     socket_set_non_blocking_on(channel->socket_fd);
     /* 关闭延迟发送 */
@@ -99,7 +106,11 @@ int knet_channel_connect(kchannel_t* channel, const char* ip, int port) {
     verify(channel);
     verify(ip);
     /* 发起连接操作 */
-    return socket_connect(channel->socket_fd, ip, port);
+    if (channel->ipv6) {
+        return socket_connect6(channel->socket_fd, ip, port);
+    } else {
+        return socket_connect(channel->socket_fd, ip, port);
+    }
 }
 
 int knet_channel_accept(kchannel_t* channel, const char* ip, int port, int backlog) {
@@ -109,14 +120,18 @@ int knet_channel_accept(kchannel_t* channel, const char* ip, int port, int backl
         backlog = 500;
     }
     if (!ip) {
-        #if defined(USE_IPV6)
-        ip = "0:0:0:0:0:0:0:0";
-        #else
-        ip = "0.0.0.0";
-        #endif /* defined(USE_IPV6) */
+        if (channel->ipv6) {
+            ip = "0:0:0:0:0:0:0:0";
+        } else {
+            ip = "0.0.0.0";
+        }
     }
     /* 设置为监听状态 */
-    return socket_bind_and_listen(channel->socket_fd, ip, port, backlog);
+    if (channel->ipv6) {
+        return socket_bind_and_listen6(channel->socket_fd, ip, port, backlog);
+    } else {
+        return socket_bind_and_listen(channel->socket_fd, ip, port, backlog);
+    }
 }
 
 int knet_channel_send_buffer(kchannel_t* channel, kbuffer_t* send_buffer) {
@@ -261,4 +276,9 @@ uint64_t knet_channel_get_uuid(kchannel_t* channel) {
 int knet_channel_send_list_reach_max(kchannel_t* channel) {
     verify(channel);
     return (dlist_get_count(channel->send_buffer_list) > (int)channel->max_send_list_len);
+}
+
+int knet_channel_is_ipv6(kchannel_t* channel) {
+    verify(channel);
+    return channel->ipv6;
 }
