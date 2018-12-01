@@ -64,7 +64,7 @@ int _select(kloop_t* loop) {
     kdlist_node_t* node = 0;
     kdlist_node_t* temp = 0;
     kchannel_ref_t* channel_ref = 0;
-    struct timeval tv = {0, 100}; /* 空转时最多等待1ms */
+    struct timeval tv = {0, 1000}; /* 空转时最多等待1ms */
     loop_select_t* impl = (loop_select_t*)knet_loop_get_impl(loop);
     FD_ZERO(impl->read_fds);
     FD_ZERO(impl->send_fds);
