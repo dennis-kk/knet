@@ -268,6 +268,14 @@ extern int knet_channel_ref_incref(kchannel_ref_t* channel_ref);
  */
 extern int knet_channel_ref_decref(kchannel_ref_t* channel_ref);
 
+/**
+ * 检测是否是IPV6管道
+ * @param channel_ref kchannel_ref_t实例
+ * @retvel 0 不是
+ * @retval 非0 是
+ */
+extern int knet_channel_ref_is_ipv6(kchannel_ref_t* channel_ref);
+
 /** @} */
 
 #endif /* CHANNEL_REF_API_H */

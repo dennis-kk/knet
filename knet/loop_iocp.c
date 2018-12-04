@@ -27,6 +27,7 @@
 #include "loop.h"
 #include "list.h"
 #include "channel_ref.h"
+#include "address.h"
 #include "misc.h"
 #include "logger.h"
 
@@ -337,6 +338,8 @@ void on_iocp_recv(kchannel_ref_t* channel_ref) {
     knet_channel_ref_set_flag(channel_ref, flag);
 }
 
+typedef BOOL(WINAPI *CONNECTEX)(SOCKET, const struct sockaddr *, int, PVOID, DWORD, LPDWORD, LPOVERLAPPED);
+
 void on_iocp_send(kchannel_ref_t* channel_ref) {
     DWORD          bytes    = 0;
     DWORD          flags    = 0;
@@ -347,6 +350,18 @@ void on_iocp_send(kchannel_ref_t* channel_ref) {
     int            flag     = knet_channel_ref_get_flag(channel_ref);
     per_sock_t*    per_sock = (per_sock_t*)knet_channel_ref_get_data(channel_ref);
     per_io_t*      per_io   = &per_sock->io_send;
+    CONNECTEX      fn_ConnectEx = 0;
+    GUID           guid_ConnectEx = WSAID_CONNECTEX;
+    struct         sockaddr_in6 in6;
+    struct         sockaddr_in  in;
+    struct         sockaddr* sockaddr_ptr = 0;
+    struct         sockaddr_in6 bind_in6;
+    struct         sockaddr_in bind_in;
+    struct         sockaddr* bind_sockaddr_ptr = 0;
+    int            addr_len = 0;
+    BOOL           connect_ret = FALSE;
+    kaddress_t*    peer_address = 0;
+    int            bind_ret = 0;
     if (knet_channel_ref_check_state(channel_ref, channel_state_close)) {
         return;
     }
@@ -358,10 +373,63 @@ void on_iocp_send(kchannel_ref_t* channel_ref) {
     }
     /* 连接状态的管道，检查是否已经完成 */
     if (knet_channel_ref_check_state(channel_ref, channel_state_connect)) {
-        if (!socket_check_send_ready(knet_channel_ref_get_socket_fd(channel_ref))) {
-            /* 未完成连接不投递send请求 */
+        error = WSAIoctl(fd, SIO_GET_EXTENSION_FUNCTION_POINTER, &guid_ConnectEx, sizeof(guid_ConnectEx),
+            &fn_ConnectEx, sizeof(CONNECTEX), &bytes, NULL, NULL);
+        if (error) {
+            knet_channel_ref_close(channel_ref);
             return;
         }
+        peer_address = knet_channel_ref_get_peer_address(channel_ref);
+        if (!peer_address) {
+            knet_channel_ref_close(channel_ref);
+            return;
+        }
+        if (knet_channel_ref_is_ipv6(channel_ref)) {
+            memset(&in6, 0, sizeof(in6));
+            in6.sin6_family = AF_INET6;
+            in6.sin6_port = htons((unsigned short)address_get_port(peer_address));
+            in6.sin6_addr = in6addr_any;
+            if (address_get_ip(peer_address)) {
+                inet_pton(AF_INET6, address_get_ip(peer_address), &in6.sin6_addr);
+            }
+            sockaddr_ptr = (struct sockaddr*)&in6;
+            addr_len = sizeof(in6);
+            memset(&bind_in6, 0, sizeof(bind_in6));
+            bind_in6.sin6_family = AF_INET6;
+            bind_in6.sin6_port = 0;
+            bind_in6.sin6_addr = in6addr_any;
+            bind_sockaddr_ptr = (struct sockaddr*)&bind_in6;
+        } else {
+            memset(&in, 0, sizeof(in));
+            in.sin_family = AF_INET;
+            in.sin_port = htons((unsigned short)address_get_port(peer_address));
+            in.sin_addr.S_un.S_addr = INADDR_ANY;
+            if (address_get_ip(peer_address)) {
+                in.sin_addr.S_un.S_addr = inet_addr(address_get_ip(peer_address));
+            }
+            sockaddr_ptr = (struct sockaddr*)&in;
+            addr_len = sizeof(in);
+            memset(&bind_in, 0, sizeof(bind_in));
+            bind_in.sin_family = AF_INET;
+            bind_in.sin_port = 0;
+            bind_in.sin_addr.S_un.S_addr = INADDR_ANY;
+            bind_sockaddr_ptr = (struct sockaddr*)&bind_in;
+        }
+        bind_ret = bind(fd, bind_sockaddr_ptr, addr_len);
+        if (bind_ret < 0) {
+            return;
+        }
+        connect_ret = fn_ConnectEx(fd, sockaddr_ptr, addr_len, 0, 0, 0, &per_io->ov);
+        if (connect_ret == FALSE) {
+            error = GetLastError();
+            if (error != ERROR_IO_PENDING) {
+                return;
+            }
+            /* 增加引用计数 */
+            knet_channel_ref_incref(channel_ref);
+            return;
+        }
+        setsockopt(fd, SOL_SOCKET, SO_UPDATE_CONNECT_CONTEXT, NULL, 0);
     }
     /* 投递一个0长度send请求 */
     result = WSASend(fd, &sbuf, 1, &bytes, flags, &per_io->ov, 0);

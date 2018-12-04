@@ -120,19 +120,17 @@ int socket_connect(socket_t socket_fd, const char* ip, int port) {
         sa.sin_addr.s_addr = inet_addr(ip);
     }
 #endif /* defined(WIN32) || defined(_WIN64) */
+#ifndef LOOP_IOCP
     error = connect(socket_fd, (struct sockaddr*)&sa, sizeof(sa));
+#else
+    socket_fd;
+#endif /* LOOP_IOCP */
 #if (defined(WIN32) || defined(_WIN64))
     if (error < 0) {
         last_error = GetLastError();
         if ((WSAEWOULDBLOCK != last_error) && (WSAEISCONN != last_error)) {
             log_error("connect() failed, system error: %d", sys_get_errno());
             return error_connect_fail;
-        } else {
-#ifdef LOOP_IOCP
-            while (!socket_check_send_ready(socket_fd)) {
-                thread_sleep_ms(1);
-            }
-#endif /* LOOP_IOCP */
         }
     }
 #else
@@ -166,7 +164,11 @@ int socket_connect6(socket_t socket_fd, const char* ip, int port) {
         inet_pton(AF_INET6, ip, &sa.sin6_addr);
     }
 #endif /* defined(WIN32) || defined(_WIN64) */
+#ifndef LOOP_IOCP
     error = connect(socket_fd, (struct sockaddr*)&sa, sizeof(sa));
+#else
+    socket_fd;
+#endif /* LOOP_IOCP */
 #if (defined(WIN32) || defined(_WIN64))
     if (error < 0) {
         last_error = GetLastError();
@@ -560,16 +562,17 @@ error_return:
 
 int socket_getpeername(kchannel_ref_t* channel_ref, kaddress_t* address) {
     char ip[32] = {0};
-    struct sockaddr_in addr;
+    struct sockaddr_in addr[2];
     int port;
-    socket_len_t len = sizeof(struct sockaddr);
+    socket_len_t len = sizeof(addr);
     int retval = getpeername(knet_channel_ref_get_socket_fd(channel_ref), (struct sockaddr*)&addr, &len);
     if (retval < 0) {
+        port = sys_get_errno();
         log_error("getpeername() failed, system error: %d", sys_get_errno());
         return error_getpeername;
     }
-    inet_ntop(AF_INET, &addr.sin_addr, ip, sizeof(ip));
-    port = ntohs(addr.sin_port);
+    inet_ntop(AF_INET, &addr[0].sin_addr, ip, sizeof(ip));
+    port = ntohs(addr[0].sin_port);
     knet_address_set(address, ip, port);
     return error_ok;
 }
@@ -594,7 +597,7 @@ int socket_getsockname(kchannel_ref_t* channel_ref,kaddress_t* address) {
     char ip[32] = { 0 };
     struct sockaddr_in addr;
     int port;
-    socket_len_t len = sizeof(struct sockaddr);
+    socket_len_t len = sizeof(addr);
     int retval = getsockname(knet_channel_ref_get_socket_fd(channel_ref), (struct sockaddr*)&addr, &len);
     if (retval < 0) {
         log_error("getsockname() failed, system error: %d", sys_get_errno());
