@@ -268,6 +268,7 @@ int knet_channel_ref_reconnect(kchannel_ref_t* channel_ref, int timeout) {
         return error;
     }
     /* 销毁原有管道 */
+    knet_channel_ref_decref(channel_ref);
     knet_channel_ref_close(channel_ref);
     return error;
 }
@@ -370,8 +371,11 @@ void knet_channel_ref_close_check_reconnect(kchannel_ref_t* channel_ref) {
         /* 自动重连 */
         /* 伪造当前状态 */
         knet_channel_ref_set_state(channel_ref, channel_state_connect);
+        if (!channel_ref->ref_info->connect_timeout_timer) {
+            knet_channel_ref_start_connect_timeout_timer(channel_ref);
+        }
         /* 重连 */
-        knet_channel_ref_reconnect(channel_ref, 0);
+        //knet_channel_ref_reconnect(channel_ref, 0);
     } else {
         /* 关闭管道 */
         knet_channel_ref_close(channel_ref);
@@ -699,15 +703,15 @@ void knet_channel_ref_update_connect(kchannel_ref_t* channel_ref) {
     knet_channel_ref_set_event(channel_ref, channel_event_recv);
     /* 切换管道为活跃状态 */
     knet_channel_ref_set_state(channel_ref, channel_state_active);
+    /* 销毁连接超时定时器 */
+    knet_channel_ref_stop_connect_timeout_timer(channel_ref);
+    /* 启动接收超时定时器 */
+    knet_channel_ref_start_recv_timeout_timer(channel_ref);
     if (channel_ref->ref_info->cb) {
         /* 调用回调 */
         log_error("channel connectd, channel[%llu]", knet_channel_ref_get_uuid(channel_ref));
         channel_ref->ref_info->cb(channel_ref, channel_cb_event_connect);
     }
-    /* 销毁连接超时定时器 */
-    knet_channel_ref_stop_connect_timeout_timer(channel_ref);
-    /* 启动接收超时定时器 */
-    knet_channel_ref_start_recv_timeout_timer(channel_ref);
 }
 
 void timer_cb(ktimer_t* timer, void* data) {

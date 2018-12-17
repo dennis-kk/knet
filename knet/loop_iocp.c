@@ -313,6 +313,7 @@ void on_iocp_recv(kchannel_ref_t* channel_ref) {
             error = GetLastError();
             if (error != ERROR_IO_PENDING) {
                 knet_channel_ref_close(channel_ref);
+                return;
             }
             /* 增加引用计数 */
             knet_channel_ref_incref(channel_ref);
@@ -326,6 +327,7 @@ void on_iocp_recv(kchannel_ref_t* channel_ref) {
             error = GetLastError();
             if ((error != ERROR_IO_PENDING) && (error != WSAENOTCONN)) {
                 knet_channel_ref_close(channel_ref);
+                return;
             }
             /* 增加引用计数 */
             knet_channel_ref_incref(channel_ref);
@@ -427,9 +429,9 @@ void on_iocp_send(kchannel_ref_t* channel_ref) {
             }
             /* 增加引用计数 */
             knet_channel_ref_incref(channel_ref);
-            return;
         }
         setsockopt(fd, SOL_SOCKET, SO_UPDATE_CONNECT_CONTEXT, NULL, 0);
+        return;
     }
     /* 投递一个0长度send请求 */
     result = WSASend(fd, &sbuf, 1, &bytes, flags, &per_io->ov, 0);
@@ -437,6 +439,7 @@ void on_iocp_send(kchannel_ref_t* channel_ref) {
         error = GetLastError();
         if ((error != ERROR_IO_PENDING) && (error != WSAENOTCONN)) {
             knet_channel_ref_close(channel_ref);
+            return;
         }
         /* 增加引用计数 */
         knet_channel_ref_incref(channel_ref);
