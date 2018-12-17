@@ -268,7 +268,9 @@ int knet_channel_ref_reconnect(kchannel_ref_t* channel_ref, int timeout) {
         return error;
     }
     /* 销毁原有管道 */
+#ifdef LOOP_IOCP
     knet_channel_ref_decref(channel_ref);
+#endif /* LOOP_IOCP */
     knet_channel_ref_close(channel_ref);
     return error;
 }
