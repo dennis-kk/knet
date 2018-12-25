@@ -160,6 +160,9 @@ void knet_loop_destroy(kloop_t* loop) {
     /* 销毁已关闭管道 */
     dlist_for_each_safe(loop->close_channel_list, node, temp) {
         channel_ref = (kchannel_ref_t*)dlist_node_get_data(node);
+        while (!knet_channel_ref_check_ref_zero(channel_ref)) {
+            knet_channel_ref_decref(channel_ref);
+        }
         knet_channel_ref_destroy(channel_ref);
     }
     /* 销毁选取器本地实现 */

@@ -1016,7 +1016,7 @@ int knet_channel_ref_is_ipv6(kchannel_ref_t* channel_ref) {
 
 int knet_channel_ref_check_ref_zero(kchannel_ref_t* channel_ref) {
     verify(channel_ref);
-    return !atomic_counter_zero(&channel_ref->ref_info->ref_count);
+    return atomic_counter_zero(&channel_ref->ref_info->ref_count);
 }
 
 int knet_channel_ref_get_ref(kchannel_ref_t* channel_ref) {
