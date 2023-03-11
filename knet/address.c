@@ -34,7 +34,7 @@ struct _address_t {
 };
 
 kaddress_t* knet_address_create() {
-    kaddress_t* address = create(kaddress_t);
+    kaddress_t* address = knet_create(kaddress_t);
     verify(address);
     memset(address, 0, sizeof(kaddress_t));
     /* 默认地址 */
@@ -43,7 +43,7 @@ kaddress_t* knet_address_create() {
 }
 
 kaddress_t* knet_address_create6() {
-    kaddress_t* address = create(kaddress_t);
+    kaddress_t* address = knet_create(kaddress_t);
     verify(address);
     memset(address, 0, sizeof(kaddress_t));
     /* 默认地址 */

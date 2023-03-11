@@ -57,7 +57,7 @@
  * @param stream kstream_t实例
  * @return 可读字节数
  */
-extern int knet_stream_available(kstream_t* stream);
+FuncExport int knet_stream_available(kstream_t* stream);
 
 /**
  * 清空数据流
@@ -65,7 +65,7 @@ extern int knet_stream_available(kstream_t* stream);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int knet_stream_eat_all(kstream_t* stream);
+FuncExport int knet_stream_eat_all(kstream_t* stream);
 
 /**
  * 删除指定长度数据
@@ -74,7 +74,7 @@ extern int knet_stream_eat_all(kstream_t* stream);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int knet_stream_eat(kstream_t* stream, int size);
+FuncExport int knet_stream_eat(kstream_t* stream, int size);
 
 /**
  * 从数据流内读取数据并清除数据
@@ -84,7 +84,7 @@ extern int knet_stream_eat(kstream_t* stream, int size);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int knet_stream_pop(kstream_t* stream, void* buffer, int size);
+FuncExport int knet_stream_pop(kstream_t* stream, void* buffer, int size);
 
 /**
  * 从数据流内查找指定的结束符，并取出遍历过的数据（包含结束符）
@@ -95,7 +95,7 @@ extern int knet_stream_pop(kstream_t* stream, void* buffer, int size);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int knet_stream_pop_until(kstream_t* stream, const char* end, void* buffer, int* size);
+FuncExport int knet_stream_pop_until(kstream_t* stream, const char* end, void* buffer, int* size);
 
 /**
  * 向数据流内写数据
@@ -105,7 +105,7 @@ extern int knet_stream_pop_until(kstream_t* stream, const char* end, void* buffe
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int knet_stream_push(kstream_t* stream, const void* buffer, int size);
+FuncExport int knet_stream_push(kstream_t* stream, const void* buffer, int size);
 
 /**
  * 向数据流写数据，可变参数字符串
@@ -116,7 +116,7 @@ extern int knet_stream_push(kstream_t* stream, const void* buffer, int size);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int knet_stream_push_varg(kstream_t* stream, const char* format, ...);
+FuncExport int knet_stream_push_varg(kstream_t* stream, const char* format, ...);
 
 /**
  * 从数据流内拷贝数据，但不清除数据流内数据
@@ -126,7 +126,7 @@ extern int knet_stream_push_varg(kstream_t* stream, const char* format, ...);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int knet_stream_copy(kstream_t* stream, void* buffer, int size);
+FuncExport int knet_stream_copy(kstream_t* stream, void* buffer, int size);
 
 /**
  * 替换数据流内数据
@@ -137,7 +137,7 @@ extern int knet_stream_copy(kstream_t* stream, void* buffer, int size);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int knet_stream_replace(kstream_t* stream, int pos, void* buffer, int size);
+FuncExport int knet_stream_replace(kstream_t* stream, int pos, void* buffer, int size);
 
 typedef char(*knet_stream_operator_t)(char);
 
@@ -150,7 +150,7 @@ typedef char(*knet_stream_operator_t)(char);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int knet_stream_operate(kstream_t* stream, knet_stream_operator_t operate, int pos, int size);
+FuncExport int knet_stream_operate(kstream_t* stream, knet_stream_operator_t operate, int pos, int size);
 
 /**
  * 将stream内数据写入target, 并清除stream内数据
@@ -159,7 +159,7 @@ extern int knet_stream_operate(kstream_t* stream, knet_stream_operator_t operate
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int knet_stream_push_stream(kstream_t* stream, kstream_t* target);
+FuncExport int knet_stream_push_stream(kstream_t* stream, kstream_t* target);
 
 /**
  * 将stream内数据写入target, 并清除stream内数据
@@ -169,7 +169,7 @@ extern int knet_stream_push_stream(kstream_t* stream, kstream_t* target);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int knet_stream_push_stream_count(kstream_t* stream, kstream_t* target, int count);
+FuncExport int knet_stream_push_stream_count(kstream_t* stream, kstream_t* target, int count);
 
 /**
  * 将stream内数据写入target, 但不清除stream内数据
@@ -178,7 +178,7 @@ extern int knet_stream_push_stream_count(kstream_t* stream, kstream_t* target, i
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int knet_stream_copy_stream(kstream_t* stream, kstream_t* target);
+FuncExport int knet_stream_copy_stream(kstream_t* stream, kstream_t* target);
 
 /**
  * 将stream内数据写入ringbuffer内
@@ -187,14 +187,14 @@ extern int knet_stream_copy_stream(kstream_t* stream, kstream_t* target);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int knet_stream_drain_ringbuffer(kstream_t* stream, kringbuffer_t* target);
+FuncExport int knet_stream_drain_ringbuffer(kstream_t* stream, kringbuffer_t* target);
 
 /**
  * 获取流所属的管道引用
  * @param stream kstream_t实例
  * @return kchannel_ref_t实例
  */
-extern kchannel_ref_t* knet_stream_get_channel_ref(kstream_t* stream);
+FuncExport kchannel_ref_t* knet_stream_get_channel_ref(kstream_t* stream);
 
 /** @} */
 

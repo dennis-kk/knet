@@ -1,0 +1,23 @@
+[package]
+name = "knet"
+version = "0.1.0"
+edition = "2021"
+build = "build.rs"
+license = "MIT"
+keywords = ["networking", "tcp", "multi-threaded"]
+publish = ["knet"]
+authors = ["wangkuankuan <7208454@qq.com>"]
+description = "A TCP library"
+
+[lib]
+name = "knet"
+path = "src/lib.rs"
+
+[dependencies]
+libc = "0.2"
+ffi-opaque = "2.0"
+lazy_static = "1.4.0"
+heapless = "0.7.16"
+
+[build-dependencies]
+cc = "1.0.46"

@@ -23,8 +23,6 @@
  */
 
 #include "channel.h"
-#include "buffer.h"
-#include "list.h"
 #include "ringbuffer.h"
 #include "loop.h"
 #include "misc.h"
@@ -34,12 +32,11 @@
  * 管道
  */
 struct _channel_t {
-    kdlist_t*      send_buffer_list;  /* 发送链表, 发送失败的数据会加入这个链表等待下次发送 */
-    uint32_t       max_send_list_len; /* 发送链表最大长度 */
+    kringbuffer_t* send_ringbuffer;   /* 发送环形缓冲区, 通过socket发送失败的数据会放在这个缓冲区内, 等待下次发送*/
     kringbuffer_t* recv_ringbuffer;   /* 读环形缓冲区, 通过socket读取函数读到的数据会放在这个缓冲区内 */
-    socket_t       socket_fd;         /* 套接字 */
-    uint64_t       uuid;              /* 管道UUID */
-    int            ipv6;              /* 是否是IPV6 */
+    socket_t      socket_fd;         /* 套接字 */
+    uint64_t      uuid;             /* 管道UUID */
+    int          ipv6;             /* 是否是IPV6 */
 };
 
 kchannel_t* knet_channel_create(uint32_t max_send_list_len, uint32_t recv_ring_len, int ipv6) {
@@ -59,17 +56,17 @@ kchannel_t* knet_channel_create(uint32_t max_send_list_len, uint32_t recv_ring_l
 }
 
 kchannel_t* knet_channel_create_exist_socket_fd(socket_t socket_fd, uint32_t max_send_list_len, uint32_t recv_ring_len, int ipv6) {
-    kchannel_t* channel = create(kchannel_t);
+    kchannel_t* channel = knet_create(kchannel_t);
     verify(channel);
+    (void)max_send_list_len;
     memset(channel, 0, sizeof(kchannel_t));
     channel->uuid = uuid_create(); /* 管道UUID */
-    channel->send_buffer_list = dlist_create(); /* 发送链表 */
-    verify(channel->send_buffer_list);
+    channel->send_ringbuffer = ringbuffer_create(recv_ring_len); /* 写缓冲区 */
+    verify(channel->send_ringbuffer);
     channel->recv_ringbuffer = ringbuffer_create(recv_ring_len); /* 读缓冲区 */
     verify(channel->recv_ringbuffer);
-    channel->max_send_list_len = max_send_list_len;
-    channel->socket_fd         = socket_fd;
-    channel->ipv6              = ipv6;
+    channel->socket_fd      = socket_fd;
+    channel->ipv6          = ipv6;
     /* 设置为非阻塞 */
     socket_set_non_blocking_on(channel->socket_fd);
     /* 关闭延迟发送 */
@@ -78,26 +75,24 @@ kchannel_t* knet_channel_create_exist_socket_fd(socket_t socket_fd, uint32_t max
     socket_set_linger_off(channel->socket_fd);
     /* 关闭keep alive */
     socket_set_keepalive_off(channel->socket_fd);
+    /* 设置网络读/写缓冲区长度 */
+    socket_set_recv_buffer_size(channel->socket_fd, recv_ring_len);
+    socket_set_send_buffer_size(channel->socket_fd, recv_ring_len);
     return channel;
 }
 
 void knet_channel_destroy(kchannel_t* channel) {
-    kdlist_node_t* node        = 0;
-    kdlist_node_t* temp        = 0;
-    kbuffer_t*     send_buffer = 0;
     verify(channel);
-    /* 销毁未发送的数据 */
-    if (channel->send_buffer_list) {
-        dlist_for_each_safe(channel->send_buffer_list, node, temp) {
-            send_buffer = (kbuffer_t*)dlist_node_get_data(node);
-            knet_buffer_destroy(send_buffer);
-        }
-        dlist_destroy(channel->send_buffer_list);
+    /* 销毁发送缓冲区 */
+    if (channel->send_ringbuffer) {
+        ringbuffer_destroy(channel->send_ringbuffer);
     }
     /* 销毁接收缓冲区 */
     if (channel->recv_ringbuffer) {
         ringbuffer_destroy(channel->recv_ringbuffer);
     }
+    /* 关闭socket */
+    knet_channel_close(channel);
     /* 销毁管道 */
     knet_free(channel);
 }
@@ -134,33 +129,43 @@ int knet_channel_accept(kchannel_t* channel, const char* ip, int port, int backl
     }
 }
 
-int knet_channel_send_buffer(kchannel_t* channel, kbuffer_t* send_buffer) {
+int knet_channel_send_buffer(kchannel_t* channel) {
+    int bytes = 0;
+    int size = 0;
+    char* ptr = 0;
     verify(channel);
-    verify(send_buffer);
-    verify(channel->send_buffer_list);
-    /* 始终无法发送 */
-    if (knet_channel_send_list_reach_max(channel)) {
-        knet_buffer_destroy(send_buffer);
+    verify(channel->send_ringbuffer);
+    if (knet_channel_send_buffer_reach_max(channel)) {
+        /* 始终无法发送 */
         return error_send_fail;
     }
-    /* 将发送缓冲区加到链表尾部 */
-    dlist_add_tail_node(channel->send_buffer_list, send_buffer);
-    /* 让调用者重新设置写事件 */
-    return error_send_patial;
+    for (; (size = ringbuffer_read_lock_size(channel->send_ringbuffer));) {
+        ptr = ringbuffer_read_lock_ptr(channel->send_ringbuffer);
+        bytes = socket_send(channel->socket_fd, ptr, size);
+        if (bytes <= 0) {
+            /* 错误，关闭 */
+            ringbuffer_read_commit(channel->send_ringbuffer, 0);
+            return error_send_fail;
+        } else {
+            /* 发送成功 */
+            ringbuffer_read_commit(channel->send_ringbuffer, (uint32_t)bytes);
+        }
+    }
+    return (ringbuffer_empty(channel->send_ringbuffer) ? error_ok : error_send_patial);
 }
 
 int knet_channel_send(kchannel_t* channel, const char* data, int size) {
     int        bytes       = 0;
-    kbuffer_t* send_buffer = 0;
+    /*kbuffer_t* send_buffer = 0;*/
     verify(channel);
     verify(data);
     verify(size);
-    verify(channel->send_buffer_list);
+    verify(channel->send_ringbuffer);
     /* 始终无法发送 */
-    if (knet_channel_send_list_reach_max(channel)) {
+    if (knet_channel_send_buffer_reach_max(channel)) {
         return error_send_fail;
     }
-    if (dlist_empty(channel->send_buffer_list)) {
+    if (ringbuffer_empty(channel->send_ringbuffer)) {
         /* 尝试直接发送 */
         bytes = socket_send(channel->socket_fd, data, size);
     }
@@ -169,43 +174,19 @@ int knet_channel_send(kchannel_t* channel, const char* data, int size) {
     }
     /* 直接发送失败，或者没有发送完毕的字节放入发送链表等待下次发送 */
     if (size > bytes) {
-        send_buffer = knet_buffer_create(size - bytes);
-        verify(send_buffer);
-        knet_buffer_put(send_buffer, data + bytes, size - bytes);
-        dlist_add_tail_node(channel->send_buffer_list, send_buffer);
-        /* 需要稍后发送 */
-        return error_send_patial;
+      if ((size - bytes) != (int)ringbuffer_write(channel->send_ringbuffer, data + bytes, size - bytes)) {
+          return error_send_fail;
+      }
+      /* 需要稍后发送 */
+      return error_send_patial;
     }
     return error_ok;
 }
 
 int knet_channel_update_send(kchannel_t* channel) {
-    kdlist_node_t* node        = 0; /* 发送缓冲链表节点 */
-    kdlist_node_t* temp        = 0; /* 发送缓冲链表临时节点 */
-    kbuffer_t*     send_buffer = 0; /* 发送缓冲指针 */
-    int            bytes       = 0; /* 调用socket_send实际发送的字节 */
     verify(channel);
-    verify(channel->send_buffer_list);
-    /* 发送链表内所有数据 */
-    dlist_for_each_safe(channel->send_buffer_list, node, temp) {
-        send_buffer = (kbuffer_t*)dlist_node_get_data(node);
-        bytes = socket_send(channel->socket_fd, knet_buffer_get_ptr(send_buffer), knet_buffer_get_length(send_buffer));
-        if (bytes < 0) {
-            return error_send_fail;
-        }
-        if (knet_buffer_get_length(send_buffer) > (uint32_t)bytes) {
-            /* 本次未发送完毕，调整buffer长度，等待下次发送 */
-            knet_buffer_adjust(send_buffer, bytes);
-            /* 部分发送 */
-            return error_send_patial;
-        } else {
-            /* 销毁已发送节点 */
-            knet_buffer_destroy(send_buffer);
-            dlist_delete(channel->send_buffer_list, node);
-        }
-    }
-    /* 全部发送 */
-    return error_ok;
+    verify(channel->send_ringbuffer);
+    return knet_channel_send_buffer(channel);
 }
 
 int knet_channel_update_recv(kchannel_t* channel) {
@@ -245,7 +226,11 @@ int knet_channel_update_recv(kchannel_t* channel) {
 
 void knet_channel_close(kchannel_t* channel) {
     verify(channel);
+    if (0 == channel->socket_fd) {
+        return;
+    }
     socket_close(channel->socket_fd);
+    channel->socket_fd = 0;
 }
 
 socket_t knet_channel_get_socket_fd(kchannel_t* channel) {
@@ -259,8 +244,8 @@ kringbuffer_t* knet_channel_get_ringbuffer(kchannel_t* channel) {
 }
 
 uint32_t knet_channel_get_max_send_list_len(kchannel_t* channel) {
-    verify(channel);
-    return channel->max_send_list_len;
+  (void)channel;
+  return 0;
 }
 
 uint32_t knet_channel_get_max_recv_buffer_len(kchannel_t* channel) {
@@ -273,9 +258,9 @@ uint64_t knet_channel_get_uuid(kchannel_t* channel) {
     return channel->uuid;
 }
 
-int knet_channel_send_list_reach_max(kchannel_t* channel) {
+int knet_channel_send_buffer_reach_max(kchannel_t* channel) {
     verify(channel);
-    return (dlist_get_count(channel->send_buffer_list) > (int)channel->max_send_list_len);
+    return ringbuffer_full(channel->send_ringbuffer);
 }
 
 int knet_channel_is_ipv6(kchannel_t* channel) {

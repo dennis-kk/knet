@@ -124,6 +124,8 @@ int socket_set_reuse_addr_on(socket_t socket_fd);
  */
 int socket_set_non_blocking_on(socket_t socket_fd);
 
+int socket_set_non_blocking_off(socket_t socket_fd);
+
 /**
  * 关闭nagle算法
  *
@@ -151,6 +153,14 @@ int socket_set_linger_off(socket_t socket_fd);
  * @retval 其他 失败
  */
 int socket_set_keepalive_off(socket_t socket_fd);
+
+/**
+ * 开启reuseport
+ * @param socket_fd
+ * @retval 0 成功
+ * @retval 其他 失败
+ */
+int socket_set_reuseport_on(socket_t socket_fd);
 
 /**
  * 开启SO_DONTROUTE，未使用

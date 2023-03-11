@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * Copyright (c) 2014-2016, dennis wang
  * All rights reserved.
  * 
@@ -39,16 +39,12 @@
     #else
 		#define _WIN32_WINNT 0x0600
     #endif /* defined(_WIN32_WINNT) */
-    #if defined(FD_SETSIZE)
-        #undef FD_SETSIZE
-        #define FD_SETSIZE 1024
-    #else
-        #define FD_SETSIZE 1024
-    #endif /* defined(FD_SETSIZE) */
+#ifndef WIN32_LEAN_AND_MEAN
+    #define WIN32_LEAN_AND_MEAN
+#endif
+    #include <windows.h>
     #include <winsock2.h>
     #include <mswsock.h>
-    #define WIN32_LEAN_AND_MEAN
-    #include <windows.h>
     #include <process.h>
     #include <ws2tcpip.h> /* getaddrinfo */
     #if defined(_MSC_VER )
@@ -65,12 +61,19 @@
     typedef signed short int16_t;
     typedef unsigned int uint32_t;
     typedef signed int int32_t;
+    #ifndef CYGWIN
     typedef unsigned long long uint64_t ;
     typedef signed long long int64_t;
+    #endif /* CYGWIN */
     #define vsnprintf _vsnprintf
     #ifndef PATH_MAX
         #define PATH_MAX MAX_PATH
     #endif /* PATH_MAX */
+    #ifdef __cplusplus
+    #define FuncExport extern "C" __declspec(dllexport)
+    #else
+    #define FuncExport __declspec(dllexport)
+    #endif /* __cplusplus */
 #else
     #include <stdint.h>
     #include <errno.h>
@@ -83,12 +86,19 @@
     #include <fcntl.h>
     #include <unistd.h>
     #include <pthread.h>
+    #ifndef __APPLE__
     #include <sys/epoll.h>
+    #endif /*__APPLE__*/
     #define socket_len_t socklen_t
     #define thread_id_t pthread_t
     #define socket_t int
     #define sys_error_t int
     #define atomic_counter_t volatile int
+    #ifdef __cplusplus
+    #define FuncExport extern "C"
+    #else
+    #define FuncExport
+    #endif
 #endif /* defined(WIN32) || defined(_WIN64) */
 
 #define float32_t float
@@ -99,13 +109,13 @@
 #define INT_MAX  2147483647 /* maximum (signed) int value */
 #endif /* INT_MAX */
 
-#define create(type)                         (type*)knet_malloc(sizeof(type))
-#define create_raw(size)                     (char*)knet_malloc(size)
-#define create_type(type, size)              (type*)knet_malloc(size)
-#define create_type_ptr_array(type, n)       (type**)knet_malloc((n) * sizeof(type*))
-#define rcreate_raw(ptr, size)               (char*)knet_realloc(ptr, size)
-#define rcreate_type(type, ptr, size)        (type*)knet_realloc(ptr, size)
-#define rcreate_type_ptr_array(type, ptr, n) (type**)knet_realloc(ptr, (n) * sizeof(type*))
+#define knet_create(type)                         (type*)knet_malloc(sizeof(type))
+#define knet_create_raw(size)                     (char*)knet_malloc(size)
+#define knet_create_type(type, size)              (type*)knet_malloc(size)
+#define knet_create_type_ptr_array(type, n)       (type**)knet_malloc((n) * sizeof(type*))
+#define knet_rcreate_raw(ptr, size)               (char*)knet_realloc(ptr, size)
+#define knet_rcreate_type(type, ptr, size)        (type*)knet_realloc(ptr, size)
+#define knet_rcreate_type_ptr_array(type, ptr, n) (type**)knet_realloc(ptr, (n) * sizeof(type*))
 
 extern void knet_free(void* ptr); /* free */
 extern void* knet_malloc(size_t size); /* malloc */
@@ -123,8 +133,8 @@ typedef struct _lock_t klock_t;
 typedef struct _loop_balancer_t kloop_balancer_t;
 typedef struct _thread_runner_t kthread_runner_t;
 typedef struct _stream_t kstream_t;
-typedef struct _dlist_t kdlist_t;
-typedef struct _dlist_node_t kdlist_node_t;
+typedef struct _kdlist_t kdlist_t;
+typedef struct _kdlist_node_t kdlist_node_t;
 typedef struct _ringbuffer_t kringbuffer_t;
 typedef struct _buffer_t kbuffer_t;
 typedef struct _ktimer_loop_t ktimer_loop_t;
@@ -140,41 +150,41 @@ typedef struct _cond_t kcond_t;
 typedef struct _rb_tree_t krbtree_t;
 typedef struct _rb_node_t krbnode_t;
 
-/* ¹ÜµÀ¿ÉÍ¶µİÊÂ¼ş */
+/* ç®¡é“å¯æŠ•é€’äº‹ä»¶ */
 typedef enum _channel_event_e {
     channel_event_recv = 1,
     channel_event_send = 2,
 } knet_channel_event_e;
 
-/*! ¹ÜµÀ×´Ì¬ */
+/*! ç®¡é“çŠ¶æ€ */
 typedef enum _channel_state_e {
-    channel_state_connect = 1, /*! Ö÷¶¯·¢ÆğÁ¬½Ó£¬Á¬½ÓÎ´Íê³É */
-    channel_state_accept = 2,  /*! ¼àÌı */
-    channel_state_close = 4,   /*! ¹ÜµÀÒÑ¹Ø±Õ */
-    channel_state_active = 8,  /*! ¹ÜµÀÒÑ¼¤»î£¬¿ÉÒÔÊÕ·¢Êı¾İ */
-    channel_state_init = 16,   /*! ¹ÜµÀÒÑ½¨Á¢£¬µ«Î´Á¬½Ó */
+    channel_state_connect = 1, /*! ä¸»åŠ¨å‘èµ·è¿æ¥ï¼Œè¿æ¥æœªå®Œæˆ */
+    channel_state_accept = 2,  /*! ç›‘å¬ */
+    channel_state_close = 4,   /*! ç®¡é“å·²å…³é—­ */
+    channel_state_active = 8,  /*! ç®¡é“å·²æ¿€æ´»ï¼Œå¯ä»¥æ”¶å‘æ•°æ® */
+    channel_state_init = 16,   /*! ç®¡é“å·²å»ºç«‹ï¼Œä½†æœªè¿æ¥ */
 } knet_channel_state_e;
 
-/*! ¶¨Ê±Æ÷ÀàĞÍ */
+/*! å®šæ—¶å™¨ç±»å‹ */
 typedef enum _ktimer_type_e {
-    ktimer_type_once   = 1, /*! ÔËĞĞÒ»´Î */
-    ktimer_type_period = 2, /*! ÎŞÏŞ */
-    ktimer_type_times  = 3, /*! ¶à´ÎÔËĞĞ */
+    ktimer_type_once   = 1, /*! è¿è¡Œä¸€æ¬¡ */
+    ktimer_type_period = 2, /*! æ— é™ */
+    ktimer_type_times  = 3, /*! å¤šæ¬¡è¿è¡Œ */
 } ktimer_type_e;
 
-/*! ¸ºÔØ¾ùºâÅäÖÃ */
+/*! è´Ÿè½½å‡è¡¡é…ç½® */
 typedef enum _loop_balance_option_e {
-    loop_balancer_in  = 1, /*! ¿ªÆôÆäËûkloop_tµÄ¹ÜµÀÔÚµ±Ç°kloop_t¸ºÔØ */
-    loop_balancer_out = 2, /*! ¿ªÆôµ±Ç°kloop_tµÄ¹ÜµÀµ½ÆäËûkloop_tÄÚ¸ºÔØ */
+    loop_balancer_in  = 1, /*! å¼€å¯å…¶ä»–kloop_tçš„ç®¡é“åœ¨å½“å‰kloop_tè´Ÿè½½ */
+    loop_balancer_out = 2, /*! å¼€å¯å½“å‰kloop_tçš„ç®¡é“åˆ°å…¶ä»–kloop_tå†…è´Ÿè½½ */
 } knet_loop_balance_option_e;
 
-/*! ºìºÚÊ÷½ÚµãÑÕÉ« */
+/*! çº¢é»‘æ ‘èŠ‚ç‚¹é¢œè‰² */
 typedef enum _rb_color_e {
-    rb_color_red = 1, /* ºìÉ«½Úµã */
-    rb_color_black,   /* ºÚÉ«½Úµã */
+    rb_color_red = 1, /* çº¢è‰²èŠ‚ç‚¹ */
+    rb_color_black,   /* é»‘è‰²èŠ‚ç‚¹ */
 } rb_color_e;
 
-/* ´íÎóÂë */
+/* é”™è¯¯ç  */
 typedef enum _error_e {
     error_ok = 0,
     error_fail,
@@ -227,70 +237,73 @@ typedef enum _error_e {
     error_getaddrinfo_fail,
 } knet_error_e;
 
-/*! ¹ÜµÀ»Øµ÷ÊÂ¼ş */
+/*! ç®¡é“å›è°ƒäº‹ä»¶ */
 typedef enum _channel_cb_event_e {
-    channel_cb_event_connect = 1,          /*! Á¬½ÓÍê³É */
-    channel_cb_event_accept = 2,           /*! ¹ÜµÀ¼àÌıµ½ÁËĞÂÁ¬½ÓÇëÇó */ 
-    channel_cb_event_recv = 4,             /*! ¹ÜµÀÓĞÊı¾İ¿ÉÒÔ¶Á */
-    channel_cb_event_send = 8,             /*! ¹ÜµÀ·¢ËÍÁË×Ö½Ú£¬±£Áô */
-    channel_cb_event_close = 16,           /*! ¹ÜµÀ¹Ø±Õ */
-    channel_cb_event_timeout = 32,         /*! ¹ÜµÀ¶Á¿ÕÏĞ */
-    channel_cb_event_connect_timeout = 64, /*! Ö÷¶¯·¢ÆğÁ¬½Ó£¬µ«Á¬½Ó³¬Ê± */
+    channel_cb_event_connect = 1,          /*! è¿æ¥å®Œæˆ */
+    channel_cb_event_accept = 2,           /*! ç®¡é“ç›‘å¬åˆ°äº†æ–°è¿æ¥è¯·æ±‚ */ 
+    channel_cb_event_recv = 4,             /*! ç®¡é“æœ‰æ•°æ®å¯ä»¥è¯» */
+    channel_cb_event_send = 8,             /*! ç®¡é“å‘é€äº†å­—èŠ‚ï¼Œä¿ç•™ */
+    channel_cb_event_close = 16,           /*! ç®¡é“å…³é—­ */
+    channel_cb_event_timeout = 32,         /*! ç®¡é“è¯»ç©ºé—² */
+    channel_cb_event_connect_timeout = 64, /*! ä¸»åŠ¨å‘èµ·è¿æ¥ï¼Œä½†è¿æ¥è¶…æ—¶ */
 } knet_channel_cb_event_e;
 
-/* ÈÕÖ¾µÈ¼¶ */
+/* æ—¥å¿—ç­‰çº§ */
 typedef enum _logger_level_e {
-    logger_level_verbose = 1, /* verbose - ¾¡Á¿Êä³ö */
-    logger_level_information, /* information - ÌáÊ¾ĞÅÏ¢ */
-    logger_level_warning,     /* warning - ¾¯¸æ */ 
-    logger_level_error,       /* error - ´íÎó */
-    logger_level_fatal,       /* fatal - ÖÂÃü´íÎó */
+    logger_level_verbose = 1, /* verbose - å°½é‡è¾“å‡º */
+    logger_level_information, /* information - æç¤ºä¿¡æ¯ */
+    logger_level_warning,     /* warning - è­¦å‘Š */ 
+    logger_level_error,       /* error - é”™è¯¯ */
+    logger_level_fatal,       /* fatal - è‡´å‘½é”™è¯¯ */
 } knet_logger_level_e;
 
-/* ÈÕÖ¾Ä£Ê½ */
+/* æ—¥å¿—æ¨¡å¼ */
 typedef enum _logger_mode_e {
-    logger_mode_file = 1,     /* Éú³ÉÈÕÖ¾ÎÄ¼ş */
-    logger_mode_console = 2,  /* ´òÓ¡µ½stderr */
-    logger_mode_flush = 4,    /* Ã¿´ÎĞ´ÈÕÖ¾Í¬Ê±Çå¿Õ»º´æ */
-    logger_mode_override = 8, /* ¸²¸ÇÒÑ´æÔÚµÄÈÕÖ¾ÎÄ¼ş */
+    logger_mode_file = 1,     /* ç”Ÿæˆæ—¥å¿—æ–‡ä»¶ */
+    logger_mode_console = 2,  /* æ‰“å°åˆ°stderr */
+    logger_mode_flush = 4,    /* æ¯æ¬¡å†™æ—¥å¿—åŒæ—¶æ¸…ç©ºç¼“å­˜ */
+    logger_mode_override = 8, /* è¦†ç›–å·²å­˜åœ¨çš„æ—¥å¿—æ–‡ä»¶ */
 } knet_logger_mode_e;
 
-/*! Ïß³Ìº¯Êı */
+/*! çº¿ç¨‹å‡½æ•° */
 typedef void (*knet_thread_func_t)(kthread_runner_t*);
-/*! ¹ÜµÀÊÂ¼ş»Øµ÷º¯Êı */
+/*! ç®¡é“äº‹ä»¶å›è°ƒå‡½æ•° */
 typedef void (*knet_channel_ref_cb_t)(kchannel_ref_t*, knet_channel_cb_event_e);
-/*! ¶¨Ê±Æ÷»Øµ÷º¯Êı */
+/*! å®šæ—¶å™¨å›è°ƒå‡½æ•° */
 typedef void (*ktimer_cb_t)(ktimer_t*, void*);
-/*! RPC¼ÓÃÜ»Øµ÷º¯Êı, ·µ»Ø ·ÇÁã ¼ÓÃÜºó³¤¶È, 0 Ê§°Ü */
+/*! RPCåŠ å¯†å›è°ƒå‡½æ•°, è¿”å› éé›¶ åŠ å¯†åé•¿åº¦, 0 å¤±è´¥ */
 typedef uint16_t (*krpc_encrypt_t)(void*, uint16_t, void*, uint16_t);
-/*! RPC½âÃÜ»Øµ÷º¯Êı, ·µ»Ø ·ÇÁã ½âÃÜºó³¤¶È, 0 Ê§°Ü */
+/*! RPCè§£å¯†å›è°ƒå‡½æ•°, è¿”å› éé›¶ è§£å¯†åé•¿åº¦, 0 å¤±è´¥ */
 typedef uint16_t (*krpc_decrypt_t)(void*, uint16_t, void*, uint16_t);
-/*! ¹şÏ£±íÔªËØÏú»Ùº¯Êı */
+/*! å“ˆå¸Œè¡¨å…ƒç´ é”€æ¯å‡½æ•° */
 typedef void (*knet_hash_dtor_t)(void*);
-/*! trieÔªËØÏú»Ùº¯Êı */
+/*! trieå…ƒç´ é”€æ¯å‡½æ•° */
 typedef void (*knet_trie_dtor_t)(void*);
-/*! trie±éÀúº¯Êı */
+/*! trieéå†å‡½æ•° */
 typedef int (*knet_trie_for_each_func_t)(const char*, void*);
-/*! ºìºÚÊ÷½ÚµãÏú»Ù»Øµ÷º¯Êı */
+/*! çº¢é»‘æ ‘èŠ‚ç‚¹é”€æ¯å›è°ƒå‡½æ•° */
 typedef void(*knet_rb_node_destroy_cb_t)(void*, uint64_t);
 
-/* ¸ù¾İĞèÒª£¬ ¿ªÆô²»Í¬Ñ¡È¡Æ÷ */
+/* æ ¹æ®éœ€è¦ï¼Œ å¼€å¯ä¸åŒé€‰å–å™¨ */
 #if (defined(WIN32) || defined(_WIN64))
     #define LOOP_IOCP 1    /* IOCP */
     #define LOOP_SELECT 0  /* select */
+#elif __APPLE__
+    #define LOOP_EPOLL 0   /* epoll */
+    #define LOOP_SELECT 1  /* select */
 #else
     #define LOOP_EPOLL 1   /* epoll */
     #define LOOP_SELECT 0  /* select */
 #endif /* defined(WIN32) || defined(_WIN64) */
 
 #if defined(DEBUG) || defined(_DEBUG) || !defined(NDEBUG)
-    #define LOGGER_ON 1 /* µ÷ÊÔ°æ±¾¿ªÆôÈÕÖ¾ */
+    #define LOGGER_ON 1 /* è°ƒè¯•ç‰ˆæœ¬å¼€å¯æ—¥å¿— */
 #else
-    #define LOGGER_ON 0 /* ·¢ĞĞ°æ¹Ø±ÕÈÕÖ¾ */
+    #define LOGGER_ON 0 /* å‘è¡Œç‰ˆå…³é—­æ—¥å¿— */
 #endif /* defined(DEBUG) || defined(_DEBUG) */
 
-#define LOGGER_MODE (logger_mode_file | logger_mode_console | logger_mode_flush | logger_mode_override) /* ÈÕÖ¾Ä£Ê½ */
-#define LOGGER_LEVEL logger_level_fatal /* ÈÕÖ¾µÈ¼¶ */
+#define LOGGER_MODE (logger_mode_file | logger_mode_console | logger_mode_flush | logger_mode_override) /* æ—¥å¿—æ¨¡å¼ */
+#define LOGGER_LEVEL logger_level_fatal /* æ—¥å¿—ç­‰çº§ */
 
 #if defined(DEBUG) || defined(_DEBUG)
     #define verify(expr) assert(expr)

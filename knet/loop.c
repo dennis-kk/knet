@@ -77,7 +77,7 @@ typedef struct _loop_event_t {
 loop_event_t* loop_event_create(kchannel_ref_t* channel_ref, kbuffer_t* send_buffer, loop_event_e e) {
     loop_event_t* ev = 0;
     verify(channel_ref); /* send_buffer可以为0 */
-    ev = create(loop_event_t);
+    ev = knet_create(loop_event_t);
     verify(ev);
     ev->channel_ref = channel_ref;
     ev->send_buffer = send_buffer;
@@ -107,7 +107,7 @@ loop_event_e loop_event_get_event(loop_event_t* loop_event) {
 
 kloop_t* knet_loop_create() {
     socket_t pair[2] = {0}; /* 线程事件读写描述符 */
-    kloop_t* loop    = create(kloop_t);
+    kloop_t* loop    = knet_create(kloop_t);
     verify(loop);
     memset(loop, 0, sizeof(kloop_t));
     /* 建立选取器实现 */
@@ -129,7 +129,7 @@ kloop_t* knet_loop_create() {
     loop->lock                = lock_create();                        /* 锁 - 跨线程事件链表 */
     loop->timer_loop          = ktimer_loop_create(0);                /* 建立定时器循环 */
     loop->balance_options     = loop_balancer_in | loop_balancer_out; /* 负载均衡配置 */
-    loop->notify_channel      = knet_loop_create_channel_exist_socket_fd(loop, pair[0], 0, 0); /* 跨线程事件通知写管道 */
+    loop->notify_channel      = knet_loop_create_channel_exist_socket_fd(loop, pair[0], 0, 1024); /* 跨线程事件通知写管道 */
     verify(loop->notify_channel);
     loop->read_channel = knet_loop_create_channel_exist_socket_fd(loop, pair[1], 0, 1024 * 16); /* 跨线程事件通知读管道 */
     verify(loop->read_channel);

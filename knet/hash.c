@@ -90,11 +90,11 @@ int hash_value_equal_string_key(khash_value_t* hash_value, const char* key);
 uint32_t hash_string(const char* key);
 
 khash_value_t* hash_value_create(uint32_t key, const char* string_key, void* value) {
-    khash_value_t* hash_value = create(khash_value_t);
+    khash_value_t* hash_value = knet_create(khash_value_t);
     verify(hash_value);
     memset(hash_value, 0, sizeof(khash_value_t));    
     if (string_key) { /* 字符串键 */
-        hash_value->string_key = create_type(char, strlen(string_key) + 1);
+        hash_value->string_key = knet_create_type(char, strlen(string_key) + 1);
         if (!hash_value->string_key) {
             knet_free(hash_value);
             return 0;
@@ -148,7 +148,7 @@ int hash_value_equal_string_key(khash_value_t* hash_value, const char* key) {
 
 khash_t* hash_create(uint32_t size, knet_hash_dtor_t dtor) {
     uint32_t i    = 0;
-    khash_t* hash = create(khash_t);
+    khash_t* hash = knet_create(khash_t);
     verify(hash);
     memset(hash, 0, sizeof(khash_t));
     if (!size) {
@@ -157,7 +157,7 @@ khash_t* hash_create(uint32_t size, knet_hash_dtor_t dtor) {
     hash->dtor = dtor;
     hash->size = size;
     /* 创建桶数组 */
-    hash->buckets = (kdlist_t**)create_type(kdlist_t*, sizeof(kdlist_t*) * size);
+    hash->buckets = (kdlist_t**)knet_create_type(kdlist_t*, sizeof(kdlist_t*) * size);
     verify(hash->buckets);
     if (!hash->buckets) {
         knet_free(hash);
@@ -455,6 +455,7 @@ khash_value_t* hash_next(khash_t* hash) {
     }
     if (hash->it_node_next) { /* 当前桶还有下一个元素 */
         hash->it_node_safe = hash->it_node_next; /* 交换 */
+        list = hash->buckets[hash->it_index];
     } else { /* 到下一个有元素的桶 */
         hash->it_node_safe = 0;
         if (hash->it_index >= hash->size) {

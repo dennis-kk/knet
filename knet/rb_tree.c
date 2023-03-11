@@ -102,7 +102,7 @@ krbnode_t* krbnode_find(krbnode_t* tree, uint64_t key);
 krbnode_t* krbnode_get_successor(krbnode_t* x);
 
 krbnode_t* krbnode_create(uint64_t key, void* ptr, knet_rb_node_destroy_cb_t cb) {
-    krbnode_t* node = create(krbnode_t);
+    krbnode_t* node = knet_create(krbnode_t);
     verify(node);
     memset(node, 0, sizeof(krbnode_t));
     node->key = key;
@@ -151,7 +151,7 @@ rb_color_e krbnode_get_color(krbnode_t* node) {
 }
 
 krbtree_t* krbtree_create() {
-    krbtree_t* tree = create(krbtree_t);
+    krbtree_t* tree = knet_create(krbtree_t);
     verify(tree);
     memset(tree, 0, sizeof(krbtree_t));
     return tree;

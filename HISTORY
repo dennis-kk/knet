@@ -1,95 +1,105 @@
 1.3.2
-1. �����˶�ʱ��ѭ��timer_loop_t
+1. 增加了定时器循环timer_loop_t
 
 1.3.3
-1. �޸���IOCP���BUG
-2. ���Ӳ��Դ���(testĿ¼)
-3. ���Ӹ��ؾ������ýӿ�(loop_t)
+1. 修复了IOCP相关BUG
+2. 增加测试代码(test目录)
+3. 增加负载均衡设置接口(loop_t)
 
 1.3.4
-1. �������ڲ�������־
-2. �ع���С����misc.c����
+1. 增加了内部调试日志
+2. 重构了小部分misc.c代码
 
 1.4.0
-1. �ύRPC��ܴ���
+1. 提交RPC框架代码
 
 1.4.1
-1. �޸���RPC���BUG
-2. ������.rpc�ļ��ڴ���ע������
+1. 修复了RPC相关BUG
+2. 增加了.rpc文件内代码注释生成
 
 1.4.2
-1. ������map���͵�RPC���
-2. ��������������ģ���滻������C++������
+1. 增加了map类型到RPC框架
+2. 增加了轻量级的模板替换类生成C++代码框架
 
 1.4.3
-1. �޸���channel_ref���BUG
-2. �滻assertΪverify
-3. ����stream_push_stream,stream_copy_stream
-4. ���ӵ�Ԫ����knet\unit_test\
+1. 修复了channel_ref相关BUG
+2. 替换assert为verify
+3. 添加stream_push_stream,stream_copy_stream
+4. 增加单元测试knet\unit_test\
 
 1.4.4
-1. ������framework_t�����case
-2. loop_t, loop_balancer_t����������/��ȡ�û�����ָ��ĺ���
-3. ���¿����ĵ�
+1. 增加了framework_t及相关case
+2. loop_t, loop_balancer_t增加了设置/获取用户数据指针的函数
+3. 更新开发文档
 
 1.4.5
-1. ���Ӷ��������ĸ��ؾ���(����channel_ref_connect)
-2. �ع�framework_t, �ṩ���ܸ��õ�framework_config_t
+1. 增加对连接器的负载均衡(调用channel_ref_connect)
+2. 重构framework_t, 提供功能更好的framework_config_t
 
 1.4.6
-1. ������ktrie_t API����Ӧ�Ĳ���
+1. 增加了ktrie_t API及相应的测试
 
 1.4.7
-1. ������kvrouter_t API����Ӧ����
-2. ������includeĿ¼
-3. �޸��˼��������ص�BUG
+1. 增加了kvrouter_t API及相应测试
+2. 增加了include目录
+3. 修复了几处框架相关的BUG
 
 1.4.8
-1. ������knode_t �ڵ�API�����ֲ���
-2. ������krwlock_t��д��
-3. ������RPC�������ɽṹ
+1. 增加了knode_t 节点API及部分测试
+2. 增加了krwlock_t读写锁
+3. 调整了RPC代码生成结构
 
 1.4.9
-1. ��ǿ��node, address, stream API
-2. �޸�������BUG
+1. 增强了node, address, stream API
+2. 修复了少量BUG
 
 1.4.10
-1. ������rcreate_type_ptr_array��
-2. �޸����Զ��������BUG
-3. ����CPPCheck�������ǿ���뽡׳��
+1. 增加了rcreate_type_ptr_array宏
+2. 修复了自动重连相关BUG
+3. 根据CPPCheck检查结果增强代码健壮性
 
 1.4.11
-1. �޸���streamת�������BUG
+1. 修复了stream转发的相关BUG
 
 1.4.12
-1. ������ringbuffer_copy_random, ringbuffer_remove
-2. �޸�������BUG
-3. ����Windows���̵�VS2013
+1. 增加了ringbuffer_copy_random, ringbuffer_remove
+2. 修复了少量BUG
+3. 升级Windows工程到VS2013
 
 1.4.13
-1. ��knet_channel_ref_close�ڲ��ٵ����¼��ص�, ת���ӳٹر������ڵ��ûص�
+1. 在knet_channel_ref_close内不再调用事件回调, 转到延迟关闭链表内调用回调
 
 1.4.14
-1. �޸����������BUG
+1. 修复红黑树少量BUG
 
 1.5.0
-1. ʹ���¶�ʱ��ѭ����������Ծ�ܵ��ĳ�ʱ, Ч�ʵõ��Ƚϴ������
-2. ��ַ�������صĴ��뵽�µ���Ŀ, ֻ����knet���Ŀ�
+1. 使用新定时器循环来处理活跃管道的超时, 效率得到比较大的提升
+2. 拆分非网络相关的代码到新的项目, 只保留knet核心库
 
 1.5.1
-1. �޸����ͻ�����������BUG
-2. ֧��GCC�߰汾����
+1. 修复发送缓冲区崩溃的BUG
+2. 支持GCC高版本编译
 
 1.5.2
-1. ����close�ر�socketǰ����shutdown
-2. �����·����Զ����ڴ�����ͷ�
+1. 调用close关闭socket前调用shutdown
+2. 增加新方法自定义内存分配释放
 
 1.5.3
-1. �رչܵ�ʱ���������δ��ȡ��Ȼ�������¼�
-2. acceptʧ��ʱ����ʹ��verify��֤
+1. 关闭管道时如果有数据未读取仍然触发读事件
+2. accept失败时不再使用verify验证
 
 1.5.4
-1. ���Ӷ�IPV6��֧�֣������#define USE_IPV6���Խ������ΪIPV6�汾��Ĭ��ΪIPV4�汾
+1. 添加对IPV6的支持，定义宏#define USE_IPV6可以将库编译为IPV6版本，默认为IPV4版本
 
 1.5.4.1
-1. ȡ��USE_IPV6�꣬����knet_loop_create_channel6������IPV6�׽���
+1. 取消USE_IPV6宏，增加knet_loop_create_channel6来建立IPV6套接字
+
+1.5.4.2
+1. IOCP使用ConnnecEX投递连接事件
+2. 完成select循环的功能
+3. 修复一些非紧急BUG
+
+1.5.5
+1. 修改内存分配宏名称
+2. 将发送链表修改为环形缓冲区
+3. 修复少量BUG

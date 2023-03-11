@@ -41,7 +41,7 @@ struct _loop_balancer_t {
 };
 
 kloop_balancer_t* knet_loop_balancer_create() {
-    kloop_balancer_t* balancer = create(kloop_balancer_t);
+    kloop_balancer_t* balancer = knet_create(kloop_balancer_t);
     verify(balancer);
     memset(balancer, 0, sizeof(kloop_balancer_t));
     balancer->loop_info_list = dlist_create();
@@ -78,7 +78,7 @@ int knet_loop_balancer_attach(kloop_balancer_t* balancer, kloop_t* loop) {
             goto unlock_return;
         }
     }
-    loop_info = create(loop_info_t);
+    loop_info = knet_create(loop_info_t);
     verify(loop_info);
     memset(loop_info, 0, sizeof(loop_info_t));
     loop_info->loop = loop;

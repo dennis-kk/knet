@@ -37,7 +37,7 @@ struct _stream_t {
 kstream_t* stream_create(kchannel_ref_t* channel_ref) {
     kstream_t* stream = 0;
     verify(channel_ref);
-    stream = create(kstream_t);
+    stream = knet_create(kstream_t);
     memset(stream, 0, sizeof(kstream_t));
     verify(stream);
     stream->channel_ref = channel_ref;
@@ -55,9 +55,11 @@ int knet_stream_available(kstream_t* stream) {
 }
 
 int knet_stream_pop(kstream_t* stream, void* buffer, int size) {
+    if (!size) {
+        return error_recv_fail;
+    }
     verify(stream);
     verify(buffer);
-    verify(size);
     if (0 < ringbuffer_read(knet_channel_ref_get_ringbuffer(stream->channel_ref), (char*)buffer, size)) {
         return error_ok;
     }
@@ -96,9 +98,11 @@ int knet_stream_eat(kstream_t* stream, int size) {
 }
 
 int knet_stream_push(kstream_t* stream, const void* buffer, int size) {
+    if (!size) {
+        return 0;
+    }
     verify(stream);
     verify(buffer);
-    verify(size);
     return knet_channel_ref_write(stream->channel_ref, (char*)buffer, size);
 }
 
@@ -109,7 +113,7 @@ int knet_stream_push_varg(kstream_t* stream, const char* format, ...) {
     verify(stream);
     verify(format);
     va_start(arg_ptr, format);
-    #if (defined(WIN32) || defined(_WIN64))
+    #if (defined(_WIN32) || defined(_WIN64))
     len = _vsnprintf(buffer, sizeof(buffer), format, arg_ptr);
     if ((len >= sizeof(buffer)) || (len < 0)) {
         va_end(arg_ptr);
@@ -121,15 +125,17 @@ int knet_stream_push_varg(kstream_t* stream, const char* format, ...) {
         va_end(arg_ptr);
         return error_stream_buffer_overflow;
     }
-    #endif /* defined(WIN32) || defined(_WIN64) */
+    #endif /* defined(_WIN32) || defined(_WIN64) */
     va_end(arg_ptr);
     return knet_stream_push(stream, buffer, len);
 }
 
 int knet_stream_copy(kstream_t* stream, void* buffer, int size) {
+    if (!size) {
+        return error_recv_fail;
+    }
     verify(stream);
     verify(buffer);
-    verify(size);
     if (0 >= ringbuffer_copy(knet_channel_ref_get_ringbuffer(stream->channel_ref), (char*)buffer, size)) {
         return error_recv_fail;
     }
@@ -137,9 +143,11 @@ int knet_stream_copy(kstream_t* stream, void* buffer, int size) {
 }
 
 int knet_stream_replace(kstream_t* stream, int pos, void* buffer, int size) {
+    if (!size) {
+        return error_recv_fail;
+    }
     verify(stream);
     verify(buffer);
-    verify(size);
     if (0 >= ringbuffer_replace(knet_channel_ref_get_ringbuffer(stream->channel_ref), pos, (char*)buffer, size)) {
         return error_recv_fail;
     }
@@ -153,7 +161,9 @@ int knet_stream_operate(kstream_t* stream, knet_stream_operator_t operate, int p
     int  end   = pos + size;
     verify(stream);
     verify(operate);
-    verify(size);
+    if (!size) {
+        return error_recv_fail;
+    }
     for (; start < end; start++) {
         if (0 >= ringbuffer_copy_random(knet_channel_ref_get_ringbuffer(stream->channel_ref), start, &old, 1)) {
             return error_recv_fail;

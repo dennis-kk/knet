@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * Copyright (c) 2014-2016, dennis wang
  * All rights reserved.
  * 
@@ -28,253 +28,261 @@
 #include "config.h"
 
 /**
- * @defgroup ¹ÜµÀÒıÓÃ ¹ÜµÀÒıÓÃ
- * ¹ÜµÀÒıÓÃ
+ * @defgroup ç®¡é“å¼•ç”¨ ç®¡é“å¼•ç”¨
+ * ç®¡é“å¼•ç”¨
  *
  * <pre>
- * kchannel_ref_t×÷Îªkchannel_tµÄ°ü×°Æ÷£¬¶ÔÓÚÓÃ»§Í¸Ã÷»¯ÁË¹ÜµÀµÄÄÚ²¿ÊµÏÖ£¬Í¬Ê±Ìá¹©ÁËÒıÓÃ¼ÆÊıÓÃÓÚ
- * ¹ÜµÀµÄÉúÃüÖÜÆÚ¹ÜÀí.
+ * kchannel_ref_tä½œä¸ºkchannel_tçš„åŒ…è£…å™¨ï¼Œå¯¹äºç”¨æˆ·é€æ˜åŒ–äº†ç®¡é“çš„å†…éƒ¨å®ç°ï¼ŒåŒæ—¶æä¾›äº†å¼•ç”¨è®¡æ•°ç”¨äº
+ * ç®¡é“çš„ç”Ÿå‘½å‘¨æœŸç®¡ç†.
  *
- * ¹ÜµÀÓĞ3ÖÖÀàĞÍ£º
+ * ç®¡é“æœ‰3ç§ç±»å‹ï¼š
  * 
- * 1. Á¬½ÓÆ÷
- * 2. ¼àÌıÆ÷
- * 3. ÓÉ¼àÌıÆ÷½ÓÊÜµÄĞÂ¹ÜµÀ
+ * 1. è¿æ¥å™¨
+ * 2. ç›‘å¬å™¨
+ * 3. ç”±ç›‘å¬å™¨æ¥å—çš„æ–°ç®¡é“
  *
- * ¹ÜµÀÓĞ3ÖÖ×´Ì¬:
+ * ç®¡é“æœ‰3ç§çŠ¶æ€:
  * 
- * 1. ĞÂ½¨Á¢ ¸Õ½¨Á¢µ«²»È·¶¨ÊÇ×÷ÎªÁ¬½ÓÆ÷»òÕß¼àÌıÆ÷´æÔÚ
- * 2. »îÔ¾   ÒÑ¾­È·¶¨ÁË×Ô¼ºµÄ½ÇÉ«
- * 3. ¹Ø±Õ   ÒÑ¾­¹Ø±Õ£¬µ«»¹Î´Ïú»Ù£¬ÒıÓÃ¼ÆÊı²»ÎªÁã
+ * 1. æ–°å»ºç«‹ åˆšå»ºç«‹ä½†ä¸ç¡®å®šæ˜¯ä½œä¸ºè¿æ¥å™¨æˆ–è€…ç›‘å¬å™¨å­˜åœ¨
+ * 2. æ´»è·ƒ   å·²ç»ç¡®å®šäº†è‡ªå·±çš„è§’è‰²
+ * 3. å…³é—­   å·²ç»å…³é—­ï¼Œä½†è¿˜æœªé”€æ¯ï¼Œå¼•ç”¨è®¡æ•°ä¸ä¸ºé›¶
  *
- * ÔÚÃ»ÓĞ¸ºÔØ¾ùºâÆ÷´æÔÚµÄÇé¿öÏÂ(kloop_tÃ»ÓĞÍ¨¹ıknet_loop_balancer_attach¹ØÁªµ½kloop_balancer_t),
- * ËùÓĞÁ¬½ÓÆ÷¹ÜµÀ¶¼»áÔÚµ±Ç°kloop_tÄÚÔËĞĞ£¬ËùÓĞÓÉ¼àÌıÆ÷½ÓÊÜµÄ¹ÜµÀÒ²»áÔÚkloop_tÄÚÔËĞĞ.
- * Èç¹ûkloop_tÒÑ¾­¹ØÁªµ½¸ºÔØ¾ùºâÆ÷£¬Á¬½ÓÆ÷/¼àÌıÆ÷½ÓÊÜµÄ¹ÜµÀ¿ÉÄÜ²»ÔÚµ±Ç°kloop_tÄÚ
- * ÔËĞĞ£¬¸ºÔØ¾ùºâÆ÷»á¸ù¾İ»îÔ¾¹ÜµÀµÄÊıÁ¿½«Õâ¸ö¹ÜµÀ·ÖÅäµ½ÆäËûkloop_tÔËĞĞ£¬»òÕßÈÔÈ»ÔÚµ±Ç°kloop_tÄÚÔËĞĞ£¬
- * ½á¹ûÈ¡¾öÓÚµ±Ç°ËùÓĞkloop_t¸ºÔØµÄÇé¿ö£¨»îÔ¾¹ÜµÀµÄÊıÁ¿£©.
+ * åœ¨æ²¡æœ‰è´Ÿè½½å‡è¡¡å™¨å­˜åœ¨çš„æƒ…å†µä¸‹(kloop_tæ²¡æœ‰é€šè¿‡knet_loop_balancer_attachå…³è”åˆ°kloop_balancer_t),
+ * æ‰€æœ‰è¿æ¥å™¨ç®¡é“éƒ½ä¼šåœ¨å½“å‰kloop_tå†…è¿è¡Œï¼Œæ‰€æœ‰ç”±ç›‘å¬å™¨æ¥å—çš„ç®¡é“ä¹Ÿä¼šåœ¨kloop_tå†…è¿è¡Œ.
+ * å¦‚æœkloop_tå·²ç»å…³è”åˆ°è´Ÿè½½å‡è¡¡å™¨ï¼Œè¿æ¥å™¨/ç›‘å¬å™¨æ¥å—çš„ç®¡é“å¯èƒ½ä¸åœ¨å½“å‰kloop_tå†…
+ * è¿è¡Œï¼Œè´Ÿè½½å‡è¡¡å™¨ä¼šæ ¹æ®æ´»è·ƒç®¡é“çš„æ•°é‡å°†è¿™ä¸ªç®¡é“åˆ†é…åˆ°å…¶ä»–kloop_tè¿è¡Œï¼Œæˆ–è€…ä»ç„¶åœ¨å½“å‰kloop_tå†…è¿è¡Œï¼Œ
+ * ç»“æœå–å†³äºå½“å‰æ‰€æœ‰kloop_tè´Ÿè½½çš„æƒ…å†µï¼ˆæ´»è·ƒç®¡é“çš„æ•°é‡ï¼‰.
  *
- * ¿ÉÒÔµ÷ÓÃº¯Êıknet_channel_ref_check_balanceÈ·¶¨¹ÜµÀÊÇ·ñ±»¸ºÔØ¾ùºâµ÷Åä£¬µ÷ÓÃknet_channel_ref_check_state
- * ¼ì²é¹ÜµÀµ±Ç°Ëù´¦µÄ×´Ì¬£¬knet_channel_ref_close¹Ø±Õ¹ÜµÀ£¬ÎŞÂÛ´ËÊ±¹ÜµÀµÄÒıÓÃ¼ÆÊıÊÇ·ñÎªÁã£¬¹ÜµÀµÄÌ×½Ó×Ö¶¼»á
- * ±»¹Ø±Õ£¬µ±¹ÜµÀÒıÓÃ¼ÆÊıÎªÁãÊ±£¬kloop_t²Å»áÕæÕıÏú»ÙËü.µ÷ÓÃknet_channel_ref_equal¿ÉÒÔÅĞ¶ÏÁ½¸ö¹ÜµÀÒıÓÃÊÇ·ñ
- * Ö¸ÏòÍ¬Ò»¸ö¹ÜµÀ.
+ * å¯ä»¥è°ƒç”¨å‡½æ•°knet_channel_ref_check_balanceç¡®å®šç®¡é“æ˜¯å¦è¢«è´Ÿè½½å‡è¡¡è°ƒé…ï¼Œè°ƒç”¨knet_channel_ref_check_state
+ * æ£€æŸ¥ç®¡é“å½“å‰æ‰€å¤„çš„çŠ¶æ€ï¼Œknet_channel_ref_closeå…³é—­ç®¡é“ï¼Œæ— è®ºæ­¤æ—¶ç®¡é“çš„å¼•ç”¨è®¡æ•°æ˜¯å¦ä¸ºé›¶ï¼Œç®¡é“çš„å¥—æ¥å­—éƒ½ä¼š
+ * è¢«å…³é—­ï¼Œå½“ç®¡é“å¼•ç”¨è®¡æ•°ä¸ºé›¶æ—¶ï¼Œkloop_tæ‰ä¼šçœŸæ­£é”€æ¯å®ƒ.è°ƒç”¨knet_channel_ref_equalå¯ä»¥åˆ¤æ–­ä¸¤ä¸ªç®¡é“å¼•ç”¨æ˜¯å¦
+ * æŒ‡å‘åŒä¸€ä¸ªç®¡é“.
  * 
- * ¿ÉÒÔÍ¨¹ıµ÷ÓÃknet_channel_ref_set_timeoutÉèÖÃ¹ÜµÀµÄ¶Á¿ÕÏĞ³¬Ê±£¨Ãë£©£¬Õâ¿ÉÒÔÓÃ×öĞÄÌø°üµÄ´¦Àí£¬µ÷ÓÃ
- * knet_channel_ref_connectÊ±×îºóÒ»¸ö²ÎÊı´«µİÒ»¸ö·ÇÁãÖµ¿ÉÒÔÉèÖÃÁ¬½ÓÆ÷µÄÁ¬½Ó³¬Ê±£¨Ãë£©£¬Õâ¿ÉÒÔÓÃÓÚÖØÁ¬.
- * µ÷ÓÃknet_channel_ref_get_socket_fdµÃµ½¹ÜµÀÌ×½Ó×Ö£¬µ÷ÓÃknet_channel_ref_get_uuidµÄµ½¹ÜµÀUUID.
+ * å¯ä»¥é€šè¿‡è°ƒç”¨knet_channel_ref_set_timeoutè®¾ç½®ç®¡é“çš„è¯»ç©ºé—²è¶…æ—¶ï¼ˆç§’ï¼‰ï¼Œè¿™å¯ä»¥ç”¨åšå¿ƒè·³åŒ…çš„å¤„ç†ï¼Œè°ƒç”¨
+ * knet_channel_ref_connectæ—¶æœ€åä¸€ä¸ªå‚æ•°ä¼ é€’ä¸€ä¸ªéé›¶å€¼å¯ä»¥è®¾ç½®è¿æ¥å™¨çš„è¿æ¥è¶…æ—¶ï¼ˆç§’ï¼‰ï¼Œè¿™å¯ä»¥ç”¨äºé‡è¿.
+ * è°ƒç”¨knet_channel_ref_get_socket_fdå¾—åˆ°ç®¡é“å¥—æ¥å­—ï¼Œè°ƒç”¨knet_channel_ref_get_uuidçš„åˆ°ç®¡é“UUID.
  * </pre>
  * @{
  */
 
 /**
- * Ôö¼Ó¹ÜµÀÒıÓÃ¼ÆÊı£¬²¢´´½¨Óë¹ÜµÀ¹ØÁªµÄĞÂµÄkchannel_ref_tÊµÀı
+ * å¢åŠ ç®¡é“å¼•ç”¨è®¡æ•°ï¼Œå¹¶åˆ›å»ºä¸ç®¡é“å…³è”çš„æ–°çš„kchannel_ref_tå®ä¾‹
  *
- * knet_channel_ref_shareµ÷ÓÃÍê³Éºó£¬¿ÉÒÔÔÚµ±Ç°Ïß³ÌÄÚ·ÃÎÊÆäËûÏß³Ì(kloop_t)ÄÚÔËĞĞµÄ¹ÜµÀ
- * @param channel_ref kchannel_ref_tÊµÀı
- * @return kchannel_ref_tÊµÀı
+ * knet_channel_ref_shareè°ƒç”¨å®Œæˆåï¼Œå¯ä»¥åœ¨å½“å‰çº¿ç¨‹å†…è®¿é—®å…¶ä»–çº¿ç¨‹(kloop_t)å†…è¿è¡Œçš„ç®¡é“
+ * @param channel_ref kchannel_ref_tå®ä¾‹
+ * @return kchannel_ref_tå®ä¾‹
  */
-extern kchannel_ref_t* knet_channel_ref_share(kchannel_ref_t* channel_ref);
+FuncExport kchannel_ref_t* knet_channel_ref_share(kchannel_ref_t* channel_ref);
 
 /**
- * ¼õÉÙ¹ÜµÀÒıÓÃ¼ÆÊı£¬²¢Ïú»Ùkchannel_ref_tÊµÀı
- * @param channel_ref kchannel_ref_tÊµÀı
+ * å‡å°‘ç®¡é“å¼•ç”¨è®¡æ•°ï¼Œå¹¶é”€æ¯kchannel_ref_tå®ä¾‹
+ * @param channel_ref kchannel_ref_tå®ä¾‹
  */
-extern void knet_channel_ref_leave(kchannel_ref_t* channel_ref);
+FuncExport void knet_channel_ref_leave(kchannel_ref_t* channel_ref);
 
 /**
- * ½«¹ÜµÀ×ª»»Îª¼àÌı¹ÜµÀ
+ * å°†ç®¡é“è½¬æ¢ä¸ºç›‘å¬ç®¡é“
  *
- * ÓÉÕâ¸ö¼àÌı¹ÜµÀ½ÓÊÜµÄĞÂÁ¬½Ó½«Ê¹ÓÃÓë¼àÌı¹ÜµÀÏàÍ¬µÄ·¢ËÍ»º³åÇø×î´óÊıÁ¿ÏŞÖÆºÍ½ÓÊÜ»º³åÇø³¤¶ÈÏŞÖÆ,
- * knet_channel_ref_acceptËù½ÓÊÜµÄĞÂÁ¬½Ó½«±»¸ºÔØ¾ùºâ£¬Êµ¼ÊÔËĞĞÔÚÄÄ¸ökloop_tÄÚÒÀÀµÓÚÊµ¼ÊÔËĞĞµÄÇé¿ö
- * @param channel_ref kchannel_ref_tÊµÀı
+ * ç”±è¿™ä¸ªç›‘å¬ç®¡é“æ¥å—çš„æ–°è¿æ¥å°†ä½¿ç”¨ä¸ç›‘å¬ç®¡é“ç›¸åŒçš„å‘é€ç¼“å†²åŒºæœ€å¤§æ•°é‡é™åˆ¶å’Œæ¥å—ç¼“å†²åŒºé•¿åº¦é™åˆ¶,
+ * knet_channel_ref_acceptæ‰€æ¥å—çš„æ–°è¿æ¥å°†è¢«è´Ÿè½½å‡è¡¡ï¼Œå®é™…è¿è¡Œåœ¨å“ªä¸ªkloop_tå†…ä¾èµ–äºå®é™…è¿è¡Œçš„æƒ…å†µ
+ * @param channel_ref kchannel_ref_tå®ä¾‹
  * @param ip IP
- * @param port ¶Ë¿Ú
- * @param backlog µÈ´ı¶ÓÁĞÉÏÏŞ£¨listen())
- * @retval error_ok ³É¹¦
- * @retval ÆäËû Ê§°Ü
+ * @param port ç«¯å£
+ * @param backlog ç­‰å¾…é˜Ÿåˆ—ä¸Šé™ï¼ˆlisten())
+ * @retval error_ok æˆåŠŸ
+ * @retval å…¶ä»– å¤±è´¥
  */
-extern int knet_channel_ref_accept(kchannel_ref_t* channel_ref, const char* ip, int port, int backlog);
+FuncExport int knet_channel_ref_accept(kchannel_ref_t* channel_ref, const char* ip, int port, int backlog);
 
 /**
- * Ö÷¶¯Á¬½Ó
+ * ä¸»åŠ¨è¿æ¥
  *
- * µ÷ÓÃknet_channel_ref_connectµÄ¹ÜµÀ»á±»¸ºÔØ¾ùºâ£¬Êµ¼ÊÔËĞĞÔÚÄÄ¸ökloop_tÄÚÒÀÀµÓÚÊµ¼ÊÔËĞĞµÄÇé¿ö
- * @param channel_ref kchannel_ref_tÊµÀı
+ * è°ƒç”¨knet_channel_ref_connectçš„ç®¡é“ä¼šè¢«è´Ÿè½½å‡è¡¡ï¼Œå®é™…è¿è¡Œåœ¨å“ªä¸ªkloop_tå†…ä¾èµ–äºå®é™…è¿è¡Œçš„æƒ…å†µ
+ * @param channel_ref kchannel_ref_tå®ä¾‹
  * @param ip IP
- * @param port ¶Ë¿Ú
- * @param timeout Á¬½Ó³¬Ê±£¨Ãë£©
- * @retval error_ok ³É¹¦
- * @retval ÆäËû Ê§°Ü
+ * @param port ç«¯å£
+ * @param timeout è¿æ¥è¶…æ—¶ï¼ˆç§’ï¼‰
+ * @retval error_ok æˆåŠŸ
+ * @retval å…¶ä»– å¤±è´¥
  */
-extern int knet_channel_ref_connect(kchannel_ref_t* channel_ref, const char* ip, int port, int timeout);
+FuncExport int knet_channel_ref_connect(kchannel_ref_t* channel_ref, const char* ip, int port, int timeout);
 
 /**
- * ÖØĞÂ·¢ÆğÁ¬½Ó
+ * é‡æ–°å‘èµ·è¿æ¥
  *
  * <pre>
- * ³¬Ê±µÄ¹ÜµÀ½«±»¹Ø±Õ£¬½¨Á¢ĞÂ¹ÜµÀÖØÁ¬£¬ĞÂ¹ÜµÀ½«Ê¹ÓÃÔ­ÓĞ¹ÜµÀµÄÊôĞÔ£¬°üº¬»Øµ÷º¯ÊıºÍÓÃ»§Ö¸Õë
- * Èç¹ûtimeoutÉèÖÃÎª0£¬ÔòÊ¹ÓÃÔ­ÓĞµÄÁ¬½Ó³¬Ê±£¬Èç¹ûtimeout>0ÔòÊ¹ÓÃĞÂµÄÁ¬½Ó³¬Ê±
+ * è¶…æ—¶çš„ç®¡é“å°†è¢«å…³é—­ï¼Œå»ºç«‹æ–°ç®¡é“é‡è¿ï¼Œæ–°ç®¡é“å°†ä½¿ç”¨åŸæœ‰ç®¡é“çš„å±æ€§ï¼ŒåŒ…å«å›è°ƒå‡½æ•°å’Œç”¨æˆ·æŒ‡é’ˆ
+ * å¦‚æœtimeoutè®¾ç½®ä¸º0ï¼Œåˆ™ä½¿ç”¨åŸæœ‰çš„è¿æ¥è¶…æ—¶ï¼Œå¦‚æœtimeout>0åˆ™ä½¿ç”¨æ–°çš„è¿æ¥è¶…æ—¶
  * </pre>
- * @param channel_ref kchannel_ref_tÊµÀı
- * @param timeout Á¬½Ó³¬Ê±£¨Ãë£©
- * @retval error_ok ³É¹¦
- * @retval ÆäËû Ê§°Ü
+ * @param channel_ref kchannel_ref_tå®ä¾‹
+ * @param timeout è¿æ¥è¶…æ—¶ï¼ˆç§’ï¼‰
+ * @retval error_ok æˆåŠŸ
+ * @retval å…¶ä»– å¤±è´¥
  */
-extern int knet_channel_ref_reconnect(kchannel_ref_t* channel_ref, int timeout);
+FuncExport int knet_channel_ref_reconnect(kchannel_ref_t* channel_ref, int timeout);
 
 /**
- * ÉèÖÃ¹ÜµÀ×Ô¶¯ÖØÁ¬
+ * è®¾ç½®ç®¡é“è‡ªåŠ¨é‡è¿
  * <pre>
- * auto_reconnectÎª·ÇÁãÖµÔò¿ªÆô×Ô¶¯ÖØÁ¬£¬ËùÓĞ·Ç´íÎóĞÔµ¼ÖÂ¹ÜµÀ¹Ø±Õ£¬¶¼»á×Ô¶¯ÖØÁ¬£¬ÓÃ»§ÊÖ¶¯µ÷ÓÃ
- * knet_channel_ref_close½«²»»á´¥·¢×Ô¶¯ÖØÁ¬
+ * auto_reconnectä¸ºéé›¶å€¼åˆ™å¼€å¯è‡ªåŠ¨é‡è¿ï¼Œæ‰€æœ‰éé”™è¯¯æ€§å¯¼è‡´ç®¡é“å…³é—­ï¼Œéƒ½ä¼šè‡ªåŠ¨é‡è¿ï¼Œç”¨æˆ·æ‰‹åŠ¨è°ƒç”¨
+ * knet_channel_ref_closeå°†ä¸ä¼šè§¦å‘è‡ªåŠ¨é‡è¿
  * </pre>
- * @param channel_ref kchannel_ref_tÊµÀı
- * @param auto_reconnect ×Ô¶¯ÖØÁ¬±êÖ¾
+ * @param channel_ref kchannel_ref_tå®ä¾‹
+ * @param auto_reconnect è‡ªåŠ¨é‡è¿æ ‡å¿—
  */
-extern void knet_channel_ref_set_auto_reconnect(kchannel_ref_t* channel_ref, int auto_reconnect);
+FuncExport void knet_channel_ref_set_auto_reconnect(kchannel_ref_t* channel_ref, int auto_reconnect);
 
 /**
- * ¼ì²é¹ÜµÀÊÇ·ñ¿ªÆôÁË×Ô¶¯ÖØÁ¬
- * @param channel_ref kchannel_ref_tÊµÀı
- * @retval 0 Î´¿ªÆô
- * @retval ·ÇÁã ¿ªÆô
+ * æ£€æŸ¥ç®¡é“æ˜¯å¦å¼€å¯äº†è‡ªåŠ¨é‡è¿
+ * @param channel_ref kchannel_ref_tå®ä¾‹
+ * @retval 0 æœªå¼€å¯
+ * @retval éé›¶ å¼€å¯
  */
-extern int knet_channel_ref_check_auto_reconnect(kchannel_ref_t* channel_ref);
+FuncExport int knet_channel_ref_check_auto_reconnect(kchannel_ref_t* channel_ref);
 
 /**
- * ¼ì²â¹ÜµÀÊÇ·ñÊÇÍ¨¹ı¸ºÔØ¾ùºâ¹ØÁªµ½µ±Ç°µÄkloop_t
- * @param channel_ref kchannel_ref_tÊµÀı
- * @retval 0 ²»ÊÇ
- * @retval ·Ç0 ÊÇ
+ * æ£€æµ‹ç®¡é“æ˜¯å¦æ˜¯é€šè¿‡è´Ÿè½½å‡è¡¡å…³è”åˆ°å½“å‰çš„kloop_t
+ * @param channel_ref kchannel_ref_tå®ä¾‹
+ * @retval 0 ä¸æ˜¯
+ * @retval é0 æ˜¯
  */
-extern int knet_channel_ref_check_balance(kchannel_ref_t* channel_ref);
+FuncExport int knet_channel_ref_check_balance(kchannel_ref_t* channel_ref);
 
 /**
- * ¼ì²â¹ÜµÀµ±Ç°×´Ì¬
- * @param channel_ref kchannel_ref_tÊµÀı
- * @param state ĞèÒª²âÊÔµÄ×´Ì¬
- * @retval 1 ÊÇ
- * @retval 0 ²»ÊÇ
+ * æ£€æµ‹ç®¡é“å½“å‰çŠ¶æ€
+ * @param channel_ref kchannel_ref_tå®ä¾‹
+ * @param state éœ€è¦æµ‹è¯•çš„çŠ¶æ€
+ * @retval 1 æ˜¯
+ * @retval 0 ä¸æ˜¯
  */
-extern int knet_channel_ref_check_state(kchannel_ref_t* channel_ref, knet_channel_state_e state);
+FuncExport int knet_channel_ref_check_state(kchannel_ref_t* channel_ref, knet_channel_state_e state);
 
 /**
- * ¹Ø±Õ¹ÜµÀ
- * @param channel_ref kchannel_ref_tÊµÀı
+ * å…³é—­ç®¡é“
+ * @param channel_ref kchannel_ref_tå®ä¾‹
  */
-extern void knet_channel_ref_close(kchannel_ref_t* channel_ref);
+FuncExport void knet_channel_ref_close(kchannel_ref_t* channel_ref);
 
 /**
- * ¼ì²é¹ÜµÀÊÇ·ñÒÑ¾­¹Ø±Õ
- * @param channel_ref kchannel_ref_tÊµÀı
- * @retval 0 Î´¹Ø±Õ
- * @retval ·ÇÁã ¹Ø±Õ
+ * æ£€æŸ¥ç®¡é“æ˜¯å¦å·²ç»å…³é—­
+ * @param channel_ref kchannel_ref_tå®ä¾‹
+ * @retval 0 æœªå…³é—­
+ * @retval éé›¶ å…³é—­
  */
-extern int knet_channel_ref_check_close(kchannel_ref_t* channel_ref);
+FuncExport int knet_channel_ref_check_close(kchannel_ref_t* channel_ref);
 
 /**
- * È¡µÃ¹ÜµÀÌ×½Ó×Ö
- * @param channel_ref kchannel_ref_tÊµÀı
- * @return Ì×½Ó×Ö
+ * å–å¾—ç®¡é“å¥—æ¥å­—
+ * @param channel_ref kchannel_ref_tå®ä¾‹
+ * @return å¥—æ¥å­—
  */
-extern socket_t knet_channel_ref_get_socket_fd(kchannel_ref_t* channel_ref);
+FuncExport socket_t knet_channel_ref_get_socket_fd(kchannel_ref_t* channel_ref);
 
 /**
- * È¡µÃ¹ÜµÀÊı¾İÁ÷
- * @param channel_ref kchannel_ref_tÊµÀı
- * @return kstream_tÊµÀı
+ * å–å¾—ç®¡é“æ•°æ®æµ
+ * @param channel_ref kchannel_ref_tå®ä¾‹
+ * @return kstream_tå®ä¾‹
  */
-extern kstream_t* knet_channel_ref_get_stream(kchannel_ref_t* channel_ref);
+FuncExport kstream_t* knet_channel_ref_get_stream(kchannel_ref_t* channel_ref);
 
 /**
- * È¡µÃ¹ÜµÀËù¹ØÁªµÄÊÂ¼şÑ­»·
- * @param channel_ref kchannel_ref_tÊµÀı
- * @return kloop_tÊµÀı
+ * å–å¾—ç®¡é“æ‰€å…³è”çš„äº‹ä»¶å¾ªç¯
+ * @param channel_ref kchannel_ref_tå®ä¾‹
+ * @return kloop_tå®ä¾‹
  */
-extern kloop_t* knet_channel_ref_get_loop(kchannel_ref_t* channel_ref);
+FuncExport kloop_t* knet_channel_ref_get_loop(kchannel_ref_t* channel_ref);
 
 /**
- * ÉèÖÃ¹ÜµÀÊÂ¼ş»Øµ÷
+ * è®¾ç½®ç®¡é“äº‹ä»¶å›è°ƒ
  *
- * ÊÂ¼ş»Øµ÷½«ÔÚ¹ØÁªµÄkloop_tÊµÀıËùÔÚÏß³ÌÄÚ±»»Øµ÷
- * @param channel_ref kchannel_ref_tÊµÀı
- * @param cb »Øµ÷º¯Êı
+ * äº‹ä»¶å›è°ƒå°†åœ¨å…³è”çš„kloop_tå®ä¾‹æ‰€åœ¨çº¿ç¨‹å†…è¢«å›è°ƒ
+ * @param channel_ref kchannel_ref_tå®ä¾‹
+ * @param cb å›è°ƒå‡½æ•°
  */
-extern void knet_channel_ref_set_cb(kchannel_ref_t* channel_ref, knet_channel_ref_cb_t cb);
+FuncExport void knet_channel_ref_set_cb(kchannel_ref_t* channel_ref, knet_channel_ref_cb_t cb);
 
 /**
- * ÉèÖÃ¹ÜµÀ¿ÕÏĞ³¬Ê±
+ * è®¾ç½®ç®¡é“ç©ºé—²è¶…æ—¶
  *
- * ¹ÜµÀ¿ÕÏĞ³¬Ê±ÒÀÀµ¶Á²Ù×÷×÷ÎªÅĞ¶Ï£¬ÔÚtimeout¼ä¸ôÄÚÎ´ÓĞ¿É¶ÁÊı¾İ¼È´¥·¢³¬Ê±
- * @param channel_ref kchannel_ref_tÊµÀı
- * @param timeout ³¬Ê±£¨Ãë£©
+ * ç®¡é“ç©ºé—²è¶…æ—¶ä¾èµ–è¯»æ“ä½œä½œä¸ºåˆ¤æ–­ï¼Œåœ¨timeouté—´éš”å†…æœªæœ‰å¯è¯»æ•°æ®æ—¢è§¦å‘è¶…æ—¶
+ * @param channel_ref kchannel_ref_tå®ä¾‹
+ * @param timeout è¶…æ—¶ï¼ˆç§’ï¼‰
  */
-extern void knet_channel_ref_set_timeout(kchannel_ref_t* channel_ref, int timeout);
+FuncExport void knet_channel_ref_set_timeout(kchannel_ref_t* channel_ref, int timeout);
 
 /**
- * È¡µÃ¶Ô¶ËµØÖ·
- * @param channel_ref kchannel_ref_tÊµÀı
- * @return kaddress_tÊµÀı
+ * å–å¾—å¯¹ç«¯åœ°å€
+ * @param channel_ref kchannel_ref_tå®ä¾‹
+ * @return kaddress_tå®ä¾‹
  */
-extern kaddress_t* knet_channel_ref_get_peer_address(kchannel_ref_t* channel_ref);
+FuncExport kaddress_t* knet_channel_ref_get_peer_address(kchannel_ref_t* channel_ref);
 
 /**
- * È¡µÃ±¾µØµØÖ·
- * @param channel_ref kchannel_ref_tÊµÀı
- * @return kaddress_tÊµÀı
+ * å–å¾—æœ¬åœ°åœ°å€
+ * @param channel_ref kchannel_ref_tå®ä¾‹
+ * @return kaddress_tå®ä¾‹
  */
-extern kaddress_t* knet_channel_ref_get_local_address(kchannel_ref_t* channel_ref);
+FuncExport kaddress_t* knet_channel_ref_get_local_address(kchannel_ref_t* channel_ref);
 
 /**
- * »ñÈ¡¹ÜµÀUUID
- * @param channel_ref kchannel_tÊµÀı
- * @return ¹ÜµÀUUID
+ * è·å–ç®¡é“UUID
+ * @param channel_ref kchannel_tå®ä¾‹
+ * @return ç®¡é“UUID
  */
-extern uint64_t knet_channel_ref_get_uuid(kchannel_ref_t* channel_ref);
+FuncExport uint64_t knet_channel_ref_get_uuid(kchannel_ref_t* channel_ref);
 
 /**
- * ²âÊÔÁ½¸ö¹ÜµÀÒıÓÃÊÇ·ñÖ¸ÏòÍ¬Ò»¸ö¹ÜµÀ
- * @param a kchannel_tÊµÀı
- * @param b kchannel_tÊµÀı
- * @retval 0 ²»Í¬
- * @retval ·ÇÁã ÏàÍ¬ 
+ * æµ‹è¯•ä¸¤ä¸ªç®¡é“å¼•ç”¨æ˜¯å¦æŒ‡å‘åŒä¸€ä¸ªç®¡é“
+ * @param a kchannel_tå®ä¾‹
+ * @param b kchannel_tå®ä¾‹
+ * @retval 0 ä¸åŒ
+ * @retval éé›¶ ç›¸åŒ 
  */
-extern int knet_channel_ref_equal(kchannel_ref_t* a, kchannel_ref_t* b);
+FuncExport int knet_channel_ref_equal(kchannel_ref_t* a, kchannel_ref_t* b);
 
 /**
- * ÉèÖÃÓÃ»§Êı¾İÖ¸Õë
- * @param channel_ref kchannel_tÊµÀı
- * @param ptr ÓÃ»§Êı¾İÖ¸Õë
+ * è®¾ç½®ç”¨æˆ·æ•°æ®æŒ‡é’ˆ
+ * @param channel_ref kchannel_tå®ä¾‹
+ * @param ptr ç”¨æˆ·æ•°æ®æŒ‡é’ˆ
  */
-extern void knet_channel_ref_set_ptr(kchannel_ref_t* channel_ref, void* ptr);
+FuncExport void knet_channel_ref_set_ptr(kchannel_ref_t* channel_ref, void* ptr);
 
 /**
- * »ñÈ¡ÓÃ»§Êı¾İÖ¸Õë
- * @param channel_ref kchannel_tÊµÀı
- * @return ÓÃ»§Êı¾İÖ¸Õë
+ * è·å–ç”¨æˆ·æ•°æ®æŒ‡é’ˆ
+ * @param channel_ref kchannel_tå®ä¾‹
+ * @return ç”¨æˆ·æ•°æ®æŒ‡é’ˆ
  */
-extern void* knet_channel_ref_get_ptr(kchannel_ref_t* channel_ref);
+FuncExport void* knet_channel_ref_get_ptr(kchannel_ref_t* channel_ref);
 
 /**
- * µİÔöµ±Ç°¹ÜµÀÒıÓÃ¼ÆÊı
- * @param channel_ref kchannel_ref_tÊµÀı
- * @return µ±Ç°ÒıÓÃ¼ÆÊı
+ * é€’å¢å½“å‰ç®¡é“å¼•ç”¨è®¡æ•°
+ * @param channel_ref kchannel_ref_tå®ä¾‹
+ * @return å½“å‰å¼•ç”¨è®¡æ•°
  */
-extern int knet_channel_ref_incref(kchannel_ref_t* channel_ref);
+FuncExport int knet_channel_ref_incref(kchannel_ref_t* channel_ref);
 
 /**
- * µİ¼õµ±Ç°¹ÜµÀÒıÓÃ¼ÆÊı
- * @param channel_ref kchannel_ref_tÊµÀı
- * @return µ±Ç°ÒıÓÃ¼ÆÊı
+ * é€’å‡å½“å‰ç®¡é“å¼•ç”¨è®¡æ•°
+ * @param channel_ref kchannel_ref_tå®ä¾‹
+ * @return å½“å‰å¼•ç”¨è®¡æ•°
  */
-extern int knet_channel_ref_decref(kchannel_ref_t* channel_ref);
+FuncExport int knet_channel_ref_decref(kchannel_ref_t* channel_ref);
 
 /**
- * ¼ì²âÊÇ·ñÊÇIPV6¹ÜµÀ
- * @param channel_ref kchannel_ref_tÊµÀı
- * @retvel 0 ²»ÊÇ
- * @retval ·Ç0 ÊÇ
+ * æ£€æµ‹æ˜¯å¦æ˜¯IPV6ç®¡é“
+ * @param channel_ref kchannel_ref_tå®ä¾‹
+ * @retvel 0 ä¸æ˜¯
+ * @retval é0 æ˜¯
  */
-extern int knet_channel_ref_is_ipv6(kchannel_ref_t* channel_ref);
+FuncExport int knet_channel_ref_is_ipv6(kchannel_ref_t* channel_ref);
+
+/**
+ * è®¾ç½®reuseport
+ * @param channel_ref kchannel_ref_tå®ä¾‹
+ * @retvel 0 ä¸æ˜¯
+ * @retval é0 æ˜¯
+ */
+FuncExport int knet_channel_ref_set_reuseport(kchannel_ref_t* channel_ref);
 
 /** @} */
 

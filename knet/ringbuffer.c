@@ -43,12 +43,20 @@ struct _ringbuffer_t {
 };
 
 kringbuffer_t* ringbuffer_create(uint32_t size) {
-    kringbuffer_t* rb = create(kringbuffer_t);
+#ifdef DISABLE_KNET_MEM_FUNC
+    kringbuffer_t* rb = (kringbuffer_t*)malloc(sizeof(kringbuffer_t));
+#else
+    kringbuffer_t* rb = knet_create(kringbuffer_t);
+#endif
     verify(rb);
     memset(rb, 0, sizeof(kringbuffer_t));
     rb->lock_type = 0;
     rb->max_size  = size;
-    rb->ptr       = create_raw(size);
+#ifdef DISABLE_KNET_MEM_FUNC
+    rb->ptr       = (char*)malloc(size);
+#else
+    rb->ptr       = knet_create_raw(size);
+#endif
     verify(rb->ptr);
     rb->lock_size = 0;
     rb->read_pos  = 0;
@@ -108,11 +116,52 @@ uint32_t ringbuffer_remove(kringbuffer_t* rb, uint32_t size) {
     return size;
 }
 
+void ringbuffer_enlarge(kringbuffer_t* rb, uint32_t size) {
+    uint32_t reserve_size = rb->max_size - rb->count;
+    uint32_t cur_count = rb->count;
+    uint32_t new_max_size = 0;
+    char* new_ptr = 0;
+    char* temp_ptr = 0;
+    verify(rb);
+    verify(size);
+    if (reserve_size < size) {
+        new_max_size = rb->max_size * 2;
+        while (new_max_size - cur_count < size) {
+            new_max_size += rb->max_size;
+        }
+#ifdef DISABLE_KNET_MEM_FUNC
+        new_ptr = malloc(new_max_size);
+#else
+        new_ptr = knet_malloc(new_max_size);
+#endif
+        temp_ptr = rb->ptr;
+        if (cur_count) {
+          ringbuffer_read(rb, new_ptr, cur_count);
+        } else {
+          ringbuffer_read(rb, new_ptr, rb->max_size);
+        }
+        memset(rb, 0, sizeof(struct _ringbuffer_t));
+        rb->ptr = new_ptr;
+        rb->read_pos = 0;
+        rb->write_pos = cur_count;
+        rb->max_size = new_max_size;
+        rb->count = cur_count;
+    #ifdef DISABLE_KNET_MEM_FUNC
+        free(temp_ptr);
+    #else
+        knet_free(temp_ptr);
+    #endif
+    } else {
+        return;
+    }
+}
+
 uint32_t ringbuffer_write(kringbuffer_t* rb, const char* buffer, uint32_t size) {
     uint32_t i = 0;
     verify(rb);
     verify(buffer);
     verify(size);
+    ringbuffer_enlarge(rb, size);
     size = (((rb->max_size - rb->count) > size) ? size : rb->max_size - rb->count);
     for (; i < size; i++) {
         rb->ptr[rb->write_pos] = buffer[i];
@@ -181,7 +230,7 @@ uint32_t ringbuffer_find(kringbuffer_t* rb, const char* target, uint32_t* size) 
     verify(rb);
     verify(target);
     verify(size);
-    length = strlen(target);
+    length = (int)strlen(target);
     pos    = rb->read_pos % rb->max_size;
     for (; (i < rb->count) && (index < length); i++) {
         if (rb->ptr[pos] == target[index]) { /* Æ¥Åä */
@@ -206,8 +255,13 @@ uint32_t ringbuffer_available(kringbuffer_t* rb) {
 
 void ringbuffer_destroy(kringbuffer_t* rb) {
     verify(rb);
+#ifdef DISABLE_KNET_MEM_FUNC
+    free(rb->ptr);
+    free(rb);
+#else
     knet_free(rb->ptr);
     knet_free(rb);
+#endif
 }
 
 uint32_t ringbuffer_read_lock_size(kringbuffer_t* rb) {
@@ -291,7 +345,7 @@ void ringbuffer_window_read_commit(kringbuffer_t* rb, uint32_t size) {
 uint32_t ringbuffer_write_lock_size(kringbuffer_t* rb) {
     verify(rb);
     if (ringbuffer_full(rb)) {
-        return 0;
+        ringbuffer_enlarge(rb, rb->max_size);
     }
     rb->lock_type = 2;
     rb->lock_size = 0;

@@ -82,7 +82,7 @@ char* _trim(char* ip, int size) {
 }
 
 kip_filter_t* knet_ip_filter_create() {
-    kip_filter_t* filter = create(kip_filter_t);
+    kip_filter_t* filter = knet_create(kip_filter_t);
     verify(filter);
     memset(filter, 0, sizeof(kip_filter_t));
     filter->trie = trie_create();

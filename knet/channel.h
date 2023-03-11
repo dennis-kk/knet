@@ -99,7 +99,7 @@ int knet_channel_send(kchannel_t* channel, const char* data, int size);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-int knet_channel_send_buffer(kchannel_t* channel, kbuffer_t* send_buffer);
+int knet_channel_send_buffer(kchannel_t* channel);
 
 /**
  * 可写事件通知
@@ -158,7 +158,7 @@ uint64_t knet_channel_get_uuid(kchannel_t* channel);
  * @retval 0 不是
  * @retval 非零 是
  */
-int knet_channel_send_list_reach_max(kchannel_t* channel);
+int knet_channel_send_buffer_reach_max(kchannel_t* channel);
 
 /**
  * 是否是IPV6

@@ -31,10 +31,6 @@
 #include "misc.h"
 #include "logger.h"
 
-#if defined(_MSC_VER )
-    #pragma comment(lib,"Ws2_32.lib")
-#endif /* defined(_MSC_VER) */
-
 #define ACCEPTEX_ADDR_SIZE   sizeof(struct sockaddr_in6) + 16 /* AcceptEx函数参数，详见MSDN */
 #define ACCEPTEX_BUFFER_SIZE 1024                            /* AcceptEx函数参数，详见MSDN */
 #define ACCEPTEX             LPFN_ACCEPTEX                   /* AcceptEx函数指针，详见MSDN */
@@ -134,7 +130,7 @@ void on_iocp_recv(kchannel_ref_t* channel_ref);
 void on_iocp_send(kchannel_ref_t* channel_ref);
 
 per_sock_t* socket_data_create() {
-    per_sock_t* data = create(per_sock_t);
+    per_sock_t* data = knet_create(per_sock_t);
     verify(data);
     memset(data, 0, sizeof(per_sock_t));
     return data;
@@ -157,7 +153,7 @@ AcceptEx_t* socket_data_prepare_accept(per_sock_t* data) {
     verify(data);
     fd = knet_channel_ref_get_socket_fd(data->channel_ref);
     if (!data->AcceptEx_info) {
-        data->AcceptEx_info = create(AcceptEx_t);
+        data->AcceptEx_info = knet_create(AcceptEx_t);
         verify(data->AcceptEx_info);
         memset(data->AcceptEx_info, 0, sizeof(AcceptEx_t));
     }
@@ -183,16 +179,16 @@ per_sock_t* get_data(kchannel_ref_t* channel_ref) {
 
 int knet_impl_create(kloop_t* loop) {
     WSADATA wsa;
-    loop_iocp_t* impl = create(loop_iocp_t);
+    loop_iocp_t* impl = knet_create(loop_iocp_t);
     verify(impl);
     memset(impl, 0, sizeof(loop_iocp_t));
     knet_loop_set_impl(loop, impl);
+    WSAStartup(MAKEWORD(2, 2), &wsa);
     impl->iocp = CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, 0, 0);
     if (!impl->iocp) {
         knet_free(impl);
         return error_loop_impl_init_fail;
     }
-    WSAStartup(MAKEWORD(2, 2), &wsa);
     return error_ok;
 }
 
@@ -469,14 +465,18 @@ int knet_impl_event_add(kchannel_ref_t* channel_ref, knet_channel_event_e e) {
 
 int knet_impl_event_remove(kchannel_ref_t* channel_ref, knet_channel_event_e e) {
     int flag = 0;
+    per_sock_t* per_sock = get_data(channel_ref);
+    verify(per_sock);
     verify(e);
     verify(channel_ref);
     flag = knet_channel_ref_get_flag(channel_ref);
     if (flag & io_type_recv) {
         flag &= ~io_type_recv;
+        CancelIoEx((HANDLE)knet_channel_ref_get_socket_fd(channel_ref), &per_sock->io_recv.ov);
     } 
     if (flag & io_type_send) {
         flag &= ~io_type_send;
+        CancelIoEx((HANDLE)knet_channel_ref_get_socket_fd(channel_ref), &per_sock->io_send.ov);
     }
     knet_channel_ref_set_flag(channel_ref, flag);
     return error_ok;

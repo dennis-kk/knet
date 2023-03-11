@@ -72,13 +72,13 @@
  * @param channel_ref kchannel_ref_t实例
  * @return kchannel_ref_t实例
  */
-extern kchannel_ref_t* knet_channel_ref_share(kchannel_ref_t* channel_ref);
+FuncExport kchannel_ref_t* knet_channel_ref_share(kchannel_ref_t* channel_ref);
 
 /**
  * 减少管道引用计数，并销毁kchannel_ref_t实例
  * @param channel_ref kchannel_ref_t实例
  */
-extern void knet_channel_ref_leave(kchannel_ref_t* channel_ref);
+FuncExport void knet_channel_ref_leave(kchannel_ref_t* channel_ref);
 
 /**
  * 将管道转换为监听管道
@@ -92,7 +92,7 @@ extern void knet_channel_ref_leave(kchannel_ref_t* channel_ref);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int knet_channel_ref_accept(kchannel_ref_t* channel_ref, const char* ip, int port, int backlog);
+FuncExport int knet_channel_ref_accept(kchannel_ref_t* channel_ref, const char* ip, int port, int backlog);
 
 /**
  * 主动连接
@@ -105,7 +105,7 @@ extern int knet_channel_ref_accept(kchannel_ref_t* channel_ref, const char* ip, 
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int knet_channel_ref_connect(kchannel_ref_t* channel_ref, const char* ip, int port, int timeout);
+FuncExport int knet_channel_ref_connect(kchannel_ref_t* channel_ref, const char* ip, int port, int timeout);
 
 /**
  * 重新发起连接
@@ -119,7 +119,7 @@ extern int knet_channel_ref_connect(kchannel_ref_t* channel_ref, const char* ip,
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int knet_channel_ref_reconnect(kchannel_ref_t* channel_ref, int timeout);
+FuncExport int knet_channel_ref_reconnect(kchannel_ref_t* channel_ref, int timeout);
 
 /**
  * 设置管道自动重连
@@ -130,7 +130,7 @@ extern int knet_channel_ref_reconnect(kchannel_ref_t* channel_ref, int timeout);
  * @param channel_ref kchannel_ref_t实例
  * @param auto_reconnect 自动重连标志
  */
-extern void knet_channel_ref_set_auto_reconnect(kchannel_ref_t* channel_ref, int auto_reconnect);
+FuncExport void knet_channel_ref_set_auto_reconnect(kchannel_ref_t* channel_ref, int auto_reconnect);
 
 /**
  * 检查管道是否开启了自动重连
@@ -138,7 +138,7 @@ extern void knet_channel_ref_set_auto_reconnect(kchannel_ref_t* channel_ref, int
  * @retval 0 未开启
  * @retval 非零 开启
  */
-extern int knet_channel_ref_check_auto_reconnect(kchannel_ref_t* channel_ref);
+FuncExport int knet_channel_ref_check_auto_reconnect(kchannel_ref_t* channel_ref);
 
 /**
  * 检测管道是否是通过负载均衡关联到当前的kloop_t
@@ -146,7 +146,7 @@ extern int knet_channel_ref_check_auto_reconnect(kchannel_ref_t* channel_ref);
  * @retval 0 不是
  * @retval 非0 是
  */
-extern int knet_channel_ref_check_balance(kchannel_ref_t* channel_ref);
+FuncExport int knet_channel_ref_check_balance(kchannel_ref_t* channel_ref);
 
 /**
  * 检测管道当前状态
@@ -155,13 +155,13 @@ extern int knet_channel_ref_check_balance(kchannel_ref_t* channel_ref);
  * @retval 1 是
  * @retval 0 不是
  */
-extern int knet_channel_ref_check_state(kchannel_ref_t* channel_ref, knet_channel_state_e state);
+FuncExport int knet_channel_ref_check_state(kchannel_ref_t* channel_ref, knet_channel_state_e state);
 
 /**
  * 关闭管道
  * @param channel_ref kchannel_ref_t实例
  */
-extern void knet_channel_ref_close(kchannel_ref_t* channel_ref);
+FuncExport void knet_channel_ref_close(kchannel_ref_t* channel_ref);
 
 /**
  * 检查管道是否已经关闭
@@ -169,28 +169,28 @@ extern void knet_channel_ref_close(kchannel_ref_t* channel_ref);
  * @retval 0 未关闭
  * @retval 非零 关闭
  */
-extern int knet_channel_ref_check_close(kchannel_ref_t* channel_ref);
+FuncExport int knet_channel_ref_check_close(kchannel_ref_t* channel_ref);
 
 /**
  * 取得管道套接字
  * @param channel_ref kchannel_ref_t实例
  * @return 套接字
  */
-extern socket_t knet_channel_ref_get_socket_fd(kchannel_ref_t* channel_ref);
+FuncExport socket_t knet_channel_ref_get_socket_fd(kchannel_ref_t* channel_ref);
 
 /**
  * 取得管道数据流
  * @param channel_ref kchannel_ref_t实例
  * @return kstream_t实例
  */
-extern kstream_t* knet_channel_ref_get_stream(kchannel_ref_t* channel_ref);
+FuncExport kstream_t* knet_channel_ref_get_stream(kchannel_ref_t* channel_ref);
 
 /**
  * 取得管道所关联的事件循环
  * @param channel_ref kchannel_ref_t实例
  * @return kloop_t实例
  */
-extern kloop_t* knet_channel_ref_get_loop(kchannel_ref_t* channel_ref);
+FuncExport kloop_t* knet_channel_ref_get_loop(kchannel_ref_t* channel_ref);
 
 /**
  * 设置管道事件回调
@@ -199,7 +199,7 @@ extern kloop_t* knet_channel_ref_get_loop(kchannel_ref_t* channel_ref);
  * @param channel_ref kchannel_ref_t实例
  * @param cb 回调函数
  */
-extern void knet_channel_ref_set_cb(kchannel_ref_t* channel_ref, knet_channel_ref_cb_t cb);
+FuncExport void knet_channel_ref_set_cb(kchannel_ref_t* channel_ref, knet_channel_ref_cb_t cb);
 
 /**
  * 设置管道空闲超时
@@ -208,28 +208,28 @@ extern void knet_channel_ref_set_cb(kchannel_ref_t* channel_ref, knet_channel_re
  * @param channel_ref kchannel_ref_t实例
  * @param timeout 超时（秒）
  */
-extern void knet_channel_ref_set_timeout(kchannel_ref_t* channel_ref, int timeout);
+FuncExport void knet_channel_ref_set_timeout(kchannel_ref_t* channel_ref, int timeout);
 
 /**
  * 取得对端地址
  * @param channel_ref kchannel_ref_t实例
  * @return kaddress_t实例
  */
-extern kaddress_t* knet_channel_ref_get_peer_address(kchannel_ref_t* channel_ref);
+FuncExport kaddress_t* knet_channel_ref_get_peer_address(kchannel_ref_t* channel_ref);
 
 /**
  * 取得本地地址
  * @param channel_ref kchannel_ref_t实例
  * @return kaddress_t实例
  */
-extern kaddress_t* knet_channel_ref_get_local_address(kchannel_ref_t* channel_ref);
+FuncExport kaddress_t* knet_channel_ref_get_local_address(kchannel_ref_t* channel_ref);
 
 /**
  * 获取管道UUID
  * @param channel_ref kchannel_t实例
  * @return 管道UUID
  */
-extern uint64_t knet_channel_ref_get_uuid(kchannel_ref_t* channel_ref);
+FuncExport uint64_t knet_channel_ref_get_uuid(kchannel_ref_t* channel_ref);
 
 /**
  * 测试两个管道引用是否指向同一个管道
@@ -238,35 +238,35 @@ extern uint64_t knet_channel_ref_get_uuid(kchannel_ref_t* channel_ref);
  * @retval 0 不同
  * @retval 非零 相同 
  */
-extern int knet_channel_ref_equal(kchannel_ref_t* a, kchannel_ref_t* b);
+FuncExport int knet_channel_ref_equal(kchannel_ref_t* a, kchannel_ref_t* b);
 
 /**
  * 设置用户数据指针
  * @param channel_ref kchannel_t实例
  * @param ptr 用户数据指针
  */
-extern void knet_channel_ref_set_ptr(kchannel_ref_t* channel_ref, void* ptr);
+FuncExport void knet_channel_ref_set_ptr(kchannel_ref_t* channel_ref, void* ptr);
 
 /**
  * 获取用户数据指针
  * @param channel_ref kchannel_t实例
  * @return 用户数据指针
  */
-extern void* knet_channel_ref_get_ptr(kchannel_ref_t* channel_ref);
+FuncExport void* knet_channel_ref_get_ptr(kchannel_ref_t* channel_ref);
 
 /**
  * 递增当前管道引用计数
  * @param channel_ref kchannel_ref_t实例
  * @return 当前引用计数
  */
-extern int knet_channel_ref_incref(kchannel_ref_t* channel_ref);
+FuncExport int knet_channel_ref_incref(kchannel_ref_t* channel_ref);
 
 /**
  * 递减当前管道引用计数
  * @param channel_ref kchannel_ref_t实例
  * @return 当前引用计数
  */
-extern int knet_channel_ref_decref(kchannel_ref_t* channel_ref);
+FuncExport int knet_channel_ref_decref(kchannel_ref_t* channel_ref);
 
 /**
  * 检测是否是IPV6管道
@@ -274,7 +274,15 @@ extern int knet_channel_ref_decref(kchannel_ref_t* channel_ref);
  * @retvel 0 不是
  * @retval 非0 是
  */
-extern int knet_channel_ref_is_ipv6(kchannel_ref_t* channel_ref);
+FuncExport int knet_channel_ref_is_ipv6(kchannel_ref_t* channel_ref);
+
+/**
+ * 设置reuseport
+ * @param channel_ref kchannel_ref_t实例
+ * @retvel 0 不是
+ * @retval 非0 是
+ */
+FuncExport int knet_channel_ref_set_reuseport(kchannel_ref_t* channel_ref);
 
 /** @} */
 

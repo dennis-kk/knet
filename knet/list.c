@@ -29,22 +29,22 @@
 
 
 /* 链表节点 */
-struct _dlist_node_t {
-    struct _dlist_node_t* prev; /* 上一个节点 */
-    struct _dlist_node_t* next; /* 下一个节点 */
+struct _kdlist_node_t {
+    struct _kdlist_node_t* prev; /* 上一个节点 */
+    struct _kdlist_node_t* next; /* 下一个节点 */
     void*                 data; /* 用户数据指针 */
     int                   init; /* 是否通过调用dlist_node_init初始化 */
 };
 
 /* 双向循环链表 */
-struct _dlist_t {
+struct _kdlist_t {
     kdlist_node_t*   head;  /* 链表头 */
     atomic_counter_t count; /* 链表内节点数量 */
     int              init;  /* 是否通过调用dlist_init初始化 */
 };
 
 kdlist_node_t* dlist_node_create() {
-    kdlist_node_t* node = create(kdlist_node_t);
+    kdlist_node_t* node = knet_create(kdlist_node_t);
     verify(node);
     node->next = 0;
     node->prev = 0;
@@ -82,7 +82,7 @@ void* dlist_node_get_data(kdlist_node_t* node) {
 }
 
 kdlist_t* dlist_create() {
-    kdlist_t* dlist = create(kdlist_t);
+    kdlist_t* dlist = knet_create(kdlist_t);
     verify(dlist);
     dlist->head = dlist_node_create();
     verify(dlist->head);

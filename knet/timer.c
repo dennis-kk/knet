@@ -139,7 +139,7 @@ int _ktimer_add(ktimer_t* timer, time_t ms) {
 }
 
 ktimer_loop_t* ktimer_loop_create(time_t freq) {
-    ktimer_loop_t* timer_loop = create(ktimer_loop_t);
+    ktimer_loop_t* timer_loop = knet_create(ktimer_loop_t);
     verify(timer_loop);
     memset(timer_loop, 0, sizeof(ktimer_loop_t));
     timer_loop->last_tick  = time_get_milliseconds_19700101();
@@ -235,7 +235,7 @@ ktimer_loop_t* ktimer_get_loop(ktimer_t* timer) {
 ktimer_t* ktimer_create(ktimer_loop_t* timer_loop) {
     ktimer_t* timer = 0;
     verify(timer_loop);
-    timer = create(ktimer_t);
+    timer = knet_create(ktimer_t);
     verify(timer);
     memset(timer, 0, sizeof(ktimer_t));
     timer->timer_loop = timer_loop;
@@ -244,7 +244,7 @@ ktimer_t* ktimer_create(ktimer_loop_t* timer_loop) {
 
 void ktimer_destroy(ktimer_t* timer) {
     verify(timer);
-    free(timer);
+    knet_free(timer);
 }
 
 int ktimer_check_dead(ktimer_t* timer) {

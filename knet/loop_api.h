@@ -60,14 +60,14 @@
  * 创建一个事件循环
  * @return kloop_t实例
  */
-extern kloop_t* knet_loop_create();
+FuncExport kloop_t* knet_loop_create();
 
 /**
  * 销毁事件循环
  * 事件循环内的所有管道也会被销毁
  * @param loop kloop_t实例
  */
-extern void knet_loop_destroy(kloop_t* loop);
+FuncExport void knet_loop_destroy(kloop_t* loop);
 
 /**
  * 创建管道
@@ -76,7 +76,7 @@ extern void knet_loop_destroy(kloop_t* loop);
  * @param recv_ring_len 接受环形缓冲区最大长度
  * @return kchannel_ref_t实例
  */
-extern kchannel_ref_t* knet_loop_create_channel(kloop_t* loop, uint32_t max_send_list_len, uint32_t recv_ring_len);
+FuncExport kchannel_ref_t* knet_loop_create_channel(kloop_t* loop, uint32_t max_send_list_len, uint32_t recv_ring_len);
 
 /**
  * 创建管道
@@ -85,7 +85,7 @@ extern kchannel_ref_t* knet_loop_create_channel(kloop_t* loop, uint32_t max_send
  * @param recv_ring_len 接受环形缓冲区最大长度
  * @return kchannel_ref_t实例
  */
-extern kchannel_ref_t* knet_loop_create_channel6(kloop_t* loop, uint32_t max_send_list_len, uint32_t recv_ring_len);
+FuncExport kchannel_ref_t* knet_loop_create_channel6(kloop_t* loop, uint32_t max_send_list_len, uint32_t recv_ring_len);
 
 /**
  * 使用已存在的套接字创建管道
@@ -95,7 +95,7 @@ extern kchannel_ref_t* knet_loop_create_channel6(kloop_t* loop, uint32_t max_sen
  * @param recv_ring_len 接受环形缓冲区最大长度
  * @return kchannel_ref_t实例
  */
-extern kchannel_ref_t* knet_loop_create_channel_exist_socket_fd(kloop_t* loop, socket_t socket_fd,
+FuncExport kchannel_ref_t* knet_loop_create_channel_exist_socket_fd(kloop_t* loop, socket_t socket_fd,
     uint32_t max_send_list_len, uint32_t recv_ring_len);
 
 /**
@@ -106,7 +106,7 @@ extern kchannel_ref_t* knet_loop_create_channel_exist_socket_fd(kloop_t* loop, s
  * @param recv_ring_len 接受环形缓冲区最大长度
  * @return kchannel_ref_t实例
  */
-extern kchannel_ref_t* knet_loop_create_channel_exist_socket_fd6(kloop_t* loop, socket_t socket_fd,
+FuncExport kchannel_ref_t* knet_loop_create_channel_exist_socket_fd6(kloop_t* loop, socket_t socket_fd,
     uint32_t max_send_list_len, uint32_t recv_ring_len);
 
 /**
@@ -116,7 +116,7 @@ extern kchannel_ref_t* knet_loop_create_channel_exist_socket_fd6(kloop_t* loop, 
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int knet_loop_run_once(kloop_t* loop);
+FuncExport int knet_loop_run_once(kloop_t* loop);
 
 /**
  * 运行事件循环直到调用knet_loop_exit()
@@ -125,34 +125,34 @@ extern int knet_loop_run_once(kloop_t* loop);
  * @retval error_ok 成功
  * @retval 其他 失败
  */
-extern int knet_loop_run(kloop_t* loop);
+FuncExport int knet_loop_run(kloop_t* loop);
 
 /**
  * 退出函数knet_loop_run()
  * @param loop kloop_t实例
  */
-extern void knet_loop_exit(kloop_t* loop);
+FuncExport void knet_loop_exit(kloop_t* loop);
 
 /**
  * 获取活跃管道数量
  * @param loop kloop_t实例
  * @return 活跃管道数量
  */
-extern int knet_loop_get_active_channel_count(kloop_t* loop);
+FuncExport int knet_loop_get_active_channel_count(kloop_t* loop);
 
 /**
  * 获取已关闭管道数量
  * @param loop kloop_t实例
  * @return 关闭管道数量
  */
-extern int knet_loop_get_close_channel_count(kloop_t* loop);
+FuncExport int knet_loop_get_close_channel_count(kloop_t* loop);
 
 /**
  * 取得统计器
  * @param loop kloop_t实例
  * @return kloop_profile_t实例
  */
-extern kloop_profile_t* knet_loop_get_profile(kloop_t* loop);
+FuncExport kloop_profile_t* knet_loop_get_profile(kloop_t* loop);
 
 /** @} */
 

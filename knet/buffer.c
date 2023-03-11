@@ -36,13 +36,13 @@ struct _buffer_t {
 };
 
 kbuffer_t* knet_buffer_create(uint32_t size) {
-    kbuffer_t* sb = create(kbuffer_t);
+    kbuffer_t* sb = knet_create(kbuffer_t);
     verify(sb);
     if (!sb) {
         return 0;
     }
     /* Êý¾ÝÖ¸Õë */
-    sb->ptr = create_raw(size);
+    sb->ptr = knet_create_raw(size);
     verify(sb->ptr);
     if (!sb->ptr) {
         knet_buffer_destroy(sb);

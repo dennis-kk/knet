@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * Copyright (c) 2014-2016, dennis wang
  * All rights reserved.
  * 
@@ -23,9 +23,15 @@
  */
 
 #include <stdarg.h>
-#if (!defined(WIN32) && !defined(_WIN64))
-    #include <linux/tcp.h> /* TCP_NODELAY */
-#endif /* (!defined(WIN32) && !defined(_WIN64)) */
+#if (!defined(_WIN32) && !defined(_WIN64))
+    #if __APPLE__
+        #include <netinet/tcp.h>
+    #else
+        #include <linux/tcp.h> /* TCP_NODELAY */
+    #endif
+#else
+    #include <Ws2tcpip.h>
+#endif /* (!defined(_WIN32) && !defined(_WIN64)) */
 
 #include "misc.h"
 #include "loop.h"
@@ -36,28 +42,28 @@
 #include "logger.h"
 
 struct _thread_runner_t {
-    knet_thread_func_t func;         /* Ïß³Ìº¯Êı */
-    void*              params;       /* µ¥²ÎÊı */
-    kdlist_t*          multi_params; /* ¶à²ÎÊı */
-    volatile int       running;      /* ÔËĞĞ±êÖ¾ */
-    volatile int       stop;         /* ÍË³ö±êÖ¾ */
-    thread_id_t        thread_id;    /* Ïß³ÌID */
-#if (defined(WIN32) || defined(_WIN64))
-    HANDLE thread_handle;            /* WIN32Ïß³Ì¾ä±ú */
-    DWORD  tls_key;                  /* WIN32 TLS¼ü */
+    knet_thread_func_t func;         /* çº¿ç¨‹å‡½æ•° */
+    void*              params;       /* å•å‚æ•° */
+    kdlist_t*          multi_params; /* å¤šå‚æ•° */
+    volatile int       running;      /* è¿è¡Œæ ‡å¿— */
+    volatile int       stop;         /* é€€å‡ºæ ‡å¿— */
+    thread_id_t        thread_id;    /* çº¿ç¨‹ID */
+#if (defined(_WIN32) || defined(_WIN64))
+    HANDLE thread_handle;            /* _WIN32çº¿ç¨‹å¥æŸ„ */
+    DWORD  tls_key;                  /* _WIN32 TLSé”® */
 #else
-    pthread_key_t tls_key;           /* pthread TLS¼ü */
-#endif /* defined(WIN32) || defined(_WIN64) */
+    pthread_key_t tls_key;           /* pthread TLSé”® */
+#endif /* defined(_WIN32) || defined(_WIN64) */
 };
 
 typedef enum _loop_type_e {
-    loop_type_loop = 1, /* ÍøÂçÑ­»· */
-    loop_type_timer,    /* ¶¨Ê±Æ÷Ñ­»· */
+    loop_type_loop = 1, /* ç½‘ç»œå¾ªç¯ */
+    loop_type_timer,    /* å®šæ—¶å™¨å¾ªç¯ */
 } loop_type_e;
 
 typedef struct _thread_param_t {
-    loop_type_e type; /* Ñ­»·ÀàĞÍ */
-    void*       loop; /* Ñ­»·Ö¸Õë */
+    loop_type_e type; /* å¾ªç¯ç±»å‹ */
+    void*       loop; /* å¾ªç¯æŒ‡é’ˆ */
 } thread_param_t;
 
 socket_t socket_create() {
@@ -66,7 +72,7 @@ socket_t socket_create() {
 #else
     socket_t socket_fd = socket(AF_INET, SOCK_STREAM, 0);
 #endif /* LOOP_IOCP */
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     if (socket_fd == INVALID_SOCKET) {
         log_error("socket() failed, system error: %d", sys_get_errno());
         return 0;
@@ -76,7 +82,7 @@ socket_t socket_create() {
         log_error("socket() failed, system error: %d", sys_get_errno());
         return 0;
     }
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
     return socket_fd;
 }
 
@@ -86,7 +92,7 @@ socket_t socket_create6() {
 #else
     socket_t socket_fd = socket(PF_INET6, SOCK_STREAM, 0);
 #endif /* LOOP_IOCP */
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     if (socket_fd == INVALID_SOCKET) {
         log_error("socket() failed, system error: %d", sys_get_errno());
         return 0;
@@ -96,20 +102,20 @@ socket_t socket_create6() {
         log_error("socket() failed, system error: %d", sys_get_errno());
         return 0;
     }
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
     return socket_fd;
 }
 
 int socket_connect(socket_t socket_fd, const char* ip, int port) {
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     DWORD last_error = 0;
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
     int error = 0;
     struct sockaddr_in sa;
     memset(&sa, 0, sizeof(sa));
     sa.sin_family = AF_INET;
     sa.sin_port = htons((unsigned short)port);
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     sa.sin_addr.S_un.S_addr = INADDR_ANY;
     if (ip) {
         sa.sin_addr.S_un.S_addr = inet_addr(ip);
@@ -119,13 +125,16 @@ int socket_connect(socket_t socket_fd, const char* ip, int port) {
     if (ip) {
         sa.sin_addr.s_addr = inet_addr(ip);
     }
-#endif /* defined(WIN32) || defined(_WIN64) */
-#ifndef LOOP_IOCP
+#endif /* defined(_WIN32) || defined(_WIN64) */
+#if LOOP_SELECT
+    socket_set_non_blocking_off(socket_fd);
+#endif /* LOOP_SELECT */
+#if !LOOP_IOCP
     error = connect(socket_fd, (struct sockaddr*)&sa, sizeof(sa));
 #else
     socket_fd;
 #endif /* LOOP_IOCP */
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     if (error < 0) {
         last_error = GetLastError();
         if ((WSAEWOULDBLOCK != last_error) && (WSAEISCONN != last_error)) {
@@ -133,6 +142,9 @@ int socket_connect(socket_t socket_fd, const char* ip, int port) {
             return error_connect_fail;
         }
     }
+#if LOOP_SELECT
+    socket_set_non_blocking_on(socket_fd);
+#endif // LOOP_SELECT
 #else
     if (error < 0) {
         if ((errno != EINPROGRESS) && (errno != EINTR) && (errno != EISCONN)) {
@@ -140,20 +152,20 @@ int socket_connect(socket_t socket_fd, const char* ip, int port) {
             return error_connect_fail;
         }
     }
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
     return error_ok;
 }
 
 int socket_connect6(socket_t socket_fd, const char* ip, int port) {
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     DWORD last_error = 0;
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
     int error = 0;
     struct sockaddr_in6 sa;
     memset(&sa, 0, sizeof(sa));
     sa.sin6_family = AF_INET6;
     sa.sin6_port = htons((unsigned short)port);
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     sa.sin6_addr = in6addr_any;
     if (ip) {
         inet_pton(AF_INET6, ip, &sa.sin6_addr);
@@ -163,24 +175,24 @@ int socket_connect6(socket_t socket_fd, const char* ip, int port) {
     if (ip) {
         inet_pton(AF_INET6, ip, &sa.sin6_addr);
     }
-#endif /* defined(WIN32) || defined(_WIN64) */
-#ifndef LOOP_IOCP
+#endif /* defined(_WIN32) || defined(_WIN64) */
+#if LOOP_SELECT
+    socket_set_non_blocking_off(socket_fd);
+#endif /* LOOP_SELECT */
+#if !LOOP_IOCP
     error = connect(socket_fd, (struct sockaddr*)&sa, sizeof(sa));
 #else
     socket_fd;
 #endif /* LOOP_IOCP */
-#if (defined(WIN32) || defined(_WIN64))
+#if LOOP_SELECT
+    socket_set_non_blocking_on(socket_fd);
+#endif // LOOP_SELECT
+#if (defined(_WIN32) || defined(_WIN64))
     if (error < 0) {
         last_error = GetLastError();
         if ((WSAEWOULDBLOCK != last_error) && (WSAEISCONN != last_error)) {
             log_error("connect() failed, system error: %d", sys_get_errno());
             return error_connect_fail;
-        } else {
-#ifdef LOOP_IOCP
-            while (!socket_check_send_ready(socket_fd)) {
-                thread_sleep_ms(1);
-            }
-#endif /* LOOP_IOCP */
         }
     }
 #else
@@ -190,7 +202,7 @@ int socket_connect6(socket_t socket_fd, const char* ip, int port) {
             return error_connect_fail;
         }
     }
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
     return error_ok;
 }
 
@@ -200,7 +212,7 @@ int socket_bind_and_listen(socket_t socket_fd, const char* ip, int port, int bac
     memset(&sa, 0, sizeof(sa));
     sa.sin_family = AF_INET;
     sa.sin_port = htons((unsigned short)port);
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     sa.sin_addr.S_un.S_addr = INADDR_ANY;
     if (ip) {
         sa.sin_addr.S_un.S_addr = inet_addr(ip);
@@ -210,7 +222,7 @@ int socket_bind_and_listen(socket_t socket_fd, const char* ip, int port, int bac
     if (ip) {
         sa.sin_addr.s_addr = inet_addr(ip);
     }
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
     socket_set_reuse_addr_on(socket_fd);
     socket_set_linger_off(socket_fd);
     error = bind(socket_fd, (struct sockaddr*)&sa, sizeof(struct sockaddr));
@@ -218,7 +230,7 @@ int socket_bind_and_listen(socket_t socket_fd, const char* ip, int port, int bac
         log_error("bind() failed, system error: %d", sys_get_errno());
         return error_bind_fail;
     }
-    /* ¼àÌı */
+    /* ç›‘å¬ */
     error = listen(socket_fd, backlog);
     if (error < 0) {
         log_error("listen() failed, system error: %d", sys_get_errno());
@@ -233,7 +245,7 @@ int socket_bind_and_listen6(socket_t socket_fd, const char* ip, int port, int ba
     memset(&sa, 0, sizeof(sa));
     sa.sin6_family = AF_INET6;
     sa.sin6_port = htons((unsigned short)port);
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     sa.sin6_addr = in6addr_any;
     if (ip) {
         inet_pton(AF_INET6, ip, &sa.sin6_addr);
@@ -243,7 +255,7 @@ int socket_bind_and_listen6(socket_t socket_fd, const char* ip, int port, int ba
     if (ip) {
         inet_pton(AF_INET6, ip, &sa.sin6_addr);
     }
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
     socket_set_reuse_addr_on(socket_fd);
     socket_set_linger_off(socket_fd);
     error = bind(socket_fd, (struct sockaddr*)&sa, sizeof(struct sockaddr_in6));
@@ -251,7 +263,7 @@ int socket_bind_and_listen6(socket_t socket_fd, const char* ip, int port, int ba
         log_error("bind() failed, system error: %d", sys_get_errno());
         return error_bind_fail;
     }
-    /* ¼àÌı */
+    /* ç›‘å¬ */
     error = listen(socket_fd, backlog);
     if (error < 0) {
         log_error("listen() failed, system error: %d", sys_get_errno());
@@ -261,13 +273,13 @@ int socket_bind_and_listen6(socket_t socket_fd, const char* ip, int port, int ba
 }
 
 socket_t socket_accept(socket_t socket_fd) {
-    socket_t     client_fd = 0; /* ¿Í»§¶ËÌ×½Ó×Ö */
+    socket_t     client_fd = 0; /* å®¢æˆ·ç«¯å¥—æ¥å­— */
     struct sockaddr_in sa;
     socket_len_t addr_len  = sizeof(sa);
     memset(&sa, 0, sizeof(sa));
-    /* ½ÓÊÜ¿Í»§¶Ë */
+    /* æ¥å—å®¢æˆ·ç«¯ */
     client_fd = accept(socket_fd, (struct sockaddr*)&sa, &addr_len);
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     if (INVALID_SOCKET == client_fd) {
         log_error("accept() failed, system error: %d", sys_get_errno());
         return 0;
@@ -277,18 +289,18 @@ socket_t socket_accept(socket_t socket_fd) {
         log_error("accept() failed, system error: %d", sys_get_errno());
         return 0;
     }
-#endif /* defined(WIN32) || defined(_WIN64) */    
+#endif /* defined(_WIN32) || defined(_WIN64) */    
     return client_fd;
 }
 
 socket_t socket_accept6(socket_t socket_fd) {
-    socket_t     client_fd = 0; /* ¿Í»§¶ËÌ×½Ó×Ö */
+    socket_t     client_fd = 0; /* å®¢æˆ·ç«¯å¥—æ¥å­— */
     struct sockaddr_in6 sa;
     socket_len_t addr_len = sizeof(sa);
     memset(&sa, 0, sizeof(sa));
-    /* ½ÓÊÜ¿Í»§¶Ë */
+    /* æ¥å—å®¢æˆ·ç«¯ */
     client_fd = accept(socket_fd, (struct sockaddr*)&sa, &addr_len);
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     if (INVALID_SOCKET == client_fd) {
         log_error("accept() failed, system error: %d", sys_get_errno());
         return 0;
@@ -298,7 +310,7 @@ socket_t socket_accept6(socket_t socket_fd) {
         log_error("accept() failed, system error: %d", sys_get_errno());
         return 0;
     }
-#endif /* defined(WIN32) || defined(_WIN64) */    
+#endif /* defined(_WIN32) || defined(_WIN64) */    
     return client_fd;
 }
 
@@ -308,7 +320,7 @@ int socket_set_reuse_addr_on(socket_t socket_fd) {
 }
 
 int socket_set_non_blocking_on(socket_t socket_fd) {
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     u_long nonblocking = 1;
     if (socket_fd == INVALID_SOCKET) {
         verify(0);
@@ -326,21 +338,41 @@ int socket_set_non_blocking_on(socket_t socket_fd) {
     }
     flags = fcntl(socket_fd, F_GETFL, 0);
     fcntl(socket_fd, F_SETFL, flags | O_NONBLOCK);
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
+    return 0;
+}
+
+int socket_set_non_blocking_off(socket_t socket_fd) {
+#if (defined(_WIN32) || defined(_WIN64))
+    u_long nonblocking = 0;
+    if (socket_fd == INVALID_SOCKET) {
+        verify(0);
+        return 1;
+    }
+    if (SOCKET_ERROR == ioctlsocket(socket_fd, FIONBIO, &nonblocking)) {
+        verify(0);
+        return 1;
+    }
+#else
+    int flags = 0;
+    if (socket_fd < 0) {
+        verify(0);
+        return 1;
+    }
+    flags = fcntl(socket_fd, F_GETFL, 0);
+    fcntl(socket_fd, F_SETFL, flags & ~O_NONBLOCK);
+#endif /* defined(_WIN32) || defined(_WIN64) */
     return 0;
 }
 
 int socket_close(socket_t socket_fd) {
-#if (defined(WIN32) || defined(_WIN64))
-    #if LOOP_IOCP
-    CancelIo((HANDLE)socket_fd);
-    #endif /* LOOP_IOCP */
+#if (defined(_WIN32) || defined(_WIN64))
     shutdown(socket_fd, 2);
     return closesocket(socket_fd);
 #else
     shutdown(socket_fd, SHUT_RDWR);
     return close(socket_fd);
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
 }
 
 int socket_set_nagle_off(socket_t socket_fd) {
@@ -359,6 +391,15 @@ int socket_set_keepalive_off(socket_t socket_fd) {
     return setsockopt(socket_fd, SOL_SOCKET, SO_KEEPALIVE, (char*)&keepalive, sizeof(keepalive));
 }
 
+int socket_set_reuseport_on(socket_t socket_fd) {
+#if (defined(_WIN32) || defined(_WIN64))
+    return -1;
+#else
+    int reuseport = 1;
+    return setsockopt(socket_fd, SOL_SOCKET, SO_REUSEPORT, &reuseport, sizeof(reuseport));
+#endif /* defined(_WIN32) || defined(_WIN64) */
+}
+
 int socket_set_donot_route_on(socket_t socket_fd) {
     int donot_route = 1;
     return setsockopt(socket_fd, SOL_SOCKET, SO_DONTROUTE, (char*)&donot_route, sizeof(donot_route));
@@ -373,33 +414,33 @@ int socket_set_send_buffer_size(socket_t socket_fd, int size) {
 }
 
 int socket_check_send_ready(socket_t socket_fd) {
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     struct timeval tv = {0, 0};
     int error = 0;
     fd_set send_fds;
     memset(&send_fds, 0, sizeof(fd_set));
     FD_ZERO(&send_fds);
     FD_SET(socket_fd, &send_fds);
-    error = select(socket_fd + 1, 0, &send_fds, 0, &tv);
+    error = select((int)socket_fd + 1, 0, &send_fds, 0, &tv);
     if (0 > error) {
         return 0;
     }
     return FD_ISSET(socket_fd, &send_fds);
 #else
     return 0;
-#endif /* defined(WIN32) || defined(_WIN64) */    
+#endif /* defined(_WIN32) || defined(_WIN64) */    
 }
 
 int socket_send(socket_t socket_fd, const char* data, uint32_t size) {
     int send_bytes = 0;
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     DWORD error = 0;
     send_bytes = send(socket_fd, data, (int)size, 0);
 #else
     send_bytes = send(socket_fd, data, (int)size, MSG_NOSIGNAL);
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
     if (send_bytes < 0) {
-    #if (defined(WIN32) || defined(_WIN64))
+    #if (defined(_WIN32) || defined(_WIN64))
         error = GetLastError();
         if ((error == 0) || (error == WSAEINTR) || (error == WSAEINPROGRESS) || (error == WSAEWOULDBLOCK)) {
             return 0;
@@ -414,7 +455,7 @@ int socket_send(socket_t socket_fd, const char* data, uint32_t size) {
             log_error("send() failed, system error: %d", sys_get_errno());
             send_bytes = -1;
         }
-    #endif /* defined(WIN32) || defined(_WIN64) */
+    #endif /* defined(_WIN32) || defined(_WIN64) */
     } else if (!send_bytes && size) {
         log_error("send() failed, system error: %d", sys_get_errno());
         return -1;
@@ -424,14 +465,14 @@ int socket_send(socket_t socket_fd, const char* data, uint32_t size) {
 
 int socket_recv(socket_t socket_fd, char* data, uint32_t size) {
     int recv_bytes = 0;
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     DWORD error = 0;
     recv_bytes = recv(socket_fd, data, (int)size, 0);
 #else
     recv_bytes = recv(socket_fd, data, (int)size, MSG_NOSIGNAL);
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
     if (recv_bytes < 0) {
-    #if (defined(WIN32) || defined(_WIN64))
+    #if (defined(_WIN32) || defined(_WIN64))
         error = GetLastError();
         if ((error == 0) || (error == WSAEINTR) || (error == WSAEINPROGRESS) || (error == WSAEWOULDBLOCK)) {
             return 0;
@@ -446,7 +487,7 @@ int socket_recv(socket_t socket_fd, char* data, uint32_t size) {
             log_error("recv() failed, return %d, system error: %d", recv_bytes, sys_get_errno());
             recv_bytes = -1;
         }
-    #endif /* defined(WIN32) || defined(_WIN64) */
+    #endif /* defined(_WIN32) || defined(_WIN64) */
     } else if (recv_bytes == 0) {
         log_error("recv() failed, return 0, system error: %d", sys_get_errno());
         recv_bytes = -1;
@@ -454,15 +495,15 @@ int socket_recv(socket_t socket_fd, char* data, uint32_t size) {
     return recv_bytes;
 }
 
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
 u_short _get_random_port(int begin, int gap) {
     srand((int)time(0));
     return (u_short)(begin + abs(rand() % gap));
 }
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
 
 int socket_pair(socket_t pair[2]) {
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     int      error       = 1;
     long     flag        = 1;
     int      port_begin  = 20000;
@@ -484,44 +525,44 @@ int socket_pair(socket_t pair[2]) {
     accept_addr.sin_port = htons(port);
     accept_addr.sin_family = AF_INET;
     accept_addr.sin_addr.s_addr = htonl(INADDR_ANY);
-    /* °ó¶¨Ëæ»ú¶Ë¿Ú */
+    /* ç»‘å®šéšæœºç«¯å£ */
     error = bind(accept_sock, (struct sockaddr*)&accept_addr,sizeof(accept_addr));
     while (error) {
         if (WSAEADDRINUSE != GetLastError()) {
             log_error("bind() failed, system error: %d", sys_get_errno());
             goto error_return;
         }
-        /* Ëæ»ú·ÖÅäÒ»¸ö¶Ë¿Ú */
+        /* éšæœºåˆ†é…ä¸€ä¸ªç«¯å£ */
         port = _get_random_port(port_begin, port_gap);
         memset(&accept_addr, 0, sizeof(accept_addr));
         accept_addr.sin_port = htons(port);
         accept_addr.sin_family = AF_INET;
         accept_addr.sin_addr.s_addr = htonl(INADDR_ANY);
-        /* ÖØĞÂ°ó¶¨ */
+        /* é‡æ–°ç»‘å®š */
         error = bind(accept_sock, (struct sockaddr*)&accept_addr,sizeof(accept_addr));
     }
-    /* ¼àÌı */
+    /* ç›‘å¬ */
     error = listen(accept_sock, 1);
     if (error) {
         log_error("listen() failed, system error: %d", sys_get_errno());
         goto error_return;
     }
-    /* »ñÈ¡µØÖ· */
+    /* è·å–åœ°å€ */
     error = getsockname(accept_sock, (struct sockaddr*)&connect_addr, &addr_len);
     if (error) {
         log_error("getsockname() failed, system error: %d", sys_get_errno());
         goto error_return;
     }
-    /* ½¨Á¢¿Í»§¶ËÌ×½Ó×Ö */
+    /* å»ºç«‹å®¢æˆ·ç«¯å¥—æ¥å­— */
     pair[0] = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
     if (pair[0] == INVALID_SOCKET) {
         log_error("socket() failed, system error: %d", sys_get_errno());
         goto error_return;
     }
-    /* ÉèÖÃ·Ç×èÈû */
+    /* è®¾ç½®éé˜»å¡ */
     ioctlsocket(pair[0], FIONBIO, (u_long*)&flag);
     connect_addr.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
-    /* ½¨Á¢Á¬½Ó */
+    /* å»ºç«‹è¿æ¥ */
     error = connect(pair[0], (struct sockaddr*)&connect_addr, sizeof(connect_addr));
     if(error < 0) {
         error = WSAGetLastError();
@@ -530,7 +571,7 @@ int socket_pair(socket_t pair[2]) {
             goto error_return;
         }
     }
-    /* ½ÓÊÜÁ¬½Ó */
+    /* æ¥å—è¿æ¥ */
     pair[1] = accept(accept_sock, (struct sockaddr*)&accept_addr, &addr_len);
     if(pair[1] == INVALID_SOCKET) {
         log_error("accept() failed, system error: %d", sys_get_errno());
@@ -557,7 +598,7 @@ error_return:
         return 1;
     }
     return (socket_set_non_blocking_on(pair[0]) && socket_set_non_blocking_on(pair[1]));
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
 }
 
 int socket_getpeername(kchannel_ref_t* channel_ref, kaddress_t* address) {
@@ -626,37 +667,37 @@ int socket_getsockname6(kchannel_ref_t* channel_ref, kaddress_t* address) {
 }
 
 atomic_counter_t atomic_counter_inc(atomic_counter_t* counter) {
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     return InterlockedIncrement(counter);
 #else
     return __sync_add_and_fetch(counter, 1);
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
 }
 
 atomic_counter_t atomic_counter_dec(atomic_counter_t* counter) {
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     return InterlockedDecrement(counter);
 #else
     return __sync_sub_and_fetch(counter, 1);
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
 }
 
 atomic_counter_t atomic_counter_cas(atomic_counter_t* counter,
     atomic_counter_t target, atomic_counter_t value) {
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     return InterlockedCompareExchange(counter, value, target);
 #else
     return __sync_val_compare_and_swap(counter, target, value);
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
 }
 
 atomic_counter_t atomic_counter_set(atomic_counter_t* counter,
     atomic_counter_t value) {
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     return InterlockedExchange(counter, value);
 #else
     return __sync_lock_test_and_set(counter, value);
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
 }
 
 int atomic_counter_zero(atomic_counter_t* counter) {
@@ -664,23 +705,23 @@ int atomic_counter_zero(atomic_counter_t* counter) {
 }
 
 struct _lock_t {
-    #if (defined(WIN32) || defined(_WIN64))
+    #if (defined(_WIN32) || defined(_WIN64))
         CRITICAL_SECTION lock;
     #else
         pthread_mutex_t lock;
-    #endif /* defined(WIN32) || defined(_WIN64) */
+    #endif /* defined(_WIN32) || defined(_WIN64) */
 };
 
 void _lock_init(klock_t* lock) {
-    #if (defined(WIN32) || defined(_WIN64))
+    #if (defined(_WIN32) || defined(_WIN64))
         InitializeCriticalSection(&lock->lock);
     #else
         pthread_mutex_init(&lock->lock, 0);
-    #endif /* defined(WIN32) || defined(_WIN64) */ 
+    #endif /* defined(_WIN32) || defined(_WIN64) */ 
 }
 
 klock_t* lock_create() {
-    klock_t* lock = create(klock_t);
+    klock_t* lock = knet_create(klock_t);
     verify(lock);
     _lock_init(lock);
     return lock;
@@ -688,43 +729,43 @@ klock_t* lock_create() {
 
 void lock_destroy(klock_t* lock) {
     verify(lock);
-    #if (defined(WIN32) || defined(_WIN64))
+    #if (defined(_WIN32) || defined(_WIN64))
         DeleteCriticalSection(&lock->lock);
     #else
         pthread_mutex_destroy(&lock->lock);
-    #endif /* defined(WIN32) || defined(_WIN64) */
+    #endif /* defined(_WIN32) || defined(_WIN64) */
     knet_free(lock);
 }
 
 void lock_lock(klock_t* lock) {
     verify(lock);
-    #if (defined(WIN32) || defined(_WIN64))
+    #if (defined(_WIN32) || defined(_WIN64))
         EnterCriticalSection(&lock->lock);
     #else
         pthread_mutex_lock(&lock->lock);
-    #endif /* defined(WIN32) || defined(_WIN64) */ 
+    #endif /* defined(_WIN32) || defined(_WIN64) */ 
 }
 
 int lock_trylock(klock_t* lock) {
     verify(lock);
-    #if (defined(WIN32) || defined(_WIN64))
+    #if (defined(_WIN32) || defined(_WIN64))
         return TryEnterCriticalSection(&lock->lock);
     #else
         return !pthread_mutex_trylock(&lock->lock);
-    #endif /* defined(WIN32) || defined(_WIN64) */ 
+    #endif /* defined(_WIN32) || defined(_WIN64) */ 
 }
 
 void lock_unlock(klock_t* lock) {
     verify(lock);
-    #if (defined(WIN32) || defined(_WIN64))
+    #if (defined(_WIN32) || defined(_WIN64))
         LeaveCriticalSection(&lock->lock);
     #else
         pthread_mutex_unlock(&lock->lock);
-    #endif /* defined(WIN32) || defined(_WIN64) */ 
+    #endif /* defined(_WIN32) || defined(_WIN64) */ 
 }
 
 kthread_runner_t* thread_runner_create(knet_thread_func_t func, void* params) {
-    kthread_runner_t* runner = create(kthread_runner_t);
+    kthread_runner_t* runner = knet_create(kthread_runner_t);
     verify(runner);
     memset(runner, 0, sizeof(kthread_runner_t));
     runner->func         = func;
@@ -742,11 +783,11 @@ void thread_runner_destroy(kthread_runner_t* runner) {
     }
     thread_runner_join(runner);
     if (runner->tls_key) {
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
         TlsFree(runner->tls_key);
 #else
         pthread_key_delete(runner->tls_key);
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
     }
     dlist_for_each(runner->multi_params, node) {
         param = (thread_param_t*)dlist_node_get_data(node);
@@ -805,7 +846,7 @@ void _thread_multi_loop_func(void* params) {
     runner->stop = 1;
 }
 
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
 void thread_loop_func_win(void* params) {
     _thread_loop_func(params);
 }
@@ -814,9 +855,9 @@ void* thread_loop_func_pthread(void* params) {
     _thread_loop_func(params);
     return 0;
 }
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
 
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
 void thread_timer_loop_func_win(void* params) {
     _thread_timer_loop_func(params);
 }
@@ -825,9 +866,9 @@ void* thread_timer_loop_func_pthread(void* params) {
     _thread_timer_loop_func(params);
     return 0;
 }
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
 
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
 void thread_multi_loop_func_win(void* params) {
     _thread_multi_loop_func(params);
 }
@@ -836,9 +877,9 @@ void* thread_multi_loop_func_pthread(void* params) {
     _thread_multi_loop_func(params);
     return 0;
 }
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
 
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
 void thread_func_win(void* params) {
     _thread_func(params);
 }
@@ -847,21 +888,21 @@ void* thread_func_pthread(void* params) {
     _thread_func(params);
     return 0;
 }
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
 
 int thread_runner_start(kthread_runner_t* runner, int stack_size) {
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     uintptr_t retval = 0;
 #else
     int retval = 0;
     pthread_attr_t attr;
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
     verify(runner);
     if (!runner->func) {
         return error_thread_start_fail;
     }
     runner->running = 1;
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     retval = _beginthread(thread_func_win, stack_size, runner);
     if (retval <= 0) {
         log_error("_beginthread() failed, system error: %d", sys_get_errno());
@@ -881,22 +922,22 @@ int thread_runner_start(kthread_runner_t* runner, int stack_size) {
         log_error("pthread_create() failed, system error: %d", sys_get_errno());
         return error_thread_start_fail;
     }
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
     return error_ok;
 }
 
 int thread_runner_start_loop(kthread_runner_t* runner, kloop_t* loop, int stack_size) {
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     uintptr_t retval = 0;
 #else
     int retval = 0;
     pthread_attr_t attr;
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
     verify(runner);
     verify(loop);
     runner->params = loop;
     runner->running = 1;
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     retval = _beginthread(thread_loop_func_win, stack_size, runner);
     if (retval <= 0) {
         log_error("_beginthread() failed, system error: %d", sys_get_errno());
@@ -916,22 +957,22 @@ int thread_runner_start_loop(kthread_runner_t* runner, kloop_t* loop, int stack_
         log_error("pthread_create() failed, system error: %d", sys_get_errno());
         return error_thread_start_fail;
     }
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
     return error_ok;
 }
 
 int thread_runner_start_timer_loop(kthread_runner_t* runner, ktimer_loop_t* timer_loop, int stack_size) {
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     uintptr_t retval = 0;
 #else
     int retval = 0;
     pthread_attr_t attr;
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
     verify(runner);
     verify(timer_loop);
     runner->params = timer_loop;
     runner->running = 1;
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     retval = _beginthread(thread_timer_loop_func_win, stack_size, runner);
     if (retval <= 0) {
         log_error("_beginthread() failed, system error: %d", sys_get_errno());
@@ -951,17 +992,17 @@ int thread_runner_start_timer_loop(kthread_runner_t* runner, ktimer_loop_t* time
         log_error("pthread_create() failed, system error: %d", sys_get_errno());
         return error_thread_start_fail;
     }
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
     return error_ok;
 }
 
 int thread_runner_start_multi_loop_varg(kthread_runner_t* runner, int stack_size, const char* format, ...) {
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     uintptr_t retval = 0;
 #else
     int retval = 0;
     pthread_attr_t attr;
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
     char            c     = 0;
     thread_param_t* param = 0;
     va_list arg_ptr;
@@ -971,13 +1012,13 @@ int thread_runner_start_multi_loop_varg(kthread_runner_t* runner, int stack_size
     for (c = *format; c; format++, c = *format) {
         switch (c) {
         case 'l':
-            param = create(thread_param_t);
+            param = knet_create(thread_param_t);
             param->type = loop_type_loop;
             param->loop = va_arg(arg_ptr, kloop_t*);
             dlist_add_tail_node(runner->multi_params, param);
             break;
         case 't':
-            param = create(thread_param_t);
+            param = knet_create(thread_param_t);
             param->type = loop_type_timer;
             param->loop = va_arg(arg_ptr, ktimer_loop_t*);
             dlist_add_tail_node(runner->multi_params, param);
@@ -989,7 +1030,7 @@ int thread_runner_start_multi_loop_varg(kthread_runner_t* runner, int stack_size
     }
     va_end(arg_ptr);
     runner->running = 1;
-    #if (defined(WIN32) || defined(_WIN64))
+    #if (defined(_WIN32) || defined(_WIN64))
         retval = _beginthread(thread_multi_loop_func_win, stack_size, runner);
         if (retval <= 0) {
             log_error("_beginthread() failed, system error: %d", sys_get_errno());
@@ -1009,7 +1050,7 @@ int thread_runner_start_multi_loop_varg(kthread_runner_t* runner, int stack_size
             log_error("pthread_create() failed, system error: %d", sys_get_errno());
             return error_thread_start_fail;
         }
-    #endif /* defined(WIN32) || defined(_WIN64) */
+    #endif /* defined(_WIN32) || defined(_WIN64) */
     return error_ok;
 }
 
@@ -1025,11 +1066,11 @@ thread_id_t thread_runner_get_id(kthread_runner_t* runner) {
 
 void thread_runner_join(kthread_runner_t* runner) {
     verify(runner);
-    /* ½¨Á¢µ«Î´Æô¶¯»òÒÑ¾­½áÊø */
+    /* å»ºç«‹ä½†æœªå¯åŠ¨æˆ–å·²ç»ç»“æŸ */
     if (!runner->thread_id || runner->stop) {
         return;
     }
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     if (!runner->thread_handle) {
         return;
     }
@@ -1037,19 +1078,19 @@ void thread_runner_join(kthread_runner_t* runner) {
     runner->thread_handle = 0;
 #else
     pthread_join(runner->thread_id, 0);
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
     runner->thread_id = 0;
 }
 
 void thread_runner_exit(kthread_runner_t* runner) {
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     if (!runner->thread_handle) {
         return;
     }
     _endthread();
 #else
     pthread_exit(0);
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
 }
 
 int thread_runner_check_start(kthread_runner_t* runner) {
@@ -1063,25 +1104,25 @@ void* thread_runner_get_params(kthread_runner_t* runner) {
 }
 
 thread_id_t thread_get_self_id() {
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     return GetCurrentThreadId();
 #else
     return pthread_self();
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
 }
 
 void thread_sleep_ms(int ms) {
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     Sleep(ms);
 #else
     usleep(ms * 1000);
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
 }
 
 int thread_set_tls_data(kthread_runner_t* runner, void* data) {
     verify(runner);
     if (!runner->tls_key) {
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
         runner->tls_key = TlsAlloc();
         if (runner->tls_key == TLS_OUT_OF_INDEXES) {
             log_error("TlsAlloc() failed, system error: %d", sys_get_errno());
@@ -1092,9 +1133,9 @@ int thread_set_tls_data(kthread_runner_t* runner, void* data) {
             log_error("pthread_key_create() failed, system error: %d", sys_get_errno());
             return error_set_tls_fail;
         }
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
     }
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     if (FALSE == TlsSetValue(runner->tls_key, data)) {
         log_error("TlsSetValue() failed, system error: %d", sys_get_errno());
         return error_set_tls_fail;
@@ -1104,21 +1145,21 @@ int thread_set_tls_data(kthread_runner_t* runner, void* data) {
         log_error("pthread_setspecific() failed, system error: %d", sys_get_errno());
         return error_set_tls_fail;
     }
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
     return error_ok;
 }
 
 void* thread_get_tls_data(kthread_runner_t* runner) {
     verify(runner);
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     return TlsGetValue(runner->tls_key);
 #else
     return pthread_getspecific(runner->tls_key);
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
 }
 
 uint64_t time_get_milliseconds() {
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     return GetTickCount();
 #else
     struct timeval tv;
@@ -1127,7 +1168,7 @@ uint64_t time_get_milliseconds() {
     ms = tv.tv_sec * 1000;
     ms += tv.tv_usec / 1000;
     return ms;
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
 }
 
 uint64_t time_get_milliseconds_19700101() {
@@ -1137,15 +1178,17 @@ uint64_t time_get_milliseconds_19700101() {
 }
 
 void knet_localtime(struct tm* tm, const time_t* time) {
-#if (defined(WIN32) || defined(_WIN64))
+#if defined(CYGWIN)
+    localtime_r(time, tm);
+#elif (defined(_WIN32) || defined(_WIN64))
     localtime_s(tm, time);
 #else
     localtime_r(time, tm);
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
 }
 
 int time_gettimeofday(struct timeval *tp, void *tzp) {
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     time_t clock;
     struct tm tm;
     SYSTEMTIME st;
@@ -1164,7 +1207,7 @@ int time_gettimeofday(struct timeval *tp, void *tzp) {
     return 0;
 #else
     return gettimeofday(tp, tzp);
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
 }
 
 char* time_get_string(char* buffer, int size) {
@@ -1175,7 +1218,12 @@ char* time_get_string(char* buffer, int size) {
     verify(size);
     time_gettimeofday(&tp, 0);
     memset(buffer, 0, size);
-#if (defined(WIN32) || defined(_WIN64))
+#if defined(CYGWIN)
+    localtime_r(&timestamp, &t);
+    snprintf(buffer, size, "%4d-%02d-%02d %02d:%02d:%02d:%03d",
+        t.tm_year + 1900, t.tm_mon + 1, t.tm_mday,
+            t.tm_hour, t.tm_min, t.tm_sec, (int)(tp.tv_usec / 1000));
+#elif (defined(_WIN32) || defined(_WIN64))
     localtime_s(&t, &timestamp);
     _snprintf(buffer, size, "%4d-%02d-%02d %02d:%02d:%02d:%03d",
         t.tm_year + 1900, t.tm_mon + 1, t.tm_mday,
@@ -1185,13 +1233,13 @@ char* time_get_string(char* buffer, int size) {
     snprintf(buffer, size, "%4d-%02d-%02d %02d:%02d:%02d:%03d",
         t.tm_year + 1900, t.tm_mon + 1, t.tm_mday,
             t.tm_hour, t.tm_min, t.tm_sec, (int)(tp.tv_usec / 1000));
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
     buffer[size - 1] = 0;
     return buffer;
 }
 
 uint64_t time_get_microseconds() {
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     LARGE_INTEGER freq;
     LARGE_INTEGER fc;
     if (!QueryPerformanceFrequency(&freq)) {
@@ -1208,7 +1256,7 @@ uint64_t time_get_microseconds() {
     ms = tv.tv_sec * 1000 * 1000;
     ms += tv.tv_usec;
     return ms;
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
 }
 
 uint64_t uuid_create() {
@@ -1219,9 +1267,9 @@ uint64_t uuid_create() {
         fack_uuid_low = (uint32_t)time_get_microseconds();
     }
     atomic_counter_inc(&fack_uuid_high);
-    uuid = fack_uuid_high; /* ¸ß32Î» */
+    uuid = fack_uuid_high; /* é«˜32ä½ */
     uuid <<= 32;
-    uuid += fack_uuid_low; /* µÍ32Î» */
+    uuid += fack_uuid_low; /* ä½32ä½ */
     return uuid;
 }
 
@@ -1230,7 +1278,7 @@ uint32_t uuid_get_high32(uint64_t uuid) {
 }
 
 char* path_getcwd(char* buffer, int size) {
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     if (!GetCurrentDirectoryA(size, buffer)) {
         log_error("GetCurrentDirectoryA() failed, system error: %d", sys_get_errno());
         return 0;
@@ -1240,16 +1288,16 @@ char* path_getcwd(char* buffer, int size) {
         log_error("getcwd() failed, system error: %d", sys_get_errno());
         return 0;
     }
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
     return buffer;
 }
 
 sys_error_t sys_get_errno() {
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     return GetLastError();
 #else
     return errno;
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
 }
 
 uint64_t knet_htonll(uint64_t ui64) { 
@@ -1304,7 +1352,12 @@ char* knet_ltoa(long l, char* buffer, int size) {
     int len = 0;
     verify(buffer);
     verify(size);
-#if (defined(WIN32) || defined(_WIN64))
+#if defined(CYGWIN)
+    len = snprintf(buffer, size, "%ld", l);
+    if (len <= 0) {
+        return 0;
+    }
+#elif (defined(_WIN32) || defined(_WIN64))
     len = _snprintf(buffer, size, "%ld", l);
     if ((len >= size) || (len < 0)) {
         return 0;
@@ -1314,7 +1367,7 @@ char* knet_ltoa(long l, char* buffer, int size) {
     if (len <= 0) {
         return 0;
     }
-#endif /* WIN32 */
+#endif /* _WIN32 */
     buffer[size - 1] = 0;
     return buffer;
 }
@@ -1323,7 +1376,12 @@ char* knet_lltoa(long long ll, char* buffer, int size) {
     int len = 0;
     verify(buffer);
     verify(size);
-#if (defined(WIN32) || defined(_WIN64))
+#if defined(CYGWIN)
+    len = snprintf(buffer, size, "%lld", ll);
+    if (len <= 0) {
+        return 0;
+    }
+#elif (defined(_WIN32) || defined(_WIN64))
     len = _snprintf(buffer, size, "%lld", ll);
     if ((len >= size) || (len < 0)) {
         return 0;
@@ -1333,85 +1391,85 @@ char* knet_lltoa(long long ll, char* buffer, int size) {
     if (len <= 0) {
         return 0;
     }
-#endif /* WIN32 */
+#endif /* _WIN32 */
     buffer[size - 1] = 0;
     return buffer;
 }
 
 struct _rwlock_t {
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     SRWLOCK rwlock;
 #else
     pthread_rwlock_t rwlock;
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
 };
 
 krwlock_t* rwlock_create() {
-    krwlock_t* rwlock = create(krwlock_t);
+    krwlock_t* rwlock = knet_create(krwlock_t);
     verify(rwlock);
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     InitializeSRWLock(&rwlock->rwlock);
 #else
     pthread_rwlock_init(&rwlock->rwlock, 0);
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
     return rwlock;
 }
 
 void rwlock_destroy(krwlock_t* rwlock) {
     verify(rwlock);
-#if !defined(WIN32) && !defined(_WIN64)
+#if !defined(_WIN32) && !defined(_WIN64)
     pthread_rwlock_destroy(&rwlock->rwlock);
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
 }
 
 void rwlock_rdlock(krwlock_t* rwlock) {
     verify(rwlock);
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     AcquireSRWLockShared(&rwlock->rwlock);
 #else
     pthread_rwlock_rdlock(&rwlock->rwlock);
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
 }
 
 void rwlock_rdunlock(krwlock_t* rwlock) {
     verify(rwlock);
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     ReleaseSRWLockShared(&rwlock->rwlock);
 #else
     pthread_rwlock_unlock(&rwlock->rwlock);
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
 }
 
 void rwlock_wrlock(krwlock_t* rwlock) {
     verify(rwlock);
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     AcquireSRWLockExclusive(&rwlock->rwlock);
 #else
     pthread_rwlock_wrlock(&rwlock->rwlock);
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
 }
 
 void rwlock_wrunlock(krwlock_t* rwlock) {
     verify(rwlock);
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     ReleaseSRWLockExclusive(&rwlock->rwlock);
 #else
     pthread_rwlock_unlock(&rwlock->rwlock);
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
 }
 
 struct _cond_t {
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     HANDLE event;
 #else
     pthread_cond_t event;
-#endif /* WIN32 */
+#endif /* _WIN32 */
 };
 
 kcond_t* cond_create() {
-    kcond_t* cond = create(kcond_t);
+    kcond_t* cond = knet_create(kcond_t);
     verify(cond);
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     cond->event = CreateEvent(0, TRUE, FALSE, 0);
     if (cond->event == INVALID_HANDLE_VALUE) {
         log_error("CreateEvent() failed, system error: %d", sys_get_errno());
@@ -1424,39 +1482,39 @@ kcond_t* cond_create() {
         knet_free(cond);
         return 0;
     }
-#endif /* WIN32 */
+#endif /* _WIN32 */
     return cond;
 }
 
 void cond_destroy(kcond_t* cond) {
     verify(cond);
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     CloseHandle(cond->event);
 #else
     pthread_cond_destroy(&cond->event);
-#endif /* WIN32 */
+#endif /* _WIN32 */
     knet_free(cond);
 }
 
 void cond_wait(kcond_t* cond, klock_t* lock) {
     verify(cond);
     verify(lock);
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     lock_unlock(lock);
     WaitForSingleObject(cond->event, INFINITE);
     lock_lock(lock);
 #else
     pthread_cond_wait(&cond->event, &lock->lock);
-#endif /* WIN32 */
+#endif /* _WIN32 */
 }
 
 void cond_wait_ms(kcond_t* cond, klock_t* lock, int ms) {
-#if !defined(WIN32) && !defined(_WIN64)
+#if !defined(_WIN32) && !defined(_WIN64)
     struct timespec tms;
-#endif /* !defined(WIN32) */
+#endif /* !defined(_WIN32) */
     verify(cond);
     verify(lock);
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     lock_unlock(lock);
     WaitForSingleObject(cond->event, ms);
     lock_lock(lock);
@@ -1464,22 +1522,22 @@ void cond_wait_ms(kcond_t* cond, klock_t* lock, int ms) {
     tms.tv_sec  = ms / 1000;
     tms.tv_nsec = (ms % 1000) * 1000 * 1000;
     pthread_cond_timedwait(&cond->event, &lock->lock, &tms);
-#endif /* WIN32 */
+#endif /* _WIN32 */
 }
 
 void cond_signal(kcond_t* cond) {
     verify(cond);
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     SetEvent(cond->event);
 #else
     pthread_cond_signal(&cond->event);
-#endif /* WIN32 */
+#endif /* _WIN32 */
 }
 
 int split(const char* src, char delim, int n, ...) {
-    int   i   = 0; /* µ±Ç°·Ö¸îÊı */
-    int   j   = 0; /* ×Ö·û»º³åÇøÏÂ±ê */
-    char* arg = 0; /* µ±Ç°×Ö·û»º³åÇø */
+    int   i   = 0; /* å½“å‰åˆ†å‰²æ•° */
+    int   j   = 0; /* å­—ç¬¦ç¼“å†²åŒºä¸‹æ ‡ */
+    char* arg = 0; /* å½“å‰å­—ç¬¦ç¼“å†²åŒº */
     va_list arg_ptr;
     verify(src);
     verify(n);
@@ -1505,11 +1563,11 @@ int split(const char* src, char delim, int n, ...) {
 }
 
 int get_host_ip_string(const char* host_name, char* ip, int size) {
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     WSADATA             wsad;
     struct sockaddr_in* addr_in = 0;
     char*               ret     = 0;
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
     int error = error_ok;
     struct addrinfo  hints;
     struct addrinfo* answer    = 0;
@@ -1521,8 +1579,8 @@ int get_host_ip_string(const char* host_name, char* ip, int size) {
     verify(host_name);
     verify(ip);
     verify(size);
-    len = strlen(host_name);
-    /* ´íÂÔµÄ¼ì²é */
+    len = (int)strlen(host_name);
+    /* é”™ç•¥çš„æ£€æŸ¥ */
     for (i = 0; host_name[i]; i++) {
         c = host_name[i];
         if ((c != '.') && (!((c >= '0') && (c <= '9')))) {
@@ -1531,7 +1589,7 @@ int get_host_ip_string(const char* host_name, char* ip, int size) {
         }
     }
     if (stop) {
-        /* È«Êı×ÖÈÏÎªÊÇIP */
+        /* å…¨æ•°å­—è®¤ä¸ºæ˜¯IP */
         if (len > size) {
             return error_getaddrinfo_fail;
         }
@@ -1539,35 +1597,35 @@ int get_host_ip_string(const char* host_name, char* ip, int size) {
         ip[len] = 0;
         return error_ok;
     }
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     WSAStartup(MAKEWORD(2, 2), &wsad);
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
     len = 0;
     memset(&hints, 0, sizeof(hints));
     hints.ai_socktype = SOCK_STREAM;
     hints.ai_flags    = AI_CANONNAME;
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     hints.ai_family   = AF_UNSPEC;
     hints.ai_protocol = IPPROTO_TCP;
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
     gai_error = getaddrinfo(host_name, 0, &hints, &answer);
     if (gai_error) {
         error = error_getaddrinfo_fail;
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
         log_error("'getaddrinfo' failed, %s, error: %d", host_name, sys_get_errno());
 #else
         log_error("'getaddrinfo' failed, %s, error: %s", host_name, gai_strerror(gai_error));
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
         goto error_return;
     }
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     addr_in = (struct sockaddr_in*)answer->ai_addr;
     ret     = inet_ntoa(addr_in->sin_addr);
     if (!ret) {
         error = error_getaddrinfo_fail;
         goto error_return;
     }
-    len = strlen(ret);
+    len = (int)strlen(ret);
     if (len > size) {
         error = error_getaddrinfo_fail;
         goto error_return;
@@ -1579,25 +1637,25 @@ int get_host_ip_string(const char* host_name, char* ip, int size) {
         error = error_getaddrinfo_fail;
         goto error_return;
     }
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
     if (answer) {
         freeaddrinfo(answer);
     }
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     WSACleanup();
-#endif /* defined(WIN32) || defined(_WIN64) */
+#endif /* defined(_WIN32) || defined(_WIN64) */
     return error_ok;
 error_return:
     if (answer) {
         freeaddrinfo(answer);
     }
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
     WSACleanup();
-#endif /* WIN32 */
+#endif /* _WIN32 */
     return error;
 }
 
-#if (defined(WIN32) || defined(_WIN64))
+#if (defined(_WIN32) || defined(_WIN64))
 long long knet_atoll(const char *p) {  
     int       minus = 0;
     long long value = 0;
@@ -1612,15 +1670,15 @@ long long knet_atoll(const char *p) {
     }
     return minus ? 0 - value : value;
 }
-#endif /* defined(WIN32) && !defined(atoll) */
+#endif /* defined(_WIN32) && !defined(atoll) */
 
-/*! mallocº¯ÊıÖ¸Õë  */
+/*! mallocå‡½æ•°æŒ‡é’ˆ  */
 knet_malloc_func_t _knet_malloc_func = malloc;
 
-/*! reallocº¯ÊıÖ¸Õë  */
+/*! reallocå‡½æ•°æŒ‡é’ˆ  */
 knet_realloc_func_t _knet_realloc_func = realloc;
 
-/*! freeº¯ÊıÖ¸Õë  */
+/*! freeå‡½æ•°æŒ‡é’ˆ  */
 knet_free_func_t _knet_free_func = free;
 
 void knet_set_malloc_func(knet_malloc_func_t func) {

@@ -38,14 +38,14 @@ typedef struct _loop_epoll_t {
 #define MAXEVENTS 8192 /* epoll_create²ÎÊı */
 
 int knet_impl_create(kloop_t* loop) {
-    loop_epoll_t* impl = create(loop_epoll_t);
+    loop_epoll_t* impl = knet_create(loop_epoll_t);
     knet_loop_set_impl(loop, impl);
     impl->epoll_fd = epoll_create(MAXEVENTS);
     if (impl->epoll_fd < 0) {
         knet_free(impl);
         return 1;
     }
-    impl->events = create_type(struct epoll_event, sizeof(struct epoll_event) * MAXEVENTS);
+    impl->events = knet_create_type(struct epoll_event, sizeof(struct epoll_event) * MAXEVENTS);
     assert(impl->events);
     return error_ok;
 }

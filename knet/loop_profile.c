@@ -45,7 +45,7 @@ struct _loop_profile_t {
 kloop_profile_t* knet_loop_profile_create(kloop_t* loop) {
     kloop_profile_t* profile = 0;
     verify(loop);
-    profile = create(kloop_profile_t);
+    profile = knet_create(kloop_profile_t);
     verify(profile);
     memset(profile, 0, sizeof(kloop_profile_t));
     profile->loop           = loop;

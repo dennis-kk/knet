@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * Copyright (c) 2014-2016, dennis wang
  * All rights reserved.
  * 
@@ -36,61 +36,61 @@
 #include "timer.h"
 
 /**
- * ¹ÜµÀĞÅÏ¢
+ * ç®¡é“ä¿¡æ¯
  */
 typedef struct _channel_ref_info_t {
-    /* »ù´¡Êı¾İ³ÉÔ± */
-    int                           balance;              /* ÊÇ·ñ±»¸ºÔØ¾ùºâ±êÖ¾ */
-    kchannel_t*                   channel;              /* ÄÚ²¿¹ÜµÀ */
-    kdlist_node_t*                loop_node;            /* ¹ÜµÀÁ´±í½Úµã, ±£´æ´Ë½Úµã¿ÉÒÔ²»Ğè±éÀúÁ´±íËÑË÷ */
-    kstream_t*                    stream;               /* ¹ÜµÀ(¶Á/Ğ´)Êı¾İÁ÷ */
-    kloop_t*                      loop;                 /* ¹ÜµÀËù¹ØÁªµÄkloop_t */
-    kaddress_t*                   peer_address;         /* ¶Ô¶ËµØÖ· */
-    kaddress_t*                   local_address;        /* ±¾µØµØÖ· */
-    knet_channel_event_e          event;                /* ¹ÜµÀÍ¶µİÊÂ¼ş */
-    volatile knet_channel_state_e state;                /* ¹ÜµÀ×´Ì¬ */
-    atomic_counter_t              ref_count;            /* ÒıÓÃ¼ÆÊı */
-    knet_channel_ref_cb_t         cb;                   /* »Øµ÷ */
-    time_t                        last_recv_ts;         /* ×îºóÒ»´Î¶Á²Ù×÷Ê±¼ä´Á£¨Ãë£© */
-    time_t                        timeout;              /* ¶Á¿ÕÏĞ³¬Ê±£¨Ãë£© */
-    time_t                        last_connect_timeout; /* ×îºóÒ»´Îconnect()³¬Ê±£¨Ãë£© */
-    time_t                        connect_timeout;      /* connect()³¬Ê±¼ä¸ô£¨Ãë£© */
-    int                           auto_reconnect;       /* ×Ô¶¯ÖØÁ¬±êÖ¾ */
-    int                           flag;                 /* Ñ¡È¡Æ÷ËùÊ¹ÓÃ×Ô¶¨Òå±êÖ¾Î» */
-    void*                         data;                 /* Ñ¡È¡Æ÷ËùÊ¹ÓÃ×Ô¶¨ÒåÊı¾İ */
-    void*                         user_data;            /* ÓÃ»§Êı¾İÖ¸Õë - ÄÚ²¿Ê¹ÓÃ */
-    void*                         user_ptr;             /* ±©Â¶¸øÍâ²¿Ê¹ÓÃµÄÊı¾İÖ¸Õë - Íâ²¿Ê¹ÓÃ */
-    /* À©Õ¹Êı¾İ³ÉÔ± */
+    /* åŸºç¡€æ•°æ®æˆå‘˜ */
+    int                           balance;              /* æ˜¯å¦è¢«è´Ÿè½½å‡è¡¡æ ‡å¿— */
+    kchannel_t*                   channel;              /* å†…éƒ¨ç®¡é“ */
+    kdlist_node_t*                loop_node;            /* ç®¡é“é“¾è¡¨èŠ‚ç‚¹, ä¿å­˜æ­¤èŠ‚ç‚¹å¯ä»¥ä¸éœ€éå†é“¾è¡¨æœç´¢ */
+    kstream_t*                    stream;               /* ç®¡é“(è¯»/å†™)æ•°æ®æµ */
+    kloop_t*                      loop;                 /* ç®¡é“æ‰€å…³è”çš„kloop_t */
+    kaddress_t*                   peer_address;         /* å¯¹ç«¯åœ°å€ */
+    kaddress_t*                   local_address;        /* æœ¬åœ°åœ°å€ */
+    knet_channel_event_e          event;                /* ç®¡é“æŠ•é€’äº‹ä»¶ */
+    volatile knet_channel_state_e state;                /* ç®¡é“çŠ¶æ€ */
+    atomic_counter_t              ref_count;            /* å¼•ç”¨è®¡æ•° */
+    knet_channel_ref_cb_t         cb;                   /* å›è°ƒ */
+    time_t                        last_recv_ts;         /* æœ€åä¸€æ¬¡è¯»æ“ä½œæ—¶é—´æˆ³ï¼ˆç§’ï¼‰ */
+    time_t                        timeout;              /* è¯»ç©ºé—²è¶…æ—¶ï¼ˆç§’ï¼‰ */
+    time_t                        last_connect_timeout; /* æœ€åä¸€æ¬¡connect()è¶…æ—¶ï¼ˆç§’ï¼‰ */
+    time_t                        connect_timeout;      /* connect()è¶…æ—¶é—´éš”ï¼ˆç§’ï¼‰ */
+    int                           auto_reconnect;       /* è‡ªåŠ¨é‡è¿æ ‡å¿— */
+    int                           flag;                 /* é€‰å–å™¨æ‰€ä½¿ç”¨è‡ªå®šä¹‰æ ‡å¿—ä½ */
+    void*                         data;                 /* é€‰å–å™¨æ‰€ä½¿ç”¨è‡ªå®šä¹‰æ•°æ® */
+    void*                         user_data;            /* ç”¨æˆ·æ•°æ®æŒ‡é’ˆ - å†…éƒ¨ä½¿ç”¨ */
+    void*                         user_ptr;             /* æš´éœ²ç»™å¤–éƒ¨ä½¿ç”¨çš„æ•°æ®æŒ‡é’ˆ - å¤–éƒ¨ä½¿ç”¨ */
+    /* æ‰©å±•æ•°æ®æˆå‘˜ */
     /*
-     * µ÷ÓÃktimer_stop½«¹Ø±Õ¶¨Ê±Æ÷, ¶¨Ê±Æ÷½«ÔÚ¶¨Ê±Æ÷Ñ­»·ÄÚ±»Ïú»Ù, ¹ÜµÀ½«²»ÇåÀí¶¨Ê±Æ÷
+     * è°ƒç”¨ktimer_stopå°†å…³é—­å®šæ—¶å™¨, å®šæ—¶å™¨å°†åœ¨å®šæ—¶å™¨å¾ªç¯å†…è¢«é”€æ¯, ç®¡é“å°†ä¸æ¸…ç†å®šæ—¶å™¨
      */
-    ktimer_t*    recv_timeout_timer;    /* ¶Á¿ÕÏĞ³¬Ê±¶¨Ê±Æ÷ */
-    ktimer_t*    connect_timeout_timer; /* Á¬½Ó³¬Ê±¶¨Ê±Æ÷ */
-    volatile int close_cb_called;       /* ¹Ø±ÕÊÂ¼şÊÇ·ñÒÑ¾­´¥·¢¹ı */
+    ktimer_t*    recv_timeout_timer;    /* è¯»ç©ºé—²è¶…æ—¶å®šæ—¶å™¨ */
+    ktimer_t*    connect_timeout_timer; /* è¿æ¥è¶…æ—¶å®šæ—¶å™¨ */
+    volatile int close_cb_called;       /* å…³é—­äº‹ä»¶æ˜¯å¦å·²ç»è§¦å‘è¿‡ */
 } channel_ref_info_t;
 
 /**
- * ¹ÜµÀÒıÓÃ
+ * ç®¡é“å¼•ç”¨
  */
 struct _channel_ref_t {
-    int                 share;     /* ÊÇ·ñÍ¨¹ıknet_channel_ref_share()´´½¨ */
-    uint64_t            domain_id; /* ÓòID */
-    kdlist_node_t*      list_node; /* ÓòÁ´±í½Úµã */
-    channel_ref_info_t* ref_info;  /* ¹ÜµÀĞÅÏ¢ */
+    int                 share;     /* æ˜¯å¦é€šè¿‡knet_channel_ref_share()åˆ›å»º */
+    uint64_t            domain_id; /* åŸŸID */
+    kdlist_node_t*      list_node; /* åŸŸé“¾è¡¨èŠ‚ç‚¹ */
+    channel_ref_info_t* ref_info;  /* ç®¡é“ä¿¡æ¯ */
 };
 
 /**
- * ¹ÜµÀ¶¨Ê±Æ÷»Øµ÷
- * @param timer ¹ÜµÀ¶¨Ê±Æ÷
- * @param data ¹ÜµÀÖ¸Õë
+ * ç®¡é“å®šæ—¶å™¨å›è°ƒ
+ * @param timer ç®¡é“å®šæ—¶å™¨
+ * @param data ç®¡é“æŒ‡é’ˆ
  */
 void timer_cb(ktimer_t* timer, void* data);
 
 kchannel_ref_t* knet_channel_ref_create(kloop_t* loop, kchannel_t* channel) {
-    kchannel_ref_t* channel_ref = create(kchannel_ref_t);
+    kchannel_ref_t* channel_ref = knet_create(kchannel_ref_t);
     verify(channel_ref);
     memset(channel_ref, 0, sizeof(kchannel_ref_t));
-    channel_ref->ref_info = create(channel_ref_info_t);
+    channel_ref->ref_info = knet_create(channel_ref_info_t);
     verify(channel_ref->ref_info);
     memset(channel_ref->ref_info, 0, sizeof(channel_ref_info_t));
     channel_ref->ref_info->stream = stream_create(channel_ref);
@@ -100,7 +100,7 @@ kchannel_ref_t* knet_channel_ref_create(kloop_t* loop, kchannel_t* channel) {
     channel_ref->ref_info->loop         = loop;
     channel_ref->ref_info->last_recv_ts = time(0);
     channel_ref->ref_info->state        = channel_state_init;
-    /* ¼ÇÂ¼Í³¼ÆÊı¾İ */
+    /* è®°å½•ç»Ÿè®¡æ•°æ® */
     knet_loop_profile_increase_active_channel_count(knet_loop_get_profile(loop));
     return channel_ref;
 }
@@ -109,41 +109,41 @@ int knet_channel_ref_destroy(kchannel_ref_t* channel_ref) {
     verify(channel_ref);
     if (channel_ref->ref_info) {        
         if (channel_ref->ref_info->state == channel_state_init) {
-            /* Î´±»¼ÓÈëµ½Á´±íÄÚ */
+            /* æœªè¢«åŠ å…¥åˆ°é“¾è¡¨å†… */
             knet_channel_close(channel_ref->ref_info->channel);
         }
-        /* ¼ì²âÒıÓÃ¼ÆÊı */
+        /* æ£€æµ‹å¼•ç”¨è®¡æ•° */
         if (!atomic_counter_zero(&channel_ref->ref_info->ref_count)) {
             return error_ref_nonzero;
         }
-        /* Ïú»Ù¶Ô¶ËµØÖ· */
+        /* é”€æ¯å¯¹ç«¯åœ°å€ */
         if (channel_ref->ref_info->peer_address) {
             knet_address_destroy(channel_ref->ref_info->peer_address);
         }
-        /* Ïú»Ù±¾µØµØÖ· */
+        /* é”€æ¯æœ¬åœ°åœ°å€ */
         if (channel_ref->ref_info->local_address) {
             knet_address_destroy(channel_ref->ref_info->local_address);
         }
-        /* Í¨ÖªÑ¡È¡Æ÷É¾³ı¹ÜµÀÏà¹Ø×ÊÔ´ */
-        if ((channel_ref->ref_info->state != channel_state_init) && /* ÒÑ¾­±»¼ÓÈëµ½loop¹ÜµÀÁ´±í */
+        /* é€šçŸ¥é€‰å–å™¨åˆ é™¤ç®¡é“ç›¸å…³èµ„æº */
+        if ((channel_ref->ref_info->state != channel_state_init) && /* å·²ç»è¢«åŠ å…¥åˆ°loopç®¡é“é“¾è¡¨ */
             channel_ref->ref_info->loop) {
             knet_impl_remove_channel_ref(channel_ref->ref_info->loop, channel_ref);
         }
-        /* Ïú»Ù¹ÜµÀ */
+        /* é”€æ¯ç®¡é“ */
         if (channel_ref->ref_info->channel) {
             knet_channel_destroy(channel_ref->ref_info->channel);
         }
-        /* Ïú»ÙÊı¾İÁ÷ */
+        /* é”€æ¯æ•°æ®æµ */
         if (channel_ref->ref_info->stream) {
             stream_destroy(channel_ref->ref_info->stream);
         }
-        /* Ïú»Ù¶¨Ê±Æ÷ */
+        /* é”€æ¯å®šæ—¶å™¨ */
         knet_channel_ref_stop_connect_timeout_timer(channel_ref);
         knet_channel_ref_stop_recv_timeout_timer(channel_ref);
-        /* Ïú»Ù¹ÜµÀĞÅÏ¢ */
+        /* é”€æ¯ç®¡é“ä¿¡æ¯ */
         knet_free(channel_ref->ref_info);
     }
-    /* Ïú»Ù¹ÜµÀÒıÓÃ */
+    /* é”€æ¯ç®¡é“å¼•ç”¨ */
     knet_free(channel_ref);
     return error_ok;
 }
@@ -161,70 +161,70 @@ int knet_channel_ref_connect(kchannel_ref_t* channel_ref, const char* ip, int po
         }
     }
     if (knet_channel_ref_check_state(channel_ref, channel_state_connect)) {
-        /* ÒÑ¾­´¦ÓÚÁ¬½Ó×´Ì¬ */
+        /* å·²ç»å¤„äºè¿æ¥çŠ¶æ€ */
         return error_connect_in_progress;
     }
     if (!channel_ref->ref_info->peer_address) {
-        /* ½¨Á¢¶Ô¶ËµØÖ·¶ÔÏó */
+        /* å»ºç«‹å¯¹ç«¯åœ°å€å¯¹è±¡ */
         if (knet_channel_is_ipv6(channel_ref->ref_info->channel)) {
             channel_ref->ref_info->peer_address = knet_address_create6();
         } else {
             channel_ref->ref_info->peer_address = knet_address_create();
         }
     }
-    /* ÉèÖÃ¶Ô¶ËµØÖ· */
+    /* è®¾ç½®å¯¹ç«¯åœ°å€ */
     knet_address_set(channel_ref->ref_info->peer_address, ip, port);
     if (timeout > 0) {
         channel_ref->ref_info->connect_timeout = timeout;
-        /* ÉèÖÃ³¬Ê±Ê±¼ä´Á */
+        /* è®¾ç½®è¶…æ—¶æ—¶é—´æˆ³ */
         channel_ref->ref_info->last_connect_timeout = time(0) + timeout;
     }
-    /* Èç¹ûÄ¿±ê»ı¼«¾Ü¾ø£¬·µ»ØÊ§°Ü */
+    /* å¦‚æœç›®æ ‡ç§¯ææ‹’ç»ï¼Œè¿”å›å¤±è´¥ */
     error = knet_channel_connect(channel_ref->ref_info->channel, ip, port);
     if (error_ok != error) {
         return error;
     }
     log_verb("start connecting to IP[%s], port[%d]", ip, port);
-    /* ¸ºÔØ¾ùºâ */
+    /* è´Ÿè½½å‡è¡¡ */
     loop = knet_channel_ref_choose_loop(channel_ref);
     if (loop) {
-        /* ¼õÉÙÔ­loopµÄactive¹ÜµÀÊıÁ¿ */
+        /* å‡å°‘åŸloopçš„activeç®¡é“æ•°é‡ */
         knet_loop_profile_decrease_active_channel_count(
             knet_loop_get_profile(channel_ref->ref_info->loop));
-        /* ÉèÖÃÄ¿±êloop */
+        /* è®¾ç½®ç›®æ ‡loop */
         channel_ref->ref_info->loop = loop;
-        /* Ôö¼ÓÄ¿±êloopµÄactive¹ÜµÀÊıÁ¿ */
+        /* å¢åŠ ç›®æ ‡loopçš„activeç®¡é“æ•°é‡ */
         knet_loop_profile_increase_active_channel_count(knet_loop_get_profile(loop));
-        /* Ìí¼Óµ½ÆäËûloop */
+        /* æ·»åŠ åˆ°å…¶ä»–loop */
         knet_loop_notify_connect(loop, channel_ref);
         return error_ok;
     }
-    /* µ±Ç°Ïß³ÌÄÚ·¢ÆğÁ¬½Ó */
+    /* å½“å‰çº¿ç¨‹å†…å‘èµ·è¿æ¥ */
     return knet_channel_ref_connect_in_loop(channel_ref);
 }
 
 int knet_channel_ref_reconnect(kchannel_ref_t* channel_ref, int timeout) {
-    int                   error               = error_ok; /* ´íÎóÂë */
+    int                   error               = error_ok; /* é”™è¯¯ç  */
     char                  ip[32]              = {0};      /* IP */
-    int                   port                = 0;        /* ¶Ë¿Ú */
-    kchannel_ref_t*       new_channel         = 0;        /* ÖØÁ¬Ê±ĞÂ½¨Á¢µÄ¹ÜµÀ */
-    kaddress_t*           peer_address        = 0;        /* ¶Ô¶ËµØÖ· */
-    time_t                connect_timeout     = 0;        /* Á¬½Ó³¬Ê±(Ãë) */
-    knet_channel_ref_cb_t cb                  = 0;        /* ¹ÜµÀ»Øµ÷ */
+    int                   port                = 0;        /* ç«¯å£ */
+    kchannel_ref_t*       new_channel         = 0;        /* é‡è¿æ—¶æ–°å»ºç«‹çš„ç®¡é“ */
+    kaddress_t*           peer_address        = 0;        /* å¯¹ç«¯åœ°å€ */
+    time_t                connect_timeout     = 0;        /* è¿æ¥è¶…æ—¶(ç§’) */
+    knet_channel_ref_cb_t cb                  = 0;        /* ç®¡é“å›è°ƒ */
     kloop_t*              loop                = 0;        /* loop */
-    uint32_t              max_send_list_len   = 0;        /* ·¢ËÍÁ´±í×î´ó³¤¶È */
-    uint32_t              max_recv_buffer_len = 0;        /* ½ÓÊÕ»º³åÇø×î´ó³¤¶È */
-    int                   auto_reconnect      = 0;        /* ×Ô¶¯ÖØÁ¬±êÖ¾ */
-    void*                 user_data           = 0;        /* ÄÚ²¿Ê¹ÓÃÊı¾İÖ¸Õë */
-    void*                 ptr                 = 0;        /* ÓÃ»§Êı¾İÖ¸Õë */
+    uint32_t              max_send_list_len   = 0;        /* å‘é€é“¾è¡¨æœ€å¤§é•¿åº¦ */
+    uint32_t              max_recv_buffer_len = 0;        /* æ¥æ”¶ç¼“å†²åŒºæœ€å¤§é•¿åº¦ */
+    int                   auto_reconnect      = 0;        /* è‡ªåŠ¨é‡è¿æ ‡å¿— */
+    void*                 user_data           = 0;        /* å†…éƒ¨ä½¿ç”¨æ•°æ®æŒ‡é’ˆ */
+    void*                 ptr                 = 0;        /* ç”¨æˆ·æ•°æ®æŒ‡é’ˆ */
     verify(channel_ref);
     verify(channel_ref->ref_info);
     verify(channel_ref->ref_info->channel);
     if (!knet_channel_ref_check_state(channel_ref, channel_state_connect)) {
-        /* Î´´¦ÓÚÕıÔÚÁ¬½Ó×´Ì¬µÄ¹ÜµÀ²»ÄÜÖØÁ¬ */
+        /* æœªå¤„äºæ­£åœ¨è¿æ¥çŠ¶æ€çš„ç®¡é“ä¸èƒ½é‡è¿ */
         return error_channel_not_connect;
     }
-    /* »ñÈ¡Ô­ÓĞ¹ÜµÀÊôĞÔ */
+    /* è·å–åŸæœ‰ç®¡é“å±æ€§ */
     loop                = knet_channel_ref_get_loop(channel_ref);
     max_send_list_len   = knet_channel_get_max_send_list_len(channel_ref->ref_info->channel);
     max_recv_buffer_len = knet_channel_get_max_recv_buffer_len(channel_ref->ref_info->channel);
@@ -236,7 +236,7 @@ int knet_channel_ref_reconnect(kchannel_ref_t* channel_ref, int timeout) {
     verify(peer_address);
     strcpy(ip, address_get_ip(peer_address));
     port = address_get_port(peer_address);
-    /* ½¨Á¢ĞÂ¹ÜµÀ */
+    /* å»ºç«‹æ–°ç®¡é“ */
     if (knet_channel_is_ipv6(channel_ref->ref_info->channel)) {
         new_channel = knet_loop_create_channel6(loop, max_send_list_len, max_recv_buffer_len);
     } else {
@@ -244,31 +244,31 @@ int knet_channel_ref_reconnect(kchannel_ref_t* channel_ref, int timeout) {
     }
     verify(new_channel);
     if (timeout > 0) {
-        /* ÉèÖÃĞÂµÄ³¬Ê±Ê±¼ä´Á */
+        /* è®¾ç½®æ–°çš„è¶…æ—¶æ—¶é—´æˆ³ */
         connect_timeout = timeout;
     } else {
-        /* Ê¹ÓÃÔ­ÓĞµÄ³¬Ê±Ê±¼ä´Á */
+        /* ä½¿ç”¨åŸæœ‰çš„è¶…æ—¶æ—¶é—´æˆ³ */
         if (channel_ref->ref_info->connect_timeout) {
             connect_timeout = channel_ref->ref_info->connect_timeout;
         }
     }
-    /* ÉèÖÃÔ­ÓĞ»Øµ÷ */
+    /* è®¾ç½®åŸæœ‰å›è°ƒ */
     knet_channel_ref_set_cb(new_channel, cb);
-    /* ÉèÖÃÔ­ÓĞÓÃ»§Êı¾İ */
+    /* è®¾ç½®åŸæœ‰ç”¨æˆ·æ•°æ® */
     knet_channel_ref_set_user_data(new_channel, user_data);
-    /* ÉèÖÃÓÃ»§Ö¸Õë */
+    /* è®¾ç½®ç”¨æˆ·æŒ‡é’ˆ */
     knet_channel_ref_set_ptr(new_channel, ptr);
-    /* ÉèÖÃ×Ô¶¯ÖØÁ¬±êÖ¾ */
+    /* è®¾ç½®è‡ªåŠ¨é‡è¿æ ‡å¿— */
     knet_channel_ref_set_auto_reconnect(new_channel, auto_reconnect);
-    /* Ïú»ÙÁ¬½Ó³¬Ê±¶¨Ê±Æ÷ */
+    /* é”€æ¯è¿æ¥è¶…æ—¶å®šæ—¶å™¨ */
     knet_channel_ref_stop_connect_timeout_timer(channel_ref);
-    /* Æô¶¯ĞÂµÄÁ¬½ÓÆ÷ */
+    /* å¯åŠ¨æ–°çš„è¿æ¥å™¨ */
     error = knet_channel_ref_connect(new_channel, ip, port, (int)connect_timeout);
     if (error_ok != error) {
         return error;
     }
-    /* Ïú»ÙÔ­ÓĞ¹ÜµÀ */
-#ifdef LOOP_IOCP
+    /* é”€æ¯åŸæœ‰ç®¡é“ */
+#if LOOP_IOCP
     knet_channel_ref_decref(channel_ref);
 #endif /* LOOP_IOCP */
     knet_channel_ref_close(channel_ref);
@@ -287,38 +287,38 @@ int knet_channel_ref_check_auto_reconnect(kchannel_ref_t* channel_ref) {
 
 void knet_channel_ref_accept_async(kchannel_ref_t* channel_ref) {
     verify(channel_ref);
-    /* Ìí¼Óµ½»îÔ¾¹ÜµÀÁ´±í */
+    /* æ·»åŠ åˆ°æ´»è·ƒç®¡é“é“¾è¡¨ */
     knet_loop_add_channel_ref(channel_ref->ref_info->loop, channel_ref);
-    /* ÉèÖÃ¹ÜµÀ×´Ì¬ */
+    /* è®¾ç½®ç®¡é“çŠ¶æ€ */
     knet_channel_ref_set_state(channel_ref, channel_state_accept);
-    /* ÉèÖÃ¹Ø×¢ÊÂ¼ş */
+    /* è®¾ç½®å…³æ³¨äº‹ä»¶ */
     knet_channel_ref_set_event(channel_ref, channel_event_recv);
 }
 
 int knet_channel_ref_accept(kchannel_ref_t* channel_ref, const char* ip, int port, int backlog) {
-    int         error     = 0; /* ´íÎóÂë */
-    thread_id_t thread_id = 0; /* loopËùÔÚµÄÏß³ÌID */
+    int         error     = 0; /* é”™è¯¯ç  */
+    thread_id_t thread_id = 0; /* loopæ‰€åœ¨çš„çº¿ç¨‹ID */
     verify(channel_ref);
     verify(port);
     if (knet_channel_ref_check_state(channel_ref, channel_state_accept)) {
-        /* ÒÑ¾­´¦ÓÚ¼àÌı×´Ì¬ */
+        /* å·²ç»å¤„äºç›‘å¬çŠ¶æ€ */
         return error_accept_in_progress;
     }
-    /* ¼àÌı */
+    /* ç›‘å¬ */
     error = knet_channel_accept(channel_ref->ref_info->channel, ip, port, backlog);
     if (error == error_ok) {
         thread_id = knet_loop_get_thread_id(channel_ref->ref_info->loop);
-        if (thread_id) { /* kloop_tÔÚÄ³¸öÏß³ÌÔËĞĞ¹ı */
-            if (thread_id != thread_get_self_id()) { /* ¿çÏß³ÌÆô¶¯¼àÌıÆ÷ */
+        if (thread_id) { /* kloop_tåœ¨æŸä¸ªçº¿ç¨‹è¿è¡Œè¿‡ */
+            if (thread_id != thread_get_self_id()) { /* è·¨çº¿ç¨‹å¯åŠ¨ç›‘å¬å™¨ */
                 knet_loop_notify_accept_async(channel_ref->ref_info->loop, channel_ref);
                 return error;
             }
         }
-        /* µ±Ç°Ïß³ÌÄÚ */
+        /* å½“å‰çº¿ç¨‹å†… */
         knet_loop_add_channel_ref(channel_ref->ref_info->loop, channel_ref);
-        /* ÉèÖÃÎª¼àÌı×´Ì¬ */
+        /* è®¾ç½®ä¸ºç›‘å¬çŠ¶æ€ */
         knet_channel_ref_set_state(channel_ref, channel_state_accept);
-        /* Í¶µİ¶ÁÊÂ¼ş */
+        /* æŠ•é€’è¯»äº‹ä»¶ */
         knet_channel_ref_set_event(channel_ref, channel_event_recv);
     }
     return error;
@@ -327,12 +327,12 @@ int knet_channel_ref_accept(kchannel_ref_t* channel_ref, const char* ip, int por
 kchannel_ref_t* knet_channel_ref_share(kchannel_ref_t* channel_ref) {
     kchannel_ref_t* channel_ref_shared = 0;
     verify(channel_ref);
-    channel_ref_shared = create(kchannel_ref_t);
+    channel_ref_shared = knet_create(kchannel_ref_t);
     verify(channel_ref_shared);
     memset(channel_ref_shared, 0, sizeof(kchannel_ref_t));
-    /* Ôö¼Ó¹ÜµÀÒıÓÃ¼ÆÊı */
+    /* å¢åŠ ç®¡é“å¼•ç”¨è®¡æ•° */
     atomic_counter_inc(&channel_ref->ref_info->ref_count);
-    /* ¹²Ïí¹ÜµÀĞÅÏ¢Ö¸Õë */
+    /* å…±äº«ç®¡é“ä¿¡æ¯æŒ‡é’ˆ */
     channel_ref_shared->ref_info = channel_ref->ref_info;
     channel_ref_shared->share = 1;
     return channel_ref_shared;
@@ -340,9 +340,9 @@ kchannel_ref_t* knet_channel_ref_share(kchannel_ref_t* channel_ref) {
 
 void knet_channel_ref_leave(kchannel_ref_t* channel_ref) {
     verify(channel_ref);
-    /* µİ¼õÒıÓÃ¼ÆÊı */
+    /* é€’å‡å¼•ç”¨è®¡æ•° */
     atomic_counter_dec(&channel_ref->ref_info->ref_count);
-    /* ¹ÜµÀĞÅÏ¢×îÖÕÓÉkloop_tÏú»Ù */
+    /* ç®¡é“ä¿¡æ¯æœ€ç»ˆç”±kloop_té”€æ¯ */
     knet_free(channel_ref);
 }
 
@@ -350,36 +350,34 @@ void knet_channel_ref_update_close_in_loop(kloop_t* loop, kchannel_ref_t* channe
     verify(loop);
     verify(channel_ref);
     if (knet_channel_ref_check_state(channel_ref, channel_state_close)) {
-        /* ÒÑ¾­ÔÚÑÓ³Ù¹Ø±ÕÁ´±íÄÚ */
+        /* å·²ç»åœ¨å»¶è¿Ÿå…³é—­é“¾è¡¨å†… */
         return;
     }
-    /* ÉèÖÃÎª¹Ø±Õ×´Ì¬ */
+    /* è®¾ç½®ä¸ºå…³é—­çŠ¶æ€ */
     knet_channel_ref_set_state(channel_ref, channel_state_close);
-    /* È¡ÏûÍ¶µİ¶ÁºÍĞ´ÊÂ¼ş */
+    /* å–æ¶ˆæŠ•é€’è¯»å’Œå†™äº‹ä»¶ */
     knet_channel_ref_clear_event(channel_ref, channel_event_recv | channel_event_send);
-    /* ¹Ø±Õ¹ÜµÀ */
-    knet_channel_close(channel_ref->ref_info->channel);
-    /* ¹Ø±Õ¹ÜµÀÒıÓÃ */
+    /* å…³é—­ç®¡é“å¼•ç”¨ */
     knet_loop_close_channel_ref(channel_ref->ref_info->loop, channel_ref);
-    /* Ïú»Ù½ÓÊÕ³¬Ê±¶¨Ê±Æ÷ */
+    /* é”€æ¯æ¥æ”¶è¶…æ—¶å®šæ—¶å™¨ */
     knet_channel_ref_stop_recv_timeout_timer(channel_ref);
-    /* Ïú»ÙÁ¬½Ó³¬Ê±¶¨Ê±Æ÷ */
+    /* é”€æ¯è¿æ¥è¶…æ—¶å®šæ—¶å™¨ */
     knet_channel_ref_stop_connect_timeout_timer(channel_ref);
 }
 
 void knet_channel_ref_close_check_reconnect(kchannel_ref_t* channel_ref) {
     verify(channel_ref);
     if (knet_channel_ref_check_auto_reconnect(channel_ref)) {
-        /* ×Ô¶¯ÖØÁ¬ */
-        /* Î±Ôìµ±Ç°×´Ì¬ */
+        /* è‡ªåŠ¨é‡è¿ */
+        /* ä¼ªé€ å½“å‰çŠ¶æ€ */
         knet_channel_ref_set_state(channel_ref, channel_state_connect);
         if (!channel_ref->ref_info->connect_timeout_timer) {
             knet_channel_ref_start_connect_timeout_timer(channel_ref);
         }
-        /* ÖØÁ¬ */
+        /* é‡è¿ */
         //knet_channel_ref_reconnect(channel_ref, 0);
     } else {
-        /* ¹Ø±Õ¹ÜµÀ */
+        /* å…³é—­ç®¡é“ */
         knet_channel_ref_close(channel_ref);
     }
 }
@@ -389,20 +387,20 @@ void knet_channel_ref_close(kchannel_ref_t* channel_ref) {
     verify(channel_ref);
     loop = channel_ref->ref_info->loop;
     if (!knet_loop_get_thread_id(loop) || (channel_ref->ref_info->state == channel_state_init)) {
-        /* Î´±»¼ÓÈëµ½Á´±íÄÚ */
+        /* æœªè¢«åŠ å…¥åˆ°é“¾è¡¨å†… */
         knet_channel_ref_destroy(channel_ref);
         return;
     }
     if (knet_channel_ref_check_state(channel_ref, channel_state_close)) {
-        /* ÒÑ¾­ÔÚ¹Ø±ÕÁ´±íÄÚ */
+        /* å·²ç»åœ¨å…³é—­é“¾è¡¨å†… */
         return;
     }
     if (knet_loop_get_thread_id(loop) != thread_get_self_id()) {
-        /* Í¨Öª¹ÜµÀËùÊôÏß³Ì */
+        /* é€šçŸ¥ç®¡é“æ‰€å±çº¿ç¨‹ */
         log_info("close channel cross thread, notify thread[id:%ld]", knet_loop_get_thread_id(loop));
         knet_loop_notify_close(loop, channel_ref);
     } else {
-        /* ±¾Ïß³ÌÄÚ¹Ø±Õ */
+        /* æœ¬çº¿ç¨‹å†…å…³é—­ */
         log_info("close channel[%llu] in loop thread[id: %ld]", knet_channel_ref_get_uuid(channel_ref), knet_loop_get_thread_id(loop));
         knet_channel_ref_update_close_in_loop(loop, channel_ref);
     }
@@ -418,16 +416,17 @@ void knet_channel_ref_update_send_in_loop(kloop_t* loop, kchannel_ref_t* channel
     verify(loop);
     verify(channel_ref);
     verify(send_buffer);
-    /* ¼ÇÂ¼Í³¼ÆÊı¾İ */
+    /* è®°å½•ç»Ÿè®¡æ•°æ® */
     knet_loop_profile_add_send_bytes(knet_loop_get_profile(loop), knet_buffer_get_length(send_buffer));
-    /* ´¦Àí·¢ËÍ */
-    error = knet_channel_send_buffer(channel_ref->ref_info->channel, send_buffer);
+    /* å¤„ç†å‘é€ */
+    error = knet_channel_send(channel_ref->ref_info->channel, knet_buffer_get_ptr(send_buffer),
+        knet_buffer_get_length(send_buffer));
     switch (error) {
-    case error_send_patial: /* ²¿·Ö·¢ËÍ³É¹¦ */
-        /* ¼ÌĞøÍ¶µİĞ´ÊÂ¼ş */
+    case error_send_patial: /* éƒ¨åˆ†å‘é€æˆåŠŸ */
+        /* ç»§ç»­æŠ•é€’å†™äº‹ä»¶ */
         knet_channel_ref_set_event(channel_ref, channel_event_send);
         break;
-    case error_send_fail: /* ·¢ËÍÊ§°Ü */
+    case error_send_fail: /* å‘é€å¤±è´¥ */
         knet_channel_ref_close_check_reconnect(channel_ref);
         break;
     default:
@@ -447,28 +446,28 @@ int knet_channel_ref_write(kchannel_ref_t* channel_ref, const char* data, int si
     }
     loop = channel_ref->ref_info->loop;
     if (knet_loop_get_thread_id(loop) != thread_get_self_id()) {
-        /* ×ªµ½loopËùÔÚÏß³Ì·¢ËÍ */
+        /* è½¬åˆ°loopæ‰€åœ¨çº¿ç¨‹å‘é€ */
         log_info("send cross thread, notify thread[id:%ld]", knet_loop_get_thread_id(loop));
         send_buffer = knet_buffer_create(size);
         verify(send_buffer);
         if (!send_buffer) {
             return error_no_memory;
         }
-        /* ´ò°üµ½»º³åÇø */
+        /* æ‰“åŒ…åˆ°ç¼“å†²åŒº */
         knet_buffer_put(send_buffer, data, size);
-        /* Í¨ÖªÄ¿±êÏß³Ì */
+        /* é€šçŸ¥ç›®æ ‡çº¿ç¨‹ */
         knet_loop_notify_send(loop, channel_ref, send_buffer);
     } else {
         knet_loop_profile_add_send_bytes(knet_loop_get_profile(channel_ref->ref_info->loop), size);
-        /* µ±Ç°Ïß³Ì·¢ËÍ */
+        /* å½“å‰çº¿ç¨‹å‘é€ */
         error = knet_channel_send(channel_ref->ref_info->channel, data, size);
         switch (error) {
         case error_send_patial:
             knet_channel_ref_set_event(channel_ref, channel_event_send);
-            /* ¶ÔÓÚµ÷ÓÃÕß²»ÊÇ´íÎó */
+            /* å¯¹äºè°ƒç”¨è€…ä¸æ˜¯é”™è¯¯ */
             error = error_ok;
             break;
-        case error_send_fail: /* ·¢ËÍÊ§°Ü */
+        case error_send_fail: /* å‘é€å¤±è´¥ */
             knet_channel_ref_close_check_reconnect(channel_ref);
             break;
         default:
@@ -494,7 +493,7 @@ kloop_t* knet_channel_ref_get_loop(kchannel_ref_t* channel_ref) {
 }
 
 void knet_channel_ref_set_loop_node(kchannel_ref_t* channel_ref, kdlist_node_t* node) {
-    verify(channel_ref); /* node¿ÉÒÔÎª0 */
+    verify(channel_ref); /* nodeå¯ä»¥ä¸º0 */
     channel_ref->ref_info->loop_node = node;
 }
 
@@ -536,11 +535,11 @@ int knet_channel_ref_check_event(kchannel_ref_t* channel_ref, knet_channel_event
 }
 
 kchannel_ref_t* knet_channel_ref_accept_from_socket_fd(kchannel_ref_t* channel_ref, kloop_t* loop, socket_t client_fd, int event, int ipv6) {
-    kchannel_t*     acceptor_channel    = 0; /* ¼àÌı¹ÜµÀ */
-    uint32_t        max_send_list_len   = 0; /* ×î´ó·¢ËÍÁ´±í³¤¶È */
-    uint32_t        max_ringbuffer_size = 0; /* ×î´ó½ÓÊÜ»º³åÇø³¤¶È */
-    kchannel_t*     client_channel      = 0; /* ¿Í»§¶Ë¹ÜµÀ */
-    kchannel_ref_t* client_ref          = 0; /* ¿Í»§¶Ë¹ÜµÀÒıÓÃ */
+    kchannel_t*     acceptor_channel    = 0; /* ç›‘å¬ç®¡é“ */
+    uint32_t        max_send_list_len   = 0; /* æœ€å¤§å‘é€é“¾è¡¨é•¿åº¦ */
+    uint32_t        max_ringbuffer_size = 0; /* æœ€å¤§æ¥å—ç¼“å†²åŒºé•¿åº¦ */
+    kchannel_t*     client_channel      = 0; /* å®¢æˆ·ç«¯ç®¡é“ */
+    kchannel_ref_t* client_ref          = 0; /* å®¢æˆ·ç«¯ç®¡é“å¼•ç”¨ */
     verify(channel_ref);
     verify(channel_ref->ref_info);
     verify(client_fd > 0);
@@ -552,18 +551,18 @@ kchannel_ref_t* knet_channel_ref_accept_from_socket_fd(kchannel_ref_t* channel_r
     }
     max_ringbuffer_size = ringbuffer_get_max_size(knet_channel_get_ringbuffer(acceptor_channel));
     if (!max_ringbuffer_size) {
-        max_ringbuffer_size = 16 * 1024; /* Ä¬ÈÏ16K */
+        max_ringbuffer_size = 16 * 1024; /* é»˜è®¤16K */
     }
-    /* ½¨Á¢¿Í»§¶Ë¹ÜµÀ */
+    /* å»ºç«‹å®¢æˆ·ç«¯ç®¡é“ */
     client_channel = knet_channel_create_exist_socket_fd(client_fd, max_send_list_len, max_ringbuffer_size, ipv6);
     verify(client_channel);
-    /* ½¨Á¢¹ÜµÀÒıÓÃ */
+    /* å»ºç«‹ç®¡é“å¼•ç”¨ */
     client_ref = knet_channel_ref_create(loop, client_channel);
     verify(client_ref);
     if (event) {
-        /* Ìí¼Óµ½µ±Ç°Ïß³Ìloop */
+        /* æ·»åŠ åˆ°å½“å‰çº¿ç¨‹loop */
         knet_loop_add_channel_ref(channel_ref->ref_info->loop, client_ref);
-        /* ´´½¨µÄÍ¬Ê±ÉèÖÃÊÂ¼şºÍ×´Ì¬ */
+        /* åˆ›å»ºçš„åŒæ—¶è®¾ç½®äº‹ä»¶å’ŒçŠ¶æ€ */
         knet_channel_ref_set_state(client_ref, channel_state_active);
         knet_channel_ref_set_event(client_ref, channel_event_recv);
     }
@@ -576,10 +575,10 @@ void knet_channel_ref_update_accept(kchannel_ref_t* channel_ref) {
     socket_t        client_fd  = 0;
     int             ipv6 = knet_channel_is_ipv6(channel_ref->ref_info->channel);
     verify(channel_ref);
-    /* ²é¿´Ñ¡È¡Æ÷ÊÇ·ñÓĞ×Ô¶¨ÒåÊµÏÖ */
+    /* æŸ¥çœ‹é€‰å–å™¨æ˜¯å¦æœ‰è‡ªå®šä¹‰å®ç° */
     client_fd = knet_impl_channel_accept(channel_ref);
     if (!client_fd) {
-        /* Ä¬ÈÏÊµÏÖ */
+        /* é»˜è®¤å®ç° */
         if (knet_channel_is_ipv6(channel_ref->ref_info->channel)) {
             client_fd = socket_accept6(knet_channel_get_socket_fd(channel_ref->ref_info->channel));
         } else {
@@ -598,26 +597,26 @@ void knet_channel_ref_update_accept(kchannel_ref_t* channel_ref) {
             verify(client_ref);
             knet_channel_ref_set_user_data(client_ref, channel_ref->ref_info->user_data);
             knet_channel_ref_set_ptr(client_ref, channel_ref->ref_info->user_ptr);
-            /* ÉèÖÃ»Øµ÷ */
+            /* è®¾ç½®å›è°ƒ */
             knet_channel_ref_set_cb(client_ref, channel_ref->ref_info->cb);
-            /* ÉèÖÃ¶Á¿ÕÏĞ³¬Ê± */
+            /* è®¾ç½®è¯»ç©ºé—²è¶…æ—¶ */
             knet_channel_ref_set_timeout(client_ref, (int)channel_ref->ref_info->timeout);
-            /* Ìí¼Óµ½ÆäËûloop */
+            /* æ·»åŠ åˆ°å…¶ä»–loop */
             knet_loop_notify_accept(loop, client_ref);
         } else {
             client_ref = knet_channel_ref_accept_from_socket_fd(channel_ref, channel_ref->ref_info->loop, client_fd, 1, ipv6);
             verify(client_ref);
             knet_channel_ref_set_user_data(client_ref, channel_ref->ref_info->user_data);
             knet_channel_ref_set_ptr(client_ref, channel_ref->ref_info->user_ptr);
-            /* ÉèÖÃ»Øµ÷ */
+            /* è®¾ç½®å›è°ƒ */
             knet_channel_ref_set_cb(client_ref, channel_ref->ref_info->cb);
-            /* ÉèÖÃ¶Á¿ÕÏĞ³¬Ê± */
+            /* è®¾ç½®è¯»ç©ºé—²è¶…æ—¶ */
             knet_channel_ref_set_timeout(client_ref, (int)channel_ref->ref_info->timeout);
-            /* µ÷ÓÃ»Øµ÷ */
+            /* è°ƒç”¨å›è°ƒ */
             if (channel_ref->ref_info->cb) {
                 channel_ref->ref_info->cb(client_ref, channel_cb_event_accept);
             }
-            /* ½¨Á¢½ÓÊÕ³¬Ê±¶¨Ê±Æ÷ */
+            /* å»ºç«‹æ¥æ”¶è¶…æ—¶å®šæ—¶å™¨ */
             knet_channel_ref_start_recv_timeout_timer(client_ref);
         }
     }
@@ -627,9 +626,9 @@ int knet_channel_ref_start_connect_timeout_timer(kchannel_ref_t* channel_ref) {
     int       error         = error_ok;
     ktimer_t* connect_timer = 0;
     verify(channel_ref);
-    /* Ïú»Ù */
+    /* é”€æ¯ */
     knet_channel_ref_stop_connect_timeout_timer(channel_ref);
-    /* ½¨Á¢ĞÂµÄ */
+    /* å»ºç«‹æ–°çš„ */
     if (channel_ref->ref_info->connect_timeout) {
         connect_timer = ktimer_create(knet_loop_get_timer_loop(channel_ref->ref_info->loop));
         verify(connect_timer);
@@ -646,14 +645,14 @@ int knet_channel_ref_start_recv_timeout_timer(kchannel_ref_t* channel_ref) {
     int       error      = error_ok;
     ktimer_t* recv_timer = 0;
     verify(channel_ref);
-    /* Ïú»Ù */
+    /* é”€æ¯ */
     knet_channel_ref_stop_recv_timeout_timer(channel_ref);
-    /* ½¨Á¢ĞÂµÄ */
+    /* å»ºç«‹æ–°çš„ */
     if (channel_ref->ref_info->timeout) {
-        /* ½¨Á¢¶¨Ê±Æ÷ */
+        /* å»ºç«‹å®šæ—¶å™¨ */
         recv_timer = ktimer_create(knet_loop_get_timer_loop(channel_ref->ref_info->loop));
         verify(recv_timer);
-        /* Æô¶¯¶¨Ê±Æ÷ */
+        /* å¯åŠ¨å®šæ—¶å™¨ */
         error = ktimer_start(recv_timer, knet_channel_ref_get_timer_cb(channel_ref),
             channel_ref, channel_ref->ref_info->timeout * 1000);
         if (error == error_ok) {
@@ -666,9 +665,9 @@ int knet_channel_ref_start_recv_timeout_timer(kchannel_ref_t* channel_ref) {
 void knet_channel_ref_stop_recv_timeout_timer(kchannel_ref_t* channel_ref) {
     verify(channel_ref);
     if (channel_ref->ref_info->recv_timeout_timer) {
-        /* Í£Ö¹¶¨Ê±Æ÷ */
+        /* åœæ­¢å®šæ—¶å™¨ */
         ktimer_stop(channel_ref->ref_info->recv_timeout_timer);
-        /* ÖÃÁã */
+        /* ç½®é›¶ */
         channel_ref->ref_info->recv_timeout_timer = 0;
     }
 }
@@ -676,73 +675,73 @@ void knet_channel_ref_stop_recv_timeout_timer(kchannel_ref_t* channel_ref) {
 void knet_channel_ref_update_accept_in_loop(kloop_t* loop, kchannel_ref_t* channel_ref) {
     verify(loop);
     verify(channel_ref);
-    /* Ìí¼Óµ½µ±Ç°Ïß³Ìloop */
+    /* æ·»åŠ åˆ°å½“å‰çº¿ç¨‹loop */
     knet_loop_add_channel_ref(loop, channel_ref);
-    /* ÉèÖÃ¹ÜµÀÎª»îÔ¾×´Ì¬ */
+    /* è®¾ç½®ç®¡é“ä¸ºæ´»è·ƒçŠ¶æ€ */
     knet_channel_ref_set_state(channel_ref, channel_state_active);
-    /* Í¶µİ¶ÁÊÂ¼ş */
+    /* æŠ•é€’è¯»äº‹ä»¶ */
     knet_channel_ref_set_event(channel_ref, channel_event_recv);    
     if (channel_ref->ref_info->cb) {
-        /* µ÷ÓÃ»Øµ÷ */
+        /* è°ƒç”¨å›è°ƒ */
         channel_ref->ref_info->cb(channel_ref, channel_cb_event_accept);
     }
-    /* ½¨Á¢½ÓÊÕ³¬Ê±¶¨Ê±Æ÷ */
+    /* å»ºç«‹æ¥æ”¶è¶…æ—¶å®šæ—¶å™¨ */
     knet_channel_ref_start_recv_timeout_timer(channel_ref);
 }
 
 void knet_channel_ref_stop_connect_timeout_timer(kchannel_ref_t* channel_ref) {
     if (channel_ref->ref_info->connect_timeout_timer) {
-        /* Í£Ö¹¶¨Ê±Æ÷ */
+        /* åœæ­¢å®šæ—¶å™¨ */
         ktimer_stop(channel_ref->ref_info->connect_timeout_timer);
-        /* ÖÃÁã */
+        /* ç½®é›¶ */
         channel_ref->ref_info->connect_timeout_timer = 0;
     }
 }
 
 void knet_channel_ref_update_connect(kchannel_ref_t* channel_ref) {
     verify(channel_ref);
-    /* Í¶µİ¶ÁÊÂ¼ş */
+    /* æŠ•é€’è¯»äº‹ä»¶ */
     knet_channel_ref_set_event(channel_ref, channel_event_recv);
-    /* ÇĞ»»¹ÜµÀÎª»îÔ¾×´Ì¬ */
+    /* åˆ‡æ¢ç®¡é“ä¸ºæ´»è·ƒçŠ¶æ€ */
     knet_channel_ref_set_state(channel_ref, channel_state_active);
-    /* Ïú»ÙÁ¬½Ó³¬Ê±¶¨Ê±Æ÷ */
+    /* é”€æ¯è¿æ¥è¶…æ—¶å®šæ—¶å™¨ */
     knet_channel_ref_stop_connect_timeout_timer(channel_ref);
-    /* Æô¶¯½ÓÊÕ³¬Ê±¶¨Ê±Æ÷ */
+    /* å¯åŠ¨æ¥æ”¶è¶…æ—¶å®šæ—¶å™¨ */
     knet_channel_ref_start_recv_timeout_timer(channel_ref);
     if (channel_ref->ref_info->cb) {
-        /* µ÷ÓÃ»Øµ÷ */
+        /* è°ƒç”¨å›è°ƒ */
         log_error("channel connectd, channel[%llu]", knet_channel_ref_get_uuid(channel_ref));
         channel_ref->ref_info->cb(channel_ref, channel_cb_event_connect);
     }
 }
 
 void timer_cb(ktimer_t* timer, void* data) {
-    time_t          now           = time(0); /* µ±Ç°Ê±¼ä(Ãë) */
-    kchannel_ref_t* channel_ref   = (kchannel_ref_t*)data; /* µ±Ç°¹ÜµÀ */
-    time_t          gap           = now - channel_ref->ref_info->last_recv_ts; /* ÉÏ´Î½ÓÊÕ¾àÀëµ±Ç°Ê±¼ä(Ãë) */
-    ktimer_t*       recv_timer    = knet_channel_ref_get_recv_timeout_timer(channel_ref); /* ½ÓÊÕ¶¨Ê±Æ÷ */
-    ktimer_t*       connect_timer = knet_channel_ref_get_connect_timeout_timer(channel_ref); /* Á¬½Ó¶¨Ê±Æ÷ */
-    if (connect_timer == timer) { /* Á¬½Ó³¬Ê±¶¨Ê±Æ÷ */
+    time_t          now           = time(0); /* å½“å‰æ—¶é—´(ç§’) */
+    kchannel_ref_t* channel_ref   = (kchannel_ref_t*)data; /* å½“å‰ç®¡é“ */
+    time_t          gap           = now - channel_ref->ref_info->last_recv_ts; /* ä¸Šæ¬¡æ¥æ”¶è·ç¦»å½“å‰æ—¶é—´(ç§’) */
+    ktimer_t*       recv_timer    = knet_channel_ref_get_recv_timeout_timer(channel_ref); /* æ¥æ”¶å®šæ—¶å™¨ */
+    ktimer_t*       connect_timer = knet_channel_ref_get_connect_timeout_timer(channel_ref); /* è¿æ¥å®šæ—¶å™¨ */
+    if (connect_timer == timer) { /* è¿æ¥è¶…æ—¶å®šæ—¶å™¨ */
         if (socket_check_send_ready(knet_channel_ref_get_socket_fd(channel_ref))) {
             knet_impl_event_add(channel_ref, channel_event_send);
         }
-        /* ²¢Î´Êµ¼Ê³¬Ê± */
+        /* å¹¶æœªå®é™…è¶…æ—¶ */
         if (channel_ref->ref_info->last_connect_timeout > now) {
             return;
         }
-        /* Á¬½Ó³¬Ê± */
+        /* è¿æ¥è¶…æ—¶ */
         if (knet_channel_ref_get_cb(channel_ref)) {
             log_error("connect timeout, channel[%llu]", knet_channel_ref_get_uuid(channel_ref));
             knet_channel_ref_get_cb(channel_ref)(channel_ref, channel_cb_event_connect_timeout);
         }
-        /* ×Ô¶¯ÖØÁ¬ */
+        /* è‡ªåŠ¨é‡è¿ */
         if (knet_channel_ref_check_auto_reconnect(channel_ref)) {
             knet_channel_ref_reconnect(channel_ref, 0);
         }
-    } else if (recv_timer == timer) { /* ½ÓÊÕ³¬Ê±¶¨Ê±Æ÷ */
+    } else if (recv_timer == timer) { /* æ¥æ”¶è¶…æ—¶å®šæ—¶å™¨ */
         if (!knet_channel_ref_check_state(channel_ref, channel_state_accept)) {
             if (gap > channel_ref->ref_info->timeout) {
-                /* ¶Á³¬Ê±£¬ĞÄÌø */
+                /* è¯»è¶…æ—¶ï¼Œå¿ƒè·³ */
                 if (knet_channel_ref_get_cb(channel_ref)) {
                     knet_channel_ref_get_cb(channel_ref)(channel_ref, channel_cb_event_timeout);
                 }
@@ -760,41 +759,41 @@ void knet_channel_ref_update_recv(kchannel_ref_t* channel_ref) {
     int      error = 0;
     uint32_t bytes = 0;
     verify(channel_ref);
-    /* »ñÈ¡¹ÜµÀÁ÷ÄÚ×Ö½ÚÊıÁ¿ */
+    /* è·å–ç®¡é“æµå†…å­—èŠ‚æ•°é‡ */
     bytes = knet_stream_available(channel_ref->ref_info->stream);
-    /* ´¦Àí¶ÁÊÂ¼ş */
+    /* å¤„ç†è¯»äº‹ä»¶ */
     error = knet_channel_update_recv(channel_ref->ref_info->channel);
     if (error != error_ok) {
         bytes = knet_stream_available(channel_ref->ref_info->stream);
         if (bytes) {
-            /* ¼ÇÂ¼Í³¼ÆÊı¾İ */
+            /* è®°å½•ç»Ÿè®¡æ•°æ® */
             knet_loop_profile_add_recv_bytes(knet_loop_get_profile(channel_ref->ref_info->loop),
                 knet_stream_available(channel_ref->ref_info->stream) - bytes);
             if (channel_ref->ref_info->cb) {
-                /* µ÷ÓÃ»Øµ÷ */
+                /* è°ƒç”¨å›è°ƒ */
                 channel_ref->ref_info->cb(channel_ref, channel_cb_event_recv);
             }
         }
     }
     switch (error) {
-        case error_recv_fail: /* ½ÓÊÕÊ§°Ü */
+        case error_recv_fail: /* æ¥æ”¶å¤±è´¥ */
             knet_channel_ref_close_check_reconnect(channel_ref);
             break;
-        case error_recv_buffer_full: /* ½ÓÊÕ»º³åÇøÂú */
+        case error_recv_buffer_full: /* æ¥æ”¶ç¼“å†²åŒºæ»¡ */
             knet_channel_ref_close_check_reconnect(channel_ref);
             break;
         default:
             break;
     }
     if (error == error_ok) {
-        /* ¼ÇÂ¼Í³¼ÆÊı¾İ */
+        /* è®°å½•ç»Ÿè®¡æ•°æ® */
         knet_loop_profile_add_recv_bytes(knet_loop_get_profile(channel_ref->ref_info->loop),
             knet_stream_available(channel_ref->ref_info->stream) - bytes);
         if (channel_ref->ref_info->cb) {
-            /* µ÷ÓÃ»Øµ÷ */
+            /* è°ƒç”¨å›è°ƒ */
             channel_ref->ref_info->cb(channel_ref, channel_cb_event_recv);
         }
-        /* ÖØĞÂÍ¶µİ¶ÁÊÂ¼ş */
+        /* é‡æ–°æŠ•é€’è¯»äº‹ä»¶ */
         knet_channel_ref_set_event(channel_ref, channel_event_recv);
     }
 }
@@ -802,13 +801,13 @@ void knet_channel_ref_update_recv(kchannel_ref_t* channel_ref) {
 void knet_channel_ref_update_send(kchannel_ref_t* channel_ref) {
     int error = 0;
     verify(channel_ref);
-    /* ´¦Àí·¢ËÍÊÂ¼ş */
+    /* å¤„ç†å‘é€äº‹ä»¶ */
     error = knet_channel_update_send(channel_ref->ref_info->channel);
     switch (error) {
-        case error_send_fail: /* ·¢ËÍÊ§°Ü */
+        case error_send_fail: /* å‘é€å¤±è´¥ */
             knet_channel_ref_close_check_reconnect(channel_ref);
             break;
-        case error_send_patial: /* Î´·¢ËÍÈ«²¿Êı¾İ */
+        case error_send_patial: /* æœªå‘é€å…¨éƒ¨æ•°æ® */
             knet_channel_ref_set_event(channel_ref, channel_event_send);
             break;
         default:
@@ -816,35 +815,37 @@ void knet_channel_ref_update_send(kchannel_ref_t* channel_ref) {
     }
     if (error == error_ok) {
         if (channel_ref->ref_info->cb) {
-            /* µ÷ÓÃ»Øµ÷ */
+            /* è°ƒç”¨å›è°ƒ */
             channel_ref->ref_info->cb(channel_ref, channel_cb_event_send);
         }
+        // å‘é€æˆåŠŸåç§»é™¤å¯å‘é€äº‹ä»¶æŠ•é€’/ç›‘å¬
+        knet_impl_event_remove(channel_ref, channel_event_send);
     }
 }
 
 void knet_channel_ref_update(kchannel_ref_t* channel_ref, knet_channel_event_e e, time_t ts) {
     verify(channel_ref);
     if (knet_channel_ref_check_state(channel_ref, channel_state_close)) {
-        /* ¹ÜµÀÒÑ¾­¹Ø±Õ */
+        /* ç®¡é“å·²ç»å…³é—­ */
         return;
     }
     if ((e & channel_event_recv) && knet_channel_ref_check_event(channel_ref, channel_event_recv)) {
         if (knet_channel_ref_check_state(channel_ref, channel_state_accept)) {
-            /* ĞÂÁ¬½Ó */
+            /* æ–°è¿æ¥ */
             knet_channel_ref_update_accept(channel_ref);
         } else {
-            /* ×îºóÒ»´Î¶ÁÈ¡µ½Êı¾İµÄÊ±¼ä´Á£¨Ãë£© */
+            /* æœ€åä¸€æ¬¡è¯»å–åˆ°æ•°æ®çš„æ—¶é—´æˆ³ï¼ˆç§’ï¼‰ */
             channel_ref->ref_info->last_recv_ts = ts;
-            /* ¶Á */
+            /* è¯» */
             knet_channel_ref_update_recv(channel_ref);
         }
     } 
     if ((e & channel_event_send) && knet_channel_ref_check_event(channel_ref, channel_event_send)) {
         if (knet_channel_ref_check_state(channel_ref, channel_state_connect)) {
-            /* Á¬½ÓÍê³É */
+            /* è¿æ¥å®Œæˆ */
             knet_channel_ref_update_connect(channel_ref);
         } else {
-            /* Ğ´ */
+            /* å†™ */
             knet_channel_ref_update_send(channel_ref);
         }
     }
@@ -865,7 +866,7 @@ kloop_t* knet_channel_ref_choose_loop(kchannel_ref_t* channel_ref) {
     if (!balancer) {
         return 0;
     }
-    /* ¼ì²éÊÇ·ñ¿ªÆôÁËloop_balancer_outÅäÖÃ */
+    /* æ£€æŸ¥æ˜¯å¦å¼€å¯äº†loop_balancer_outé…ç½® */
     if (knet_loop_check_balance_options(channel_ref->ref_info->loop, loop_balancer_out)) {
         loop = knet_loop_balancer_choose(balancer);
         if (loop == channel_ref->ref_info->loop) {
@@ -906,7 +907,7 @@ int knet_channel_ref_check_balance(kchannel_ref_t* channel_ref) {
 }
 
 void knet_channel_ref_set_timeout(kchannel_ref_t* channel_ref, int timeout) {
-    verify(channel_ref); /* timeout¿ÉÒÔÎª0 */
+    verify(channel_ref); /* timeoutå¯ä»¥ä¸º0 */
     channel_ref->ref_info->timeout = (time_t)timeout;
 }
 
@@ -932,13 +933,13 @@ knet_channel_ref_cb_t knet_channel_ref_get_cb(kchannel_ref_t* channel_ref) {
 
 int knet_channel_ref_connect_in_loop(kchannel_ref_t* channel_ref) {
     verify(channel_ref);
-    /* Ìí¼Óµ½»îÔ¾¹ÜµÀÁ´±í */
+    /* æ·»åŠ åˆ°æ´»è·ƒç®¡é“é“¾è¡¨ */
     knet_loop_add_channel_ref(channel_ref->ref_info->loop, channel_ref);
-    /* ÉèÖÃÁ¬½Ó×´Ì¬ */
+    /* è®¾ç½®è¿æ¥çŠ¶æ€ */
     knet_channel_ref_set_state(channel_ref, channel_state_connect);
-    /* Í¨ÖªÑ¡È¡Æ÷Í¶µİ·¢ËÍÊÂ¼ş */
+    /* é€šçŸ¥é€‰å–å™¨æŠ•é€’å‘é€äº‹ä»¶ */
     knet_channel_ref_set_event(channel_ref, channel_event_send);
-    /* Æô¶¯Á¬½Ó³¬Ê±¶¨Ê±Æ÷ */
+    /* å¯åŠ¨è¿æ¥è¶…æ—¶å®šæ—¶å™¨ */
     return knet_channel_ref_start_connect_timeout_timer(channel_ref);;
 }
 
@@ -947,7 +948,7 @@ kaddress_t* knet_channel_ref_get_peer_address(kchannel_ref_t* channel_ref) {
     if (channel_ref->ref_info->peer_address) {
         return channel_ref->ref_info->peer_address;
     }
-    /* µÚÒ»´Î½¨Á¢ */
+    /* ç¬¬ä¸€æ¬¡å»ºç«‹ */
     channel_ref->ref_info->peer_address = knet_address_create();
     if (knet_channel_is_ipv6(channel_ref->ref_info->channel)) {
         socket_getpeername6(channel_ref, channel_ref->ref_info->peer_address);
@@ -962,7 +963,7 @@ kaddress_t* knet_channel_ref_get_local_address(kchannel_ref_t* channel_ref) {
     if (channel_ref->ref_info->local_address) {
         return channel_ref->ref_info->local_address;
     }
-    /* µÚÒ»´Î½¨Á¢ */
+    /* ç¬¬ä¸€æ¬¡å»ºç«‹ */
     channel_ref->ref_info->local_address = knet_address_create();
     if (channel_ref->ref_info->state != channel_state_init) {
         if (knet_channel_is_ipv6(channel_ref->ref_info->channel)) {
@@ -1012,6 +1013,11 @@ int knet_channel_ref_decref(kchannel_ref_t* channel_ref) {
 int knet_channel_ref_is_ipv6(kchannel_ref_t* channel_ref) {
     verify(channel_ref);
     return knet_channel_is_ipv6(channel_ref->ref_info->channel);
+}
+
+int knet_channel_ref_set_reuseport(kchannel_ref_t* channel_ref) {
+    verify(channel_ref);
+    return socket_set_reuseport_on(knet_channel_ref_get_socket_fd(channel_ref));
 }
 
 int knet_channel_ref_check_ref_zero(kchannel_ref_t* channel_ref) {

@@ -154,7 +154,7 @@ void _trie_node_delete_path(ktrie_node_t* node, const char* s);
 int _trie_node_for_each(ktrie_node_t* node, knet_trie_for_each_func_t func, void* param);
 
 ktrie_t* trie_create() {
-    ktrie_t* trie = create(ktrie_t);
+    ktrie_t* trie = knet_create(ktrie_t);
     verify(trie);
     memset(trie, 0, sizeof(ktrie_t));
     trie->root = _trie_node_create(0);
@@ -205,7 +205,7 @@ int trie_for_each(ktrie_t* trie, knet_trie_for_each_func_t func, void* param) {
 }
 
 ktrie_node_t* _trie_node_create(ktrie_node_t* parent) {
-    ktrie_node_t* node = create(ktrie_node_t);
+    ktrie_node_t* node = knet_create(ktrie_node_t);
     verify(node);
     memset(node, 0, sizeof(ktrie_node_t));
     node->ref    = 0;
@@ -302,8 +302,8 @@ void _trie_node_set_real_key(ktrie_node_t* node, const char* real_key) {
     node->real_key = 0;
     verify(node);
     verify(real_key);
-    key_len        = strlen(real_key) + 1;
-    node->real_key = create_raw(key_len);
+    key_len        = (int)strlen(real_key) + 1;
+    node->real_key = knet_create_raw(key_len);
     memcpy(node->real_key, real_key, key_len);
     node->real_key[key_len - 1] = 0;
 }

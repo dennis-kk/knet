@@ -1,9 +1,13 @@
 # CMakeLists file
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 3.5)
 
 project (knet)
 
-SET(CMAKE_C_FLAGS "-g -O2 -Wall")
+if (MSVC)
+elseif ()
+    SET(CMAKE_C_FLAGS "-g -O2 -Wall")
+endif()
+
 add_library(knet
 	buffer.c
 	channel.c
@@ -26,6 +30,21 @@ add_library(knet
 	rb_tree.c
 )
 
-target_link_libraries(knet -lpthread)
+if (MSVC)
+    foreach(var
+        CMAKE_C_FLAGS CMAKE_C_FLAGS_DEBUG CMAKE_C_FLAGS_RELEASE
+        CMAKE_C_FLAGS_MINSIZEREL CMAKE_C_FLAGS_RELWITHDEBINFO
+        CMAKE_CXX_FLAGS CMAKE_CXX_FLAGS_DEBUG CMAKE_CXX_FLAGS_RELEASE
+        CMAKE_CXX_FLAGS_MINSIZEREL CMAKE_CXX_FLAGS_RELWITHDEBINFO
+        )
+        if(${var} MATCHES "/MD")
+            string(REGEX REPLACE "/MD" "/MT" ${var} "${${var}}")
+        endif()
+    endforeach()
+    SET_TARGET_PROPERTIES(knet PROPERTIES PREFIX "lib")
+    SET_TARGET_PROPERTIES(knet PROPERTIES SUFFIX ".a")
+else()
+    target_link_libraries(knet -lpthread)
+endif()
 
 INSTALL(TARGETS knet DESTINATION lib)

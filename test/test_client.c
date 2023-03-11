@@ -18,8 +18,8 @@ void client_timer_cb(ktimer_t* timer, void* data) {
     printf("Active channel: %d, Recv: %d, Send: %d\n", active_channel, recv_bytes, send_bytes);
 }
 
-int isIPV6(const char* ip) {
-    if (!strchr(ip, ':')) {
+int isIPV6(const char* ip_string) {
+    if (!strchr(ip_string, ':')) {
         return 0;
     }
     return 1;
@@ -63,12 +63,12 @@ void connector_cb(kchannel_ref_t* channel, knet_channel_cb_event_e e) {
 }
 
 int main(int argc, char* argv[]) {
-    int                i            = 0;
+    uint32_t            i            = 0;
     kloop_t*            loop         = 0;
-    ktimer_t*          timer        = 0;
+    ktimer_t*           timer        = 0;
     kchannel_ref_t*     connector    = 0;
     kthread_runner_t*   timer_thread = 0;
-    static const char* helper_string =
+    static const char*  helper_string =
         "-n    client count\n"
         "-ip   remote host IP\n"
         "-port remote host port\n";

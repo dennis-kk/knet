@@ -25,6 +25,8 @@
 #ifndef ADDRESS_API_H
 #define ADDRESS_API_H
 
+#include "config.h"
+
 /**
  * @defgroup address 地址
  * 地址
@@ -44,7 +46,7 @@
  * @retval 有效的指针 IP字符串
  * @retval 0 管道连接未建立
  */
-extern const char* address_get_ip(kaddress_t* address);
+FuncExport const char* address_get_ip(kaddress_t* address);
 
 /**
  * 取得port
@@ -52,7 +54,7 @@ extern const char* address_get_ip(kaddress_t* address);
  * @retval 有效的端口号 端口号
  * @retval 0 管道连接未建立
  */
-extern int address_get_port(kaddress_t* address);
+FuncExport int address_get_port(kaddress_t* address);
 
 /**
  * 测试是否相等
@@ -62,7 +64,7 @@ extern int address_get_port(kaddress_t* address);
  * @retval 0 相等
  * @retval 非零 不相等
  */
-extern int address_equal(kaddress_t* address, const char* ip, int port);
+FuncExport int address_equal(kaddress_t* address, const char* ip, int port);
 
 /** @} */
 
