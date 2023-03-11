@@ -15,7 +15,6 @@ use std::{
     thread,
 };
 
-#[allow(dead_code)]
 #[repr(C)]
 #[derive(PartialEq)]
 /// 管道事件
@@ -33,64 +32,64 @@ pub enum ChannelCbEvent {
 }
 
 extern "C" {
-    #[allow(dead_code)]
+
     pub fn knet_loop_create() -> *mut c_void;
-    #[allow(dead_code)]
+
     pub fn knet_loop_destroy(c_loop: *mut c_void);
-    #[allow(dead_code)]
+
     pub fn knet_loop_create_channel(
         c_loop: *mut c_void,
         max_send_list_len: c_uint,
         recv_ring_len: c_uint,
     ) -> *mut c_void;
-    #[allow(dead_code)]
+
     pub fn knet_loop_run_once(c_loop: *mut c_void) -> c_int;
-    #[allow(dead_code)]
+
     pub fn knet_channel_ref_accept(
         c_channel: *mut c_void,
         ip: *const c_char,
         port: c_int,
         backlog: c_int,
     ) -> c_int;
-    #[allow(dead_code)]
+
     pub fn knet_channel_ref_connect(
         c_channel: *mut c_void,
         ip: *const c_char,
         port: c_int,
         timeout: c_int,
     ) -> c_int;
-    #[allow(dead_code)]
+
     pub fn knet_channel_ref_close(c_channel: *mut c_void);
-    #[allow(dead_code)]
+
     pub fn knet_channel_ref_get_stream(c_channel: *mut c_void) -> *mut c_void;
-    #[allow(dead_code)]
+
     pub fn knet_channel_ref_set_cb(
         c_channel: *mut c_void,
         cb: extern "C" fn(*mut c_void, ChannelCbEvent),
     );
-    #[allow(dead_code)]
+
     pub fn knet_channel_ref_get_uuid(c_channel: *mut c_void) -> c_ulonglong;
-    #[allow(dead_code)]
+
     pub fn knet_channel_ref_get_peer_address(c_channel: *mut c_void) -> *mut c_void;
-    #[allow(dead_code)]
+
     pub fn knet_channel_ref_get_local_address(c_channel: *mut c_void) -> *mut c_void;
-    #[allow(dead_code)]
+
     pub fn knet_stream_available(stream: *mut c_void) -> c_int;
-    #[allow(dead_code)]
+
     pub fn knet_stream_eat(stream: *mut c_void, size: c_int) -> c_int;
-    #[allow(dead_code)]
+
     pub fn knet_stream_pop(stream: *mut c_void, buffer: *mut c_void, size: c_int) -> c_int;
-    #[allow(dead_code)]
+
     pub fn knet_stream_push(stream: *mut c_void, buffer: *const c_void, size: c_int) -> c_int;
-    #[allow(dead_code)]
+
     pub fn knet_stream_copy(stream: *mut c_void, buffer: *mut c_void, size: c_int) -> c_int;
-    #[allow(dead_code)]
+
     pub fn address_get_ip(address: *mut c_void) -> *const c_char;
-    #[allow(dead_code)]
+
     pub fn address_get_port(address: *mut c_void) -> c_int;
-    #[allow(dead_code)]
+
     pub fn knet_channel_ref_get_ptr(c_channel: *mut c_void) -> *mut c_void;
-    #[allow(dead_code)]
+
     pub fn knet_channel_ref_set_ptr(c_channel: *mut c_void, data: *mut c_void);
 }
 
@@ -107,7 +106,6 @@ pub struct Channel {
 
 /// 实现Channel方法
 impl Channel {
-    #[allow(dead_code)]
     /// 关闭管道
     pub fn close(self: &mut Channel) {
         if self.close_flag {
@@ -121,19 +119,16 @@ impl Channel {
         }
     }
 
-    #[allow(dead_code)]
     /// 检测管道是否关闭
     pub fn is_close(self: &mut Channel) -> bool {
         return self.close_flag;
     }
 
-    #[allow(dead_code)]
     #[doc(hidden)] // 此方法不对外
     fn set_dispose(self: &mut Channel) {
         self.close_flag = true;
     }
 
-    #[allow(dead_code)]
     /// 获取管道UUID
     pub fn get_uuid(self: &mut Channel) -> u64 {
         unsafe {
@@ -141,7 +136,6 @@ impl Channel {
         }
     }
 
-    #[allow(dead_code)]
     /// 检查管道内字节流数量
     pub fn available(self: &mut Channel) -> i32 {
         if self.close_flag {
@@ -157,12 +151,10 @@ impl Channel {
         }
     }
 
-    #[allow(dead_code)]
     pub fn set_handler(self: &mut Channel, cb: impl FnMut(&mut Channel, ChannelCbEvent) + 'static) {
         self.cb = Rc::new(RefCell::new(cb));
     }
 
-    #[allow(dead_code)]
     pub fn read(self: &mut Channel, buffer: &mut Vec<u8>, size: i32) -> i32 {
         if self.close_flag {
             return 0;
@@ -185,7 +177,6 @@ impl Channel {
         }
     }
 
-    #[allow(dead_code)]
     pub fn copy(self: &mut Channel, buffer: &mut Vec<u8>, size: i32) -> i32 {
         if self.close_flag {
             return 0;
@@ -208,7 +199,6 @@ impl Channel {
         }
     }
 
-    #[allow(dead_code)]
     pub fn write(self: &mut Channel, buffer: &Vec<u8>) -> i32 {
         if self.close_flag {
             return 0;
@@ -227,7 +217,6 @@ impl Channel {
         }
     }
 
-    #[allow(dead_code)]
     pub fn get_local_address(self: &mut Channel) -> (&'static str, i32) {
         if self.close_flag {
             return ("", 0);
@@ -241,7 +230,6 @@ impl Channel {
         }
     }
 
-    #[allow(dead_code)]
     pub fn get_peer_address(self: &mut Channel) -> (&'static str, i32) {
         if self.close_flag {
             return ("", 0);
@@ -286,7 +274,7 @@ thread_local! {
 
 impl Loop {
     /// 建立一个网络循环实例
-    #[allow(dead_code)]
+
     pub fn new() -> Option<Loop> {
         unsafe {
             let loop_ptr = knet_loop_create();
@@ -315,7 +303,7 @@ impl Loop {
     }
 
     /// 销毁一个网络循环实例
-    #[allow(dead_code)]
+
     pub fn destroy(self: &mut Loop) {
         unsafe {
             if self.close_flag {
@@ -334,7 +322,7 @@ impl Loop {
     }
 
     /// 运行网络循环
-    #[allow(dead_code)]
+
     pub fn tick(self: &Loop) {
         if self.close_flag {
             return;
@@ -349,7 +337,7 @@ impl Loop {
     ///  # Arguments
     ///
     /// * `chan_id` - 管道ID
-    #[allow(dead_code)]
+
     pub fn close(self: &Loop, chan_id: u64) {
         LOOP_GLOBAL_PTR.with(|p| {
             let channel_mut = match p.borrow_mut().channel_map.get(&chan_id) {
@@ -366,7 +354,7 @@ impl Loop {
     ///
     /// * `chan_id` - 管道ID
     /// * `data` - 需要发送的数据
-    #[allow(dead_code)]
+
     pub fn send(self: &Loop, chan_id: u64, data: &Vec<u8>) {
         LOOP_GLOBAL_PTR.with(|p| {
             let channel_mut = match p.borrow_mut().channel_map.get(&chan_id) {
@@ -385,7 +373,7 @@ impl Loop {
     /// * `port` - 端口
     /// * `backlog` - backlog
     /// * `cb` - 网络事件回调函数
-    #[allow(dead_code)]
+
     pub fn accept(
         self: &Loop,
         ip: &str,
@@ -456,7 +444,7 @@ impl Loop {
     /// * `port` - 端口
     /// * `timeout` - 连接超时(秒)
     /// * `cb` - 网络事件回调函数
-    #[allow(dead_code)]
+
     pub fn connect(
         self: &Loop,
         ip: &str,
@@ -669,7 +657,6 @@ struct NetEventCloseNtf {
     chan_id: u64,
 }
 
-#[allow(dead_code)]
 #[derive(Debug, Clone)]
 struct NetEventDataNtf {
     chan_id: u64,
@@ -689,7 +676,6 @@ enum NetEvent {
     EventDataNtf(NetEventDataNtf),
 }
 
-#[allow(dead_code)]
 pub struct KnetNetwork {
     running: sync::Arc<AtomicBool>,
     worker: Option<thread::JoinHandle<()>>,
@@ -710,7 +696,7 @@ impl Drop for KnetNetwork {
 
 impl KnetNetwork {
     /// 建立一个网络实例
-    #[allow(dead_code)]
+
     pub fn new() -> Arc<Mutex<KnetNetwork>> {
         Arc::new(Mutex::new(KnetNetwork {
             running: sync::Arc::new(AtomicBool::new(false)),
@@ -725,32 +711,26 @@ impl KnetNetwork {
         }))
     }
 
-    #[allow(dead_code)]
     pub fn on_accept(&mut self, cb: impl FnMut(&KnetNetwork, &str, i32, bool) + 'static) {
         self.on_accept_cb = Rc::new(RefCell::new(cb));
     }
 
-    #[allow(dead_code)]
     pub fn on_connect(&mut self, cb: impl FnMut(&KnetNetwork, u64, &str, i32, bool) + 'static) {
         self.on_connect_cb = Rc::new(RefCell::new(cb));
     }
 
-    #[allow(dead_code)]
     pub fn on_data(&mut self, cb: impl FnMut(&KnetNetwork, u64, &Vec<u8>) + 'static) {
         self.on_read_cb = Rc::new(RefCell::new(cb));
     }
 
-    #[allow(dead_code)]
     pub fn on_close(&mut self, cb: impl FnMut(&KnetNetwork, u64) + 'static) {
         self.on_close_cb = Rc::new(RefCell::new(cb));
     }
 
-    #[allow(dead_code)]
     pub fn on_client(&mut self, cb: impl FnMut(&KnetNetwork, u64) + 'static) {
         self.on_client_cb = Rc::new(RefCell::new(cb));
     }
 
-    #[allow(dead_code)]
     pub fn start(&mut self) {
         if self.running.load(Ordering::SeqCst) {
             // 已经启动
@@ -780,7 +760,6 @@ impl KnetNetwork {
         }));
     }
 
-    #[allow(dead_code)]
     pub fn stop(&mut self) {
         if !self.running.load(Ordering::SeqCst) {
             return;
@@ -795,7 +774,6 @@ impl KnetNetwork {
             .expect("Join worker thread failed");
     }
 
-    #[allow(dead_code)]
     pub fn listen(self: &mut KnetNetwork, ip: String, port: i32) {
         KnetNetwork::_notify_worker(
             self.net_to_worker_queue.clone(),
@@ -806,7 +784,6 @@ impl KnetNetwork {
         );
     }
 
-    #[allow(dead_code)]
     pub fn connect(self: &KnetNetwork, ip: String, port: i32) {
         KnetNetwork::_notify_worker(
             self.net_to_worker_queue.clone(),
@@ -817,12 +794,10 @@ impl KnetNetwork {
         );
     }
 
-    #[allow(dead_code)]
     pub fn tick(self: &KnetNetwork) {
         self._process_net_event();
     }
 
-    #[allow(dead_code)]
     pub fn send(self: &KnetNetwork, chan_id: u64, data: &Vec<u8>) {
         KnetNetwork::_notify_worker(
             self.net_to_worker_queue.clone(),
@@ -833,7 +808,6 @@ impl KnetNetwork {
         );
     }
 
-    #[allow(dead_code)]
     pub fn close(self: &KnetNetwork, chan_id: u64) {
         KnetNetwork::_notify_worker(
             self.net_to_worker_queue.clone(),
